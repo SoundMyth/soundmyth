@@ -5,129 +5,170 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Sound Myth</title>
 <style>
-  *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent;}
-  body{background:#000;color:#fff;font-family:-apple-system,BlinkMacSystemFont,'Helvetica Neue',sans-serif;min-height:100vh;}
-  ::-webkit-scrollbar{width:0;height:0}
-  #app{max-width:430px;margin:0 auto;padding-bottom:72px;}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent;}
+body{background:#000;color:#fff;font-family:-apple-system,BlinkMacSystemFont,'Helvetica Neue',sans-serif;min-height:100vh;}
+::-webkit-scrollbar{width:0;height:0}
+#app{max-width:430px;margin:0 auto;padding-bottom:72px;}
 
-  /* SPLASH */
-  #splash{position:fixed;inset:0;background:#000;display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:999;transition:opacity 0.35s;}
-  .splash-title{color:#fff;letter-spacing:8px;font-size:15px;font-weight:300;margin-top:22px;}
-  .splash-sub{color:#2a2a2a;letter-spacing:4px;font-size:9px;margin-top:5px;}
+#splash{position:fixed;inset:0;background:#000;display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:999;transition:opacity 0.4s;}
+#header{padding:16px 20px 14px;display:flex;align-items:center;gap:10px;border-bottom:1px solid #0a0a0a;position:sticky;top:0;background:rgba(0,0,0,0.97);backdrop-filter:blur(10px);z-index:10;}
+.header-title{font-weight:800;letter-spacing:5px;font-size:12px;}
+.live-dot{width:5px;height:5px;border-radius:50%;background:#22c55e;animation:pulse 2s ease infinite;flex-shrink:0;}
 
-  /* HEADER */
-  #header{padding:18px 20px 14px;display:flex;align-items:center;gap:10px;border-bottom:1px solid #0a0a0a;position:sticky;top:0;background:rgba(0,0,0,0.97);backdrop-filter:blur(10px);z-index:10;}
-  .header-title{font-weight:800;letter-spacing:5px;font-size:12px;}
-  .live-dot{width:5px;height:5px;border-radius:50%;background:#22c55e;animation:pulse 2s ease infinite;}
-  .live-label{color:#333;font-size:9px;letter-spacing:1.5px;}
+#nav{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:100%;max-width:430px;background:rgba(0,0,0,0.97);backdrop-filter:blur(20px);border-top:1px solid #0a0a0a;display:flex;z-index:20;}
+.nav-btn{flex:1;background:none;border:none;color:#2a2a2a;padding:12px 0 10px;font-size:9px;letter-spacing:2px;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:4px;transition:color 0.15s;font-family:inherit;font-weight:400;}
+.nav-btn.active{color:#fff;font-weight:600;}
+.nav-ico{font-size:15px;}
 
-  /* NAV */
-  #nav{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:100%;max-width:430px;background:rgba(0,0,0,0.97);backdrop-filter:blur(20px);border-top:1px solid #0a0a0a;display:flex;z-index:20;}
-  .nav-btn{flex:1;background:none;border:none;color:#2a2a2a;padding:12px 0 10px;font-size:9px;letter-spacing:2px;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:4px;transition:color 0.15s;font-family:inherit;font-weight:400;}
-  .nav-btn.active{color:#fff;font-weight:600;}
-  .nav-ico{font-size:14px;}
+.tab{display:none;}
+.tab.active{display:block;animation:fadeup 0.2s ease;}
 
-  /* TABS */
-  .tab{display:none;padding:20px;}
-  .tab.active{display:block;animation:fadeup 0.2s ease;}
+/* ── HOME ── */
+#tab-home{overflow-x:hidden;}
 
-  /* BREADCRUMB */
-  #breadcrumb{padding:14px 20px 0;display:flex;align-items:center;gap:8px;font-size:11px;}
-  .bc-btn{background:none;border:none;color:#555;cursor:pointer;padding:0;font-size:11px;font-family:inherit;font-weight:400;}
-  .bc-btn.active{color:#fff;font-weight:700;}
-  .bc-sep{color:#222;font-size:11px;}
+/* HERO */
+.home-hero{position:relative;height:88vw;max-height:380px;overflow:hidden;}
+.home-hero-img{width:100%;height:100%;object-fit:cover;filter:brightness(0.38);display:block;}
+.home-hero-grad{position:absolute;inset:0;background:linear-gradient(to bottom, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.5) 55%, #000 100%);}
+.home-hero-body{position:absolute;bottom:0;left:0;right:0;padding:0 22px 26px;}
+.hero-eyebrow{color:#888;font-size:9px;letter-spacing:3px;margin-bottom:10px;}
+.hero-title{font-size:30px;font-weight:900;line-height:1.1;letter-spacing:-1px;margin-bottom:10px;}
+.hero-title em{color:#888;font-style:normal;}
+.hero-desc{color:#999;font-size:12px;line-height:1.6;margin-bottom:18px;max-width:280px;}
+.hero-cta{display:inline-flex;align-items:center;gap:8px;background:#fff;color:#000;border:none;border-radius:6px;padding:11px 18px;font-size:11px;font-weight:800;letter-spacing:1.5px;cursor:pointer;font-family:inherit;}
 
-  /* CITY LIST */
-  .city-btn{display:flex;align-items:center;width:100%;background:none;border:none;border-bottom:1px solid #0a0a0a;padding:14px 0;cursor:pointer;gap:12px;font-family:inherit;}
-  .city-name{color:#fff;font-size:14px;font-weight:600;text-align:left;}
-  .city-country{color:#444;font-size:11px;margin-top:1px;text-align:left;}
-  .city-count{color:#444;font-size:11px;margin-left:auto;}
-  .city-arrow{color:#333;font-size:14px;}
+/* SOURCES STRIP */
+.sources-strip{display:flex;align-items:center;gap:8px;padding:12px 20px;border-bottom:1px solid #0a0a0a;overflow-x:auto;background:#000;}
+.sources-label{color:#2a2a2a;font-size:9px;letter-spacing:2px;flex-shrink:0;white-space:nowrap;}
+.source-pill{display:flex;align-items:center;gap:5px;border:1px solid #181818;border-radius:20px;padding:4px 10px;flex-shrink:0;}
+.source-dot{width:4px;height:4px;border-radius:50%;background:#22c55e;flex-shrink:0;}
+.source-name{color:#444;font-size:10px;white-space:nowrap;}
 
-  /* MONTH GRID */
-  #month-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;}
-  .month-btn{background:#080808;border:1px solid #141414;border-radius:8px;padding:14px 8px;cursor:pointer;font-family:inherit;transition:all 0.15s;}
-  .month-btn:disabled{background:transparent;border-color:#0a0a0a;cursor:default;}
-  .month-btn.active{background:#fff;border-color:#fff;}
-  .month-name{font-size:13px;font-weight:600;letter-spacing:0.5px;color:#fff;}
-  .month-btn.active .month-name{color:#000;}
-  .month-btn:disabled .month-name{color:#222;}
-  .month-count{font-size:10px;color:#555;margin-top:3px;}
-  .month-btn.active .month-count{color:#666;}
+/* STATS */
+.home-stats{display:flex;border-bottom:1px solid #0a0a0a;}
+.stat-cell{flex:1;padding:16px 0;text-align:center;border-right:1px solid #0a0a0a;}
+.stat-cell:last-child{border-right:none;}
+.stat-num{color:#fff;font-size:22px;font-weight:800;letter-spacing:-0.5px;line-height:1;}
+.stat-lbl{color:#2a2a2a;font-size:9px;letter-spacing:1.5px;margin-top:4px;}
 
-  /* EVENT ROW */
-  .event-row{display:flex;align-items:center;gap:14px;padding:13px 0;border-bottom:1px solid #0d0d0d;cursor:pointer;transition:opacity 0.15s;}
-  .event-row:hover{opacity:0.6;}
-  .ev-date{text-align:center;min-width:32px;flex-shrink:0;}
-  .ev-day{color:#fff;font-size:16px;font-weight:700;line-height:1;}
-  .ev-mon{color:#444;font-size:9px;letter-spacing:0.5px;margin-top:1px;}
-  .ev-divider{width:1px;height:32px;background:#141414;flex-shrink:0;}
-  .ev-info{flex:1;min-width:0;}
-  .ev-name{color:#fff;font-size:13px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
-  .ev-sub{color:#444;font-size:11px;margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
-  .ev-right{display:flex;align-items:center;gap:10px;flex-shrink:0;}
-  .ev-price{color:#fff;font-size:12px;font-weight:600;}
-  .ev-genre{color:#333;font-size:10px;margin-top:1px;}
-  .ev-save{background:none;border:none;color:#2a2a2a;font-size:15px;cursor:pointer;padding:4px;transition:color 0.15s;font-family:inherit;}
-  .ev-save.saved{color:#fff;}
+/* SECTION HEADERS */
+.home-sec{display:flex;justify-content:space-between;align-items:center;padding:22px 20px 12px;}
+.home-sec-title{color:#fff;font-size:13px;font-weight:700;letter-spacing:0.3px;}
+.home-sec-link{color:#444;font-size:10px;letter-spacing:1px;cursor:pointer;border:none;background:none;font-family:inherit;}
 
-  /* DETAIL */
-  #detail{position:fixed;inset:0;z-index:200;background:#000;overflow-y:auto;display:none;}
-  #detail.open{display:block;animation:fadeup 0.2s ease;}
-  .detail-hero{position:relative;height:42vh;min-height:200px;}
-  .detail-hero img{width:100%;height:100%;object-fit:cover;filter:brightness(0.3);}
-  .detail-overlay{position:absolute;inset:0;background:linear-gradient(to bottom,transparent 20%,#000 100%);}
-  .detail-back{position:absolute;top:18px;left:18px;background:rgba(0,0,0,0.6);border:1px solid #222;border-radius:6px;color:#fff;padding:7px 13px;font-size:11px;cursor:pointer;letter-spacing:1px;font-family:inherit;}
-  .detail-info{position:absolute;bottom:20px;left:20px;right:20px;}
-  .detail-genre{color:#555;font-size:9px;letter-spacing:2px;margin-bottom:5px;}
-  .detail-name{color:#fff;font-size:20px;font-weight:800;margin:0 0 3px;line-height:1.2;}
-  .detail-venue{color:#555;font-size:12px;}
-  .detail-body{padding:20px 20px 60px;}
-  .detail-stats{display:flex;gap:8px;margin-bottom:24px;}
-  .stat-box{flex:1;background:#080808;border:1px solid #141414;border-radius:8px;padding:10px 6px;text-align:center;}
-  .stat-ico{font-size:15px;margin-bottom:3px;}
-  .stat-val{color:#fff;font-size:11px;font-weight:700;}
-  .lineup-label{color:#333;font-size:9px;letter-spacing:2px;margin-bottom:10px;}
-  .lineup-row{display:flex;align-items:center;gap:12px;padding:12px 0;border-bottom:1px solid #0a0a0a;}
-  .lineup-ico{width:30px;height:30px;border-radius:50%;background:#0d0d0d;border:1px solid #1a1a1a;display:flex;align-items:center;justify-content:center;font-size:11px;flex-shrink:0;}
-  .lineup-name{color:#ddd;font-size:14px;font-weight:500;}
-  .tags{display:flex;gap:6px;flex-wrap:wrap;margin-top:18px;margin-bottom:24px;}
-  .tag{background:#080808;border:1px solid #141414;border-radius:4px;padding:3px 9px;font-size:10px;color:#555;letter-spacing:0.5px;}
-  .detail-actions{display:flex;gap:8px;}
-  .ticket-btn{flex:1;display:block;background:#fff;color:#000;text-align:center;padding:14px;border-radius:8px;font-weight:800;font-size:12px;letter-spacing:1px;text-decoration:none;}
-  .save-btn{width:50px;background:#080808;border:1px solid #141414;border-radius:8px;font-size:18px;cursor:pointer;font-family:inherit;}
-  .save-btn.saved{color:#fff;}
-  .save-btn:not(.saved){color:#333;}
+/* HORIZONTAL SCROLL CARDS */
+.hscroll{display:flex;gap:10px;overflow-x:auto;padding:0 20px 20px;-webkit-overflow-scrolling:touch;}
+.hscroll::-webkit-scrollbar{display:none;}
 
-  /* DISCOVER */
-  .search-row{display:flex;gap:8px;margin-bottom:6px;}
-  .search-input{flex:1;background:#080808;border:1px solid #141414;border-radius:8px;padding:12px 14px;color:#fff;font-size:13px;font-family:inherit;}
-  .search-input::placeholder{color:#333;}
-  .search-btn{background:#fff;color:#000;border:1px solid #fff;border-radius:8px;padding:12px 16px;font-weight:700;font-size:13px;cursor:pointer;font-family:inherit;transition:all 0.2s;}
-  .search-btn:disabled{background:#080808;color:#333;border-color:#141414;cursor:default;}
-  .example-btn{display:block;width:100%;text-align:left;background:none;border:none;border-bottom:1px solid #080808;padding:13px 0;color:#444;font-size:13px;cursor:pointer;font-family:inherit;}
-  .tip-box{padding:9px 12px;background:#080808;border:1px solid #141414;border-radius:6px;margin-bottom:14px;color:#666;font-size:11px;}
-  .reset-btn{display:block;width:100%;background:none;border:none;color:#333;font-size:10px;letter-spacing:2px;padding:20px 0;cursor:pointer;font-family:inherit;}
+.ev-card-h{position:relative;flex-shrink:0;width:200px;border-radius:10px;overflow:hidden;cursor:pointer;}
+.ev-card-h img{width:200px;height:130px;object-fit:cover;filter:brightness(0.4);display:block;}
+.ev-card-h-grad{position:absolute;inset:0;background:linear-gradient(to bottom,transparent 30%,rgba(0,0,0,0.95) 100%);}
+.ev-card-h-save{position:absolute;top:8px;right:8px;background:rgba(0,0,0,0.55);border:1px solid #333;border-radius:50%;width:26px;height:26px;display:flex;align-items:center;justify-content:center;font-size:12px;cursor:pointer;color:#444;transition:color 0.15s;border:none;}
+.ev-card-h-save.saved{color:#fff;}
+.ev-card-h-body{position:absolute;bottom:0;left:0;right:0;padding:10px 10px 10px;}
+.ev-card-h-genre{color:#888;font-size:8px;letter-spacing:1.5px;margin-bottom:3px;}
+.ev-card-h-name{color:#fff;font-size:12px;font-weight:700;line-height:1.2;margin-bottom:3px;}
+.ev-card-h-meta{color:#666;font-size:10px;}
+.ev-card-h-price{position:absolute;top:8px;left:8px;background:rgba(0,0,0,0.65);border:1px solid #222;border-radius:4px;padding:3px 7px;color:#fff;font-size:10px;font-weight:700;}
 
-  /* SAVED */
-  .route-bar{display:flex;align-items:center;gap:8px;padding:12px 0;border-bottom:1px solid #0a0a0a;margin-bottom:6px;overflow-x:auto;}
-  .route-city{color:#888;font-size:12px;font-weight:600;flex-shrink:0;}
-  .route-arr{color:#222;font-size:12px;}
-  .empty-state{text-align:center;padding:80px 0;}
-  .empty-label{color:#1e1e1e;font-size:11px;letter-spacing:2px;margin-top:18px;}
-  .empty-sub{color:#141414;font-size:11px;margin-top:5px;}
+/* DJ SPOTLIGHT */
+.dj-spotlight{margin:0 20px 24px;border-radius:12px;overflow:hidden;position:relative;cursor:pointer;}
+.dj-spotlight img{width:100%;height:200px;object-fit:cover;object-position:top;filter:brightness(0.35);display:block;}
+.dj-spotlight-grad{position:absolute;inset:0;background:linear-gradient(105deg,rgba(0,0,0,0.85) 40%,transparent 100%);}
+.dj-spotlight-body{position:absolute;inset:0;padding:24px 20px;display:flex;flex-direction:column;justify-content:flex-end;}
+.dj-badge{display:inline-block;background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.15);border-radius:4px;padding:3px 8px;font-size:8px;color:#aaa;letter-spacing:2px;margin-bottom:8px;width:fit-content;}
+.dj-name{color:#fff;font-size:24px;font-weight:900;letter-spacing:-0.5px;line-height:1;margin-bottom:4px;}
+.dj-sub{color:#666;font-size:11px;margin-bottom:12px;}
+.dj-events-count{display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.1);border-radius:4px;padding:5px 10px;font-size:10px;color:#888;}
 
-  /* MISC */
-  .section-label{color:#333;font-size:10px;letter-spacing:2px;margin-bottom:4px;}
-  input[type=text]{outline:none;-webkit-appearance:none;}
+/* ABOUT STRIP */
+.about-strip{margin:0 20px 24px;padding:20px;border:1px solid #141414;border-radius:12px;}
+.about-strip p{color:#555;font-size:12px;line-height:1.7;margin-top:8px;}
 
-  @keyframes fadeup{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
-  @keyframes pulse{0%,100%{opacity:.4}50%{opacity:1}}
-  @keyframes spin{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
+/* ── PLAN ── */
+#breadcrumb{padding:14px 20px 0;display:flex;align-items:center;gap:8px;}
+.bc-btn{background:none;border:none;color:#555;cursor:pointer;padding:0;font-size:11px;font-family:inherit;font-weight:400;}
+.bc-btn.active{color:#fff;font-weight:700;}
+.bc-sep{color:#222;font-size:11px;}
+
+.city-btn{display:flex;align-items:center;width:100%;background:none;border:none;border-bottom:1px solid #0a0a0a;padding:14px 0;cursor:pointer;gap:12px;font-family:inherit;}
+.city-name{color:#fff;font-size:14px;font-weight:600;text-align:left;}
+.city-country{color:#444;font-size:11px;margin-top:1px;text-align:left;}
+.city-count{color:#444;font-size:11px;margin-left:auto;}
+.city-arrow{color:#333;font-size:14px;}
+
+#month-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;}
+.month-btn{background:#080808;border:1px solid #141414;border-radius:8px;padding:14px 8px;cursor:pointer;font-family:inherit;transition:all 0.15s;}
+.month-btn:disabled{background:transparent;border-color:#0a0a0a;cursor:default;}
+.month-btn.active{background:#fff;border-color:#fff;}
+.month-name{font-size:13px;font-weight:600;letter-spacing:0.5px;color:#fff;}
+.month-btn.active .month-name{color:#000;}
+.month-btn:disabled .month-name{color:#222;}
+.month-count{font-size:10px;color:#555;margin-top:3px;}
+.month-btn.active .month-count{color:#666;}
+
+/* ── EVENT ROW ── */
+.event-row{display:flex;align-items:center;gap:14px;padding:13px 0;border-bottom:1px solid #0d0d0d;cursor:pointer;transition:opacity 0.15s;}
+.event-row:hover{opacity:0.6;}
+.ev-date{text-align:center;min-width:32px;flex-shrink:0;}
+.ev-day{color:#fff;font-size:16px;font-weight:700;line-height:1;}
+.ev-mon{color:#444;font-size:9px;letter-spacing:0.5px;margin-top:1px;}
+.ev-divider{width:1px;height:32px;background:#141414;flex-shrink:0;}
+.ev-info{flex:1;min-width:0;}
+.ev-name{color:#fff;font-size:13px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.ev-sub{color:#444;font-size:11px;margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.ev-right{display:flex;align-items:center;gap:10px;flex-shrink:0;}
+.ev-price{color:#fff;font-size:12px;font-weight:600;}
+.ev-genre{color:#333;font-size:10px;margin-top:1px;text-align:right;}
+.ev-save{background:none;border:none;color:#2a2a2a;font-size:15px;cursor:pointer;padding:4px;transition:color 0.15s;font-family:inherit;}
+.ev-save.saved{color:#fff;}
+
+/* ── DETAIL ── */
+#detail{position:fixed;inset:0;z-index:200;background:#000;overflow-y:auto;display:none;}
+#detail.open{display:block;animation:fadeup 0.2s ease;}
+.detail-hero{position:relative;height:42vh;min-height:200px;}
+.detail-hero img{width:100%;height:100%;object-fit:cover;filter:brightness(0.3);}
+.detail-overlay{position:absolute;inset:0;background:linear-gradient(to bottom,transparent 20%,#000 100%);}
+.detail-back{position:absolute;top:18px;left:18px;background:rgba(0,0,0,0.6);border:1px solid #222;border-radius:6px;color:#fff;padding:7px 13px;font-size:11px;cursor:pointer;letter-spacing:1px;font-family:inherit;}
+.detail-info{position:absolute;bottom:20px;left:20px;right:20px;}
+.detail-genre{color:#555;font-size:9px;letter-spacing:2px;margin-bottom:5px;}
+.detail-name{color:#fff;font-size:20px;font-weight:800;margin:0 0 3px;line-height:1.2;}
+.detail-venue{color:#555;font-size:12px;}
+.detail-body{padding:20px 20px 60px;}
+.detail-stats{display:flex;gap:8px;margin-bottom:24px;}
+.stat-box{flex:1;background:#080808;border:1px solid #141414;border-radius:8px;padding:10px 6px;text-align:center;}
+.stat-ico{font-size:15px;margin-bottom:3px;}
+.stat-val{color:#fff;font-size:11px;font-weight:700;}
+.lineup-label{color:#333;font-size:9px;letter-spacing:2px;margin-bottom:10px;}
+.lineup-row{display:flex;align-items:center;gap:12px;padding:12px 0;border-bottom:1px solid #0a0a0a;}
+.lineup-ico{width:30px;height:30px;border-radius:50%;background:#0d0d0d;border:1px solid #1a1a1a;display:flex;align-items:center;justify-content:center;font-size:11px;flex-shrink:0;}
+.lineup-name{color:#ddd;font-size:14px;font-weight:500;}
+.tags{display:flex;gap:6px;flex-wrap:wrap;margin-top:18px;margin-bottom:24px;}
+.tag{background:#080808;border:1px solid #141414;border-radius:4px;padding:3px 9px;font-size:10px;color:#555;letter-spacing:0.5px;}
+.detail-actions{display:flex;gap:8px;}
+.ticket-btn{flex:1;display:block;background:#fff;color:#000;text-align:center;padding:14px;border-radius:8px;font-weight:800;font-size:12px;letter-spacing:1px;text-decoration:none;}
+.save-btn-det{width:50px;background:#080808;border:1px solid #141414;border-radius:8px;font-size:18px;cursor:pointer;font-family:inherit;color:#333;}
+.save-btn-det.saved{color:#fff;}
+
+/* ── SAVED ── */
+.route-bar{display:flex;align-items:center;gap:8px;padding:12px 0;border-bottom:1px solid #0a0a0a;margin-bottom:6px;overflow-x:auto;}
+.route-city{color:#888;font-size:12px;font-weight:600;flex-shrink:0;}
+.route-arr{color:#222;font-size:12px;}
+.empty-state{text-align:center;padding:80px 0;}
+.section-label{color:#333;font-size:10px;letter-spacing:2px;}
+.search-input{background:#080808;border:1px solid #141414;border-radius:8px;padding:11px 14px;color:#fff;font-size:13px;font-family:inherit;}
+.search-input::placeholder{color:#333;}
+input{outline:none;-webkit-appearance:none;}
+button:focus{outline:none;}
+
+@keyframes fadeup{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
+@keyframes pulse{0%,100%{opacity:.4}50%{opacity:1}}
+@keyframes spin{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
 </style>
 </head>
 <body>
 
+<!-- SPLASH -->
 <div id="splash">
   <svg width="72" height="72" viewBox="0 0 200 200" style="animation:spin 10s linear infinite">
     <circle cx="100" cy="100" r="88" fill="none" stroke="white" stroke-width="1" opacity="0.5"/>
@@ -137,13 +178,14 @@
     <circle cx="100" cy="91" r="3" fill="white"/>
     <path d="M62,140 Q100,162 138,140" fill="none" stroke="white" stroke-width="0.8" opacity="0.5"/>
   </svg>
-  <div class="splash-title">SOUND MYTH</div>
-  <div class="splash-sub">EDM EVENT EXPLORER</div>
+  <div style="color:#fff;letter-spacing:8px;font-size:15px;font-weight:300;margin-top:22px;">SOUND MYTH</div>
+  <div style="color:#2a2a2a;letter-spacing:4px;font-size:9px;margin-top:5px;">EDM EVENT EXPLORER</div>
 </div>
 
 <div id="app">
+  <!-- HEADER -->
   <div id="header">
-    <svg width="24" height="24" viewBox="0 0 200 200" style="animation:spin 10s linear infinite;flex-shrink:0">
+    <svg width="22" height="22" viewBox="0 0 200 200" style="animation:spin 10s linear infinite;flex-shrink:0">
       <circle cx="100" cy="100" r="88" fill="none" stroke="white" stroke-width="1" opacity="0.5"/>
       <polygon points="100,22 168,140 32,140" fill="none" stroke="white" stroke-width="1.5"/>
       <ellipse cx="100" cy="91" rx="24" ry="15" fill="none" stroke="white" stroke-width="1.2"/>
@@ -153,14 +195,83 @@
     <span class="header-title">SOUND MYTH</span>
     <div style="margin-left:auto;display:flex;align-items:center;gap:5px;">
       <div class="live-dot"></div>
-      <span class="live-label">WED SYNC</span>
+      <span style="color:#333;font-size:9px;letter-spacing:1.5px;" id="event-count-label">GLOBAL</span>
     </div>
   </div>
 
-  <!-- PLAN TAB -->
-  <div id="tab-plan" class="tab active">
+  <!-- ── HOME TAB ── -->
+  <div id="tab-home" class="tab active">
+
+    <!-- HERO -->
+    <div class="home-hero">
+      <img class="home-hero-img" src="https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?w=800&q=80" alt=""/>
+      <div class="home-hero-grad"></div>
+      <div class="home-hero-body">
+        <div class="hero-eyebrow">EDM · GLOBAL · ACTUALIZADO SEMANALMENTE</div>
+        <h1 class="hero-title">Toda la escena<br/><em>en un solo lugar.</em></h1>
+        <p class="hero-desc">Sin buscar DJ a DJ. Sin saltar de web en web. Todos los eventos EDM del mundo, aquí.</p>
+        <button class="hero-cta" onclick="switchTab('plan', document.querySelectorAll('.nav-btn')[1])">PLANEAR MI VIAJE →</button>
+      </div>
+    </div>
+
+    <!-- SOURCES -->
+    <div class="sources-strip">
+      <span class="sources-label">FUENTES</span>
+      <div class="source-pill"><div class="source-dot"></div><span class="source-name">Resident Advisor</span></div>
+      <div class="source-pill"><div class="source-dot"></div><span class="source-name">Dice.fm</span></div>
+      <div class="source-pill"><div class="source-dot"></div><span class="source-name">Bandsintown</span></div>
+      <div class="source-pill"><div class="source-dot"></div><span class="source-name">Songkick</span></div>
+    </div>
+
+    <!-- STATS -->
+    <div class="home-stats">
+      <div class="stat-cell"><div class="stat-num" id="stat-events">13</div><div class="stat-lbl">EVENTOS</div></div>
+      <div class="stat-cell"><div class="stat-num" id="stat-cities">8</div><div class="stat-lbl">CIUDADES</div></div>
+      <div class="stat-cell"><div class="stat-num" id="stat-djs">24</div><div class="stat-lbl">DJS</div></div>
+    </div>
+
+    <!-- PRÓXIMOS TOP -->
+    <div class="home-sec">
+      <span class="home-sec-title">PRÓXIMOS DESTACADOS</span>
+      <button class="home-sec-link" onclick="switchTab('plan', document.querySelectorAll('.nav-btn')[1])">VER TODO →</button>
+    </div>
+    <div class="hscroll" id="home-featured"></div>
+
+    <!-- DJ SPOTLIGHT -->
+    <div class="home-sec" style="padding-top:4px;">
+      <span class="home-sec-title">DJ DEL MES</span>
+    </div>
+    <div class="dj-spotlight" id="dj-spotlight-card"></div>
+
+    <!-- ABOUT -->
+    <div class="home-sec" style="padding-top:4px;">
+      <span class="home-sec-title">QUÉ ES SOUND MYTH</span>
+    </div>
+    <div class="about-strip">
+      <p>Sound Myth agrega eventos de música electrónica de todo el mundo en un solo lugar. Conectamos a fans del EDM con las mejores noches, festivales y clubs — sin tener que rastrear cada DJ por separado o visitar decenas de webs.</p>
+      <div style="display:flex;gap:8px;margin-top:14px;">
+        <div style="flex:1;text-align:center;padding:12px 8px;border:1px solid #141414;border-radius:8px;">
+          <div style="font-size:18px;margin-bottom:4px;">🌍</div>
+          <div style="color:#555;font-size:9px;letter-spacing:1.5px;">GLOBAL</div>
+        </div>
+        <div style="flex:1;text-align:center;padding:12px 8px;border:1px solid #141414;border-radius:8px;">
+          <div style="font-size:18px;margin-bottom:4px;">🔄</div>
+          <div style="color:#555;font-size:9px;letter-spacing:1.5px;">SEMANAL</div>
+        </div>
+        <div style="flex:1;text-align:center;padding:12px 8px;border:1px solid #141414;border-radius:8px;">
+          <div style="font-size:18px;margin-bottom:4px;">🎛</div>
+          <div style="color:#555;font-size:9px;letter-spacing:1.5px;">SOLO EDM</div>
+        </div>
+      </div>
+    </div>
+
+    <div style="height:8px;"></div>
+  </div>
+
+  <!-- ── PLAN TAB ── -->
+  <div id="tab-plan" class="tab">
     <div id="breadcrumb">
-      <button class="bc-btn active" id="bc-city" onclick="goStep(0)">Ciudad</button>
+      <button class="bc-btn active" id="bc-city" onclick="goStep(0)">Buscar</button>
       <span class="bc-sep">›</span>
       <button class="bc-btn" id="bc-month" onclick="goStep(1)">Mes</button>
       <span class="bc-sep">›</span>
@@ -168,9 +279,20 @@
     </div>
 
     <div id="step-city" style="padding:16px 20px;">
-      <div class="section-label" style="margin-bottom:14px;">¿A DÓNDE VAS?</div>
-      <input type="text" id="city-search" class="search-input" style="width:100%;margin-bottom:16px;" placeholder="Busca una ciudad..." oninput="renderCities()"/>
-      <div id="city-list"></div>
+      <div style="display:flex;gap:0;margin-bottom:18px;border:1px solid #141414;border-radius:8px;overflow:hidden;">
+        <button id="mode-city-btn" onclick="setMode('city')" style="flex:1;padding:10px;background:#fff;color:#000;border:none;font-size:11px;letter-spacing:1.5px;font-weight:700;cursor:pointer;font-family:inherit;">CIUDAD</button>
+        <button id="mode-dj-btn" onclick="setMode('dj')" style="flex:1;padding:10px;background:transparent;color:#555;border:none;font-size:11px;letter-spacing:1.5px;font-weight:400;cursor:pointer;font-family:inherit;">DJ / ARTISTA</button>
+      </div>
+      <div id="mode-city">
+        <div class="section-label" style="margin-bottom:14px;">¿A DÓNDE VAS?</div>
+        <input type="text" id="city-search" class="search-input" style="width:100%;margin-bottom:16px;" placeholder="Busca una ciudad..." oninput="renderCities()"/>
+        <div id="city-list"></div>
+      </div>
+      <div id="mode-dj" style="display:none;">
+        <div class="section-label" style="margin-bottom:14px;">¿A QUÉ DJ QUIERES VER?</div>
+        <input type="text" id="dj-search" class="search-input" style="width:100%;margin-bottom:16px;" placeholder="Charlotte de Witte, Carl Cox..." oninput="renderDJs()"/>
+        <div id="dj-list"></div>
+      </div>
     </div>
 
     <div id="step-month" style="padding:16px 20px;display:none;">
@@ -187,49 +309,15 @@
     </div>
   </div>
 
-  <!-- DISCOVER TAB -->
-  <div id="tab-discover" class="tab">
-    <div class="section-label" style="margin-bottom:6px;">BÚSQUEDA SEMÁNTICA GLOBAL</div>
-    <div style="color:#555;font-size:12px;margin-bottom:18px;line-height:1.5;">Describe lo que buscas. Ciudad, vibe, fechas, artistas — como quieras.</div>
-    <div class="search-row">
-      <input type="text" id="disc-input" class="search-input" placeholder="techno oscuro en Europa en mayo..." onkeydown="if(event.key==='Enter')handleDiscover()"/>
-      <button class="search-btn" id="disc-btn" onclick="handleDiscover()">→</button>
-    </div>
-    <div id="disc-examples">
-      <div style="color:#1e1e1e;font-size:10px;letter-spacing:2px;margin-bottom:10px;margin-top:20px;">EJEMPLOS</div>
-      <button class="example-btn" onclick="runExample(this)">Quiero ir a algo en Budapest en abril</button>
-      <button class="example-btn" onclick="runExample(this)">Festival al aire libre en mayo</button>
-      <button class="example-btn" onclick="runExample(this)">Techno industrial europeo</button>
-      <button class="example-btn" onclick="runExample(this)">Carl Cox o Ricardo Villalobos este verano</button>
-      <button class="example-btn" onclick="runExample(this)">Algo barato y underground en Berlin</button>
-    </div>
-    <div id="disc-loading" style="display:none;text-align:center;padding:50px 0;">
-      <svg width="34" height="34" viewBox="0 0 200 200" style="animation:spin 1.5s linear infinite">
-        <circle cx="100" cy="100" r="88" fill="none" stroke="white" stroke-width="1" opacity="0.5"/>
-        <polygon points="100,22 168,140 32,140" fill="none" stroke="white" stroke-width="1.5"/>
-        <ellipse cx="100" cy="91" rx="24" ry="15" fill="none" stroke="white" stroke-width="1.2"/>
-        <circle cx="100" cy="91" r="7" fill="none" stroke="white" stroke-width="1.2"/>
-        <circle cx="100" cy="91" r="3" fill="white"/>
-      </svg>
-      <div style="color:#2a2a2a;font-size:10px;letter-spacing:2px;margin-top:14px;">BUSCANDO EN GLOBAL...</div>
-    </div>
-    <div id="disc-results" style="display:none;">
-      <div id="disc-tip" class="tip-box" style="display:none;"></div>
-      <div class="section-label" id="disc-count" style="margin-bottom:4px;"></div>
-      <div id="disc-list"></div>
-      <button class="reset-btn" onclick="resetDiscover()">NUEVA BÚSQUEDA</button>
-    </div>
-  </div>
-
-  <!-- SAVED TAB -->
-  <div id="tab-saved" class="tab">
+  <!-- ── SAVED TAB ── -->
+  <div id="tab-saved" class="tab" style="padding:20px;">
     <div class="section-label" id="saved-count" style="margin-bottom:4px;">0 GUARDADOS</div>
     <div id="route-bar" class="route-bar" style="display:none;"></div>
     <div id="saved-list"></div>
     <div id="saved-empty" class="empty-state">
-      <svg width="40" height="40" viewBox="0 0 200 200"><circle cx="100" cy="100" r="88" fill="none" stroke="#1e1e1e" stroke-width="1"/><polygon points="100,22 168,140 32,140" fill="none" stroke="#1e1e1e" stroke-width="1.5"/><ellipse cx="100" cy="91" rx="24" ry="15" fill="none" stroke="#1e1e1e" stroke-width="1.2"/><circle cx="100" cy="91" r="7" fill="none" stroke="#1e1e1e" stroke-width="1.2"/><circle cx="100" cy="91" r="3" fill="#1e1e1e"/></svg>
-      <div class="empty-label">LISTA VACÍA</div>
-      <div class="empty-sub">Guarda eventos con ♡</div>
+      <svg width="40" height="40" viewBox="0 0 200 200"><circle cx="100" cy="100" r="88" fill="none" stroke="#1a1a1a" stroke-width="1"/><polygon points="100,22 168,140 32,140" fill="none" stroke="#1a1a1a" stroke-width="1.5"/><ellipse cx="100" cy="91" rx="24" ry="15" fill="none" stroke="#1a1a1a" stroke-width="1.2"/><circle cx="100" cy="91" r="7" fill="none" stroke="#1a1a1a" stroke-width="1.2"/><circle cx="100" cy="91" r="3" fill="#1a1a1a"/></svg>
+      <div style="color:#1e1e1e;font-size:11px;letter-spacing:2px;margin-top:18px;">LISTA VACÍA</div>
+      <div style="color:#141414;font-size:11px;margin-top:5px;">Guarda eventos con ♡</div>
     </div>
   </div>
 </div>
@@ -257,15 +345,15 @@
     <div class="tags" id="det-tags"></div>
     <div class="detail-actions">
       <a id="det-ticket" href="#" target="_blank" class="ticket-btn">TICKETS EN RA →</a>
-      <button id="det-save" class="save-btn" onclick="toggleDetailSave()">♡</button>
+      <button id="det-save" class="save-btn-det" onclick="toggleDetailSave()">♡</button>
     </div>
   </div>
 </div>
 
 <!-- NAV -->
 <div id="nav">
-  <button class="nav-btn active" onclick="switchTab('plan',this)"><span class="nav-ico">◉</span>PLANEAR</button>
-  <button class="nav-btn" onclick="switchTab('discover',this)"><span class="nav-ico">◎</span>DESCUBRIR</button>
+  <button class="nav-btn active" onclick="switchTab('home',this)"><span class="nav-ico">◎</span>INICIO</button>
+  <button class="nav-btn" onclick="switchTab('plan',this)"><span class="nav-ico">◉</span>PLANEAR</button>
   <button class="nav-btn" onclick="switchTab('saved',this)"><span class="nav-ico">♥</span>MI LISTA</button>
 </div>
 
@@ -289,17 +377,77 @@ const EVENTS=[
 const FLAGS={HU:"🇭🇺",DE:"🇩🇪",ES:"🇪🇸",NL:"🇳🇱",GB:"🇬🇧",US:"🇺🇸",JP:"🇯🇵"};
 const MONTHS=["Ene","Feb","Mar","Abr","May","Jun","Jul","Ago","Sep","Oct","Nov","Dic"];
 const ALL_CITIES=[...new Set(EVENTS.map(e=>e.city))].sort();
+const ALL_DJS=[...new Set(EVENTS.flatMap(e=>e.djs))].sort();
 
-let saved=[], selCity=null, selMonth=null, currentStep=0, detailEv=null;
+let saved=[], selCity=null, selMonth=null, selDJ=null, currentStep=0, detailEv=null, searchMode='city';
 
-// ── INIT ──
+// ── INIT ──────────────────────────────────────────────────────────────────────
 setTimeout(()=>{
   document.getElementById('splash').style.opacity='0';
-  setTimeout(()=>document.getElementById('splash').style.display='none',350);
-},1900);
-renderCities();
+  setTimeout(()=>document.getElementById('splash').style.display='none',400);
+},2000);
 
-// ── HELPERS ──
+document.getElementById('event-count-label').textContent=`GLOBAL · ${EVENTS.length} EVENTOS`;
+document.getElementById('stat-events').textContent=EVENTS.length;
+document.getElementById('stat-cities').textContent=[...new Set(EVENTS.map(e=>e.city))].length;
+document.getElementById('stat-djs').textContent=[...new Set(EVENTS.flatMap(e=>e.djs))].length;
+
+renderCities();
+renderFeatured();
+
+// ── HOME FEATURED ─────────────────────────────────────────────────────────────
+const DJ_SPOTLIGHT={
+  name:"Charlotte de Witte",
+  sub:"Techno · Bélgica · Residente Drumcode",
+  img:"https://images.unsplash.com/photo-1598387993281-cecf8b71a8f8?w=600&q=80",
+  eventsCount: ()=>EVENTS.filter(e=>e.djs.includes("Charlotte de Witte")).length,
+};
+
+function renderFeatured(){
+  const top=[...EVENTS].sort((a,b)=>new Date(a.date)-new Date(b.date)).slice(0,5);
+  document.getElementById('home-featured').innerHTML=top.map(ev=>{
+    const{day,mon}=fmtDate(ev.date);
+    const isSaved=saved.includes(ev.id);
+    return`<div class="ev-card-h" onclick="openDetail(${ev.id})">
+      <img src="${ev.img}" alt="" onerror="this.style.display='none'"/>
+      <div class="ev-card-h-grad"></div>
+      <span class="ev-card-h-price">${ev.price}</span>
+      <button class="ev-card-h-save${isSaved?' saved':''}" onclick="event.stopPropagation();toggleSave(${ev.id})">${isSaved?'♥':'♡'}</button>
+      <div class="ev-card-h-body">
+        <div class="ev-card-h-genre">${ev.genre.toUpperCase()} · ${FLAGS[ev.country]} ${ev.city.toUpperCase()}</div>
+        <div class="ev-card-h-name">${ev.name}</div>
+        <div class="ev-card-h-meta">${day} ${mon} · ${ev.djs[0]}</div>
+      </div>
+    </div>`;
+  }).join('');
+
+  // DJ spotlight
+  const cnt=DJ_SPOTLIGHT.eventsCount();
+  document.getElementById('dj-spotlight-card').innerHTML=`
+    <img src="${DJ_SPOTLIGHT.img}" alt="" onerror="this.style.display='none'"/>
+    <div class="dj-spotlight-grad"></div>
+    <div class="dj-spotlight-body">
+      <div class="dj-badge">DJ DEL MES</div>
+      <div class="dj-name">${DJ_SPOTLIGHT.name}</div>
+      <div class="dj-sub">${DJ_SPOTLIGHT.sub}</div>
+      <div class="dj-events-count">🎛 ${cnt} evento${cnt!==1?'s':''} en el catálogo</div>
+    </div>`;
+  document.getElementById('dj-spotlight-card').onclick=()=>{
+    switchTab('plan',document.querySelectorAll('.nav-btn')[1]);
+    setTimeout(()=>{setMode('dj');selectDJ(DJ_SPOTLIGHT.name);},100);
+  };
+}
+
+// ── TABS ──────────────────────────────────────────────────────────────────────
+function switchTab(name, btn){
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+  document.querySelectorAll('.nav-btn').forEach(b=>b.classList.remove('active'));
+  document.getElementById('tab-'+name).classList.add('active');
+  if(btn) btn.classList.add('active');
+  if(name==='saved') renderSaved();
+}
+
+// ── HELPERS ───────────────────────────────────────────────────────────────────
 function fmtDate(s){
   const d=new Date(s);
   return{
@@ -311,41 +459,54 @@ function daysUntil(s){return Math.ceil((new Date(s)-new Date())/864e5);}
 function cityCount(c){return EVENTS.filter(e=>e.city===c).length;}
 function monthCount(m){return EVENTS.filter(e=>e.city===selCity&&parseInt(e.date.split("-")[1])-1===m).length;}
 
-// ── TABS ──
-function switchTab(name, btn){
-  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
-  document.querySelectorAll('.nav-btn').forEach(b=>b.classList.remove('active'));
-  document.getElementById('tab-'+name).classList.add('active');
-  btn.classList.add('active');
-  if(name==='saved') renderSaved();
+// ── PLAN MODE TOGGLE ──────────────────────────────────────────────────────────
+function setMode(mode){
+  searchMode=mode;
+  document.getElementById('mode-city').style.display=mode==='city'?'block':'none';
+  document.getElementById('mode-dj').style.display=mode==='dj'?'block':'none';
+  const cb=document.getElementById('mode-city-btn'), db=document.getElementById('mode-dj-btn');
+  cb.style.cssText+=`;background:${mode==='city'?'#fff':'transparent'};color:${mode==='city'?'#000':'#555'};font-weight:${mode==='city'?700:400}`;
+  db.style.cssText+=`;background:${mode==='dj'?'#fff':'transparent'};color:${mode==='dj'?'#000':'#555'};font-weight:${mode==='dj'?700:400}`;
+  if(mode==='dj') renderDJs(); else renderCities();
 }
 
-// ── PLAN STEPS ──
+// ── PLAN STEPS ────────────────────────────────────────────────────────────────
 function goStep(s){
   if(s===1&&!selCity) return;
   currentStep=s;
   document.getElementById('step-city').style.display=s===0?'block':'none';
   document.getElementById('step-month').style.display=s===1?'block':'none';
   document.getElementById('step-events').style.display=s===2?'block':'none';
-  // breadcrumb
   document.getElementById('bc-city').className='bc-btn'+(s===0?' active':'');
-  document.getElementById('bc-month').className='bc-btn'+(s===1?' active':'');
+  document.getElementById('bc-month').className='bc-btn'+(s>=1?' active':'');
   document.getElementById('bc-month').textContent=selCity||'Mes';
   document.getElementById('bc-events').className='bc-btn'+(s===2?' active':'');
 }
 
 function renderCities(){
-  const q=document.getElementById('city-search').value.toLowerCase();
+  const q=(document.getElementById('city-search')||{value:''}).value.toLowerCase();
   const cities=ALL_CITIES.filter(c=>c.toLowerCase().includes(q));
   document.getElementById('city-list').innerHTML=cities.map(city=>{
     const ev=EVENTS.find(e=>e.city===city);
     return`<button class="city-btn" onclick="selectCity('${city}')">
       <span style="font-size:20px">${FLAGS[ev?.country]||'🌐'}</span>
-      <div style="flex:1;text-align:left">
-        <div class="city-name">${city}</div>
-        <div class="city-country">${ev?.country||''}</div>
-      </div>
+      <div style="flex:1;text-align:left"><div class="city-name">${city}</div><div class="city-country">${ev?.country||''}</div></div>
       <span class="city-count">${cityCount(city)} eventos</span>
+      <span class="city-arrow">›</span>
+    </button>`;
+  }).join('');
+}
+
+function renderDJs(){
+  const q=(document.getElementById('dj-search')||{value:''}).value.toLowerCase();
+  const djs=ALL_DJS.filter(d=>d.toLowerCase().includes(q));
+  document.getElementById('dj-list').innerHTML=djs.map(dj=>{
+    const evs=EVENTS.filter(e=>e.djs.includes(dj));
+    const cities=[...new Set(evs.map(e=>e.city))];
+    return`<button class="city-btn" onclick="selectDJ('${dj.replace(/'/g,"\\'")}')">
+      <span style="font-size:20px">🎛</span>
+      <div style="flex:1;text-align:left"><div class="city-name">${dj}</div><div class="city-country">${cities.join(', ')}</div></div>
+      <span class="city-count">${evs.length} evento${evs.length>1?'s':''}</span>
       <span class="city-arrow">›</span>
     </button>`;
   }).join('');
@@ -360,8 +521,7 @@ function selectCity(city){
 
 function renderMonths(){
   document.getElementById('month-grid').innerHTML=MONTHS.map((m,i)=>{
-    const cnt=monthCount(i);
-    const active=selMonth===i;
+    const cnt=monthCount(i), active=selMonth===i;
     return`<button class="month-btn${active?' active':''}" ${cnt===0?'disabled':''} onclick="selectMonth(${i})">
       <div class="month-name">${m}</div>
       ${cnt>0?`<div class="month-count">${cnt} ev.</div>`:''}
@@ -378,7 +538,22 @@ function selectMonth(m){
   goStep(2);
 }
 
-// ── EVENT ROW HTML ──
+function selectDJ(dj){
+  selDJ=dj;
+  const results=EVENTS.filter(e=>e.djs.includes(dj)).sort((a,b)=>new Date(a.date)-new Date(b.date));
+  document.getElementById('events-label').textContent=`${results.length} EVENTOS CON ${dj.toUpperCase()}`;
+  document.getElementById('events-month-label').textContent='';
+  document.getElementById('events-list').innerHTML=results.map(ev=>eventRowHTML(ev)).join('');
+  currentStep=2;
+  document.getElementById('step-city').style.display='none';
+  document.getElementById('step-month').style.display='none';
+  document.getElementById('step-events').style.display='block';
+  document.getElementById('bc-month').textContent=dj;
+  document.getElementById('bc-month').className='bc-btn active';
+  document.getElementById('bc-events').className='bc-btn active';
+}
+
+// ── EVENT ROW ─────────────────────────────────────────────────────────────────
 function eventRowHTML(ev){
   const{day,mon}=fmtDate(ev.date);
   const isSaved=saved.includes(ev.id);
@@ -396,23 +571,23 @@ function eventRowHTML(ev){
   </div>`;
 }
 
-// ── SAVE ──
+// ── SAVE ──────────────────────────────────────────────────────────────────────
 function toggleSave(id){
   saved=saved.includes(id)?saved.filter(x=>x!==id):[...saved,id];
-  // re-render whichever list is visible
-  if(currentStep===2) selectMonth(selMonth);
   renderSaved();
+  renderFeatured();
+  if(currentStep===2) {
+    if(selDJ) selectDJ(selDJ); else if(selMonth!=null) selectMonth(selMonth);
+  }
   if(detailEv&&detailEv.id===id){
     const btn=document.getElementById('det-save');
-    btn.className='save-btn'+(saved.includes(id)?' saved':'');
+    btn.className='save-btn-det'+(saved.includes(id)?' saved':'');
     btn.textContent=saved.includes(id)?'♥':'♡';
   }
-  updateDiscResults();
 }
-
 function toggleDetailSave(){toggleSave(detailEv.id);}
 
-// ── DETAIL ──
+// ── DETAIL ────────────────────────────────────────────────────────────────────
 function openDetail(id){
   const ev=EVENTS.find(e=>e.id===id);
   if(!ev) return;
@@ -430,106 +605,29 @@ function openDetail(id){
   document.getElementById('det-tags').innerHTML=ev.tags.map(t=>`<span class="tag">${t}</span>`).join('');
   document.getElementById('det-ticket').href=ev.ticket;
   const isSaved=saved.includes(ev.id);
-  const btn=document.getElementById('det-save');
-  btn.className='save-btn'+(isSaved?' saved':'');
-  btn.textContent=isSaved?'♥':'♡';
+  document.getElementById('det-save').className='save-btn-det'+(isSaved?' saved':'');
+  document.getElementById('det-save').textContent=isSaved?'♥':'♡';
   document.getElementById('detail').className='open';
   document.body.style.overflow='hidden';
 }
-
 function closeDetail(){
   document.getElementById('detail').className='';
   document.body.style.overflow='';
   detailEv=null;
 }
 
-// ── SAVED ──
+// ── SAVED ─────────────────────────────────────────────────────────────────────
 function renderSaved(){
   const evs=EVENTS.filter(e=>saved.includes(e.id)).sort((a,b)=>new Date(a.date)-new Date(b.date));
   document.getElementById('saved-count').textContent=`${evs.length} GUARDADOS`;
   document.getElementById('saved-empty').style.display=evs.length===0?'block':'none';
-  // route
   const cities=[...new Set(evs.map(e=>e.city))];
   const bar=document.getElementById('route-bar');
   if(cities.length>1){
     bar.style.display='flex';
     bar.innerHTML=cities.map((c,i)=>`<span class="route-city">${FLAGS[EVENTS.find(e=>e.city===c)?.country]||''} ${c}</span>${i<cities.length-1?'<span class="route-arr">→</span>':''}`).join('');
-  } else {bar.style.display='none';}
+  } else bar.style.display='none';
   document.getElementById('saved-list').innerHTML=evs.map(ev=>eventRowHTML(ev)).join('');
-}
-
-// ── DISCOVER ──
-let discLoading=false;
-function runExample(btn){
-  document.getElementById('disc-input').value=btn.textContent;
-  handleDiscover();
-}
-
-async function handleDiscover(){
-  const q=document.getElementById('disc-input').value.trim();
-  if(!q||discLoading) return;
-  discLoading=true;
-  document.getElementById('disc-btn').disabled=true;
-  document.getElementById('disc-btn').textContent='...';
-  document.getElementById('disc-examples').style.display='none';
-  document.getElementById('disc-results').style.display='none';
-  document.getElementById('disc-loading').style.display='block';
-
-  try{
-    const res=await fetch("https://api.anthropic.com/v1/messages",{
-      method:"POST",
-      headers:{"Content-Type":"application/json"},
-      body:JSON.stringify({
-        model:"claude-sonnet-4-20250514",
-        max_tokens:400,
-        system:`Eres un motor de búsqueda semántica de eventos EDM. Devuelve SOLO JSON sin backticks: {"ids":[array de ids numéricos ordenados por relevancia, máx 6],"tip":"frase corta en español, máx 70 chars"}`,
-        messages:[{role:"user",content:`Búsqueda: "${q}"\nCatálogo: ${JSON.stringify(EVENTS.map(e=>({id:e.id,name:e.name,city:e.city,country:e.country,date:e.date,genre:e.genre,tags:e.tags,djs:e.djs,price:e.price})))}`}]
-      })
-    });
-    const d=await res.json();
-    const txt=d.content?.map(c=>c.text||'').join('')||'{}';
-    const parsed=JSON.parse(txt.replace(/```json|```/g,'').trim());
-    const ids=parsed.ids||[];
-    const results=ids.map(id=>EVENTS.find(e=>e.id===id)).filter(Boolean);
-    const tip=parsed.tip||'';
-
-    document.getElementById('disc-loading').style.display='none';
-    document.getElementById('disc-results').style.display='block';
-    const tipEl=document.getElementById('disc-tip');
-    if(tip){tipEl.style.display='block';tipEl.textContent='◎ '+tip;}else{tipEl.style.display='none';}
-    document.getElementById('disc-count').textContent=`${results.length} RESULTADOS`;
-    document.getElementById('disc-list').innerHTML=results.map(ev=>eventRowHTML(ev)).join('');
-  }catch{
-    document.getElementById('disc-loading').style.display='none';
-    document.getElementById('disc-results').style.display='block';
-    document.getElementById('disc-tip').style.display='block';
-    document.getElementById('disc-tip').textContent='⚠️ No se pudo conectar con el motor semántico.';
-    document.getElementById('disc-count').textContent='0 RESULTADOS';
-    document.getElementById('disc-list').innerHTML='';
-  }
-  discLoading=false;
-  document.getElementById('disc-btn').disabled=false;
-  document.getElementById('disc-btn').textContent='→';
-}
-
-function resetDiscover(){
-  document.getElementById('disc-input').value='';
-  document.getElementById('disc-results').style.display='none';
-  document.getElementById('disc-examples').style.display='block';
-}
-
-function updateDiscResults(){
-  // refresh save buttons in discover results without re-querying
-  document.querySelectorAll('.ev-save').forEach(btn=>{
-    const row=btn.closest('.event-row');
-    if(!row) return;
-    const onclick=btn.getAttribute('onclick');
-    const match=onclick&&onclick.match(/toggleSave\((\d+)\)/);
-    if(!match) return;
-    const id=parseInt(match[1]);
-    btn.className='ev-save'+(saved.includes(id)?' saved':'');
-    btn.textContent=saved.includes(id)?'♥':'♡';
-  });
 }
 </script>
 </body>

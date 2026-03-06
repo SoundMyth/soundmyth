@@ -761,6 +761,8 @@ async function sendMagicLink(){
 }
 
 function doSignOut(){
+  // Force-clear all Supabase session keys from localStorage
+  Object.keys(localStorage).filter(k=>k.startsWith('sb-')).forEach(k=>localStorage.removeItem(k));
   sb.auth.signOut({scope:'local'}).catch(()=>{});
   currentUser=null;
   updateAuthUI();

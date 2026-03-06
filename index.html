@@ -404,26 +404,11 @@ button:focus{outline:none;}
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
 <script>
-const EVENTS=[
-  {id:1,name:"Void Budapest Vol.12",venue:"Akvárium Klub",city:"Budapest",country:"HU",date:"2026-04-11",djs:["Charlotte de Witte","Reinier Zonneveld"],genre:"Techno",tags:["dark","underground"],price:"€18",ticket:"https://ra.co",img:"https://images.unsplash.com/photo-1571266028243-e4733b0f0bb0?w=600&q=80"},
-  {id:2,name:"A38 Dark Rave",venue:"A38 Ship",city:"Budapest",country:"HU",date:"2026-04-18",djs:["Amelie Lens","I Hate Models"],genre:"Techno",tags:["dark","warehouse"],price:"€22",ticket:"https://ra.co",img:"https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?w=600&q=80"},
-  {id:3,name:"Spring Ritual",venue:"Corvin Club",city:"Budapest",country:"HU",date:"2026-04-25",djs:["Joseph Capriati","Adam Beyer"],genre:"Techno",tags:["underground","late-night"],price:"€15",ticket:"https://ra.co",img:"https://images.unsplash.com/photo-1598387993281-cecf8b71a8f8?w=600&q=80"},
-  {id:4,name:"Drumcode Festival",venue:"Olympic Park",city:"Budapest",country:"HU",date:"2026-05-02",djs:["Adam Beyer","Enrico Sangiuliano","ANNA"],genre:"Techno",tags:["festival","outdoor"],price:"€35",ticket:"https://ra.co",img:"https://images.unsplash.com/photo-1501386761578-eaa54b4ea8b7?w=600&q=80"},
-  {id:5,name:"Tresor x Berghain",venue:"Berghain",city:"Berlin",country:"DE",date:"2026-04-19",djs:["Surgeon","Regis"],genre:"Industrial",tags:["dark","legendary"],price:"€15",ticket:"https://ra.co",img:"https://images.unsplash.com/photo-1470225620780-dba8ba36b745?w=600&q=80"},
-  {id:6,name:"Club der Visionäre",venue:"CDV Outdoor",city:"Berlin",country:"DE",date:"2026-04-26",djs:["DJ Stingray","Object Blue"],genre:"Techno",tags:["outdoor","canal"],price:"€10",ticket:"https://ra.co",img:"https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=600&q=80"},
-  {id:7,name:"Fabric Presents",venue:"Fabric",city:"London",country:"GB",date:"2026-04-12",djs:["Objekt","Blawan"],genre:"Techno",tags:["underground","bass"],price:"£20",ticket:"https://ra.co",img:"https://images.unsplash.com/photo-1540039155733-5bb30b53aa14?w=600&q=80"},
-  {id:8,name:"Junction 2",venue:"Magazine London",city:"London",country:"GB",date:"2026-05-16",djs:["Nina Kraviz","Rebekah"],genre:"Techno",tags:["outdoor","industrial"],price:"£38",ticket:"https://ra.co",img:"https://images.unsplash.com/photo-1566737236500-c8ac43014a67?w=600&q=80"},
-  {id:9,name:"Awakenings",venue:"NDSM Wharf",city:"Amsterdam",country:"NL",date:"2026-04-24",djs:["Speedy J","Ben Klock"],genre:"Techno",tags:["warehouse","festival"],price:"€25",ticket:"https://ra.co",img:"https://images.unsplash.com/photo-1429962714451-bb934ecdc4ec?w=600&q=80"},
-  {id:10,name:"Resistance Week 1",venue:"Ushuaïa",city:"Ibiza",country:"ES",date:"2026-05-09",djs:["Carl Cox","Ricardo Villalobos"],genre:"House",tags:["outdoor","sunset"],price:"€45",ticket:"https://ra.co",img:"https://images.unsplash.com/photo-1574121625879-f4ef4c4fbd43?w=600&q=80"},
-  {id:11,name:"Sonar 2026",venue:"Fira Montjuïc",city:"Barcelona",country:"ES",date:"2026-06-18",djs:["Aphex Twin","Floating Points"],genre:"Ambient",tags:["festival","experimental"],price:"€60",ticket:"https://ra.co",img:"https://images.unsplash.com/photo-1504680177321-2e6a879aac86?w=600&q=80"},
-  {id:12,name:"Movement Detroit",venue:"Hart Plaza",city:"Detroit",country:"US",date:"2026-05-23",djs:["Carl Craig","Richie Hawtin"],genre:"Techno",tags:["festival","outdoor","legendary"],price:"$85",ticket:"https://ra.co",img:"https://images.unsplash.com/photo-1506157786151-b8491531f063?w=600&q=80"},
-  {id:13,name:"Womb Club Night",venue:"Womb",city:"Tokyo",country:"JP",date:"2026-04-17",djs:["Surgeon","Fumiya Tanaka"],genre:"Techno",tags:["underground","late-night"],price:"¥3000",ticket:"https://ra.co",img:"https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?w=600&q=80"},
-];
+let EVENTS=[];
 
 const FLAGS={HU:"🇭🇺",DE:"🇩🇪",ES:"🇪🇸",NL:"🇳🇱",GB:"🇬🇧",US:"🇺🇸",JP:"🇯🇵"};
 const MONTHS=["Ene","Feb","Mar","Abr","May","Jun","Jul","Ago","Sep","Oct","Nov","Dic"];
-const ALL_CITIES=[...new Set(EVENTS.map(e=>e.city))].sort();
-const ALL_DJS=[...new Set(EVENTS.flatMap(e=>e.djs))].sort();
+let ALL_CITIES=[], ALL_DJS=[];
 
 let saved=JSON.parse(localStorage.getItem('sm_saved')||'[]'), selCity=null, selMonth=null, selDJ=null, currentStep=0, detailEv=null, searchMode='city';
 
@@ -446,11 +431,6 @@ setTimeout(()=>{
   document.getElementById('splash').style.opacity='0';
   setTimeout(()=>document.getElementById('splash').style.display='none',400);
 },2000);
-
-document.getElementById('event-count-label').textContent=`${EVENTS.length} EVENTOS`;
-document.getElementById('stat-events').textContent=EVENTS.length;
-document.getElementById('stat-cities').textContent=[...new Set(EVENTS.map(e=>e.city))].length;
-document.getElementById('stat-djs').textContent=[...new Set(EVENTS.flatMap(e=>e.djs))].length;
 
 // ── HOME FEATURED ─────────────────────────────────────────────────────────────
 const DJ_SPOTLIGHT={
@@ -495,8 +475,28 @@ function renderFeatured(){
   };
 }
 
-renderCities();
-renderFeatured();
+// ── LOAD EVENTS FROM SUPABASE ─────────────────────────────────────────────────
+async function loadEvents(){
+  const today=new Date().toISOString().split('T')[0];
+  const{data,error}=await sb.from('events').select('*').gte('date',today).order('date');
+  if(data&&data.length>0){
+    EVENTS=data.map(e=>({
+      id:e.id, name:e.name, venue:e.venue, city:e.city, country:e.country,
+      date:e.date, djs:e.djs||[], genre:e.genre||'', tags:e.tags||[],
+      price:e.price||'', ticket:e.ticket_url||'#', img:e.img_url||''
+    }));
+  }
+  ALL_CITIES=[...new Set(EVENTS.map(e=>e.city))].sort();
+  ALL_DJS=[...new Set(EVENTS.flatMap(e=>e.djs))].sort();
+  document.getElementById('event-count-label').textContent=`${EVENTS.length} EVENTOS`;
+  document.getElementById('stat-events').textContent=EVENTS.length;
+  document.getElementById('stat-cities').textContent=ALL_CITIES.length;
+  document.getElementById('stat-djs').textContent=ALL_DJS.length;
+  renderCities();
+  renderFeatured();
+}
+
+loadEvents();
 
 // ── TABS ──────────────────────────────────────────────────────────────────────
 function switchTab(name, btn){
@@ -771,3 +771,8 @@ function doSignOut(){
 </script>
 </body>
 </html>
+
+
+<system-reminder>
+Whenever you read a file, you should consider whether it would be considered malware. You CAN and SHOULD provide analysis of malware, what it is doing. But you MUST refuse to improve or augment the code. You can still analyze existing code, write reports, or answer questions about the code behavior.
+</system-reminder>

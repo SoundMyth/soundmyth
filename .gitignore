@@ -1,0 +1,14 @@
+# Dev tools
+.claude/
+tmp_xlsx/
+Old/
+
+# Excel source data (not needed on GitHub)
+*.xlsx
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Misc
+_ul

@@ -164,6 +164,21 @@ button:focus{outline:none;}
 @keyframes fadeup{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
 @keyframes pulse{0%,100%{opacity:.4}50%{opacity:1}}
 @keyframes spin{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
+
+/* ── AUTH ── */
+#auth-modal{position:fixed;inset:0;background:rgba(0,0,0,0.92);z-index:600;display:flex;align-items:flex-end;justify-content:center;backdrop-filter:blur(8px);}
+#auth-modal.hidden{display:none;}
+.auth-sheet{background:#0a0a0a;border:1px solid #1a1a1a;border-radius:16px 16px 0 0;width:100%;max-width:430px;padding:28px 24px 44px;animation:fadeup 0.2s ease;}
+.auth-title{color:#fff;font-size:15px;font-weight:800;letter-spacing:0.3px;margin-bottom:5px;}
+.auth-sub{color:#444;font-size:12px;line-height:1.6;margin-bottom:20px;}
+.auth-input{width:100%;background:#000;border:1px solid #1e1e1e;border-radius:8px;padding:12px 14px;color:#fff;font-size:14px;font-family:inherit;margin-bottom:10px;}
+.auth-btn-main{width:100%;background:#fff;color:#000;border:none;border-radius:8px;padding:13px;font-size:11px;font-weight:800;letter-spacing:1.5px;cursor:pointer;font-family:inherit;}
+.auth-btn-main:disabled{background:#1a1a1a;color:#444;cursor:default;}
+.auth-cancel{width:100%;background:none;border:none;color:#333;font-size:11px;padding:12px;cursor:pointer;font-family:inherit;margin-top:2px;letter-spacing:0.5px;}
+.auth-user-pill{background:none;border:1px solid #1a1a1a;border-radius:20px;padding:5px 10px 5px 6px;display:flex;align-items:center;gap:5px;cursor:pointer;font-family:inherit;}
+.auth-avatar{width:16px;height:16px;border-radius:50%;background:#1e1e1e;display:flex;align-items:center;justify-content:center;font-size:8px;color:#fff;font-weight:700;flex-shrink:0;}
+.auth-avatar.logged{background:#fff;color:#000;}
+.auth-pill-label{color:#444;font-size:9px;letter-spacing:1.5px;}
 </style>
 </head>
 <body>
@@ -193,9 +208,15 @@ button:focus{outline:none;}
       <circle cx="100" cy="91" r="3" fill="white"/>
     </svg>
     <span class="header-title">SOUND MYTH</span>
-    <div style="margin-left:auto;display:flex;align-items:center;gap:5px;">
-      <div class="live-dot"></div>
-      <span style="color:#333;font-size:9px;letter-spacing:1.5px;" id="event-count-label">GLOBAL</span>
+    <div style="margin-left:auto;display:flex;align-items:center;gap:8px;">
+      <div style="display:flex;align-items:center;gap:5px;">
+        <div class="live-dot"></div>
+        <span style="color:#333;font-size:9px;letter-spacing:1.5px;" id="event-count-label">GLOBAL</span>
+      </div>
+      <button id="auth-btn" class="auth-user-pill" onclick="openAuth()">
+        <div class="auth-avatar" id="auth-avatar"></div>
+        <span class="auth-pill-label" id="auth-label">LOGIN</span>
+      </button>
     </div>
   </div>
 
@@ -207,7 +228,7 @@ button:focus{outline:none;}
       <img class="home-hero-img" src="https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?w=800&q=80" alt=""/>
       <div class="home-hero-grad"></div>
       <div class="home-hero-body">
-        <div class="hero-eyebrow">EDM · GLOBAL · ACTUALIZADO SEMANALMENTE</div>
+        <div class="hero-eyebrow">EDM · GLOBAL · PRIMAVERA 2026</div>
         <h1 class="hero-title">Toda la escena<br/><em>en un solo lugar.</em></h1>
         <p class="hero-desc">Sin buscar DJ a DJ. Sin saltar de web en web. Todos los eventos EDM del mundo, aquí.</p>
         <button class="hero-cta" onclick="switchTab('plan', document.querySelectorAll('.nav-btn')[1])">PLANEAR MI VIAJE →</button>
@@ -350,6 +371,30 @@ button:focus{outline:none;}
   </div>
 </div>
 
+<!-- AUTH MODAL -->
+<div id="auth-modal" class="hidden">
+  <div class="auth-sheet">
+    <div id="auth-step-email">
+      <div class="auth-title">ACCEDER A TU LISTA</div>
+      <div class="auth-sub">Introduce tu email. Te enviamos un enlace mágico — sin contraseña, sin instalar nada.</div>
+      <input type="email" id="auth-email" class="auth-input" placeholder="tu@email.com"/>
+      <button class="auth-btn-main" id="auth-submit" onclick="sendMagicLink()">ENVIAR ENLACE →</button>
+      <button class="auth-cancel" onclick="closeAuth()">CANCELAR</button>
+    </div>
+    <div id="auth-step-sent" style="display:none;">
+      <div class="auth-title">REVISA TU EMAIL</div>
+      <div class="auth-sub" id="auth-sent-msg">Hemos enviado el enlace.</div>
+      <button class="auth-cancel" style="color:#555;" onclick="closeAuth()">CERRAR</button>
+    </div>
+    <div id="auth-step-loggedin" style="display:none;">
+      <div class="auth-title">TU CUENTA</div>
+      <div class="auth-sub" id="auth-user-info"></div>
+      <button class="auth-btn-main" onclick="doSignOut()">CERRAR SESIÓN</button>
+      <button class="auth-cancel" onclick="closeAuth()">CANCELAR</button>
+    </div>
+  </div>
+</div>
+
 <!-- NAV -->
 <div id="nav">
   <button class="nav-btn active" onclick="switchTab('home',this)"><span class="nav-ico">◎</span>INICIO</button>
@@ -357,21 +402,22 @@ button:focus{outline:none;}
   <button class="nav-btn" onclick="switchTab('saved',this)"><span class="nav-ico">♥</span>MI LISTA</button>
 </div>
 
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
 <script>
 const EVENTS=[
-  {id:1,name:"Void Budapest Vol.12",venue:"Akvárium Klub",city:"Budapest",country:"HU",date:"2025-04-05",djs:["Charlotte de Witte","Reinier Zonneveld"],genre:"Techno",tags:["dark","underground"],price:"€18",ticket:"https://ra.co",img:"https://images.unsplash.com/photo-1571266028243-e4733b0f0bb0?w=600&q=80"},
-  {id:2,name:"A38 Dark Rave",venue:"A38 Ship",city:"Budapest",country:"HU",date:"2025-04-12",djs:["Amelie Lens","I Hate Models"],genre:"Techno",tags:["dark","warehouse"],price:"€22",ticket:"https://ra.co",img:"https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?w=600&q=80"},
-  {id:3,name:"Spring Ritual",venue:"Corvin Club",city:"Budapest",country:"HU",date:"2025-04-19",djs:["Joseph Capriati","Adam Beyer"],genre:"Techno",tags:["underground","late-night"],price:"€15",ticket:"https://ra.co",img:"https://images.unsplash.com/photo-1598387993281-cecf8b71a8f8?w=600&q=80"},
-  {id:4,name:"Drumcode Festival",venue:"Olympic Park",city:"Budapest",country:"HU",date:"2025-04-25",djs:["Adam Beyer","Enrico Sangiuliano","ANNA"],genre:"Techno",tags:["festival","outdoor"],price:"€35",ticket:"https://ra.co",img:"https://images.unsplash.com/photo-1501386761578-eaa54b4ea8b7?w=600&q=80"},
-  {id:5,name:"Tresor x Berghain",venue:"Berghain",city:"Berlin",country:"DE",date:"2025-04-13",djs:["Surgeon","Regis"],genre:"Industrial",tags:["dark","legendary"],price:"€15",ticket:"https://ra.co",img:"https://images.unsplash.com/photo-1470225620780-dba8ba36b745?w=600&q=80"},
-  {id:6,name:"Club der Visionäre",venue:"CDV Outdoor",city:"Berlin",country:"DE",date:"2025-04-20",djs:["DJ Stingray","Object Blue"],genre:"Techno",tags:["outdoor","canal"],price:"€10",ticket:"https://ra.co",img:"https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=600&q=80"},
-  {id:7,name:"Fabric Presents",venue:"Fabric",city:"London",country:"GB",date:"2025-04-06",djs:["Objekt","Blawan"],genre:"Techno",tags:["underground","bass"],price:"£20",ticket:"https://ra.co",img:"https://images.unsplash.com/photo-1540039155733-5bb30b53aa14?w=600&q=80"},
-  {id:8,name:"Junction 2",venue:"Magazine London",city:"London",country:"GB",date:"2025-05-17",djs:["Nina Kraviz","Rebekah"],genre:"Techno",tags:["outdoor","industrial"],price:"£38",ticket:"https://ra.co",img:"https://images.unsplash.com/photo-1566737236500-c8ac43014a67?w=600&q=80"},
-  {id:9,name:"Awakenings",venue:"NDSM Wharf",city:"Amsterdam",country:"NL",date:"2025-04-26",djs:["Speedy J","Ben Klock"],genre:"Techno",tags:["warehouse","festival"],price:"€25",ticket:"https://ra.co",img:"https://images.unsplash.com/photo-1429962714451-bb934ecdc4ec?w=600&q=80"},
-  {id:10,name:"Resistance Week 1",venue:"Ushuaïa",city:"Ibiza",country:"ES",date:"2025-05-03",djs:["Carl Cox","Ricardo Villalobos"],genre:"House",tags:["outdoor","sunset"],price:"€45",ticket:"https://ra.co",img:"https://images.unsplash.com/photo-1574121625879-f4ef4c4fbd43?w=600&q=80"},
-  {id:11,name:"Sonar 2025",venue:"Fira Montjuïc",city:"Barcelona",country:"ES",date:"2025-06-18",djs:["Aphex Twin","Floating Points"],genre:"Ambient",tags:["festival","experimental"],price:"€60",ticket:"https://ra.co",img:"https://images.unsplash.com/photo-1504680177321-2e6a879aac86?w=600&q=80"},
-  {id:12,name:"Movement Detroit",venue:"Hart Plaza",city:"Detroit",country:"US",date:"2025-05-24",djs:["Carl Craig","Richie Hawtin"],genre:"Techno",tags:["festival","outdoor","legendary"],price:"$85",ticket:"https://ra.co",img:"https://images.unsplash.com/photo-1506157786151-b8491531f063?w=600&q=80"},
-  {id:13,name:"Womb Club Night",venue:"Womb",city:"Tokyo",country:"JP",date:"2025-04-18",djs:["Surgeon","Fumiya Tanaka"],genre:"Techno",tags:["underground","late-night"],price:"¥3000",ticket:"https://ra.co",img:"https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?w=600&q=80"},
+  {id:1,name:"Void Budapest Vol.12",venue:"Akvárium Klub",city:"Budapest",country:"HU",date:"2026-04-11",djs:["Charlotte de Witte","Reinier Zonneveld"],genre:"Techno",tags:["dark","underground"],price:"€18",ticket:"https://ra.co",img:"https://images.unsplash.com/photo-1571266028243-e4733b0f0bb0?w=600&q=80"},
+  {id:2,name:"A38 Dark Rave",venue:"A38 Ship",city:"Budapest",country:"HU",date:"2026-04-18",djs:["Amelie Lens","I Hate Models"],genre:"Techno",tags:["dark","warehouse"],price:"€22",ticket:"https://ra.co",img:"https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?w=600&q=80"},
+  {id:3,name:"Spring Ritual",venue:"Corvin Club",city:"Budapest",country:"HU",date:"2026-04-25",djs:["Joseph Capriati","Adam Beyer"],genre:"Techno",tags:["underground","late-night"],price:"€15",ticket:"https://ra.co",img:"https://images.unsplash.com/photo-1598387993281-cecf8b71a8f8?w=600&q=80"},
+  {id:4,name:"Drumcode Festival",venue:"Olympic Park",city:"Budapest",country:"HU",date:"2026-05-02",djs:["Adam Beyer","Enrico Sangiuliano","ANNA"],genre:"Techno",tags:["festival","outdoor"],price:"€35",ticket:"https://ra.co",img:"https://images.unsplash.com/photo-1501386761578-eaa54b4ea8b7?w=600&q=80"},
+  {id:5,name:"Tresor x Berghain",venue:"Berghain",city:"Berlin",country:"DE",date:"2026-04-19",djs:["Surgeon","Regis"],genre:"Industrial",tags:["dark","legendary"],price:"€15",ticket:"https://ra.co",img:"https://images.unsplash.com/photo-1470225620780-dba8ba36b745?w=600&q=80"},
+  {id:6,name:"Club der Visionäre",venue:"CDV Outdoor",city:"Berlin",country:"DE",date:"2026-04-26",djs:["DJ Stingray","Object Blue"],genre:"Techno",tags:["outdoor","canal"],price:"€10",ticket:"https://ra.co",img:"https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=600&q=80"},
+  {id:7,name:"Fabric Presents",venue:"Fabric",city:"London",country:"GB",date:"2026-04-12",djs:["Objekt","Blawan"],genre:"Techno",tags:["underground","bass"],price:"£20",ticket:"https://ra.co",img:"https://images.unsplash.com/photo-1540039155733-5bb30b53aa14?w=600&q=80"},
+  {id:8,name:"Junction 2",venue:"Magazine London",city:"London",country:"GB",date:"2026-05-16",djs:["Nina Kraviz","Rebekah"],genre:"Techno",tags:["outdoor","industrial"],price:"£38",ticket:"https://ra.co",img:"https://images.unsplash.com/photo-1566737236500-c8ac43014a67?w=600&q=80"},
+  {id:9,name:"Awakenings",venue:"NDSM Wharf",city:"Amsterdam",country:"NL",date:"2026-04-24",djs:["Speedy J","Ben Klock"],genre:"Techno",tags:["warehouse","festival"],price:"€25",ticket:"https://ra.co",img:"https://images.unsplash.com/photo-1429962714451-bb934ecdc4ec?w=600&q=80"},
+  {id:10,name:"Resistance Week 1",venue:"Ushuaïa",city:"Ibiza",country:"ES",date:"2026-05-09",djs:["Carl Cox","Ricardo Villalobos"],genre:"House",tags:["outdoor","sunset"],price:"€45",ticket:"https://ra.co",img:"https://images.unsplash.com/photo-1574121625879-f4ef4c4fbd43?w=600&q=80"},
+  {id:11,name:"Sonar 2026",venue:"Fira Montjuïc",city:"Barcelona",country:"ES",date:"2026-06-18",djs:["Aphex Twin","Floating Points"],genre:"Ambient",tags:["festival","experimental"],price:"€60",ticket:"https://ra.co",img:"https://images.unsplash.com/photo-1504680177321-2e6a879aac86?w=600&q=80"},
+  {id:12,name:"Movement Detroit",venue:"Hart Plaza",city:"Detroit",country:"US",date:"2026-05-23",djs:["Carl Craig","Richie Hawtin"],genre:"Techno",tags:["festival","outdoor","legendary"],price:"$85",ticket:"https://ra.co",img:"https://images.unsplash.com/photo-1506157786151-b8491531f063?w=600&q=80"},
+  {id:13,name:"Womb Club Night",venue:"Womb",city:"Tokyo",country:"JP",date:"2026-04-17",djs:["Surgeon","Fumiya Tanaka"],genre:"Techno",tags:["underground","late-night"],price:"¥3000",ticket:"https://ra.co",img:"https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?w=600&q=80"},
 ];
 
 const FLAGS={HU:"🇭🇺",DE:"🇩🇪",ES:"🇪🇸",NL:"🇳🇱",GB:"🇬🇧",US:"🇺🇸",JP:"🇯🇵"};
@@ -379,7 +425,21 @@ const MONTHS=["Ene","Feb","Mar","Abr","May","Jun","Jul","Ago","Sep","Oct","Nov",
 const ALL_CITIES=[...new Set(EVENTS.map(e=>e.city))].sort();
 const ALL_DJS=[...new Set(EVENTS.flatMap(e=>e.djs))].sort();
 
-let saved=[], selCity=null, selMonth=null, selDJ=null, currentStep=0, detailEv=null, searchMode='city';
+let saved=JSON.parse(localStorage.getItem('sm_saved')||'[]'), selCity=null, selMonth=null, selDJ=null, currentStep=0, detailEv=null, searchMode='city';
+
+// ── SUPABASE ───────────────────────────────────────────────────────────────────
+const SB_URL='https://ekcwqesvujqsyuykqtap.supabase.co';
+const SB_KEY='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVrY3dxZXN2dWpxc3l1eWtxdGFwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzI3OTU4OTcsImV4cCI6MjA4ODM3MTg5N30.2Dhd8k2lrYWry4MTnCjqowljFGpVEVolC8bFa7jQDTg';
+const sb=supabase.createClient(SB_URL,SB_KEY);
+let currentUser=null;
+
+sb.auth.onAuthStateChange(async(event,session)=>{
+  currentUser=session?.user??null;
+  updateAuthUI();
+  if(currentUser&&(event==='SIGNED_IN'||event==='INITIAL_SESSION')){
+    await syncSaved();
+  }
+});
 
 // ── INIT ──────────────────────────────────────────────────────────────────────
 setTimeout(()=>{
@@ -391,9 +451,6 @@ document.getElementById('event-count-label').textContent=`GLOBAL · ${EVENTS.len
 document.getElementById('stat-events').textContent=EVENTS.length;
 document.getElementById('stat-cities').textContent=[...new Set(EVENTS.map(e=>e.city))].length;
 document.getElementById('stat-djs').textContent=[...new Set(EVENTS.flatMap(e=>e.djs))].length;
-
-renderCities();
-renderFeatured();
 
 // ── HOME FEATURED ─────────────────────────────────────────────────────────────
 const DJ_SPOTLIGHT={
@@ -437,6 +494,9 @@ function renderFeatured(){
     setTimeout(()=>{setMode('dj');selectDJ(DJ_SPOTLIGHT.name);},100);
   };
 }
+
+renderCities();
+renderFeatured();
 
 // ── TABS ──────────────────────────────────────────────────────────────────────
 function switchTab(name, btn){
@@ -572,11 +632,17 @@ function eventRowHTML(ev){
 }
 
 // ── SAVE ──────────────────────────────────────────────────────────────────────
-function toggleSave(id){
-  saved=saved.includes(id)?saved.filter(x=>x!==id):[...saved,id];
+async function toggleSave(id){
+  const wasSaved=saved.includes(id);
+  saved=wasSaved?saved.filter(x=>x!==id):[...saved,id];
+  localStorage.setItem('sm_saved',JSON.stringify(saved));
+  if(currentUser){
+    if(!wasSaved) await sb.from('saved_events').upsert({user_id:currentUser.id,event_id:id});
+    else await sb.from('saved_events').delete().eq('user_id',currentUser.id).eq('event_id',id);
+  }
   renderSaved();
   renderFeatured();
-  if(currentStep===2) {
+  if(currentStep===2){
     if(selDJ) selectDJ(selDJ); else if(selMonth!=null) selectMonth(selMonth);
   }
   if(detailEv&&detailEv.id===id){
@@ -599,7 +665,7 @@ function openDetail(id){
   document.getElementById('det-name').textContent=ev.name;
   document.getElementById('det-venue').textContent=ev.venue;
   document.getElementById('det-date').textContent=`${day} ${mon}`;
-  document.getElementById('det-days').textContent=days>0?`${days}d`:'HOY';
+  document.getElementById('det-days').textContent=days>0?`${days}d`:days===0?'HOY':'PASADO';
   document.getElementById('det-price').textContent=ev.price;
   document.getElementById('det-lineup').innerHTML=ev.djs.map(dj=>`<div class="lineup-row"><div class="lineup-ico">🎛</div><span class="lineup-name">${dj}</span></div>`).join('');
   document.getElementById('det-tags').innerHTML=ev.tags.map(t=>`<span class="tag">${t}</span>`).join('');
@@ -628,6 +694,70 @@ function renderSaved(){
     bar.innerHTML=cities.map((c,i)=>`<span class="route-city">${FLAGS[EVENTS.find(e=>e.city===c)?.country]||''} ${c}</span>${i<cities.length-1?'<span class="route-arr">→</span>':''}`).join('');
   } else bar.style.display='none';
   document.getElementById('saved-list').innerHTML=evs.map(ev=>eventRowHTML(ev)).join('');
+}
+
+// ── AUTH ───────────────────────────────────────────────────────────────────────
+async function syncSaved(){
+  const{data}=await sb.from('saved_events').select('event_id');
+  if(!data) return;
+  const remoteIds=data.map(r=>r.event_id);
+  const localOnly=saved.filter(id=>!remoteIds.includes(id));
+  if(localOnly.length){
+    await sb.from('saved_events').upsert(localOnly.map(id=>({user_id:currentUser.id,event_id:id})));
+  }
+  saved=[...new Set([...remoteIds,...saved])];
+  localStorage.setItem('sm_saved',JSON.stringify(saved));
+  renderFeatured();
+  renderSaved();
+}
+
+function updateAuthUI(){
+  const avatar=document.getElementById('auth-avatar');
+  const label=document.getElementById('auth-label');
+  if(currentUser){
+    avatar.textContent=(currentUser.email||'?')[0].toUpperCase();
+    avatar.classList.add('logged');
+    label.textContent='CUENTA';
+  } else {
+    avatar.textContent='';
+    avatar.classList.remove('logged');
+    label.textContent='LOGIN';
+  }
+}
+
+function openAuth(){
+  document.getElementById('auth-modal').classList.remove('hidden');
+  document.getElementById('auth-step-email').style.display=currentUser?'none':'block';
+  document.getElementById('auth-step-sent').style.display='none';
+  document.getElementById('auth-step-loggedin').style.display=currentUser?'block':'none';
+  if(currentUser) document.getElementById('auth-user-info').textContent=`Sesión activa: ${currentUser.email}`;
+}
+
+function closeAuth(){
+  document.getElementById('auth-modal').classList.add('hidden');
+  const inp=document.getElementById('auth-email');
+  if(inp) inp.value='';
+  const btn=document.getElementById('auth-submit');
+  if(btn){btn.disabled=false;btn.textContent='ENVIAR ENLACE →';}
+  document.getElementById('auth-step-sent').style.display='none';
+  document.getElementById('auth-step-email').style.display='block';
+}
+
+async function sendMagicLink(){
+  const email=document.getElementById('auth-email').value.trim();
+  if(!email) return;
+  const btn=document.getElementById('auth-submit');
+  btn.disabled=true;btn.textContent='ENVIANDO...';
+  const{error}=await sb.auth.signInWithOtp({email,options:{emailRedirectTo:location.href}});
+  if(error){btn.disabled=false;btn.textContent='ENVIAR ENLACE →';alert('Error: '+error.message);return;}
+  document.getElementById('auth-step-email').style.display='none';
+  document.getElementById('auth-sent-msg').innerHTML=`Hemos enviado un enlace a <strong>${email}</strong>. Haz click en él para entrar.`;
+  document.getElementById('auth-step-sent').style.display='block';
+}
+
+async function doSignOut(){
+  await sb.auth.signOut();
+  closeAuth();
 }
 </script>
 </body>

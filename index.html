@@ -211,7 +211,7 @@ button:focus{outline:none;}
     <div style="margin-left:auto;display:flex;align-items:center;gap:8px;">
       <div style="display:flex;align-items:center;gap:5px;">
         <div class="live-dot"></div>
-        <span style="color:#333;font-size:9px;letter-spacing:1.5px;" id="event-count-label">GLOBAL</span>
+        <span style="color:#333;font-size:9px;letter-spacing:1.5px;white-space:nowrap;" id="event-count-label">GLOBAL</span>
       </div>
       <button id="auth-btn" class="auth-user-pill" onclick="openAuth()">
         <div class="auth-avatar" id="auth-avatar"></div>
@@ -447,7 +447,7 @@ setTimeout(()=>{
   setTimeout(()=>document.getElementById('splash').style.display='none',400);
 },2000);
 
-document.getElementById('event-count-label').textContent=`GLOBAL · ${EVENTS.length} EVENTOS`;
+document.getElementById('event-count-label').textContent=`${EVENTS.length} EVENTOS`;
 document.getElementById('stat-events').textContent=EVENTS.length;
 document.getElementById('stat-cities').textContent=[...new Set(EVENTS.map(e=>e.city))].length;
 document.getElementById('stat-djs').textContent=[...new Set(EVENTS.flatMap(e=>e.djs))].length;

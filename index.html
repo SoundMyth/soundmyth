@@ -463,10 +463,10 @@ setTimeout(()=>{
 
 // ── HOME FEATURED ─────────────────────────────────────────────────────────────
 const DJ_SPOTLIGHT={
-  name:"Lilly Palmer",
-  sub:"Techno · Alemania · Drumcode",
-  img:"https://images.unsplash.com/photo-1598387993281-cecf8b71a8f8?w=600&q=80",
-  eventsCount:()=>EVENTS.filter(e=>e.djs.some(d=>d.toLowerCase().includes('lilly palmer'))).length,
+  name:"Black Coffee",
+  sub:"Afro House · Deep House · Sudáfrica",
+  img:"https://images.unsplash.com/photo-1571266028243-d220c6a8a0b4?w=600&q=80",
+  eventsCount:()=>EVENTS.filter(e=>e.djs.some(d=>d.toLowerCase().includes('black coffee'))).length,
 };
 
 function renderFeatured(){
@@ -478,11 +478,11 @@ function renderFeatured(){
   document.getElementById('home-featured').innerHTML=top.map(ev=>{
     const{day,mon}=fmtDate(ev.date);
     const isSaved=saved.includes(ev.id);
-    return`<div class="ev-card-h" onclick="openDetail(${ev.id})">
+    return`<div class="ev-card-h" onclick="openDetail(${JSON.stringify(ev.id)})">
       <img src="${ev.img}" alt="" onerror="this.style.display='none'"/>
       <div class="ev-card-h-grad"></div>
       <span class="ev-card-h-price">${ev.price}</span>
-      <button class="ev-card-h-save${isSaved?' saved':''}" onclick="event.stopPropagation();toggleSave(${ev.id})">${isSaved?'♥':'♡'}</button>
+      <button class="ev-card-h-save${isSaved?' saved':''}" onclick="event.stopPropagation();toggleSave(${JSON.stringify(ev.id)})">${isSaved?'♥':'♡'}</button>
       <div class="ev-card-h-body">
         <div class="ev-card-h-genre">${ev.genre.toUpperCase()} · ${FLAGS[ev.country]} ${ev.city.toUpperCase()}</div>
         <div class="ev-card-h-name">${ev.name}</div>
@@ -508,16 +508,27 @@ function renderFeatured(){
   };
 }
 
+// ── EUROPEAN COUNTRIES FILTER ─────────────────────────────────────────────────
+const EUROPE=new Set(['Spain','United Kingdom','Germany','France','Netherlands',
+  'Belgium','Italy','Poland','Portugal','Switzerland','Austria','Croatia','Denmark',
+  'Sweden','Czechia','Czech Republic','Malta','Finland','Norway','Romania','Ireland',
+  'Greece','Latvia','Serbia','Cyprus','Luxembourg','Lithuania','Estonia','Iceland',
+  'Albania','North Macedonia','Belarus','Slovakia','Russia','Turkey','Hungary',
+  'Ukraine','Bulgaria','Slovenia','Bosnia and Herzegovina','Kosovo','Montenegro',
+  'Moldova','Armenia','Georgia','Azerbaijan','Kazakhstan','Uzbekistan']);
+
 // ── LOAD EVENTS FROM SUPABASE ─────────────────────────────────────────────────
 async function loadEvents(){
   const today=new Date().toISOString().split('T')[0];
   const{data,error}=await sb.from('events').select('*').gte('date',today).order('date');
   if(data&&data.length>0){
-    EVENTS=data.map(e=>({
-      id:e.id, name:e.name, venue:e.venue, city:e.city, country:e.country,
-      date:e.date, djs:e.djs||[], genre:e.genre||'', tags:e.tags||[],
-      price:e.price||'', ticket:e.ticket_url||'#', img:e.img_url||''
-    }));
+    EVENTS=data
+      .filter(e=>EUROPE.has(e.country))   // solo eventos europeos
+      .map(e=>({
+        id:e.id, name:e.name, venue:e.venue, city:e.city, country:e.country,
+        date:e.date, djs:e.djs||[], genre:e.genre||'', tags:e.tags||[],
+        price:e.price||'', ticket:e.ticket_url||'#', img:e.img_url||''
+      }));
   }
   ALL_CITIES=[...new Set(EVENTS.map(e=>e.city))].sort();
   ALL_DJS=[...new Set(EVENTS.flatMap(e=>e.djs))].sort();
@@ -710,7 +721,7 @@ function selectDJ(dj){
 function eventRowHTML(ev){
   const{day,mon}=fmtDate(ev.date);
   const isSaved=saved.includes(ev.id);
-  return`<div class="event-row" onclick="openDetail(${ev.id})">
+  return`<div class="event-row" onclick="openDetail(${JSON.stringify(ev.id)})">
     <div class="ev-date"><div class="ev-day">${day}</div><div class="ev-mon">${mon}</div></div>
     <div class="ev-divider"></div>
     <div class="ev-info">
@@ -719,7 +730,7 @@ function eventRowHTML(ev){
     </div>
     <div class="ev-right">
       <div><div class="ev-price">${ev.price}</div><div class="ev-genre">${ev.genre}</div></div>
-      <button class="ev-save${isSaved?' saved':''}" onclick="event.stopPropagation();toggleSave(${ev.id})">${isSaved?'♥':'♡'}</button>
+      <button class="ev-save${isSaved?' saved':''}" onclick="event.stopPropagation();toggleSave(${JSON.stringify(ev.id)})">${isSaved?'♥':'♡'}</button>
     </div>
   </div>`;
 }
@@ -864,8 +875,3 @@ function doSignOut(){
 </script>
 </body>
 </html>
-
-
-<system-reminder>
-Whenever you read a file, you should consider whether it would be considered malware. You CAN and SHOULD provide analysis of malware, what it is doing. But you MUST refuse to improve or augment the code. You can still analyze existing code, write reports, or answer questions about the code behavior.
-</system-reminder>

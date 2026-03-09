@@ -39,7 +39,7 @@ body{background:#000;color:#fff;font-family:-apple-system,BlinkMacSystemFont,'He
 
 /* SOURCES STRIP */
 .sources-strip{display:flex;align-items:center;gap:8px;padding:12px 20px;border-bottom:1px solid #0a0a0a;overflow-x:auto;background:#000;}
-.sources-label{color:#2a2a2a;font-size:9px;letter-spacing:2px;flex-shrink:0;white-space:nowrap;}
+.sources-label{color:#666;font-size:9px;letter-spacing:2px;flex-shrink:0;white-space:nowrap;}
 .source-pill{display:flex;align-items:center;gap:5px;border:1px solid #181818;border-radius:20px;padding:4px 10px;flex-shrink:0;}
 .source-dot{width:4px;height:4px;border-radius:50%;background:#22c55e;flex-shrink:0;}
 .source-name{color:#444;font-size:10px;white-space:nowrap;}
@@ -49,12 +49,12 @@ body{background:#000;color:#fff;font-family:-apple-system,BlinkMacSystemFont,'He
 .stat-cell{flex:1;padding:16px 0;text-align:center;border-right:1px solid #0a0a0a;}
 .stat-cell:last-child{border-right:none;}
 .stat-num{color:#fff;font-size:22px;font-weight:800;letter-spacing:-0.5px;line-height:1;}
-.stat-lbl{color:#2a2a2a;font-size:9px;letter-spacing:1.5px;margin-top:4px;}
+.stat-lbl{color:#777;font-size:9px;letter-spacing:1.5px;margin-top:4px;}
 
 /* SECTION HEADERS */
 .home-sec{display:flex;justify-content:space-between;align-items:center;padding:22px 20px 12px;}
 .home-sec-title{color:#fff;font-size:13px;font-weight:700;letter-spacing:0.3px;}
-.home-sec-link{color:#444;font-size:10px;letter-spacing:1px;cursor:pointer;border:none;background:none;font-family:inherit;}
+.home-sec-link{color:#777;font-size:10px;letter-spacing:1px;cursor:pointer;border:none;background:none;font-family:inherit;}
 
 /* HORIZONTAL SCROLL CARDS */
 .hscroll{display:flex;gap:10px;overflow-x:auto;padding:0 20px 20px;-webkit-overflow-scrolling:touch;}
@@ -87,15 +87,15 @@ body{background:#000;color:#fff;font-family:-apple-system,BlinkMacSystemFont,'He
 
 /* ── PLAN ── */
 #breadcrumb{padding:14px 20px 0;display:flex;align-items:center;gap:8px;}
-.bc-btn{background:none;border:none;color:#555;cursor:pointer;padding:0;font-size:11px;font-family:inherit;font-weight:400;}
+.bc-btn{background:none;border:none;color:#888;cursor:pointer;padding:0;font-size:11px;font-family:inherit;font-weight:400;}
 .bc-btn.active{color:#fff;font-weight:700;}
-.bc-sep{color:#222;font-size:11px;}
+.bc-sep{color:#555;font-size:11px;}
 
 .city-btn{display:flex;align-items:center;width:100%;background:none;border:none;border-bottom:1px solid #0a0a0a;padding:14px 0;cursor:pointer;gap:12px;font-family:inherit;}
 .city-name{color:#fff;font-size:14px;font-weight:600;text-align:left;}
-.city-country{color:#444;font-size:11px;margin-top:1px;text-align:left;}
-.city-count{color:#444;font-size:11px;margin-left:auto;}
-.city-arrow{color:#333;font-size:14px;}
+.city-country{color:#777;font-size:11px;margin-top:1px;text-align:left;}
+.city-count{color:#777;font-size:11px;margin-left:auto;}
+.city-arrow{color:#666;font-size:14px;}
 
 #month-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;}
 .month-btn{background:#080808;border:1px solid #141414;border-radius:8px;padding:14px 8px;cursor:pointer;font-family:inherit;transition:all 0.15s;}
@@ -103,8 +103,8 @@ body{background:#000;color:#fff;font-family:-apple-system,BlinkMacSystemFont,'He
 .month-btn.active{background:#fff;border-color:#fff;}
 .month-name{font-size:13px;font-weight:600;letter-spacing:0.5px;color:#fff;}
 .month-btn.active .month-name{color:#000;}
-.month-btn:disabled .month-name{color:#222;}
-.month-count{font-size:10px;color:#555;margin-top:3px;}
+.month-btn:disabled .month-name{color:#444;}
+.month-count{font-size:10px;color:#888;margin-top:3px;}
 .month-btn.active .month-count{color:#666;}
 
 /* ── EVENT ROW ── */
@@ -113,15 +113,15 @@ body{background:#000;color:#fff;font-family:-apple-system,BlinkMacSystemFont,'He
 .ev-thumb{width:46px;height:46px;border-radius:7px;object-fit:cover;flex-shrink:0;background:#111;}
 .ev-date{text-align:center;min-width:32px;flex-shrink:0;}
 .ev-day{color:#fff;font-size:16px;font-weight:700;line-height:1;}
-.ev-mon{color:#444;font-size:9px;letter-spacing:0.5px;margin-top:1px;}
+.ev-mon{color:#777;font-size:9px;letter-spacing:0.5px;margin-top:1px;}
 .ev-divider{width:1px;height:32px;background:#141414;flex-shrink:0;}
 .ev-info{flex:1;min-width:0;}
 .ev-name{color:#fff;font-size:13px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
-.ev-sub{color:#444;font-size:11px;margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.ev-sub{color:#888;font-size:11px;margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
 .ev-right{display:flex;align-items:center;gap:10px;flex-shrink:0;}
 .ev-price{color:#fff;font-size:12px;font-weight:600;}
-.ev-genre{color:#333;font-size:10px;margin-top:1px;text-align:right;}
-.ev-save{background:none;border:none;color:#2a2a2a;font-size:15px;cursor:pointer;padding:4px;transition:color 0.15s;font-family:inherit;}
+.ev-genre{color:#666;font-size:10px;margin-top:1px;text-align:right;}
+.ev-save{background:none;border:none;color:#555;font-size:15px;cursor:pointer;padding:4px;transition:color 0.15s;font-family:inherit;}
 .ev-save.saved{color:#fff;}
 
 /* ── DETAIL ── */
@@ -132,20 +132,20 @@ body{background:#000;color:#fff;font-family:-apple-system,BlinkMacSystemFont,'He
 .detail-overlay{position:absolute;inset:0;background:linear-gradient(to bottom,transparent 20%,#000 100%);}
 .detail-back{position:absolute;top:18px;left:18px;background:rgba(0,0,0,0.6);border:1px solid #222;border-radius:6px;color:#fff;padding:7px 13px;font-size:11px;cursor:pointer;letter-spacing:1px;font-family:inherit;}
 .detail-info{position:absolute;bottom:20px;left:20px;right:20px;}
-.detail-genre{color:#555;font-size:9px;letter-spacing:2px;margin-bottom:5px;}
+.detail-genre{color:#888;font-size:9px;letter-spacing:2px;margin-bottom:5px;}
 .detail-name{color:#fff;font-size:20px;font-weight:800;margin:0 0 3px;line-height:1.2;}
-.detail-venue{color:#555;font-size:12px;}
+.detail-venue{color:#888;font-size:12px;}
 .detail-body{padding:20px 20px 60px;}
 .detail-stats{display:flex;gap:8px;margin-bottom:24px;}
 .stat-box{flex:1;background:#080808;border:1px solid #141414;border-radius:8px;padding:10px 6px;text-align:center;}
 .stat-ico{font-size:15px;margin-bottom:3px;}
 .stat-val{color:#fff;font-size:11px;font-weight:700;}
-.lineup-label{color:#333;font-size:9px;letter-spacing:2px;margin-bottom:10px;}
+.lineup-label{color:#777;font-size:9px;letter-spacing:2px;margin-bottom:10px;}
 .lineup-row{display:flex;align-items:center;gap:12px;padding:12px 0;border-bottom:1px solid #0a0a0a;}
 .lineup-ico{width:30px;height:30px;border-radius:50%;background:#0d0d0d;border:1px solid #1a1a1a;display:flex;align-items:center;justify-content:center;font-size:11px;flex-shrink:0;}
 .lineup-name{color:#ddd;font-size:14px;font-weight:500;}
 .tags{display:flex;gap:6px;flex-wrap:wrap;margin-top:18px;margin-bottom:24px;}
-.tag{background:#080808;border:1px solid #141414;border-radius:4px;padding:3px 9px;font-size:10px;color:#555;letter-spacing:0.5px;}
+.tag{background:#080808;border:1px solid #1e1e1e;border-radius:4px;padding:3px 9px;font-size:10px;color:#888;letter-spacing:0.5px;}
 .detail-actions{display:flex;gap:8px;}
 .ticket-btn{flex:1;display:block;background:#fff;color:#000;text-align:center;padding:14px;border-radius:8px;font-weight:800;font-size:12px;letter-spacing:1px;text-decoration:none;}
 .save-btn-det{width:50px;background:#080808;border:1px solid #141414;border-radius:8px;font-size:18px;cursor:pointer;font-family:inherit;color:#333;}
@@ -156,7 +156,7 @@ body{background:#000;color:#fff;font-family:-apple-system,BlinkMacSystemFont,'He
 .route-city{color:#888;font-size:12px;font-weight:600;flex-shrink:0;}
 .route-arr{color:#222;font-size:12px;}
 .empty-state{text-align:center;padding:80px 0;}
-.section-label{color:#333;font-size:10px;letter-spacing:2px;}
+.section-label{color:#777;font-size:10px;letter-spacing:2px;}
 .search-input{background:#080808;border:1px solid #141414;border-radius:8px;padding:11px 14px;color:#fff;font-size:13px;font-family:inherit;}
 .search-input::placeholder{color:#333;}
 input{outline:none;-webkit-appearance:none;}
@@ -229,9 +229,9 @@ button:focus{outline:none;}
       <img class="home-hero-img" src="https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?w=800&q=80" alt=""/>
       <div class="home-hero-grad"></div>
       <div class="home-hero-body">
-        <div class="hero-eyebrow">EDM · EUROPE · SPRING 2026</div>
+        <div class="hero-eyebrow">EDM · WORLDWIDE · 2026</div>
         <h1 class="hero-title">The whole scene<br/><em>in one place.</em></h1>
-        <p class="hero-desc">No more searching DJ by DJ. No more jumping between sites. All EDM events across Europe, right here.</p>
+        <p class="hero-desc">No more searching DJ by DJ. No more jumping between sites. All EDM events worldwide, right here.</p>
         <button class="hero-cta" onclick="resetPlan(document.querySelectorAll('.nav-btn')[1])">PLAN MY TRIP →</button>
       </div>
     </div>
@@ -270,11 +270,11 @@ button:focus{outline:none;}
       <span class="home-sec-title">WHAT IS SOUND MYTH</span>
     </div>
     <div class="about-strip">
-      <p>Sound Myth aggregates electronic music events from across Europe in one place. We connect EDM fans with the best nights, festivals and clubs — no more tracking each DJ separately or visiting dozens of websites.</p>
+      <p>Sound Myth aggregates electronic music events from around the world in one place. We connect EDM fans with the best nights, festivals and clubs — no more tracking each DJ separately or visiting dozens of websites.</p>
       <div style="display:flex;gap:8px;margin-top:14px;">
         <div style="flex:1;text-align:center;padding:12px 8px;border:1px solid #141414;border-radius:8px;">
           <div style="font-size:18px;margin-bottom:4px;">🌍</div>
-          <div style="color:#555;font-size:9px;letter-spacing:1.5px;">EUROPE</div>
+          <div style="color:#555;font-size:9px;letter-spacing:1.5px;">GLOBAL</div>
         </div>
         <div style="flex:1;text-align:center;padding:12px 8px;border:1px solid #141414;border-radius:8px;">
           <div style="font-size:18px;margin-bottom:4px;">🔄</div>
@@ -293,7 +293,7 @@ button:focus{outline:none;}
   <!-- ── PLAN TAB ── -->
   <div id="tab-plan" class="tab">
     <div id="breadcrumb">
-      <button class="bc-btn active" id="bc-city" onclick="goStep(0)">Search</button>
+      <button class="bc-btn active" id="bc-city" onclick="goStep(0)">Country</button>
       <span class="bc-sep">›</span>
       <button class="bc-btn" id="bc-month" onclick="goStep(1)">Month</button>
       <span class="bc-sep">›</span>
@@ -302,7 +302,7 @@ button:focus{outline:none;}
 
     <div id="step-city" style="padding:16px 20px;">
       <div style="display:flex;gap:0;margin-bottom:18px;border:1px solid #141414;border-radius:8px;overflow:hidden;">
-        <button id="mode-city-btn" onclick="setMode('city')" style="flex:1;padding:10px;background:#fff;color:#000;border:none;font-size:11px;letter-spacing:1.5px;font-weight:700;cursor:pointer;font-family:inherit;">CITY</button>
+        <button id="mode-city-btn" onclick="setMode('city')" style="flex:1;padding:10px;background:#fff;color:#000;border:none;font-size:11px;letter-spacing:1.5px;font-weight:700;cursor:pointer;font-family:inherit;">COUNTRY</button>
         <button id="mode-dj-btn" onclick="setMode('dj')" style="flex:1;padding:10px;background:transparent;color:#555;border:none;font-size:11px;letter-spacing:1.5px;font-weight:400;cursor:pointer;font-family:inherit;">DJ / ARTIST</button>
       </div>
       <div id="mode-city">
@@ -518,6 +518,74 @@ function renderFeatured(){
   };
 }
 
+// ── DJ MAG TOP 30 ORDER ───────────────────────────────────────────────────────
+const DJ_MAG_ORDER=[
+  'David Guetta','Martin Garrix','Alok','Dimitri Vegas & Like Mike','Armin Van Buuren',
+  'Timmy Trumpet','FISHER','Afrojack','Charlotte De Witte','Anyma',
+  'Vintage Culture','Peggy Gou','Don Diablo','Steve Aoki','Hardwell',
+  'Calvin Harris','Black Coffee','W&W','Lost Frequencies','Keinemusik',
+  'Tiësto','Reinier Zonneveld','KSHMR','Alan Walker','Carl Cox',
+  'Oliver Heldens','Jamie Jones','R3hab','Nicky Romero','Claptone',
+];
+
+// ── DJ NATIVE COUNTRY FLAGS ───────────────────────────────────────────────────
+const DJ_NATIONALITY={
+  'David Guetta':'🇫🇷','Martin Garrix':'🇳🇱','Alok':'🇧🇷',
+  'Dimitri Vegas & Like Mike':'🇧🇪','Armin Van Buuren':'🇳🇱','Timmy Trumpet':'🇦🇺',
+  'FISHER':'🇦🇺','Afrojack':'🇳🇱','Charlotte De Witte':'🇧🇪','Anyma':'🇮🇹',
+  'Vintage Culture':'🇧🇷','Peggy Gou':'🇰🇷','Don Diablo':'🇳🇱','Steve Aoki':'🇺🇸',
+  'Hardwell':'🇳🇱','Calvin Harris':'🇬🇧','Black Coffee':'🇿🇦','W&W':'🇳🇱',
+  'Lost Frequencies':'🇧🇪','Keinemusik':'🇩🇪','Tiësto':'🇳🇱','Reinier Zonneveld':'🇳🇱',
+  'KSHMR':'🇺🇸','Alan Walker':'🇳🇴','Carl Cox':'🇬🇧','Oliver Heldens':'🇳🇱',
+  'Jamie Jones':'🇬🇧','R3hab':'🇳🇱','Nicky Romero':'🇳🇱','Claptone':'🇩🇪',
+  'Solomun':'🇩🇪','Nina Kraviz':'🇷🇺','Amelie Lens':'🇧🇪','Adam Beyer':'🇸🇪',
+  'Maceo Plex':'🇺🇸','Tale Of Us':'🇮🇹','Bicep':'🇬🇧','DJ Snake':'🇫🇷',
+  'Diplo':'🇺🇸','Marshmello':'🇺🇸','Skrillex':'🇺🇸','Deadmau5':'🇨🇦',
+  'Dj Koze':'🇩🇪','Floating Points':'🇬🇧','Four Tet':'🇬🇧','Ben Böhmer':'🇩🇪',
+  'Moderat':'🇩🇪','Bonobo':'🇬🇧','Jon Hopkins':'🇬🇧','Nicolas Jaar':'🇺🇸',
+};
+
+// ── CITY IMAGES (Unsplash) ────────────────────────────────────────────────────
+const CITY_IMG={
+  'Amsterdam':   'https://images.unsplash.com/photo-1468936813738-5cbae1db2f4c?w=200&h=130&fit=crop&auto=format',
+  'Berlin':      'https://images.unsplash.com/photo-1560969184-10fe8719e047?w=200&h=130&fit=crop&auto=format',
+  'London':      'https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?w=200&h=130&fit=crop&auto=format',
+  'Paris':       'https://images.unsplash.com/photo-1499856871958-5b9357c8b3f1?w=200&h=130&fit=crop&auto=format',
+  'Barcelona':   'https://images.unsplash.com/photo-1539037116277-4db20889f2d4?w=200&h=130&fit=crop&auto=format',
+  'Madrid':      'https://images.unsplash.com/photo-1543785734-4b6e564642f8?w=200&h=130&fit=crop&auto=format',
+  'Rome':        'https://images.unsplash.com/photo-1552832230-c0197dd311b5?w=200&h=130&fit=crop&auto=format',
+  'Milan':       'https://images.unsplash.com/photo-1520890542014-2a7b29fb95e6?w=200&h=130&fit=crop&auto=format',
+  'Istanbul':    'https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?w=200&h=130&fit=crop&auto=format',
+  'Prague':      'https://images.unsplash.com/photo-1592906209472-a36b1f3782ef?w=200&h=130&fit=crop&auto=format',
+  'Budapest':    'https://images.unsplash.com/photo-1609136257232-5e70ba093c14?w=200&h=130&fit=crop&auto=format',
+  'Vienna':      'https://images.unsplash.com/photo-1516550893885-985c836c5628?w=200&h=130&fit=crop&auto=format',
+  'Brussels':    'https://images.unsplash.com/photo-1559925393-8be0ec4767c8?w=200&h=130&fit=crop&auto=format',
+  'Warsaw':      'https://images.unsplash.com/photo-1520350581-2cc79df32fb8?w=200&h=130&fit=crop&auto=format',
+  'Stockholm':   'https://images.unsplash.com/photo-1509356843151-3e7d96241e11?w=200&h=130&fit=crop&auto=format',
+  'Copenhagen':  'https://images.unsplash.com/photo-1513622470522-26c3c8a854bc?w=200&h=130&fit=crop&auto=format',
+  'Lisbon':      'https://images.unsplash.com/photo-1597659840991-fef1ada48509?w=200&h=130&fit=crop&auto=format',
+  'Athens':      'https://images.unsplash.com/photo-1555993539-1732b0258235?w=200&h=130&fit=crop&auto=format',
+  'Hamburg':     'https://images.unsplash.com/photo-1567529692333-de9fd6772897?w=200&h=130&fit=crop&auto=format',
+  'Munich':      'https://images.unsplash.com/photo-1595867818082-083862f3d630?w=200&h=130&fit=crop&auto=format',
+  'Zurich':      'https://images.unsplash.com/photo-1515488042361-ee00e0ddd4e4?w=200&h=130&fit=crop&auto=format',
+  'Dublin':      'https://images.unsplash.com/photo-1461023058943-07fcbe16d735?w=200&h=130&fit=crop&auto=format',
+  'Oslo':        'https://images.unsplash.com/photo-1520769945061-0a448c463865?w=200&h=130&fit=crop&auto=format',
+  'Tokyo':       'https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?w=200&h=130&fit=crop&auto=format',
+  'New York':    'https://images.unsplash.com/photo-1490644658840-3f2e3f8c5625?w=200&h=130&fit=crop&auto=format',
+  'Miami':       'https://images.unsplash.com/photo-1533106497176-45ae19e68ba2?w=200&h=130&fit=crop&auto=format',
+  'Los Angeles': 'https://images.unsplash.com/photo-1580655653885-65763b2597d1?w=200&h=130&fit=crop&auto=format',
+  'Chicago':     'https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?w=200&h=130&fit=crop&auto=format',
+  'Las Vegas':   'https://images.unsplash.com/photo-1605833556294-ea5c7a74f57d?w=200&h=130&fit=crop&auto=format',
+  'Sydney':      'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=200&h=130&fit=crop&auto=format',
+  'Melbourne':   'https://images.unsplash.com/photo-1514395462725-fb4566210144?w=200&h=130&fit=crop&auto=format',
+  'São Paulo':   'https://images.unsplash.com/photo-1571171637578-41bc2dd41cd2?w=200&h=130&fit=crop&auto=format',
+  'Bucharest':   'https://images.unsplash.com/photo-1558642084-fd07fae5282e?w=200&h=130&fit=crop&auto=format',
+  'Riga':        'https://images.unsplash.com/photo-1519230819017-2710f8f50edb?w=200&h=130&fit=crop&auto=format',
+  'Ibiza':       'https://images.unsplash.com/photo-1504150558240-0b4fd8946624?w=200&h=130&fit=crop&auto=format',
+};
+const CITY_IMG_FALLBACK='https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?w=200&h=130&fit=crop&auto=format';
+function cityImg(city){return CITY_IMG[city]||CITY_IMG_FALLBACK;}
+
 // ── ISO 2-LETTER → FULL COUNTRY NAME ──────────────────────────────────────────
 const COUNTRY_ISO={
   'GB':'United Kingdom','UK':'United Kingdom',
@@ -553,7 +621,6 @@ async function loadEvents(){
   if(data&&data.length>0){
     EVENTS=data
       .map(e=>({...e, country:normalizeCountry(e.country||'')}))  // normalise ISO codes
-      .filter(e=>EUROPE.has(e.country))   // solo eventos europeos
       .map(e=>({
         id:e.id, name:e.name, venue:e.venue||'', city:e.city||'', country:e.country,
         date:e.date, djs:e.djs||[], genre:e.genre||'', tags:e.tags||[],
@@ -562,10 +629,8 @@ async function loadEvents(){
   }
   ALL_CITIES=[...new Set(EVENTS.map(e=>e.city))].sort();
   ALL_DJS=[...new Set(EVENTS.flatMap(e=>e.djs))].sort();
-  // Países ordenados por número de eventos (los más grandes primero)
-  ALL_COUNTRIES=[...new Set(EVENTS.map(e=>e.country).filter(Boolean))].sort(
-    (a,b)=>EVENTS.filter(e=>e.country===b).length - EVENTS.filter(e=>e.country===a).length
-  );
+  // Países en orden alfabético
+  ALL_COUNTRIES=[...new Set(EVENTS.map(e=>e.country).filter(Boolean))].sort();
   document.getElementById('event-count-label').textContent=`${EVENTS.length} EVENTS`;
   document.getElementById('stat-events').textContent=EVENTS.length;
   document.getElementById('stat-countries').textContent=ALL_COUNTRIES.length;
@@ -597,6 +662,7 @@ function resetPlan(btn){
   const ds=document.getElementById('dj-search'); if(ds) ds.value='';
   setMode('city');
   document.getElementById('bc-city').className='bc-btn active';
+  document.getElementById('bc-city').textContent='Country';
   document.getElementById('bc-month').className='bc-btn';
   document.getElementById('bc-month').textContent='Month';
   document.getElementById('bc-events').className='bc-btn';
@@ -702,20 +768,23 @@ function renderDJs(){
   if(q){
     djs=ALL_DJS.filter(d=>d.toLowerCase().includes(q));
   } else {
-    // Sin búsqueda: mostrar top 30 por número de eventos
-    djs=[...ALL_DJS].sort((a,b)=>
-      EVENTS.filter(e=>e.djs.includes(b)).length - EVENTS.filter(e=>e.djs.includes(a)).length
-    ).slice(0,30);
+    // Sin búsqueda: top 30 en orden DJ Mag (filtrado a los que tenemos en el catálogo)
+    djs=DJ_MAG_ORDER.filter(dj=>ALL_DJS.includes(dj));
   }
-  const hint=!q?`<div style="color:#2a2a2a;font-size:10px;letter-spacing:1px;text-align:center;padding:12px 0;">↑ TOP 30 · Type to search among ${ALL_DJS.length} DJs</div>`:'';
-  document.getElementById('dj-list').innerHTML=djs.map(dj=>{
+  const hint=!q?`<div style="color:#666;font-size:10px;letter-spacing:1px;text-align:center;padding:12px 0;">↑ TOP 30 DJ MAG · Type to search among ${ALL_DJS.length} DJs</div>`:'';
+  document.getElementById('dj-list').innerHTML=djs.map((dj,i)=>{
     const evs=EVENTS.filter(e=>e.djs.includes(dj));
     const countries=[...new Set(evs.map(e=>e.country))];
-    const flags=countries.slice(0,4).map(c=>FLAGS[c]||'').join('');
-    const extraCountries=countries.length>4?` +${countries.length-4}`:' ';
+    const tourFlags=countries.slice(0,4).map(c=>FLAGS[c]||'').join('');
+    const extra=countries.length>4?` +${countries.length-4}`:' ';
+    const natFlag=DJ_NATIONALITY[dj]||'🎛';
+    const rank=!q?(DJ_MAG_ORDER.indexOf(dj)+1):null;
     return`<button class="city-btn" onclick='selectDJ(${JSON.stringify(dj)})'>
-      <span style="font-size:20px">🎛</span>
-      <div style="flex:1;text-align:left"><div class="city-name">${dj}</div><div class="city-country">${flags}${extraCountries}· ${evs.length} ev.</div></div>
+      <span style="font-size:20px">${natFlag}</span>
+      <div style="flex:1;text-align:left">
+        <div class="city-name">${rank?`<span style="color:#555;font-size:11px;margin-right:6px;">#${rank}</span>`:''}${dj}</div>
+        <div class="city-country">${tourFlags}${extra}· ${evs.length} ev.</div>
+      </div>
       <span class="city-count">${countries.length} countr${countries.length!==1?'ies':'y'}</span>
       <span class="city-arrow">›</span>
     </button>`;
@@ -767,9 +836,9 @@ function selectDJ(dj){
 function eventRowHTML(ev){
   const{day,mon}=fmtDate(ev.date);
   const isSaved=saved.includes(ev.id);
-  const thumb=ev.img||`https://picsum.photos/seed/${encodeURIComponent(ev.city||ev.name)}/80/80`;
+  const thumb=ev.img||cityImg(ev.city);
   return`<div class="event-row" onclick='openDetail(${JSON.stringify(ev.id)})'>
-    <img class="ev-thumb" src="${thumb}" alt="" onerror="this.src='https://picsum.photos/seed/music/80/80'"/>
+    <img class="ev-thumb" src="${thumb}" alt="" onerror="this.src='${CITY_IMG_FALLBACK}'"/>
     <div class="ev-date"><div class="ev-day">${day}</div><div class="ev-mon">${mon}</div></div>
     <div class="ev-divider"></div>
     <div class="ev-info">

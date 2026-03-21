@@ -317,7 +317,8 @@ button:focus{outline:none;}
     <div id="step-city" style="padding:16px 20px;">
       <div style="display:flex;gap:0;margin-bottom:18px;border:1px solid #141414;border-radius:8px;overflow:hidden;">
         <button id="mode-city-btn" onclick="setMode('city')" style="flex:1;padding:10px;background:#fff;color:#000;border:none;font-size:11px;letter-spacing:1.5px;font-weight:700;cursor:pointer;font-family:inherit;">COUNTRY</button>
-        <button id="mode-dj-btn" onclick="setMode('dj')" style="flex:1;padding:10px;background:transparent;color:#555;border:none;font-size:11px;letter-spacing:1.5px;font-weight:400;cursor:pointer;font-family:inherit;">DJ / ARTIST</button>
+        <button id="mode-dj-btn" onclick="setMode('dj')" style="flex:1;padding:10px;background:transparent;color:#555;border:none;font-size:11px;letter-spacing:1.5px;font-weight:400;cursor:pointer;font-family:inherit;">DJ</button>
+        <button id="mode-venue-btn" onclick="setMode('venue')" style="flex:1;padding:10px;background:transparent;color:#555;border:none;font-size:11px;letter-spacing:1.5px;font-weight:400;cursor:pointer;font-family:inherit;">CLUB</button>
       </div>
       <div id="mode-city">
         <!-- Paso A: selección de país -->
@@ -338,6 +339,11 @@ button:focus{outline:none;}
         <div class="section-label" style="margin-bottom:14px;">WHICH DJ DO YOU WANT TO SEE?</div>
         <input type="text" id="dj-search" class="search-input" style="width:100%;margin-bottom:16px;" placeholder="Charlotte de Witte, Carl Cox..." oninput="renderDJs()"/>
         <div id="dj-list"></div>
+      </div>
+      <div id="mode-venue" style="display:none;">
+        <div class="section-label" style="margin-bottom:14px;">WHICH CLUB OR VENUE?</div>
+        <input type="text" id="venue-search" class="search-input" style="width:100%;margin-bottom:16px;" placeholder="Fabric, Berghain, Pacha..." oninput="renderVenues()"/>
+        <div id="venue-list"></div>
       </div>
     </div>
 
@@ -880,6 +886,7 @@ function resetPlan(btn){
   document.getElementById('city-view').style.display='none';
   const cs=document.getElementById('country-search'); if(cs) cs.value='';
   const ds=document.getElementById('dj-search'); if(ds) ds.value='';
+  const vs=document.getElementById('venue-search'); if(vs) vs.value='';
   setMode('city');
   document.getElementById('bc-city').className='bc-btn active';
   document.getElementById('bc-city').textContent='Country';
@@ -905,10 +912,15 @@ function setMode(mode){
   searchMode=mode;
   document.getElementById('mode-city').style.display=mode==='city'?'block':'none';
   document.getElementById('mode-dj').style.display=mode==='dj'?'block':'none';
-  const cb=document.getElementById('mode-city-btn'), db=document.getElementById('mode-dj-btn');
+  document.getElementById('mode-venue').style.display=mode==='venue'?'block':'none';
+  const cb=document.getElementById('mode-city-btn');
+  const db=document.getElementById('mode-dj-btn');
+  const vb=document.getElementById('mode-venue-btn');
   cb.style.cssText+=`;background:${mode==='city'?'#fff':'transparent'};color:${mode==='city'?'#000':'#555'};font-weight:${mode==='city'?700:400}`;
   db.style.cssText+=`;background:${mode==='dj'?'#fff':'transparent'};color:${mode==='dj'?'#000':'#555'};font-weight:${mode==='dj'?700:400}`;
+  vb.style.cssText+=`;background:${mode==='venue'?'#fff':'transparent'};color:${mode==='venue'?'#000':'#555'};font-weight:${mode==='venue'?700:400}`;
   if(mode==='dj') renderDJs();
+  else if(mode==='venue') renderVenues();
   else if(selCountry) renderCities();
   else renderCountries();
 }
@@ -1009,6 +1021,50 @@ function renderDJs(){
       <span class="city-arrow">›</span>
     </button>`;
   }).join('')+hint;
+}
+
+function renderVenues(){
+  const todayStr=new Date().toISOString().split('T')[0];
+  const q=(document.getElementById('venue-search')||{value:''}).value.toLowerCase();
+  // Build unique venue list from events that have a non-empty venue
+  const venueMap=new Map();
+  for(const ev of EVENTS){
+    if(!ev.venue||ev.date<todayStr) continue;
+    const key=ev.venue;
+    if(!venueMap.has(key)){
+      venueMap.set(key,{name:ev.venue,city:ev.city,country:ev.country,count:0});
+    }
+    venueMap.get(key).count++;
+  }
+  let venues=[...venueMap.values()].filter(v=>v.name.toLowerCase().includes(q));
+  // Sort: most events first, then alphabetically
+  venues.sort((a,b)=>b.count-a.count||a.name.localeCompare(b.name));
+  const hint=!q?`<div style="color:#666;font-size:10px;letter-spacing:1px;text-align:center;padding:12px 0;">Top clubs by event count · Type to search</div>`:'';
+  document.getElementById('venue-list').innerHTML=venues.map(v=>`
+    <button class="city-btn" onclick='selectVenue(${JSON.stringify(v.name)})'>
+      <span style="font-size:20px">${FLAGS[v.country]||'🏛'}</span>
+      <div style="flex:1;text-align:left">
+        <div class="city-name">${v.name}</div>
+        <div class="city-country">${FLAGS[v.country]||''} ${v.city}, ${v.country}</div>
+      </div>
+      <span class="city-count">${v.count} events</span>
+      <span class="city-arrow">›</span>
+    </button>`).join('')+hint;
+}
+
+function selectVenue(venueName){
+  const results=EVENTS.filter(e=>e.venue===venueName).sort((a,b)=>new Date(a.date)-new Date(b.date));
+  const grouped=groupEvents(results);
+  document.getElementById('events-label').textContent=`${grouped.length} EVENTS · ${venueName.toUpperCase()}`;
+  document.getElementById('events-month-label').textContent='';
+  document.getElementById('events-list').innerHTML=grouped.map(ev=>eventRowHTML(ev)).join('');
+  currentStep=2;
+  document.getElementById('step-city').style.display='none';
+  document.getElementById('step-month').style.display='none';
+  document.getElementById('step-events').style.display='block';
+  document.getElementById('bc-month').textContent=venueName;
+  document.getElementById('bc-month').className='bc-btn active';
+  document.getElementById('bc-events').className='bc-btn active';
 }
 
 function selectCity(city){

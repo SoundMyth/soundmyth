@@ -527,10 +527,23 @@ function renderFeatured(){
   const todayStr=new Date().toISOString().split('T')[0];
   // Priorizar eventos que tienen imagen de artista (solo futuros en el featured)
   const upcoming=EVENTS.filter(e=>e.date>=todayStr);
+  // Pick 8 diverse events: prefer events with images + different countries
   const withImg=upcoming.filter(e=>e.img);
-  const withoutImg=upcoming.filter(e=>!e.img);
-  const pool=[...withImg,...withoutImg];
-  const top=pool.slice(0,5);
+  const seenCountries=new Set();
+  const top=[];
+  // First pass: one event per country (with images first)
+  for(const ev of [...withImg,...upcoming.filter(e=>!e.img)]){
+    if(top.length>=8) break;
+    if(!seenCountries.has(ev.country)){
+      seenCountries.add(ev.country);
+      top.push(ev);
+    }
+  }
+  // Fill remaining slots if needed
+  for(const ev of upcoming){
+    if(top.length>=8) break;
+    if(!top.includes(ev)) top.push(ev);
+  }
   document.getElementById('home-featured').innerHTML=top.map(ev=>{
     const{day,mon}=fmtDate(ev.date);
     const isSaved=saved.includes(ev.id);

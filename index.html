@@ -266,6 +266,13 @@ button:focus{outline:none;}
     </div>
     <div class="hscroll" id="home-featured"></div>
 
+    <!-- FESTIVALS -->
+    <div class="home-sec" style="padding-top:4px;">
+      <span class="home-sec-title">FESTIVALS</span>
+      <button class="home-sec-link" onclick="resetPlan(document.querySelectorAll('.nav-btn')[1])">SEE ALL →</button>
+    </div>
+    <div class="hscroll" id="home-festivals"></div>
+
     <!-- CLUB NIGHTS -->
     <div class="home-sec" style="padding-top:4px;">
       <span class="home-sec-title">CLUB NIGHTS</span>
@@ -319,6 +326,7 @@ button:focus{outline:none;}
         <button id="mode-city-btn" onclick="setMode('city')" style="flex:1;padding:10px;background:#fff;color:#000;border:none;font-size:11px;letter-spacing:1.5px;font-weight:700;cursor:pointer;font-family:inherit;">COUNTRY</button>
         <button id="mode-dj-btn" onclick="setMode('dj')" style="flex:1;padding:10px;background:transparent;color:#555;border:none;font-size:11px;letter-spacing:1.5px;font-weight:400;cursor:pointer;font-family:inherit;">DJ</button>
         <button id="mode-venue-btn" onclick="setMode('venue')" style="flex:1;padding:10px;background:transparent;color:#555;border:none;font-size:11px;letter-spacing:1.5px;font-weight:400;cursor:pointer;font-family:inherit;">CLUB</button>
+        <button id="mode-fest-btn" onclick="setMode('fest')" style="flex:1;padding:10px;background:transparent;color:#555;border:none;font-size:11px;letter-spacing:1.5px;font-weight:400;cursor:pointer;font-family:inherit;">FEST</button>
       </div>
       <div id="mode-city">
         <!-- Paso A: selección de país -->
@@ -344,6 +352,11 @@ button:focus{outline:none;}
         <div class="section-label" style="margin-bottom:14px;">WHICH CLUB OR VENUE?</div>
         <input type="text" id="venue-search" class="search-input" style="width:100%;margin-bottom:16px;" placeholder="Fabric, Berghain, Pacha..." oninput="renderVenues()"/>
         <div id="venue-list"></div>
+      </div>
+      <div id="mode-fest" style="display:none;">
+        <div class="section-label" style="margin-bottom:14px;">WHICH FESTIVAL?</div>
+        <input type="text" id="fest-search" class="search-input" style="width:100%;margin-bottom:16px;" placeholder="Tomorrowland, Ultra, Awakenings..." oninput="renderFestList()"/>
+        <div id="fest-list"></div>
       </div>
     </div>
 
@@ -500,6 +513,33 @@ const DJ_SPOTLIGHT={
   eventsCount:()=>EVENTS.filter(e=>e.djs.some(d=>d.toLowerCase().includes('black coffee'))).length,
 };
 
+function renderFestivals(){
+  const todayStr=new Date().toISOString().split('T')[0];
+  // Festival events: tagged 'festival', sorted by date, max 1 per name (deduplicated)
+  const seen=new Set();
+  const fests=EVENTS.filter(e=>{
+    if(!e.tags.includes('festival')||e.date<todayStr) return false;
+    if(seen.has(e.name)) return false;
+    seen.add(e.name);
+    return true;
+  }).sort((a,b)=>new Date(a.date)-new Date(b.date)).slice(0,10);
+  document.getElementById('home-festivals').innerHTML=fests.map(ev=>{
+    const{day,mon}=fmtDate(ev.date);
+    const isSaved=saved.includes(ev.id);
+    const img=ev.img||CITY_IMG[ev.city]||countryImg(ev.country);
+    return`<div class="ev-card-h" onclick='openDetail(${JSON.stringify(ev.id)})'>
+      <img src="${img}" alt="" onerror="this.src='${COUNTRY_IMG_FALLBACK}'"/>
+      <div class="ev-card-h-grad"></div>
+      <button class="ev-card-h-save${isSaved?' saved':''}" onclick='event.stopPropagation();toggleSave(${JSON.stringify(ev.id)})'>${isSaved?'♥':'♡'}</button>
+      <div class="ev-card-h-body">
+        <div class="ev-card-h-genre">${FLAGS[ev.country]||''} ${ev.city.toUpperCase()}</div>
+        <div class="ev-card-h-name">${ev.name}</div>
+        <div class="ev-card-h-meta">${day} ${mon}${ev.djs.length?` · ${ev.djs[0]}`:''}</div>
+      </div>
+    </div>`;
+  }).join('');
+}
+
 function renderClubs(){
   const todayStr=new Date().toISOString().split('T')[0];
   // Club events: RA source or SK-venue events (not DJ residencies or festivals)
@@ -559,6 +599,7 @@ function renderFeatured(){
     </div>`;
   }).join('');
 
+  renderFestivals();
   renderClubs();
 
   // DJ spotlight
@@ -904,6 +945,7 @@ function resetPlan(btn){
   const cs=document.getElementById('country-search'); if(cs) cs.value='';
   const ds=document.getElementById('dj-search'); if(ds) ds.value='';
   const vs=document.getElementById('venue-search'); if(vs) vs.value='';
+  const fs=document.getElementById('fest-search'); if(fs) fs.value='';
   setMode('city');
   document.getElementById('bc-city').className='bc-btn active';
   document.getElementById('bc-city').textContent='Country';
@@ -930,14 +972,18 @@ function setMode(mode){
   document.getElementById('mode-city').style.display=mode==='city'?'block':'none';
   document.getElementById('mode-dj').style.display=mode==='dj'?'block':'none';
   document.getElementById('mode-venue').style.display=mode==='venue'?'block':'none';
+  document.getElementById('mode-fest').style.display=mode==='fest'?'block':'none';
   const cb=document.getElementById('mode-city-btn');
   const db=document.getElementById('mode-dj-btn');
   const vb=document.getElementById('mode-venue-btn');
+  const fb=document.getElementById('mode-fest-btn');
   cb.style.cssText+=`;background:${mode==='city'?'#fff':'transparent'};color:${mode==='city'?'#000':'#555'};font-weight:${mode==='city'?700:400}`;
   db.style.cssText+=`;background:${mode==='dj'?'#fff':'transparent'};color:${mode==='dj'?'#000':'#555'};font-weight:${mode==='dj'?700:400}`;
   vb.style.cssText+=`;background:${mode==='venue'?'#fff':'transparent'};color:${mode==='venue'?'#000':'#555'};font-weight:${mode==='venue'?700:400}`;
+  fb.style.cssText+=`;background:${mode==='fest'?'#fff':'transparent'};color:${mode==='fest'?'#000':'#555'};font-weight:${mode==='fest'?700:400}`;
   if(mode==='dj') renderDJs();
   else if(mode==='venue') renderVenues();
+  else if(mode==='fest') renderFestList();
   else if(selCountry) renderCities();
   else renderCountries();
 }
@@ -1035,6 +1081,34 @@ function renderDJs(){
         <div class="city-country">${tourFlags}${extra}· ${evs.length} ev.</div>
       </div>
       <span class="city-count">${countries.length} countr${countries.length!==1?'ies':'y'}</span>
+      <span class="city-arrow">›</span>
+    </button>`;
+  }).join('')+hint;
+}
+
+function renderFestList(){
+  const todayStr=new Date().toISOString().split('T')[0];
+  const q=(document.getElementById('fest-search')||{value:''}).value.toLowerCase();
+  // Build unique festival list from events with festival tag
+  const festMap=new Map();
+  for(const ev of EVENTS){
+    if(!ev.tags.includes('festival')||ev.date<todayStr) continue;
+    const key=ev.name;
+    if(!festMap.has(key)){
+      festMap.set(key,{name:ev.name,city:ev.city,country:ev.country,date:ev.date,id:ev.id,djs:ev.djs});
+    }
+  }
+  let fests=[...festMap.values()].filter(f=>f.name.toLowerCase().includes(q)).sort((a,b)=>new Date(a.date)-new Date(b.date));
+  const hint=!q?`<div style="color:#666;font-size:10px;letter-spacing:1px;text-align:center;padding:12px 0;">Upcoming festivals sorted by date</div>`:'';
+  document.getElementById('fest-list').innerHTML=fests.slice(0,50).map(f=>{
+    const{day,mon}=fmtDate(f.date);
+    return`<button class="city-btn" onclick='openDetail(${JSON.stringify(f.id)})'>
+      <span style="font-size:20px">${FLAGS[f.country]||'🎪'}</span>
+      <div style="flex:1;text-align:left">
+        <div class="city-name">${f.name}</div>
+        <div class="city-country">${f.city}, ${f.country}</div>
+      </div>
+      <span class="city-count">${day} ${mon}</span>
       <span class="city-arrow">›</span>
     </button>`;
   }).join('')+hint;

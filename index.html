@@ -247,7 +247,8 @@ button:focus{outline:none;}
       <span class="sources-label">SOURCES</span>
       <div class="source-pill"><div class="source-dot"></div><span class="source-name">Songkick</span></div>
       <div class="source-pill"><div class="source-dot"></div><span class="source-name">Bandsintown</span></div>
-      <div class="source-pill"><div class="source-dot" style="background:#333;animation:none;"></div><span class="source-name">Resident Advisor</span></div>
+      <div class="source-pill"><div class="source-dot"></div><span class="source-name">Resident Advisor</span></div>
+      <div class="source-pill"><div class="source-dot"></div><span class="source-name">Official Sites</span></div>
     </div>
 
     <!-- STATS -->
@@ -264,6 +265,13 @@ button:focus{outline:none;}
       <button class="home-sec-link" onclick="resetPlan(document.querySelectorAll('.nav-btn')[1])">SEE ALL →</button>
     </div>
     <div class="hscroll" id="home-featured"></div>
+
+    <!-- CLUB NIGHTS -->
+    <div class="home-sec" style="padding-top:4px;">
+      <span class="home-sec-title">CLUB NIGHTS</span>
+      <button class="home-sec-link" onclick="resetPlan(document.querySelectorAll('.nav-btn')[1])">SEE ALL →</button>
+    </div>
+    <div class="hscroll" id="home-clubs"></div>
 
     <!-- DJ SPOTLIGHT -->
     <div class="home-sec" style="padding-top:4px;">
@@ -380,6 +388,7 @@ button:focus{outline:none;}
     <div class="lineup-label">LINE-UP</div>
     <div id="det-lineup"></div>
     <div class="tags" id="det-tags"></div>
+    <div id="det-source" style="margin-bottom:20px;"></div>
     <div class="detail-actions">
       <a id="det-ticket" href="#" target="_blank" class="ticket-btn">GET TICKETS →</a>
       <button id="det-save" class="save-btn-det" onclick="toggleDetailSave()">♡</button>
@@ -484,6 +493,29 @@ const DJ_SPOTLIGHT={
   eventsCount:()=>EVENTS.filter(e=>e.djs.some(d=>d.toLowerCase().includes('black coffee'))).length,
 };
 
+function renderClubs(){
+  const todayStr=new Date().toISOString().split('T')[0];
+  // Club events: tagged 'club' (RA, SK venue) or source='ra'
+  const clubs=EVENTS.filter(e=>e.date>=todayStr&&(e.tags.includes('club')||e.source==='ra'))
+    .sort((a,b)=>new Date(a.date)-new Date(b.date))
+    .slice(0,10);
+  document.getElementById('home-clubs').innerHTML=clubs.map(ev=>{
+    const{day,mon}=fmtDate(ev.date);
+    const isSaved=saved.includes(ev.id);
+    const img=CITY_IMG[ev.city]||countryImg(ev.country);
+    return`<div class="ev-card-h" onclick='openDetail(${JSON.stringify(ev.id)})'>
+      <img src="${img}" alt="" onerror="this.src='${COUNTRY_IMG_FALLBACK}'"/>
+      <div class="ev-card-h-grad"></div>
+      <button class="ev-card-h-save${isSaved?' saved':''}" onclick='event.stopPropagation();toggleSave(${JSON.stringify(ev.id)})'>${isSaved?'♥':'♡'}</button>
+      <div class="ev-card-h-body">
+        <div class="ev-card-h-genre">${FLAGS[ev.country]||''} ${ev.city.toUpperCase()}</div>
+        <div class="ev-card-h-name">${ev.venue||ev.name}</div>
+        <div class="ev-card-h-meta">${day} ${mon} · ${ev.djs[0]||'TBA'}</div>
+      </div>
+    </div>`;
+  }).join('');
+}
+
 function renderFeatured(){
   const todayStr=new Date().toISOString().split('T')[0];
   // Priorizar eventos que tienen imagen de artista (solo futuros en el featured)
@@ -502,10 +534,12 @@ function renderFeatured(){
       <div class="ev-card-h-body">
         <div class="ev-card-h-genre">${ev.genre.toUpperCase()} · ${FLAGS[ev.country]} ${ev.city.toUpperCase()}</div>
         <div class="ev-card-h-name">${ev.name}</div>
-        <div class="ev-card-h-meta">${day} ${mon} · ${ev.djs[0]}</div>
+        <div class="ev-card-h-meta">${day} ${mon} · ${ev.djs[0]||ev.venue||'TBA'}</div>
       </div>
     </div>`;
   }).join('');
+
+  renderClubs();
 
   // DJ spotlight
   const cnt=DJ_SPOTLIGHT.eventsCount();
@@ -808,7 +842,8 @@ async function loadEvents(){
       .map(e=>({
         id:e.id, name:e.name, venue:e.venue||'', city:e.city||'', country:e.country,
         date:e.date, djs:e.djs||[], genre:e.genre||'', tags:e.tags||[],
-        price:e.price||'', ticket:e.ticket_url||'#', img:e.img_url||''
+        price:e.price||'', ticket:e.ticket_url||'#', img:e.img_url||'',
+        source:e.source||''
       }));
   }
   const futureEvents=EVENTS.filter(e=>e.date>=today);
@@ -1033,7 +1068,7 @@ function eventRowHTML(ev){
     <div class="ev-divider"></div>
     <div class="ev-info">
       <div class="ev-name">${ev.name}${isPast?'<span class="past-badge">PAST</span>':''}</div>
-      <div class="ev-sub">${FLAGS[ev.country]||''} ${ev.city} · ${ev.djs[0]}${ev.djs.length>1?` +${ev.djs.length-1}`:''}</div>
+      <div class="ev-sub">${FLAGS[ev.country]||''} ${ev.city} · ${ev.djs[0]||(ev.venue&&ev.venue!==ev.name?ev.venue:'TBA')}${ev.djs.length>1?` +${ev.djs.length-1}`:''}</div>
     </div>
     <div class="ev-right">
       <div><div class="ev-genre">${ev.genre}</div></div>
@@ -1077,12 +1112,26 @@ function openDetail(id){
   document.getElementById('det-venue').textContent=ev.venue;
   document.getElementById('det-date').textContent=`${day} ${mon}`;
   document.getElementById('det-days').textContent=days>0?`${days}d`:days===0?'TODAY':'PAST';
-  document.getElementById('det-lineup').innerHTML=ev.djs.map(dj=>`<div class="lineup-row"><div class="lineup-ico">${djFlag(dj)}</div><span class="lineup-name">${dj}</span></div>`).join('');
+  document.getElementById('det-lineup').innerHTML=ev.djs.length
+    ? ev.djs.map(dj=>`<div class="lineup-row"><div class="lineup-ico">${djFlag(dj)}</div><span class="lineup-name">${dj}</span></div>`).join('')
+    : `<div style="color:#333;font-size:12px;letter-spacing:1px;padding:14px 0;">LINEUP TBA</div>`;
   document.getElementById('det-tags').innerHTML=ev.tags.map(t=>`<span class="tag">${t}</span>`).join('');
-  document.getElementById('det-ticket').href=ev.ticket;
+  // Source badge
+  const srcLabel={'bandsintown':'Bandsintown','songkick':'Songkick','ra':'Resident Advisor','direct':'Official Site','website':'Website'};
+  const srcName=srcLabel[ev.source]||ev.source||'';
+  document.getElementById('det-source').innerHTML=srcName
+    ? `<span style="color:#333;font-size:9px;letter-spacing:2px;">SOURCE: </span><span style="color:#444;font-size:9px;letter-spacing:1px;">${srcName}</span>`
+    : '';
+  // Ticket button — hide when no real URL
+  const tickBtn=document.getElementById('det-ticket');
+  const hasTicket=ev.ticket&&ev.ticket!=='#'&&ev.ticket.length>5;
+  tickBtn.href=hasTicket?ev.ticket:'#';
+  tickBtn.style.display=hasTicket?'':'none';
   const isSaved=saved.includes(ev.id);
-  document.getElementById('det-save').className='save-btn-det'+(isSaved?' saved':'');
-  document.getElementById('det-save').textContent=isSaved?'♥':'♡';
+  const saveBtn=document.getElementById('det-save');
+  saveBtn.className='save-btn-det'+(isSaved?' saved':'');
+  saveBtn.textContent=isSaved?'♥':'♡';
+  saveBtn.style.flex=hasTicket?'':'1';
   document.getElementById('detail').className='open';
   document.body.style.overflow='hidden';
 }

@@ -92,12 +92,12 @@ function extractFestivalEvent(html, fest) {
       img_url:    img,
       ticket_url: ld.offers?.url || ld.url || fest.website || '',
       source:     'direct',
-      source_id:  `direct_${fest.name.replace(/\W+/g,'_').toLowerCase()}_${startDate.slice(0,4)}`,
+      source_id:  `direct_${fest.name.replace(/\W+/g,'_').toLowerCase()}_${(fest.city||'').replace(/\W+/g,'_').toLowerCase()}_${startDate.slice(0,4)}`,
     };
   }
 
   // 2. Fallback: find upcoming ISO dates in HTML
-  const rawDates = (html.match(/202[6-9]-\d{2}-\d{2}/g) || [])
+  const rawDates = (html.match(/20\d{2}-\d{2}-\d{2}/g) || [])
     .filter(d => d >= TODAY)
     .sort();
 
@@ -121,7 +121,7 @@ function extractFestivalEvent(html, fest) {
     img_url:    ogImg,
     ticket_url: fest.website || '',
     source:     'direct',
-    source_id:  `direct_${fest.name.replace(/\W+/g,'_').toLowerCase()}_${startDate.slice(0,4)}`,
+    source_id:  `direct_${fest.name.replace(/\W+/g,'_').toLowerCase()}_${(fest.city||'').replace(/\W+/g,'_').toLowerCase()}_${startDate.slice(0,4)}`,
   };
 }
 

@@ -29,13 +29,22 @@ if (!SB_URL || !SB_KEY) { console.error('❌  Missing Supabase env vars'); proce
 
 const sb = createClient(SB_URL, SB_KEY, { auth: { persistSession: false } });
 
-// Normalise venue name for comparison: lowercase, strip punctuation, collapse spaces
-function normVenue(s) {
-  return (s || '').toLowerCase().replace(/[^a-z0-9\s]/g, '').replace(/\s+/g, ' ').trim();
+// Normalise: lowercase, strip diacritics (NFD), strip punctuation, collapse spaces
+function norm(s) {
+  return (s || '').normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().replace(/[^a-z0-9\s]/g, '').replace(/\s+/g, ' ').trim();
 }
+const normVenue = norm;
+const normCity  = norm;
 
-function normCity(s) {
-  return (s || '').toLowerCase().replace(/[^a-z0-9\s]/g, '').replace(/\s+/g, ' ').trim();
+// Check if two venue names are similar enough to be the same place
+// Handles "Ushuaia Ibiza" vs "Ushuaia Ibiza Beach Hotel", "DC-10" vs "DC 10"
+function venueMatch(a, b) {
+  const na = norm(a), nb = norm(b);
+  if (!na || !nb) return na === nb;
+  if (na === nb) return true;
+  // One contains the other (for "Amnesia" vs "Amnesia Ibiza")
+  if (na.includes(nb) || nb.includes(na)) return true;
+  return false;
 }
 
 // Score richness of an event (higher = more info = prefer to keep)
@@ -117,12 +126,12 @@ async function main() {
 
   // Normalise name for comparison
   function normName(s) {
-    return (s || '').toLowerCase()
+    return (s || '').normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase()
       .replace(/\b(festival|fest|presents|pres\.?)\b/g, '')
       .replace(/[^a-z0-9\s]/g, '').replace(/\s+/g, ' ').trim();
   }
 
-  // Group by composite key:
+  // ── Pass 1: Exact key grouping ──
   //   A) Events WITH venue:  (date, venue_norm, city_norm)
   //   B) Events WITHOUT venue (festivals): (date, name_norm, city_norm)
   const groups = new Map();
@@ -130,16 +139,32 @@ async function main() {
     const venue = normVenue(ev.venue);
     let key;
     if (venue.length >= 3) {
-      // Club/venue event: group by date+venue+city
       key = `venue|${ev.date}|${venue}|${normCity(ev.city)}`;
     } else {
-      // Festival / no-venue event: group by date+name+city
       const nn = normName(ev.name);
-      if (!nn) continue; // skip if no usable name
+      if (!nn) continue;
       key = `name|${ev.date}|${nn}|${normCity(ev.city)}`;
     }
     if (!groups.has(key)) groups.set(key, []);
     groups.get(key).push(ev);
+  }
+
+  // ── Pass 2: Fuzzy venue merge ──
+  // Merge groups with same date+city where venues are similar ("Ushuaia" vs "Ushuaia Ibiza Beach Hotel")
+  const keys = [...groups.keys()].filter(k => k.startsWith('venue|'));
+  for (let i = 0; i < keys.length; i++) {
+    const [, dateA, venueA, cityA] = keys[i].split('|');
+    if (!groups.has(keys[i])) continue; // already merged away
+    for (let j = i + 1; j < keys.length; j++) {
+      if (!groups.has(keys[j])) continue;
+      const [, dateB, venueB, cityB] = keys[j].split('|');
+      if (dateA !== dateB || cityA !== cityB) continue;
+      if (venueMatch(venueA, venueB)) {
+        // Merge j into i
+        groups.get(keys[i]).push(...groups.get(keys[j]));
+        groups.delete(keys[j]);
+      }
+    }
   }
 
   const dupeGroups = [...groups.values()].filter(g => g.length > 1);

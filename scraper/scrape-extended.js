@@ -327,15 +327,7 @@ async function main() {
   console.log('║  Mode: purge past + upsert new           ║');
   console.log('╚══════════════════════════════════════════╝\n');
 
-  // ── Purge past events ──────────────────────────────────────────────────────
-  process.stdout.write('🗑  Purging past events... ');
-  const yesterday = new Date(Date.now() - 86400000).toISOString().split('T')[0];
-  const { error: purgeErr, count: purgeCount } = await sb
-    .from('events')
-    .delete({ count: 'exact' })
-    .lt('date', yesterday);
-  if (purgeErr) console.warn(`⚠️  Purge error: ${purgeErr.message}`);
-  else console.log(`done (${purgeCount ?? '?'} events removed)\n`);
+  // NOTE: purge moved to dedicated purge.js (keeps 15-day retention window)
 
   const artists  = JSON.parse(readFileSync(resolve(__dirname, 'data/artists_all.json'), 'utf8'));
   const festivals = JSON.parse(readFileSync(

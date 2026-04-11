@@ -319,3 +319,16 @@ Added cache versioning (CACHE_VERSION=2) so failed lookups from v1 are auto-retr
 **Fix:** Added `FESTIVAL_IMAGE_OVERRIDES` map with high-quality Unsplash festival images for 17 major festivals. Applied as fallback when og:image scraping fails.
 
 **Rule:** See rule 18 above.
+
+---
+
+## BUG-016 · Wikipedia fallback returned wrong DJ photos
+**Status:** Fixed — `enrich-images.js` v3
+
+**Symptom:** 25 DJs had photos of the WRONG artist. E.g., 5 DJs (Massano, Argy, Cassian, Chris Avantgarde, Anyma) all shared the same Anyma photo.
+
+**Root cause:** Wikipedia search for "{name} DJ" returned articles about festivals or other DJs, and the thumbnail from those unrelated articles was assigned to the wrong DJ.
+
+**Fix:** Added title validation: Wikipedia article title must contain the DJ name (or vice versa) before accepting the image. Also searches top 3 results instead of just 1 for better matching. Bumped CACHE_VERSION to 3 to retry cleaned entries.
+
+**Rule:** Never blindly trust Wikipedia search results — always validate the article title against the expected entity name.

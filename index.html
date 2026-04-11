@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
 <title>Sound Myth</title>
 <style>
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent;}
@@ -163,7 +163,7 @@ body{background:#000;color:#fff;font-family:-apple-system,BlinkMacSystemFont,'He
 .route-arr{color:#222;font-size:12px;}
 .empty-state{text-align:center;padding:80px 0;}
 .section-label{color:#777;font-size:10px;letter-spacing:2px;}
-.search-input{background:#0d0d0d;border:1px solid #2a2a2a;border-radius:8px;padding:11px 14px;color:#fff;font-size:13px;font-family:inherit;}
+.search-input{background:#0d0d0d;border:1px solid #2a2a2a;border-radius:8px;padding:11px 14px;color:#fff;font-size:16px;font-family:inherit;}
 .search-input::placeholder{color:#555;}
 input{outline:none;-webkit-appearance:none;}
 button:focus{outline:none;}
@@ -470,8 +470,12 @@ const FLAGS={
   'North Macedonia':'🇲🇰','Philippines':'🇵🇭','Costa Rica':'🇨🇷','Luxembourg':'🇱🇺',
   'Belarus':'🇧🇾','Peru':'🇵🇪','Lithuania':'🇱🇹','Lebanon':'🇱🇧','Egypt':'🇪🇬',
   'Albania':'🇦🇱','Guatemala':'🇬🇹','South Korea':'🇰🇷','Estonia':'🇪🇪','Iceland':'🇮🇸',
-  'Kyrgyzstan':'🇰🇬',
-  'United States of America':'🇺🇸',
+  'Kyrgyzstan':'🇰🇬','Taiwan':'🇹🇼','Vietnam':'🇻🇳','Monaco':'🇲🇨',
+  'Bulgaria':'🇧🇬','Paraguay':'🇵🇾','Morocco':'🇲🇦','Tunisia':'🇹🇳',
+  'Jamaica':'🇯🇲','Malaysia':'🇲🇾','Cambodia':'🇰🇭','Ukraine':'🇺🇦',
+  'Georgia':'🇬🇪','Slovenia':'🇸🇮','Bosnia and Herzegovina':'🇧🇦',
+  'Montenegro':'🇲🇪','Moldova':'🇲🇩','Dominican Republic':'🇩🇴',
+  'United States of America':'🇺🇸','UK':'🇬🇧','USA':'🇺🇸',
 };
 const MONTHS=["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
 let ALL_CITIES=[], ALL_DJS=[], ALL_COUNTRIES=[];
@@ -600,6 +604,11 @@ function renderClubs(){
 }
 
 function renderFeatured(){
+  // Render festivals + clubs FIRST so they always show even if highlights fail
+  renderFestivals();
+  renderClubs();
+
+  try{
   const todayStr=new Date().toISOString().split('T')[0];
   // Solo eventos futuros con al menos un DJ top100
   const upcoming=EVENTS.filter(e=>e.date>=todayStr && e.djs&&e.djs.some(d=>TOP100_DJS.has(d.toLowerCase())));
@@ -628,15 +637,13 @@ function renderFeatured(){
       <div class="ev-card-h-grad"></div>
       <button class="ev-card-h-save${isSaved?' saved':''}" onclick='event.stopPropagation();toggleSave(${JSON.stringify(ev.id)})'>${isSaved?'♥':'♡'}</button>
       <div class="ev-card-h-body">
-        <div class="ev-card-h-genre">${ev.genre.toUpperCase()} · ${FLAGS[ev.country]} ${ev.city.toUpperCase()}</div>
+        <div class="ev-card-h-genre">${(ev.genre||'ELECTRONIC').toUpperCase()} · ${FLAGS[ev.country]||'🌍'} ${(ev.city||'').toUpperCase()}</div>
         <div class="ev-card-h-name">${ev.name}</div>
         <div class="ev-card-h-meta">${day} ${mon} · ${ev.djs[0]||ev.venue||'TBA'}</div>
       </div>
     </div>`;
   }).join('');
-
-  renderFestivals();
-  renderClubs();
+  }catch(err){console.error('renderFeatured error:',err);}
 
   // DJ spotlight
   renderSpotlight();
@@ -909,9 +916,15 @@ const COUNTRY_ISO={
   'CL':'Chile','PE':'Peru','LB':'Lebanon','EG':'Egypt',
   'KR':'South Korea','KG':'Kyrgyzstan','AE':'United Arab Emirates',
   'GT':'Guatemala','CR':'Costa Rica',
+  'TW':'Taiwan','VN':'Vietnam','MC':'Monaco','BG':'Bulgaria',
+  'PY':'Paraguay','MA':'Morocco','TN':'Tunisia','JM':'Jamaica',
+  'MY':'Malaysia','KH':'Cambodia','UA':'Ukraine','GE':'Georgia',
+  'SI':'Slovenia','BA':'Bosnia and Herzegovina','ME':'Montenegro',
+  'MD':'Moldova','DO':'Dominican Republic',
   // Full-name aliases (RA returns full names)
   'United States of America':'United States',
   'United Kingdom of Great Britain and Northern Ireland':'United Kingdom',
+  'UK':'United Kingdom',
 };
 function normalizeCountry(c){return COUNTRY_ISO[c]||c;}
 
@@ -1311,7 +1324,7 @@ function openDetail(id){
   const{day,mon}=fmtDate(ev.date);
   const days=daysUntil(ev.date);
   document.getElementById('det-img').src=bestImgHero(ev);
-  document.getElementById('det-genre').textContent=`${ev.genre.toUpperCase()} · ${FLAGS[ev.country]||''} ${ev.city.toUpperCase()}`;
+  document.getElementById('det-genre').textContent=`${(ev.genre||'ELECTRONIC').toUpperCase()} · ${FLAGS[ev.country]||'🌍'} ${(ev.city||'').toUpperCase()}`;
   document.getElementById('det-name').textContent=ev.name;
   document.getElementById('det-venue').textContent=ev.venue;
   document.getElementById('det-date').textContent=`${day} ${mon}`;

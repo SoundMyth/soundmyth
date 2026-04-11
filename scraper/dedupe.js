@@ -15,6 +15,7 @@
  */
 
 import { createClient } from '@supabase/supabase-js';
+import { readFileSync, existsSync } from 'fs';
 import { config }        from 'dotenv';
 import { fileURLToPath } from 'url';
 import { dirname, resolve } from 'path';
@@ -167,6 +168,56 @@ async function main() {
     }
   }
 
+  // ── Pass 3: Festival consolidation ──
+  // BIT creates separate entries per DJ at a festival ("Anyma pres. ÆDEN at Coachella",
+  // "Heineken House Coachella", etc). Consolidate: same date + same city + name contains
+  // a known festival name → merge into one event.
+  console.log('\n  Pass 3: Festival consolidation...');
+  const FESTIVALS_PATH = resolve(__dirname, 'data/festivals_all.json');
+  let festNames = [];
+  if (existsSync(FESTIVALS_PATH)) {
+    const fests = JSON.parse(readFileSync(FESTIVALS_PATH, 'utf8'));
+    festNames = [...new Set(fests.map(f => f.name.toLowerCase().trim()))].filter(n => n.length >= 5);
+  }
+
+  if (festNames.length) {
+    // Index events by date+city
+    const byDateCity = new Map();
+    for (const [key, evs] of groups) {
+      for (const ev of evs) {
+        const dc = `${ev.date}|${normCity(ev.city)}`;
+        if (!byDateCity.has(dc)) byDateCity.set(dc, []);
+        byDateCity.get(dc).push({ key, ev });
+      }
+    }
+
+    let festMerged = 0;
+    for (const [dc, entries] of byDateCity) {
+      if (entries.length < 2) continue;
+      // For each known festival name, check if multiple events reference it
+      for (const fest of festNames) {
+        const matching = entries.filter(({ ev }) => {
+          const n = norm(ev.name);
+          const v = norm(ev.venue);
+          return n.includes(fest) || v.includes(fest);
+        });
+        if (matching.length < 2) continue;
+
+        // Merge all matching into the first group
+        const targetKey = matching[0].key;
+        for (let m = 1; m < matching.length; m++) {
+          const srcKey = matching[m].key;
+          if (srcKey === targetKey) continue;
+          if (!groups.has(srcKey)) continue;
+          groups.get(targetKey).push(...groups.get(srcKey));
+          groups.delete(srcKey);
+          festMerged++;
+        }
+      }
+    }
+    console.log(`  Festival groups consolidated: ${festMerged}`);
+  }
+
   const dupeGroups = [...groups.values()].filter(g => g.length > 1);
   console.log(`  Groups with duplicates: ${dupeGroups.length}`);
 
@@ -206,12 +257,16 @@ async function main() {
     const img_url    = keeper.img_url    || rest.find(r => r.img_url)?.img_url || '';
     const price      = keeper.price      || rest.find(r => r.price)?.price || '';
 
-    // Pick best name: prefer the longest non-generic one
+    // Pick best name: prefer festival/venue name over "DJ at Festival" pattern
     let bestName = keeper.name;
     for (const dup of rest) {
-      if (dup.name && dup.name.length > bestName.length && !dup.name.match(/^.+ at .+$/i)) {
-        bestName = dup.name;
-      }
+      if (!dup.name) continue;
+      // Skip "DJ at Festival" or "DJ @ Festival" patterns — prefer the full festival name
+      const isGenericDJat = /^.+\s+(at|@|pres\.?)\s+.+$/i.test(dup.name);
+      const keeperIsGeneric = /^.+\s+(at|@|pres\.?)\s+.+$/i.test(bestName);
+      if (keeperIsGeneric && !isGenericDJat) { bestName = dup.name; continue; }
+      if (!keeperIsGeneric && isGenericDJat) continue;
+      if (dup.name.length > bestName.length) bestName = dup.name;
     }
 
     const djs  = [...djSet];

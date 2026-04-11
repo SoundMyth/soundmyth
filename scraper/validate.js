@@ -29,10 +29,24 @@ const sb = createClient(SB_URL, SB_KEY, { auth: { persistSession: false } });
 
 // ── Known country normalization map ─────────────────────────────────────────
 const COUNTRY_NORM = {
+  // Abbreviations & ISO codes that appear in scraper data
   'UK':                        'United Kingdom',
   'US':                        'United States',
   'USA':                       'United States',
+  'UAE':                       'United Arab Emirates',
+  'EAU':                       'United Arab Emirates',
+  // Full-name variants
   'United States of America':  'United States',
+  'United Kingdom of Great Britain and Northern Ireland': 'United Kingdom',
+  'Korea':                     'South Korea',
+  'Republic of Korea':         'South Korea',
+  'Northern Ireland':          'United Kingdom',
+  'Czech Republic':            'Czechia',
+  'Türkiye':                   'Turkey',
+  'Côte d\'Ivoire':            'Ivory Coast',
+  'Taiwan, Province of China': 'Taiwan',
+  'Viet Nam':                  'Vietnam',
+  'Russian Federation':        'Russia',
 };
 
 // Countries we consider valid (no normalization needed)
@@ -40,7 +54,7 @@ const VALID_COUNTRIES = new Set([
   'United Kingdom', 'United States', 'Spain', 'Germany', 'France', 'Italy',
   'Netherlands', 'Belgium', 'Portugal', 'Greece', 'Croatia', 'Serbia',
   'Romania', 'Bulgaria', 'Austria', 'Switzerland', 'Sweden', 'Norway',
-  'Denmark', 'Finland', 'Ireland', 'Poland', 'Czech Republic', 'Czechia',
+  'Denmark', 'Finland', 'Ireland', 'Poland', 'Czechia',
   'Hungary', 'Turkey', 'Australia', 'Japan', 'South Korea', 'Thailand',
   'Indonesia', 'India', 'Brazil', 'Argentina', 'Colombia', 'Mexico',
   'Canada', 'South Africa', 'Morocco', 'Egypt', 'Israel', 'Lebanon',
@@ -50,6 +64,16 @@ const VALID_COUNTRIES = new Set([
   'Puerto Rico', 'Iceland', 'Estonia', 'Latvia', 'Lithuania', 'Slovenia',
   'Slovakia', 'Malta', 'Cyprus', 'Luxembourg', 'Montenegro', 'Albania',
   'North Macedonia', 'Bosnia and Herzegovina',
+  // Added: countries found in data but missing from original list
+  'Taiwan', 'Hong Kong', 'Paraguay', 'Monaco', 'Tunisia', 'Cambodia',
+  'Moldova', 'Azerbaijan', 'Armenia', 'Kazakhstan', 'Uzbekistan',
+  'Kyrgyzstan', 'Bolivia', 'Ecuador', 'Kenya', 'Nepal', 'Iran',
+  'Ivory Coast', 'Saint Martin', 'Belarus', 'Kosovo', 'Macau',
+  'Panama', 'Uruguay', 'Venezuela', 'Honduras', 'El Salvador',
+  'Nicaragua', 'Cuba', 'Trinidad and Tobago', 'Qatar', 'Kuwait',
+  'Bahrain', 'Oman', 'Saudi Arabia', 'Jordan', 'Iraq', 'Palestine',
+  'Nigeria', 'Ghana', 'Tanzania', 'Ethiopia', 'Uganda', 'Senegal',
+  'Pakistan', 'Bangladesh', 'Sri Lanka', 'Myanmar', 'Laos', 'Mongolia',
 ]);
 
 // Known cities that might appear inside venue names

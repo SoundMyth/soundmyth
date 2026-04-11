@@ -218,6 +218,73 @@ async function main() {
     console.log(`  Festival groups consolidated: ${festMerged}`);
   }
 
+  // ── Pass 4: Consecutive-day DJ dedup ──
+  // Same DJ + same venue + same city on consecutive days → merge into one event
+  console.log('\n  Pass 4: Consecutive-day DJ dedup...');
+  let consecMerged = 0;
+
+  // Flatten all remaining events from groups
+  const allGrouped = [];
+  for (const [key, evs] of groups) {
+    for (const ev of evs) allGrouped.push({ key, ev });
+  }
+
+  // Build index: for each DJ, find all events they appear in
+  const djEvents = new Map(); // dj_lower → [{key, ev}, ...]
+  for (const entry of allGrouped) {
+    const djs = entry.ev.djs || [];
+    for (const dj of djs) {
+      const djLow = dj.trim().toLowerCase();
+      if (!djEvents.has(djLow)) djEvents.set(djLow, []);
+      djEvents.get(djLow).push(entry);
+    }
+  }
+
+  const alreadyMergedKeys = new Set();
+
+  for (const [djName, entries] of djEvents) {
+    if (entries.length < 2) continue;
+
+    // Group by venue+city
+    const byVenueCity = new Map();
+    for (const entry of entries) {
+      const vc = `${normVenue(entry.ev.venue)}|${normCity(entry.ev.city)}`;
+      if (!byVenueCity.has(vc)) byVenueCity.set(vc, []);
+      byVenueCity.get(vc).push(entry);
+    }
+
+    for (const [vc, vcEntries] of byVenueCity) {
+      if (vcEntries.length < 2) continue;
+
+      // Sort by date
+      vcEntries.sort((a, b) => a.ev.date.localeCompare(b.ev.date));
+
+      // Find consecutive-day chains
+      for (let i = 0; i < vcEntries.length - 1; i++) {
+        const curr = vcEntries[i];
+        const next = vcEntries[i + 1];
+
+        if (alreadyMergedKeys.has(next.key) && !groups.has(next.key)) continue;
+        if (curr.key === next.key) continue; // already in same group
+
+        const d1 = new Date(curr.ev.date);
+        const d2 = new Date(next.ev.date);
+        const diffDays = (d2 - d1) / (1000 * 60 * 60 * 24);
+
+        if (diffDays === 1) {
+          // Consecutive days — merge next into curr's group
+          if (groups.has(curr.key) && groups.has(next.key) && curr.key !== next.key) {
+            groups.get(curr.key).push(...groups.get(next.key));
+            groups.delete(next.key);
+            alreadyMergedKeys.add(next.key);
+            consecMerged++;
+          }
+        }
+      }
+    }
+  }
+  console.log(`  Consecutive-day merges: ${consecMerged}`);
+
   const dupeGroups = [...groups.values()].filter(g => g.length > 1);
   console.log(`  Groups with duplicates: ${dupeGroups.length}`);
 

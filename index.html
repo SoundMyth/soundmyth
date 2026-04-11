@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
 <title>Sound Myth</title>
 <style>
-*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent;}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent;touch-action:manipulation;}
 html{overscroll-behavior:none;}
 body{background:#000;color:#fff;font-family:-apple-system,BlinkMacSystemFont,'Helvetica Neue',sans-serif;min-height:100vh;overscroll-behavior-x:none;}
 ::-webkit-scrollbar{width:0;height:0}
@@ -166,7 +166,7 @@ body{background:#000;color:#fff;font-family:-apple-system,BlinkMacSystemFont,'He
 .section-label{color:#777;font-size:10px;letter-spacing:2px;}
 .search-input{background:#0d0d0d;border:1px solid #2a2a2a;border-radius:8px;padding:11px 14px;color:#fff;font-size:16px;font-family:inherit;}
 .search-input::placeholder{color:#555;}
-input{outline:none;-webkit-appearance:none;}
+input,select,textarea{outline:none;-webkit-appearance:none;font-size:16px !important;}
 button:focus{outline:none;}
 
 @keyframes fadeup{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
@@ -930,8 +930,8 @@ function bestImgHero(ev){
 
 // ── ISO 2-LETTER → FULL COUNTRY NAME ──────────────────────────────────────────
 const COUNTRY_ISO={
-  'GB':'United Kingdom','UK':'United Kingdom',
-  'DE':'Germany','FR':'France','ES':'Spain','NL':'Netherlands',
+  // ISO 2-letter codes → canonical full name
+  'GB':'United Kingdom','DE':'Germany','FR':'France','ES':'Spain','NL':'Netherlands',
   'BE':'Belgium','IT':'Italy','PL':'Poland','PT':'Portugal',
   'CH':'Switzerland','AT':'Austria','HR':'Croatia','DK':'Denmark',
   'SE':'Sweden','CZ':'Czechia','MT':'Malta','FI':'Finland',
@@ -950,15 +950,38 @@ const COUNTRY_ISO={
   'CL':'Chile','PE':'Peru','LB':'Lebanon','EG':'Egypt',
   'KR':'South Korea','KG':'Kyrgyzstan','AE':'United Arab Emirates',
   'GT':'Guatemala','CR':'Costa Rica',
-  'TW':'Taiwan','VN':'Vietnam','MC':'Monaco','BG':'Bulgaria',
+  'TW':'Taiwan','VN':'Vietnam','MC':'Monaco',
   'PY':'Paraguay','MA':'Morocco','TN':'Tunisia','JM':'Jamaica',
-  'MY':'Malaysia','KH':'Cambodia','UA':'Ukraine','GE':'Georgia',
-  'SI':'Slovenia','BA':'Bosnia and Herzegovina','ME':'Montenegro',
-  'MD':'Moldova','DO':'Dominican Republic',
-  // Full-name aliases (RA returns full names)
+  'MY':'Malaysia','KH':'Cambodia','DO':'Dominican Republic',
+  'PR':'Puerto Rico','PA':'Panama','EC':'Ecuador','UY':'Uruguay',
+  'BO':'Bolivia','VE':'Venezuela','HN':'Honduras','SV':'El Salvador',
+  'NI':'Nicaragua','CU':'Cuba','TT':'Trinidad and Tobago',
+  'BB':'Barbados','BS':'Bahamas','HT':'Haiti',
+  'QA':'Qatar','KW':'Kuwait','BH':'Bahrain','OM':'Oman',
+  'SA':'Saudi Arabia','JO':'Jordan','IQ':'Iraq','IL':'Israel','PS':'Palestine',
+  'NG':'Nigeria','KE':'Kenya','GH':'Ghana','TZ':'Tanzania',
+  'ET':'Ethiopia','UG':'Uganda','SN':'Senegal','CM':'Cameroon',
+  'DZ':'Algeria','LY':'Libya','MU':'Mauritius','MZ':'Mozambique',
+  'CI':'Ivory Coast','ZW':'Zimbabwe','BW':'Botswana','NA':'Namibia',
+  'RW':'Rwanda','MG':'Madagascar',
+  'PK':'Pakistan','BD':'Bangladesh','LK':'Sri Lanka','NP':'Nepal',
+  'MM':'Myanmar','LA':'Laos','MN':'Mongolia','HK':'Hong Kong','MO':'Macau',
+  'FJ':'Fiji','PG':'Papua New Guinea',
+  // Common abbreviations / aliases
+  'USA':'United States','UK':'United Kingdom','UAE':'United Arab Emirates',
+  'EAU':'United Arab Emirates',
+  // Full-name aliases (various APIs return these)
   'United States of America':'United States',
   'United Kingdom of Great Britain and Northern Ireland':'United Kingdom',
-  'UK':'United Kingdom',
+  'Korea':'South Korea','Republic of Korea':'South Korea',
+  'Northern Ireland':'United Kingdom',
+  'Czech Republic':'Czechia','Türkiye':'Turkey',
+  'Côte d\'Ivoire':'Ivory Coast',
+  'Taiwan, Province of China':'Taiwan',
+  'Viet Nam':'Vietnam',
+  'Russian Federation':'Russia',
+  'Iran, Islamic Republic of':'Iran',
+  'Saint Martin':'Saint Martin',
 };
 function normalizeCountry(c){return COUNTRY_ISO[c]||c;}
 

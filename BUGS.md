@@ -285,6 +285,9 @@ s.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().replace(/[^a-z0
 | 17 | **DJ name lookup must try variants** — TheAudioDB doesn't match "(official)", "DJ " prefix, "The ", or special chars. Always strip these before searching |
 | 18 | **Festival images need override fallback** — JS-rendered sites (Tomorrowland, EDC) never return og:image from static fetch. Use `FESTIVAL_IMAGE_OVERRIDES` map |
 | 19 | **Image cache has a version** — bump `CACHE_VERSION` in `enrich-images.js` whenever search logic improves, to auto-retry previously failed lookups |
+| 20 | **Every ISO code must map in both frontend and backend** — `COUNTRY_ISO` (index.html) AND `COUNTRY_NORM` (validate.js) must cover all codes scrapers return. After adding a scraper, diff `SELECT DISTINCT country` against both maps |
+| 21 | **iOS zoom: use `touch-action:manipulation` on `*`** — viewport meta tags are ignored since iOS 10+. The only reliable fix is `touch-action:manipulation` + `font-size:16px !important` on all form elements |
+| 22 | **Consecutive-day DJ events at same venue = merge** — dedupe Pass 4 handles this. Same DJ + same venue + consecutive dates → single event. Different venues → keep both |
 
 ---
 
@@ -332,3 +335,57 @@ Added cache versioning (CACHE_VERSION=2) so failed lookups from v1 are auto-retr
 **Fix:** Added title validation: Wikipedia article title must contain the DJ name (or vice versa) before accepting the image. Also searches top 3 results instead of just 1 for better matching. Bumped CACHE_VERSION to 3 to retry cleaned entries.
 
 **Rule:** Never blindly trust Wikipedia search results — always validate the article title against the expected entity name.
+
+---
+
+## BUG-017 · Countries without flags (Puerto Rico, Paraguay, Vietnam, USA separate)
+**Status:** Fixed
+
+**Symptom:** Puerto Rico, Paraguay, Vietnam showed no flag emoji. "USA" appeared as a separate country from "United States" in the country list.
+
+**Root cause:** `COUNTRY_ISO` in `index.html` was missing critical mappings:
+- `'USA'` → `'United States'` — events with country="USA" were not normalized, creating a separate country entry
+- `'PR'` → `'Puerto Rico'` — ISO code not mapped to full name
+- Many other ISO codes missing (PA, EC, QA, SA, NG, etc.)
+- `COUNTRY_NORM` in `validate.js` also had only 4 entries, leaving most non-standard country values un-normalized in Supabase
+
+**Fix:**
+1. Expanded `COUNTRY_ISO` in `index.html` from ~50 to ~130 entries, covering all ISO codes + common aliases (USA, UK, UAE, EAU, Korea, Northern Ireland, Czech Republic, Türkiye, etc.)
+2. Expanded `COUNTRY_NORM` in `validate.js` from 4 to 17 entries (all known aliases)
+3. Expanded `VALID_COUNTRIES` in `validate.js` to include ~40 missing countries (Taiwan, Hong Kong, Paraguay, Bolivia, Ecuador, Kenya, Nepal, etc.)
+
+**Rule:** Every ISO 2-letter code that any scraper may return MUST exist in both `COUNTRY_ISO` (frontend) and `COUNTRY_NORM` (validate.js). When adding a new scraper or data source, run `SELECT DISTINCT country FROM events` and verify all values resolve.
+
+---
+
+## BUG-018 · iOS Safari auto-zoom on input focus (persistent)
+**Status:** Fixed (second attempt)
+
+**Symptom:** Despite setting `font-size:16px` on `.search-input` and `.auth-input` in the first fix attempt, iOS Safari still zoomed in when tapping inputs.
+
+**Root cause:** iOS 10+ ignores `maximum-scale=1.0` and `user-scalable=no` for accessibility. The previous fix only targeted specific classes — the generic `input` CSS rule had no font-size set, and some browsers may not inherit font-size from class-specific rules in all contexts. Additionally, double-tap-to-zoom was still active.
+
+**Fix:**
+1. Added `touch-action:manipulation` to the `*` universal selector — this disables double-tap-to-zoom globally while preserving pinch-zoom and scroll
+2. Changed generic `input` CSS to `input,select,textarea{font-size:16px !important}` as a catch-all safety net
+
+**Rule:** For iOS zoom prevention: (1) `touch-action:manipulation` on `*` is essential, (2) generic `input,select,textarea` must have `font-size:16px !important`, (3) never rely solely on viewport meta tags — iOS ignores them.
+
+---
+
+## BUG-019 · Same DJ appearing on consecutive days as separate events
+**Status:** Fixed — `dedupe.js` Pass 4
+
+**Symptom:** A DJ playing a multi-day residency (e.g., Carl Cox at Privilege on Friday + Saturday) appeared as two separate events, cluttering the list.
+
+**Root cause:** Dedupe only merged events on the SAME date at the SAME venue. Events on consecutive days were treated as completely independent, even when the DJ, venue, and city were identical.
+
+**Fix:** Added **Pass 4 (consecutive-day DJ dedup)** in `dedupe.js`:
+1. Builds a DJ → events index from all remaining groups
+2. Groups each DJ's events by (venue_norm, city_norm)
+3. Sorts by date and detects consecutive-day chains (diff = 1 day)
+4. Merges consecutive-day events into the earliest date's group
+
+**Safety:** Only merges when SAME DJ + SAME venue + SAME city. If a DJ plays at different venues on consecutive days, both events are preserved (legitimate different gigs).
+
+**Rule:** Consecutive-day DJ events at the same venue are always residencies or multi-day bookings — merge them. Different venues on consecutive days are legitimate separate gigs — keep them.

@@ -16,7 +16,7 @@ env:
 jobs:
   scrape:
     runs-on: ubuntu-latest
-    timeout-minutes: 60
+    timeout-minutes: 65
 
     defaults:
       run:
@@ -85,9 +85,9 @@ jobs:
           SUPABASE_SERVICE_KEY: ${{ secrets.SUPABASE_SERVICE_KEY }}
         run: node dedupe.js
 
-      - name: Enrich event images (DJ photos)
+      - name: Enrich event images (festivals + DJs)
         continue-on-error: true
-        timeout-minutes: 15
+        timeout-minutes: 20
         env:
           SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
           SUPABASE_SERVICE_KEY: ${{ secrets.SUPABASE_SERVICE_KEY }}

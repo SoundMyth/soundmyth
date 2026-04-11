@@ -282,3 +282,40 @@ s.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().replace(/[^a-z0
 | 14 | **After major scrape: run `SELECT DISTINCT country FROM events`** and verify all have flags |
 | 15 | **Independent home sections must render independently** — never chain renderB() inside renderA() without try/catch |
 | 16 | **Festival DJ lineups are ADDITIVE** — dedupe merges DJs but never removes them. If a DJ disappears from a source, the dedupe won't delete them from the merged list. This is intentional: false positives (extra DJ) are better than false negatives (missing DJ) |
+| 17 | **DJ name lookup must try variants** — TheAudioDB doesn't match "(official)", "DJ " prefix, "The ", or special chars. Always strip these before searching |
+| 18 | **Festival images need override fallback** — JS-rendered sites (Tomorrowland, EDC) never return og:image from static fetch. Use `FESTIVAL_IMAGE_OVERRIDES` map |
+| 19 | **Image cache has a version** — bump `CACHE_VERSION` in `enrich-images.js` whenever search logic improves, to auto-retry previously failed lookups |
+
+---
+
+## BUG-014 · DJ images not found for famous DJs (TheAudioDB name mismatch)
+**Status:** Fixed — `enrich-images.js` v2
+
+**Symptom:** 272 of 471 DJs had no image, including well-known ones like Solomun, Fisher, The Martinez Brothers, Hot Since 82.
+
+**Root cause:** TheAudioDB search requires exact name match. DJs stored with suffixes like "(official)", "(oz)", prefixes like "DJ ", "The ", or special chars like ":" were not found.
+
+**Fix:** Added `djNameVariants()` function that generates 5+ search variants per name:
+- Strip parenthetical: "Solomun (official)" → "Solomun"
+- Strip "DJ " prefix: "DJ Seinfeld" → "Seinfeld"
+- Swap "and"/"&": "Dimitri Vegas and Like Mike" → "Dimitri Vegas & Like Mike"
+- Strip "The ": "The Martinez Brothers" → "Martinez Brothers"
+- Strip special chars: "Blond:ish" → "Blondish"
+- NFD normalize: "Rødhåd" → "Rodhad"
+
+Added cache versioning (CACHE_VERSION=2) so failed lookups from v1 are auto-retried with new logic.
+
+**Rule:** See rules 17-19 above.
+
+---
+
+## BUG-015 · Festival images missing for JS-rendered websites
+**Status:** Fixed — `enrich-images.js` v2
+
+**Symptom:** Tomorrowland, EDC, ASOT and other major festivals had no image because their websites use JavaScript rendering.
+
+**Root cause:** Static `fetch()` only gets server-rendered HTML. Sites like Tomorrowland render og:meta tags via client-side JavaScript, so our scraper gets empty HTML without any og:image meta tag.
+
+**Fix:** Added `FESTIVAL_IMAGE_OVERRIDES` map with high-quality Unsplash festival images for 17 major festivals. Applied as fallback when og:image scraping fails.
+
+**Rule:** See rule 18 above.

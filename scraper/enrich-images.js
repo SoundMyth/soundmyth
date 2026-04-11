@@ -1,11 +1,14 @@
 /**
- * SoundMyth – Image Enricher
+ * SoundMyth – Image Enricher v2
  *
  * Two-pass enrichment:
- *   Pass 1: Festival events → fetch og:image from festival's own website
- *   Pass 2: DJ events → fetch artist photo from TheAudioDB
+ *   Pass 1: Festival events → fetch og:image from website + override fallback
+ *   Pass 2: DJ events → fetch artist photo from TheAudioDB (smart name variants)
  *
- * Caches both festival→image and DJ→image lookups to avoid repeated calls.
+ * Improvements in v2:
+ *   - DJ name variant matching: strips "(official)", "DJ " prefix, "The ", "&"/"and"
+ *   - Festival image overrides for JS-rendered sites (Tomorrowland, EDC, ASOT...)
+ *   - Cache versioning: auto-retries failed lookups when search logic improves
  *
  * Usage: node enrich-images.js
  */
@@ -33,13 +36,66 @@ const UA = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML,
 const DJ_CACHE_PATH = resolve(__dirname, 'data/dj_images_cache.json');
 const FEST_CACHE_PATH = resolve(__dirname, 'data/festival_images_cache.json');
 
+const CACHE_VERSION = 2; // Bump when search logic improves to force retry of failed lookups
+
 let djCache = {};
 let festCache = {};
 if (existsSync(DJ_CACHE_PATH)) { try { djCache = JSON.parse(readFileSync(DJ_CACHE_PATH, 'utf8')); } catch { djCache = {}; } }
 if (existsSync(FEST_CACHE_PATH)) { try { festCache = JSON.parse(readFileSync(FEST_CACHE_PATH, 'utf8')); } catch { festCache = {}; } }
 
-function saveDJCache() { writeFileSync(DJ_CACHE_PATH, JSON.stringify(djCache, null, 2)); }
-function saveFestCache() { writeFileSync(FEST_CACHE_PATH, JSON.stringify(festCache, null, 2)); }
+// Cache version migration: clear null entries when search logic improves
+if (djCache._cache_version !== CACHE_VERSION) {
+  const nullCount = Object.keys(djCache).filter(k => k !== '_cache_version' && djCache[k] === null).length;
+  if (nullCount > 0) {
+    console.log(`Cache upgrade v${CACHE_VERSION}: clearing ${nullCount} failed DJ lookups for retry with improved matching`);
+    for (const k of Object.keys(djCache)) {
+      if (k !== '_cache_version' && djCache[k] === null) delete djCache[k];
+    }
+  }
+  djCache._cache_version = CACHE_VERSION;
+}
+if (festCache._cache_version !== CACHE_VERSION) {
+  const nullCount = Object.keys(festCache).filter(k => k !== '_cache_version' && festCache[k] === null).length;
+  if (nullCount > 0) {
+    console.log(`Cache upgrade v${CACHE_VERSION}: clearing ${nullCount} failed festival lookups for retry`);
+    for (const k of Object.keys(festCache)) {
+      if (k !== '_cache_version' && festCache[k] === null) delete festCache[k];
+    }
+  }
+  festCache._cache_version = CACHE_VERSION;
+}
+
+function saveDJCache() {
+  const out = { _cache_version: CACHE_VERSION };
+  for (const [k, v] of Object.entries(djCache)) { if (k !== '_cache_version') out[k] = v; }
+  writeFileSync(DJ_CACHE_PATH, JSON.stringify(out, null, 2));
+}
+function saveFestCache() {
+  const out = { _cache_version: CACHE_VERSION };
+  for (const [k, v] of Object.entries(festCache)) { if (k !== '_cache_version') out[k] = v; }
+  writeFileSync(FEST_CACHE_PATH, JSON.stringify(out, null, 2));
+}
+
+// ── Hardcoded festival images (JS-rendered sites where og:image scraping fails)
+const FESTIVAL_IMAGE_OVERRIDES = {
+  'tomorrowland': 'https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?w=800&h=400&fit=crop',
+  'edc': 'https://images.unsplash.com/photo-1429962714451-bb934ecdc4ec?w=800&h=400&fit=crop',
+  'electric daisy carnival': 'https://images.unsplash.com/photo-1429962714451-bb934ecdc4ec?w=800&h=400&fit=crop',
+  'a state of trance': 'https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?w=800&h=400&fit=crop',
+  'ultra music festival': 'https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?w=800&h=400&fit=crop',
+  'ultra miami': 'https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?w=800&h=400&fit=crop',
+  'sonus': 'https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=800&h=400&fit=crop',
+  'elements festival': 'https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=800&h=400&fit=crop',
+  'dreamstate': 'https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?w=800&h=400&fit=crop',
+  'airbeat one': 'https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?w=800&h=400&fit=crop',
+  'dreambeach': 'https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=800&h=400&fit=crop',
+  'untold': 'https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=800&h=400&fit=crop',
+  'medusa': 'https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=800&h=400&fit=crop',
+  'groove cruise': 'https://images.unsplash.com/photo-1507608616759-54f48f0af0ee?w=800&h=400&fit=crop',
+  'the crave': 'https://images.unsplash.com/photo-1574391884720-bbc3740c59d1?w=800&h=400&fit=crop',
+  'austria goes zrce': 'https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=800&h=400&fit=crop',
+  'wknd': 'https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?w=800&h=400&fit=crop',
+};
 
 // ── Festival og:image lookup ────────────────────────────────────────────────
 async function fetchFestivalImage(url) {
@@ -73,23 +129,61 @@ async function fetchFestivalImage(url) {
   }
 }
 
-// ── TheAudioDB DJ lookup ────────────────────────────────────────────────────
+// ── Name normalization for better TheAudioDB matching ──────────────────────
+function djNameVariants(name) {
+  const variants = [name];
+  const lower = name.toLowerCase().trim();
+
+  // Strip parenthetical suffixes: "(official)", "(oz)", "(br)", "(be)", "(ofc)"
+  const stripped = name.replace(/\s*\((?:official|oz|br|be|ofc|uk|us|dj)\)\s*$/i, '').trim();
+  if (stripped !== name) variants.push(stripped);
+
+  // Strip "DJ " prefix
+  if (lower.startsWith('dj ')) variants.push(name.slice(3).trim());
+
+  // Replace " and " with " & " and vice-versa
+  if (lower.includes(' and ')) variants.push(name.replace(/ and /gi, ' & '));
+  if (lower.includes(' & ')) variants.push(name.replace(/ & /g, ' and '));
+
+  // Strip "The " prefix
+  if (lower.startsWith('the ')) variants.push(name.slice(4).trim());
+
+  // Remove special chars: colons, exclamation marks
+  const cleaned = name.replace(/[:!]/g, '').replace(/\s+/g, ' ').trim();
+  if (cleaned !== name) variants.push(cleaned);
+
+  // Remove diacritics/special unicode (e.g. ø → o, å → a)
+  const nfd = name.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+  if (nfd !== name) variants.push(nfd);
+
+  // Dedupe while preserving order
+  return [...new Set(variants.filter(v => v.length > 0))];
+}
+
+// ── TheAudioDB DJ lookup (with smart name variants) ────────────────────────
 async function fetchDJImage(name) {
   const key = name.toLowerCase().trim();
   if (key in djCache) return djCache[key];
 
-  try {
-    const url = `https://www.theaudiodb.com/api/v1/json/2/search.php?s=${encodeURIComponent(name)}`;
-    const res = await fetch(url, { signal: AbortSignal.timeout(8000) });
-    const json = await res.json();
-    const artist = json.artists?.[0];
-    const img = artist?.strArtistThumb || artist?.strArtistFanart || artist?.strArtistBanner || null;
-    djCache[key] = img;
-    return img;
-  } catch {
-    djCache[key] = null;
-    return null;
+  const variants = djNameVariants(name);
+
+  for (const variant of variants) {
+    try {
+      const url = `https://www.theaudiodb.com/api/v1/json/2/search.php?s=${encodeURIComponent(variant)}`;
+      const res = await fetch(url, { signal: AbortSignal.timeout(8000) });
+      const json = await res.json();
+      const artist = json.artists?.[0];
+      const img = artist?.strArtistThumb || artist?.strArtistFanart || artist?.strArtistBanner || null;
+      if (img) {
+        djCache[key] = img;
+        return img;
+      }
+      await sleep(200); // Rate limit between variants
+    } catch { /* continue to next variant */ }
   }
+
+  djCache[key] = null;
+  return null;
 }
 
 // ── Main ────────────────────────────────────────────────────────────────────
@@ -179,10 +273,18 @@ async function main() {
   saveFestCache();
   console.log(`  Lookup: ${festFound} found\n`);
 
-  // Update festival events in Supabase
+  // Update festival events in Supabase (with override fallback)
   let festUpdated = 0;
   for (const { ev, url } of festMatches) {
-    const img = festCache[url.toLowerCase().replace(/\/+$/, '')];
+    let img = festCache[url.toLowerCase().replace(/\/+$/, '')];
+
+    // Fallback: check FESTIVAL_IMAGE_OVERRIDES by event name
+    if (!img) {
+      const nameLower = ev.name.toLowerCase();
+      for (const [keyword, overrideImg] of Object.entries(FESTIVAL_IMAGE_OVERRIDES)) {
+        if (nameLower.includes(keyword)) { img = overrideImg; break; }
+      }
+    }
     if (!img) continue;
 
     const { error } = await sb.from('events').update({ img_url: img }).eq('id', ev.id);
@@ -190,11 +292,39 @@ async function main() {
   }
   console.log(`  Festival events updated: ${festUpdated}\n`);
 
-  // Remove updated festivals from the remaining list
-  const festUpdatedIds = new Set(festMatches.filter(m => {
-    const img = festCache[m.url.toLowerCase().replace(/\/+$/, '')];
-    return !!img;
-  }).map(m => m.ev.id));
+  // Also apply overrides to ANY festival events that still have no image (not just matched ones)
+  const festEventsNoImg = festEvents.filter(e => !festMatches.some(m => m.ev.id === e.id));
+  let overrideUpdated = 0;
+  for (const ev of festEventsNoImg) {
+    const nameLower = ev.name.toLowerCase();
+    let img = null;
+    for (const [keyword, overrideImg] of Object.entries(FESTIVAL_IMAGE_OVERRIDES)) {
+      if (nameLower.includes(keyword)) { img = overrideImg; break; }
+    }
+    if (!img) continue;
+    const { error } = await sb.from('events').update({ img_url: img }).eq('id', ev.id);
+    if (!error) overrideUpdated++;
+  }
+  if (overrideUpdated) console.log(`  Override images applied: ${overrideUpdated}`);
+
+  // Remove ALL updated festivals (cache + overrides) from the remaining list
+  const festUpdatedIds = new Set();
+  for (const { ev, url } of festMatches) {
+    let img = festCache[url.toLowerCase().replace(/\/+$/, '')];
+    if (!img) {
+      const nameLower = ev.name.toLowerCase();
+      for (const [kw, oi] of Object.entries(FESTIVAL_IMAGE_OVERRIDES)) {
+        if (nameLower.includes(kw)) { img = oi; break; }
+      }
+    }
+    if (img) festUpdatedIds.add(ev.id);
+  }
+  for (const ev of festEventsNoImg) {
+    const nameLower = ev.name.toLowerCase();
+    for (const [kw] of Object.entries(FESTIVAL_IMAGE_OVERRIDES)) {
+      if (nameLower.includes(kw)) { festUpdatedIds.add(ev.id); break; }
+    }
+  }
 
   const remaining = allEvents.filter(e => !festUpdatedIds.has(e.id));
 

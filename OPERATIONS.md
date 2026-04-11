@@ -25,28 +25,31 @@ Resident Advisor ────→ scrape-clubs-ra.js ─────────�
 
 | File | What | Count | Purpose |
 |------|------|-------|---------|
-| `artists_all.json` | DJs | 503 | Drives `scrape-extended.js` — each DJ is looked up on BIT + SK |
+| `artists_all.json` | DJs | 590 | Drives `scrape-extended.js` — each DJ is looked up on BIT + SK |
 | `artists_top100.json` | Top 100 DJs | 100 | Used in frontend for UPCOMING HIGHLIGHTS filter + DJ of Month |
 | `festivals_all.json` | Festivals | 262 | Drives `scrape-festivals-bit.js` and `scrape-festivals-direct.js` |
 | `festivals_top100.json` | Top 100 festivals | 100 | Reference list |
 | `clubs_all.json` | Clubs/venues | 163 | Drives `scrape-clubs-ra.js` |
 | `clubs_top100.json` | Top 100 clubs | 100 | Reference list |
-| `dj_images_cache.json` | DJ→photo URL | ~437 | TheAudioDB cache to avoid re-fetching |
-| `festival_images_cache.json` | Festival→og:image | ~28 | Website image cache |
+| `dj_images_cache.json` | DJ→photo URL | ~471 | TheAudioDB cache (v2: smart name variants + overrides) |
+| `festival_images_cache.json` | Festival→og:image | ~36 | Website image cache + JS-rendered fallbacks |
 
 ---
 
 ## Weekly Pipeline (GitHub Actions — Sundays 2:00 UTC)
 
 ```
-Step 1: scrape-extended.js      (16 min)  → 503 DJs × BIT API + Songkick
-Step 2: scrape-festivals-bit.js (10 min)  → 262 festivals × BIT + SK
-Step 3: scrape-festivals-direct.js (3 min) → festivals without SK: fetch their website
-Step 4: scrape-clubs-ra.js      (2 min)   → 163 clubs × RA GraphQL
-Step 5: dedupe.js               (3 min)   → merge duplicates + festival consolidation
-Step 6: enrich-images.js        (varies)  → add DJ/festival photos
-Step 7: purge.js                (1 sec)   → delete events >15 days old
-Step 8: Commit updated JSONs to repo
+Step 0:  enrich-songkick-urls.js  (5 min)   → auto-find SK URLs for new DJs
+Step 1:  scrape-extended.js       (20 min)  → 590 DJs × BIT API + Songkick
+Step 2:  scrape-festivals-bit.js  (10 min)  → 262 festivals × BIT + SK
+Step 3:  scrape-festivals-direct.js (3 min) → festivals without SK: fetch their website
+Step 4:  scrape-clubs-ra.js       (5 min)   → 163 clubs × RA GraphQL (3-strategy fallback)
+Step 5:  dedupe.js                (3 min)   → merge duplicates + festival consolidation
+Step 6:  enrich-images.js         (15 min)  → DJ photos (name variants) + festival og:images + overrides
+Step 7:  validate.js              (1 min)   → auto-fix data quality (genres, countries)
+Step 8:  purge.js                 (1 sec)   → delete events >15 days old
+Step 9:  Commit updated JSONs to repo
+Total: ~47 minutes (timeout: 65 min)
 ```
 
 ---
@@ -159,4 +162,6 @@ To add a DJ to HIGHLIGHTS, you must update the `TOP100_DJS` Set in `index.html`.
 | Events duplicated | Dedupe missed them | Check venue name normalization (BUG-011) |
 | Workflow fails | Usually timeout or API rate limit | Check Actions log, re-run |
 | Missing flag | Country not in FLAGS object | Add to index.html FLAGS + COUNTRY_ISO |
-| No photo on event | DJ not on TheAudioDB | Can't fix — fallback to city/country image |
+| No photo on event | DJ not on TheAudioDB | enrich-images.js v2 tries name variants; fallback to city/country |
+| Festival no photo | JS-rendered site (Tomorrowland, EDC) | Add to `FESTIVAL_IMAGE_OVERRIDES` in enrich-images.js |
+| Image cache stale | New search logic not applied | Bump `CACHE_VERSION` in enrich-images.js → auto-clears failed lookups |

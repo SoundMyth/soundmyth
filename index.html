@@ -642,6 +642,11 @@ const SB_KEY='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZ
 const sb=supabase.createClient(SB_URL,SB_KEY,{
   auth:{flowType:'implicit',detectSessionInUrl:true,persistSession:true}
 });
+// Anon-only client for PUBLIC data (events). It never attaches the user's JWT,
+// so event loading works regardless of login/session state — even with an expired token.
+const sbPublic=supabase.createClient(SB_URL,SB_KEY,{
+  auth:{persistSession:false,autoRefreshToken:false,detectSessionInUrl:false}
+});
 let currentUser=null;
 
 sb.auth.onAuthStateChange(async(event,session)=>{
@@ -1156,7 +1161,7 @@ async function loadEvents(){
   let lastErr=null;
   async function fetchPage(from){
     for(let attempt=0;attempt<3;attempt++){
-      const{data,error}=await sb.from('events').select('*').gte('date',fetchFrom).order('date').range(from,from+999);
+      const{data,error}=await sbPublic.from('events').select('*').gte('date',fetchFrom).order('date').range(from,from+999);
       if(!error) return data||[];
       lastErr=error;
       if(attempt<2) await new Promise(r=>setTimeout(r,500*(attempt+1)));

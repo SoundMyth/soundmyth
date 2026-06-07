@@ -1739,47 +1739,42 @@ function doSignOut(){
 }
 
 // ── MARKETING CONSENT / PROFILE ─────────────────────────────────────────────
+// Source of truth for the UI = auth user_metadata.marketing_opt_in. It travels with the
+// session (no extra RLS read that can race/expire), so the toggle is always correct.
+// We also mirror it to public.profiles for SQL analysis / segmentation.
 async function syncProfile(){
   if(!currentUser) return;
+  const md=currentUser.user_metadata||{};
   const row={id:currentUser.id,email:currentUser.email,updated_at:new Date().toISOString()};
-  // Only write marketing_opt_in when the user JUST made an explicit choice at login
-  // (sm_pending_optin, set in this browser). On a plain reload there is no pending value,
-  // so we never touch marketing_opt_in → it can never be clobbered back to false.
-  let pending=null;
-  try{ pending=localStorage.getItem('sm_pending_optin'); }catch(e){}
-  if(pending!==null){
-    const optin=(pending==='1');
-    row.marketing_opt_in=optin;
-    if(optin) row.marketing_opt_in_at=new Date().toISOString();
-    try{ localStorage.removeItem('sm_pending_optin'); }catch(e){}
+  if(typeof md.marketing_opt_in==='boolean'){
+    row.marketing_opt_in=md.marketing_opt_in;
+    if(md.marketing_opt_in) row.marketing_opt_in_at=new Date().toISOString();
   }
   const{error}=await sb.from('profiles').upsert(row,{onConflict:'id'});
-  if(error) console.warn('profiles upsert skipped:',error.message||error);
+  if(error) console.warn('profiles sync skipped:',error.message||error);
 }
-async function loadMarketingPref(){
+function loadMarketingPref(){
   const cb=document.getElementById('acct-marketing');
   if(!cb||!currentUser) return;
-  // Attempt 1: as-is
-  const r1=await sb.from('profiles').select('marketing_opt_in').eq('id',currentUser.id).maybeSingle();
-  // Ensure a fresh/attached session, then Attempt 2
-  await sb.auth.getSession();
-  const r2=await sb.from('profiles').select('marketing_opt_in').eq('id',currentUser.id).maybeSingle();
-  if(location.search.indexOf('debugpref')>=0){
-    alert('DEBUG read\nA1 err:'+(r1.error?(r1.error.code||r1.error.message):'none')+' data:'+JSON.stringify(r1.data)+'\nA2 err:'+(r2.error?(r2.error.code||r2.error.message):'none')+' data:'+JSON.stringify(r2.data));
-  }
-  const data=r2.data||r1.data;
-  if(data) cb.checked=!!data.marketing_opt_in;
+  const md=currentUser.user_metadata||{};
+  cb.checked=(md.marketing_opt_in===true);
 }
 async function setMarketingOptIn(on){
   if(!currentUser) return;
+  // 1) Write to auth user_metadata (reliable source the UI reads back — no RLS query needed)
+  const{data:upd,error:authErr}=await sb.auth.updateUser({data:{marketing_opt_in:on}});
+  if(authErr){
+    console.error('opt-in save failed:',authErr);
+    alert('No se pudo guardar la preferencia.\n'+(authErr.message||authErr.code||''));
+    const cb=document.getElementById('acct-marketing'); if(cb) cb.checked=!on;
+    return;
+  }
+  if(upd&&upd.user) currentUser=upd.user;
+  // 2) Mirror to public.profiles for analysis / segmentation
   const row={id:currentUser.id,email:currentUser.email,marketing_opt_in:on,updated_at:new Date().toISOString()};
   if(on) row.marketing_opt_in_at=new Date().toISOString();
   const{error}=await sb.from('profiles').upsert(row,{onConflict:'id'});
-  if(error){
-    console.error('opt-in save failed:',error);
-    alert('No se pudo guardar la preferencia.\n['+(error.code||error.status||'?')+'] '+(error.message||'')+(error.hint?'\n'+error.hint:''));
-    const cb=document.getElementById('acct-marketing'); if(cb) cb.checked=!on; // revert UI to real state
-  }
+  if(error) console.warn('profiles mirror failed:',error.message||error);
 }
 
 // ── ACCOUNT SCREEN ──────────────────────────────────────────────────────────

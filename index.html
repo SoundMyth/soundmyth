@@ -482,9 +482,9 @@ button:focus{outline:none;}
       </div>
       <label class="acct-pref" style="margin-top:20px;">
         <span class="acct-pref-txt">Email recommendations &amp; offers</span>
-        <span class="switch"><input type="checkbox" id="acct-marketing" onchange="setMarketingOptIn(this.checked)"/><span class="slider"></span></span>
+        <span class="switch"><input type="checkbox" id="acct-marketing" onclick="prefLog('CLICK '+this.checked)" onchange="setMarketingOptIn(this.checked)"/><span class="slider"></span></span>
       </label>
-      <div id="pref-debug" style="font-size:10px;color:#777;padding:4px 4px 0;word-break:break-word;line-height:1.4;"></div>
+      <div id="pref-debug" style="font-size:10px;color:#777;padding:4px 4px 0;word-break:break-word;line-height:1.4;white-space:pre-line;"></div>
       <button class="btn-soft btn-block" style="margin:8px 0;" onclick="doSignOut()">Log out</button>
     </div>
   </div>
@@ -1754,28 +1754,32 @@ async function syncProfile(){
   const{error}=await sb.from('profiles').upsert(row,{onConflict:'id'});
   if(error) console.warn('profiles sync skipped:',error.message||error);
 }
+function prefLog(msg){
+  const dbg=document.getElementById('pref-debug');
+  if(!dbg) return;
+  dbg.__l=(dbg.__l||[]);
+  dbg.__l.unshift(new Date().toTimeString().slice(0,8)+'  '+msg);
+  dbg.__l=dbg.__l.slice(0,6);
+  dbg.textContent=dbg.__l.join('\n');
+}
 function loadMarketingPref(){
   const cb=document.getElementById('acct-marketing');
   if(!cb||!currentUser) return;
   const md=currentUser.user_metadata||{};
   cb.checked=(md.marketing_opt_in===true);
-  const dbg=document.getElementById('pref-debug');
-  if(dbg) dbg.textContent='READ → user_metadata.marketing_opt_in = '+JSON.stringify(md.marketing_opt_in)+' · switch='+cb.checked+' · user='+(currentUser.email||'?');
+  prefLog('READ md='+JSON.stringify(md.marketing_opt_in)+' switch='+cb.checked);
 }
 async function setMarketingOptIn(on){
+  prefLog('CHANGE on='+on+' user='+(currentUser?'yes':'NULL'));
   if(!currentUser) return;
-  const dbg=document.getElementById('pref-debug');
-  let log='WRITE on='+on;
   const{data:upd,error:authErr}=await sb.auth.updateUser({data:{marketing_opt_in:on}});
-  log+=' · updateUser='+(authErr?('ERR['+(authErr.status||authErr.code||'?')+'] '+(authErr.message||'')):'ok');
-  if(upd&&upd.user){ currentUser=upd.user; log+=' · returnedMd='+JSON.stringify(upd.user.user_metadata&&upd.user.user_metadata.marketing_opt_in); }
-  if(dbg) dbg.textContent=log;
+  prefLog('updateUser '+(authErr?('ERR['+(authErr.status||authErr.code||'?')+'] '+(authErr.message||'')):('ok md='+JSON.stringify(upd&&upd.user&&upd.user.user_metadata&&upd.user.user_metadata.marketing_opt_in))));
+  if(upd&&upd.user) currentUser=upd.user;
   if(authErr){ const cb=document.getElementById('acct-marketing'); if(cb) cb.checked=!on; return; }
-  // Mirror to public.profiles for analysis / segmentation
   const row={id:currentUser.id,email:currentUser.email,marketing_opt_in:on,updated_at:new Date().toISOString()};
   if(on) row.marketing_opt_in_at=new Date().toISOString();
   const{error}=await sb.from('profiles').upsert(row,{onConflict:'id'});
-  if(dbg) dbg.textContent=log+(error?(' · profilesErr='+(error.message||error.code)):' · profiles=ok');
+  prefLog('profiles '+(error?('ERR '+(error.message||error.code)):'ok'));
 }
 
 // ── ACCOUNT SCREEN ──────────────────────────────────────────────────────────

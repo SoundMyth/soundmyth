@@ -1741,23 +1741,20 @@ function doSignOut(){
 // ── MARKETING CONSENT / PROFILE ─────────────────────────────────────────────
 async function syncProfile(){
   if(!currentUser) return;
-  // Does the profile already exist?
-  const{data:existing}=await sb.from('profiles').select('id').eq('id',currentUser.id).maybeSingle();
   const row={id:currentUser.id,email:currentUser.email,updated_at:new Date().toISOString()};
-  if(!existing){
-    // First time only: capture the consent chosen at sign-up
-    // (this browser via localStorage; otherwise from the signup user_metadata)
-    let optin=false, pending=null;
-    try{ pending=localStorage.getItem('sm_pending_optin'); }catch(e){}
-    if(pending!==null) optin=(pending==='1');
-    else if(currentUser.user_metadata && typeof currentUser.user_metadata.marketing_opt_in==='boolean') optin=currentUser.user_metadata.marketing_opt_in;
+  // Only write marketing_opt_in when the user JUST made an explicit choice at login
+  // (sm_pending_optin, set in this browser). On a plain reload there is no pending value,
+  // so we never touch marketing_opt_in → it can never be clobbered back to false.
+  let pending=null;
+  try{ pending=localStorage.getItem('sm_pending_optin'); }catch(e){}
+  if(pending!==null){
+    const optin=(pending==='1');
     row.marketing_opt_in=optin;
     if(optin) row.marketing_opt_in_at=new Date().toISOString();
+    try{ localStorage.removeItem('sm_pending_optin'); }catch(e){}
   }
-  // If it already exists we DON'T touch marketing_opt_in — the user owns it via the Account toggle.
   const{error}=await sb.from('profiles').upsert(row,{onConflict:'id'});
   if(error) console.warn('profiles upsert skipped:',error.message||error);
-  try{ localStorage.removeItem('sm_pending_optin'); }catch(e){}
 }
 async function loadMarketingPref(){
   const cb=document.getElementById('acct-marketing');

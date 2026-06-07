@@ -482,9 +482,8 @@ button:focus{outline:none;}
       </div>
       <label class="acct-pref" style="margin-top:20px;">
         <span class="acct-pref-txt">Email recommendations &amp; offers</span>
-        <span class="switch"><input type="checkbox" id="acct-marketing" onclick="prefLog('CLICK '+this.checked)" onchange="setMarketingOptIn(this.checked)"/><span class="slider"></span></span>
+        <span class="switch"><input type="checkbox" id="acct-marketing" onchange="setMarketingOptIn(this.checked)"/><span class="slider"></span></span>
       </label>
-      <div id="pref-debug" style="font-size:10px;color:#777;padding:4px 4px 0;word-break:break-word;line-height:1.4;white-space:pre-line;"></div>
       <button class="btn-soft btn-block" style="margin:8px 0;" onclick="doSignOut()">Log out</button>
     </div>
   </div>
@@ -1740,46 +1739,47 @@ function doSignOut(){
 }
 
 // ── MARKETING CONSENT / PROFILE ─────────────────────────────────────────────
-// Source of truth for the UI = auth user_metadata.marketing_opt_in. It travels with the
-// session (no extra RLS read that can race/expire), so the toggle is always correct.
-// We also mirror it to public.profiles for SQL analysis / segmentation.
+// UI state = a per-user localStorage cache (instant + reliable, no auth call to hang).
+// The authoritative record lives in public.profiles (plain data write/read, which works
+// even when GoTrue auth calls like updateUser stall). The two are kept in sync.
 async function syncProfile(){
   if(!currentUser) return;
-  const md=currentUser.user_metadata||{};
   const row={id:currentUser.id,email:currentUser.email,updated_at:new Date().toISOString()};
-  if(typeof md.marketing_opt_in==='boolean'){
-    row.marketing_opt_in=md.marketing_opt_in;
-    if(md.marketing_opt_in) row.marketing_opt_in_at=new Date().toISOString();
+  // Record the consent chosen at sign-up (pending flag set in this browser at login), if any
+  let pending=null;
+  try{ pending=localStorage.getItem('sm_pending_optin'); }catch(e){}
+  if(pending!==null){
+    const optin=(pending==='1');
+    row.marketing_opt_in=optin;
+    if(optin) row.marketing_opt_in_at=new Date().toISOString();
+    try{ localStorage.setItem('sm_optin_'+currentUser.id, optin?'1':'0'); localStorage.removeItem('sm_pending_optin'); }catch(e){}
   }
   const{error}=await sb.from('profiles').upsert(row,{onConflict:'id'});
   if(error) console.warn('profiles sync skipped:',error.message||error);
 }
-function prefLog(msg){
-  const dbg=document.getElementById('pref-debug');
-  if(!dbg) return;
-  dbg.__l=(dbg.__l||[]);
-  dbg.__l.unshift(new Date().toTimeString().slice(0,8)+'  '+msg);
-  dbg.__l=dbg.__l.slice(0,6);
-  dbg.textContent=dbg.__l.join('\n');
-}
 function loadMarketingPref(){
   const cb=document.getElementById('acct-marketing');
   if(!cb||!currentUser) return;
-  const md=currentUser.user_metadata||{};
-  cb.checked=(md.marketing_opt_in===true);
-  prefLog('READ md='+JSON.stringify(md.marketing_opt_in)+' switch='+cb.checked);
+  // 1) Instant + reliable: per-user local cache (no network, no auth call that could hang)
+  let local=null;
+  try{ const v=localStorage.getItem('sm_optin_'+currentUser.id); if(v!==null) local=(v==='1'); }catch(e){}
+  if(local!==null) cb.checked=local;
+  // 2) Best-effort reconcile from the server record (plain data read; never clobber on a failed/empty read)
+  sb.from('profiles').select('marketing_opt_in').eq('id',currentUser.id).maybeSingle().then(function(res){
+    if(res.error||!res.data) return;
+    cb.checked=(res.data.marketing_opt_in===true);
+    try{ localStorage.setItem('sm_optin_'+currentUser.id, res.data.marketing_opt_in?'1':'0'); }catch(e){}
+  }).catch(function(){});
 }
 async function setMarketingOptIn(on){
-  prefLog('CHANGE on='+on+' user='+(currentUser?'yes':'NULL'));
   if(!currentUser) return;
-  const{data:upd,error:authErr}=await sb.auth.updateUser({data:{marketing_opt_in:on}});
-  prefLog('updateUser '+(authErr?('ERR['+(authErr.status||authErr.code||'?')+'] '+(authErr.message||'')):('ok md='+JSON.stringify(upd&&upd.user&&upd.user.user_metadata&&upd.user.user_metadata.marketing_opt_in))));
-  if(upd&&upd.user) currentUser=upd.user;
-  if(authErr){ const cb=document.getElementById('acct-marketing'); if(cb) cb.checked=!on; return; }
+  // Reliable local state first — the switch never lies, even if the network/token is flaky
+  try{ localStorage.setItem('sm_optin_'+currentUser.id, on?'1':'0'); }catch(e){}
+  // Persist the record to public.profiles (plain data write — works regardless of auth-call quirks)
   const row={id:currentUser.id,email:currentUser.email,marketing_opt_in:on,updated_at:new Date().toISOString()};
   if(on) row.marketing_opt_in_at=new Date().toISOString();
   const{error}=await sb.from('profiles').upsert(row,{onConflict:'id'});
-  prefLog('profiles '+(error?('ERR '+(error.message||error.code)):'ok'));
+  if(error) console.warn('opt-in save failed:',error.message||error);
 }
 
 // ── ACCOUNT SCREEN ──────────────────────────────────────────────────────────

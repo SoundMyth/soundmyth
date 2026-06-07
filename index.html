@@ -1657,7 +1657,7 @@ async function sendMagicLink(){
   const btn=document.getElementById('auth-submit');
   if(btn){btn.disabled=true;btn.textContent='Sending…';}
   const{error}=await sb.auth.signInWithOtp({email,options:{emailRedirectTo:'https://soundmyth.vercel.app'}});
-  if(error){if(btn){btn.disabled=false;btn.textContent='Continue with email →';}alert('Error: '+error.message);return;}
+  if(error){if(btn){btn.disabled=false;btn.textContent='Continue with email →';}console.error('signInWithOtp error:',error);const detail=(error.message&&error.message!=='{}')?error.message:(error.code||error.name||'');alert('Error '+(error.status||'')+': '+(detail||'fallo al enviar el email (revisa la config SMTP)'));return;}
   document.getElementById('auth-step-email').style.display='none';
   document.getElementById('auth-sent-msg').innerHTML=`We sent a link to <strong>${email}</strong>. Open it on this device to log in.`;
   document.getElementById('auth-step-sent').style.display='block';

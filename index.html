@@ -1153,10 +1153,12 @@ async function loadEvents(){
   const minus15=new Date(); minus15.setDate(minus15.getDate()-15);
   const fetchFrom=minus15.toISOString().split('T')[0];
   // Fetch one page, retrying up to 3x — resilient to flaky mobile networks / transient Supabase errors
+  let lastErr=null;
   async function fetchPage(from){
     for(let attempt=0;attempt<3;attempt++){
       const{data,error}=await sb.from('events').select('*').gte('date',fetchFrom).order('date').range(from,from+999);
       if(!error) return data||[];
+      lastErr=error;
       if(attempt<2) await new Promise(r=>setTimeout(r,500*(attempt+1)));
     }
     throw new Error('events fetch failed after retries');
@@ -1181,7 +1183,11 @@ async function loadEvents(){
     }));
   if(ok && allData.length>0){
     EVENTS=mapRows(allData);
-    try{ localStorage.setItem('sm_events_cache', JSON.stringify(EVENTS)); }catch(e){}
+    // Cache a capped, soonest-first subset — small enough to reliably save in mobile localStorage
+    try{
+      const slim=EVENTS.filter(e=>e.date>=today).slice(0,2500);
+      localStorage.setItem('sm_events_cache', JSON.stringify(slim));
+    }catch(e){}
   } else {
     // Fetch failed → fall back to the last cached events so the app is never empty
     let cached=[];
@@ -1201,6 +1207,23 @@ async function loadEvents(){
   document.getElementById('stat-djs').textContent=DJ_MAG_ORDER.filter(dj=>ALL_DJS.some(d=>d.toLowerCase()===dj.toLowerCase())).length;
   renderCountries();
   renderFeatured();
+  // Visible diagnostic: if we truly have nothing to show, tell the user why (with the real error) + offer retry
+  if(EVENTS.length>0){ hideLoadError(); }
+  else { showLoadError(lastErr); }
+}
+
+function hideLoadError(){ const el=document.getElementById('load-error'); if(el) el.style.display='none'; }
+function showLoadError(err){
+  let el=document.getElementById('load-error');
+  if(!el){
+    el=document.createElement('div');
+    el.id='load-error';
+    el.style.cssText='position:fixed;left:12px;right:12px;top:12px;z-index:600;max-width:406px;margin:0 auto;background:#2a1416;border:1px solid #e5484d;color:#ffd7d9;padding:12px 14px;border-radius:14px;font-size:12.5px;line-height:1.45;text-align:center;font-family:inherit;box-shadow:0 10px 30px -10px rgba(0,0,0,.6);';
+    document.body.appendChild(el);
+  }
+  const detail = err ? ('['+(err.code||err.status||'?')+'] '+(err.message||'')) : 'sin conexión / red bloqueada';
+  el.innerHTML='⚠️ No se pudieron cargar los eventos.<br><span style="color:#ffa8ac;font-size:11px;">'+detail+'</span><br><button onclick="hideLoadError();loadEvents();" style="margin-top:9px;background:var(--accent);color:var(--accent-ink);border:none;border-radius:999px;padding:8px 18px;font-weight:700;cursor:pointer;font-family:inherit;font-size:12.5px;">Reintentar</button>';
+  el.style.display='block';
 }
 
 loadEvents();

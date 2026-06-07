@@ -469,10 +469,6 @@ button:focus{outline:none;}
         <div class="acct-name" id="acct-name">My account</div>
         <div class="acct-email" id="acct-email"></div>
       </div>
-      <label class="acct-pref">
-        <span class="acct-pref-txt">Email recommendations &amp; offers</span>
-        <span class="switch"><input type="checkbox" id="acct-marketing" onchange="setMarketingOptIn(this.checked)"/><span class="slider"></span></span>
-      </label>
       <div class="acct-sec">
         <span class="acct-sec-title">Saved events</span>
         <span class="acct-sec-link" id="saved-count">0 saved</span>
@@ -484,7 +480,11 @@ button:focus{outline:none;}
         <div style="color:var(--text-mute);font-size:13px;font-weight:600;margin-top:18px;">No saved events yet</div>
         <div style="color:var(--text-mute);font-size:12px;margin-top:5px;">Save events with ♡</div>
       </div>
-      <button class="btn-soft btn-block" style="margin:18px 0 8px;" onclick="doSignOut()">Log out</button>
+      <label class="acct-pref" style="margin-top:20px;">
+        <span class="acct-pref-txt">Email recommendations &amp; offers</span>
+        <span class="switch"><input type="checkbox" id="acct-marketing" onchange="setMarketingOptIn(this.checked)"/><span class="slider"></span></span>
+      </label>
+      <button class="btn-soft btn-block" style="margin:8px 0;" onclick="doSignOut()">Log out</button>
     </div>
   </div>
 

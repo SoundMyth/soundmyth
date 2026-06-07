@@ -1759,9 +1759,16 @@ async function syncProfile(){
 async function loadMarketingPref(){
   const cb=document.getElementById('acct-marketing');
   if(!cb||!currentUser) return;
-  const{data,error}=await sb.from('profiles').select('marketing_opt_in').eq('id',currentUser.id).maybeSingle();
-  if(error){ console.warn('profiles read skipped:',error.message||error); return; }
-  cb.checked=!!(data&&data.marketing_opt_in);
+  // Attempt 1: as-is
+  const r1=await sb.from('profiles').select('marketing_opt_in').eq('id',currentUser.id).maybeSingle();
+  // Ensure a fresh/attached session, then Attempt 2
+  await sb.auth.getSession();
+  const r2=await sb.from('profiles').select('marketing_opt_in').eq('id',currentUser.id).maybeSingle();
+  if(location.search.indexOf('debugpref')>=0){
+    alert('DEBUG read\nA1 err:'+(r1.error?(r1.error.code||r1.error.message):'none')+' data:'+JSON.stringify(r1.data)+'\nA2 err:'+(r2.error?(r2.error.code||r2.error.message):'none')+' data:'+JSON.stringify(r2.data));
+  }
+  const data=r2.data||r1.data;
+  if(data) cb.checked=!!data.marketing_opt_in;
 }
 async function setMarketingOptIn(on){
   if(!currentUser) return;

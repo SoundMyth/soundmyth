@@ -217,7 +217,7 @@ button:focus{outline:none;}
 .btn-soft:active{transform:scale(.98);}
 .btn-block{width:100%;justify-content:center;}
 .btn-accent:disabled{opacity:.55;cursor:default;box-shadow:none;}
-.login{padding:40px 20px 24px;display:flex;flex-direction:column;align-items:center;text-align:center;}
+.login{padding:24px 20px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;min-height:calc(100vh - 220px);}
 .login .btn-accent,.login .btn-soft{margin-bottom:11px;}
 .login-logo{width:64px;height:64px;border-radius:20px;background:var(--accent-soft);border:1px solid var(--accent-line);display:flex;align-items:center;justify-content:center;color:var(--accent);margin-bottom:22px;}
 .login h2{font-size:24px;font-weight:800;letter-spacing:-.5px;margin-bottom:9px;}
@@ -296,7 +296,7 @@ button:focus{outline:none;}
         <div class="hero-eyebrow">Electronic · Worldwide · 2026</div>
         <h1 class="hero-title">The whole scene<br/><em>in one place.</em></h1>
         <p class="hero-desc">No more searching DJ by DJ. No more jumping between sites. All EDM events worldwide, right here.</p>
-        <button class="hero-cta" onclick="resetPlan(document.querySelectorAll('.nav-btn')[1])">Plan my trip →</button>
+        <button class="hero-cta" onclick="resetPlan(document.querySelectorAll('.nav-btn')[1])">Find all events →</button>
       </div>
     </div>
 
@@ -371,7 +371,7 @@ button:focus{outline:none;}
 
   <!-- ── PLAN TAB ── -->
   <div id="tab-plan" class="tab">
-    <div id="breadcrumb">
+    <div id="breadcrumb" style="display:none;">
       <button class="bc-btn active" id="bc-city" onclick="goStep(0)">Country</button>
       <span class="bc-sep">›</span>
       <button class="bc-btn" id="bc-month" onclick="goStep(1)">Month</button>
@@ -535,7 +535,7 @@ button:focus{outline:none;}
     <button class="nav-btn" onclick="resetPlan(this)">
       <span class="glow"></span>
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="10" r="3"/><path d="M12 21s-7-5.5-7-11a7 7 0 0 1 14 0c0 5.5-7 11-7 11Z"/></svg>
-      <span class="lbl">Plan</span>
+      <span class="lbl">Events</span>
     </button>
     <button class="nav-btn" onclick="switchTab('account',this)">
       <span class="glow"></span>

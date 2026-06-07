@@ -484,6 +484,7 @@ button:focus{outline:none;}
         <span class="acct-pref-txt">Email recommendations &amp; offers</span>
         <span class="switch"><input type="checkbox" id="acct-marketing" onchange="setMarketingOptIn(this.checked)"/><span class="slider"></span></span>
       </label>
+      <div id="pref-debug" style="font-size:10px;color:#777;padding:4px 4px 0;word-break:break-word;line-height:1.4;"></div>
       <button class="btn-soft btn-block" style="margin:8px 0;" onclick="doSignOut()">Log out</button>
     </div>
   </div>
@@ -1758,23 +1759,23 @@ function loadMarketingPref(){
   if(!cb||!currentUser) return;
   const md=currentUser.user_metadata||{};
   cb.checked=(md.marketing_opt_in===true);
+  const dbg=document.getElementById('pref-debug');
+  if(dbg) dbg.textContent='READ → user_metadata.marketing_opt_in = '+JSON.stringify(md.marketing_opt_in)+' · switch='+cb.checked+' · user='+(currentUser.email||'?');
 }
 async function setMarketingOptIn(on){
   if(!currentUser) return;
-  // 1) Write to auth user_metadata (reliable source the UI reads back — no RLS query needed)
+  const dbg=document.getElementById('pref-debug');
+  let log='WRITE on='+on;
   const{data:upd,error:authErr}=await sb.auth.updateUser({data:{marketing_opt_in:on}});
-  if(authErr){
-    console.error('opt-in save failed:',authErr);
-    alert('No se pudo guardar la preferencia.\n'+(authErr.message||authErr.code||''));
-    const cb=document.getElementById('acct-marketing'); if(cb) cb.checked=!on;
-    return;
-  }
-  if(upd&&upd.user) currentUser=upd.user;
-  // 2) Mirror to public.profiles for analysis / segmentation
+  log+=' · updateUser='+(authErr?('ERR['+(authErr.status||authErr.code||'?')+'] '+(authErr.message||'')):'ok');
+  if(upd&&upd.user){ currentUser=upd.user; log+=' · returnedMd='+JSON.stringify(upd.user.user_metadata&&upd.user.user_metadata.marketing_opt_in); }
+  if(dbg) dbg.textContent=log;
+  if(authErr){ const cb=document.getElementById('acct-marketing'); if(cb) cb.checked=!on; return; }
+  // Mirror to public.profiles for analysis / segmentation
   const row={id:currentUser.id,email:currentUser.email,marketing_opt_in:on,updated_at:new Date().toISOString()};
   if(on) row.marketing_opt_in_at=new Date().toISOString();
   const{error}=await sb.from('profiles').upsert(row,{onConflict:'id'});
-  if(error) console.warn('profiles mirror failed:',error.message||error);
+  if(dbg) dbg.textContent=log+(error?(' · profilesErr='+(error.message||error.code)):' · profiles=ok');
 }
 
 // ── ACCOUNT SCREEN ──────────────────────────────────────────────────────────

@@ -70,6 +70,13 @@ jobs:
           SUPABASE_SERVICE_KEY: ${{ secrets.SUPABASE_SERVICE_KEY }}
         run: node scrape-festivals-direct.js
 
+      - name: Enrich Clubs (RA URLs)
+        continue-on-error: true
+        timeout-minutes: 10
+        # Auto-fills ra_url for clubs that have none (no secrets: only calls ra.co).
+        # The filled URLs are persisted by the "Commit updated data files" step.
+        run: node enrich-clubs-ra.js
+
       - name: Scrape Clubs (Resident Advisor)
         continue-on-error: true
         timeout-minutes: 10

@@ -733,6 +733,83 @@ const DJ_GENRE={
 };
 const PREF_GENRES=[...new Set(Object.values(DJ_GENRE))].sort();
 
+// Canonical DJ display: collapse case/diacritic variants (AME/Âme, alok/Alok,
+// MEDUZA/Meduza…) to ONE spelling so lists/pickers/line-ups don't show duplicates.
+// Built from the live data in loadEvents(); applied centrally in mapRows().
+let DJ_CANON={};
+// reuse an artist's real photo on their other events that have none
+let DJ_IMG={};
+function buildDjImg(events){ const m={}; for(const e of events){ if(!e.img) continue; for(const d of (e.djs||[])){ const k=djNorm(d); if(k && !m[k]) m[k]=e.img; } } return m; }
+function djNorm(s){ return (s||'').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'').trim(); }
+function canonDJ(name){ return DJ_CANON[djNorm(name)]||name; }
+function pickCanon(variants){
+  // variants: {display:count}. Prefer Title-case (not ALL-CAPS), then diacritics, then frequency.
+  let best=null,bestScore=-Infinity;
+  for(const v in variants){
+    let sc=variants[v]*0.001;
+    if(/[a-zà-ÿ]/.test(v)&&/[A-ZÀ-Þ]/.test(v)) sc+=3;   // mixed case → looks like a proper name
+    if(/[À-ÿ]/.test(v)) sc+=1;                           // keep diacritics (Âme, Rüfüs…)
+    if(sc>bestScore){ bestScore=sc; best=v; }
+  }
+  return best;
+}
+function buildDjCanon(rows){
+  const variants={};
+  for(const e of rows) for(const dj of (e.djs||[])){ const k=djNorm(dj); if(!k) continue; (variants[k]=variants[k]||{})[dj]=(variants[k][dj]||0)+1; }
+  const map={}; for(const k in variants) map[k]=pickCanon(variants[k]);
+  return map;
+}
+
+// ── event de-duplication (collapse near-identical events on same city+date) ──
+// normalized event name: drop parens, years, punctuation and filler words so
+// "Hive Festival 2026" / "HIVE Festival" and "X at Y" / "X @ Y" collapse together.
+function normEventName(n){
+  const r=(n||'').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'')
+    .replace(/\([^)]*\)/g,' ')
+    .replace(/\b20\d{2}\b/g,' ')
+    .replace(/[^a-z0-9]+/g,' ')
+    .replace(/\b(festival|fest|openair|open air|the|at|presents|pres|edition|vol)\b/g,' ')
+    .replace(/\s+/g,' ').trim();
+  return r || (n||'').toLowerCase().trim();
+}
+function mergeInto(ex,ev){
+  for(const d of (ev.djs||[])) if(!ex.djs.some(x=>djNorm(x)===djNorm(d))) ex.djs.push(d);
+  if(!ex.img && ev.img) ex.img=ev.img;
+  if((!ex.ticket||ex.ticket==='#') && ev.ticket && ev.ticket!=='#') ex.ticket=ev.ticket;
+  if((!ex.genre||ex.genre==='Electronic') && ev.genre && ev.genre!=='Electronic') ex.genre=ev.genre;
+  if((!ex.venue) && ev.venue) ex.venue=ev.venue;
+  ex.tags=[...new Set([...(ex.tags||[]),...(ev.tags||[])])];
+}
+function mergeBy(list,keyFn){
+  const map=new Map();
+  for(const ev of list){
+    const k=keyFn(ev);
+    if(map.has(k)) mergeInto(map.get(k),ev);
+    else map.set(k,{...ev,djs:[...(ev.djs||[])],tags:[...(ev.tags||[])]});
+  }
+  return [...map.values()];
+}
+function dedupeEvents(list){
+  // 1) same date+city+normalized-name → one event
+  const out=mergeBy(list, e=>`${e.date}|${djNorm(e.city)}|${normEventName(e.name)}`);
+  // 2) collapse a "bare artist" row (name == the artist) into a richer same-day+city show
+  //    by that artist (e.g. "Korolova" + "Korolova @ Bolivar Beach Bar"). Never merges festivals.
+  const byDayCity={};
+  out.forEach(e=>{ const k=`${e.date}|${djNorm(e.city)}`; (byDayCity[k]=byDayCity[k]||[]).push(e); });
+  const remove=new Set();
+  for(const k in byDayCity){
+    const evs=byDayCity[k];
+    for(const e of evs){
+      if(remove.has(e) || (e.tags&&e.tags.includes('festival')) || !e.djs.length) continue;
+      const bare = normEventName(e.name)===djNorm(e.djs[0]) || normEventName(e.name)===normEventName(e.djs[0]);
+      if(!bare) continue;
+      const host=evs.find(o=>o!==e && !remove.has(o) && (o.djs||[]).some(d=>djNorm(d)===djNorm(e.djs[0])) && normEventName(o.name)!==normEventName(e.name));
+      if(host){ mergeInto(host,e); remove.add(e); }
+    }
+  }
+  return out.filter(e=>!remove.has(e));
+}
+
 // ── SUPABASE ───────────────────────────────────────────────────────────────────
 const SB_URL='https://ekcwqesvujqsyuykqtap.supabase.co';
 const SB_KEY='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVrY3dxZXN2dWpxc3l1eWtxdGFwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzI3OTU4OTcsImV4cCI6MjA4ODM3MTg5N30.2Dhd8k2lrYWry4MTnCjqowljFGpVEVolC8bFa7jQDTg';
@@ -1146,7 +1223,7 @@ const CITY_IMG={
 };
 const CITY_IMG_FALLBACK='https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?w=200&h=130&fit=crop&auto=format';
 function cityImg(city){return CITY_IMG[city]||CITY_IMG_FALLBACK;}
-function bestImg(ev){return ev.img||CITY_IMG[ev.city]||countryImg(ev.country);}
+function bestImg(ev){return ev.img||(ev.djs&&ev.djs.length&&DJ_IMG[djNorm(ev.djs[0])])||CITY_IMG[ev.city]||countryImg(ev.country);}
 function bestImgHero(ev){
   const base=(ev.img||CITY_IMG[ev.city]||COUNTRY_IMG[ev.country]||COUNTRY_IMG_FALLBACK).replace(/\?.*$/,'');
   return base+'?w=800&h=400&fit=crop&auto=format';
@@ -1279,16 +1356,17 @@ async function loadEvents(){
       from+=1000;
     }
   }catch(err){ ok=false; console.warn('loadEvents:',err&&err.message); }
+  DJ_CANON=buildDjCanon(allData.length?allData:[]);  // canonical DJ spellings from the live data
   const mapRows=rows=>rows
     .map(e=>({...e, country:normalizeCountry(e.country||'')}))  // normalise ISO codes
     .map(e=>({
       id:e.id, name:e.name, venue:e.venue||'', city:e.city||'', country:e.country,
-      date:e.date, djs:e.djs||[], genre:e.genre||'', tags:e.tags||[],
+      date:e.date, djs:[...new Set((e.djs||[]).map(canonDJ))], genre:e.genre||'', tags:e.tags||[],
       price:e.price||'', ticket:e.ticket_url||'#', img:e.img_url||'',
       source:e.source||''
     }));
   if(ok && allData.length>0){
-    EVENTS=mapRows(allData);
+    EVENTS=dedupeEvents(mapRows(allData));
     // Cache a capped, soonest-first subset — small enough to reliably save in mobile localStorage
     try{
       const slim=EVENTS.filter(e=>e.date>=today).slice(0,2500);
@@ -1299,8 +1377,9 @@ async function loadEvents(){
     let cached=[];
     try{ cached=JSON.parse(localStorage.getItem('sm_events_cache')||'[]'); }catch(e){}
     if(cached.length){ EVENTS=cached; console.warn('loadEvents: using cached events ('+cached.length+')'); }
-    else if(allData.length>0) EVENTS=mapRows(allData);
+    else if(allData.length>0) EVENTS=dedupeEvents(mapRows(allData));
   }
+  DJ_IMG=buildDjImg(EVENTS);  // reuse artists' photos on their image-less events
   const futureEvents=EVENTS.filter(e=>e.date>=today);
   ALL_CITIES=[...new Set(futureEvents.map(e=>e.city))].sort();
   ALL_DJS=[...new Set(futureEvents.flatMap(e=>e.djs))].sort();
@@ -2013,7 +2092,7 @@ function eventGenre(ev){
   for(const d of (ev.djs||[])){ const g=DJ_GENRE[d.toLowerCase()]; if(g) return g; }
   return ev.genre||'Electronic';
 }
-function djHitP(ev){ return (ev.djs||[]).some(d=>prefs.djs.includes(d)); }
+function djHitP(ev){ const pn=prefs.djs.map(djNorm); return (ev.djs||[]).some(d=>pn.includes(djNorm(d))); }
 function cityHitP(ev){ return prefs.cities.includes(ev.city); }
 function genreHitP(ev){ return prefs.genres.includes(eventGenre(ev)); }
 function scoreEventP(ev){ let s=0; if(djHitP(ev))s+=60; if(cityHitP(ev))s+=50; if(genreHitP(ev))s+=25; if((ev.djs||[]).some(d=>TOP100_DJS.has(d.toLowerCase())))s+=6; s+=Math.max(0,30-daysUntil(ev.date))/4; return s; }

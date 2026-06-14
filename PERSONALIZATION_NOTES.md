@@ -19,12 +19,21 @@ pick it up later.
 
 ## Pending — data quality (fix in the production data/pipeline, post-launch)
 - [ ] **Duplicate DJs by case / accents** — e.g. same artist listed as different names due to
-      caps/lowercase/diacritics. Normalize DJ names (NFD strip + canonical casing) when building
-      `ALL_DJS` and in the scrapers, and dedupe case-insensitively.
-- [ ] **Duplicate events same day** — same event appears twice when the name differs slightly.
-      Improve `dedupe.js` (fuzzy name match within same city+date) and/or `source_id` keys.
-- [ ] **Missing photos** — events/cards with no image. Review `enrich-images.js` coverage,
-      bump `CACHE_VERSION`, add overrides for JS-rendered sites; improve fallbacks.
+      caps/lowercase/diacritics.
+  - [x] **Frontend (done)** — DJ names canonicalized at load (`buildDjCanon`/`canonDJ` in
+        `mapRows`); 104 duplicate spellings collapsed. Matching is case/diacritic-insensitive.
+  - [ ] Durability: also normalize at the scraper level so the DB itself is clean.
+- [x] **Duplicate events same day** — **Frontend (done)**: `dedupeEvents` in `loadEvents`
+      collapses same city+date+normalized-name (+ a "bare artist" pass), validated removing 39
+      real dups with no false merges.
+  - [ ] Durability: port the same logic into `dedupe.js` so the DB is clean for all consumers.
+- [x] **Missing photos** — **Frontend (done)**: `bestImg` reuses an artist's real photo
+      (`DJ_IMG`) on their image-less events → recovered 478/560 (85%).
+  - [ ] Remaining ~82 + non-artist events: improve `enrich-images.js` coverage (esp. Bandsintown),
+        bump `CACHE_VERSION`, add overrides for JS-rendered sites.
+
+> Diagnostic tool: `scraper/analyze-quality.mjs` (read-only) quantifies these issues and
+> simulates the fixes against live data. Re-run any time to re-measure.
 
 ## Pending — personalization follow-ups
 - [ ] Move DJ→genre map to `scraper/data/artists_all.json` + have the scraper stamp

@@ -2018,6 +2018,9 @@ function cityHitP(ev){ return prefs.cities.includes(ev.city); }
 function genreHitP(ev){ return prefs.genres.includes(eventGenre(ev)); }
 function scoreEventP(ev){ let s=0; if(djHitP(ev))s+=60; if(cityHitP(ev))s+=50; if(genreHitP(ev))s+=25; if((ev.djs||[]).some(d=>TOP100_DJS.has(d.toLowerCase())))s+=6; s+=Math.max(0,30-daysUntil(ev.date))/4; return s; }
 function matchReasonP(ev){ if(djHitP(ev))return (ev.djs||[]).find(d=>prefs.djs.includes(d)); if(cityHitP(ev))return ev.city; if(genreHitP(ev))return eventGenre(ev); return null; }
+// onboarding proposals: cities / styles ranked by how many upcoming events they have
+function citiesByCount(){ const t=new Date().toISOString().split('T')[0],c={}; for(const e of EVENTS){ if(e.date<t||!e.city) continue; c[e.city]=(c[e.city]||0)+1; } return Object.keys(c).sort((a,b)=>c[b]-c[a]); }
+function genresByCount(){ const t=new Date().toISOString().split('T')[0],c={}; for(const e of EVENTS){ if(e.date<t) continue; const g=eventGenre(e); if(!g||g==='Electronic') continue; c[g]=(c[g]||0)+1; } return Object.keys(c).sort((a,b)=>c[b]-c[a]); }
 
 // ── sync with public.profiles (mirror of the marketing-opt-in pattern) ──────────
 async function savePrefsRemote(onboardedAt){
@@ -2117,8 +2120,15 @@ function renderObStep(filter){
     inner=(sug.length?`<div class="sm-grouplbl">Suggested by your styles</div><div class="sm-chips">${sug.map((o,i)=>chip(o,i)).join('')}</div>`:'')
       +`<div class="sm-grouplbl">${sug.length?'All DJs':''}</div><div class="sm-chips">${rest.map((o,i)=>chip(o,sug.length+i)).join('')||'<span style="color:var(--text-mute)">No matches</span>'}</div>`;
   } else {
-    const opts=st.list().filter(o=>o.toLowerCase().includes(f)); sm_obList=opts;
-    inner=`<div class="sm-chips">${opts.map((o,i)=>`<span class="sm-chip ${sel.includes(o)?'on':''}" data-ob="${i}">${o}</span>`).join('')||'<span style="color:var(--text-mute)">No matches</span>'}</div>`;
+    let opts, label='';
+    if(f){ opts=st.list().filter(o=>o.toLowerCase().includes(f)); }
+    else {
+      opts=(st.key==='cities'?citiesByCount():genresByCount()).slice(0,12);
+      sel.forEach(s=>{ if(!opts.includes(s)) opts.push(s); });   // keep already-picked visible
+      label='<div class="sm-grouplbl">Most events</div>';
+    }
+    sm_obList=opts;
+    inner=label+`<div class="sm-chips">${opts.map((o,i)=>`<span class="sm-chip ${sel.includes(o)?'on':''}" data-ob="${i}">${o}</span>`).join('')||'<span style="color:var(--text-mute)">No matches</span>'}</div>`;
   }
   const last=sm_ob.step===OB_STEPS.length-1;
   document.getElementById('sm-sheet').innerHTML=`<div class="sm-grip"></div>

@@ -15,6 +15,7 @@ import { readFileSync, existsSync } from 'fs';
 import { config }        from 'dotenv';
 import { fileURLToPath } from 'url';
 import { dirname, resolve } from 'path';
+import { cleanEvent } from './normalize.js';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 config({ path: resolve(__dirname, '.env') });
@@ -278,6 +279,7 @@ async function flushBuffer() {
   if (!buffer.length) return;
   const batch = buffer.splice(0);
   bufferIds.clear();
+  batch.forEach(cleanEvent);   // canonical city + drop garbage venue
   const { error } = await sb.from('events').upsert(batch, {
     onConflict: 'source_id', ignoreDuplicates: false,
   });

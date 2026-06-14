@@ -18,6 +18,7 @@ import { readFileSync }  from 'fs';
 import { config }        from 'dotenv';
 import { fileURLToPath } from 'url';
 import { dirname, resolve } from 'path';
+import { cleanEvent } from './normalize.js';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 config({ path: resolve(__dirname, '.env') });
@@ -183,6 +184,7 @@ async function main() {
     // Deduplicate by source_id
     const seen = new Set();
     const batch = events.filter(e => { if (seen.has(e.source_id)) return false; seen.add(e.source_id); return true; });
+    batch.forEach(cleanEvent);   // canonical city + drop garbage venue
 
     const { error } = await sb.from('events').upsert(batch, { onConflict: 'source_id', ignoreDuplicates: false });
     if (error) console.error('\n❌  Supabase:', error.message);

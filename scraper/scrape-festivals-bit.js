@@ -13,6 +13,7 @@ import { readFileSync }  from 'fs';
 import { config }        from 'dotenv';
 import { fileURLToPath } from 'url';
 import { dirname, resolve } from 'path';
+import { cleanEvent, cleanVenue } from './normalize.js';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 config({ path: resolve(__dirname, '.env') });
@@ -88,6 +89,9 @@ function normaliseBIT(e, festName, fallbackCity, fallbackCountry) {
   const rawDesc  = (e.description || '').trim();
   const name     = rawTitle || (rawDesc.length <= 120 ? rawDesc : '') || festName;
   const lineup   = Array.isArray(e.lineup) && e.lineup.length ? e.lineup : [];
+  // skip Bandsintown junk that isn't a real festival: the "venue" only repeats the
+  // title and there is ≤1 act (e.g. "Tomorrowland and Dimitri Vegas & Like Mike").
+  if (!cleanVenue(v.name, name) && lineup.length <= 1) return null;
   return {
     name,
     venue:      v.name    || '',
@@ -239,6 +243,7 @@ async function flushBuffer(force = false) {
   const raw  = buffer.splice(0, buffer.length);
   const seen = new Set();
   const batch = raw.filter(e => { if (seen.has(e.source_id)) return false; seen.add(e.source_id); return true; });
+  batch.forEach(cleanEvent);   // canonical city + drop garbage venue
   const { error } = await sb
     .from('events')
     .upsert(batch, { onConflict: 'source_id', ignoreDuplicates: false });

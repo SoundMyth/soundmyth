@@ -92,6 +92,14 @@ jobs:
           SUPABASE_SERVICE_KEY: ${{ secrets.SUPABASE_SERVICE_KEY }}
         run: node dedupe.js
 
+      - name: Clean mislabelled junk events
+        continue-on-error: true
+        timeout-minutes: 5
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_SERVICE_KEY: ${{ secrets.SUPABASE_SERVICE_KEY }}
+        run: node cleanup-junk.js
+
       - name: Enrich event images (festivals + DJs)
         continue-on-error: true
         timeout-minutes: 20

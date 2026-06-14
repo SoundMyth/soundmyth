@@ -35,17 +35,19 @@ pick it up later.
 - [x] **City names** — **Frontend (done)**: `canonCity` (CITY_ALIAS) folds aliases &
       local-script names into one recognizable name (Eivissa + Ibiza municipalities → Ibiza,
       София→Sofia, İstanbul→Istanbul, 福岡市→Fukuoka, airport/district → city…). Applied in mapRows.
-  - [ ] Durability: normalize city in the scrapers; consider a transliteration lib for the
-        long tail (Cyrillic/Japanese/Greek) instead of a hand-kept alias map.
-- [x] **Garbage venue (venue == name)** — **Frontend (done)**: blanked in mapRows (Bandsintown
-      sets the event title as venue); detail falls back to city.
+  - [x] Durability (done): city normalized in every scraper via shared `scraper/normalize.js`
+        (`cleanEvent`). Future: a transliteration lib for the long tail; rows not re-scraped keep
+        their old city until the next scrape (the frontend masks it meanwhile).
+- [x] **Garbage venue (venue == name)** — **Frontend + pipeline (done)**: blanked in `mapRows`
+      and in all scrapers (`cleanEvent`); event detail falls back to city.
 - [x] **Mistagged "festivals"** — **Frontend (done)**: `isFest()` excludes artist club-nights
       that BIT tags as festival (venue==name + ≤1 act, e.g. the weekly "Tomorrowland and Dimitri
       Vegas & Like Mike" in Ibiza) from the Festivals sections.
-  - [ ] Durability / root cause: BIT ingestion creates junk events — artist listings titled
-        "X and DJ" tagged `festival`, "Tomorrowland Store" (a shop), recurring phantom shows.
-        Review `scrape-festivals-bit.js` / `scrape-extended.js`: don't tag as festival unless it
-        matches the curated festival list; drop venue==name; filter store/non-event listings.
+  - [x] Durability (done): `scrape-festivals-bit.js` SKIPS bare artist listings (venue==name + ≤1
+        act) at the source; `scraper/cleanup-junk.js` (wired into the workflow after dedupe) deletes
+        pre-existing junk rows (festival-tagged with venue==name+≤1 act, or "Store" listings).
+        Takes effect on the next scrape run.
+  - [ ] Still open: port `dedupeEvents` into `dedupe.js`; scraper-level DJ-name canonicalization.
 
 > Diagnostic tool: `scraper/analyze-quality.mjs` (read-only) quantifies these issues and
 > simulates the fixes against live data. Re-run any time to re-measure.

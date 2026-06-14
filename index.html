@@ -254,6 +254,62 @@ button:focus{outline:none;}
 .auth-avatar{width:20px;height:20px;border-radius:50%;background:var(--surface-3);display:flex;align-items:center;justify-content:center;font-size:9px;color:var(--text-dim);font-weight:700;flex-shrink:0;}
 .auth-avatar.logged{background:var(--accent);color:var(--accent-ink);}
 .auth-pill-label{color:var(--text-dim);font-size:11px;font-weight:600;letter-spacing:0;}
+
+/* ── PERSONALIZED HOME (Phase 1) ── */
+#home-personal:empty{display:none;}
+.greet{padding:20px 20px 2px;}
+.greet-hi{font-size:24px;font-weight:800;letter-spacing:-.6px;}
+.greet-hi span{color:var(--accent);}
+.greet-sub{color:var(--text-dim);font-size:13px;margin-top:5px;line-height:1.5;}
+.ctx-hero{margin:14px 16px 2px;border-radius:var(--r-xl);overflow:hidden;position:relative;min-height:128px;box-shadow:var(--shadow);cursor:pointer;background:#15131a;}
+.ctx-hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:brightness(.55);}
+.ctx-hero .ctx-grad{position:absolute;inset:0;background:linear-gradient(105deg,rgba(13,13,17,.92) 30%,rgba(13,13,17,.3) 100%);}
+.ctx-hero .ctx-body{position:relative;padding:18px 20px;}
+.ctx-eyebrow{color:var(--accent);font-size:11px;font-weight:800;letter-spacing:.4px;margin-bottom:7px;text-transform:uppercase;}
+.ctx-title{font-size:20px;font-weight:800;letter-spacing:-.4px;line-height:1.1;}
+.ctx-meta{color:var(--text-dim);font-size:12.5px;margin-top:6px;}
+.ctx-count{position:absolute;top:14px;right:14px;background:var(--accent);color:var(--accent-ink);font-weight:800;font-size:12px;border-radius:var(--r-pill);padding:6px 12px;}
+.match-chip{position:absolute;top:10px;left:10px;display:flex;align-items:center;gap:5px;background:rgba(13,13,17,.62);backdrop-filter:blur(8px);border:1px solid var(--accent-line);border-radius:var(--r-pill);padding:4px 9px;color:var(--accent);font-size:10.5px;font-weight:700;z-index:2;}
+.fest-line{color:var(--accent);font-size:11px;font-weight:700;margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+
+/* chips (onboarding / prefs editor) */
+.sm-chips{display:flex;flex-wrap:wrap;gap:9px;}
+.sm-chip{display:inline-flex;align-items:center;gap:7px;background:var(--surface-2);border:1px solid var(--border);border-radius:var(--r-pill);padding:9px 14px;font-size:13px;font-weight:600;color:var(--text-dim);cursor:pointer;transition:.15s;font-family:inherit;}
+.sm-chip.on{background:var(--accent-soft);border-color:var(--accent-line);color:var(--accent);}
+.sm-chip .gx{font-size:11px;color:var(--text-mute);font-weight:500;}
+.sm-chip .x{font-size:14px;opacity:.8;}
+.sm-grouplbl{display:flex;align-items:center;gap:8px;color:var(--text-mute);font-size:11px;font-weight:700;letter-spacing:.3px;text-transform:uppercase;margin:16px 0 10px;}
+.sm-grouplbl::after{content:"";flex:1;height:1px;background:var(--border);}
+
+/* personalization block in account */
+.pf-edit-btn{display:flex;align-items:center;gap:13px;width:100%;padding:16px 18px;background:var(--surface);border:1px solid var(--border);border-radius:var(--r-lg);cursor:pointer;text-align:left;font-family:inherit;margin:14px 0 4px;}
+.pf-edit-btn:active{background:var(--surface-2);}
+.pf-edit-btn .ic{width:40px;height:40px;border-radius:11px;background:var(--accent-soft);border:1px solid var(--accent-line);display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;}
+.pf-edit-btn .t{flex:1;}
+.pf-edit-btn .t b{font-size:14.5px;font-weight:700;color:var(--text);display:block;}
+.pf-edit-btn .t span{color:var(--text-mute);font-size:12px;}
+.pf-edit-btn .arr{color:var(--text-mute);font-size:20px;}
+
+/* bottom sheet (onboarding + category picker) */
+#sm-mask{position:fixed;inset:0;background:rgba(0,0,0,.6);backdrop-filter:blur(4px);z-index:700;display:none;align-items:flex-end;justify-content:center;}
+#sm-mask.show{display:flex;animation:smfade .2s ease;}
+@keyframes smfade{from{opacity:0}to{opacity:1}}
+#sm-sheet{width:100%;max-width:430px;background:var(--surface);border-top-left-radius:24px;border-top-right-radius:24px;border:1px solid var(--border);border-bottom:none;padding:10px 20px 0;max-height:88vh;overflow-y:auto;animation:smslide .3s cubic-bezier(.2,.8,.3,1);}
+@keyframes smslide{from{transform:translateY(100%)}to{transform:none}}
+.sm-grip{width:38px;height:4px;border-radius:99px;background:var(--surface-3);margin:6px auto 16px;}
+.sm-dots{display:flex;gap:6px;}
+.sm-dots i{width:7px;height:7px;border-radius:50%;background:var(--surface-3);transition:.2s;}
+.sm-dots i.on{background:var(--accent);width:20px;border-radius:99px;}
+.sm-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;}
+.sm-skip{background:none;border:none;color:var(--text-mute);font-size:13px;font-weight:700;cursor:pointer;font-family:inherit;padding:4px;}
+#sm-sheet h2{font-size:22px;font-weight:800;letter-spacing:-.5px;margin-bottom:6px;}
+#sm-sheet p.sm-lead{color:var(--text-dim);font-size:13.5px;line-height:1.5;margin-bottom:16px;}
+.sm-search{width:100%;background:var(--surface-2);border:1px solid var(--border);border-radius:var(--r-md);padding:13px 15px;color:var(--text);font-size:16px;margin-bottom:14px;outline:none;font-family:inherit;}
+.sm-search:focus{border-color:var(--accent-line);}
+/* sticky action bar so Continue/Done is always reachable on long lists */
+.sm-actions{display:flex;gap:11px;position:sticky;bottom:0;margin:16px -20px 0;padding:14px 20px calc(env(safe-area-inset-bottom,0px) + 20px);background:linear-gradient(to top,var(--surface) 72%,rgba(22,22,28,0));border-top:1px solid var(--border);z-index:3;}
+.sm-actions .btn-accent,.sm-actions .btn-soft{flex:1;}
+.sm-back{flex:0 0 80px !important;}
 </style>
 </head>
 <body>
@@ -297,6 +353,9 @@ button:focus{outline:none;}
 
   <!-- ── HOME TAB ── -->
   <div id="tab-home" class="tab active">
+
+    <!-- PERSONALIZED (rendered when logged in + onboarded) -->
+    <div id="home-personal"></div>
 
     <!-- HERO -->
     <div class="home-hero">
@@ -480,6 +539,11 @@ button:focus{outline:none;}
         <div style="color:var(--text-mute);font-size:13px;font-weight:600;margin-top:18px;">No saved events yet</div>
         <div style="color:var(--text-mute);font-size:12px;margin-top:5px;">Save events with ♡</div>
       </div>
+      <button class="pf-edit-btn" onclick="openPrefsEditor()">
+        <span class="ic">✏️</span>
+        <span class="t"><b>Edit personalization</b><span id="pf-edit-sub">Cities, DJs & styles</span></span>
+        <span class="arr">›</span>
+      </button>
       <label class="acct-pref" style="margin-top:20px;">
         <span class="acct-pref-txt">Email recommendations &amp; offers</span>
         <span class="switch"><input type="checkbox" id="acct-marketing" onchange="setMarketingOptIn(this.checked)"/><span class="slider"></span></span>
@@ -537,6 +601,9 @@ button:focus{outline:none;}
     <div id="det-source" style="margin-top:18px;"></div>
   </div>
 </div>
+
+<!-- ONBOARDING / PREFS SHEET -->
+<div id="sm-mask"><div id="sm-sheet"></div></div>
 
 <!-- NAV -->
 <div id="navwrap">
@@ -633,6 +700,39 @@ let ALL_CITIES=[], ALL_DJS=[], ALL_COUNTRIES=[];
 
 let saved=JSON.parse(localStorage.getItem('sm_saved')||'[]'), selCity=null, selCountry=null, selMonth=null, selDJ=null, currentStep=0, detailEv=null, searchMode='city';
 
+// ── PERSONALIZATION STATE (Phase 1) ─────────────────────────────────────────
+// prefs mirror localStorage (instant/offline) and sync to public.profiles on login.
+let prefs=(function(){ try{ return Object.assign({cities:[],djs:[],genres:[]}, JSON.parse(localStorage.getItem('sm_prefs')||'{}')); }catch(e){ return {cities:[],djs:[],genres:[]}; } })();
+// DJ → primary genre. Lets "styles" work client-side without waiting for the
+// scraper to stamp events.genre. Keys are lowercased DJ names (match TOP100_DJS).
+const DJ_GENRE={
+  'david guetta':'Big Room','martin garrix':'Big Room','alok':'Big Room','dimitri vegas & like mike':'Big Room',
+  'timmy trumpet':'Big Room','afrojack':'Big Room','steve aoki':'Big Room','hardwell':'Big Room','calvin harris':'Big Room',
+  'w&w':'Big Room','tiësto':'Big Room','kshmr':'Big Room','alan walker':'Big Room','r3hab':'Big Room','nicky romero':'Big Room',
+  'swedish house mafia':'Big Room','dj snake':'Big Room','marshmello':'Big Room','zedd':'Big Room','bassjackers':'Big Room',
+  'quintino':'Big Room','alesso':'Big Room','nervo':'Big Room','lucas & steve':'Big Room','the chainsmokers':'Big Room',
+  'mike williams':'Big Room','kaaze':'Big Room','marnik':'Big Room','dubvision':'Big Room','cuebrick':'Big Room',
+  'mariana bo':'Big Room','vinai':'Big Room',
+  'charlotte de witte':'Techno','reinier zonneveld':'Techno','carl cox':'Techno','amelie lens':'Techno','maddix':'Techno',
+  'lilly palmer':'Techno','deborah de luca':'Techno','liu':'Techno','i hate models':'Techno','boris brejcha':'Techno',
+  'sara landry':'Hard Techno','nico moreno':'Hard Techno',
+  'anyma':'Melodic Techno','korolova':'Melodic Techno','kölsch':'Melodic Techno','artbat':'Melodic Techno','miss monique':'Melodic Techno',
+  'solomun':'Melodic House',
+  'fisher':'Tech House','jamie jones':'Tech House','dom dolla':'Tech House','the martinez brothers':'Tech House','john summit':'Tech House',
+  'michael bibi':'Tech House','james hype':'Tech House','mochakk':'Tech House','gordo':'Tech House','pawsa':'Tech House',
+  'mau p':'Tech House','chris stussy':'Tech House','b jones':'Tech House','chris lake':'Tech House','le twins':'Tech House',
+  'vintage culture':'House','peggy gou':'House','don diablo':'House','lost frequencies':'House','oliver heldens':'House',
+  'claptone':'House','joel corry':'House','hugel':'House','nora en pure':'House','burak yeter':'House','fedde le grand':'House',
+  'plastik funk':'House','meduza':'House','honey dijon':'House','nils van zandt':'House','topic':'House','marlon hoffstadt':'House','faustix':'House',
+  'black coffee':'Afro House','keinemusik':'Afro House',
+  'armin van buuren':'Trance','paul van dyk':'Trance','atb':'Trance','above & beyond':'Trance','ferry corsten':'Trance','giuseppe ottaviani':'Trance',
+  'vini vici':'Psytrance','indira paganotto':'Psytrance',
+  'sub zero project':'Hardstyle',
+  'eric prydz':'Progressive','deadmau5':'Progressive',
+  'skrillex':'Bass'
+};
+const PREF_GENRES=[...new Set(Object.values(DJ_GENRE))].sort();
+
 // ── SUPABASE ───────────────────────────────────────────────────────────────────
 const SB_URL='https://ekcwqesvujqsyuykqtap.supabase.co';
 const SB_KEY='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVrY3dxZXN2dWpxc3l1eWtxdGFwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzI3OTU4OTcsImV4cCI6MjA4ODM3MTg5N30.2Dhd8k2lrYWry4MTnCjqowljFGpVEVolC8bFa7jQDTg';
@@ -659,6 +759,7 @@ sb.auth.onAuthStateChange(async(event,session)=>{
     }
     await syncProfile();
     await syncSaved();
+    await syncPrefs();
   }
 });
 
@@ -1212,6 +1313,7 @@ async function loadEvents(){
   document.getElementById('stat-djs').textContent=DJ_MAG_ORDER.filter(dj=>ALL_DJS.some(d=>d.toLowerCase()===dj.toLowerCase())).length;
   renderCountries();
   renderFeatured();
+  renderPersonalHome();
   // Visible diagnostic: if we truly have nothing to show, tell the user why (with the real error) + offer retry
   if(EVENTS.length>0){ hideLoadError(); }
   else { showLoadError(lastErr); }
@@ -1242,6 +1344,7 @@ function switchTab(name, btn){
   if(btn) btn.classList.add('active');
   const ns=document.getElementById('navsearch');
   if(ns) ns.classList.toggle('searching', name==='search');
+  if(name==='home') renderPersonalHome();
   if(name==='saved') renderSaved();
   if(name==='account') renderAccount();
   if(name==='search') renderGlobalSearch();
@@ -1799,6 +1902,8 @@ function renderAccount(){
     if(em) em.textContent=email;
     renderSaved();
     loadMarketingPref();
+    const sub=document.getElementById('pf-edit-sub');
+    if(sub) sub.textContent = hasPrefs()? `${prefs.cities.length} cities · ${prefs.djs.length} DJs · ${prefs.genres.length} styles` : 'Set your cities, DJs & styles';
   } else {
     profile.style.display='none';
     login.style.display='flex';
@@ -1892,6 +1997,202 @@ function renderGlobalSearch(){
   window.addEventListener('resize',init);
   if(document.fonts&&document.fonts.ready) document.fonts.ready.then(init);
 })();
+
+// ══════════════════════════════════════════════════════════════════════════════
+//  PERSONALIZATION (Phase 1) — preferences, sync, personalized home, onboarding
+// ══════════════════════════════════════════════════════════════════════════════
+function persistPrefsLocal(){ try{ localStorage.setItem('sm_prefs', JSON.stringify({cities:prefs.cities,djs:prefs.djs,genres:prefs.genres})); }catch(e){} }
+function isOnboarded(){ try{ return localStorage.getItem('sm_onboarded')==='1'; }catch(e){ return false; } }
+function markOnboarded(){ try{ localStorage.setItem('sm_onboarded','1'); }catch(e){} }
+function hasPrefs(){ return !!(prefs.cities.length||prefs.djs.length||prefs.genres.length); }
+function escAttr(s){ return String(s).replace(/&/g,'&amp;').replace(/"/g,'&quot;'); }
+
+// effective genre: prefer a specific scraped genre, else derive from the line-up
+function eventGenre(ev){
+  if(ev.genre && ev.genre.toLowerCase()!=='electronic') return ev.genre;
+  for(const d of (ev.djs||[])){ const g=DJ_GENRE[d.toLowerCase()]; if(g) return g; }
+  return ev.genre||'Electronic';
+}
+function djHitP(ev){ return (ev.djs||[]).some(d=>prefs.djs.includes(d)); }
+function cityHitP(ev){ return prefs.cities.includes(ev.city); }
+function genreHitP(ev){ return prefs.genres.includes(eventGenre(ev)); }
+function scoreEventP(ev){ let s=0; if(djHitP(ev))s+=60; if(cityHitP(ev))s+=50; if(genreHitP(ev))s+=25; if((ev.djs||[]).some(d=>TOP100_DJS.has(d.toLowerCase())))s+=6; s+=Math.max(0,30-daysUntil(ev.date))/4; return s; }
+function matchReasonP(ev){ if(djHitP(ev))return (ev.djs||[]).find(d=>prefs.djs.includes(d)); if(cityHitP(ev))return ev.city; if(genreHitP(ev))return eventGenre(ev); return null; }
+
+// ── sync with public.profiles (mirror of the marketing-opt-in pattern) ──────────
+async function savePrefsRemote(onboardedAt){
+  if(!currentUser) return;
+  const row={id:currentUser.id,email:currentUser.email,home_cities:prefs.cities,fav_djs:prefs.djs,fav_genres:prefs.genres,updated_at:new Date().toISOString()};
+  if(onboardedAt!==undefined) row.onboarded_at=onboardedAt;
+  try{ const{error}=await sb.from('profiles').upsert(row,{onConflict:'id'}); if(error) console.warn('prefs save skipped:',error.message||error); }catch(e){ console.warn('prefs save error',e); }
+}
+function savePrefs(){ persistPrefsLocal(); markOnboarded(); savePrefsRemote(new Date().toISOString()); }
+async function syncPrefs(){
+  if(!currentUser) return;
+  let data=null;
+  try{ const r=await sb.from('profiles').select('home_cities,fav_djs,fav_genres,onboarded_at').eq('id',currentUser.id).maybeSingle(); if(r.error){ console.warn('prefs read skipped:',r.error.message); } else data=r.data; }catch(e){ return; }
+  if(data && data.onboarded_at){              // remote is the source of truth across devices
+    prefs.cities=data.home_cities||[]; prefs.djs=data.fav_djs||[]; prefs.genres=data.fav_genres||[];
+    persistPrefsLocal(); markOnboarded();
+  } else if(isOnboarded() && hasPrefs()){     // local prefs set before first login → push up
+    await savePrefsRemote(new Date().toISOString());
+  }
+  renderPersonalHome(); renderAccount();
+  // First login on this device with no prefs yet → guided onboarding (skippable)
+  if(!(data && data.onboarded_at) && !isOnboarded()) setTimeout(()=>startOnboarding(),350);
+}
+
+// ── personalized home ───────────────────────────────────────────────────────
+function secP(title,sub){ return `<div class="home-sec" style="padding-bottom:6px"><span class="home-sec-title">${title}</span>${sub?`<span class="home-sec-link" style="cursor:default;color:var(--text-mute);font-weight:600">${sub}</span>`:''}</div>`; }
+function pCard(ev){
+  const{day,mon}=fmtDate(ev.date), isSaved=saved.includes(ev.id), img=bestImg(ev), r=matchReasonP(ev), fest=ev.tags&&ev.tags.includes('festival');
+  return `<div class="ev-card-h" onclick='openDetail(${JSON.stringify(ev.id)})'>
+    <img src="${img}" alt="" onerror="this.src='${COUNTRY_IMG_FALLBACK}'"/>
+    <div class="ev-card-h-grad"></div>
+    ${r?`<div class="match-chip">★ ${r}</div>`:''}
+    <button class="ev-card-h-save${isSaved?' saved':''}" onclick='event.stopPropagation();toggleSave(${JSON.stringify(ev.id)})'>${isSaved?'♥':'♡'}</button>
+    <div class="ev-card-h-body">
+      <div class="ev-card-h-genre">${eventGenre(ev)}</div>
+      <div class="ev-card-h-name">${ev.name}</div>
+      ${fest&&ev.djs.length?`<div class="fest-line">${ev.djs.slice(0,2).join(', ')}${ev.djs.length>2?' +'+(ev.djs.length-2):''}</div>`:''}
+      <div class="ev-card-h-meta">${FLAGS[ev.country]||''} ${ev.city} · ${day} ${mon}</div>
+    </div></div>`;
+}
+function renderPersonalHome(){
+  const el=document.getElementById('home-personal'); if(!el) return;
+  const hero=document.querySelector('#tab-home .home-hero');
+  // localStorage-first: personalize as soon as prefs exist (login only syncs across devices)
+  const personalize=isOnboarded() && hasPrefs();
+  if(!personalize){ el.innerHTML=''; if(hero) hero.style.display=''; return; }
+  if(hero) hero.style.display='none';
+  const todayStr=new Date().toISOString().split('T')[0];
+  const fut=EVENTS.filter(e=>e.date>=todayStr);
+  const scored=fut.map(e=>({e,s:scoreEventP(e)})).sort((a,b)=>b.s-a.s);
+  const hour=new Date().getHours(), part=hour<6?'Good night':hour<13?'Good morning':hour<20?'Good afternoon':'Good evening';
+  const name=(currentUser&&currentUser.email?currentUser.email.split('@')[0]:'there');
+  let h=`<div class="greet"><div class="greet-hi">${part}, <span>${name}</span></div><div class="greet-sub">${scored.filter(x=>x.s>30).length} events picked for you</div></div>`;
+  // context hero: next saved upcoming, else top match
+  const savedSoon=fut.filter(e=>saved.includes(e.id)).sort((a,b)=>new Date(a.date)-new Date(b.date))[0];
+  const top=scored[0];
+  const heroEv=savedSoon?{e:savedSoon,eyebrow:'Your next saved plan'}:(top&&top.s>30?{e:top.e,eyebrow:'Your top match'}:null);
+  if(heroEv){ const{day,mon}=fmtDate(heroEv.e.date), du=daysUntil(heroEv.e.date);
+    h+=`<div class="ctx-hero" onclick='openDetail(${JSON.stringify(heroEv.e.id)})'>
+      <img src="${bestImg(heroEv.e)}" alt="" onerror="this.style.display='none'"/><div class="ctx-grad"></div>
+      <div class="ctx-count">${du<=0?'Today':du===1?'Tomorrow':'In '+du+'d'}</div>
+      <div class="ctx-body"><div class="ctx-eyebrow">${heroEv.eyebrow}</div><div class="ctx-title">${heroEv.e.name}</div>
+      <div class="ctx-meta">${heroEv.e.venue||heroEv.e.city} · ${heroEv.e.city} · ${day} ${mon}</div></div></div>`;
+  }
+  try{
+    const forYou=scored.filter(x=>x.s>30).map(x=>x.e).slice(0,10);
+    if(forYou.length){ h+=secP('For you','Cities · DJs · styles'); h+=`<div class="hscroll">${forYou.map(pCard).join('')}</div>`; }
+    const djTour=fut.filter(djHitP).sort((a,b)=>new Date(a.date)-new Date(b.date)).slice(0,6);
+    if(djTour.length){ h+=secP('Your DJs on tour', prefs.djs.slice(0,3).join(' · ')); h+=djTour.map(eventRowHTML).join(''); }
+    const seenF=new Set();
+    const festFor=fut.filter(e=>e.tags&&e.tags.includes('festival')&&scoreEventP(e)>15).sort((a,b)=>scoreEventP(b)-scoreEventP(a)).filter(e=>{ if(seenF.has(e.name))return false; seenF.add(e.name); return true; }).slice(0,10);
+    if(festFor.length){ h+=secP('Festivals for you','Line-ups you’ll like'); h+=`<div class="hscroll">${festFor.map(pCard).join('')}</div>`; }
+    prefs.cities.slice(0,2).forEach(c=>{ const inC=fut.filter(e=>e.city===c).sort((a,b)=>new Date(a.date)-new Date(b.date)).slice(0,10); if(inC.length){ h+=secP('In '+c, inC.length+' upcoming'); h+=`<div class="hscroll">${inC.map(pCard).join('')}</div>`; } });
+  }catch(e){ console.warn('personal home section failed',e); }
+  el.innerHTML=h;
+}
+
+// ── onboarding sheet (cities → styles → DJs, skippable) ─────────────────────────
+let sm_ob=null, sm_pk=null, sm_pkKind=null, sm_pkDraft=[], sm_obList=[], sm_pkList=[], smMode=null;
+const OB_STEPS=[
+  {key:'cities',title:'Where do you go out?',lead:'Pick the cities you want events from.',ph:'Search a city…',list:()=>ALL_CITIES},
+  {key:'genres',title:'What styles are you into?',lead:'We tune your picks and suggest DJs of that sound.',ph:'Search a style…',list:()=>PREF_GENRES},
+  {key:'djs',title:'Your favourite DJs',lead:'We put them on top and flag their shows.',ph:'Search a DJ…',list:()=>ALL_DJS}
+];
+function openSheet(){ document.getElementById('sm-mask').classList.add('show'); }
+function closeSheet(){ document.getElementById('sm-mask').classList.remove('show'); smMode=null; }
+function startOnboarding(){ sm_ob={step:0,draft:{cities:[...prefs.cities],genres:[...prefs.genres],djs:[...prefs.djs]}}; smMode='ob'; renderObStep(); openSheet(); }
+function renderObStep(filter){
+  filter=filter||''; const st=OB_STEPS[sm_ob.step], sel=sm_ob.draft[st.key], f=filter.toLowerCase();
+  let inner;
+  if(st.key==='djs'){
+    const opts=ALL_DJS.filter(o=>o.toLowerCase().includes(f));
+    const sug=opts.filter(o=>sm_ob.draft.genres.includes(DJ_GENRE[o.toLowerCase()]));
+    const rest=opts.filter(o=>!sm_ob.draft.genres.includes(DJ_GENRE[o.toLowerCase()]));
+    sm_obList=[...sug,...rest];
+    const chip=(o,i)=>`<span class="sm-chip ${sel.includes(o)?'on':''}" data-ob="${i}">${o}${DJ_GENRE[o.toLowerCase()]?` <span class="gx">· ${DJ_GENRE[o.toLowerCase()]}</span>`:''}</span>`;
+    inner=(sug.length?`<div class="sm-grouplbl">Suggested by your styles</div><div class="sm-chips">${sug.map((o,i)=>chip(o,i)).join('')}</div>`:'')
+      +`<div class="sm-grouplbl">${sug.length?'All DJs':''}</div><div class="sm-chips">${rest.map((o,i)=>chip(o,sug.length+i)).join('')||'<span style="color:var(--text-mute)">No matches</span>'}</div>`;
+  } else {
+    const opts=st.list().filter(o=>o.toLowerCase().includes(f)); sm_obList=opts;
+    inner=`<div class="sm-chips">${opts.map((o,i)=>`<span class="sm-chip ${sel.includes(o)?'on':''}" data-ob="${i}">${o}</span>`).join('')||'<span style="color:var(--text-mute)">No matches</span>'}</div>`;
+  }
+  const last=sm_ob.step===OB_STEPS.length-1;
+  document.getElementById('sm-sheet').innerHTML=`<div class="sm-grip"></div>
+    <div class="sm-top"><div class="sm-dots">${OB_STEPS.map((_,i)=>`<i class="${i===sm_ob.step?'on':''}"></i>`).join('')}</div><button class="sm-skip" onclick="obSkip()">Skip</button></div>
+    <h2>${st.title}</h2><p class="sm-lead">${st.lead}</p>
+    <input class="sm-search" id="sm-obSearch" placeholder="${st.ph}" value="${escAttr(filter)}" oninput="renderObStep(this.value)" autocomplete="off">
+    ${inner}
+    <div class="sm-actions">${sm_ob.step>0?`<button class="btn-soft sm-back" onclick="obPrev()">Back</button>`:''}
+      <button class="btn-accent" onclick="obNext()">${last?`Done (${sel.length})`:`Continue (${sel.length})`}</button></div>`;
+  const s=document.getElementById('sm-obSearch'); if(s){ s.focus(); try{s.setSelectionRange(filter.length,filter.length);}catch(e){} }
+}
+function obPrev(){ if(sm_ob.step>0){ sm_ob.step--; renderObStep(); } }
+function obNext(){
+  if(sm_ob.step<OB_STEPS.length-1){ sm_ob.step++; renderObStep(); }
+  else{ prefs.cities=sm_ob.draft.cities; prefs.genres=sm_ob.draft.genres; prefs.djs=sm_ob.draft.djs; savePrefs(); closeSheet(); renderPersonalHome(); renderAccount(); }
+}
+function obSkip(){ markOnboarded(); savePrefsRemote(new Date().toISOString()); closeSheet(); renderPersonalHome(); renderAccount(); }
+
+// ── single-category picker (from the editor) ────────────────────────────────
+function openPicker(kind){ sm_pkKind=kind; sm_pkDraft=[...prefs[kind]]; smMode='pk'; renderPicker(); openSheet(); }
+function renderPicker(filter){
+  filter=filter||''; const f=filter.toLowerCase(), kind=sm_pkKind;
+  const titleMap={cities:'My cities',genres:'My styles',djs:'My DJs'}, phMap={cities:'Search a city…',genres:'Search a style…',djs:'Search a DJ…'};
+  let inner;
+  if(kind==='djs'){
+    const opts=ALL_DJS.filter(o=>o.toLowerCase().includes(f));
+    const sug=opts.filter(o=>prefs.genres.includes(DJ_GENRE[o.toLowerCase()]));
+    const rest=opts.filter(o=>!prefs.genres.includes(DJ_GENRE[o.toLowerCase()]));
+    sm_pkList=[...sug,...rest];
+    const chip=(o,i)=>`<span class="sm-chip ${sm_pkDraft.includes(o)?'on':''}" data-pk="${i}">${o}${DJ_GENRE[o.toLowerCase()]?` <span class="gx">· ${DJ_GENRE[o.toLowerCase()]}</span>`:''}</span>`;
+    inner=(sug.length?`<div class="sm-grouplbl">Suggested by your styles</div><div class="sm-chips">${sug.map((o,i)=>chip(o,i)).join('')}</div>`:'')
+      +`<div class="sm-grouplbl">${sug.length?'All DJs':''}</div><div class="sm-chips">${rest.map((o,i)=>chip(o,sug.length+i)).join('')||'<span style="color:var(--text-mute)">No matches</span>'}</div>`;
+  } else {
+    const list=kind==='cities'?ALL_CITIES:PREF_GENRES; const opts=list.filter(o=>o.toLowerCase().includes(f)); sm_pkList=opts;
+    inner=`<div class="sm-chips">${opts.map((o,i)=>`<span class="sm-chip ${sm_pkDraft.includes(o)?'on':''}" data-pk="${i}">${o}</span>`).join('')||'<span style="color:var(--text-mute)">No matches</span>'}</div>`;
+  }
+  document.getElementById('sm-sheet').innerHTML=`<div class="sm-grip"></div>
+    <div class="sm-top"><button class="sm-skip" onclick="openPrefsEditor()">‹ Back</button><span></span></div>
+    <h2>${titleMap[kind]}</h2><p class="sm-lead">Tap to add or remove.</p>
+    <input class="sm-search" id="sm-pkSearch" placeholder="${phMap[kind]}" value="${escAttr(filter)}" oninput="renderPicker(this.value)" autocomplete="off">
+    ${inner}
+    <div class="sm-actions"><button class="btn-accent btn-block" onclick="savePicker()">Save (${sm_pkDraft.length})</button></div>`;
+  const s=document.getElementById('sm-pkSearch'); if(s){ s.focus(); try{s.setSelectionRange(filter.length,filter.length);}catch(e){} }
+}
+function savePicker(){ prefs[sm_pkKind]=sm_pkDraft.slice(); savePrefs(); renderPersonalHome(); openPrefsEditor(); }
+
+// ── prefs editor (opened from Account) ──────────────────────────────────────
+function openPrefsEditor(){ smMode='editor'; renderEditor(); openSheet(); }
+function renderEditor(){
+  const chips=(arr,kind)=> arr.length? `<div class="sm-chips">${arr.map((v,i)=>`<span class="sm-chip on" data-rmk="${kind}" data-rmi="${i}">${v} <span class="x">✕</span></span>`).join('')}</div>` : `<span style="color:var(--text-mute);font-size:12.5px">None yet — tap Edit.</span>`;
+  const sec=(t,kind)=>`<div style="display:flex;justify-content:space-between;align-items:center;margin:18px 0 9px"><b style="font-size:13px">${t}</b><button class="sm-skip" style="color:var(--accent)" onclick="openPicker('${kind}')">Edit</button></div>${chips(prefs[kind],kind)}`;
+  document.getElementById('sm-sheet').innerHTML=`<div class="sm-grip"></div>
+    <h2>Personalization</h2><p class="sm-lead">Your cities, styles and DJs sync to your account.</p>
+    ${sec('Cities','cities')}${sec('Styles','genres')}${sec('DJs','djs')}
+    <div class="sm-actions" style="flex-direction:column;gap:10px;margin-top:24px">
+      <button class="btn-accent btn-block" onclick="closeSheet()">Done</button>
+      <button class="btn-soft btn-block" onclick="startOnboarding()">↻ Redo guided setup</button>
+      <button class="btn-soft btn-block" style="color:#ff6b6b;border-color:rgba(255,107,107,.4)" onclick="resetPrefs()">Reset personalization</button>
+    </div>`;
+}
+function resetPrefs(){ prefs={cities:[],djs:[],genres:[]}; persistPrefsLocal(); try{localStorage.removeItem('sm_onboarded');}catch(e){} savePrefsRemote(null); renderPersonalHome(); renderAccount(); startOnboarding(); }
+
+// ── sheet interactions ──────────────────────────────────────────────────────
+document.getElementById('sm-sheet').addEventListener('click',function(e){
+  const ob=e.target.closest('[data-ob]'); if(ob){ const v=sm_obList[+ob.dataset.ob]; const arr=sm_ob.draft[OB_STEPS[sm_ob.step].key]; const i=arr.indexOf(v); i>-1?arr.splice(i,1):arr.push(v); const s=document.getElementById('sm-obSearch'); renderObStep(s?s.value:''); return; }
+  const pk=e.target.closest('[data-pk]'); if(pk){ const v=sm_pkList[+pk.dataset.pk]; const i=sm_pkDraft.indexOf(v); i>-1?sm_pkDraft.splice(i,1):sm_pkDraft.push(v); const s=document.getElementById('sm-pkSearch'); renderPicker(s?s.value:''); return; }
+  const rm=e.target.closest('[data-rmi]'); if(rm){ const kind=rm.dataset.rmk; prefs[kind].splice(+rm.dataset.rmi,1); savePrefs(); renderEditor(); renderPersonalHome(); return; }
+});
+document.getElementById('sm-mask').addEventListener('click',function(e){ if(e.target.id==='sm-mask'){ if(smMode==='ob') obSkip(); else closeSheet(); } });
+
+// Local-testing helper: open onboarding from a URL flag (?onboard=1) when there is
+// no logged-in session to trigger it. Harmless in production (only fires with the flag).
+if(/[?&](onboard|demo)=1/.test(location.search)) setTimeout(()=>{ if(typeof ALL_CITIES!=='undefined' && ALL_CITIES.length) startOnboarding(); else setTimeout(startOnboarding,1200); },600);
+
 </script>
 </body>
 </html>

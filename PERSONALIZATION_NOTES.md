@@ -32,6 +32,21 @@ pick it up later.
   - [ ] Remaining ~82 + non-artist events: improve `enrich-images.js` coverage (esp. Bandsintown),
         bump `CACHE_VERSION`, add overrides for JS-rendered sites.
 
+- [x] **City names** — **Frontend (done)**: `canonCity` (CITY_ALIAS) folds aliases &
+      local-script names into one recognizable name (Eivissa + Ibiza municipalities → Ibiza,
+      София→Sofia, İstanbul→Istanbul, 福岡市→Fukuoka, airport/district → city…). Applied in mapRows.
+  - [ ] Durability: normalize city in the scrapers; consider a transliteration lib for the
+        long tail (Cyrillic/Japanese/Greek) instead of a hand-kept alias map.
+- [x] **Garbage venue (venue == name)** — **Frontend (done)**: blanked in mapRows (Bandsintown
+      sets the event title as venue); detail falls back to city.
+- [x] **Mistagged "festivals"** — **Frontend (done)**: `isFest()` excludes artist club-nights
+      that BIT tags as festival (venue==name + ≤1 act, e.g. the weekly "Tomorrowland and Dimitri
+      Vegas & Like Mike" in Ibiza) from the Festivals sections.
+  - [ ] Durability / root cause: BIT ingestion creates junk events — artist listings titled
+        "X and DJ" tagged `festival`, "Tomorrowland Store" (a shop), recurring phantom shows.
+        Review `scrape-festivals-bit.js` / `scrape-extended.js`: don't tag as festival unless it
+        matches the curated festival list; drop venue==name; filter store/non-event listings.
+
 > Diagnostic tool: `scraper/analyze-quality.mjs` (read-only) quantifies these issues and
 > simulates the fixes against live data. Re-run any time to re-measure.
 

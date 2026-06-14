@@ -740,6 +740,34 @@ let DJ_CANON={};
 // reuse an artist's real photo on their other events that have none
 let DJ_IMG={};
 function buildDjImg(events){ const m={}; for(const e of events){ if(!e.img) continue; for(const d of (e.djs||[])){ const k=djNorm(d); if(k && !m[k]) m[k]=e.img; } } return m; }
+
+// City aliases: fold local-language / sub-municipality / non-city values into one
+// recognizable name (Eivissa→Ibiza, София→Sofia, İstanbul→Istanbul, airports→city…).
+// Keys written in their natural form; normalized to lowercase at init to match canonCity().
+const CITY_ALIAS_RAW={
+  'Eivissa':'Ibiza','Sant Jordi De Ses Salines':'Ibiza','Sant Josep de sa Talaia':'Ibiza',
+  'Sant Antoni de Portmany':'Ibiza','Santa Eulària des Riu':'Ibiza',
+  'София':'Sofia','İstanbul':'Istanbul','Beşiktaş':'Istanbul','Beyoğlu':'Istanbul',
+  'București':'Bucharest','Rīga':'Riga','Chișinău':'Chisinau','Bakı':'Baku',
+  'Hlavní Město Praha':'Prague','Staré Město':'Prague','Brno-město':'Brno',
+  'Wrocław':'Wroclaw','Gdańsk':'Gdansk','Łódź':'Lodz','Poznań':'Poznan','Płock':'Plock',
+  'Białystok':'Bialystok','Międzyzdroje':'Miedzyzdroje','Łaziska Górne':'Laziska Gorne',
+  'Włoszakowice':'Wloszakowice','Iłowa':'Ilowa',
+  'Târgu Mureș':'Targu Mures','Bonțida':'Bontida','Costinești':'Costinesti',
+  'Nevşehir Merkez':'Nevsehir','Çeşme':'Cesme',
+  'Trenčín':'Trencin','Trenčín District':'Trencin','Velešín':'Velesin','Týn Nad Bečvou':'Tyn nad Becvou',
+  'Horní Soběšovice':'Horni Sobesovice','Kaluža':'Kaluza','Liepāja':'Liepaja','Tjentište':'Tjentiste',
+  'Città Metropolitana Di Messina':'Messina','Zrće Beach':'Novalja',
+  'Παραλία Paradise':'Mykonos','Μύκονος':'Mykonos','Κάβος':'Kavos','Λαγανάς':'Laganas',
+  '福岡市':'Fukuoka','大阪府':'Osaka','京都市':'Kyoto','横浜市':'Yokohama','名古屋市':'Nagoya',
+  '札幌市':'Sapporo','仙台市':'Sendai','岡山市':'Okayama','宇都宮市':'Utsunomiya','渋谷区':'Tokyo','群馬県':'Gunma',
+  'Dubai International Financial Centre':'Dubai',
+  'Aeropuerto Internacional De La Ciudad De México':'Mexico City',
+  'Masākin Maḩaţţat Kahrabā’ Sharq Al Qāhirah':'Cairo',
+  'BELVOIR CASTLE Leicestershire':'Leicestershire'
+};
+const CITY_ALIAS={}; for(const k in CITY_ALIAS_RAW){ CITY_ALIAS[k.replace(/\s+/g,' ').trim().toLowerCase()]=CITY_ALIAS_RAW[k]; }
+function canonCity(c){ const t=(c||'').replace(/\s+/g,' ').trim(); return CITY_ALIAS[t.toLowerCase()]||t; }
 function djNorm(s){ return (s||'').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'').trim(); }
 function canonDJ(name){ return DJ_CANON[djNorm(name)]||name; }
 function pickCanon(variants){
@@ -809,6 +837,9 @@ function dedupeEvents(list){
   }
   return out.filter(e=>!remove.has(e));
 }
+// real festival vs a mistagged artist club-night (Bandsintown often tags "X and DJ"
+// artist listings as 'festival' with venue==name and a single act → not a festival)
+function isFest(e){ return !!(e.tags&&e.tags.includes('festival')) && !(!e.venue && (e.djs||[]).length<=1); }
 
 // ── SUPABASE ───────────────────────────────────────────────────────────────────
 const SB_URL='https://ekcwqesvujqsyuykqtap.supabase.co';
@@ -893,7 +924,7 @@ function renderFestivals(){
   // Festival events: tagged 'festival', sorted by date, max 1 per name (deduplicated)
   const seen=new Set();
   const fests=EVENTS.filter(e=>{
-    if(!e.tags.includes('festival')||e.date<todayStr) return false;
+    if(!isFest(e)||e.date<todayStr) return false;
     if(seen.has(e.name)) return false;
     seen.add(e.name);
     return true;
@@ -1360,7 +1391,9 @@ async function loadEvents(){
   const mapRows=rows=>rows
     .map(e=>({...e, country:normalizeCountry(e.country||'')}))  // normalise ISO codes
     .map(e=>({
-      id:e.id, name:e.name, venue:e.venue||'', city:e.city||'', country:e.country,
+      id:e.id, name:e.name,
+      venue:((e.venue||'').trim()===(e.name||'').trim())?'':(e.venue||''),  // drop garbage venue==name (Bandsintown)
+      city:canonCity(e.city||''), country:e.country,
       date:e.date, djs:[...new Set((e.djs||[]).map(canonDJ))], genre:e.genre||'', tags:e.tags||[],
       price:e.price||'', ticket:e.ticket_url||'#', img:e.img_url||'',
       source:e.source||''
@@ -1752,7 +1785,7 @@ function openDetail(id){
   document.getElementById('det-img').src=bestImgHero(ev);
   document.getElementById('det-genre').textContent=`${ev.genre||'Electronic'} · ${FLAGS[ev.country]||'🌍'} ${ev.city||''}`;
   document.getElementById('det-name').textContent=ev.name;
-  document.getElementById('det-venue').textContent=ev.venue;
+  document.getElementById('det-venue').textContent=ev.venue||ev.city||'';
   document.getElementById('det-date').textContent=`${day} ${mon}`;
   document.getElementById('det-days').textContent=days>0?`${days}d`:days===0?'Today':'Past';
   document.getElementById('det-lineup').innerHTML=ev.djs.length
@@ -2170,7 +2203,7 @@ function renderPersonalHome(){
     const djTour=fut.filter(djHitP).sort((a,b)=>new Date(a.date)-new Date(b.date)).slice(0,6);
     if(djTour.length){ h+=secP('Your DJs on tour', prefs.djs.slice(0,3).join(' · ')); h+=djTour.map(eventRowHTML).join(''); }
     const seenF=new Set();
-    const festFor=fut.filter(e=>e.tags&&e.tags.includes('festival')&&scoreEventP(e)>15).sort((a,b)=>scoreEventP(b)-scoreEventP(a)).filter(e=>{ if(seenF.has(e.name))return false; seenF.add(e.name); return true; }).slice(0,10);
+    const festFor=fut.filter(e=>isFest(e)&&scoreEventP(e)>15).sort((a,b)=>scoreEventP(b)-scoreEventP(a)).filter(e=>{ if(seenF.has(e.name))return false; seenF.add(e.name); return true; }).slice(0,10);
     if(festFor.length){ h+=secP('Festivals for you','Line-ups you’ll like'); h+=`<div class="hscroll">${festFor.map(pCard).join('')}</div>`; }
     prefs.cities.slice(0,2).forEach(c=>{ const inC=fut.filter(e=>e.city===c).sort((a,b)=>new Date(a.date)-new Date(b.date)).slice(0,10); if(inC.length){ h+=secP('In '+c, inC.length+' upcoming'); h+=`<div class="hscroll">${inC.map(pCard).join('')}</div>`; } });
   }catch(e){ console.warn('personal home section failed',e); }
@@ -2187,7 +2220,7 @@ const OB_STEPS=[
 function openSheet(){ document.getElementById('sm-mask').classList.add('show'); }
 function closeSheet(){ document.getElementById('sm-mask').classList.remove('show'); smMode=null; }
 function startOnboarding(){ sm_ob={step:0,draft:{cities:[...prefs.cities],genres:[...prefs.genres],djs:[...prefs.djs]}}; smMode='ob'; renderObStep(); openSheet(); }
-function renderObStep(filter){
+function renderObStep(filter,keepFocus){
   filter=filter||''; const st=OB_STEPS[sm_ob.step], sel=sm_ob.draft[st.key], f=filter.toLowerCase();
   let inner;
   if(st.key==='djs'){
@@ -2213,11 +2246,11 @@ function renderObStep(filter){
   document.getElementById('sm-sheet').innerHTML=`<div class="sm-grip"></div>
     <div class="sm-top"><div class="sm-dots">${OB_STEPS.map((_,i)=>`<i class="${i===sm_ob.step?'on':''}"></i>`).join('')}</div><button class="sm-skip" onclick="obSkip()">Skip</button></div>
     <h2>${st.title}</h2><p class="sm-lead">${st.lead}</p>
-    <input class="sm-search" id="sm-obSearch" placeholder="${st.ph}" value="${escAttr(filter)}" oninput="renderObStep(this.value)" autocomplete="off">
+    <input class="sm-search" id="sm-obSearch" placeholder="${st.ph}" value="${escAttr(filter)}" oninput="renderObStep(this.value,true)" autocomplete="off">
     ${inner}
     <div class="sm-actions">${sm_ob.step>0?`<button class="btn-soft sm-back" onclick="obPrev()">Back</button>`:''}
       <button class="btn-accent" onclick="obNext()">${last?`Done (${sel.length})`:`Continue (${sel.length})`}</button></div>`;
-  const s=document.getElementById('sm-obSearch'); if(s){ s.focus(); try{s.setSelectionRange(filter.length,filter.length);}catch(e){} }
+  const s=document.getElementById('sm-obSearch'); if(s&&keepFocus){ s.focus(); try{s.setSelectionRange(filter.length,filter.length);}catch(e){} }
 }
 function obPrev(){ if(sm_ob.step>0){ sm_ob.step--; renderObStep(); } }
 function obNext(){
@@ -2228,7 +2261,7 @@ function obSkip(){ markOnboarded(); savePrefsRemote(new Date().toISOString()); c
 
 // ── single-category picker (from the editor) ────────────────────────────────
 function openPicker(kind){ sm_pkKind=kind; sm_pkDraft=[...prefs[kind]]; smMode='pk'; renderPicker(); openSheet(); }
-function renderPicker(filter){
+function renderPicker(filter,keepFocus){
   filter=filter||''; const f=filter.toLowerCase(), kind=sm_pkKind;
   const titleMap={cities:'My cities',genres:'My styles',djs:'My DJs'}, phMap={cities:'Search a city…',genres:'Search a style…',djs:'Search a DJ…'};
   let inner;
@@ -2247,10 +2280,10 @@ function renderPicker(filter){
   document.getElementById('sm-sheet').innerHTML=`<div class="sm-grip"></div>
     <div class="sm-top"><button class="sm-skip" onclick="openPrefsEditor()">‹ Back</button><span></span></div>
     <h2>${titleMap[kind]}</h2><p class="sm-lead">Tap to add or remove.</p>
-    <input class="sm-search" id="sm-pkSearch" placeholder="${phMap[kind]}" value="${escAttr(filter)}" oninput="renderPicker(this.value)" autocomplete="off">
+    <input class="sm-search" id="sm-pkSearch" placeholder="${phMap[kind]}" value="${escAttr(filter)}" oninput="renderPicker(this.value,true)" autocomplete="off">
     ${inner}
     <div class="sm-actions"><button class="btn-accent btn-block" onclick="savePicker()">Save (${sm_pkDraft.length})</button></div>`;
-  const s=document.getElementById('sm-pkSearch'); if(s){ s.focus(); try{s.setSelectionRange(filter.length,filter.length);}catch(e){} }
+  const s=document.getElementById('sm-pkSearch'); if(s&&keepFocus){ s.focus(); try{s.setSelectionRange(filter.length,filter.length);}catch(e){} }
 }
 function savePicker(){ prefs[sm_pkKind]=sm_pkDraft.slice(); savePrefs(); renderPersonalHome(); openPrefsEditor(); }
 

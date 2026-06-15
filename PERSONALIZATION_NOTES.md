@@ -22,15 +22,18 @@ pick it up later.
       caps/lowercase/diacritics.
   - [x] **Frontend (done)** — DJ names canonicalized at load (`buildDjCanon`/`canonDJ` in
         `mapRows`); 104 duplicate spellings collapsed. Matching is case/diacritic-insensitive.
-  - [ ] Durability: also normalize at the scraper level so the DB itself is clean.
+  - [x] **Pipeline (done)** — `scraper/normalize.js` exposes `buildDjCanon`/`djNorm`; `cleanup-junk.js`
+        rebuilds canonical DJ spellings from the DB and updates rows (validated: ~94 DJs, ~345 rows).
 - [x] **Duplicate events same day** — **Frontend (done)**: `dedupeEvents` in `loadEvents`
       collapses same city+date+normalized-name (+ a "bare artist" pass), validated removing 39
       real dups with no false merges.
-  - [ ] Durability: port the same logic into `dedupe.js` so the DB is clean for all consumers.
+  - [x] Pipeline: `dedupe.js` already dedupes by venue/date + fuzzy-venue + festival consolidation
+        + consecutive-day (more thorough than the frontend). The residual "bare artist" case is
+        masked by the frontend; not porting (no added value, would risk a working multi-pass script).
 - [x] **Missing photos** — **Frontend (done)**: `bestImg` reuses an artist's real photo
       (`DJ_IMG`) on their image-less events → recovered 478/560 (85%).
-  - [ ] Remaining ~82 + non-artist events: improve `enrich-images.js` coverage (esp. Bandsintown),
-        bump `CACHE_VERSION`, add overrides for JS-rendered sites.
+  - [ ] Future (not user-visible; frontend already covers it): improve `enrich-images.js` to write
+        real `img_url` for the ~82 remaining + non-artist events (esp. Bandsintown); bump `CACHE_VERSION`.
 
 - [x] **City names** — **Frontend (done)**: `canonCity` (CITY_ALIAS) folds aliases &
       local-script names into one recognizable name (Eivissa + Ibiza municipalities → Ibiza,
@@ -47,7 +50,10 @@ pick it up later.
         act) at the source; `scraper/cleanup-junk.js` (wired into the workflow after dedupe) deletes
         pre-existing junk rows (festival-tagged with venue==name+≤1 act, or "Store" listings).
         Takes effect on the next scrape run.
-  - [ ] Still open: port `dedupeEvents` into `dedupe.js`; scraper-level DJ-name canonicalization.
+
+> Backlog status: all data-quality items above are addressed (frontend + pipeline). The only
+> remaining future nice-to-haves are (a) richer `enrich-images.js` coverage and (b) an automatic
+> transliteration lib for brand-new non-Latin cities — the current alias map covers all existing ones.
 
 > Diagnostic tool: `scraper/analyze-quality.mjs` (read-only) quantifies these issues and
 > simulates the fixes against live data. Re-run any time to re-measure.

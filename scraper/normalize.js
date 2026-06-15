@@ -55,3 +55,30 @@ export function cleanEvent(e) {
   e.venue = cleanVenue(e.venue, e.name);
   return e;
 }
+
+// ── DJ name canonicalization (data-driven; mirror of the frontend) ──────────────
+export function djNorm(s) {
+  return (s || '').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '').trim();
+}
+/** From {display:count}, prefer Title-case (not ALL-CAPS), then diacritics, then frequency. */
+export function pickCanon(variants) {
+  let best = null, bestScore = -Infinity;
+  for (const v in variants) {
+    let sc = variants[v] * 0.001;
+    if (/[a-zà-ÿ]/.test(v) && /[A-ZÀ-Þ]/.test(v)) sc += 3;
+    if (/[À-ÿ]/.test(v)) sc += 1;
+    if (sc > bestScore) { bestScore = sc; best = v; }
+  }
+  return best;
+}
+/** Build {normalized → canonical display} from all rows' djs[]. */
+export function buildDjCanon(rows) {
+  const variants = {};
+  for (const e of rows) for (const dj of (e.djs || [])) {
+    const k = djNorm(dj); if (!k) continue;
+    (variants[k] = variants[k] || {})[dj] = (variants[k][dj] || 0) + 1;
+  }
+  const map = {};
+  for (const k in variants) map[k] = pickCanon(variants[k]);
+  return map;
+}

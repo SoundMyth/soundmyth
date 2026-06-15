@@ -15,7 +15,7 @@ import { createClient }  from '@supabase/supabase-js';
 import { config }        from 'dotenv';
 import { fileURLToPath } from 'url';
 import { dirname, resolve } from 'path';
-import { CITY_ALIAS_RAW } from './normalize.js';
+import { CITY_ALIAS_RAW, djNorm, buildDjCanon } from './normalize.js';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 config({ path: resolve(__dirname, '.env') });
@@ -70,4 +70,21 @@ for (const k in CITY_ALIAS_RAW) {
   if (data && data.length) { cityFixed += data.length; console.log(`  city: ${data.length}× ${JSON.stringify(k)} → ${canon}`); }
 }
 console.log(`✓ Canonicalized city on ${cityFixed} rows.`);
+
+// Canonicalize DJ names on existing rows (data-driven; collapse case/diacritic
+// variants like alok/Alok, BLOND:ISH/Blond:ish, AME/Amè). Skips just-deleted junk.
+const junkIds = new Set(junk.map(e => e.id));
+const live = rows.filter(e => !junkIds.has(e.id));
+const djCanon = buildDjCanon(live);
+let djFixed = 0;
+for (const e of live) {
+  const djs = e.djs || [];
+  if (!djs.length) continue;
+  const nd = [...new Set(djs.map(d => djCanon[djNorm(d)] || d))];
+  if (JSON.stringify(nd) !== JSON.stringify(djs)) {
+    const { error } = await sb.from('events').update({ djs: nd }).eq('id', e.id);
+    if (error) console.error(`  ❌ djs ${e.id}:`, error.message); else djFixed++;
+  }
+}
+console.log(`✓ Canonicalized DJ names on ${djFixed} rows.`);
 process.exit(0);

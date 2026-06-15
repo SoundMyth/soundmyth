@@ -38,7 +38,7 @@ const UA = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML,
 const DJ_CACHE_PATH = resolve(__dirname, 'data/dj_images_cache.json');
 const FEST_CACHE_PATH = resolve(__dirname, 'data/festival_images_cache.json');
 
-const CACHE_VERSION = 3; // Bump when search logic improves to force retry of failed lookups
+const CACHE_VERSION = 4; // Bump when search logic improves to force retry of failed lookups
 
 let djCache = {};
 let festCache = {};
@@ -403,7 +403,9 @@ async function main() {
   const djEvents = remaining.filter(e => e.djs?.length > 0);
   console.log(`── Pass 2: DJ images (${djEvents.length} events) ──`);
 
-  const uniqueDJs = [...new Set(djEvents.map(e => e.djs[0]))];
+  // Look up the first few acts of each line-up (not just djs[0]) so an event still
+  // gets a photo when its headliner isn't on TheAudioDB/Wikipedia but a co-act is.
+  const uniqueDJs = [...new Set(djEvents.flatMap(e => e.djs.slice(0, 3)))];
   const toFetchDJ = uniqueDJs.filter(dj => !(dj.toLowerCase().trim() in djCache));
   console.log(`  Unique DJs: ${uniqueDJs.length}, new lookups: ${toFetchDJ.length}\n`);
 
@@ -426,7 +428,9 @@ async function main() {
   // Update DJ events in Supabase
   let djUpdated = 0, djSkipped = 0;
   for (const ev of djEvents) {
-    const img = djCache[ev.djs[0].toLowerCase().trim()];
+    // use the first act in the line-up that has a photo
+    let img = null;
+    for (const dj of ev.djs.slice(0, 3)) { const c = djCache[dj.toLowerCase().trim()]; if (c) { img = c; break; } }
     if (!img) { djSkipped++; continue; }
 
     const { error } = await sb.from('events').update({ img_url: img }).eq('id', ev.id);

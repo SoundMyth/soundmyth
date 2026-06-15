@@ -15,7 +15,7 @@ import { createClient }  from '@supabase/supabase-js';
 import { config }        from 'dotenv';
 import { fileURLToPath } from 'url';
 import { dirname, resolve } from 'path';
-import { CITY_ALIAS_RAW, djNorm, buildDjCanon } from './normalize.js';
+import { canonCity, djNorm, buildDjCanon } from './normalize.js';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 config({ path: resolve(__dirname, '.env') });
@@ -58,23 +58,24 @@ for (let i = 0; i < junk.length; i += 100) {
 }
 console.log(`✓ Deleted ${deleted} junk events.`);
 
-// Canonicalize city on existing rows (rows not re-scraped keep their alias spelling).
-// One batched UPDATE per alias → fast, no re-scrape needed.
+const junkIds = new Set(junk.map(e => e.id));
+const live = rows.filter(e => !junkIds.has(e.id));
+
+// Canonicalize city on existing rows (rows not re-scraped keep their old spelling).
+// canonCity applies aliases (Eivissa→Ibiza) AND transliteration (София→Sofiya, Wrocław→Wroclaw).
 let cityFixed = 0;
-for (const k in CITY_ALIAS_RAW) {
-  const canon = CITY_ALIAS_RAW[k];
-  if (k === canon) continue;
-  const { data, error } = await sb.from('events')
-    .update({ city: canon }).eq('city', k).gte('date', TODAY).select('id');
-  if (error) { console.error(`  ❌ city ${JSON.stringify(k)}:`, error.message); continue; }
-  if (data && data.length) { cityFixed += data.length; console.log(`  city: ${data.length}× ${JSON.stringify(k)} → ${canon}`); }
+for (const e of live) {
+  const nc = canonCity(e.city);
+  if (nc && nc !== e.city) {
+    const { error } = await sb.from('events').update({ city: nc }).eq('id', e.id);
+    if (error) console.error(`  ❌ city ${e.id}:`, error.message);
+    else { cityFixed++; if (cityFixed <= 30) console.log(`  city: ${JSON.stringify(e.city)} → ${nc}`); }
+  }
 }
 console.log(`✓ Canonicalized city on ${cityFixed} rows.`);
 
 // Canonicalize DJ names on existing rows (data-driven; collapse case/diacritic
 // variants like alok/Alok, BLOND:ISH/Blond:ish, AME/Amè). Skips just-deleted junk.
-const junkIds = new Set(junk.map(e => e.id));
-const live = rows.filter(e => !junkIds.has(e.id));
 const djCanon = buildDjCanon(live);
 let djFixed = 0;
 for (const e of live) {

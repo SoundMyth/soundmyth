@@ -32,15 +32,17 @@ pick it up later.
         masked by the frontend; not porting (no added value, would risk a working multi-pass script).
 - [x] **Missing photos** — **Frontend (done)**: `bestImg` reuses an artist's real photo
       (`DJ_IMG`) on their image-less events → recovered 478/560 (85%).
-  - [ ] Future (not user-visible; frontend already covers it): improve `enrich-images.js` to write
-        real `img_url` for the ~82 remaining + non-artist events (esp. Bandsintown); bump `CACHE_VERSION`.
+  - [x] Pipeline (done): `enrich-images.js` now looks up the first 3 acts of each line-up (not just
+        `djs[0]`) so an event still gets a photo when the headliner isn't on TheAudioDB/Wikipedia but a
+        co-act is; `CACHE_VERSION` bumped to 4 to retry past failures. Takes effect on the next scrape.
 
 - [x] **City names** — **Frontend (done)**: `canonCity` (CITY_ALIAS) folds aliases &
       local-script names into one recognizable name (Eivissa + Ibiza municipalities → Ibiza,
       София→Sofia, İstanbul→Istanbul, 福岡市→Fukuoka, airport/district → city…). Applied in mapRows.
   - [x] Durability (done): city normalized in every scraper via shared `scraper/normalize.js`
-        (`cleanEvent`). Future: a transliteration lib for the long tail; rows not re-scraped keep
-        their old city until the next scrape (the frontend masks it meanwhile).
+        (`cleanEvent`). `canonCity` now also auto-transliterates Latin-Extended / non-Latin scripts
+        via the `transliteration` package (София→Sofiya, Wrocław→Wroclaw, new Чебоксары→Cheboksary),
+        keeping Latin-1 accents (Zürich, Málaga). `cleanup-junk.js` re-canonicalizes existing rows.
 - [x] **Garbage venue (venue == name)** — **Frontend + pipeline (done)**: blanked in `mapRows`
       and in all scrapers (`cleanEvent`); event detail falls back to city.
 - [x] **Mistagged "festivals"** — **Frontend (done)**: `isFest()` excludes artist club-nights
@@ -51,9 +53,9 @@ pick it up later.
         pre-existing junk rows (festival-tagged with venue==name+≤1 act, or "Store" listings).
         Takes effect on the next scrape run.
 
-> Backlog status: all data-quality items above are addressed (frontend + pipeline). The only
-> remaining future nice-to-haves are (a) richer `enrich-images.js` coverage and (b) an automatic
-> transliteration lib for brand-new non-Latin cities — the current alias map covers all existing ones.
+> Backlog status: **all items done** (frontend + pipeline), including the two former nice-to-haves
+> (richer image coverage + automatic transliteration of non-Latin cities). Self-maintaining via the
+> weekly workflow + the on-demand "Clean DB" workflow.
 
 > Diagnostic tool: `scraper/analyze-quality.mjs` (read-only) quantifies these issues and
 > simulates the fixes against live data. Re-run any time to re-measure.

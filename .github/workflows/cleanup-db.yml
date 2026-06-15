@@ -1,0 +1,36 @@
+name: Clean DB (junk + city canon)
+
+# On-demand DB cleanup WITHOUT a full scrape: deletes mislabelled junk events and
+# canonicalizes city names on existing rows. Runs in ~1 min.
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  cleanup:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    defaults:
+      run:
+        working-directory: scraper
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: scraper/package-lock.json
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Clean junk + canonicalize cities
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_SERVICE_KEY: ${{ secrets.SUPABASE_SERVICE_KEY }}
+        run: node cleanup-junk.js

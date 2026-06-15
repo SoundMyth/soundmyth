@@ -15,6 +15,7 @@ import { createClient }  from '@supabase/supabase-js';
 import { config }        from 'dotenv';
 import { fileURLToPath } from 'url';
 import { dirname, resolve } from 'path';
+import { CITY_ALIAS_RAW } from './normalize.js';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 config({ path: resolve(__dirname, '.env') });
@@ -56,4 +57,17 @@ for (let i = 0; i < junk.length; i += 100) {
   if (error) console.error('  ❌ delete:', error.message); else deleted += ids.length;
 }
 console.log(`✓ Deleted ${deleted} junk events.`);
+
+// Canonicalize city on existing rows (rows not re-scraped keep their alias spelling).
+// One batched UPDATE per alias → fast, no re-scrape needed.
+let cityFixed = 0;
+for (const k in CITY_ALIAS_RAW) {
+  const canon = CITY_ALIAS_RAW[k];
+  if (k === canon) continue;
+  const { data, error } = await sb.from('events')
+    .update({ city: canon }).eq('city', k).gte('date', TODAY).select('id');
+  if (error) { console.error(`  ❌ city ${JSON.stringify(k)}:`, error.message); continue; }
+  if (data && data.length) { cityFixed += data.length; console.log(`  city: ${data.length}× ${JSON.stringify(k)} → ${canon}`); }
+}
+console.log(`✓ Canonicalized city on ${cityFixed} rows.`);
 process.exit(0);

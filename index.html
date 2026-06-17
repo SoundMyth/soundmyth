@@ -326,6 +326,8 @@ button:focus{outline:none;}
 /* sticky action bar so Continue/Done is always reachable on long lists */
 .sm-actions{display:flex;gap:11px;position:sticky;bottom:0;margin:16px -20px 0;padding:14px 20px calc(env(safe-area-inset-bottom,0px) + 20px);background:linear-gradient(to top,var(--surface) 72%,rgba(22,22,28,0));border-top:1px solid var(--border);z-index:3;}
 .sm-actions .btn-accent,.sm-actions .btn-soft{flex:1;}
+/* a11y: visible keyboard focus ring (only on keyboard focus, not mouse click) */
+.ev-card-h:focus-visible,.ctx-hero:focus-visible,.dj-spotlight:focus-visible,.event-row:focus-visible,.sm-chip:focus-visible,.city-btn:focus-visible,.nav-btn:focus-visible,#navsearch:focus-visible{outline:2px solid var(--accent);outline-offset:2px;}
 .sm-back{flex:0 0 80px !important;}
 </style>
 </head>
@@ -428,7 +430,7 @@ button:focus{outline:none;}
     <div class="home-sec" style="padding-top:4px;">
       <span class="home-sec-title">DJ of the month</span>
     </div>
-    <div class="dj-spotlight" id="dj-spotlight-card"></div>
+    <div class="dj-spotlight" id="dj-spotlight-card" role="button" tabindex="0"></div>
 
     <!-- ABOUT -->
     <div class="home-sec" style="padding-top:4px;">
@@ -955,7 +957,7 @@ function renderFestivals(){
     const{day,mon}=fmtDate(ev.date);
     const isSaved=saved.includes(ev.id);
     const img=bestImg(ev);
-    return`<div class="ev-card-h" onclick='openDetail(${JSON.stringify(ev.id)})'>
+    return`<div class="ev-card-h" role="button" tabindex="0" onclick='openDetail(${JSON.stringify(ev.id)})'>
       <img src="${img}" alt="" onerror="this.src='${COUNTRY_IMG_FALLBACK}'"/>
       <div class="ev-card-h-grad"></div>
       <button aria-label="Save event" class="ev-card-h-save${isSaved?' saved':''}" onclick='event.stopPropagation();toggleSave(${JSON.stringify(ev.id)})'>${isSaved?'♥':'♡'}</button>
@@ -978,7 +980,7 @@ function renderClubs(){
     const{day,mon}=fmtDate(ev.date);
     const isSaved=saved.includes(ev.id);
     const img=bestImg(ev);
-    return`<div class="ev-card-h" onclick='openDetail(${JSON.stringify(ev.id)})'>
+    return`<div class="ev-card-h" role="button" tabindex="0" onclick='openDetail(${JSON.stringify(ev.id)})'>
       <img src="${img}" alt="" onerror="this.src='${COUNTRY_IMG_FALLBACK}'"/>
       <div class="ev-card-h-grad"></div>
       <button aria-label="Save event" class="ev-card-h-save${isSaved?' saved':''}" onclick='event.stopPropagation();toggleSave(${JSON.stringify(ev.id)})'>${isSaved?'♥':'♡'}</button>
@@ -1020,7 +1022,7 @@ function renderFeatured(){
   document.getElementById('home-featured').innerHTML=top.map(ev=>{
     const{day,mon}=fmtDate(ev.date);
     const isSaved=saved.includes(ev.id);
-    return`<div class="ev-card-h" onclick='openDetail(${JSON.stringify(ev.id)})'>
+    return`<div class="ev-card-h" role="button" tabindex="0" onclick='openDetail(${JSON.stringify(ev.id)})'>
       <img src="${bestImg(ev)}" alt="" onerror="this.src='${COUNTRY_IMG_FALLBACK}'"/>
       <div class="ev-card-h-grad"></div>
       <button aria-label="Save event" class="ev-card-h-save${isSaved?' saved':''}" onclick='event.stopPropagation();toggleSave(${JSON.stringify(ev.id)})'>${isSaved?'♥':'♡'}</button>
@@ -1759,7 +1761,7 @@ function eventRowHTML(ev){
   const thumb=bestImg(ev);
   const todayStr=new Date().toISOString().split('T')[0];
   const isPast=ev.date<todayStr;
-  const click=isPast?'':'onclick=\'openDetail('+JSON.stringify(ev.id)+')\'';
+  const click=isPast?'':'role="button" tabindex="0" onclick=\'openDetail('+JSON.stringify(ev.id)+')\'';
   return`<div class="event-row${isPast?' past':''}" ${click}>
     <img class="ev-thumb" src="${thumb}" alt="" onerror="this.src='${COUNTRY_IMG_FALLBACK}'"/>
     <div class="ev-date"><div class="ev-day">${day}</div><div class="ev-mon">${mon}</div></div>
@@ -2183,7 +2185,7 @@ async function syncPrefs(){
 function secP(title,sub){ return `<div class="home-sec" style="padding-bottom:6px"><span class="home-sec-title">${esc(title)}</span>${sub?`<span class="home-sec-link" style="cursor:default;color:var(--text-mute);font-weight:600">${esc(sub)}</span>`:''}</div>`; }
 function pCard(ev){
   const{day,mon}=fmtDate(ev.date), isSaved=saved.includes(ev.id), img=bestImg(ev), r=matchReasonP(ev), fest=ev.tags&&ev.tags.includes('festival');
-  return `<div class="ev-card-h" onclick='openDetail(${JSON.stringify(ev.id)})'>
+  return `<div class="ev-card-h" role="button" tabindex="0" onclick='openDetail(${JSON.stringify(ev.id)})'>
     <img src="${img}" alt="" onerror="this.src='${COUNTRY_IMG_FALLBACK}'"/>
     <div class="ev-card-h-grad"></div>
     ${r?`<div class="match-chip">★ ${esc(r)}</div>`:''}
@@ -2213,7 +2215,7 @@ function renderPersonalHome(){
   const top=scored[0];
   const heroEv=savedSoon?{e:savedSoon,eyebrow:'Your next saved plan'}:(top&&top.s>30?{e:top.e,eyebrow:'Your top match'}:null);
   if(heroEv){ const{day,mon}=fmtDate(heroEv.e.date), du=daysUntil(heroEv.e.date);
-    h+=`<div class="ctx-hero" onclick='openDetail(${JSON.stringify(heroEv.e.id)})'>
+    h+=`<div class="ctx-hero" role="button" tabindex="0" onclick='openDetail(${JSON.stringify(heroEv.e.id)})'>
       <img src="${bestImg(heroEv.e)}" alt="" onerror="this.style.display='none'"/><div class="ctx-grad"></div>
       <div class="ctx-count">${du<=0?'Today':du===1?'Tomorrow':'In '+du+'d'}</div>
       <div class="ctx-body"><div class="ctx-eyebrow">${heroEv.eyebrow}</div><div class="ctx-title">${esc(heroEv.e.name)}</div>
@@ -2250,7 +2252,7 @@ function renderObStep(filter,keepFocus){
     const sug=opts.filter(o=>sm_ob.draft.genres.includes(DJ_GENRE[o.toLowerCase()]));
     const rest=opts.filter(o=>!sm_ob.draft.genres.includes(DJ_GENRE[o.toLowerCase()]));
     sm_obList=[...sug,...rest];
-    const chip=(o,i)=>`<span class="sm-chip ${sel.includes(o)?'on':''}" data-ob="${i}">${esc(o)}${DJ_GENRE[o.toLowerCase()]?` <span class="gx">· ${esc(DJ_GENRE[o.toLowerCase()])}</span>`:''}</span>`;
+    const chip=(o,i)=>`<span role="button" tabindex="0" class="sm-chip ${sel.includes(o)?'on':''}" data-ob="${i}">${esc(o)}${DJ_GENRE[o.toLowerCase()]?` <span class="gx">· ${esc(DJ_GENRE[o.toLowerCase()])}</span>`:''}</span>`;
     inner=(sug.length?`<div class="sm-grouplbl">Suggested by your styles</div><div class="sm-chips">${sug.map((o,i)=>chip(o,i)).join('')}</div>`:'')
       +`<div class="sm-grouplbl">${sug.length?'All DJs':''}</div><div class="sm-chips">${rest.map((o,i)=>chip(o,sug.length+i)).join('')||'<span style="color:var(--text-mute)">No matches</span>'}</div>`;
   } else {
@@ -2262,7 +2264,7 @@ function renderObStep(filter,keepFocus){
       label='<div class="sm-grouplbl">Most events</div>';
     }
     sm_obList=opts;
-    inner=label+`<div class="sm-chips">${opts.map((o,i)=>`<span class="sm-chip ${sel.includes(o)?'on':''}" data-ob="${i}">${esc(o)}</span>`).join('')||'<span style="color:var(--text-mute)">No matches</span>'}</div>`;
+    inner=label+`<div class="sm-chips">${opts.map((o,i)=>`<span role="button" tabindex="0" class="sm-chip ${sel.includes(o)?'on':''}" data-ob="${i}">${esc(o)}</span>`).join('')||'<span style="color:var(--text-mute)">No matches</span>'}</div>`;
   }
   const last=sm_ob.step===OB_STEPS.length-1;
   document.getElementById('sm-sheet').innerHTML=`<div class="sm-grip"></div>
@@ -2292,12 +2294,12 @@ function renderPicker(filter,keepFocus){
     const sug=opts.filter(o=>prefs.genres.includes(DJ_GENRE[o.toLowerCase()]));
     const rest=opts.filter(o=>!prefs.genres.includes(DJ_GENRE[o.toLowerCase()]));
     sm_pkList=[...sug,...rest];
-    const chip=(o,i)=>`<span class="sm-chip ${sm_pkDraft.includes(o)?'on':''}" data-pk="${i}">${esc(o)}${DJ_GENRE[o.toLowerCase()]?` <span class="gx">· ${esc(DJ_GENRE[o.toLowerCase()])}</span>`:''}</span>`;
+    const chip=(o,i)=>`<span role="button" tabindex="0" class="sm-chip ${sm_pkDraft.includes(o)?'on':''}" data-pk="${i}">${esc(o)}${DJ_GENRE[o.toLowerCase()]?` <span class="gx">· ${esc(DJ_GENRE[o.toLowerCase()])}</span>`:''}</span>`;
     inner=(sug.length?`<div class="sm-grouplbl">Suggested by your styles</div><div class="sm-chips">${sug.map((o,i)=>chip(o,i)).join('')}</div>`:'')
       +`<div class="sm-grouplbl">${sug.length?'All DJs':''}</div><div class="sm-chips">${rest.map((o,i)=>chip(o,sug.length+i)).join('')||'<span style="color:var(--text-mute)">No matches</span>'}</div>`;
   } else {
     const list=kind==='cities'?ALL_CITIES:PREF_GENRES; const opts=list.filter(o=>o.toLowerCase().includes(f)); sm_pkList=opts;
-    inner=`<div class="sm-chips">${opts.map((o,i)=>`<span class="sm-chip ${sm_pkDraft.includes(o)?'on':''}" data-pk="${i}">${esc(o)}</span>`).join('')||'<span style="color:var(--text-mute)">No matches</span>'}</div>`;
+    inner=`<div class="sm-chips">${opts.map((o,i)=>`<span role="button" tabindex="0" class="sm-chip ${sm_pkDraft.includes(o)?'on':''}" data-pk="${i}">${esc(o)}</span>`).join('')||'<span style="color:var(--text-mute)">No matches</span>'}</div>`;
   }
   document.getElementById('sm-sheet').innerHTML=`<div class="sm-grip"></div>
     <div class="sm-top"><button class="sm-skip" onclick="openPrefsEditor()">‹ Back</button><span></span></div>
@@ -2312,7 +2314,7 @@ function savePicker(){ prefs[sm_pkKind]=sm_pkDraft.slice(); savePrefs(); renderP
 // ── prefs editor (opened from Account) ──────────────────────────────────────
 function openPrefsEditor(){ smMode='editor'; renderEditor(); openSheet(); }
 function renderEditor(){
-  const chips=(arr,kind)=> arr.length? `<div class="sm-chips">${arr.map((v,i)=>`<span class="sm-chip on" data-rmk="${kind}" data-rmi="${i}">${esc(v)} <span class="x">✕</span></span>`).join('')}</div>` : `<span style="color:var(--text-mute);font-size:12.5px">None yet — tap Edit.</span>`;
+  const chips=(arr,kind)=> arr.length? `<div class="sm-chips">${arr.map((v,i)=>`<span role="button" tabindex="0" class="sm-chip on" data-rmk="${kind}" data-rmi="${i}">${esc(v)} <span class="x">✕</span></span>`).join('')}</div>` : `<span style="color:var(--text-mute);font-size:12.5px">None yet — tap Edit.</span>`;
   const sec=(t,kind)=>`<div style="display:flex;justify-content:space-between;align-items:center;margin:18px 0 9px"><b style="font-size:13px">${t}</b><button class="sm-skip" style="color:var(--accent)" onclick="openPicker('${kind}')">Edit</button></div>${chips(prefs[kind],kind)}`;
   document.getElementById('sm-sheet').innerHTML=`<div class="sm-grip"></div>
     <h2>Personalization</h2><p class="sm-lead">Your cities, styles and DJs sync to your account.</p>
@@ -2336,6 +2338,15 @@ document.getElementById('sm-mask').addEventListener('click',function(e){ if(e.ta
 // Local-testing helper: open onboarding from a URL flag (?onboard=1) when there is
 // no logged-in session to trigger it. Harmless in production (only fires with the flag).
 if(/[?&](onboard|demo)=1/.test(location.search)) setTimeout(()=>{ if(typeof ALL_CITIES!=='undefined' && ALL_CITIES.length) startOnboarding(); else setTimeout(startOnboarding,1200); },600);
+
+// a11y: let keyboard users activate role="button" cards/rows/chips with Enter/Space
+// (Tab focuses them; the focus ring is the :focus-visible rule above).
+document.addEventListener('keydown', function(e){
+  if((e.key==='Enter' || e.key===' ') && e.target && e.target.getAttribute && e.target.getAttribute('role')==='button'){
+    e.preventDefault();
+    e.target.click();
+  }
+});
 
 // PWA: register the service worker (installable + offline shell). Best-effort.
 if('serviceWorker' in navigator){ window.addEventListener('load',()=>{ navigator.serviceWorker.register('/sw.js').catch(()=>{}); }); }

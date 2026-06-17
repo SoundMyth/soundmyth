@@ -1,0 +1,16 @@
+{
+  "name": "Sound Myth — EDM events worldwide",
+  "short_name": "Sound Myth",
+  "description": "Every DJ show, festival and club night in one place. Personalize by your cities, DJs and styles.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#0d0d11",
+  "theme_color": "#0d0d11",
+  "categories": ["music", "events", "entertainment"],
+  "icons": [
+    { "src": "/favicon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" },
+    { "src": "/favicon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "maskable" }
+  ]
+}

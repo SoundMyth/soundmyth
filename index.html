@@ -2,8 +2,25 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
-<title>Sound Myth</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
+<title>Sound Myth — EDM events worldwide</title>
+<meta name="description" content="Every DJ show, festival and club night in one place. Personalize your feed by your cities, favourite DJs and styles."/>
+<meta name="theme-color" content="#0d0d11"/>
+<link rel="canonical" href="https://soundmyth.vercel.app/"/>
+<link rel="icon" type="image/svg+xml" href="/favicon.svg"/>
+<link rel="apple-touch-icon" href="/favicon.svg"/>
+<link rel="manifest" href="/manifest.webmanifest"/>
+<!-- Open Graph / Twitter -->
+<meta property="og:type" content="website"/>
+<meta property="og:site_name" content="Sound Myth"/>
+<meta property="og:title" content="Sound Myth — EDM events worldwide"/>
+<meta property="og:description" content="Every DJ show, festival and club night in one place. Personalize by your cities, DJs and styles."/>
+<meta property="og:url" content="https://soundmyth.vercel.app/"/>
+<meta property="og:image" content="https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?w=1200&h=630&fit=crop"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:title" content="Sound Myth — EDM events worldwide"/>
+<meta name="twitter:description" content="Every DJ show, festival and club night in one place."/>
+<meta name="twitter:image" content="https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?w=1200&h=630&fit=crop"/>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -593,7 +610,7 @@ button:focus{outline:none;}
     </div>
     <div class="detail-actions" style="margin:6px 0 26px;">
       <a id="det-ticket" href="#" target="_blank" class="ticket-btn">Get tickets →</a>
-      <button id="det-save" class="save-btn-det" onclick="toggleDetailSave()">♡</button>
+      <button aria-label="Save event" id="det-save" class="save-btn-det" onclick="toggleDetailSave()">♡</button>
     </div>
     <div class="lineup-label">Line-up</div>
     <div id="det-lineup"></div>
@@ -941,7 +958,7 @@ function renderFestivals(){
     return`<div class="ev-card-h" onclick='openDetail(${JSON.stringify(ev.id)})'>
       <img src="${img}" alt="" onerror="this.src='${COUNTRY_IMG_FALLBACK}'"/>
       <div class="ev-card-h-grad"></div>
-      <button class="ev-card-h-save${isSaved?' saved':''}" onclick='event.stopPropagation();toggleSave(${JSON.stringify(ev.id)})'>${isSaved?'♥':'♡'}</button>
+      <button aria-label="Save event" class="ev-card-h-save${isSaved?' saved':''}" onclick='event.stopPropagation();toggleSave(${JSON.stringify(ev.id)})'>${isSaved?'♥':'♡'}</button>
       <div class="ev-card-h-body">
         <div class="ev-card-h-genre">${FLAGS[ev.country]||''} ${esc(ev.city)}</div>
         <div class="ev-card-h-name">${esc(ev.name)}</div>
@@ -964,7 +981,7 @@ function renderClubs(){
     return`<div class="ev-card-h" onclick='openDetail(${JSON.stringify(ev.id)})'>
       <img src="${img}" alt="" onerror="this.src='${COUNTRY_IMG_FALLBACK}'"/>
       <div class="ev-card-h-grad"></div>
-      <button class="ev-card-h-save${isSaved?' saved':''}" onclick='event.stopPropagation();toggleSave(${JSON.stringify(ev.id)})'>${isSaved?'♥':'♡'}</button>
+      <button aria-label="Save event" class="ev-card-h-save${isSaved?' saved':''}" onclick='event.stopPropagation();toggleSave(${JSON.stringify(ev.id)})'>${isSaved?'♥':'♡'}</button>
       <div class="ev-card-h-body">
         <div class="ev-card-h-genre">${FLAGS[ev.country]||''} ${esc(ev.city)}</div>
         <div class="ev-card-h-name">${esc(ev.venue||ev.name)}</div>
@@ -1006,7 +1023,7 @@ function renderFeatured(){
     return`<div class="ev-card-h" onclick='openDetail(${JSON.stringify(ev.id)})'>
       <img src="${bestImg(ev)}" alt="" onerror="this.src='${COUNTRY_IMG_FALLBACK}'"/>
       <div class="ev-card-h-grad"></div>
-      <button class="ev-card-h-save${isSaved?' saved':''}" onclick='event.stopPropagation();toggleSave(${JSON.stringify(ev.id)})'>${isSaved?'♥':'♡'}</button>
+      <button aria-label="Save event" class="ev-card-h-save${isSaved?' saved':''}" onclick='event.stopPropagation();toggleSave(${JSON.stringify(ev.id)})'>${isSaved?'♥':'♡'}</button>
       <div class="ev-card-h-body">
         <div class="ev-card-h-genre">${esc(ev.genre||'Electronic')} · ${FLAGS[ev.country]||'🌍'} ${esc(ev.city||'')}</div>
         <div class="ev-card-h-name">${esc(ev.name)}</div>
@@ -1375,7 +1392,7 @@ async function loadEvents(){
   let lastErr=null;
   async function fetchPage(from){
     for(let attempt=0;attempt<3;attempt++){
-      const{data,error}=await sbPublic.from('events').select('*').gte('date',fetchFrom).order('date').range(from,from+999);
+      const{data,error}=await sbPublic.from('events').select('id,name,venue,city,country,date,djs,genre,tags,price,ticket_url,img_url,source').gte('date',fetchFrom).order('date').range(from,from+999);
       if(!error) return data||[];
       lastErr=error;
       if(attempt<2) await new Promise(r=>setTimeout(r,500*(attempt+1)));
@@ -1753,7 +1770,7 @@ function eventRowHTML(ev){
     </div>
     <div class="ev-right">
       <div><div class="ev-genre">${esc(ev.genre)}</div></div>
-      <button class="ev-save${isSaved?' saved':''}" onclick='event.stopPropagation();${isPast?'':'toggleSave('+JSON.stringify(ev.id)+')'}'>${isSaved?'♥':'♡'}</button>
+      <button aria-label="Save event" class="ev-save${isSaved?' saved':''}" onclick='event.stopPropagation();${isPast?'':'toggleSave('+JSON.stringify(ev.id)+')'}'>${isSaved?'♥':'♡'}</button>
     </div>
   </div>`;
 }
@@ -2170,7 +2187,7 @@ function pCard(ev){
     <img src="${img}" alt="" onerror="this.src='${COUNTRY_IMG_FALLBACK}'"/>
     <div class="ev-card-h-grad"></div>
     ${r?`<div class="match-chip">★ ${esc(r)}</div>`:''}
-    <button class="ev-card-h-save${isSaved?' saved':''}" onclick='event.stopPropagation();toggleSave(${JSON.stringify(ev.id)})'>${isSaved?'♥':'♡'}</button>
+    <button aria-label="Save event" class="ev-card-h-save${isSaved?' saved':''}" onclick='event.stopPropagation();toggleSave(${JSON.stringify(ev.id)})'>${isSaved?'♥':'♡'}</button>
     <div class="ev-card-h-body">
       <div class="ev-card-h-genre">${esc(eventGenre(ev))}</div>
       <div class="ev-card-h-name">${esc(ev.name)}</div>
@@ -2319,6 +2336,9 @@ document.getElementById('sm-mask').addEventListener('click',function(e){ if(e.ta
 // Local-testing helper: open onboarding from a URL flag (?onboard=1) when there is
 // no logged-in session to trigger it. Harmless in production (only fires with the flag).
 if(/[?&](onboard|demo)=1/.test(location.search)) setTimeout(()=>{ if(typeof ALL_CITIES!=='undefined' && ALL_CITIES.length) startOnboarding(); else setTimeout(startOnboarding,1200); },600);
+
+// PWA: register the service worker (installable + offline shell). Best-effort.
+if('serviceWorker' in navigator){ window.addEventListener('load',()=>{ navigator.serviceWorker.register('/sw.js').catch(()=>{}); }); }
 
 </script>
 </body>

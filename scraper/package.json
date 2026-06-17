@@ -4,6 +4,7 @@
   "description": "Weekly scraper for SoundMyth events",
   "type": "module",
   "scripts": {
+    "test": "node --test",
     "scrape": "node scrape-all.js && node scrape-extended.js",
     "scrape:bit": "node scrape-all.js",
     "scrape:extended": "node scrape-extended.js",

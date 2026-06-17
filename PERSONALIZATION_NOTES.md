@@ -57,6 +57,23 @@ pick it up later.
 > (richer image coverage + automatic transliteration of non-Latin cities). Self-maintaining via the
 > weekly workflow + the on-demand "Clean DB" workflow.
 
+## Deep-review hardening pass (done)
+- [x] **Stored XSS** — `esc()` applied to all scraped text rendered into `innerHTML`; onclick
+      string args hardened with `esc(JSON.stringify(...))`.
+- [x] **RLS** — `scraper/sql/harden-rls.sql` (run in Supabase): `events` read-only for anon,
+      `saved_events`/`profiles` per-user; writes only via service key. Verified live.
+- [x] **Perf** — `loadEvents` selects only mapped columns (no `select('*')`).
+- [x] **Tests** — `scraper/test/*` (`npm test` → `node --test`), incl. a test that fails if the
+      `CITY_ALIAS_RAW` map drifts between `index.html` and `scraper/normalize.js` (covers the
+      duplication risk without a shared-module refactor).
+- [x] **SEO/social** — meta description, Open Graph + Twitter cards, canonical, theme-color,
+      `favicon.svg`, `robots.txt`, `sitemap.xml`.
+- [x] **PWA** — `manifest.webmanifest` + `sw.js` (network-first shell, cache-first static, offline).
+- [x] **A11y** — viewport allows pinch-zoom again; `aria-label`s on icon-only save buttons.
+- [ ] Remaining a11y refinement (larger, optional): make clickable card/row **divs** real
+      keyboard-focusable buttons (`role`/`tabindex`/Enter). Not done — needs a broader markup pass.
+- [ ] Optional: real PNG app icons (192/512) for best iOS/Android install fidelity (SVG used now).
+
 > Diagnostic tool: `scraper/analyze-quality.mjs` (read-only) quantifies these issues and
 > simulates the fixes against live data. Re-run any time to re-measure.
 

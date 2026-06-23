@@ -2,23 +2,30 @@ import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { canonCity, cleanVenue, looksLikeBareArtist, djNorm, pickCanon, buildDjCanon } from '../normalize.js';
 
-test('canonCity: explicit aliases win', () => {
+test('canonCity: explicit aliases & exonyms win', () => {
   assert.equal(canonCity('Eivissa'), 'Ibiza');
   assert.equal(canonCity('Sant Jordi De Ses Salines'), 'Ibiza');
   assert.equal(canonCity('София'), 'Sofia');
   assert.equal(canonCity('İstanbul'), 'Istanbul');
   assert.equal(canonCity('福岡市'), 'Fukuoka');
+  assert.equal(canonCity('München'), 'Munich');
+  assert.equal(canonCity('Köln'), 'Cologne');
+  assert.equal(canonCity('Lisboa'), 'Lisbon');
+  assert.equal(canonCity('Milano'), 'Milan');
 });
 
-test('canonCity: transliterates unmapped non-Latin, keeps Latin-1 accents', () => {
-  assert.equal(canonCity('Αθήνα'), 'Athina');        // Greek, not aliased
-  assert.equal(canonCity('Чебоксары'), 'Cheboksary'); // new Cyrillic city
-  assert.equal(canonCity('Zürich'), 'Zürich');         // Latin-1 accent kept
-  assert.equal(canonCity('Málaga'), 'Málaga');
+test('canonCity: folds accents/scripts to ASCII so variants merge', () => {
+  assert.equal(canonCity('Málaga'), 'Malaga');
+  assert.equal(canonCity('Malaga'), 'Malaga');
+  assert.equal(canonCity('Montréal'), 'Montreal');
+  assert.equal(canonCity('Zürich'), 'Zurich');
+  assert.equal(canonCity('São Paulo'), 'Sao Paulo');
+  assert.equal(canonCity('Bogotá'), 'Bogota');
+  assert.equal(canonCity('Αθήνα'), 'Athina');   // Greek, unmapped → romanized
   assert.equal(canonCity('Madrid'), 'Madrid');
 });
 
-test('canonCity: trims & collapses whitespace', () => {
+test('canonCity: trims & handles empty', () => {
   assert.equal(canonCity('  Madrid  '), 'Madrid');
   assert.equal(canonCity('New   York'), 'New York');
   assert.equal(canonCity(''), '');
@@ -29,7 +36,7 @@ test('cleanVenue: drops a venue that just repeats the title', () => {
   assert.equal(cleanVenue('Tomorrowland and DVLM', 'Tomorrowland and DVLM'), '');
   assert.equal(cleanVenue('Hï Ibiza', 'Anyma'), 'Hï Ibiza');
   assert.equal(cleanVenue('', 'Anyma'), '');
-  assert.equal(cleanVenue('  Pacha  ', 'Pacha'), '');  // trimmed-equal
+  assert.equal(cleanVenue('  Pacha  ', 'Pacha'), '');
 });
 
 test('looksLikeBareArtist: single act + no real venue', () => {

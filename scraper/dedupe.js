@@ -330,6 +330,34 @@ async function main() {
   }
   console.log(`  Consecutive-day merges: ${consecMerged}`);
 
+  // ── Pass 5: same primary DJ + same city + same day (cross-source dups) ──
+  // Merges groups so the keeper-selection below picks the best source (ra>sk>bit).
+  console.log('\n  Pass 5: same DJ + city + day...');
+  let djDayMerged = 0;
+  const byDjDay = new Map();
+  for (const [key, evs] of groups) {
+    for (const ev of evs) {
+      if ((ev.tags || []).includes('festival')) continue;
+      if (!ev.djs || !ev.djs.length) continue;
+      const dc = `${ev.date}|${normCity(ev.city)}|${norm(ev.djs[0])}`;
+      if (!byDjDay.has(dc)) byDjDay.set(dc, []);
+      byDjDay.get(dc).push(key);
+    }
+  }
+  for (const [dc, keysArr] of byDjDay) {
+    const uniqueKeys = [...new Set(keysArr)].filter(k => groups.has(k));
+    if (uniqueKeys.length < 2) continue;
+    const targetKey = uniqueKeys[0];
+    for (let m = 1; m < uniqueKeys.length; m++) {
+      const srcKey = uniqueKeys[m];
+      if (srcKey === targetKey || !groups.has(srcKey)) continue;
+      groups.get(targetKey).push(...groups.get(srcKey));
+      groups.delete(srcKey);
+      djDayMerged++;
+    }
+  }
+  console.log(`  DJ-day merges: ${djDayMerged}`);
+
   const dupeGroups = [...groups.values()].filter(g => g.length > 1);
   console.log(`  Groups with duplicates: ${dupeGroups.length}`);
 

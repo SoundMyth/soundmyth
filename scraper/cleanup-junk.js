@@ -39,7 +39,7 @@ function isJunk(e) {
 let rows = [], from = 0;
 while (true) {
   const { data, error } = await sb.from('events')
-    .select('id,name,venue,djs,tags,city,date').gte('date', TODAY).order('date').range(from, from + 999);
+    .select('id,name,venue,djs,tags,city,date,img_url').gte('date', TODAY).order('date').range(from, from + 999);
   if (error) { console.error(error.message); process.exit(1); }
   rows = rows.concat(data); if (data.length < 1000) break; from += 1000;
 }
@@ -88,4 +88,18 @@ for (const e of live) {
   }
 }
 console.log(`✓ Canonicalized DJ names on ${djFixed} rows.`);
+
+// Fill missing images by reusing a real photo the same artist has on another event.
+const djImg = {};
+for (const e of live) { if (!e.img_url) continue; for (const d of (e.djs || [])) { const k = djNorm(d); if (k && !djImg[k]) djImg[k] = e.img_url; } }
+let imgFixed = 0;
+for (const e of live) {
+  if (e.img_url) continue;
+  let img = null;
+  for (const d of (e.djs || [])) { const c = djImg[djNorm(d)]; if (c) { img = c; break; } }
+  if (!img) continue;
+  const { error } = await sb.from('events').update({ img_url: img }).eq('id', e.id);
+  if (error) console.error(`  ❌ img ${e.id}:`, error.message); else imgFixed++;
+}
+console.log(`✓ Filled images (artist-photo reuse) on ${imgFixed} rows.`);
 process.exit(0);

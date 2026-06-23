@@ -598,7 +598,7 @@ button:focus{outline:none;}
   <div class="detail-hero">
     <img id="det-img" src="" alt="" onerror="this.onerror=null;this.src=COUNTRY_IMG_HERO_FALLBACK"/>
     <div class="detail-overlay"></div>
-    <button class="detail-back" onclick="closeDetail()">← Back</button>
+    <button class="detail-back" onclick="history.back()">← Back</button>
     <div class="detail-info">
       <div class="detail-genre" id="det-genre"></div>
       <div class="detail-name" id="det-name"></div>
@@ -769,6 +769,7 @@ function buildDjImg(events){ const m={}; for(const e of events){ if(!e.img) cont
 // recognizable name (Eivissa→Ibiza, София→Sofia, İstanbul→Istanbul, airports→city…).
 // Keys written in their natural form; normalized to lowercase at init to match canonCity().
 const CITY_ALIAS_RAW={
+  'München':'Munich','Köln':'Cologne','Wien':'Vienna','Lisboa':'Lisbon','Milano':'Milan','Roma':'Rome','Firenze':'Florence','Napoli':'Naples','Torino':'Turin','Venezia':'Venice','Genève':'Geneva','Praha':'Prague','Warszawa':'Warsaw','Moskva':'Moscow','Sevilla':'Seville','Antwerpen':'Antwerp','Gent':'Ghent','Bruxelles':'Brussels','Den Haag':'The Hague','København':'Copenhagen','Göteborg':'Gothenburg',
   'Eivissa':'Ibiza','Sant Jordi De Ses Salines':'Ibiza','Sant Josep de sa Talaia':'Ibiza',
   'Sant Antoni de Portmany':'Ibiza','Santa Eulària des Riu':'Ibiza',
   'София':'Sofia','İstanbul':'Istanbul','Beşiktaş':'Istanbul','Beyoğlu':'Istanbul',
@@ -791,7 +792,7 @@ const CITY_ALIAS_RAW={
   'BELVOIR CASTLE Leicestershire':'Leicestershire'
 };
 const CITY_ALIAS={}; for(const k in CITY_ALIAS_RAW){ CITY_ALIAS[k.replace(/\s+/g,' ').trim().toLowerCase()]=CITY_ALIAS_RAW[k]; }
-function canonCity(c){ const t=(c||'').replace(/\s+/g,' ').trim(); return CITY_ALIAS[t.toLowerCase()]||t; }
+function canonCity(c){ const t=(c||'').replace(/\s+/g,' ').trim(); if(!t) return t; const a=CITY_ALIAS[t.toLowerCase()]; if(a) return a; return t.normalize('NFD').replace(/[̀-ͯ]/g,''); }
 function djNorm(s){ return (s||'').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'').trim(); }
 function canonDJ(name){ return DJ_CANON[djNorm(name)]||name; }
 function pickCanon(variants){
@@ -859,6 +860,12 @@ function dedupeEvents(list){
       if(host){ mergeInto(host,e); remove.add(e); }
     }
   }
+  // 3) collapse cross-source dups: same primary DJ + same city + same day → keep best source
+  //    (a DJ playing the same city twice the same day is almost always a feed duplicate).
+  const SRC_RANK={ra:0,songkick:1,bandsintown:2,direct:3,website:4};
+  const byDDC={};
+  out.forEach(e=>{ if(remove.has(e)||(e.tags&&e.tags.includes('festival'))||!e.djs||!e.djs.length) return; const k=`${e.date}|${djNorm(e.city)}|${djNorm(e.djs[0])}`; (byDDC[k]=byDDC[k]||[]).push(e); });
+  for(const k in byDDC){ const evs=byDDC[k]; if(evs.length<2) continue; evs.sort((a,b)=>(SRC_RANK[a.source]??9)-(SRC_RANK[b.source]??9)); const keep=evs[0]; for(let i=1;i<evs.length;i++){ mergeInto(keep,evs[i]); remove.add(evs[i]); } }
   return out.filter(e=>!remove.has(e));
 }
 // real festival vs a mistagged artist club-night (Bandsintown often tags "X and DJ"
@@ -1788,6 +1795,9 @@ async function toggleSave(id){
   }
   renderSaved();
   renderFeatured();
+  renderPersonalHome();                       // update hearts on the personalized home cards
+  const stab=document.getElementById('tab-search');
+  if(stab&&stab.classList.contains('active')) renderGlobalSearch();
   if(currentStep===2){
     if(selDJ) selectDJ(selDJ); else if(selMonth!=null) selectMonth(selMonth);
   }
@@ -1834,12 +1844,19 @@ function openDetail(id){
   saveBtn.style.flex=hasTicket?'':'1';
   document.getElementById('detail').className='open';
   document.body.style.overflow='hidden';
+  // push a history entry so the browser Back / edge-swipe CLOSES the detail
+  // (returns to the list) instead of leaving the site.
+  try{ history.pushState({smDetail:1},''); }catch(e){}
 }
 function closeDetail(){
   document.getElementById('detail').className='';
   document.body.style.overflow='';
   detailEv=null;
 }
+// Back / edge-swipe while the detail is open → close it (consume the history pop).
+window.addEventListener('popstate', function(){
+  if(document.getElementById('detail').className==='open') closeDetail();
+});
 
 // ── SWIPE RIGHT TO GO BACK (works on any screen) ─────────────────────────────
 (function(){
@@ -1853,9 +1870,9 @@ function closeDetail(){
     const dy=Math.abs(e.changedTouches[0].clientY-ty);
     if(dx<80||dy>60) return; // Not a horizontal swipe
 
-    // Priority 1: Close detail overlay
+    // Priority 1: Close detail overlay (via history so it matches the Back button)
     if(document.getElementById('detail').className==='open'){
-      closeDetail(); return;
+      history.back(); return;
     }
     // Priority 2: Navigate back in plan steps
     const planTab=document.getElementById('tab-plan');

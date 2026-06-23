@@ -82,6 +82,14 @@ jobs:
           SUPABASE_SERVICE_KEY: ${{ secrets.SUPABASE_SERVICE_KEY }}
         run: node scrape-clubs-ra.js
 
+      - name: Scrape Resident Advisor (by area)
+        continue-on-error: true
+        timeout-minutes: 15
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_SERVICE_KEY: ${{ secrets.SUPABASE_SERVICE_KEY }}
+        run: node scrape-ra-area.js
+
       - name: Deduplicate events
         timeout-minutes: 5
         env:

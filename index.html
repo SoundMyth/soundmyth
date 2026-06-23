@@ -205,6 +205,26 @@ img{display:block;}
 .lineup-row{display:flex;align-items:center;gap:13px;padding:11px 0;border-bottom:1px solid var(--border);}
 .lineup-ico{width:38px;height:38px;border-radius:50%;background:var(--surface-2);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:15px;flex-shrink:0;}
 .lineup-name{color:var(--text);font-size:15px;font-weight:600;}
+.lineup-row[role=button]{cursor:pointer;}
+.lineup-row[role=button]:active{opacity:.7;}
+.lineup-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:8px;}
+/* ── DJ PROFILE OVERLAY ── */
+#dj-detail{position:fixed;inset:0;z-index:210;background:var(--bg);overflow-y:auto;display:none;max-width:430px;margin:0 auto;}
+#dj-detail.open{display:block;animation:fadeup .22s ease;}
+.djd-hero{position:relative;height:40vh;min-height:250px;background:#15131a;}
+.djd-hero img{width:100%;height:100%;object-fit:cover;object-position:top;filter:brightness(.6);}
+.djd-grad{position:absolute;inset:0;background:linear-gradient(180deg,rgba(13,13,17,.2),rgba(13,13,17,.5) 55%,var(--bg) 100%);}
+.djd-info{position:absolute;bottom:20px;left:22px;right:22px;}
+.djd-eyebrow{color:var(--accent);font-size:12.5px;font-weight:700;margin-bottom:6px;}
+.djd-name{color:#fff;font-size:30px;font-weight:800;letter-spacing:-.7px;line-height:1.04;}
+.djd-body{padding:20px 20px 110px;}
+.djd-stats{display:flex;gap:10px;margin-bottom:16px;}
+.djd-stat{flex:1;background:var(--surface);border:1px solid var(--border);border-radius:var(--r-lg);padding:13px 6px;text-align:center;}
+.djd-stat .n{font-size:21px;font-weight:800;letter-spacing:-.5px;}
+.djd-stat .l{color:var(--text-mute);font-size:10.5px;font-weight:700;margin-top:3px;letter-spacing:.3px;}
+.djd-follow{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;border-radius:var(--r-pill);padding:14px;font-size:14px;font-weight:700;cursor:pointer;font-family:inherit;background:var(--surface-2);color:var(--text);border:1px solid var(--border-strong);transition:.15s;}
+.djd-follow.on{background:var(--accent);color:var(--accent-ink);border-color:var(--accent);}
+.djd-follow:focus-visible{outline:2px solid var(--accent);outline-offset:2px;}
 .tags{display:flex;gap:8px;flex-wrap:wrap;margin-top:18px;margin-bottom:26px;}
 .tag{background:var(--surface-2);border:1px solid var(--border);border-radius:var(--r-pill);padding:6px 13px;font-size:12px;color:var(--text-dim);font-weight:500;letter-spacing:0;}
 .detail-actions{display:flex;gap:11px;}
@@ -621,6 +641,25 @@ button:focus{outline:none;}
   </div>
 </div>
 
+<!-- DJ PROFILE -->
+<div id="dj-detail">
+  <div class="djd-hero">
+    <img id="djd-img" src="" alt="" onerror="this.style.display='none'"/>
+    <div class="djd-grad"></div>
+    <button class="detail-back" onclick="history.back()">← Back</button>
+    <div class="djd-info">
+      <div class="djd-eyebrow" id="djd-eyebrow"></div>
+      <div class="djd-name" id="djd-name"></div>
+    </div>
+  </div>
+  <div class="djd-body">
+    <div class="djd-stats" id="djd-stats"></div>
+    <button class="djd-follow" id="djd-follow" aria-label="Follow DJ"></button>
+    <div class="lineup-label" style="margin:20px 0 4px;">Upcoming events</div>
+    <div id="djd-events"></div>
+  </div>
+</div>
+
 <!-- ONBOARDING / PREFS SHEET -->
 <div id="sm-mask"><div id="sm-sheet"></div></div>
 
@@ -944,10 +983,7 @@ async function renderSpotlight(){
       <div class="dj-name">${esc(winner.name)}</div>
       <div class="dj-sub">${esc(genre)} · ${winner.count} upcoming event${winner.count!==1?'s':''}</div>
     </div>`;
-  card.onclick=()=>{
-    switchTab('plan',document.querySelectorAll('.nav-btn')[1]);
-    setTimeout(()=>{setMode('dj');selectDJ(winner.name);},100);
-  };
+  card.onclick=()=>openDJ(winner.name);
 }
 
 function renderFestivals(){
@@ -1633,7 +1669,7 @@ function renderDJs(){
     const extra=countries.length>4?` +${countries.length-4}`:' ';
     const natFlag=DJ_NATIONALITY[dj]||'🎛';
     const rank=!q?(DJ_MAG_ORDER.indexOf(dj)+1):null;
-    return`<button class="city-btn" onclick='selectDJ(${esc(JSON.stringify(dj))})'>
+    return`<button class="city-btn" onclick='openDJ(${esc(JSON.stringify(dj))})'>
       <span style="font-size:20px">${natFlag}</span>
       <div style="flex:1;text-align:left">
         <div class="city-name">${rank?`<span style="color:var(--accent);font-size:11px;font-weight:700;margin-right:6px;">#${rank}</span>`:''}${esc(dj)}</div>
@@ -1823,7 +1859,7 @@ function openDetail(id){
   document.getElementById('det-date').textContent=`${day} ${mon}`;
   document.getElementById('det-days').textContent=days>0?`${days}d`:days===0?'Today':'Past';
   document.getElementById('det-lineup').innerHTML=ev.djs.length
-    ? ev.djs.map(dj=>`<div class="lineup-row"><div class="lineup-ico">${djFlag(dj)}</div><span class="lineup-name">${esc(dj)}</span></div>`).join('')
+    ? ev.djs.map(dj=>{const ph=DJ_IMG[djNorm(dj)];return `<div class="lineup-row" role="button" tabindex="0" onclick='openDJ(${esc(JSON.stringify(dj))})'><div class="lineup-ico">${ph?`<img src="${ph}" alt="" style="width:100%;height:100%;object-fit:cover;border-radius:50%">`:djFlag(dj)}</div><span class="lineup-name">${esc(dj)}</span><span style="margin-left:auto;color:var(--text-mute)">›</span></div>`;}).join('')
     : `<div style="color:var(--text-mute);font-size:13px;padding:14px 0;">Line-up TBA</div>`;
   document.getElementById('det-tags').innerHTML=ev.tags.map(t=>`<span class="tag">${esc(t)}</span>`).join('');
   // Source badge
@@ -1853,10 +1889,47 @@ function closeDetail(){
   document.body.style.overflow='';
   detailEv=null;
 }
-// Back / edge-swipe while the detail is open → close it (consume the history pop).
+// Back / edge-swipe closes the top overlay (DJ profile, then event detail) instead of leaving.
 window.addEventListener('popstate', function(){
-  if(document.getElementById('detail').className==='open') closeDetail();
+  if(document.getElementById('dj-detail').className==='open'){ closeDJ(); return; }
+  if(document.getElementById('detail').className==='open'){ closeDetail(); return; }
 });
+
+// ── DJ PROFILE OVERLAY ──────────────────────────────────────────────────────
+let djDetailName=null;
+function renderDJ(name){
+  djDetailName=name;
+  const key=djNorm(name), today=new Date().toISOString().split('T')[0];
+  const evs=EVENTS.filter(e=>e.date>=today && (e.djs||[]).some(d=>djNorm(d)===key)).sort((a,b)=>new Date(a.date)-new Date(b.date));
+  const genre=DJ_GENRE[name.toLowerCase()]||(evs[0]?eventGenre(evs[0]):'Electronic');
+  const countries=[...new Set(evs.map(e=>e.country).filter(Boolean))];
+  document.getElementById('djd-eyebrow').textContent=`${djFlag(name)} ${genre}`;
+  document.getElementById('djd-name').textContent=name;
+  document.getElementById('djd-stats').innerHTML=`<div class="djd-stat"><div class="n">${evs.length}</div><div class="l">UPCOMING</div></div><div class="djd-stat"><div class="n">${countries.length}</div><div class="l">COUNTR${countries.length===1?'Y':'IES'}</div></div>`;
+  const fb=document.getElementById('djd-follow'), isFav=prefs.djs.map(djNorm).includes(key);
+  fb.className='djd-follow'+(isFav?' on':''); fb.textContent=isFav?'★ Following':'☆ Follow this DJ'; fb.onclick=()=>toggleFollowDJ(name);
+  document.getElementById('djd-events').innerHTML=evs.length?evs.map(eventRowHTML).join(''):'<div style="color:var(--text-mute);font-size:13px;padding:14px 0;">No upcoming events listed.</div>';
+  const img=document.getElementById('djd-img'), reuse=DJ_IMG[key];
+  if(reuse){ img.src=reuse; img.style.display=''; } else { img.style.display='none'; img.removeAttribute('src'); }
+  fetchAudioDBImg(name).then(u=>{ if(u && djDetailName===name){ img.src=u; img.style.display=''; } }).catch(()=>{});
+}
+function openDJ(name){
+  if(!name) return;
+  renderDJ(name);
+  document.getElementById('dj-detail').className='open';
+  document.body.style.overflow='hidden';
+  try{ history.pushState({smDJ:1},''); }catch(e){}
+}
+function closeDJ(){
+  document.getElementById('dj-detail').className='';
+  if(document.getElementById('detail').className!=='open') document.body.style.overflow='';
+  djDetailName=null;
+}
+function toggleFollowDJ(name){
+  const key=djNorm(name), i=prefs.djs.findIndex(d=>djNorm(d)===key);
+  if(i>=0) prefs.djs.splice(i,1); else prefs.djs.push(name);
+  savePrefs(); renderDJ(name); renderPersonalHome();
+}
 
 // ── SWIPE RIGHT TO GO BACK (works on any screen) ─────────────────────────────
 (function(){

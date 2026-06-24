@@ -2301,8 +2301,19 @@ async function syncPrefs(){
 
 // ── personalized home ───────────────────────────────────────────────────────
 function secP(title,sub){ return `<div class="home-sec" style="padding-bottom:6px"><span class="home-sec-title">${esc(title)}</span>${sub?`<span class="home-sec-link" style="cursor:default;color:var(--text-mute);font-weight:600">${esc(sub)}</span>`:''}</div>`; }
+// Real multi-day festivals (consecutive-ish, ≤10-day span across its event rows) show a
+// range like "9–11 Jul"; residencies spread over months keep their single next date.
+function festDateRange(ev){
+  const key=(ev.name||'').toLowerCase();
+  const ds=[...new Set(EVENTS.filter(e=>(e.name||'').toLowerCase()===key && e.city===ev.city && e.tags&&e.tags.includes('festival')).map(e=>e.date))].sort();
+  if(ds.length<2) return null;
+  const span=(new Date(ds[ds.length-1])-new Date(ds[0]))/864e5;
+  if(span<1||span>10) return null;
+  const a=fmtDate(ds[0]), b=fmtDate(ds[ds.length-1]);
+  return a.mon===b.mon?`${a.day}–${b.day} ${a.mon}`:`${a.day} ${a.mon} – ${b.day} ${b.mon}`;
+}
 function pCard(ev){
-  const{day,mon}=fmtDate(ev.date), isSaved=saved.includes(ev.id), img=bestImg(ev), r=matchReasonP(ev), fest=ev.tags&&ev.tags.includes('festival');
+  const{day,mon}=fmtDate(ev.date), isSaved=saved.includes(ev.id), img=bestImg(ev), r=matchReasonP(ev), fest=ev.tags&&ev.tags.includes('festival'), dr=fest?festDateRange(ev):null;
   return `<div class="ev-card-h" role="button" tabindex="0" onclick='openDetail(${JSON.stringify(ev.id)})'>
     <img src="${img}" alt="" onerror="this.src='${COUNTRY_IMG_FALLBACK}'"/>
     <div class="ev-card-h-grad"></div>
@@ -2312,7 +2323,7 @@ function pCard(ev){
       <div class="ev-card-h-genre">${esc(eventGenre(ev))}</div>
       <div class="ev-card-h-name">${esc(ev.name)}</div>
       ${fest&&ev.djs.length?`<div class="fest-line">${esc(ev.djs.slice(0,2).join(', '))}${ev.djs.length>2?' +'+(ev.djs.length-2):''}</div>`:''}
-      <div class="ev-card-h-meta">${FLAGS[ev.country]||''} ${esc(ev.city)} · ${day} ${mon}</div>
+      <div class="ev-card-h-meta">${FLAGS[ev.country]||''} ${esc(ev.city)} · ${dr||`${day} ${mon}`}</div>
     </div></div>`;
 }
 function renderPersonalHome(){

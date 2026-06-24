@@ -1927,7 +1927,7 @@
   {
     "ranking": 176,
     "name": "Script",
-    "genre": "UNKNOWN",
+    "genre": "Bass",
     "subgenre": "UNKNOWN",
     "tags": "UNKNOWN",
     "tour_web": "https://hoo.be/script_av?fbclid=PAZXh0bgNhZW0CMTEAc3J0YwZhcHBfaWQMMjU2MjgxMDQwNTU4AAGnepu9E2bqdjqGSLR8hvJD5f-bmEzWax_F3xpk_G9dKduRUNoTpiMadA9wgYQ_aem_jkypdS2PqypxYcT5tbpfcA",
@@ -2070,7 +2070,7 @@
   {
     "ranking": 189,
     "name": "Hills",
-    "genre": "UNKNOWN",
+    "genre": "Tech House",
     "subgenre": "UNKNOWN",
     "tags": "UNKNOWN",
     "tour_web": "https://linktr.ee/ITSHILLSHOUSE?fbclid=PAZXh0bgNhZW0CMTEAc3J0YwZhcHBfaWQMMjU2MjgxMDQwNTU4AAGnuHxLTFbL6VccvyvRcuaC9eKEuUCyMYT9aU7vcslSIneCxq-VkbTMRXCbSbk_aem_NuGezWOOsw16OwRdHkx-Aw",
@@ -4556,7 +4556,7 @@
   {
     "ranking": 415,
     "name": "Bella Claxton",
-    "genre": "UNKNOWN",
+    "genre": "Hard Techno",
     "subgenre": "UNKNOWN",
     "tags": "UNKNOWN",
     "tour_web": "no tiene web propia",
@@ -4919,7 +4919,7 @@
   {
     "ranking": 450,
     "name": "Airrica",
-    "genre": "UNKNOWN",
+    "genre": "Bass",
     "subgenre": "UNKNOWN",
     "tags": "UNKNOWN",
     "tour_web": "",
@@ -4941,7 +4941,7 @@
   {
     "ranking": 452,
     "name": "Zoe Gitter",
-    "genre": "UNKNOWN",
+    "genre": "Tech House",
     "subgenre": "UNKNOWN",
     "tags": "UNKNOWN",
     "tour_web": "",
@@ -5436,7 +5436,7 @@
   {
     "ranking": 497,
     "name": "Yanamaste",
-    "genre": "UNKNOWN",
+    "genre": "Techno",
     "subgenre": "UNKNOWN",
     "tags": "UNKNOWN",
     "tour_web": "",
@@ -6492,7 +6492,7 @@
   {
     "ranking": 593,
     "name": "Danny Howard",
-    "genre": "Electronic",
+    "genre": "Deep House",
     "subgenre": "",
     "tags": "discovered",
     "tour_web": "",
@@ -6503,7 +6503,7 @@
   {
     "ranking": 594,
     "name": "Onlynumbers",
-    "genre": "Electronic",
+    "genre": "Hard Techno",
     "subgenre": "",
     "tags": "discovered",
     "tour_web": "",
@@ -6514,7 +6514,7 @@
   {
     "ranking": 595,
     "name": "Ben Sterling",
-    "genre": "Electronic",
+    "genre": "Tech House",
     "subgenre": "",
     "tags": "discovered",
     "tour_web": "",
@@ -6525,7 +6525,7 @@
   {
     "ranking": 596,
     "name": "KUKO",
-    "genre": "Electronic",
+    "genre": "Hard Techno",
     "subgenre": "",
     "tags": "discovered",
     "tour_web": "",
@@ -6536,7 +6536,7 @@
   {
     "ranking": 597,
     "name": "Restricted",
-    "genre": "Electronic",
+    "genre": "Hard Techno",
     "subgenre": "",
     "tags": "discovered",
     "tour_web": "",
@@ -6547,7 +6547,7 @@
   {
     "ranking": 598,
     "name": "Serafina",
-    "genre": "Electronic",
+    "genre": "Hard Techno",
     "subgenre": "",
     "tags": "discovered",
     "tour_web": "",
@@ -6558,7 +6558,7 @@
   {
     "ranking": 599,
     "name": "Max Dean",
-    "genre": "Electronic",
+    "genre": "Techno",
     "subgenre": "",
     "tags": "discovered",
     "tour_web": "",
@@ -6569,7 +6569,7 @@
   {
     "ranking": 600,
     "name": "Pendulum",
-    "genre": "Electronic",
+    "genre": "Drum & Bass",
     "subgenre": "",
     "tags": "discovered",
     "tour_web": "",
@@ -6580,7 +6580,7 @@
   {
     "ranking": 601,
     "name": "Sidney Charles",
-    "genre": "Electronic",
+    "genre": "Tech House",
     "subgenre": "",
     "tags": "discovered",
     "tour_web": "",
@@ -6591,7 +6591,7 @@
   {
     "ranking": 602,
     "name": "Silva Bumpa",
-    "genre": "Electronic",
+    "genre": "Tech House",
     "subgenre": "",
     "tags": "discovered",
     "tour_web": "",
@@ -6602,7 +6602,7 @@
   {
     "ranking": 603,
     "name": "Traumer",
-    "genre": "Electronic",
+    "genre": "Techno",
     "subgenre": "",
     "tags": "discovered",
     "tour_web": "",
@@ -6613,7 +6613,7 @@
   {
     "ranking": 604,
     "name": "Winson",
-    "genre": "Electronic",
+    "genre": "Hard Techno",
     "subgenre": "",
     "tags": "discovered",
     "tour_web": "",
@@ -6624,7 +6624,7 @@
   {
     "ranking": 605,
     "name": "Fumi",
-    "genre": "Electronic",
+    "genre": "Hard Techno",
     "subgenre": "",
     "tags": "discovered",
     "tour_web": "",
@@ -6635,7 +6635,7 @@
   {
     "ranking": 606,
     "name": "Marsolo",
-    "genre": "Electronic",
+    "genre": "Tech House",
     "subgenre": "",
     "tags": "discovered",
     "tour_web": "",
@@ -6646,7 +6646,7 @@
   {
     "ranking": 607,
     "name": "Nikolina",
-    "genre": "Electronic",
+    "genre": "Hard Techno",
     "subgenre": "",
     "tags": "discovered",
     "tour_web": "",
@@ -6657,7 +6657,7 @@
   {
     "ranking": 608,
     "name": "Clara Cuvé",
-    "genre": "Electronic",
+    "genre": "Hard Techno",
     "subgenre": "",
     "tags": "discovered",
     "tour_web": "",
@@ -6668,7 +6668,7 @@
   {
     "ranking": 609,
     "name": "Ewan McVicar",
-    "genre": "Electronic",
+    "genre": "Hard Techno",
     "subgenre": "",
     "tags": "discovered",
     "tour_web": "",
@@ -6679,7 +6679,7 @@
   {
     "ranking": 610,
     "name": "Faster Horses",
-    "genre": "Electronic",
+    "genre": "Hard Techno",
     "subgenre": "",
     "tags": "discovered",
     "tour_web": "",
@@ -6690,7 +6690,7 @@
   {
     "ranking": 611,
     "name": "Jamback",
-    "genre": "Electronic",
+    "genre": "Tech House",
     "subgenre": "",
     "tags": "discovered",
     "tour_web": "",
@@ -6701,7 +6701,7 @@
   {
     "ranking": 612,
     "name": "Shanti Celeste",
-    "genre": "Electronic",
+    "genre": "Techno",
     "subgenre": "",
     "tags": "discovered",
     "tour_web": "",
@@ -6712,7 +6712,7 @@
   {
     "ranking": 613,
     "name": "Trym",
-    "genre": "Electronic",
+    "genre": "Hard Techno",
     "subgenre": "",
     "tags": "discovered",
     "tour_web": "",
@@ -6723,7 +6723,7 @@
   {
     "ranking": 614,
     "name": "ÜBERKIKZ",
-    "genre": "Electronic",
+    "genre": "Hard Techno",
     "subgenre": "",
     "tags": "discovered",
     "tour_web": "",
@@ -6734,7 +6734,7 @@
   {
     "ranking": 615,
     "name": "Vladimir Cauchemar",
-    "genre": "Electronic",
+    "genre": "Hard Techno",
     "subgenre": "",
     "tags": "discovered",
     "tour_web": "",
@@ -6745,7 +6745,7 @@
   {
     "ranking": 616,
     "name": "Arielle Free",
-    "genre": "Electronic",
+    "genre": "Deep House",
     "subgenre": "",
     "tags": "discovered",
     "tour_web": "",
@@ -6756,7 +6756,7 @@
   {
     "ranking": 617,
     "name": "Enzo Siragusa",
-    "genre": "Electronic",
+    "genre": "Techno",
     "subgenre": "",
     "tags": "discovered",
     "tour_web": "",
@@ -6767,7 +6767,7 @@
   {
     "ranking": 618,
     "name": "Folamour",
-    "genre": "Electronic",
+    "genre": "Techno",
     "subgenre": "",
     "tags": "discovered",
     "tour_web": "",
@@ -6778,7 +6778,7 @@
   {
     "ranking": 619,
     "name": "GRiZ",
-    "genre": "Electronic",
+    "genre": "Bass",
     "subgenre": "",
     "tags": "discovered",
     "tour_web": "",
@@ -6789,7 +6789,7 @@
   {
     "ranking": 620,
     "name": "Hybrid Minds",
-    "genre": "Electronic",
+    "genre": "Tech House",
     "subgenre": "",
     "tags": "discovered",
     "tour_web": "",
@@ -6800,7 +6800,7 @@
   {
     "ranking": 621,
     "name": "Kirollus",
-    "genre": "Electronic",
+    "genre": "Techno",
     "subgenre": "",
     "tags": "discovered",
     "tour_web": "",
@@ -6811,7 +6811,7 @@
   {
     "ranking": 622,
     "name": "KLOFAMA",
-    "genre": "Electronic",
+    "genre": "Hard Techno",
     "subgenre": "",
     "tags": "discovered",
     "tour_web": "",
@@ -6822,7 +6822,7 @@
   {
     "ranking": 623,
     "name": "Kyle Starkey",
-    "genre": "Electronic",
+    "genre": "Hard Techno",
     "subgenre": "",
     "tags": "discovered",
     "tour_web": "",
@@ -6833,7 +6833,7 @@
   {
     "ranking": 624,
     "name": "Luke Dean",
-    "genre": "Electronic",
+    "genre": "Tech House",
     "subgenre": "",
     "tags": "discovered",
     "tour_web": "",
@@ -6844,7 +6844,7 @@
   {
     "ranking": 625,
     "name": "Luuk van Dijk",
-    "genre": "Electronic",
+    "genre": "Tech House",
     "subgenre": "",
     "tags": "discovered",
     "tour_web": "",
@@ -6855,7 +6855,7 @@
   {
     "ranking": 626,
     "name": "Mall Grab",
-    "genre": "Electronic",
+    "genre": "Hard Techno",
     "subgenre": "",
     "tags": "discovered",
     "tour_web": "",
@@ -6866,7 +6866,7 @@
   {
     "ranking": 627,
     "name": "Oklou",
-    "genre": "Electronic",
+    "genre": "Bass",
     "subgenre": "",
     "tags": "discovered",
     "tour_web": "",
@@ -6877,7 +6877,7 @@
   {
     "ranking": 628,
     "name": "ØTTA",
-    "genre": "Electronic",
+    "genre": "Hard Techno",
     "subgenre": "",
     "tags": "discovered",
     "tour_web": "",
@@ -6888,7 +6888,7 @@
   {
     "ranking": 629,
     "name": "Partiboi69",
-    "genre": "Electronic",
+    "genre": "Tech House",
     "subgenre": "",
     "tags": "discovered",
     "tour_web": "",
@@ -6899,7 +6899,7 @@
   {
     "ranking": 630,
     "name": "Somewhen",
-    "genre": "Electronic",
+    "genre": "Hard Techno",
     "subgenre": "",
     "tags": "discovered",
     "tour_web": "",
@@ -6910,7 +6910,7 @@
   {
     "ranking": 631,
     "name": "Vieze Asbak",
-    "genre": "Electronic",
+    "genre": "Tech House",
     "subgenre": "",
     "tags": "discovered",
     "tour_web": "",
@@ -6921,7 +6921,7 @@
   {
     "ranking": 632,
     "name": "Ben UFO",
-    "genre": "Electronic",
+    "genre": "Techno",
     "subgenre": "",
     "tags": "discovered",
     "tour_web": "",
@@ -6932,7 +6932,7 @@
   {
     "ranking": 633,
     "name": "Culture Shock",
-    "genre": "Electronic",
+    "genre": "Tech House",
     "subgenre": "",
     "tags": "discovered",
     "tour_web": "",
@@ -6943,7 +6943,7 @@
   {
     "ranking": 634,
     "name": "DeVault",
-    "genre": "Electronic",
+    "genre": "Bass",
     "subgenre": "",
     "tags": "discovered",
     "tour_web": "",
@@ -6954,7 +6954,7 @@
   {
     "ranking": 635,
     "name": "DJ Gigola",
-    "genre": "Electronic",
+    "genre": "Techno",
     "subgenre": "",
     "tags": "discovered",
     "tour_web": "",
@@ -6965,7 +6965,7 @@
   {
     "ranking": 636,
     "name": "horsegiirL",
-    "genre": "Electronic",
+    "genre": "Techno",
     "subgenre": "",
     "tags": "discovered",
     "tour_web": "",
@@ -6976,7 +6976,7 @@
   {
     "ranking": 637,
     "name": "Jackie Hollander",
-    "genre": "Electronic",
+    "genre": "Bass",
     "subgenre": "",
     "tags": "discovered",
     "tour_web": "",
@@ -6987,7 +6987,7 @@
   {
     "ranking": 638,
     "name": "Johannes Schuster",
-    "genre": "Electronic",
+    "genre": "Hard Techno",
     "subgenre": "",
     "tags": "discovered",
     "tour_web": "",
@@ -6998,7 +6998,7 @@
   {
     "ranking": 639,
     "name": "Koven",
-    "genre": "Electronic",
+    "genre": "Tech House",
     "subgenre": "",
     "tags": "discovered",
     "tour_web": "",
@@ -7009,7 +7009,7 @@
   {
     "ranking": 640,
     "name": "Kruelty",
-    "genre": "Electronic",
+    "genre": "Tech House",
     "subgenre": "",
     "tags": "discovered",
     "tour_web": "",
@@ -7020,7 +7020,7 @@
   {
     "ranking": 641,
     "name": "L.P. Rhythm",
-    "genre": "Electronic",
+    "genre": "Tech House",
     "subgenre": "",
     "tags": "discovered",
     "tour_web": "",
@@ -7031,7 +7031,7 @@
   {
     "ranking": 642,
     "name": "Local Dub",
-    "genre": "Electronic",
+    "genre": "Tech House",
     "subgenre": "",
     "tags": "discovered",
     "tour_web": "",
@@ -7042,7 +7042,7 @@
   {
     "ranking": 643,
     "name": "Major Lazer",
-    "genre": "Electronic",
+    "genre": "Techno",
     "subgenre": "",
     "tags": "discovered",
     "tour_web": "",
@@ -7053,7 +7053,7 @@
   {
     "ranking": 644,
     "name": "Mar-t",
-    "genre": "Electronic",
+    "genre": "Techno",
     "subgenre": "",
     "tags": "discovered",
     "tour_web": "",
@@ -7064,7 +7064,7 @@
   {
     "ranking": 645,
     "name": "Mischluft",
-    "genre": "Electronic",
+    "genre": "Hard Techno",
     "subgenre": "",
     "tags": "discovered",
     "tour_web": "",
@@ -7075,7 +7075,7 @@
   {
     "ranking": 646,
     "name": "Mosimann",
-    "genre": "Electronic",
+    "genre": "Hard Techno",
     "subgenre": "",
     "tags": "discovered",
     "tour_web": "",
@@ -7086,7 +7086,7 @@
   {
     "ranking": 647,
     "name": "NEGITIV",
-    "genre": "Electronic",
+    "genre": "Hard Techno",
     "subgenre": "",
     "tags": "discovered",
     "tour_web": "",
@@ -7097,7 +7097,7 @@
   {
     "ranking": 648,
     "name": "Obskür",
-    "genre": "Electronic",
+    "genre": "Tech House",
     "subgenre": "",
     "tags": "discovered",
     "tour_web": "",
@@ -7108,7 +7108,7 @@
   {
     "ranking": 649,
     "name": "Omar+",
-    "genre": "Electronic",
+    "genre": "Tech House",
     "subgenre": "",
     "tags": "discovered",
     "tour_web": "",
@@ -7119,7 +7119,7 @@
   {
     "ranking": 650,
     "name": "Paramida",
-    "genre": "Electronic",
+    "genre": "Tech House",
     "subgenre": "",
     "tags": "discovered",
     "tour_web": "",
@@ -7130,7 +7130,7 @@
   {
     "ranking": 651,
     "name": "Rouge",
-    "genre": "Electronic",
+    "genre": "Hard Techno",
     "subgenre": "",
     "tags": "discovered",
     "tour_web": "",
@@ -7141,7 +7141,7 @@
   {
     "ranking": 652,
     "name": "SOSA",
-    "genre": "Electronic",
+    "genre": "Tech House",
     "subgenre": "",
     "tags": "discovered",
     "tour_web": "",
@@ -7152,7 +7152,7 @@
   {
     "ranking": 653,
     "name": "Tini Gessler",
-    "genre": "Electronic",
+    "genre": "Tech House",
     "subgenre": "",
     "tags": "discovered",
     "tour_web": "",
@@ -7163,7 +7163,7 @@
   {
     "ranking": 654,
     "name": "X CLUB.",
-    "genre": "Electronic",
+    "genre": "Tech House",
     "subgenre": "",
     "tags": "discovered",
     "tour_web": "",
@@ -7174,7 +7174,7 @@
   {
     "ranking": 655,
     "name": "Armand van Helden",
-    "genre": "Electronic",
+    "genre": "Deep House",
     "subgenre": "",
     "tags": "discovered",
     "tour_web": "",
@@ -7185,7 +7185,7 @@
   {
     "ranking": 656,
     "name": "Bad Boombox",
-    "genre": "Electronic",
+    "genre": "Hard Techno",
     "subgenre": "",
     "tags": "discovered",
     "tour_web": "",
@@ -7196,7 +7196,7 @@
   {
     "ranking": 657,
     "name": "Benwal",
-    "genre": "Electronic",
+    "genre": "Hard Techno",
     "subgenre": "",
     "tags": "discovered",
     "tour_web": "",
@@ -7207,7 +7207,7 @@
   {
     "ranking": 658,
     "name": "BIIANCO",
-    "genre": "Electronic",
+    "genre": "Hard Techno",
     "subgenre": "",
     "tags": "discovered",
     "tour_web": "",
@@ -7218,7 +7218,7 @@
   {
     "ranking": 659,
     "name": "Billy Gillies",
-    "genre": "Electronic",
+    "genre": "Tech House",
     "subgenre": "",
     "tags": "discovered",
     "tour_web": "",
@@ -7229,7 +7229,7 @@
   {
     "ranking": 660,
     "name": "Black Sun Empire",
-    "genre": "Electronic",
+    "genre": "Drum & Bass",
     "subgenre": "",
     "tags": "discovered",
     "tour_web": "",
@@ -7240,7 +7240,7 @@
   {
     "ranking": 661,
     "name": "Black Tiger Sex Machine",
-    "genre": "Electronic",
+    "genre": "Bass",
     "subgenre": "",
     "tags": "discovered",
     "tour_web": "",
@@ -7251,7 +7251,7 @@
   {
     "ranking": 662,
     "name": "Boys Noize",
-    "genre": "Electronic",
+    "genre": "Tech House",
     "subgenre": "",
     "tags": "discovered",
     "tour_web": "",
@@ -7262,7 +7262,7 @@
   {
     "ranking": 663,
     "name": "Camo & Krooked",
-    "genre": "Electronic",
+    "genre": "Drum & Bass",
     "subgenre": "",
     "tags": "discovered",
     "tour_web": "",
@@ -7273,7 +7273,7 @@
   {
     "ranking": 664,
     "name": "Christian AB",
-    "genre": "Electronic",
+    "genre": "Techno",
     "subgenre": "",
     "tags": "discovered",
     "tour_web": "",
@@ -7284,7 +7284,7 @@
   {
     "ranking": 665,
     "name": "davyboi",
-    "genre": "Electronic",
+    "genre": "Hard Techno",
     "subgenre": "",
     "tags": "discovered",
     "tour_web": "",
@@ -7295,7 +7295,7 @@
   {
     "ranking": 666,
     "name": "Elli Acula",
-    "genre": "Electronic",
+    "genre": "Hard Techno",
     "subgenre": "",
     "tags": "discovered",
     "tour_web": "",
@@ -7306,7 +7306,7 @@
   {
     "ranking": 667,
     "name": "Francesco Del Garda",
-    "genre": "Electronic",
+    "genre": "Techno",
     "subgenre": "",
     "tags": "discovered",
     "tour_web": "",
@@ -7317,7 +7317,7 @@
   {
     "ranking": 668,
     "name": "Freddy K",
-    "genre": "Electronic",
+    "genre": "Techno",
     "subgenre": "",
     "tags": "discovered",
     "tour_web": "",
@@ -7328,7 +7328,7 @@
   {
     "ranking": 669,
     "name": "Future 666",
-    "genre": "Electronic",
+    "genre": "Hard Techno",
     "subgenre": "",
     "tags": "discovered",
     "tour_web": "",
@@ -7339,7 +7339,7 @@
   {
     "ranking": 670,
     "name": "IDEMI",
-    "genre": "Electronic",
+    "genre": "Hard Techno",
     "subgenre": "",
     "tags": "discovered",
     "tour_web": "",
@@ -7350,7 +7350,7 @@
   {
     "ranking": 671,
     "name": "Jimi Jules",
-    "genre": "Electronic",
+    "genre": "Techno",
     "subgenre": "",
     "tags": "discovered",
     "tour_web": "",
@@ -7361,7 +7361,7 @@
   {
     "ranking": 672,
     "name": "Julian Fijma",
-    "genre": "Electronic",
+    "genre": "Tech House",
     "subgenre": "",
     "tags": "discovered",
     "tour_web": "",
@@ -7372,7 +7372,7 @@
   {
     "ranking": 673,
     "name": "Kepler",
-    "genre": "Electronic",
+    "genre": "Techno",
     "subgenre": "",
     "tags": "discovered",
     "tour_web": "",
@@ -7383,7 +7383,7 @@
   {
     "ranking": 674,
     "name": "Locklead",
-    "genre": "Electronic",
+    "genre": "Tech House",
     "subgenre": "",
     "tags": "discovered",
     "tour_web": "",
@@ -7394,7 +7394,7 @@
   {
     "ranking": 675,
     "name": "Locky",
-    "genre": "Electronic",
+    "genre": "Tech House",
     "subgenre": "",
     "tags": "discovered",
     "tour_web": "",
@@ -7405,7 +7405,7 @@
   {
     "ranking": 676,
     "name": "Peach",
-    "genre": "Electronic",
+    "genre": "Techno",
     "subgenre": "",
     "tags": "discovered",
     "tour_web": "",
@@ -7416,7 +7416,7 @@
   {
     "ranking": 677,
     "name": "Pegassi",
-    "genre": "Electronic",
+    "genre": "Hard Techno",
     "subgenre": "",
     "tags": "discovered",
     "tour_web": "",
@@ -7427,7 +7427,7 @@
   {
     "ranking": 678,
     "name": "PRADA2000",
-    "genre": "Electronic",
+    "genre": "Hard Techno",
     "subgenre": "",
     "tags": "discovered",
     "tour_web": "",
@@ -7438,7 +7438,7 @@
   {
     "ranking": 679,
     "name": "Prunk",
-    "genre": "Electronic",
+    "genre": "Tech House",
     "subgenre": "",
     "tags": "discovered",
     "tour_web": "",
@@ -7449,7 +7449,7 @@
   {
     "ranking": 680,
     "name": "Robbie Doherty",
-    "genre": "Electronic",
+    "genre": "Hard Techno",
     "subgenre": "",
     "tags": "discovered",
     "tour_web": "",
@@ -7460,7 +7460,7 @@
   {
     "ranking": 681,
     "name": "Sam Alfred",
-    "genre": "Electronic",
+    "genre": "Hard Techno",
     "subgenre": "",
     "tags": "discovered",
     "tour_web": "",
@@ -7471,7 +7471,7 @@
   {
     "ranking": 682,
     "name": "Sarah Story",
-    "genre": "Electronic",
+    "genre": "Tech House",
     "subgenre": "",
     "tags": "discovered",
     "tour_web": "",
@@ -7482,7 +7482,7 @@
   {
     "ranking": 683,
     "name": "Setaoc Mass",
-    "genre": "Electronic",
+    "genre": "Techno",
     "subgenre": "",
     "tags": "discovered",
     "tour_web": "",
@@ -7493,7 +7493,7 @@
   {
     "ranking": 684,
     "name": "Seven Lions",
-    "genre": "Electronic",
+    "genre": "Bass",
     "subgenre": "",
     "tags": "discovered",
     "tour_web": "",
@@ -7504,7 +7504,7 @@
   {
     "ranking": 685,
     "name": "Special Request",
-    "genre": "Electronic",
+    "genre": "Techno",
     "subgenre": "",
     "tags": "discovered",
     "tour_web": "",
@@ -7515,7 +7515,7 @@
   {
     "ranking": 686,
     "name": "Tempza",
-    "genre": "Electronic",
+    "genre": "Tech House",
     "subgenre": "",
     "tags": "discovered",
     "tour_web": "",
@@ -7526,7 +7526,7 @@
   {
     "ranking": 687,
     "name": "The Rocketman",
-    "genre": "Electronic",
+    "genre": "Tech House",
     "subgenre": "",
     "tags": "discovered",
     "tour_web": "",
@@ -7537,7 +7537,7 @@
   {
     "ranking": 688,
     "name": "Underworld",
-    "genre": "Electronic",
+    "genre": "Tech House",
     "subgenre": "",
     "tags": "discovered",
     "tour_web": "",
@@ -7548,7 +7548,7 @@
   {
     "ranking": 689,
     "name": "¥ØU$UK€ ¥UK1MAT$U",
-    "genre": "Electronic",
+    "genre": "Tech House",
     "subgenre": "",
     "tags": "discovered",
     "tour_web": "",
@@ -7559,7 +7559,7 @@
   {
     "ranking": 690,
     "name": "Adam Sellouk",
-    "genre": "Electronic",
+    "genre": "Melodic Techno",
     "subgenre": "",
     "tags": "discovered",
     "tour_web": "",
@@ -7570,7 +7570,7 @@
   {
     "ranking": 691,
     "name": "Amè",
-    "genre": "Electronic",
+    "genre": "Techno",
     "subgenre": "",
     "tags": "discovered",
     "tour_web": "",
@@ -7581,7 +7581,7 @@
   {
     "ranking": 692,
     "name": "Anetha",
-    "genre": "Electronic",
+    "genre": "Hard Techno",
     "subgenre": "",
     "tags": "discovered",
     "tour_web": "",
@@ -7592,7 +7592,7 @@
   {
     "ranking": 693,
     "name": "BASHKKA",
-    "genre": "Electronic",
+    "genre": "Techno",
     "subgenre": "",
     "tags": "discovered",
     "tour_web": "",
@@ -7603,7 +7603,7 @@
   {
     "ranking": 694,
     "name": "blk.",
-    "genre": "Electronic",
+    "genre": "Tech House",
     "subgenre": "",
     "tags": "discovered",
     "tour_web": "",
@@ -7614,7 +7614,7 @@
   {
     "ranking": 695,
     "name": "CAAL",
-    "genre": "Electronic",
+    "genre": "Techno",
     "subgenre": "",
     "tags": "discovered",
     "tour_web": "",
@@ -7625,7 +7625,7 @@
   {
     "ranking": 696,
     "name": "Call Super",
-    "genre": "Electronic",
+    "genre": "Tech House",
     "subgenre": "",
     "tags": "discovered",
     "tour_web": "",
@@ -7636,7 +7636,7 @@
   {
     "ranking": 697,
     "name": "CARISTA",
-    "genre": "Electronic",
+    "genre": "Tech House",
     "subgenre": "",
     "tags": "discovered",
     "tour_web": "",
@@ -7647,7 +7647,7 @@
   {
     "ranking": 698,
     "name": "Carl Craig",
-    "genre": "Electronic",
+    "genre": "Techno",
     "subgenre": "",
     "tags": "discovered",
     "tour_web": "",
@@ -7658,7 +7658,7 @@
   {
     "ranking": 699,
     "name": "CESAR ALMENA",
-    "genre": "Electronic",
+    "genre": "Techno",
     "subgenre": "",
     "tags": "discovered",
     "tour_web": "",
@@ -7669,7 +7669,7 @@
   {
     "ranking": 700,
     "name": "Chasewest",
-    "genre": "Electronic",
+    "genre": "Tech House",
     "subgenre": "",
     "tags": "discovered",
     "tour_web": "",
@@ -7680,7 +7680,7 @@
   {
     "ranking": 701,
     "name": "Damian Lazarus",
-    "genre": "Electronic",
+    "genre": "Techno",
     "subgenre": "",
     "tags": "discovered",
     "tour_web": "",
@@ -7691,7 +7691,7 @@
   {
     "ranking": 702,
     "name": "Dart",
-    "genre": "Electronic",
+    "genre": "Hard Techno",
     "subgenre": "",
     "tags": "discovered",
     "tour_web": "",
@@ -7702,7 +7702,7 @@
   {
     "ranking": 703,
     "name": "Deer Jade",
-    "genre": "Electronic",
+    "genre": "Techno",
     "subgenre": "",
     "tags": "discovered",
     "tour_web": "",
@@ -7713,7 +7713,7 @@
   {
     "ranking": 704,
     "name": "Dennis Quin",
-    "genre": "Electronic",
+    "genre": "Tech House",
     "subgenre": "",
     "tags": "discovered",
     "tour_web": "",
@@ -7724,7 +7724,7 @@
   {
     "ranking": 705,
     "name": "DJ Cringey",
-    "genre": "Electronic",
+    "genre": "Techno",
     "subgenre": "",
     "tags": "discovered",
     "tour_web": "",
@@ -7735,7 +7735,7 @@
   {
     "ranking": 706,
     "name": "DJ Tennis",
-    "genre": "Electronic",
+    "genre": "Techno",
     "subgenre": "",
     "tags": "discovered",
     "tour_web": "",
@@ -7746,7 +7746,7 @@
   {
     "ranking": 707,
     "name": "DXNBY",
-    "genre": "Electronic",
+    "genre": "Tech House",
     "subgenre": "",
     "tags": "discovered",
     "tour_web": "",
@@ -7757,7 +7757,7 @@
   {
     "ranking": 708,
     "name": "Dyed Soundorom",
-    "genre": "Electronic",
+    "genre": "Techno",
     "subgenre": "",
     "tags": "discovered",
     "tour_web": "",
@@ -7768,7 +7768,7 @@
   {
     "ranking": 709,
     "name": "Ellia Jaya",
-    "genre": "Electronic",
+    "genre": "Tech House",
     "subgenre": "",
     "tags": "discovered",
     "tour_web": "",
@@ -7779,7 +7779,7 @@
   {
     "ranking": 710,
     "name": "Elliot Schooling",
-    "genre": "Electronic",
+    "genre": "Tech House",
     "subgenre": "",
     "tags": "discovered",
     "tour_web": "",
@@ -7790,7 +7790,7 @@
   {
     "ranking": 711,
     "name": "Floating Points",
-    "genre": "Electronic",
+    "genre": "Techno",
     "subgenre": "",
     "tags": "discovered",
     "tour_web": "",
@@ -7801,7 +7801,7 @@
   {
     "ranking": 712,
     "name": "Frost Children",
-    "genre": "Electronic",
+    "genre": "Bass",
     "subgenre": "",
     "tags": "discovered",
     "tour_web": "",
@@ -7812,7 +7812,7 @@
   {
     "ranking": 713,
     "name": "Grace Dahl",
-    "genre": "Electronic",
+    "genre": "Techno",
     "subgenre": "",
     "tags": "discovered",
     "tour_web": "",
@@ -7823,7 +7823,7 @@
   {
     "ranking": 714,
     "name": "Horse Meat Disco",
-    "genre": "Electronic",
+    "genre": "Tech House",
     "subgenre": "",
     "tags": "discovered",
     "tour_web": "",
@@ -7834,7 +7834,7 @@
   {
     "ranking": 715,
     "name": "Ilario Alicante",
-    "genre": "Electronic",
+    "genre": "Tech House",
     "subgenre": "",
     "tags": "discovered",
     "tour_web": "",
@@ -7845,7 +7845,7 @@
   {
     "ranking": 716,
     "name": "Joss Dean",
-    "genre": "Electronic",
+    "genre": "Tech House",
     "subgenre": "",
     "tags": "discovered",
     "tour_web": "",
@@ -7856,7 +7856,7 @@
   {
     "ranking": 717,
     "name": "Juicy Romance",
-    "genre": "Electronic",
+    "genre": "Tech House",
     "subgenre": "",
     "tags": "discovered",
     "tour_web": "",
@@ -7867,7 +7867,7 @@
   {
     "ranking": 718,
     "name": "Karretero",
-    "genre": "Electronic",
+    "genre": "Tech House",
     "subgenre": "",
     "tags": "discovered",
     "tour_web": "",
@@ -7878,7 +7878,7 @@
   {
     "ranking": 719,
     "name": "KimberlaID",
-    "genre": "Electronic",
+    "genre": "Hard Techno",
     "subgenre": "",
     "tags": "discovered",
     "tour_web": "",
@@ -7889,7 +7889,7 @@
   {
     "ranking": 720,
     "name": "KiNK",
-    "genre": "Electronic",
+    "genre": "Hard Techno",
     "subgenre": "",
     "tags": "discovered",
     "tour_web": "",
@@ -7900,7 +7900,7 @@
   {
     "ranking": 721,
     "name": "Kolter",
-    "genre": "Electronic",
+    "genre": "Tech House",
     "subgenre": "",
     "tags": "discovered",
     "tour_web": "",
@@ -7911,7 +7911,7 @@
   {
     "ranking": 722,
     "name": "Liam Palmer",
-    "genre": "Electronic",
+    "genre": "Tech House",
     "subgenre": "",
     "tags": "discovered",
     "tour_web": "",
@@ -7922,7 +7922,7 @@
   {
     "ranking": 723,
     "name": "M-High",
-    "genre": "Electronic",
+    "genre": "Tech House",
     "subgenre": "",
     "tags": "discovered",
     "tour_web": "",
@@ -7933,7 +7933,7 @@
   {
     "ranking": 724,
     "name": "Manda Moor",
-    "genre": "Electronic",
+    "genre": "Tech House",
     "subgenre": "",
     "tags": "discovered",
     "tour_web": "",
@@ -7944,7 +7944,7 @@
   {
     "ranking": 725,
     "name": "Mason Collective",
-    "genre": "Electronic",
+    "genre": "Tech House",
     "subgenre": "",
     "tags": "discovered",
     "tour_web": "",
@@ -7955,7 +7955,7 @@
   {
     "ranking": 726,
     "name": "Mauro Picotto",
-    "genre": "Electronic",
+    "genre": "Tech House",
     "subgenre": "",
     "tags": "discovered",
     "tour_web": "",
@@ -7966,7 +7966,7 @@
   {
     "ranking": 727,
     "name": "MCR-T",
-    "genre": "Electronic",
+    "genre": "Hard Techno",
     "subgenre": "",
     "tags": "discovered",
     "tour_web": "",
@@ -7977,7 +7977,7 @@
   {
     "ranking": 728,
     "name": "Morgan Seatree",
-    "genre": "Electronic",
+    "genre": "Tech House",
     "subgenre": "",
     "tags": "discovered",
     "tour_web": "",
@@ -7988,7 +7988,7 @@
   {
     "ranking": 729,
     "name": "Nicolas Julian",
-    "genre": "Electronic",
+    "genre": "Hard Techno",
     "subgenre": "",
     "tags": "discovered",
     "tour_web": "",
@@ -7999,7 +7999,7 @@
   {
     "ranking": 730,
     "name": "Olive F",
-    "genre": "Electronic",
+    "genre": "Tech House",
     "subgenre": "",
     "tags": "discovered",
     "tour_web": "",
@@ -8010,7 +8010,7 @@
   {
     "ranking": 731,
     "name": "Om Unit",
-    "genre": "Electronic",
+    "genre": "Techno",
     "subgenre": "",
     "tags": "discovered",
     "tour_web": "",
@@ -8021,7 +8021,7 @@
   {
     "ranking": 732,
     "name": "OMRI.",
-    "genre": "Electronic",
+    "genre": "Tech House",
     "subgenre": "",
     "tags": "discovered",
     "tour_web": "",
@@ -8032,7 +8032,7 @@
   {
     "ranking": 733,
     "name": "Oskar med k",
-    "genre": "Electronic",
+    "genre": "Bass",
     "subgenre": "",
     "tags": "discovered",
     "tour_web": "",
@@ -8043,7 +8043,7 @@
   {
     "ranking": 734,
     "name": "Paige Tomlinson",
-    "genre": "Electronic",
+    "genre": "Tech House",
     "subgenre": "",
     "tags": "discovered",
     "tour_web": "",
@@ -8054,7 +8054,7 @@
   {
     "ranking": 735,
     "name": "Palms Trax",
-    "genre": "Electronic",
+    "genre": "Techno",
     "subgenre": "",
     "tags": "discovered",
     "tour_web": "",
@@ -8065,7 +8065,7 @@
   {
     "ranking": 736,
     "name": "PETERBLUE",
-    "genre": "Electronic",
+    "genre": "Hard Techno",
     "subgenre": "",
     "tags": "discovered",
     "tour_web": "",
@@ -8076,7 +8076,7 @@
   {
     "ranking": 737,
     "name": "PLK",
-    "genre": "Electronic",
+    "genre": "Hard Techno",
     "subgenre": "",
     "tags": "discovered",
     "tour_web": "",
@@ -8087,7 +8087,7 @@
   {
     "ranking": 738,
     "name": "Pola & Bryson",
-    "genre": "Electronic",
+    "genre": "Drum & Bass",
     "subgenre": "",
     "tags": "discovered",
     "tour_web": "",
@@ -8098,7 +8098,7 @@
   {
     "ranking": 739,
     "name": "Priku",
-    "genre": "Electronic",
+    "genre": "Tech House",
     "subgenre": "",
     "tags": "discovered",
     "tour_web": "",
@@ -8109,7 +8109,7 @@
   {
     "ranking": 740,
     "name": "Raresh",
-    "genre": "Electronic",
+    "genre": "Techno",
     "subgenre": "",
     "tags": "discovered",
     "tour_web": "",
@@ -8120,7 +8120,7 @@
   {
     "ranking": 741,
     "name": "Ryan Elliott",
-    "genre": "Electronic",
+    "genre": "Techno",
     "subgenre": "",
     "tags": "discovered",
     "tour_web": "",
@@ -8131,7 +8131,7 @@
   {
     "ranking": 742,
     "name": "S.P.Y",
-    "genre": "Electronic",
+    "genre": "Drum & Bass",
     "subgenre": "",
     "tags": "discovered",
     "tour_web": "",
@@ -8142,7 +8142,7 @@
   {
     "ranking": 743,
     "name": "Saidah",
-    "genre": "Electronic",
+    "genre": "Techno",
     "subgenre": "",
     "tags": "discovered",
     "tour_web": "",
@@ -8153,7 +8153,7 @@
   {
     "ranking": 744,
     "name": "Sally C",
-    "genre": "Electronic",
+    "genre": "Hard Techno",
     "subgenre": "",
     "tags": "discovered",
     "tour_web": "",
@@ -8164,7 +8164,7 @@
   {
     "ranking": 745,
     "name": "Salomé",
-    "genre": "Electronic",
+    "genre": "Techno",
     "subgenre": "",
     "tags": "discovered",
     "tour_web": "",
@@ -8175,7 +8175,7 @@
   {
     "ranking": 746,
     "name": "Saoirse",
-    "genre": "Electronic",
+    "genre": "Techno",
     "subgenre": "",
     "tags": "discovered",
     "tour_web": "",
@@ -8186,7 +8186,7 @@
   {
     "ranking": 747,
     "name": "Shy FX",
-    "genre": "Electronic",
+    "genre": "Tech House",
     "subgenre": "",
     "tags": "discovered",
     "tour_web": "",
@@ -8197,7 +8197,7 @@
   {
     "ranking": 748,
     "name": "Sigma",
-    "genre": "Electronic",
+    "genre": "Tech House",
     "subgenre": "",
     "tags": "discovered",
     "tour_web": "",
@@ -8208,7 +8208,7 @@
   {
     "ranking": 749,
     "name": "Silvie Loto",
-    "genre": "Electronic",
+    "genre": "Techno",
     "subgenre": "",
     "tags": "discovered",
     "tour_web": "",
@@ -8219,7 +8219,7 @@
   {
     "ranking": 750,
     "name": "Syreeta",
-    "genre": "Electronic",
+    "genre": "Tech House",
     "subgenre": "",
     "tags": "discovered",
     "tour_web": "",
@@ -8230,7 +8230,7 @@
   {
     "ranking": 751,
     "name": "Temudo",
-    "genre": "Electronic",
+    "genre": "Techno",
     "subgenre": "",
     "tags": "discovered",
     "tour_web": "",
@@ -8241,7 +8241,7 @@
   {
     "ranking": 752,
     "name": "The xx",
-    "genre": "Electronic",
+    "genre": "Pop",
     "subgenre": "",
     "tags": "discovered",
     "tour_web": "",
@@ -8252,7 +8252,7 @@
   {
     "ranking": 753,
     "name": "Toman",
-    "genre": "Electronic",
+    "genre": "Tech House",
     "subgenre": "",
     "tags": "discovered",
     "tour_web": "",
@@ -8263,7 +8263,7 @@
   {
     "ranking": 754,
     "name": "Tonn Piper",
-    "genre": "Electronic",
+    "genre": "Tech House",
     "subgenre": "",
     "tags": "discovered",
     "tour_web": "",
@@ -8274,7 +8274,7 @@
   {
     "ranking": 755,
     "name": "Toximami",
-    "genre": "Electronic",
+    "genre": "Techno",
     "subgenre": "",
     "tags": "discovered",
     "tour_web": "",
@@ -8285,7 +8285,7 @@
   {
     "ranking": 756,
     "name": "TSHA",
-    "genre": "Electronic",
+    "genre": "Tech House",
     "subgenre": "",
     "tags": "discovered",
     "tour_web": "",
@@ -8296,7 +8296,7 @@
   {
     "ranking": 757,
     "name": "Walker & Royce",
-    "genre": "Electronic",
+    "genre": "Tech House",
     "subgenre": "",
     "tags": "discovered",
     "tour_web": "",
@@ -8307,7 +8307,7 @@
   {
     "ranking": 758,
     "name": "19:26",
-    "genre": "Electronic",
+    "genre": "Melodic Techno",
     "subgenre": "",
     "tags": "discovered",
     "tour_web": "",
@@ -8318,7 +8318,7 @@
   {
     "ranking": 759,
     "name": "4am Kru",
-    "genre": "Electronic",
+    "genre": "Tech House",
     "subgenre": "",
     "tags": "discovered",
     "tour_web": "",
@@ -8329,7 +8329,7 @@
   {
     "ranking": 760,
     "name": "A Little Sound",
-    "genre": "Electronic",
+    "genre": "Drum & Bass",
     "subgenre": "",
     "tags": "discovered",
     "tour_web": "",
@@ -8340,7 +8340,7 @@
   {
     "ranking": 761,
     "name": "A.N.I.",
-    "genre": "Electronic",
+    "genre": "Hard Techno",
     "subgenre": "",
     "tags": "discovered",
     "tour_web": "",
@@ -8351,7 +8351,7 @@
   {
     "ranking": 762,
     "name": "Alex Wann",
-    "genre": "Electronic",
+    "genre": "Tech House",
     "subgenre": "",
     "tags": "discovered",
     "tour_web": "",
@@ -8362,7 +8362,7 @@
   {
     "ranking": 763,
     "name": "Alisha",
-    "genre": "Electronic",
+    "genre": "Tech House",
     "subgenre": "",
     "tags": "discovered",
     "tour_web": "",
@@ -8373,7 +8373,7 @@
   {
     "ranking": 764,
     "name": "Alycia Bezgo",
-    "genre": "Electronic",
+    "genre": "Techno",
     "subgenre": "",
     "tags": "discovered",
     "tour_web": "",
@@ -8384,7 +8384,7 @@
   {
     "ranking": 765,
     "name": "Arapu",
-    "genre": "Electronic",
+    "genre": "Tech House",
     "subgenre": "",
     "tags": "discovered",
     "tour_web": "",
@@ -8395,7 +8395,7 @@
   {
     "ranking": 766,
     "name": "Basslayerz",
-    "genre": "Electronic",
+    "genre": "Tech House",
     "subgenre": "",
     "tags": "discovered",
     "tour_web": "",
@@ -8406,7 +8406,7 @@
   {
     "ranking": 767,
     "name": "BAUGRUPPE90",
-    "genre": "Electronic",
+    "genre": "Hard Techno",
     "subgenre": "",
     "tags": "discovered",
     "tour_web": "",
@@ -8417,7 +8417,7 @@
   {
     "ranking": 768,
     "name": "Blasha & Allatt",
-    "genre": "Electronic",
+    "genre": "Techno",
     "subgenre": "",
     "tags": "discovered",
     "tour_web": "",
@@ -8428,7 +8428,7 @@
   {
     "ranking": 769,
     "name": "Brutalismus 3000",
-    "genre": "Electronic",
+    "genre": "Hard Techno",
     "subgenre": "",
     "tags": "discovered",
     "tour_web": "",
@@ -8439,7 +8439,7 @@
   {
     "ranking": 770,
     "name": "bullet tooth",
-    "genre": "Electronic",
+    "genre": "Tech House",
     "subgenre": "",
     "tags": "discovered",
     "tour_web": "",
@@ -8450,7 +8450,7 @@
   {
     "ranking": 771,
     "name": "Butch",
-    "genre": "Electronic",
+    "genre": "Tech House",
     "subgenre": "",
     "tags": "discovered",
     "tour_web": "",
@@ -8461,7 +8461,7 @@
   {
     "ranking": 772,
     "name": "Cam Stockman",
-    "genre": "Electronic",
+    "genre": "Tech House",
     "subgenre": "",
     "tags": "discovered",
     "tour_web": "",
@@ -8472,7 +8472,7 @@
   {
     "ranking": 773,
     "name": "Cara Elizabeth",
-    "genre": "Electronic",
+    "genre": "Hard Techno",
     "subgenre": "",
     "tags": "discovered",
     "tour_web": "",
@@ -8483,7 +8483,7 @@
   {
     "ranking": 774,
     "name": "Club Angel",
-    "genre": "Electronic",
+    "genre": "Hard Techno",
     "subgenre": "",
     "tags": "discovered",
     "tour_web": "",
@@ -8494,7 +8494,7 @@
   {
     "ranking": 775,
     "name": "Dabin",
-    "genre": "Electronic",
+    "genre": "Bass",
     "subgenre": "",
     "tags": "discovered",
     "tour_web": "",
@@ -8505,7 +8505,7 @@
   {
     "ranking": 776,
     "name": "Daria Kolosova",
-    "genre": "Electronic",
+    "genre": "Hard Techno",
     "subgenre": "",
     "tags": "discovered",
     "tour_web": "",
@@ -8516,7 +8516,7 @@
   {
     "ranking": 777,
     "name": "David Löhlein",
-    "genre": "Electronic",
+    "genre": "Hard Techno",
     "subgenre": "",
     "tags": "discovered",
     "tour_web": "",
@@ -8527,7 +8527,7 @@
   {
     "ranking": 778,
     "name": "Demi Riquisimo",
-    "genre": "Electronic",
+    "genre": "Tech House",
     "subgenre": "",
     "tags": "discovered",
     "tour_web": "",
@@ -8538,7 +8538,7 @@
   {
     "ranking": 779,
     "name": "DJ Fuckoff",
-    "genre": "Electronic",
+    "genre": "Techno",
     "subgenre": "",
     "tags": "discovered",
     "tour_web": "",
@@ -8549,7 +8549,7 @@
   {
     "ranking": 780,
     "name": "DJ Hell",
-    "genre": "Electronic",
+    "genre": "Techno",
     "subgenre": "",
     "tags": "discovered",
     "tour_web": "",
@@ -8560,7 +8560,7 @@
   {
     "ranking": 781,
     "name": "DJ Minx",
-    "genre": "Electronic",
+    "genre": "Bass",
     "subgenre": "",
     "tags": "discovered",
     "tour_web": "",
@@ -8571,7 +8571,7 @@
   {
     "ranking": 782,
     "name": "DJ Nobu",
-    "genre": "Electronic",
+    "genre": "Techno",
     "subgenre": "",
     "tags": "discovered",
     "tour_web": "",
@@ -8582,7 +8582,7 @@
   {
     "ranking": 783,
     "name": "Dombresky",
-    "genre": "Electronic",
+    "genre": "Tech House",
     "subgenre": "",
     "tags": "discovered",
     "tour_web": "",
@@ -8593,7 +8593,7 @@
   {
     "ranking": 784,
     "name": "Dr Banana",
-    "genre": "Electronic",
+    "genre": "Techno",
     "subgenre": "",
     "tags": "discovered",
     "tour_web": "",
@@ -8604,7 +8604,7 @@
   {
     "ranking": 785,
     "name": "Eksman",
-    "genre": "Electronic",
+    "genre": "Tech House",
     "subgenre": "",
     "tags": "discovered",
     "tour_web": "",
@@ -8615,7 +8615,7 @@
   {
     "ranking": 786,
     "name": "Eliza Rose",
-    "genre": "Electronic",
+    "genre": "Tech House",
     "subgenre": "",
     "tags": "discovered",
     "tour_web": "",
@@ -8626,7 +8626,7 @@
   {
     "ranking": 787,
     "name": "Emilija",
-    "genre": "Electronic",
+    "genre": "Hard Techno",
     "subgenre": "",
     "tags": "discovered",
     "tour_web": "",
@@ -8637,7 +8637,7 @@
   {
     "ranking": 788,
     "name": "Empire of the Sun",
-    "genre": "Electronic",
+    "genre": "Tech House",
     "subgenre": "",
     "tags": "discovered",
     "tour_web": "",
@@ -8648,7 +8648,7 @@
   {
     "ranking": 789,
     "name": "Excision",
-    "genre": "Electronic",
+    "genre": "Bass",
     "subgenre": "",
     "tags": "discovered",
     "tour_web": "",
@@ -8659,7 +8659,7 @@
   {
     "ranking": 790,
     "name": "Fenrick",
-    "genre": "Electronic",
+    "genre": "Hard Techno",
     "subgenre": "",
     "tags": "discovered",
     "tour_web": "",
@@ -8670,7 +8670,7 @@
   {
     "ranking": 791,
     "name": "Fireground",
-    "genre": "Electronic",
+    "genre": "Hard Techno",
     "subgenre": "",
     "tags": "discovered",
     "tour_web": "",
@@ -8681,7 +8681,7 @@
   {
     "ranking": 792,
     "name": "Flight Facilities",
-    "genre": "Electronic",
+    "genre": "Deep House",
     "subgenre": "",
     "tags": "discovered",
     "tour_web": "",
@@ -8692,7 +8692,7 @@
   {
     "ranking": 793,
     "name": "Flosstradamus",
-    "genre": "Electronic",
+    "genre": "Bass",
     "subgenre": "",
     "tags": "discovered",
     "tour_web": "",
@@ -8703,7 +8703,7 @@
   {
     "ranking": 794,
     "name": "Flowdan",
-    "genre": "Electronic",
+    "genre": "Bass",
     "subgenre": "",
     "tags": "discovered",
     "tour_web": "",
@@ -8714,7 +8714,7 @@
   {
     "ranking": 795,
     "name": "Fred V",
-    "genre": "Electronic",
+    "genre": "Drum & Bass",
     "subgenre": "",
     "tags": "discovered",
     "tour_web": "",
@@ -8725,7 +8725,7 @@
   {
     "ranking": 796,
     "name": "Fumiya Tanaka",
-    "genre": "Electronic",
+    "genre": "Techno",
     "subgenre": "",
     "tags": "discovered",
     "tour_web": "",
@@ -8736,7 +8736,7 @@
   {
     "ranking": 797,
     "name": "Gaskin",
-    "genre": "Electronic",
+    "genre": "Deep House",
     "subgenre": "",
     "tags": "discovered",
     "tour_web": "",
@@ -8747,7 +8747,7 @@
   {
     "ranking": 798,
     "name": "Germano Ventura",
-    "genre": "Electronic",
+    "genre": "Tech House",
     "subgenre": "",
     "tags": "discovered",
     "tour_web": "",
@@ -8758,7 +8758,7 @@
   {
     "ranking": 799,
     "name": "Groove Armada",
-    "genre": "Electronic",
+    "genre": "Tech House",
     "subgenre": "",
     "tags": "discovered",
     "tour_web": "",
@@ -8769,7 +8769,7 @@
   {
     "ranking": 800,
     "name": "HALO",
-    "genre": "Electronic",
+    "genre": "Tech House",
     "subgenre": "",
     "tags": "discovered",
     "tour_web": "",
@@ -8780,7 +8780,7 @@
   {
     "ranking": 801,
     "name": "Helena Hauff",
-    "genre": "Electronic",
+    "genre": "Techno",
     "subgenre": "",
     "tags": "discovered",
     "tour_web": "",
@@ -8791,7 +8791,7 @@
   {
     "ranking": 802,
     "name": "Helena Lauwaert",
-    "genre": "Electronic",
+    "genre": "Hard Techno",
     "subgenre": "",
     "tags": "discovered",
     "tour_web": "",
@@ -8802,7 +8802,7 @@
   {
     "ranking": 803,
     "name": "Hvob",
-    "genre": "Electronic",
+    "genre": "Techno",
     "subgenre": "",
     "tags": "discovered",
     "tour_web": "",
@@ -8813,7 +8813,7 @@
   {
     "ranking": 804,
     "name": "In Verruf",
-    "genre": "Electronic",
+    "genre": "Hard Techno",
     "subgenre": "",
     "tags": "discovered",
     "tour_web": "",
@@ -8824,7 +8824,7 @@
   {
     "ranking": 805,
     "name": "Jen Cardini",
-    "genre": "Electronic",
+    "genre": "Techno",
     "subgenre": "",
     "tags": "discovered",
     "tour_web": "",
@@ -8835,7 +8835,7 @@
   {
     "ranking": 806,
     "name": "Jody Wisternoff",
-    "genre": "Electronic",
+    "genre": "Progressive",
     "subgenre": "",
     "tags": "discovered",
     "tour_web": "",
@@ -8846,7 +8846,7 @@
   {
     "ranking": 807,
     "name": "Kander",
-    "genre": "Electronic",
+    "genre": "Techno",
     "subgenre": "",
     "tags": "discovered",
     "tour_web": "",
@@ -8857,7 +8857,7 @@
   {
     "ranking": 808,
     "name": "Kaskade",
-    "genre": "Electronic",
+    "genre": "Tech House",
     "subgenre": "",
     "tags": "discovered",
     "tour_web": "",
@@ -8868,7 +8868,7 @@
   {
     "ranking": 809,
     "name": "Katnada",
-    "genre": "Electronic",
+    "genre": "Techno",
     "subgenre": "",
     "tags": "discovered",
     "tour_web": "",
@@ -8879,7 +8879,7 @@
   {
     "ranking": 810,
     "name": "Kelly Lee Owens",
-    "genre": "Electronic",
+    "genre": "Deep House",
     "subgenre": "",
     "tags": "discovered",
     "tour_web": "",
@@ -8890,7 +8890,7 @@
   {
     "ranking": 811,
     "name": "Kidoo",
-    "genre": "Electronic",
+    "genre": "Tech House",
     "subgenre": "",
     "tags": "discovered",
     "tour_web": "",
@@ -8901,7 +8901,7 @@
   {
     "ranking": 812,
     "name": "KIM SWIM",
-    "genre": "Electronic",
+    "genre": "Hard Techno",
     "subgenre": "",
     "tags": "discovered",
     "tour_web": "",
@@ -8912,7 +8912,7 @@
   {
     "ranking": 813,
     "name": "KinAhau",
-    "genre": "Electronic",
+    "genre": "Tech House",
     "subgenre": "",
     "tags": "discovered",
     "tour_web": "",
@@ -8923,7 +8923,7 @@
   {
     "ranking": 814,
     "name": "Kokeshi",
-    "genre": "Electronic",
+    "genre": "Techno",
     "subgenre": "",
     "tags": "discovered",
     "tour_web": "",
@@ -8934,7 +8934,7 @@
   {
     "ranking": 815,
     "name": "Layla Benitez",
-    "genre": "Electronic",
+    "genre": "Tech House",
     "subgenre": "",
     "tags": "discovered",
     "tour_web": "",
@@ -8945,7 +8945,7 @@
   {
     "ranking": 816,
     "name": "Lilya Mandre",
-    "genre": "Electronic",
+    "genre": "Hard Techno",
     "subgenre": "",
     "tags": "discovered",
     "tour_web": "",
@@ -8956,7 +8956,7 @@
   {
     "ranking": 817,
     "name": "Lou Nour",
-    "genre": "Electronic",
+    "genre": "Drum & Bass",
     "subgenre": "",
     "tags": "discovered",
     "tour_web": "",
@@ -8967,7 +8967,7 @@
   {
     "ranking": 818,
     "name": "Luca Donzelli",
-    "genre": "Electronic",
+    "genre": "Techno",
     "subgenre": "",
     "tags": "discovered",
     "tour_web": "",
@@ -8978,7 +8978,7 @@
   {
     "ranking": 819,
     "name": "Marco Strous",
-    "genre": "Electronic",
+    "genre": "Tech House",
     "subgenre": "",
     "tags": "discovered",
     "tour_web": "",
@@ -8989,7 +8989,7 @@
   {
     "ranking": 820,
     "name": "Marie-Julie",
-    "genre": "Electronic",
+    "genre": "Techno",
     "subgenre": "",
     "tags": "discovered",
     "tour_web": "",
@@ -9000,7 +9000,7 @@
   {
     "ranking": 821,
     "name": "Marlie",
-    "genre": "Electronic",
+    "genre": "Techno",
     "subgenre": "",
     "tags": "discovered",
     "tour_web": "",
@@ -9011,7 +9011,7 @@
   {
     "ranking": 822,
     "name": "Miguel Nery",
-    "genre": "Electronic",
+    "genre": "Techno",
     "subgenre": "",
     "tags": "discovered",
     "tour_web": "",
@@ -9022,7 +9022,7 @@
   {
     "ranking": 823,
     "name": "Mish",
-    "genre": "Electronic",
+    "genre": "Tech House",
     "subgenre": "",
     "tags": "discovered",
     "tour_web": "",
@@ -9033,7 +9033,7 @@
   {
     "ranking": 824,
     "name": "Moby",
-    "genre": "Electronic",
+    "genre": "Melodic Techno",
     "subgenre": "",
     "tags": "discovered",
     "tour_web": "",
@@ -9044,7 +9044,7 @@
   {
     "ranking": 825,
     "name": "Monolink",
-    "genre": "Electronic",
+    "genre": "Techno",
     "subgenre": "",
     "tags": "discovered",
     "tour_web": "",
@@ -9055,7 +9055,7 @@
   {
     "ranking": 826,
     "name": "Monrroe",
-    "genre": "Electronic",
+    "genre": "Drum & Bass",
     "subgenre": "",
     "tags": "discovered",
     "tour_web": "",
@@ -9066,7 +9066,7 @@
   {
     "ranking": 827,
     "name": "Moodymann",
-    "genre": "Electronic",
+    "genre": "Techno",
     "subgenre": "",
     "tags": "discovered",
     "tour_web": "",
@@ -9077,7 +9077,7 @@
   {
     "ranking": 828,
     "name": "Nia Archives",
-    "genre": "Electronic",
+    "genre": "Tech House",
     "subgenre": "",
     "tags": "discovered",
     "tour_web": "",
@@ -9088,7 +9088,7 @@
   {
     "ranking": 829,
     "name": "Notion",
-    "genre": "Electronic",
+    "genre": "Tech House",
     "subgenre": "",
     "tags": "discovered",
     "tour_web": "",
@@ -9099,7 +9099,7 @@
   {
     "ranking": 830,
     "name": "Nuke",
-    "genre": "Electronic",
+    "genre": "Techno",
     "subgenre": "",
     "tags": "discovered",
     "tour_web": "",
@@ -9110,7 +9110,7 @@
   {
     "ranking": 831,
     "name": "Paraçek",
-    "genre": "Electronic",
+    "genre": "Hard Techno",
     "subgenre": "",
     "tags": "discovered",
     "tour_web": "",
@@ -9121,7 +9121,7 @@
   {
     "ranking": 832,
     "name": "Paul Oakenfold",
-    "genre": "Electronic",
+    "genre": "Tech House",
     "subgenre": "",
     "tags": "discovered",
     "tour_web": "",
@@ -9132,7 +9132,7 @@
   {
     "ranking": 833,
     "name": "Pawlowski",
-    "genre": "Electronic",
+    "genre": "Hard Techno",
     "subgenre": "",
     "tags": "discovered",
     "tour_web": "",
@@ -9143,7 +9143,7 @@
   {
     "ranking": 834,
     "name": "Petit Biscuit",
-    "genre": "Electronic",
+    "genre": "Techno",
     "subgenre": "",
     "tags": "discovered",
     "tour_web": "",
@@ -9154,7 +9154,7 @@
   {
     "ranking": 835,
     "name": "Philippa Pacho",
-    "genre": "Electronic",
+    "genre": "Techno",
     "subgenre": "",
     "tags": "discovered",
     "tour_web": "",
@@ -9165,7 +9165,7 @@
   {
     "ranking": 836,
     "name": "Schak",
-    "genre": "Electronic",
+    "genre": "Tech House",
     "subgenre": "",
     "tags": "discovered",
     "tour_web": "",
@@ -9176,7 +9176,7 @@
   {
     "ranking": 837,
     "name": "SHDW",
-    "genre": "Electronic",
+    "genre": "Techno",
     "subgenre": "",
     "tags": "discovered",
     "tour_web": "",
@@ -9187,7 +9187,7 @@
   {
     "ranking": 838,
     "name": "Shonky",
-    "genre": "Electronic",
+    "genre": "Hard Techno",
     "subgenre": "",
     "tags": "discovered",
     "tour_web": "",
@@ -9198,7 +9198,7 @@
   {
     "ranking": 839,
     "name": "SIKOTI",
-    "genre": "Electronic",
+    "genre": "Techno",
     "subgenre": "",
     "tags": "discovered",
     "tour_web": "",
@@ -9209,7 +9209,7 @@
   {
     "ranking": 840,
     "name": "Skepta",
-    "genre": "Electronic",
+    "genre": "Tech House",
     "subgenre": "",
     "tags": "discovered",
     "tour_web": "",
@@ -9220,7 +9220,7 @@
   {
     "ranking": 841,
     "name": "SLVL",
-    "genre": "Electronic",
+    "genre": "Hard Techno",
     "subgenre": "",
     "tags": "discovered",
     "tour_web": "",
@@ -9231,7 +9231,7 @@
   {
     "ranking": 842,
     "name": "Sonja Moonear",
-    "genre": "Electronic",
+    "genre": "Techno",
     "subgenre": "",
     "tags": "discovered",
     "tour_web": "",
@@ -9242,7 +9242,7 @@
   {
     "ranking": 843,
     "name": "SP:MC",
-    "genre": "Electronic",
+    "genre": "Drum & Bass",
     "subgenre": "",
     "tags": "discovered",
     "tour_web": "",
@@ -9253,7 +9253,7 @@
   {
     "ranking": 844,
     "name": "Svetec",
-    "genre": "Electronic",
+    "genre": "Hard Techno",
     "subgenre": "",
     "tags": "discovered",
     "tour_web": "",
@@ -9264,7 +9264,7 @@
   {
     "ranking": 845,
     "name": "Swimming Paul",
-    "genre": "Electronic",
+    "genre": "Tech House",
     "subgenre": "",
     "tags": "discovered",
     "tour_web": "",
@@ -9275,7 +9275,7 @@
   {
     "ranking": 846,
     "name": "Technimatic",
-    "genre": "Electronic",
+    "genre": "Drum & Bass",
     "subgenre": "",
     "tags": "discovered",
     "tour_web": "",
@@ -9286,7 +9286,7 @@
   {
     "ranking": 847,
     "name": "Tiga",
-    "genre": "Electronic",
+    "genre": "Tech House",
     "subgenre": "",
     "tags": "discovered",
     "tour_web": "",
@@ -9297,7 +9297,7 @@
   {
     "ranking": 848,
     "name": "Todd Terry",
-    "genre": "Electronic",
+    "genre": "Tech House",
     "subgenre": "",
     "tags": "discovered",
     "tour_web": "",
@@ -9308,7 +9308,7 @@
   {
     "ranking": 849,
     "name": "Tommy phillips",
-    "genre": "Electronic",
+    "genre": "Tech House",
     "subgenre": "",
     "tags": "discovered",
     "tour_web": "",
@@ -9319,7 +9319,7 @@
   {
     "ranking": 850,
     "name": "TroyBoi",
-    "genre": "Electronic",
+    "genre": "Bass",
     "subgenre": "",
     "tags": "discovered",
     "tour_web": "",
@@ -9330,7 +9330,7 @@
   {
     "ranking": 851,
     "name": "Ueberrest",
-    "genre": "Electronic",
+    "genre": "Hard Techno",
     "subgenre": "",
     "tags": "discovered",
     "tour_web": "",
@@ -9341,7 +9341,7 @@
   {
     "ranking": 852,
     "name": "Ultrabeat",
-    "genre": "Electronic",
+    "genre": "Trance",
     "subgenre": "",
     "tags": "discovered",
     "tour_web": "",
@@ -9352,7 +9352,7 @@
   {
     "ranking": 853,
     "name": "Wilkinson",
-    "genre": "Electronic",
+    "genre": "Drum & Bass",
     "subgenre": "",
     "tags": "discovered",
     "tour_web": "",
@@ -9363,7 +9363,7 @@
   {
     "ranking": 854,
     "name": "WUKI",
-    "genre": "Electronic",
+    "genre": "Bass",
     "subgenre": "",
     "tags": "discovered",
     "tour_web": "",

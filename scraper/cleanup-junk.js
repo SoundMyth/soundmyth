@@ -27,19 +27,18 @@ if (!SB_URL || !SB_KEY) { console.error('❌  Missing SUPABASE_URL / SUPABASE_SE
 const sb    = createClient(SB_URL, SB_KEY, { auth: { persistSession: false } });
 const TODAY = new Date().toISOString().split('T')[0];
 
-// Our curated EDM universe — every event must tie to one of OUR DJs / clubs / festivals.
+// Our DJ list is THE gate. An event belongs in SoundMyth only if one of OUR DJs
+// (data/artists_all.json) is on the bill — OR it's a festival (curated festivals may
+// list their line-up later). The club/venue being "ours" is NOT a criterion.
 const readJ = p => { try { return JSON.parse(readFileSync(resolve(__dirname, p), 'utf8')); } catch { return []; } };
-const DJ_SET   = new Set(readJ('data/artists_all.json').map(a => djNorm(a.name)));
-const CLUB_SET = new Set(readJ('data/clubs_all.json').map(c => djNorm(c.name)));
+const djKey  = s => (s || '').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/&/g, ' and ').replace(/[^a-z0-9]+/g, '');
+const DJ_SET = new Set(readJ('data/artists_all.json').map(a => djKey(a.name)));
 
-// A Resident-Advisor event with no DJ from our list, not a curated club, and not a
-// festival = off-genre noise (rock/random parties from area discovery). SoundMyth is
-// EDM-only and built around our DJ list → drop it.
-function nonCurated(e) {
-  if (e.source !== 'ra') return false;
+// Off-scope = not a festival AND no DJ from our list on the bill (rock/jazz/random
+// parties, or EDM DJs we simply don't track). SoundMyth is EDM-only, driven by the list.
+function offGenre(e) {
   if ((e.tags || []).includes('festival')) return false;
-  if ((e.djs || []).some(d => DJ_SET.has(djNorm(d)))) return false;
-  if (e.venue && CLUB_SET.has(djNorm(e.venue))) return false;
+  if ((e.djs || []).some(d => DJ_SET.has(djKey(d)))) return false;
   return true;
 }
 
@@ -61,9 +60,9 @@ while (true) {
   rows = rows.concat(data); if (data.length < 1000) break; from += 1000;
 }
 
-const junkCount = rows.filter(isJunk).length, ncCount = rows.filter(nonCurated).length;
-const toRemove = rows.filter(e => isJunk(e) || nonCurated(e));
-console.log(`Scanned ${rows.length} future events · to remove: ${toRemove.length} (mislabelled ${junkCount} + non-curated RA ${ncCount})`);
+const junkCount = rows.filter(isJunk).length, ogCount = rows.filter(offGenre).length;
+const toRemove = rows.filter(e => isJunk(e) || offGenre(e));
+console.log(`Scanned ${rows.length} future events · to remove: ${toRemove.length} (mislabelled ${junkCount} + off-scope/no-DJ ${ogCount})`);
 toRemove.slice(0, 40).forEach(e => console.log(`  - ${e.date} ${JSON.stringify((e.name||'').slice(0,46))} [${e.source}] @ ${JSON.stringify(e.venue)}`));
 
 if (process.env.DRY === '1') { console.log('DRY run — nothing deleted.'); process.exit(0); }

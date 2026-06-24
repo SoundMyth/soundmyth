@@ -38,12 +38,15 @@ const TODAY = new Date().toISOString().split('T')[0];
 const readJ = p => { try { return JSON.parse(readFileSync(resolve(__dirname, p), 'utf8')); } catch { return []; } };
 const djKey  = s => (s || '').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/&/g, ' and ').replace(/[^a-z0-9]+/g, '');
 const ALLOW  = new Set(readJ('data/artists_allow.json').map(djKey));            // manual EDM rescue
+const BLOCK  = new Set(readJ('data/artists_block.json').map(djKey));            // manual off-genre (RA false-positives)
 const DJ_SET = new Set(readJ('data/artists_all.json').map(a => djKey(a.name)));
 for (const c of readJ('data/artists_candidates.json')) if (c.onRA) DJ_SET.add(c.key || djKey(c.name));
 for (const k of ALLOW) DJ_SET.add(k);
+for (const k of BLOCK) DJ_SET.delete(k);   // block always wins over keep
 // Off-genre acts (rock/pop/jazz that did NOT verify on RA: Gorillaz, The Cure…) —
-// stripped from kept line-ups so the app only shows EDM names. ALLOW always wins.
+// stripped from kept line-ups so the app only shows EDM names. ALLOW > BLOCK > onRA.
 const OFF = new Set(readJ('data/artists_candidates.json').filter(c => c.onRA === false).map(c => c.key || djKey(c.name)));
+for (const k of BLOCK) OFF.add(k);
 for (const k of ALLOW) OFF.delete(k);
 
 // Off-scope = not a festival AND no EDM DJ we recognise on the bill (rock/jazz/random

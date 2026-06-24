@@ -188,26 +188,40 @@ img{display:block;}
 /* ── DETAIL ── */
 #detail{position:fixed;inset:0;z-index:200;background:var(--bg);overflow-y:auto;display:none;max-width:430px;margin:0 auto;}
 #detail.open{display:block;animation:fadeup 0.22s ease;}
-.detail-hero{position:relative;height:46vh;min-height:300px;background:#15131a;}
-.detail-hero img{width:100%;height:100%;object-fit:cover;filter:brightness(0.6);}
-.detail-overlay{position:absolute;inset:0;background:linear-gradient(180deg,rgba(13,13,17,.2) 0%,rgba(13,13,17,.4) 50%,var(--bg) 100%);}
+/* ── EVENT DETAIL · poster layout ── */
+.det-hero{position:relative;height:50vh;min-height:330px;background:#15131a;}
+.det-hero img{width:100%;height:100%;object-fit:cover;filter:brightness(.62);}
+.det-hero-ov{position:absolute;inset:0;background:linear-gradient(180deg,rgba(13,13,17,.12) 0%,rgba(13,13,17,.22) 42%,var(--bg) 99%);}
+.det-back{position:absolute;top:16px;left:16px;width:40px;height:40px;border-radius:50%;background:rgba(13,13,17,.5);backdrop-filter:blur(10px);border:1px solid var(--border-strong);color:#fff;font-size:18px;cursor:pointer;font-family:inherit;display:flex;align-items:center;justify-content:center;}
+.det-stub{position:absolute;top:16px;right:16px;background:var(--accent);color:var(--accent-ink);border-radius:var(--r-md);padding:9px 13px;text-align:center;box-shadow:var(--shadow);}
+.det-stub-d{font-size:24px;font-weight:800;line-height:1;}
+.det-stub-m{font-size:11px;font-weight:800;letter-spacing:1px;margin-top:2px;}
+.det-hero-info{position:absolute;bottom:18px;left:20px;right:20px;}
+.detail-genre{color:var(--accent);font-size:11px;font-weight:800;letter-spacing:1.3px;text-transform:uppercase;}
+.detail-name{color:#fff;font-size:31px;font-weight:800;margin:8px 0 0;line-height:1.02;letter-spacing:-.6px;}
+.det-body{padding:6px 20px 110px;}
+.det-kv{display:flex;gap:14px;padding:16px 0;border-bottom:1px solid var(--border);}
+.det-kv .det-k{color:var(--text-mute);font-size:11px;font-weight:700;letter-spacing:.6px;text-transform:uppercase;width:72px;flex-shrink:0;padding-top:2px;}
+.det-kv .det-v{font-size:14.5px;font-weight:600;line-height:1.3;}
+.det-kv .det-v small{display:block;color:var(--text-dim);font-weight:500;font-size:12.5px;margin-top:3px;}
+.det-kv-lineup{border-bottom:none;align-items:flex-start;}
+.det-kv-lineup .det-v{width:100%;font-weight:500;}
+.det-lineup{display:flex;gap:14px;overflow-x:auto;padding:2px 0 4px;scrollbar-width:none;}
+.det-lineup::-webkit-scrollbar{height:0;}
+.det-dj{display:flex;flex-direction:column;align-items:center;gap:8px;width:68px;flex-shrink:0;cursor:pointer;}
+.det-dj:active{opacity:.7;}
+.det-dj:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:10px;}
+.det-dj-av{width:58px;height:58px;border-radius:50%;background:var(--surface-3);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:18px;overflow:hidden;}
+.det-dj-av img{width:100%;height:100%;object-fit:cover;}
+.det-dj.head .det-dj-av{border:2px solid var(--accent);}
+.det-dj-nm{font-size:11.5px;font-weight:600;text-align:center;line-height:1.2;}
+.det-dj-hd{color:var(--accent);font-size:9px;font-weight:800;letter-spacing:.4px;}
+.det-cta{position:sticky;bottom:0;margin:18px -20px 0;padding:14px 20px calc(14px + env(safe-area-inset-bottom));background:linear-gradient(to top,var(--bg) 72%,transparent);display:flex;gap:10px;align-items:center;}
+.det-get{flex:1;display:block;background:var(--accent);color:var(--accent-ink);text-align:center;padding:15px;border-radius:var(--r-md);font-weight:800;font-size:14.5px;text-decoration:none;box-shadow:0 10px 26px -8px var(--accent);}
+.det-icbtn{width:52px;height:52px;border-radius:var(--r-md);background:var(--surface-2);border:1px solid var(--border-strong);font-size:20px;cursor:pointer;font-family:inherit;color:var(--text-dim);flex-shrink:0;}
+.det-icbtn.saved{color:var(--accent);border-color:var(--accent);}
 .detail-back{position:absolute;top:16px;left:16px;background:rgba(13,13,17,.55);backdrop-filter:blur(10px);border:1px solid var(--border-strong);border-radius:var(--r-pill);color:#fff;padding:9px 15px;font-size:12px;font-weight:600;cursor:pointer;letter-spacing:0;font-family:inherit;}
-.detail-info{position:absolute;bottom:22px;left:22px;right:22px;}
-.detail-genre{color:var(--accent);font-size:12px;font-weight:600;letter-spacing:0;margin-bottom:7px;}
-.detail-name{color:#fff;font-size:26px;font-weight:800;margin:0 0 6px;line-height:1.08;letter-spacing:-.6px;}
-.detail-venue{color:var(--text-dim);font-size:14px;}
-.detail-body{padding:22px 20px 104px;}
-.detail-stats{display:flex;gap:10px;margin-bottom:26px;}
-.stat-box{flex:1;background:var(--surface);border:1px solid var(--border);border-radius:var(--r-md);padding:13px 8px;text-align:center;}
-.stat-ico{font-size:16px;margin-bottom:4px;}
-.stat-val{color:var(--text);font-size:13px;font-weight:700;}
 .lineup-label{color:var(--text-dim);font-size:13px;font-weight:700;letter-spacing:0;margin-bottom:12px;}
-.lineup-row{display:flex;align-items:center;gap:13px;padding:11px 0;border-bottom:1px solid var(--border);}
-.lineup-ico{width:38px;height:38px;border-radius:50%;background:var(--surface-2);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:15px;flex-shrink:0;}
-.lineup-name{color:var(--text);font-size:15px;font-weight:600;}
-.lineup-row[role=button]{cursor:pointer;}
-.lineup-row[role=button]:active{opacity:.7;}
-.lineup-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:8px;}
 /* ── DJ PROFILE OVERLAY ── */
 #dj-detail{position:fixed;inset:0;z-index:210;background:var(--bg);overflow-y:auto;display:none;max-width:430px;margin:0 auto;}
 #dj-detail.open{display:block;animation:fadeup .22s ease;}
@@ -615,29 +629,26 @@ button:focus{outline:none;}
 
 <!-- DETAIL -->
 <div id="detail">
-  <div class="detail-hero">
+  <div class="det-hero">
     <img id="det-img" src="" alt="" onerror="this.onerror=null;this.src=COUNTRY_IMG_HERO_FALLBACK"/>
-    <div class="detail-overlay"></div>
-    <button class="detail-back" onclick="history.back()">← Back</button>
-    <div class="detail-info">
+    <div class="det-hero-ov"></div>
+    <button class="det-back" onclick="history.back()" aria-label="Back">←</button>
+    <div class="det-stub"><div class="det-stub-d" id="det-day"></div><div class="det-stub-m" id="det-mon"></div></div>
+    <div class="det-hero-info">
       <div class="detail-genre" id="det-genre"></div>
       <div class="detail-name" id="det-name"></div>
-      <div class="detail-venue" id="det-venue"></div>
     </div>
   </div>
-  <div class="detail-body">
-    <div class="detail-stats">
-      <div class="stat-box"><div class="stat-ico">📅</div><div class="stat-val" id="det-date"></div></div>
-      <div class="stat-box"><div class="stat-ico">⏳</div><div class="stat-val" id="det-days"></div></div>
-    </div>
-    <div class="detail-actions" style="margin:6px 0 26px;">
-      <a id="det-ticket" href="#" target="_blank" class="ticket-btn">Get tickets →</a>
-      <button aria-label="Save event" id="det-save" class="save-btn-det" onclick="toggleDetailSave()">♡</button>
-    </div>
-    <div class="lineup-label">Line-up</div>
-    <div id="det-lineup"></div>
+  <div class="det-body">
+    <div class="det-kv"><div class="det-k">When</div><div class="det-v" id="det-when"></div></div>
+    <div class="det-kv"><div class="det-k">Where</div><div class="det-v" id="det-where"></div></div>
+    <div class="det-kv det-kv-lineup"><div class="det-k">Line-up</div><div class="det-v"><div class="det-lineup" id="det-lineup"></div></div></div>
     <div class="tags" id="det-tags"></div>
-    <div id="det-source" style="margin-top:18px;"></div>
+    <div id="det-source" style="margin-top:14px;"></div>
+    <div class="det-cta">
+      <a id="det-ticket" href="#" target="_blank" class="det-get">Get tickets →</a>
+      <button aria-label="Save event" id="det-save" class="det-icbtn" onclick="toggleDetailSave()">♡</button>
+    </div>
   </div>
 </div>
 
@@ -1863,7 +1874,7 @@ async function toggleSave(id){
   }
   if(detailEv&&detailEv.id===id){
     const btn=document.getElementById('det-save');
-    btn.className='save-btn-det'+(saved.includes(id)?' saved':'');
+    btn.className='det-icbtn'+(saved.includes(id)?' saved':'');
     btn.textContent=saved.includes(id)?'♥':'♡';
   }
 }
@@ -1877,14 +1888,21 @@ function openDetail(id){
   const{day,mon}=fmtDate(ev.date);
   const days=daysUntil(ev.date);
   document.getElementById('det-img').src=bestImgHero(ev);
-  document.getElementById('det-genre').textContent=`${esc(ev.genre||'Electronic')} · ${FLAGS[ev.country]||'🌍'} ${esc(ev.city||'')}`;
+  document.getElementById('det-day').textContent=day;
+  document.getElementById('det-mon').textContent=mon;
+  document.getElementById('det-genre').textContent=`${ev.genre||'Electronic'} · ${ev.venue||ev.city||''}`;
   document.getElementById('det-name').textContent=ev.name;
-  document.getElementById('det-venue').textContent=ev.venue||ev.city||'';
-  document.getElementById('det-date').textContent=`${day} ${mon}`;
-  document.getElementById('det-days').textContent=days>0?`${days}d`:days===0?'Today':'Past';
+  const wd=new Date(ev.date).toLocaleDateString('en-GB',{weekday:'short'});
+  const dleft=days>0?`In ${days} day${days===1?'':'s'}`:days===0?'Today':'Past';
+  document.getElementById('det-when').innerHTML=`${wd} ${day} ${mon}<small>${dleft}</small>`;
+  const flag=FLAGS[ev.country]||'🌍';
+  document.getElementById('det-where').innerHTML=ev.venue
+    ? `${esc(ev.venue)}<small>${esc(ev.city||'')}${ev.country?', '+esc(ev.country):''} ${flag}</small>`
+    : `${esc(ev.city||'TBA')}<small>${ev.country?esc(ev.country)+' ':''}${flag}</small>`;
+  const isFest=(ev.tags||[]).includes('festival'), headIdx=(!isFest&&ev.djs.length>1)?0:-1;
   document.getElementById('det-lineup').innerHTML=ev.djs.length
-    ? ev.djs.map(dj=>{const ph=DJ_IMG[djNorm(dj)];return `<div class="lineup-row" role="button" tabindex="0" onclick='openDJ(${esc(JSON.stringify(dj))})'><div class="lineup-ico">${ph?`<img src="${ph}" alt="" style="width:100%;height:100%;object-fit:cover;border-radius:50%">`:djFlag(dj)}</div><span class="lineup-name">${esc(dj)}</span><span style="margin-left:auto;color:var(--text-mute)">›</span></div>`;}).join('')
-    : `<div style="color:var(--text-mute);font-size:13px;padding:14px 0;">Line-up TBA</div>`;
+    ? ev.djs.map((dj,i)=>{const ph=DJ_IMG[djNorm(dj)];return `<div class="det-dj${i===headIdx?' head':''}" role="button" tabindex="0" onclick='openDJ(${esc(JSON.stringify(dj))})'><div class="det-dj-av">${ph?`<img src="${ph}" alt="">`:djFlag(dj)}</div><div class="det-dj-nm">${esc(dj)}</div>${i===headIdx?'<div class="det-dj-hd">HEADLINER</div>':''}</div>`;}).join('')
+    : `<div style="color:var(--text-mute);font-size:13px;">Line-up TBA</div>`;
   document.getElementById('det-tags').innerHTML=ev.tags.map(t=>`<span class="tag">${esc(t)}</span>`).join('');
   // Source badge
   const srcLabel={'bandsintown':'Bandsintown','songkick':'Songkick','ra':'Resident Advisor','direct':'Official Site','website':'Website'};
@@ -1899,9 +1917,9 @@ function openDetail(id){
   tickBtn.style.display=hasTicket?'':'none';
   const isSaved=saved.includes(ev.id);
   const saveBtn=document.getElementById('det-save');
-  saveBtn.className='save-btn-det'+(isSaved?' saved':'');
+  saveBtn.className='det-icbtn'+(isSaved?' saved':'');
   saveBtn.textContent=isSaved?'♥':'♡';
-  saveBtn.style.flex=hasTicket?'':'1';
+  saveBtn.style.cssText=hasTicket?'':'flex:1';
   document.getElementById('detail').className='open';
   document.body.style.overflow='hidden';
   // push a history entry so the browser Back / edge-swipe CLOSES the detail

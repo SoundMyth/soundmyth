@@ -1,0 +1,242 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>SoundMyth — Event detail redesign mockups</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0d0d11;--surface:#16161c;--surface-2:#1d1d25;--surface-3:#26262f;
+  --border:rgba(255,255,255,.07);--border-strong:rgba(255,255,255,.12);
+  --text:#f4f4f6;--text-dim:#a6a6b2;--text-mute:#6c6c79;
+  --accent:#c7f23c;--accent-ink:#0c0c0f;--accent-soft:rgba(199,242,60,.15);--accent-line:rgba(199,242,60,.45);
+  --r-xl:22px;--r-lg:16px;--r-md:12px;--r-sm:9px;--r-pill:999px;
+  --shadow:0 10px 30px -12px rgba(0,0,0,.7);
+  --font:'Plus Jakarta Sans',-apple-system,BlinkMacSystemFont,'Helvetica Neue',sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{background:#08080b;color:var(--text);font-family:var(--font);-webkit-font-smoothing:antialiased;padding:28px 16px 60px;}
+.intro{max-width:980px;margin:0 auto 22px;text-align:center;}
+.intro h1{font-size:20px;font-weight:800;letter-spacing:-.3px;}
+.intro p{color:var(--text-dim);font-size:13.5px;margin-top:7px;line-height:1.6;}
+.switch{display:flex;gap:8px;justify-content:center;margin:18px 0 26px;flex-wrap:wrap;}
+.switch button{background:var(--surface-2);border:1px solid var(--border-strong);color:var(--text-dim);font-family:inherit;font-weight:700;font-size:13px;padding:10px 18px;border-radius:var(--r-pill);cursor:pointer;transition:.15s;}
+.switch button.on{background:var(--accent);color:var(--accent-ink);border-color:var(--accent);}
+.stage{display:flex;gap:34px;justify-content:center;align-items:flex-start;flex-wrap:wrap;}
+.col{display:none;flex-direction:column;align-items:center;gap:12px;}
+.col.show{display:flex;}
+.col .cap{color:var(--text-dim);font-size:12px;font-weight:600;}
+.col .cap b{color:var(--accent);}
+.phone{width:390px;height:780px;overflow-y:auto;background:var(--bg);border-radius:34px;border:1px solid var(--border-strong);box-shadow:0 30px 80px -20px rgba(0,0,0,.8);position:relative;scrollbar-width:thin;}
+.phone::-webkit-scrollbar{width:0;}
+.bar{display:flex;gap:8px;align-items:center;justify-content:flex-start;padding:10px 16px 0;color:var(--text-mute);font-size:11px;}
+/* shared bits */
+.av{width:42px;height:42px;border-radius:50%;background:var(--surface-3);display:flex;align-items:center;justify-content:center;font-weight:800;font-size:14px;color:var(--text-dim);flex-shrink:0;border:1px solid var(--border);}
+.tagchip{display:inline-block;background:var(--surface-2);border:1px solid var(--border);color:var(--text-dim);border-radius:var(--r-pill);padding:5px 11px;font-size:11px;font-weight:600;margin:0 6px 6px 0;}
+
+/* ─────────── CURRENT ─────────── */
+.cur-hero{position:relative;height:230px;}
+.cur-hero .img{position:absolute;inset:0;background:radial-gradient(120% 90% at 30% 10%,rgba(199,242,60,.20),transparent 55%),linear-gradient(160deg,#2a2740,#141019);}
+.cur-hero .ov{position:absolute;inset:0;background:linear-gradient(to top,var(--bg) 4%,transparent 60%);}
+.cur-back{position:absolute;top:14px;left:14px;background:rgba(0,0,0,.45);border:1px solid var(--border-strong);color:#fff;border-radius:var(--r-pill);padding:8px 14px;font-size:13px;font-weight:600;font-family:inherit;}
+.cur-info{position:absolute;left:18px;right:18px;bottom:14px;}
+.cur-genre{color:var(--accent);font-size:12px;font-weight:600;margin-bottom:5px;}
+.cur-name{font-size:24px;font-weight:800;letter-spacing:-.4px;line-height:1.08;}
+.cur-venue{color:var(--text-dim);font-size:13.5px;margin-top:6px;}
+.cur-body{padding:18px;}
+.cur-stats{display:flex;gap:12px;}
+.cur-stat{flex:1;background:var(--surface);border:1px solid var(--border);border-radius:var(--r-md);padding:14px;text-align:center;}
+.cur-stat .ico{font-size:18px;}
+.cur-stat .val{font-weight:700;margin-top:5px;font-size:15px;}
+.cur-act{display:flex;gap:10px;align-items:center;margin:16px 0 26px;}
+.cur-ticket{flex:1;background:var(--accent);color:var(--accent-ink);border-radius:var(--r-pill);padding:14px;text-align:center;font-weight:700;font-size:14px;text-decoration:none;}
+.cur-save{width:48px;height:48px;border-radius:50%;background:var(--surface-2);border:1px solid var(--border-strong);color:var(--text-dim);font-size:20px;}
+.cur-lbl{font-size:12px;font-weight:700;letter-spacing:.4px;color:var(--text-mute);text-transform:uppercase;margin-bottom:8px;}
+.cur-row{display:flex;align-items:center;gap:12px;padding:11px 0;border-bottom:1px solid var(--border);}
+.cur-row .nm{font-size:14.5px;font-weight:600;}
+.cur-row .ar{margin-left:auto;color:var(--text-mute);}
+
+/* ─────────── REFINED ─────────── */
+.ref-hero{position:relative;height:250px;}
+.ref-hero .img{position:absolute;inset:0;background:radial-gradient(120% 90% at 70% 0%,rgba(199,242,60,.22),transparent 55%),linear-gradient(160deg,#241f3a,#120f17);}
+.ref-hero .ov{position:absolute;inset:0;background:linear-gradient(to top,var(--bg) 2%,rgba(13,13,17,.2) 45%,transparent 70%);}
+.ref-top{position:absolute;top:14px;left:14px;right:14px;display:flex;justify-content:space-between;}
+.ref-ic{width:38px;height:38px;border-radius:50%;background:rgba(0,0,0,.4);backdrop-filter:blur(6px);border:1px solid var(--border-strong);color:#fff;font-size:16px;display:flex;align-items:center;justify-content:center;}
+.ref-info{position:absolute;left:18px;right:18px;bottom:16px;}
+.ref-chip{display:inline-block;background:var(--accent);color:var(--accent-ink);font-size:11px;font-weight:800;letter-spacing:.3px;padding:5px 11px;border-radius:var(--r-pill);margin-bottom:9px;}
+.ref-name{font-size:27px;font-weight:800;letter-spacing:-.5px;line-height:1.05;}
+.ref-venue{color:var(--text);font-size:13.5px;margin-top:8px;opacity:.85;}
+.ref-body{padding:16px 18px 110px;}
+.ref-pills{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:22px;}
+.ref-pill{display:inline-flex;align-items:center;gap:6px;background:var(--surface);border:1px solid var(--border);border-radius:var(--r-pill);padding:9px 13px;font-size:12.5px;font-weight:600;color:var(--text);}
+.ref-pill .k{color:var(--text-mute);}
+.ref-lbl{font-size:12px;font-weight:700;letter-spacing:.4px;color:var(--text-mute);text-transform:uppercase;margin-bottom:11px;}
+.ref-head{display:flex;align-items:center;gap:14px;background:linear-gradient(120deg,var(--accent-soft),transparent);border:1px solid var(--accent-line);border-radius:var(--r-lg);padding:13px;margin-bottom:10px;}
+.ref-head .av{width:54px;height:54px;border:2px solid var(--accent);color:var(--accent);background:var(--surface);}
+.ref-head .nm{font-size:16px;font-weight:800;}
+.ref-head .tg{color:var(--accent);font-size:10.5px;font-weight:800;letter-spacing:.5px;margin-top:3px;}
+.ref-row{display:flex;align-items:center;gap:12px;padding:9px 4px;border-bottom:1px solid var(--border);}
+.ref-row .nm{font-size:14.5px;font-weight:600;}
+.ref-row .ar{margin-left:auto;color:var(--text-mute);}
+.ref-cta{position:sticky;bottom:0;margin:0 -18px;padding:14px 18px calc(14px + env(safe-area-inset-bottom));background:linear-gradient(to top,var(--bg) 70%,transparent);display:flex;gap:10px;align-items:center;}
+.ref-get{flex:1;background:var(--accent);color:var(--accent-ink);border-radius:var(--r-pill);padding:15px;text-align:center;font-weight:800;font-size:14.5px;text-decoration:none;box-shadow:0 10px 26px -8px var(--accent);}
+.ref-icbtn{width:50px;height:50px;border-radius:50%;background:var(--surface-2);border:1px solid var(--border-strong);color:var(--text);font-size:19px;flex-shrink:0;}
+
+/* ─────────── POSTER ─────────── */
+.pos-hero{position:relative;height:330px;}
+.pos-hero .img{position:absolute;inset:0;background:radial-gradient(90% 80% at 50% 100%,rgba(199,242,60,.18),transparent 60%),linear-gradient(180deg,#1a1726,#0d0b12);}
+.pos-hero .ov{position:absolute;inset:0;background:linear-gradient(to top,var(--bg) 1%,transparent 55%);}
+.pos-back{position:absolute;top:14px;left:14px;width:38px;height:38px;border-radius:50%;background:rgba(0,0,0,.4);border:1px solid var(--border-strong);color:#fff;font-size:16px;display:flex;align-items:center;justify-content:center;}
+.pos-stub{position:absolute;top:14px;right:14px;background:var(--accent);color:var(--accent-ink);border-radius:var(--r-md);padding:9px 13px;text-align:center;box-shadow:var(--shadow);}
+.pos-stub .d{font-size:24px;font-weight:800;line-height:1;}
+.pos-stub .m{font-size:11px;font-weight:800;letter-spacing:1px;margin-top:2px;}
+.pos-info{position:absolute;left:20px;right:20px;bottom:18px;}
+.pos-eyebrow{color:var(--accent);font-size:11px;font-weight:800;letter-spacing:1.4px;text-transform:uppercase;}
+.pos-name{font-size:32px;font-weight:800;letter-spacing:-.6px;line-height:1.0;margin-top:8px;}
+.pos-body{padding:6px 20px 110px;}
+.pos-kv{display:flex;gap:14px;padding:16px 0;border-bottom:1px solid var(--border);}
+.pos-kv .k{color:var(--text-mute);font-size:11px;font-weight:700;letter-spacing:.6px;text-transform:uppercase;width:74px;flex-shrink:0;padding-top:2px;}
+.pos-kv .v{font-size:14.5px;font-weight:600;}
+.pos-kv .v small{display:block;color:var(--text-dim);font-weight:500;font-size:12.5px;margin-top:3px;}
+.pos-scroll{display:flex;gap:14px;overflow-x:auto;padding:4px 0 2px;}
+.pos-dj{display:flex;flex-direction:column;align-items:center;gap:8px;width:66px;flex-shrink:0;}
+.pos-dj .av{width:58px;height:58px;}
+.pos-dj.head .av{border:2px solid var(--accent);color:var(--accent);}
+.pos-dj .nm{font-size:11.5px;font-weight:600;text-align:center;line-height:1.2;}
+.pos-dj .hd{color:var(--accent);font-size:9px;font-weight:800;letter-spacing:.4px;}
+.pos-cta{position:sticky;bottom:0;margin:0 -20px;padding:14px 20px calc(14px + env(safe-area-inset-bottom));background:linear-gradient(to top,var(--bg) 70%,transparent);display:flex;gap:10px;}
+.pos-get{flex:1;background:var(--accent);color:var(--accent-ink);border-radius:var(--r-md);padding:15px;text-align:center;font-weight:800;font-size:14.5px;text-decoration:none;}
+.pos-icbtn{width:50px;height:50px;border-radius:var(--r-md);background:var(--surface-2);border:1px solid var(--border-strong);color:var(--text);font-size:19px;}
+</style>
+</head>
+<body>
+<div class="intro">
+  <h1>SoundMyth — Event detail redesign</h1>
+  <p>Same event, three takes. <b>Current</b> = production today. <b>Refined</b> = same structure, polished (chip row, headliner emphasis, sticky CTA). <b>Poster</b> = bolder editorial layout (date stub, key-value info, avatar carousel).</p>
+</div>
+<div class="switch">
+  <button data-v="current">Current</button>
+  <button data-v="refined" class="on">Refined ◆</button>
+  <button data-v="poster">Poster ◆</button>
+</div>
+<div class="stage">
+
+  <!-- CURRENT -->
+  <div class="col" id="col-current">
+    <div class="cap">Current — in production</div>
+    <div class="phone">
+      <div class="cur-hero">
+        <div class="img"></div><div class="ov"></div>
+        <button class="cur-back">← Back</button>
+        <div class="cur-info">
+          <div class="cur-genre">Melodic Techno · 🇪🇸 Ibiza</div>
+          <div class="cur-name">Afterlife — Tale Of Us</div>
+          <div class="cur-venue">Hï Ibiza</div>
+        </div>
+      </div>
+      <div class="cur-body">
+        <div class="cur-stats">
+          <div class="cur-stat"><div class="ico">📅</div><div class="val">18 Jul</div></div>
+          <div class="cur-stat"><div class="ico">⏳</div><div class="val">24d</div></div>
+        </div>
+        <div class="cur-act">
+          <a class="cur-ticket">Get tickets →</a>
+          <button class="cur-save">♡</button>
+        </div>
+        <div class="cur-lbl">Line-up</div>
+        <div class="cur-row"><div class="av">TU</div><span class="nm">Tale Of Us</span><span class="ar">›</span></div>
+        <div class="cur-row"><div class="av">AN</div><span class="nm">Anyma</span><span class="ar">›</span></div>
+        <div class="cur-row"><div class="av">MA</div><span class="nm">Mathame</span><span class="ar">›</span></div>
+        <div class="cur-row"><div class="av">MR</div><span class="nm">MRAK</span><span class="ar">›</span></div>
+        <div class="cur-row"><div class="av">MS</div><span class="nm">Massano</span><span class="ar">›</span></div>
+        <div style="margin-top:16px;"><span class="tagchip">festival</span><span class="tagchip">club night</span></div>
+        <div style="margin-top:16px;color:var(--text-mute);font-size:11px;">Source · <b style="color:var(--text-dim)">Resident Advisor</b></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- REFINED -->
+  <div class="col show" id="col-refined">
+    <div class="cap">Direction A — <b>Refined</b> (low-risk evolution)</div>
+    <div class="phone">
+      <div class="ref-hero">
+        <div class="img"></div><div class="ov"></div>
+        <div class="ref-top"><div class="ref-ic">←</div><div style="display:flex;gap:8px;"><div class="ref-ic">↗</div><div class="ref-ic">♡</div></div></div>
+        <div class="ref-info">
+          <span class="ref-chip">MELODIC TECHNO</span>
+          <div class="ref-name">Afterlife — Tale Of Us</div>
+          <div class="ref-venue">📍 Hï Ibiza · Ibiza, Spain 🇪🇸</div>
+        </div>
+      </div>
+      <div class="ref-body">
+        <div class="ref-pills">
+          <span class="ref-pill"><span class="k">📅</span> Sat 18 Jul</span>
+          <span class="ref-pill"><span class="k">⏳</span> In 24 days</span>
+          <span class="ref-pill"><span class="k">🎟️</span> From €60</span>
+        </div>
+        <div class="ref-lbl">Line-up</div>
+        <div class="ref-head"><div class="av">TU</div><div><div class="nm">Tale Of Us</div><div class="tg">★ HEADLINER · MELODIC TECHNO</div></div><span style="margin-left:auto;color:var(--text-mute)">›</span></div>
+        <div class="ref-row"><div class="av">AN</div><span class="nm">Anyma</span><span class="ar">›</span></div>
+        <div class="ref-row"><div class="av">MA</div><span class="nm">Mathame</span><span class="ar">›</span></div>
+        <div class="ref-row"><div class="av">MR</div><span class="nm">MRAK</span><span class="ar">›</span></div>
+        <div class="ref-row"><div class="av">MS</div><span class="nm">Massano</span><span class="ar">›</span></div>
+        <div style="margin-top:18px;"><span class="tagchip">festival</span><span class="tagchip">club night</span></div>
+        <div class="ref-cta">
+          <a class="ref-get">Get tickets →</a>
+          <button class="ref-icbtn">♡</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- POSTER -->
+  <div class="col" id="col-poster">
+    <div class="cap">Direction B — <b>Poster</b> (bolder editorial)</div>
+    <div class="phone">
+      <div class="pos-hero">
+        <div class="img"></div><div class="ov"></div>
+        <div class="pos-back">←</div>
+        <div class="pos-stub"><div class="d">18</div><div class="m">JUL</div></div>
+        <div class="pos-info">
+          <div class="pos-eyebrow">Melodic Techno · Hï Ibiza</div>
+          <div class="pos-name">Afterlife<br>Tale Of Us</div>
+        </div>
+      </div>
+      <div class="pos-body">
+        <div class="pos-kv"><div class="k">When</div><div class="v">Sat 18 Jul · 23:00<small>In 24 days</small></div></div>
+        <div class="pos-kv"><div class="k">Where</div><div class="v">Hï Ibiza<small>Ibiza, Spain 🇪🇸 · view on map</small></div></div>
+        <div class="pos-kv" style="border:none;align-items:flex-start;">
+          <div class="k">Line-up</div>
+          <div class="v" style="font-weight:500;width:100%;">
+            <div class="pos-scroll">
+              <div class="pos-dj head"><div class="av">TU</div><div class="nm">Tale Of Us</div><div class="hd">HEADLINER</div></div>
+              <div class="pos-dj"><div class="av">AN</div><div class="nm">Anyma</div></div>
+              <div class="pos-dj"><div class="av">MA</div><div class="nm">Mathame</div></div>
+              <div class="pos-dj"><div class="av">MR</div><div class="nm">MRAK</div></div>
+              <div class="pos-dj"><div class="av">MS</div><div class="nm">Massano</div></div>
+              <div class="pos-dj"><div class="av">KV</div><div class="nm">Kevin de Vries</div></div>
+            </div>
+          </div>
+        </div>
+        <div style="margin-top:16px;"><span class="tagchip">festival</span><span class="tagchip">club night</span><span class="tagchip">Resident Advisor</span></div>
+        <div class="pos-cta">
+          <a class="pos-get">Get tickets →</a>
+          <button class="pos-icbtn">♡</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+<script>
+  document.querySelectorAll('.switch button').forEach(b=>b.onclick=()=>{
+    document.querySelectorAll('.switch button').forEach(x=>x.classList.remove('on'));
+    b.classList.add('on');
+    document.querySelectorAll('.col').forEach(c=>c.classList.remove('show'));
+    document.getElementById('col-'+b.dataset.v).classList.add('show');
+  });
+</script>
+</body>
+</html>

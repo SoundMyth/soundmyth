@@ -27,15 +27,21 @@ if (!SB_URL || !SB_KEY) { console.error('❌  Missing SUPABASE_URL / SUPABASE_SE
 const sb    = createClient(SB_URL, SB_KEY, { auth: { persistSession: false } });
 const TODAY = new Date().toISOString().split('T')[0];
 
-// Our DJ list is THE gate. An event belongs in SoundMyth only if one of OUR DJs
-// (data/artists_all.json) is on the bill — OR it's a festival (curated festivals may
-// list their line-up later). The club/venue being "ours" is NOT a criterion.
+// Our DJ list is THE gate. An event belongs in SoundMyth only if an EDM DJ we
+// recognise is on the bill — OR it's a festival (curated festivals may list their
+// line-up later). The club/venue being "ours" is NOT a criterion.
+//
+// "EDM DJ we recognise" = curated list (data/artists_all.json) ∪ discovered DJs that
+// verified as electronic on Resident Advisor (data/artists_candidates.json, onRA:true,
+// produced by discover-djs.js). That way EDM DJs we don't track yet are kept (and stay
+// reviewable in the candidates file) while genuine off-genre acts (rock/jazz) are dropped.
 const readJ = p => { try { return JSON.parse(readFileSync(resolve(__dirname, p), 'utf8')); } catch { return []; } };
 const djKey  = s => (s || '').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/&/g, ' and ').replace(/[^a-z0-9]+/g, '');
 const DJ_SET = new Set(readJ('data/artists_all.json').map(a => djKey(a.name)));
+for (const c of readJ('data/artists_candidates.json')) if (c.onRA) DJ_SET.add(c.key || djKey(c.name));
 
-// Off-scope = not a festival AND no DJ from our list on the bill (rock/jazz/random
-// parties, or EDM DJs we simply don't track). SoundMyth is EDM-only, driven by the list.
+// Off-scope = not a festival AND no EDM DJ we recognise on the bill (rock/jazz/random
+// parties). SoundMyth is EDM-only, driven by the list + RA-verified discoveries.
 function offGenre(e) {
   if ((e.tags || []).includes('festival')) return false;
   if ((e.djs || []).some(d => DJ_SET.has(djKey(d)))) return false;

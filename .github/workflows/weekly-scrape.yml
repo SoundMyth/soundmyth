@@ -89,6 +89,15 @@ jobs:
           SUPABASE_SERVICE_KEY: ${{ secrets.SUPABASE_SERVICE_KEY }}
         run: node dedupe.js
 
+      - name: Discover unlisted EDM DJs (RA-verified)
+        continue-on-error: true
+        timeout-minutes: 15
+        # Reads events (anon) + verifies non-list DJs on Resident Advisor, writes
+        # data/artists_candidates.json. Incremental: only NEW DJs hit RA (cache =
+        # committed candidates file). cleanup-junk keeps events whose bill has a
+        # listed DJ OR an onRA candidate. No secrets (anon key + ra.co only).
+        run: node discover-djs.js
+
       - name: Clean mislabelled junk events
         continue-on-error: true
         timeout-minutes: 5

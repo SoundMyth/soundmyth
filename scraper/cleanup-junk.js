@@ -37,8 +37,14 @@ const TODAY = new Date().toISOString().split('T')[0];
 // reviewable in the candidates file) while genuine off-genre acts (rock/jazz) are dropped.
 const readJ = p => { try { return JSON.parse(readFileSync(resolve(__dirname, p), 'utf8')); } catch { return []; } };
 const djKey  = s => (s || '').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/&/g, ' and ').replace(/[^a-z0-9]+/g, '');
+const ALLOW  = new Set(readJ('data/artists_allow.json').map(djKey));            // manual EDM rescue
 const DJ_SET = new Set(readJ('data/artists_all.json').map(a => djKey(a.name)));
 for (const c of readJ('data/artists_candidates.json')) if (c.onRA) DJ_SET.add(c.key || djKey(c.name));
+for (const k of ALLOW) DJ_SET.add(k);
+// Off-genre acts (rock/pop/jazz that did NOT verify on RA: Gorillaz, The Cure…) —
+// stripped from kept line-ups so the app only shows EDM names. ALLOW always wins.
+const OFF = new Set(readJ('data/artists_candidates.json').filter(c => c.onRA === false).map(c => c.key || djKey(c.name)));
+for (const k of ALLOW) OFF.delete(k);
 
 // Off-scope = not a festival AND no EDM DJ we recognise on the bill (rock/jazz/random
 // parties). SoundMyth is EDM-only, driven by the list + RA-verified discoveries.
@@ -98,19 +104,23 @@ for (const e of live) {
 console.log(`✓ Canonicalized city on ${cityFixed} rows.`);
 
 // Canonicalize DJ names on existing rows (data-driven; collapse case/diacritic
-// variants like alok/Alok, BLOND:ISH/Blond:ish, AME/Amè). Skips just-deleted junk.
+// variants like alok/Alok, BLOND:ISH/Blond:ish, AME/Amè) AND strip off-genre acts so
+// the displayed line-up is EDM-only. Stripping never blanks a bill (festivals with a
+// TBA / all-unverified line-up keep their djs). Skips just-deleted junk.
 const djCanon = buildDjCanon(live);
-let djFixed = 0;
+let djFixed = 0, trimmed = 0;
 for (const e of live) {
   const djs = e.djs || [];
   if (!djs.length) continue;
-  const nd = [...new Set(djs.map(d => djCanon[djNorm(d)] || d))];
+  let nd = [...new Set(djs.map(d => djCanon[djNorm(d)] || d))];
+  const edm = nd.filter(d => !OFF.has(djKey(d)));     // drop rock/pop/jazz from the line-up
+  if (edm.length && edm.length !== nd.length) { trimmed++; nd = edm; }   // never blank
   if (JSON.stringify(nd) !== JSON.stringify(djs)) {
     const { error } = await sb.from('events').update({ djs: nd }).eq('id', e.id);
     if (error) console.error(`  ❌ djs ${e.id}:`, error.message); else djFixed++;
   }
 }
-console.log(`✓ Canonicalized DJ names on ${djFixed} rows.`);
+console.log(`✓ Canonicalized DJ names on ${djFixed} rows (off-genre acts trimmed from ${trimmed} line-ups).`);
 
 // Fill missing images by reusing a real photo the same artist has on another event.
 const djImg = {};

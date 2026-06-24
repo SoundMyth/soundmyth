@@ -290,6 +290,17 @@
     "sample": "LISB-ON 2026 · Lisbon"
   },
   {
+    "name": "GRiZ",
+    "key": "griz",
+    "events": 7,
+    "sources": [
+      "bandsintown"
+    ],
+    "onRA": true,
+    "allow": true,
+    "sample": "North Coast Music Festival 2026 · Bridgeview"
+  },
+  {
     "name": "Hybrid Minds",
     "key": "hybridminds",
     "events": 7,
@@ -446,6 +457,17 @@
     "sample": "Worried About Henry returns to Malta in September 2026 for 3 days of D"
   },
   {
+    "name": "DeVault",
+    "key": "devault",
+    "events": 6,
+    "sources": [
+      "bandsintown"
+    ],
+    "onRA": true,
+    "allow": true,
+    "sample": "Experts Only Festival 2026 · New York City"
+  },
+  {
     "name": "DJ Gigola",
     "key": "djgigola",
     "events": 6,
@@ -530,6 +552,19 @@
     ],
     "onRA": true,
     "sample": "Joseph Capriati at Amnesia Ibiza · Ibiza"
+  },
+  {
+    "name": "Major Lazer",
+    "key": "majorlazer",
+    "events": 6,
+    "sources": [
+      "bandsintown",
+      "ra",
+      "songkick"
+    ],
+    "onRA": true,
+    "allow": true,
+    "sample": "Osheaga Music and Arts Festival 2026 · Montreal"
   },
   {
     "name": "Mar-t",
@@ -22583,26 +22618,6 @@
     "sample": "Lollapalooza 2026 · Berlin"
   },
   {
-    "name": "GRiZ",
-    "key": "griz",
-    "events": 7,
-    "sources": [
-      "bandsintown"
-    ],
-    "onRA": false,
-    "sample": "North Coast Music Festival 2026 · Bridgeview"
-  },
-  {
-    "name": "DeVault",
-    "key": "devault",
-    "events": 6,
-    "sources": [
-      "bandsintown"
-    ],
-    "onRA": false,
-    "sample": "Experts Only Festival 2026 · New York City"
-  },
-  {
     "name": "Geese",
     "key": "geese",
     "events": 6,
@@ -22622,18 +22637,6 @@
     ],
     "onRA": false,
     "sample": "Yasmin Gardezi at The Garden Tisno · Tisno"
-  },
-  {
-    "name": "Major Lazer",
-    "key": "majorlazer",
-    "events": 6,
-    "sources": [
-      "bandsintown",
-      "ra",
-      "songkick"
-    ],
-    "onRA": false,
-    "sample": "Osheaga Music and Arts Festival 2026 · Montreal"
   },
   {
     "name": "Clipse",

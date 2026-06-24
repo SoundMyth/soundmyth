@@ -42,6 +42,9 @@ const djKey = s => (s || '').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, 
                               .replace(/&/g, ' and ').replace(/[^a-z0-9]+/g, '');
 
 const LIST     = new Set(readJ('data/artists_all.json').map(a => djKey(a.name)));
+// Manual EDM allow-list — DJs RA doesn't index but we know are electronic
+// (Major Lazer, GRiZ…). Forced onRA:true so they're never dropped/stripped.
+const ALLOW    = new Set(readJ('data/artists_allow.json').map(djKey));
 const CAND_PATH = resolve(__dirname, 'data/artists_candidates.json');
 const prev      = readJ('data/artists_candidates.json');
 const cache     = new Map(prev.map(c => [c.key || djKey(c.name), c]));   // djKey → previous entry
@@ -99,10 +102,11 @@ for (let i = 0; i < entries.length; i += POOL) {
     const name = pickCanon(o.variants);
     const c = cache.get(k);
     let ra, err = false;
-    if (c && typeof c.onRA === 'boolean' && !c.err) { ra = c.onRA; reused++; }
+    if (ALLOW.has(k)) { ra = true; reused++; }   // manual EDM rescue — never hits RA
+    else if (c && typeof c.onRA === 'boolean' && !c.err) { ra = c.onRA; reused++; }
     else if (LIMIT_NEW && verified >= LIMIT_NEW) { ra = c?.onRA ?? false; err = true; cap = true; }
     else { ra = await onRA(name); verified++; if (ra === null) { ra = false; err = true; } }
-    out.push({ name, key: k, events: o.events, sources: [...o.sources].sort(), onRA: ra, sample: o.sample, err: err || undefined });
+    out.push({ name, key: k, events: o.events, sources: [...o.sources].sort(), onRA: ra, allow: ALLOW.has(k) || undefined, sample: o.sample, err: err || undefined });
   }));
   if (verified && verified % 200 === 0) console.log(`  …verified ${verified} new DJs`);
 }

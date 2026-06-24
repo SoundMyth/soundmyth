@@ -1693,6 +1693,7 @@ function selectCountry(country){
   document.getElementById('city-view-label').textContent=`Cities in ${country}`;
   const cs=document.getElementById('city-search'); if(cs) cs.value='';
   renderCities();
+  try{ history.pushState({smPlan:1},''); }catch(e){}   // so Back/edge-swipe returns to the country list
 }
 
 function clearCountry(){
@@ -1825,6 +1826,7 @@ function selectCity(city){
   document.getElementById('month-label').textContent=`When are you going to ${city}?`;
   renderMonths();
   goStep(1);
+  try{ history.pushState({smPlan:1},''); }catch(e){}   // Back → city list
 }
 
 function renderMonths(){
@@ -1845,6 +1847,7 @@ function selectMonth(m){
   document.getElementById('events-month-label').textContent=MONTHS[m];
   document.getElementById('events-list').innerHTML=grouped.map(ev=>eventRowHTML(ev)).join('');
   goStep(2);
+  try{ history.pushState({smPlan:1},''); }catch(e){}   // Back → month
 }
 
 function selectDJ(dj){
@@ -1861,6 +1864,7 @@ function selectDJ(dj){
   document.getElementById('bc-month').textContent=dj;
   document.getElementById('bc-month').className='bc-btn active';
   document.getElementById('bc-events').className='bc-btn active';
+  try{ history.pushState({smPlan:1},''); }catch(e){}   // Back → DJ list
 }
 
 // ── EVENT ROW ─────────────────────────────────────────────────────────────────
@@ -1967,6 +1971,7 @@ function closeDetail(){
 window.addEventListener('popstate', function(){
   if(document.getElementById('dj-detail').className==='open'){ closeDJ(); return; }
   if(document.getElementById('detail').className==='open'){ closeDetail(); return; }
+  planBack();   // step back one plan level (country/city/month/events)
 });
 
 // ── DJ PROFILE OVERLAY ──────────────────────────────────────────────────────
@@ -2005,43 +2010,29 @@ function toggleFollowDJ(name){
   savePrefs(); renderDJ(name); renderPersonalHome();
 }
 
-// ── SWIPE RIGHT TO GO BACK (works on any screen) ─────────────────────────────
-(function(){
-  let tx=0,ty=0;
-  document.addEventListener('touchstart',e=>{
-    tx=e.touches[0].clientX;
-    ty=e.touches[0].clientY;
-  },{passive:true});
-  document.addEventListener('touchend',e=>{
-    const dx=e.changedTouches[0].clientX-tx;
-    const dy=Math.abs(e.changedTouches[0].clientY-ty);
-    if(dx<80||dy>60) return; // Not a horizontal swipe
-
-    // Priority 1: Close detail overlay (via history so it matches the Back button)
-    if(document.getElementById('detail').className==='open'){
-      history.back(); return;
-    }
-    // Priority 2: Navigate back in plan steps
-    const planTab=document.getElementById('tab-plan');
-    if(planTab&&planTab.classList.contains('active')){
-      // Events → Month step
-      if(currentStep===2){ goStep(1); return; }
-      // Month → City step
-      if(currentStep===1){ goStep(0); return; }
-      // Inside city view (country selected) → back to countries
-      if(currentStep===0 && selCountry){ clearCountry(); return; }
-      // At country list → go to home tab
-      if(currentStep===0){
-        document.querySelector('.nav-btn').click(); return;
-      }
-    }
-    // Priority 4: From saved/plan tab → go to home tab
-    const activeTab=document.querySelector('.tab.active');
-    if(activeTab&&activeTab.id!=='tab-home'){
-      document.querySelector('.nav-btn').click(); return;
-    }
-  },{passive:true});
-})();
+// ── PLAN BACK NAVIGATION ─────────────────────────────────────────────────────
+// No custom swipe handler — the OS edge-swipe / browser Back already fire popstate.
+// We just step back ONE plan level (events → month → city list → country list) so the
+// gesture returns to the immediately previous step instead of jumping out to the menu.
+function goToCityList(){
+  currentStep=0;
+  document.getElementById('step-city').style.display='block';
+  document.getElementById('step-month').style.display='none';
+  document.getElementById('step-events').style.display='none';
+  if(selCountry){ document.getElementById('country-view').style.display='none'; document.getElementById('city-view').style.display='block'; renderCities(); }
+  else { document.getElementById('country-view').style.display='block'; document.getElementById('city-view').style.display='none'; renderCountries(); }
+  document.getElementById('bc-city').className='bc-btn active'; document.getElementById('bc-city').textContent='Country';
+  document.getElementById('bc-month').className='bc-btn'; document.getElementById('bc-month').textContent='Month';
+  document.getElementById('bc-events').className='bc-btn';
+}
+function planBack(){
+  const planTab=document.getElementById('tab-plan');
+  if(!planTab||!planTab.classList.contains('active')) return false;
+  if(currentStep===2){ if(searchMode==='city'){ goStep(1); } else { goStep(0); } return true; }  // events → month (city flow) / picker (dj·venue·fest)
+  if(currentStep===1){ goToCityList(); return true; }                  // month → city list (keeps the chosen country)
+  if(currentStep===0 && selCountry){ clearCountry(); return true; }    // city list → country list
+  return false;                                                        // at country list → let it leave the tab
+}
 
 // ── SAVED ─────────────────────────────────────────────────────────────────────
 function renderSaved(){

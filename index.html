@@ -841,6 +841,10 @@ function titleCaseCity(s){ return s.toLowerCase().replace(/(^|[\s\-\/])([a-z])/g
 function canonCity(c){
   let t=(c||'').replace(/\s+/g,' ').trim(); if(!t) return t;
   t=t.replace(/\s*\([A-Z]{2,4}\)$/,'').trim();        // drop nickname acronyms: "New York (NYC)"→"New York" (keeps lowercase disambiguators like "(oder)")
+  if(t.includes(',')) t=t.split(',')[0].trim();        // "Theale, Berkshire" / "Guernsey, Channel Islands" → city before the region
+  t=t.replace(/\s+(Municipality|District|County|Province|Region|Metropolitan Area|Prefecture)$/i,'').trim();  // "Copenhagen Municipality"→"Copenhagen"
+  t=t.replace(/^Praha(?:\s+\d+)?$/i,'Prague');         // "Praha"/"Praha 9" → Prague
+  if(!t) return t;
   const a=CITY_ALIAS[t.toLowerCase()]; if(a) return a;
   return titleCaseCity(t.normalize('NFD').replace(/[̀-ͯ]/g,''));   // strip accents + Title-case so caps/hyphen-case variants merge
 }

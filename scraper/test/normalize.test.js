@@ -40,6 +40,14 @@ test('canonCity: drops uppercase nickname acronyms, keeps lowercase disambiguato
   assert.equal(canonCity('Frankfurt (oder)'), 'Frankfurt (oder)');   // real, distinct city — kept
 });
 
+test('canonCity: strips region suffix / "City, Region" / Praha districts', () => {
+  assert.equal(canonCity('Copenhagen Municipality'), 'Copenhagen');
+  assert.equal(canonCity('Theale, Berkshire'), 'Theale');
+  assert.equal(canonCity('Guernsey, Channel Islands'), 'Guernsey');
+  assert.equal(canonCity('Praha 9'), 'Prague');
+  assert.equal(canonCity('Praha'), 'Prague');
+});
+
 test('canonCity: trims & handles empty', () => {
   assert.equal(canonCity('  Madrid  '), 'Madrid');
   assert.equal(canonCity('New   York'), 'New York');

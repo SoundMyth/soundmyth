@@ -42,6 +42,10 @@ export function canonCity(c) {
   let t = (c || '').replace(/\s+/g, ' ').trim();
   if (!t) return t;
   t = t.replace(/\s*\([A-Z]{2,4}\)$/, '').trim();   // drop nickname acronyms: "New York (NYC)" → "New York" (keeps "(oder)")
+  if (t.includes(',')) t = t.split(',')[0].trim();  // "Theale, Berkshire" / "Guernsey, Channel Islands" → city before the region
+  t = t.replace(/\s+(Municipality|District|County|Province|Region|Metropolitan Area|Prefecture)$/i, '').trim();  // "Copenhagen Municipality" → "Copenhagen"
+  t = t.replace(/^Praha(?:\s+\d+)?$/i, 'Prague');   // "Praha" / "Praha 9" → Prague
+  if (!t) return t;
   const alias = CITY_ALIAS[t.toLowerCase()];
   if (alias) return alias;                          // explicit alias wins (standard English names)
   // fold to ASCII so accent/script variants collapse (Malaga/Málaga, Montréal→Montreal,

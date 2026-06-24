@@ -16,7 +16,7 @@ import { readFileSync }  from 'fs';
 import { config }        from 'dotenv';
 import { fileURLToPath } from 'url';
 import { dirname, resolve } from 'path';
-import { canonCity, djNorm, buildDjCanon } from './normalize.js';
+import { canonCity, canonCountry, djNorm, buildDjCanon } from './normalize.js';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 config({ path: resolve(__dirname, '.env') });
@@ -105,6 +105,21 @@ for (const e of live) {
   }
 }
 console.log(`✓ Canonicalized city on ${cityFixed} rows.`);
+
+// Canonicalize country on existing rows (fold long-form variants the scrapers passed
+// through: United States of America→United States, Czech Republic→Czechia, Korea,
+// Republic Of→South Korea). The frontend already merges these on load; this keeps the
+// raw DB consistent so the on-demand Clean DB run fully cleans it (not only validate.js).
+let countryFixed = 0;
+for (const e of live) {
+  const nc = canonCountry(e.country);
+  if (nc && nc !== e.country) {
+    const { error } = await sb.from('events').update({ country: nc }).eq('id', e.id);
+    if (error) console.error(`  ❌ country ${e.id}:`, error.message);
+    else { countryFixed++; if (countryFixed <= 20) console.log(`  country: ${JSON.stringify(e.country)} → ${nc}`); }
+  }
+}
+console.log(`✓ Canonicalized country on ${countryFixed} rows.`);
 
 // Canonicalize DJ names on existing rows (data-driven; collapse case/diacritic
 // variants like alok/Alok, BLOND:ISH/Blond:ish, AME/Amè) AND strip off-genre acts so

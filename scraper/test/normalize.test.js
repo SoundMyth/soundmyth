@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { canonCity, cleanVenue, looksLikeBareArtist, djNorm, pickCanon, buildDjCanon } from '../normalize.js';
+import { canonCity, canonCountry, cleanVenue, looksLikeBareArtist, djNorm, pickCanon, buildDjCanon } from '../normalize.js';
 
 test('canonCity: explicit aliases & exonyms win', () => {
   assert.equal(canonCity('Eivissa'), 'Ibiza');
@@ -30,6 +30,19 @@ test('canonCity: trims & handles empty', () => {
   assert.equal(canonCity('New   York'), 'New York');
   assert.equal(canonCity(''), '');
   assert.equal(canonCity(null), '');
+});
+
+test('canonCountry: folds long-form variants to one canonical name', () => {
+  assert.equal(canonCountry('United States of America'), 'United States');
+  assert.equal(canonCountry('USA'), 'United States');
+  assert.equal(canonCountry('US'), 'United States');
+  assert.equal(canonCountry('UK'), 'United Kingdom');
+  assert.equal(canonCountry('Czech Republic'), 'Czechia');
+  assert.equal(canonCountry('Korea, Republic Of'), 'South Korea');
+  assert.equal(canonCountry('United States'), 'United States');   // already canonical
+  assert.equal(canonCountry('Spain'), 'Spain');                   // untouched
+  assert.equal(canonCountry(''), '');
+  assert.equal(canonCountry(null), '');
 });
 
 test('cleanVenue: drops a venue that just repeats the title', () => {

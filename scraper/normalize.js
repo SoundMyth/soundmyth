@@ -48,6 +48,27 @@ export function canonCity(c) {
   return tr || t;
 }
 
+// Country full-name variants → canonical name. The scrapers already map ISO codes
+// (US→United States) via their own COUNTRY_ISO; this folds the long-form variants
+// Songkick/RA return (United States of America, Czech Republic, Korea, Republic Of…)
+// so the raw DB is clean at source — not only after the weekly validate.js runs.
+export const COUNTRY_NORM = {
+  'UK': 'United Kingdom', 'US': 'United States', 'USA': 'United States', 'Usa': 'United States',
+  'UAE': 'United Arab Emirates', 'EAU': 'United Arab Emirates',
+  'United States of America': 'United States',
+  'United Kingdom of Great Britain and Northern Ireland': 'United Kingdom',
+  'Korea': 'South Korea', 'Republic of Korea': 'South Korea',
+  'Korea, Republic Of': 'South Korea', 'Korea, Republic of': 'South Korea',
+  'Northern Ireland': 'United Kingdom',
+  'Czech Republic': 'Czechia', 'Türkiye': 'Turkey', "Côte d'Ivoire": 'Ivory Coast',
+  'Taiwan, Province of China': 'Taiwan', 'Viet Nam': 'Vietnam', 'Russian Federation': 'Russia',
+  '日本': 'Japan', 'Bosnia And Herzegovina': 'Bosnia and Herzegovina', 'Netherlands Antilles': 'Netherlands',
+};
+export function canonCountry(c) {
+  const t = (c || '').replace(/\s+/g, ' ').trim();
+  return t ? (COUNTRY_NORM[t] || t) : t;
+}
+
 export function cleanVenue(venue, name) {
   const v = (venue || '').trim();
   return (v && v === (name || '').trim()) ? '' : v;
@@ -60,8 +81,9 @@ export function looksLikeBareArtist(ev) {
 
 /** Normalize an event row in place, just before upsert. */
 export function cleanEvent(e) {
-  e.city  = canonCity(e.city);
-  e.venue = cleanVenue(e.venue, e.name);
+  e.city    = canonCity(e.city);
+  e.country = canonCountry(e.country);
+  e.venue   = cleanVenue(e.venue, e.name);
   return e;
 }
 

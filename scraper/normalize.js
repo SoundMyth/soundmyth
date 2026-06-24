@@ -13,6 +13,7 @@ import { transliterate } from 'transliteration';
 export const CITY_ALIAS_RAW = {
   'München':'Munich','Köln':'Cologne','Wien':'Vienna','Lisboa':'Lisbon','Milano':'Milan','Roma':'Rome','Firenze':'Florence','Napoli':'Naples','Torino':'Turin','Venezia':'Venice','Genève':'Geneva','Praha':'Prague','Warszawa':'Warsaw','Moskva':'Moscow','Sevilla':'Seville','Antwerpen':'Antwerp','Gent':'Ghent','Bruxelles':'Brussels','Den Haag':'The Hague','København':'Copenhagen','Göteborg':'Gothenburg',
   'Eivissa':'Ibiza','Sant Jordi De Ses Salines':'Ibiza','Sant Josep de sa Talaia':'Ibiza',
+  'Greenwich Peninsula':'London','Cullera Beach':'Cullera','Sydney Olympic Park':'Sydney','Moore Park':'Sydney','Playa Duque Marbella':'Marbella','Pag Island':'Novalja','Kings Heath':'Birmingham','Long Island City':'New York','Forest Hills':'New York','Fortitude Valley':'Brisbane','Paradise Island':'Nassau','Marina Di Pisa':'Pisa','Campo Pequeno':'Lisbon','Port Melbourne':'Melbourne',
   'Sant Antoni de Portmany':'Ibiza','Santa Eulària des Riu':'Ibiza',
   'София':'Sofia','İstanbul':'Istanbul','Beşiktaş':'Istanbul','Beyoğlu':'Istanbul',
   'București':'Bucharest','Rīga':'Riga','Chișinău':'Chisinau','Bakı':'Baku',
@@ -44,6 +45,7 @@ export function canonCity(c) {
   t = t.replace(/\s*\([A-Z]{2,4}\)$/, '').trim();   // drop nickname acronyms: "New York (NYC)" → "New York" (keeps "(oder)")
   if (t.includes(',')) t = t.split(',')[0].trim();  // "Theale, Berkshire" / "Guernsey, Channel Islands" → city before the region
   t = t.replace(/\s+(Municipality|District|County|Province|Region|Metropolitan Area|Prefecture)$/i, '').trim();  // "Copenhagen Municipality" → "Copenhagen"
+  t = t.replace(/^Provincia [Dd]i\s+/i, '').replace(/^Downtown\s+/i, '').replace(/\s+(Downtown|City Cent(?:re|er)|Centro)$/i, '').trim();  // "Provincia Di Brescia"→Brescia, "Downtown Brooklyn"→Brooklyn, "Santiago Centro"→Santiago
   t = t.replace(/^Praha(?:\s+\d+)?$/i, 'Prague');   // "Praha" / "Praha 9" → Prague
   if (!t) return t;
   const alias = CITY_ALIAS[t.toLowerCase()];

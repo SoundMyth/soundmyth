@@ -69,6 +69,51 @@ export function canonCountry(c) {
   return t ? (COUNTRY_NORM[t] || t) : t;
 }
 
+// ── DJ style → clean, user-facing bucket (powers events.genre + "styles") ────────
+// Maps the curated genre/subgenre (data/artists_all.json) to ONE display label so the
+// genre chip is meaningful and personalization styles work for every DJ. Labels are kept
+// compatible with the frontend DJ_GENRE vocabulary; subgenre (more specific) wins.
+const SUB_STYLE = {
+  'tech house': 'Tech House',
+  'techno': 'Techno', 'peak time techno': 'Techno', 'industrial techno': 'Techno',
+  'minimal techno': 'Techno', 'acid techno': 'Techno', 'dub techno': 'Techno',
+  'hard techno': 'Hard Techno',
+  'melodic techno': 'Melodic Techno', 'melodic house': 'Melodic House',
+  'deep house': 'Deep House', 'organic house': 'Deep House',
+  'progressive house': 'Progressive', 'festival progressive': 'Big Room',
+  'big room house': 'Big Room', 'electro house': 'Big Room',
+  'future house': 'House', 'bass house': 'House', 'house': 'House',
+  'afro house': 'Afro House',
+  'uplifting trance': 'Trance', 'tech trance': 'Trance', 'progressive trance': 'Trance', 'trance': 'Trance',
+  'psytrance': 'Psytrance', 'psy trance': 'Psytrance',
+  'drum & bass': 'Drum & Bass', 'drum and bass': 'Drum & Bass', 'dnb': 'Drum & Bass', 'breaks': 'Drum & Bass',
+  'dubstep': 'Bass', 'trap': 'Bass', 'riddim': 'Bass',
+  'hardstyle': 'Hardstyle',
+  'dance pop': 'Pop', 'edm pop': 'Pop',
+  'indie dance': 'Indie Dance',
+};
+const GENRE_STYLE = {
+  'techno': 'Techno', 'house': 'House', 'trance': 'Trance',
+  'big room / festival edm': 'Big Room', 'bass music': 'Bass',
+  'bass music / dubstep': 'Bass',
+  'pop electronic / crossover': 'Pop', 'indie dance / leftfield': 'Indie Dance',
+  'hard dance': 'Hardstyle', 'drum & bass / breaks': 'Drum & Bass',
+  'electronic': 'Electronic', 'unknown': 'Electronic',
+};
+// Set of canonical output labels, so a value that is ALREADY clean maps to itself
+// (idempotent: canonStyle('Big Room') === 'Big Room', not 'Electronic').
+const STYLE_SELF = {};
+for (const v of [...Object.values(SUB_STYLE), ...Object.values(GENRE_STYLE)]) STYLE_SELF[v.toLowerCase()] = v;
+
+/** Map a (genre, subgenre) pair OR a single genre string to one clean style bucket. */
+export function canonStyle(genre, subgenre) {
+  const sub = (subgenre || '').trim().toLowerCase();
+  if (sub && SUB_STYLE[sub]) return SUB_STYLE[sub];
+  const g = (genre || '').trim().toLowerCase();
+  if (!g) return 'Electronic';
+  return GENRE_STYLE[g] || SUB_STYLE[g] || STYLE_SELF[g] || 'Electronic';
+}
+
 export function cleanVenue(venue, name) {
   const v = (venue || '').trim();
   return (v && v === (name || '').trim()) ? '' : v;

@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { canonCity, canonCountry, cleanVenue, looksLikeBareArtist, djNorm, pickCanon, buildDjCanon } from '../normalize.js';
+import { canonCity, canonCountry, canonStyle, cleanVenue, looksLikeBareArtist, djNorm, pickCanon, buildDjCanon } from '../normalize.js';
 
 test('canonCity: explicit aliases & exonyms win', () => {
   assert.equal(canonCity('Eivissa'), 'Ibiza');
@@ -43,6 +43,18 @@ test('canonCountry: folds long-form variants to one canonical name', () => {
   assert.equal(canonCountry('Spain'), 'Spain');                   // untouched
   assert.equal(canonCountry(''), '');
   assert.equal(canonCountry(null), '');
+});
+
+test('canonStyle: folds verbose genre/subgenre into clean buckets (idempotent)', () => {
+  assert.equal(canonStyle('Big Room / Festival EDM', ''), 'Big Room');
+  assert.equal(canonStyle('Pop Electronic / Crossover', ''), 'Pop');
+  assert.equal(canonStyle('House', 'Tech House'), 'Tech House');   // subgenre wins
+  assert.equal(canonStyle('Techno', 'Hard Techno'), 'Hard Techno');
+  assert.equal(canonStyle('Big Room', ''), 'Big Room');            // already clean → itself
+  assert.equal(canonStyle('Tech House', ''), 'Tech House');        // idempotent
+  assert.equal(canonStyle('Electronic', ''), 'Electronic');
+  assert.equal(canonStyle('Garage', ''), 'Electronic');            // unknown → fallback
+  assert.equal(canonStyle('', ''), 'Electronic');
 });
 
 test('cleanVenue: drops a venue that just repeats the title', () => {

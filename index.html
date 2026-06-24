@@ -789,7 +789,9 @@ const DJ_GENRE={
   'eric prydz':'Progressive','deadmau5':'Progressive',
   'skrillex':'Bass'
 };
-const PREF_GENRES=[...new Set(Object.values(DJ_GENRE))].sort();
+// Recomputed (data-driven) in loadEvents from the styles actually present in
+// events.genre ∪ DJ_GENRE, so the picker offers every stamped style, not just the top-100.
+let PREF_GENRES=[...new Set(Object.values(DJ_GENRE))].sort();
 
 // Escape scraped text before it goes into innerHTML (event names, DJs, venues, cities…
 // come from third-party feeds and could contain HTML/JS — prevents stored XSS).
@@ -802,6 +804,10 @@ function esc(s){ return String(s==null?'':s).replace(/[&<>"']/g, c=>ESC_MAP[c]);
 let DJ_CANON={};
 // reuse an artist's real photo on their other events that have none
 let DJ_IMG={};
+// DJ(lowercase) → style, learned from the stamped events.genre (built in loadEvents).
+// Covers EVERY DJ with events, so styles/suggestions aren't limited to DJ_GENRE's ~100.
+let DJ_STYLE={};
+function djStyle(n){ const k=(n||'').toLowerCase(); return DJ_GENRE[k]||DJ_STYLE[k]||''; }
 function buildDjImg(events){ const m={}; for(const e of events){ if(!e.img) continue; for(const d of (e.djs||[])){ const k=djNorm(d); if(k && !m[k]) m[k]=e.img; } } return m; }
 
 // City aliases: fold local-language / sub-municipality / non-city values into one
@@ -1485,6 +1491,11 @@ async function loadEvents(){
   ALL_DJS=[...new Set(futureEvents.flatMap(e=>e.djs))].sort();
   // Países en orden alfabético
   ALL_COUNTRIES=[...new Set(futureEvents.map(e=>e.country).filter(Boolean))].sort();
+  // Styles offered in onboarding/pickers are data-driven: the scraper now stamps a clean
+  // style into events.genre (via canonStyle), so this covers ALL DJs, not just DJ_GENRE.
+  PREF_GENRES=[...new Set([...Object.values(DJ_GENRE), ...futureEvents.map(e=>e.genre).filter(g=>g && g.toLowerCase()!=='electronic')])].sort();
+  DJ_STYLE={};
+  for(const e of futureEvents){ const g=e.genre; if(!g||g.toLowerCase()==='electronic') continue; for(const d of (e.djs||[])){ const k=d.toLowerCase(); if(!DJ_STYLE[k]) DJ_STYLE[k]=g; } }
   document.getElementById('event-count-label').textContent=`${futureEvents.length} EVENTS`;
   document.getElementById('stat-events').textContent=futureEvents.length;
   document.getElementById('stat-countries').textContent=ALL_COUNTRIES.length;
@@ -1901,7 +1912,7 @@ function renderDJ(name){
   djDetailName=name;
   const key=djNorm(name), today=new Date().toISOString().split('T')[0];
   const evs=EVENTS.filter(e=>e.date>=today && (e.djs||[]).some(d=>djNorm(d)===key)).sort((a,b)=>new Date(a.date)-new Date(b.date));
-  const genre=DJ_GENRE[name.toLowerCase()]||(evs[0]?eventGenre(evs[0]):'Electronic');
+  const genre=djStyle(name)||(evs[0]?eventGenre(evs[0]):'Electronic');
   const countries=[...new Set(evs.map(e=>e.country).filter(Boolean))];
   document.getElementById('djd-eyebrow').textContent=`${djFlag(name)} ${genre}`;
   document.getElementById('djd-name').textContent=name;
@@ -2236,7 +2247,7 @@ function escAttr(s){ return String(s).replace(/&/g,'&amp;').replace(/"/g,'&quot;
 // effective genre: prefer a specific scraped genre, else derive from the line-up
 function eventGenre(ev){
   if(ev.genre && ev.genre.toLowerCase()!=='electronic') return ev.genre;
-  for(const d of (ev.djs||[])){ const g=DJ_GENRE[d.toLowerCase()]; if(g) return g; }
+  for(const d of (ev.djs||[])){ const g=djStyle(d); if(g) return g; }
   return ev.genre||'Electronic';
 }
 function djHitP(ev){ const pn=prefs.djs.map(djNorm); return (ev.djs||[]).some(d=>pn.includes(djNorm(d))); }
@@ -2339,10 +2350,10 @@ function renderObStep(filter,keepFocus){
   let inner;
   if(st.key==='djs'){
     const opts=ALL_DJS.filter(o=>o.toLowerCase().includes(f));
-    const sug=opts.filter(o=>sm_ob.draft.genres.includes(DJ_GENRE[o.toLowerCase()]));
-    const rest=opts.filter(o=>!sm_ob.draft.genres.includes(DJ_GENRE[o.toLowerCase()]));
+    const sug=opts.filter(o=>sm_ob.draft.genres.includes(djStyle(o)));
+    const rest=opts.filter(o=>!sm_ob.draft.genres.includes(djStyle(o)));
     sm_obList=[...sug,...rest];
-    const chip=(o,i)=>`<span role="button" tabindex="0" class="sm-chip ${sel.includes(o)?'on':''}" data-ob="${i}">${esc(o)}${DJ_GENRE[o.toLowerCase()]?` <span class="gx">· ${esc(DJ_GENRE[o.toLowerCase()])}</span>`:''}</span>`;
+    const chip=(o,i)=>`<span role="button" tabindex="0" class="sm-chip ${sel.includes(o)?'on':''}" data-ob="${i}">${esc(o)}${djStyle(o)?` <span class="gx">· ${esc(djStyle(o))}</span>`:''}</span>`;
     inner=(sug.length?`<div class="sm-grouplbl">Suggested by your styles</div><div class="sm-chips">${sug.map((o,i)=>chip(o,i)).join('')}</div>`:'')
       +`<div class="sm-grouplbl">${sug.length?'All DJs':''}</div><div class="sm-chips">${rest.map((o,i)=>chip(o,sug.length+i)).join('')||'<span style="color:var(--text-mute)">No matches</span>'}</div>`;
   } else {
@@ -2381,10 +2392,10 @@ function renderPicker(filter,keepFocus){
   let inner;
   if(kind==='djs'){
     const opts=ALL_DJS.filter(o=>o.toLowerCase().includes(f));
-    const sug=opts.filter(o=>prefs.genres.includes(DJ_GENRE[o.toLowerCase()]));
-    const rest=opts.filter(o=>!prefs.genres.includes(DJ_GENRE[o.toLowerCase()]));
+    const sug=opts.filter(o=>prefs.genres.includes(djStyle(o)));
+    const rest=opts.filter(o=>!prefs.genres.includes(djStyle(o)));
     sm_pkList=[...sug,...rest];
-    const chip=(o,i)=>`<span role="button" tabindex="0" class="sm-chip ${sm_pkDraft.includes(o)?'on':''}" data-pk="${i}">${esc(o)}${DJ_GENRE[o.toLowerCase()]?` <span class="gx">· ${esc(DJ_GENRE[o.toLowerCase()])}</span>`:''}</span>`;
+    const chip=(o,i)=>`<span role="button" tabindex="0" class="sm-chip ${sm_pkDraft.includes(o)?'on':''}" data-pk="${i}">${esc(o)}${djStyle(o)?` <span class="gx">· ${esc(djStyle(o))}</span>`:''}</span>`;
     inner=(sug.length?`<div class="sm-grouplbl">Suggested by your styles</div><div class="sm-chips">${sug.map((o,i)=>chip(o,i)).join('')}</div>`:'')
       +`<div class="sm-grouplbl">${sug.length?'All DJs':''}</div><div class="sm-chips">${rest.map((o,i)=>chip(o,sug.length+i)).join('')||'<span style="color:var(--text-mute)">No matches</span>'}</div>`;
   } else {

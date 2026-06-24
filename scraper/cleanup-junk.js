@@ -16,7 +16,7 @@ import { readFileSync }  from 'fs';
 import { config }        from 'dotenv';
 import { fileURLToPath } from 'url';
 import { dirname, resolve } from 'path';
-import { canonCity, canonCountry, djNorm, buildDjCanon } from './normalize.js';
+import { canonCity, canonCountry, canonStyle, djNorm, buildDjCanon } from './normalize.js';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 config({ path: resolve(__dirname, '.env') });
@@ -153,4 +153,32 @@ for (const e of live) {
   if (error) console.error(`  ❌ img ${e.id}:`, error.message); else imgFixed++;
 }
 console.log(`✓ Filled images (artist-photo reuse) on ${imgFixed} rows.`);
+
+// Stamp events.genre from the head-liner's style (data/artists_all.json) so the genre
+// chip is meaningful and "styles" personalization works for every DJ — not just the
+// ~100 in the frontend DJ_GENRE map. Only fills generic/empty genres; picks the first
+// DJ on the bill with a real (non-Electronic) style.
+const djStyle = {};
+for (const a of readJ('data/artists_all.json')) { const k = djKey(a.name); if (k && !djStyle[k]) djStyle[k] = canonStyle(a.genre, a.subgenre); }
+const GENERIC = new Set(['', 'electronic', 'edm', 'unknown', 'various', 'multi-genre', 'multigenre']);
+let genreFixed = 0;
+for (const e of live) {
+  const cur = (e.genre || '').trim();
+  let target = null;
+  if (GENERIC.has(cur.toLowerCase())) {
+    // generic/empty → fill from the first head-liner with a real style
+    for (const d of (e.djs || [])) { const s = djStyle[djKey(d)]; if (s && s !== 'Electronic') { target = s; break; } }
+  } else {
+    // already-specific → fold verbose label into the clean bucket (Big Room / Festival
+    // EDM → Big Room). Unknown labels map to 'Electronic' → left untouched (no clobber).
+    const cs = canonStyle(cur);
+    if (cs !== 'Electronic') target = cs;
+  }
+  if (target && target !== e.genre) {
+    const { error } = await sb.from('events').update({ genre: target }).eq('id', e.id);
+    if (error) console.error(`  ❌ genre ${e.id}:`, error.message);
+    else { genreFixed++; if (genreFixed <= 20) console.log(`  genre: ${JSON.stringify((e.name||'').slice(0,30))} ${JSON.stringify(cur||'∅')} → ${target}`); }
+  }
+}
+console.log(`✓ Normalized/stamped genre on ${genreFixed} rows.`);
 process.exit(0);

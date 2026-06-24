@@ -77,19 +77,45 @@ const RA = 'https://ra.co/graphql';
 const HRA = { 'Content-Type': 'application/json', 'User-Agent': 'Mozilla/5.0 AppleWebKit/537.36 Chrome/122 Safari/537.36',
               Referer: 'https://ra.co/', Origin: 'https://ra.co', 'ra-content-language': 'en' };
 const AQ = 'query A($s:String!){search(searchTerm:$s,indices:[ARTIST],limit:5){searchType value}}';
+const sleep = ms => new Promise(r => setTimeout(r, ms));
+
+// RA has no API key; its GraphQL is rate-limited and — crucially — a throttle returns
+// HTTP 200 with an EMPTY search array (not a 429), indistinguishable from a real
+// "this artist isn't on RA". If we trusted those empties we'd cache real EDM DJs as
+// off-genre and later drop their events. So: an empty result is only trusted once a
+// CANARY (an artist certainly on RA) confirms RA is actually answering; otherwise we
+// back off and retry, and give up as `null` (re-checked next run) rather than `false`.
+const CANARY = 'Charlotte de Witte';
+let lastCanaryOk = 0;
+
+async function raArtistHits(name) {
+  try {
+    const r = await fetch(RA, { method: 'POST', headers: HRA,
+      body: JSON.stringify({ query: AQ, variables: { s: name } }), signal: AbortSignal.timeout(12000) });
+    if (!r.ok) return null;                               // transport / HTTP error
+    const j = await r.json();
+    if (!j || !j.data) return null;
+    return (j.data.search || []).filter(x => x.searchType === 'ARTIST');
+  } catch { return null; }
+}
+
+async function raHealthy() {
+  if (Date.now() - lastCanaryOk < 20000) return true;     // trust a recent canary (≤20s)
+  const c = await raArtistHits(CANARY);
+  if (c && c.length) { lastCanaryOk = Date.now(); return true; }
+  return false;
+}
 
 async function onRA(name) {
-  for (let attempt = 0; attempt < 2; attempt++) {
-    try {
-      const r = await fetch(RA, { method: 'POST', headers: HRA,
-        body: JSON.stringify({ query: AQ, variables: { s: name } }), signal: AbortSignal.timeout(12000) });
-      if (!r.ok) { await new Promise(s => setTimeout(s, 600)); continue; }
-      const j = await r.json();
-      const hits = (j?.data?.search || []).filter(x => x.searchType === 'ARTIST');
-      return hits.some(x => djKey(x.value) === djKey(name));
-    } catch { await new Promise(s => setTimeout(s, 600)); }
+  for (let attempt = 0; attempt < 6; attempt++) {
+    const hits = await raArtistHits(name);
+    if (hits === null) { await sleep(800 * (attempt + 1)); continue; }   // error → retry
+    if (hits.some(x => djKey(x.value) === djKey(name))) return true;     // exact match → EDM
+    if (hits.length) return false;                                       // answered, no match → real "not on RA"
+    if (await raHealthy()) return false;                                 // empty but RA healthy → real
+    await sleep(Math.min(60000, 4000 * 2 ** attempt));                   // empty + throttled → back off
   }
-  return null;   // network/error → unknown (re-checked next run)
+  return null;   // persistent throttle/error → unknown (NOT cached false; re-checked next run)
 }
 
 const entries = [...disc.entries()].sort((a, b) => b[1].events - a[1].events);

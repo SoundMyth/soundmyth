@@ -1609,5 +1609,50 @@
     "website": "",
     "ra_url": "https://ra.co/events/2036172",
     "sk_venue_url": "https://www.songkick.com/venues/4601365-fayy"
+  },
+  {
+    "ranking": 180,
+    "name": "Bahrein",
+    "city": "Buenos Aires",
+    "country": "Argentina",
+    "website": "",
+    "ra_url": "",
+    "sk_venue_url": ""
+  },
+  {
+    "ranking": 181,
+    "name": "Under Club",
+    "city": "Buenos Aires",
+    "country": "Argentina",
+    "website": "",
+    "ra_url": "",
+    "sk_venue_url": ""
+  },
+  {
+    "ranking": 182,
+    "name": "Bar Américas",
+    "city": "Guadalajara",
+    "country": "Mexico",
+    "website": "",
+    "ra_url": "",
+    "sk_venue_url": ""
+  },
+  {
+    "ranking": 183,
+    "name": "Departamento",
+    "city": "Mexico City",
+    "country": "Mexico",
+    "website": "",
+    "ra_url": "",
+    "sk_venue_url": ""
+  },
+  {
+    "ranking": 184,
+    "name": "Salón Amador",
+    "city": "Medellín",
+    "country": "Colombia",
+    "website": "",
+    "ra_url": "",
+    "sk_venue_url": ""
   }
 ]

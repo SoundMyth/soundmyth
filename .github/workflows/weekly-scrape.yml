@@ -13,7 +13,7 @@ permissions:
 jobs:
   scrape:
     runs-on: ubuntu-latest
-    timeout-minutes: 65
+    timeout-minutes: 120   # pipeline grew (RA area discovery + image enrichment); was 65 and got cancelled mid-run
 
     defaults:
       run:

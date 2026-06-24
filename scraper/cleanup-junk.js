@@ -12,6 +12,7 @@
  * Usage: node cleanup-junk.js   (DRY=1 node cleanup-junk.js to preview)
  */
 import { createClient }  from '@supabase/supabase-js';
+import { readFileSync }  from 'fs';
 import { config }        from 'dotenv';
 import { fileURLToPath } from 'url';
 import { dirname, resolve } from 'path';
@@ -26,6 +27,22 @@ if (!SB_URL || !SB_KEY) { console.error('❌  Missing SUPABASE_URL / SUPABASE_SE
 const sb    = createClient(SB_URL, SB_KEY, { auth: { persistSession: false } });
 const TODAY = new Date().toISOString().split('T')[0];
 
+// Our curated EDM universe — every event must tie to one of OUR DJs / clubs / festivals.
+const readJ = p => { try { return JSON.parse(readFileSync(resolve(__dirname, p), 'utf8')); } catch { return []; } };
+const DJ_SET   = new Set(readJ('data/artists_all.json').map(a => djNorm(a.name)));
+const CLUB_SET = new Set(readJ('data/clubs_all.json').map(c => djNorm(c.name)));
+
+// A Resident-Advisor event with no DJ from our list, not a curated club, and not a
+// festival = off-genre noise (rock/random parties from area discovery). SoundMyth is
+// EDM-only and built around our DJ list → drop it.
+function nonCurated(e) {
+  if (e.source !== 'ra') return false;
+  if ((e.tags || []).includes('festival')) return false;
+  if ((e.djs || []).some(d => DJ_SET.has(djNorm(d)))) return false;
+  if (e.venue && CLUB_SET.has(djNorm(e.venue))) return false;
+  return true;
+}
+
 function isJunk(e) {
   const name = (e.name || '').trim(), venue = (e.venue || '').trim();
   const djs = e.djs || [], tags = e.tags || [];
@@ -39,27 +56,28 @@ function isJunk(e) {
 let rows = [], from = 0;
 while (true) {
   const { data, error } = await sb.from('events')
-    .select('id,name,venue,djs,tags,city,date,img_url').gte('date', TODAY).order('date').range(from, from + 999);
+    .select('id,name,venue,djs,tags,city,date,img_url,source').gte('date', TODAY).order('date').range(from, from + 999);
   if (error) { console.error(error.message); process.exit(1); }
   rows = rows.concat(data); if (data.length < 1000) break; from += 1000;
 }
 
-const junk = rows.filter(isJunk);
-console.log(`Scanned ${rows.length} future events · junk to remove: ${junk.length}`);
-junk.slice(0, 40).forEach(e => console.log(`  - ${e.date} ${JSON.stringify(e.name)} @ ${JSON.stringify(e.venue)} [${e.city}]`));
+const junkCount = rows.filter(isJunk).length, ncCount = rows.filter(nonCurated).length;
+const toRemove = rows.filter(e => isJunk(e) || nonCurated(e));
+console.log(`Scanned ${rows.length} future events · to remove: ${toRemove.length} (mislabelled ${junkCount} + non-curated RA ${ncCount})`);
+toRemove.slice(0, 40).forEach(e => console.log(`  - ${e.date} ${JSON.stringify((e.name||'').slice(0,46))} [${e.source}] @ ${JSON.stringify(e.venue)}`));
 
 if (process.env.DRY === '1') { console.log('DRY run — nothing deleted.'); process.exit(0); }
 
 let deleted = 0;
-for (let i = 0; i < junk.length; i += 100) {
-  const ids = junk.slice(i, i + 100).map(e => e.id);
+for (let i = 0; i < toRemove.length; i += 100) {
+  const ids = toRemove.slice(i, i + 100).map(e => e.id);
   const { error } = await sb.from('events').delete().in('id', ids);
   if (error) console.error('  ❌ delete:', error.message); else deleted += ids.length;
 }
-console.log(`✓ Deleted ${deleted} junk events.`);
+console.log(`✓ Deleted ${deleted} events.`);
 
-const junkIds = new Set(junk.map(e => e.id));
-const live = rows.filter(e => !junkIds.has(e.id));
+const removedIds = new Set(toRemove.map(e => e.id));
+const live = rows.filter(e => !removedIds.has(e.id));
 
 // Canonicalize city on existing rows (rows not re-scraped keep their old spelling).
 // canonCity applies aliases (Eivissa→Ibiza) AND transliteration (София→Sofiya, Wrocław→Wroclaw).

@@ -13,7 +13,7 @@ permissions:
 jobs:
   scrape:
     runs-on: ubuntu-latest
-    timeout-minutes: 120   # pipeline grew (RA area discovery + image enrichment); was 65 and got cancelled mid-run
+    timeout-minutes: 120   # DJ scrape (~20m) + image enrichment (~16m) sit close to the old 65m cap
 
     defaults:
       run:
@@ -81,14 +81,6 @@ jobs:
           SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
           SUPABASE_SERVICE_KEY: ${{ secrets.SUPABASE_SERVICE_KEY }}
         run: node scrape-clubs-ra.js
-
-      - name: Scrape Resident Advisor (by area)
-        continue-on-error: true
-        timeout-minutes: 15
-        env:
-          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
-          SUPABASE_SERVICE_KEY: ${{ secrets.SUPABASE_SERVICE_KEY }}
-        run: node scrape-ra-area.js
 
       - name: Deduplicate events
         timeout-minutes: 5

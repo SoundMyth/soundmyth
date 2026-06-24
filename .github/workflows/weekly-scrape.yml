@@ -43,7 +43,7 @@ jobs:
 
       - name: Scrape DJs (BIT + Songkick cascade)
         continue-on-error: true
-        timeout-minutes: 20
+        timeout-minutes: 40   # 852 DJs now (was 590) — name+cascade search needs more headroom
         env:
           SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
           SUPABASE_SERVICE_KEY: ${{ secrets.SUPABASE_SERVICE_KEY }}
@@ -100,7 +100,7 @@ jobs:
 
       - name: Clean mislabelled junk events
         continue-on-error: true
-        timeout-minutes: 5
+        timeout-minutes: 12   # combined single-pass + parallel updates; headroom for the heavy first run
         env:
           SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
           SUPABASE_SERVICE_KEY: ${{ secrets.SUPABASE_SERVICE_KEY }}

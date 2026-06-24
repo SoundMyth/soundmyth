@@ -93,92 +93,43 @@ console.log(`✓ Deleted ${deleted} events.`);
 const removedIds = new Set(toRemove.map(e => e.id));
 const live = rows.filter(e => !removedIds.has(e.id));
 
-// Canonicalize city on existing rows (rows not re-scraped keep their old spelling).
-// canonCity applies aliases (Eivissa→Ibiza) AND transliteration (София→Sofiya, Wrocław→Wroclaw).
-let cityFixed = 0;
-for (const e of live) {
-  const nc = canonCity(e.city);
-  if (nc && nc !== e.city) {
-    const { error } = await sb.from('events').update({ city: nc }).eq('id', e.id);
-    if (error) console.error(`  ❌ city ${e.id}:`, error.message);
-    else { cityFixed++; if (cityFixed <= 30) console.log(`  city: ${JSON.stringify(e.city)} → ${nc}`); }
-  }
-}
-console.log(`✓ Canonicalized city on ${cityFixed} rows.`);
-
-// Canonicalize country on existing rows (fold long-form variants the scrapers passed
-// through: United States of America→United States, Czech Republic→Czechia, Korea,
-// Republic Of→South Korea). The frontend already merges these on load; this keeps the
-// raw DB consistent so the on-demand Clean DB run fully cleans it (not only validate.js).
-let countryFixed = 0;
-for (const e of live) {
-  const nc = canonCountry(e.country);
-  if (nc && nc !== e.country) {
-    const { error } = await sb.from('events').update({ country: nc }).eq('id', e.id);
-    if (error) console.error(`  ❌ country ${e.id}:`, error.message);
-    else { countryFixed++; if (countryFixed <= 20) console.log(`  country: ${JSON.stringify(e.country)} → ${nc}`); }
-  }
-}
-console.log(`✓ Canonicalized country on ${countryFixed} rows.`);
-
-// Canonicalize DJ names on existing rows (data-driven; collapse case/diacritic
-// variants like alok/Alok, BLOND:ISH/Blond:ish, AME/Amè) AND strip off-genre acts so
-// the displayed line-up is EDM-only. Stripping never blanks a bill (festivals with a
-// TBA / all-unverified line-up keep their djs). Skips just-deleted junk.
+// ── Canonicalize existing rows in ONE pass (one parallel-batched update per row) ──
+// City + country canon, DJ-name canon + off-genre line-up trim, image back-fill and
+// genre stamping are all computed together so each row is written at most once, and the
+// writes run in small parallel batches — keeping the step well within its time budget
+// even when thousands of rows change on the first run (was 5 separate sequential passes).
 const djCanon = buildDjCanon(live);
-let djFixed = 0, trimmed = 0;
-for (const e of live) {
-  const djs = e.djs || [];
-  if (!djs.length) continue;
-  let nd = [...new Set(djs.map(d => djCanon[djNorm(d)] || d))];
-  const edm = nd.filter(d => !OFF.has(djKey(d)));     // drop rock/pop/jazz from the line-up
-  if (edm.length && edm.length !== nd.length) { trimmed++; nd = edm; }   // never blank
-  if (JSON.stringify(nd) !== JSON.stringify(djs)) {
-    const { error } = await sb.from('events').update({ djs: nd }).eq('id', e.id);
-    if (error) console.error(`  ❌ djs ${e.id}:`, error.message); else djFixed++;
-  }
-}
-console.log(`✓ Canonicalized DJ names on ${djFixed} rows (off-genre acts trimmed from ${trimmed} line-ups).`);
-
-// Fill missing images by reusing a real photo the same artist has on another event.
 const djImg = {};
 for (const e of live) { if (!e.img_url) continue; for (const d of (e.djs || [])) { const k = djNorm(d); if (k && !djImg[k]) djImg[k] = e.img_url; } }
-let imgFixed = 0;
-for (const e of live) {
-  if (e.img_url) continue;
-  let img = null;
-  for (const d of (e.djs || [])) { const c = djImg[djNorm(d)]; if (c) { img = c; break; } }
-  if (!img) continue;
-  const { error } = await sb.from('events').update({ img_url: img }).eq('id', e.id);
-  if (error) console.error(`  ❌ img ${e.id}:`, error.message); else imgFixed++;
-}
-console.log(`✓ Filled images (artist-photo reuse) on ${imgFixed} rows.`);
-
-// Stamp events.genre from the head-liner's style (data/artists_all.json) so the genre
-// chip is meaningful and "styles" personalization works for every DJ — not just the
-// ~100 in the frontend DJ_GENRE map. Only fills generic/empty genres; picks the first
-// DJ on the bill with a real (non-Electronic) style.
 const djStyle = {};
 for (const a of readJ('data/artists_all.json')) { const k = djKey(a.name); if (k && !djStyle[k]) djStyle[k] = canonStyle(a.genre, a.subgenre); }
 const GENERIC = new Set(['', 'electronic', 'edm', 'unknown', 'various', 'multi-genre', 'multigenre']);
-let genreFixed = 0;
+
+let cityFixed = 0, countryFixed = 0, djFixed = 0, trimmed = 0, imgFixed = 0, genreFixed = 0;
+const patches = [];
 for (const e of live) {
+  const patch = {};
+  const nc  = canonCity(e.city);       if (nc  && nc  !== e.city)    { patch.city = nc;     cityFixed++; }     // Eivissa→Ibiza, accents, Provincia Di X→X…
+  const nco = canonCountry(e.country); if (nco && nco !== e.country) { patch.country = nco; countryFixed++; }  // United States of America→United States…
+  const djs = e.djs || [];
+  if (djs.length) {
+    let nd = [...new Set(djs.map(d => djCanon[djNorm(d)] || d))];   // canonical spelling
+    const edm = nd.filter(d => !OFF.has(djKey(d)));                 // drop off-genre acts
+    if (edm.length && edm.length !== nd.length) { trimmed++; nd = edm; }   // never blank the bill
+    if (JSON.stringify(nd) !== JSON.stringify(djs)) { patch.djs = nd; djFixed++; }
+  }
+  if (!e.img_url) { for (const d of (e.djs || [])) { const c = djImg[djNorm(d)]; if (c) { patch.img_url = c; imgFixed++; break; } } }   // reuse artist photo
   const cur = (e.genre || '').trim();
-  let target = null;
-  if (GENERIC.has(cur.toLowerCase())) {
-    // generic/empty → fill from the first head-liner with a real style
-    for (const d of (e.djs || [])) { const s = djStyle[djKey(d)]; if (s && s !== 'Electronic') { target = s; break; } }
-  } else {
-    // already-specific → fold verbose label into the clean bucket (Big Room / Festival
-    // EDM → Big Room). Unknown labels map to 'Electronic' → left untouched (no clobber).
-    const cs = canonStyle(cur);
-    if (cs !== 'Electronic') target = cs;
-  }
-  if (target && target !== e.genre) {
-    const { error } = await sb.from('events').update({ genre: target }).eq('id', e.id);
-    if (error) console.error(`  ❌ genre ${e.id}:`, error.message);
-    else { genreFixed++; if (genreFixed <= 20) console.log(`  genre: ${JSON.stringify((e.name||'').slice(0,30))} ${JSON.stringify(cur||'∅')} → ${target}`); }
-  }
+  let g = null;
+  if (GENERIC.has(cur.toLowerCase())) { for (const d of (e.djs || [])) { const s = djStyle[djKey(d)]; if (s && s !== 'Electronic') { g = s; break; } } }   // fill generic from head-liner style
+  else { const cs = canonStyle(cur); if (cs !== 'Electronic') g = cs; }   // fold verbose label → clean bucket (unknown → untouched)
+  if (g && g !== e.genre) { patch.genre = g; genreFixed++; }
+  if (Object.keys(patch).length) patches.push({ id: e.id, patch });
 }
-console.log(`✓ Normalized/stamped genre on ${genreFixed} rows.`);
+let rowsUpdated = 0;
+for (let i = 0; i < patches.length; i += 12) {
+  await Promise.all(patches.slice(i, i + 12).map(p =>
+    sb.from('events').update(p.patch).eq('id', p.id).then(({ error }) => { if (error) console.error(`  ❌ update ${p.id}:`, error.message); else rowsUpdated++; })));
+}
+console.log(`✓ Updated ${rowsUpdated}/${patches.length} rows · city ${cityFixed} · country ${countryFixed} · djs ${djFixed} (trimmed ${trimmed}) · img ${imgFixed} · genre ${genreFixed}.`);
 process.exit(0);

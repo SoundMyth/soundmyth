@@ -186,7 +186,7 @@ img{display:block;}
 .ev-save.saved{color:var(--accent);}
 
 /* ── DETAIL ── */
-#detail{position:fixed;inset:0;z-index:200;background:var(--bg);overflow-y:auto;display:none;max-width:430px;margin:0 auto;}
+#detail{position:fixed;inset:0;z-index:200;background:var(--bg);overflow-y:auto;overflow-x:hidden;display:none;max-width:430px;margin:0 auto;}
 #detail.open{display:block;animation:fadeup 0.22s ease;}
 /* ── EVENT DETAIL · poster layout ── */
 .det-hero{position:relative;height:50vh;min-height:330px;background:#15131a;}
@@ -202,7 +202,7 @@ img{display:block;}
 .det-body{padding:6px 20px 110px;}
 .det-kv{display:flex;gap:14px;padding:16px 0;border-bottom:1px solid var(--border);}
 .det-kv .det-k{color:var(--text-mute);font-size:11px;font-weight:700;letter-spacing:.6px;text-transform:uppercase;width:72px;flex-shrink:0;padding-top:2px;}
-.det-kv .det-v{font-size:14.5px;font-weight:600;line-height:1.3;}
+.det-kv .det-v{font-size:14.5px;font-weight:600;line-height:1.3;min-width:0;flex:1;}
 .det-kv .det-v small{display:block;color:var(--text-dim);font-weight:500;font-size:12.5px;margin-top:3px;}
 .det-kv-lineup{border-bottom:none;align-items:flex-start;}
 .det-kv-lineup .det-v{width:100%;font-weight:500;}
@@ -216,6 +216,10 @@ img{display:block;}
 .det-dj.head .det-dj-av{border:2px solid var(--accent);}
 .det-dj-nm{font-size:11.5px;font-weight:600;text-align:center;line-height:1.2;}
 .det-dj-hd{color:var(--accent);font-size:9px;font-weight:800;letter-spacing:.4px;}
+.djav{border-radius:50%;background-color:var(--surface-3);background-size:cover;background-position:center;display:flex;align-items:center;justify-content:center;overflow:hidden;flex-shrink:0;border:1px solid var(--border);}
+.djav .djav-i{font-weight:800;color:var(--text-dim);font-size:.82em;letter-spacing:.3px;}
+.djav.has-img .djav-i{display:none;}
+.djl-av{width:42px;height:42px;font-size:15px;}
 .det-cta{position:sticky;bottom:0;margin:18px -20px 0;padding:14px 20px calc(14px + env(safe-area-inset-bottom));background:linear-gradient(to top,var(--bg) 72%,transparent);display:flex;gap:10px;align-items:center;}
 .det-get{flex:1;display:block;background:var(--accent);color:var(--accent-ink);text-align:center;padding:15px;border-radius:var(--r-md);font-weight:800;font-size:14.5px;text-decoration:none;box-shadow:0 10px 26px -8px var(--accent);}
 .det-icbtn{width:52px;height:52px;border-radius:var(--r-md);background:var(--surface-2);border:1px solid var(--border-strong);font-size:20px;cursor:pointer;font-family:inherit;color:var(--text-dim);flex-shrink:0;}
@@ -983,6 +987,32 @@ async function fetchAudioDBImg(name){
   }catch{return null;}
 }
 
+// ── DJ avatars (real photos, cached + lazy) ─────────────────────────────────
+// An event's img is NOT the DJ's headshot (often the festival poster), so reusing it
+// for line-up avatars showed wrong faces. Instead fetch the real artist thumb lazily,
+// cache successes (localStorage) to avoid re-hitting the API, and fall back to initials.
+let DJ_PHOTO={}; try{ DJ_PHOTO=JSON.parse(localStorage.getItem('sm_djphoto')||'{}'); }catch(e){}
+const _djPhotoPending={};
+function saveDJPhoto(){ try{ localStorage.setItem('sm_djphoto',JSON.stringify(Object.fromEntries(Object.entries(DJ_PHOTO).filter(([,v])=>v)))); }catch(e){} }
+function fetchDJPhoto(name){
+  const k=djNorm(name);
+  if(DJ_PHOTO[k]!==undefined) return Promise.resolve(DJ_PHOTO[k]);
+  if(_djPhotoPending[k]) return _djPhotoPending[k];
+  const p=fetchAudioDBImg(name).then(u=>{ DJ_PHOTO[k]=u||null; if(u) saveDJPhoto(); delete _djPhotoPending[k]; return DJ_PHOTO[k]; }).catch(()=>{ delete _djPhotoPending[k]; return null; });
+  _djPhotoPending[k]=p; return p;
+}
+function djInitials(name){ const w=(name||'').trim().split(/\s+/); return ((w.length>1?(w[0][0]||'')+(w[1][0]||''):(name||'').trim().slice(0,2))||'?').toUpperCase(); }
+function djAvatarHTML(name,cls){ return `<div class="djav ${cls||''}" data-djav="${esc(name)}"><span class="djav-i">${esc(djInitials(name))}</span></div>`; }
+// Replace initials with the real photo once loaded (concurrency-limited, cache-backed).
+function hydrateAvatars(root){
+  if(!root) return;
+  const els=[...root.querySelectorAll('[data-djav]:not([data-hy])')];
+  let i=0;
+  const run=()=>{ if(i>=els.length) return; const el=els[i++], name=el.getAttribute('data-djav'); el.setAttribute('data-hy','1');
+    fetchDJPhoto(name).then(u=>{ if(!u) return; const im=new Image(); im.onload=()=>{ el.style.backgroundImage=`url("${u}")`; el.classList.add('has-img'); }; im.src=u; }).catch(()=>{}).finally(run); };
+  for(let c=0;c<Math.min(4,els.length);c++) run();
+}
+
 async function renderSpotlight(){
   const todayStr=new Date().toISOString().split('T')[0];
   const counts={};
@@ -1705,7 +1735,7 @@ function renderDJs(){
     const natFlag=DJ_NATIONALITY[dj]||'🎛';
     const rank=!q?(DJ_MAG_ORDER.indexOf(dj)+1):null;
     return`<button class="city-btn" onclick='openDJ(${esc(JSON.stringify(dj))})'>
-      <span style="font-size:20px">${natFlag}</span>
+      ${djAvatarHTML(dj,'djl-av')}
       <div style="flex:1;text-align:left">
         <div class="city-name">${rank?`<span style="color:var(--accent);font-size:11px;font-weight:700;margin-right:6px;">#${rank}</span>`:''}${esc(dj)}</div>
         <div class="city-country">${tourFlags}${extra}· ${evs.length} ev.</div>
@@ -1714,6 +1744,7 @@ function renderDJs(){
       <span class="city-arrow">›</span>
     </button>`;
   }).join('')+hint;
+  hydrateAvatars(document.getElementById('dj-list'));
 }
 
 function renderFestList(){
@@ -1899,10 +1930,11 @@ function openDetail(id){
   document.getElementById('det-where').innerHTML=ev.venue
     ? `${esc(ev.venue)}<small>${esc(ev.city||'')}${ev.country?', '+esc(ev.country):''} ${flag}</small>`
     : `${esc(ev.city||'TBA')}<small>${ev.country?esc(ev.country)+' ':''}${flag}</small>`;
-  const isFest=(ev.tags||[]).includes('festival'), headIdx=(!isFest&&ev.djs.length>1)?0:-1;
-  document.getElementById('det-lineup').innerHTML=ev.djs.length
-    ? ev.djs.map((dj,i)=>{const ph=DJ_IMG[djNorm(dj)];return `<div class="det-dj${i===headIdx?' head':''}" role="button" tabindex="0" onclick='openDJ(${esc(JSON.stringify(dj))})'><div class="det-dj-av">${ph?`<img src="${ph}" alt="">`:djFlag(dj)}</div><div class="det-dj-nm">${esc(dj)}</div>${i===headIdx?'<div class="det-dj-hd">HEADLINER</div>':''}</div>`;}).join('')
+  const lu=document.getElementById('det-lineup');
+  lu.innerHTML=ev.djs.length
+    ? ev.djs.map(dj=>`<div class="det-dj" role="button" tabindex="0" onclick='openDJ(${esc(JSON.stringify(dj))})'>${djAvatarHTML(dj,'det-dj-av')}<div class="det-dj-nm">${esc(dj)}</div></div>`).join('')
     : `<div style="color:var(--text-mute);font-size:13px;">Line-up TBA</div>`;
+  hydrateAvatars(lu);
   document.getElementById('det-tags').innerHTML=ev.tags.map(t=>`<span class="tag">${esc(t)}</span>`).join('');
   // Source badge
   const srcLabel={'bandsintown':'Bandsintown','songkick':'Songkick','ra':'Resident Advisor','direct':'Official Site','website':'Website'};

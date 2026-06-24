@@ -262,6 +262,18 @@ img{display:block;}
 .search-chips{display:flex;gap:8px;margin:12px 0 4px;flex-wrap:wrap;}
 .search-chip{background:var(--surface-2);border:1px solid var(--border);border-radius:var(--r-pill);padding:7px 14px;font-size:12.5px;color:var(--text-dim);font-weight:600;cursor:pointer;font-family:inherit;letter-spacing:0;transition:background .15s,color .15s,border-color .15s;}
 .search-chip.active{background:var(--accent);border-color:var(--accent);color:var(--accent-ink);}
+.srch-sec{display:flex;align-items:center;gap:8px;color:var(--text-mute);font-size:11px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;margin:18px 0 6px;}
+.srch-sec span{background:var(--surface-2);border-radius:var(--r-pill);padding:1px 8px;font-size:10px;color:var(--text-dim);}
+.srch-row{display:flex;align-items:center;gap:12px;width:100%;background:none;border:none;border-bottom:1px solid var(--border);padding:11px 2px;cursor:pointer;font-family:inherit;text-align:left;}
+.srch-row:active{opacity:.7;}
+.srch-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:8px;}
+.srch-av{width:42px;height:42px;font-size:15px;}
+.srch-ico{width:42px;height:42px;border-radius:50%;background:var(--surface-2);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;}
+.srch-meta{flex:1;min-width:0;}
+.srch-nm{font-size:14.5px;font-weight:600;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.srch-sub{font-size:12px;color:var(--text-dim);margin-top:2px;}
+.srch-more{display:block;width:100%;background:none;border:none;color:var(--accent);font-size:12.5px;font-weight:600;padding:10px 2px;cursor:pointer;font-family:inherit;text-align:left;}
+.srch-back{display:block;background:none;border:none;color:var(--text-dim);font-size:13px;font-weight:600;padding:6px 2px 10px;cursor:pointer;font-family:inherit;}
 input,select,textarea{outline:none;-webkit-appearance:none;font-size:16px !important;}
 button:focus{outline:none;}
 
@@ -617,15 +629,16 @@ button:focus{outline:none;}
     </div>
     <input type="text" id="global-search" class="search-input" style="width:100%;" placeholder="Event, DJ, club, city…" oninput="renderGlobalSearch()"/>
     <div class="search-chips">
-      <button class="search-chip active" onclick="setSearchType('all',this)">All</button>
-      <button class="search-chip" onclick="setSearchType('event',this)">Events</button>
-      <button class="search-chip" onclick="setSearchType('dj',this)">DJs</button>
-      <button class="search-chip" onclick="setSearchType('club',this)">Clubs</button>
+      <button class="search-chip active" data-type="all" onclick="setSearchType('all',this)">All</button>
+      <button class="search-chip" data-type="dj" onclick="setSearchType('dj',this)">DJs</button>
+      <button class="search-chip" data-type="fest" onclick="setSearchType('fest',this)">Festivals</button>
+      <button class="search-chip" data-type="club" onclick="setSearchType('club',this)">Clubs</button>
+      <button class="search-chip" data-type="event" onclick="setSearchType('event',this)">Events</button>
     </div>
     <div id="search-empty" class="empty-state" style="padding:60px 0;">
       <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.14)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
-      <div style="color:var(--text-mute);font-size:13px;font-weight:600;margin-top:16px;">Search across all events</div>
-      <div style="color:var(--text-mute);font-size:12px;margin-top:5px;">By event, DJ, club, city or country</div>
+      <div style="color:var(--text-mute);font-size:13px;font-weight:600;margin-top:16px;">Search DJs, festivals, clubs & events</div>
+      <div style="color:var(--text-mute);font-size:12px;margin-top:5px;">Find a DJ's shows, a club's nights, a festival or an event</div>
     </div>
     <div id="search-list"></div>
   </div>
@@ -2225,10 +2238,10 @@ function openSearchFromNav(){
 let searchType='all';
 function setSearchType(t,btn){
   searchType=t;
-  document.querySelectorAll('.search-chip').forEach(c=>c.classList.remove('active'));
-  if(btn) btn.classList.add('active');
+  document.querySelectorAll('.search-chip').forEach(c=>c.classList.toggle('active', btn?c===btn:c.dataset.type===t));
   renderGlobalSearch();
 }
+// Unified search: DJs · Festivals · Clubs · Events, all derived from upcoming events.
 function renderGlobalSearch(){
   const inp=document.getElementById('global-search');
   const list=document.getElementById('search-list');
@@ -2239,24 +2252,47 @@ function renderGlobalSearch(){
   if(!q){ list.innerHTML=''; if(empty) empty.style.display='block'; if(countEl) countEl.textContent=''; return; }
   if(empty) empty.style.display='none';
   const today=new Date().toISOString().split('T')[0];
-  const matches=EVENTS.filter(e=>{
-    if(e.date<today) return false;
-    const inName=(e.name||'').toLowerCase().includes(q);
-    const inVenue=(e.venue||'').toLowerCase().includes(q);
-    const inDj=(e.djs||[]).some(d=>(d||'').toLowerCase().includes(q));
-    const inCity=(e.city||'').toLowerCase().includes(q);
-    const inCountry=(e.country||'').toLowerCase().includes(q);
-    const inGenre=(e.genre||'').toLowerCase().includes(q);
-    if(searchType==='event') return inName;
-    if(searchType==='dj') return inDj;
-    if(searchType==='club') return inVenue;
-    return inName||inVenue||inDj||inCity||inCountry||inGenre;
-  });
-  const grouped=groupEvents(matches).sort((a,b)=>new Date(a.date)-new Date(b.date));
-  if(countEl) countEl.textContent=grouped.length?`${grouped.length} result${grouped.length!==1?'s':''}`:'';
-  list.innerHTML=grouped.length
-    ? grouped.slice(0,80).map(ev=>eventRowHTML(ev)).join('')
-    : `<div style="color:var(--text-mute);font-size:13px;text-align:center;padding:48px 0;">No matches for “${esc((inp?inp.value:'').trim())}”.</div>`;
+  const fut=EVENTS.filter(e=>e.date>=today);
+  // DJs — by name, ranked by # of upcoming shows
+  const djc={};
+  for(const e of fut) for(const d of (e.djs||[])) if((d||'').toLowerCase().includes(q)){ const k=djNorm(d); (djc[k]=djc[k]||{name:d,n:0}).n++; }
+  const djs=Object.values(djc).sort((a,b)=>b.n-a.n);
+  // Festivals — festival-tagged events by name, by date
+  const fm={};
+  for(const e of fut) if((e.tags||[]).includes('festival') && (e.name||'').toLowerCase().includes(q)){ const k=(e.name||'').toLowerCase()+'|'+(e.city||''); if(!fm[k]) fm[k]=e; }
+  const fests=Object.values(fm).sort((a,b)=>new Date(a.date)-new Date(b.date));
+  // Clubs — venues, ranked by # of events
+  const cc={};
+  for(const e of fut){ const v=(e.venue||'').trim(); if(v && v!==e.name && v.toLowerCase().includes(q)){ const k=v.toLowerCase(); (cc[k]=cc[k]||{venue:v,city:e.city,country:e.country,n:0}).n++; } }
+  const clubs=Object.values(cc).sort((a,b)=>b.n-a.n);
+  // Events — non-festival, by name / city / country / genre
+  const events=groupEvents(fut.filter(e=>!(e.tags||[]).includes('festival') && ((e.name||'').toLowerCase().includes(q)||(e.city||'').toLowerCase().includes(q)||(e.country||'').toLowerCase().includes(q)||(e.genre||'').toLowerCase().includes(q)))).sort((a,b)=>new Date(a.date)-new Date(b.date));
+  const djRow=o=>`<button class="srch-row" role="button" tabindex="0" onclick='openDJ(${esc(JSON.stringify(o.name))})'>${djAvatarHTML(o.name,'srch-av')}<div class="srch-meta"><div class="srch-nm">${esc(o.name)}</div><div class="srch-sub">${o.n} upcoming event${o.n!==1?'s':''}</div></div><span class="city-arrow">›</span></button>`;
+  const clubRow=o=>`<button class="srch-row" role="button" tabindex="0" onclick='searchClub(${esc(JSON.stringify(o.venue))})'><div class="srch-ico">📍</div><div class="srch-meta"><div class="srch-nm">${esc(o.venue)}</div><div class="srch-sub">${FLAGS[o.country]||''} ${esc(o.city||'')} · ${o.n} event${o.n!==1?'s':''}</div></div><span class="city-arrow">›</span></button>`;
+  let html='', total=0;
+  const sec=(title,kind,items,renderer)=>{
+    if(!items.length || (searchType!=='all'&&searchType!==kind)) return;
+    total+=items.length;
+    const show=searchType==='all'?items.slice(0,4):items.slice(0,60);
+    html+=`<div class="srch-sec">${title} <span>${items.length}</span></div>`+show.map(renderer).join('');
+    if(searchType==='all'&&items.length>show.length) html+=`<button class="srch-more" onclick="setSearchType('${kind}')">See all ${items.length} →</button>`;
+  };
+  sec('DJs','dj',djs,djRow);
+  sec('Festivals','fest',fests,ev=>eventRowHTML(ev));
+  sec('Clubs','club',clubs,clubRow);
+  sec('Events','event',events,ev=>eventRowHTML(ev));
+  if(countEl) countEl.textContent=total?`${total} result${total!==1?'s':''}`:'';
+  list.innerHTML=html||`<div style="color:var(--text-mute);font-size:13px;text-align:center;padding:48px 0;">No matches for “${esc((inp?inp.value:'').trim())}”.</div>`;
+  hydrateAvatars(list);   // load DJ photos in the DJ rows
+}
+// Club tap → its upcoming events, with a way back to the grouped results.
+function searchClub(venue){
+  const list=document.getElementById('search-list'), countEl=document.getElementById('search-count');
+  if(!list) return;
+  const today=new Date().toISOString().split('T')[0];
+  const evs=groupEvents(EVENTS.filter(e=>e.date>=today && (e.venue||'')===venue)).sort((a,b)=>new Date(a.date)-new Date(b.date));
+  if(countEl) countEl.textContent=`${evs.length} at ${venue}`;
+  list.innerHTML=`<button class="srch-back" onclick="renderGlobalSearch()">← Back to results</button><div class="srch-sec">${esc(venue)} <span>${evs.length}</span></div>`+evs.map(ev=>eventRowHTML(ev)).join('');
 }
 
 // ── FLOATING NAV BUBBLE CONTROLLER ──────────────────────────────────────────

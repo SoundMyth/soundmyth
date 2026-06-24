@@ -77,6 +77,24 @@ pick it up later.
 > Diagnostic tool: `scraper/analyze-quality.mjs` (read-only) quantifies these issues and
 > simulates the fixes against live data. Re-run any time to re-measure.
 
+## Reported bugs — fixed
+- [x] **Logout kept showing recommendations** — `doSignOut` now clears `prefs`
+      (cities/DJs/genres) + `persistPrefsLocal` and re-renders Home/Account, so a logged-out
+      Home shows no personalization (re-login restores prefs from the profile). Saved events
+      left as a local convenience (separate concern).
+- [x] **DJ profile trapped navigation** — the `#dj-detail` overlay (z-index 210) wasn't closed
+      when switching tabs, so the lupa/any nav stayed stuck on the DJ screen. `switchTab` now
+      closes `#dj-detail` (then `#detail`) before switching.
+- [x] **City grouping by case / nickname** — `canonCity` (frontend + `normalize.js`) now
+      Title-cases the ASCII-folded name so caps/hyphen-case variants merge (BOCHUM/Bochum,
+      Rio de/De Janeiro, Cluj-napoca/Napoca) and drops trailing UPPERCASE nickname acronyms
+      ("New York (NYC)"→New York, "Los Angeles (LA)"→Los Angeles) while keeping lowercase
+      disambiguators ("Frankfurt (oder)"). Merged 16 variants live. +2 tests.
+  - [ ] **Residual (backlog)**: non-city values still leak into `city` (venue/region/ski-resort
+        like "la pinilla", "Theale, Berkshire", "Cheshire, Daresbury", "Copenhagen Municipality",
+        "Praha 9"). Needs a "City, Region"→city rule, a " Municipality/District" strip, and/or a
+        small non-city blocklist — deferred (long-tail, low count).
+
 ## Pending — personalization follow-ups
 - [ ] Move DJ→genre map to `scraper/data/artists_all.json` + have the scraper stamp
       `events.genre` (durable, covers all DJs, not just the curated ~100).

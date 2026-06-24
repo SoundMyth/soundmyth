@@ -37,15 +37,18 @@ export const CITY_ALIAS_RAW = {
 const CITY_ALIAS = {};
 for (const k in CITY_ALIAS_RAW) CITY_ALIAS[k.replace(/\s+/g,' ').trim().toLowerCase()] = CITY_ALIAS_RAW[k];
 
+function titleCaseCity(s) { return s.toLowerCase().replace(/(^|[\s\-/])([a-z])/g, (m, p, c) => p + c.toUpperCase()); }
 export function canonCity(c) {
-  const t = (c || '').replace(/\s+/g, ' ').trim();
+  let t = (c || '').replace(/\s+/g, ' ').trim();
   if (!t) return t;
+  t = t.replace(/\s*\([A-Z]{2,4}\)$/, '').trim();   // drop nickname acronyms: "New York (NYC)" → "New York" (keeps "(oder)")
   const alias = CITY_ALIAS[t.toLowerCase()];
-  if (alias) return alias;                       // explicit alias wins (standard English names)
-  // fold to ASCII so accent/script variants collapse to ONE spelling
-  // (Malaga/Málaga, Montréal->Montreal, Zürich->Zurich; non-Latin gets romanized)
+  if (alias) return alias;                          // explicit alias wins (standard English names)
+  // fold to ASCII so accent/script variants collapse (Malaga/Málaga, Montréal→Montreal,
+  // Zürich→Zurich; non-Latin romanized) AND Title-case so caps/hyphen-case variants merge
+  // (BOCHUM/Bochum, Rio de/De Janeiro, Cluj-napoca/Napoca).
   const tr = transliterate(t).replace(/\s+/g, ' ').trim();
-  return tr || t;
+  return tr ? titleCaseCity(tr) : t;
 }
 
 // Country full-name variants → canonical name. The scrapers already map ISO codes

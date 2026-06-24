@@ -837,7 +837,13 @@ const CITY_ALIAS_RAW={
   'BELVOIR CASTLE Leicestershire':'Leicestershire'
 };
 const CITY_ALIAS={}; for(const k in CITY_ALIAS_RAW){ CITY_ALIAS[k.replace(/\s+/g,' ').trim().toLowerCase()]=CITY_ALIAS_RAW[k]; }
-function canonCity(c){ const t=(c||'').replace(/\s+/g,' ').trim(); if(!t) return t; const a=CITY_ALIAS[t.toLowerCase()]; if(a) return a; return t.normalize('NFD').replace(/[̀-ͯ]/g,''); }
+function titleCaseCity(s){ return s.toLowerCase().replace(/(^|[\s\-\/])([a-z])/g,(m,p,c)=>p+c.toUpperCase()); }
+function canonCity(c){
+  let t=(c||'').replace(/\s+/g,' ').trim(); if(!t) return t;
+  t=t.replace(/\s*\([A-Z]{2,4}\)$/,'').trim();        // drop nickname acronyms: "New York (NYC)"→"New York" (keeps lowercase disambiguators like "(oder)")
+  const a=CITY_ALIAS[t.toLowerCase()]; if(a) return a;
+  return titleCaseCity(t.normalize('NFD').replace(/[̀-ͯ]/g,''));   // strip accents + Title-case so caps/hyphen-case variants merge
+}
 function djNorm(s){ return (s||'').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'').trim(); }
 function canonDJ(name){ return DJ_CANON[djNorm(name)]||name; }
 function pickCanon(variants){
@@ -1527,6 +1533,9 @@ loadEvents();
 
 // ── TABS ──────────────────────────────────────────────────────────────────────
 function switchTab(name, btn){
+  // Close any open overlay first (DJ profile sits above event detail), so the lupa /
+  // any nav button actually navigates instead of leaving the DJ screen stuck on top.
+  if(document.getElementById('dj-detail').className==='open') closeDJ();
   if(document.getElementById('detail').className==='open') closeDetail();
   document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
   document.querySelectorAll('.nav-btn').forEach(b=>b.classList.remove('active'));
@@ -2074,8 +2083,12 @@ function doSignOut(){
   Object.keys(localStorage).filter(k=>k.startsWith('sb-')).forEach(k=>localStorage.removeItem(k));
   sb.auth.signOut({scope:'local'}).catch(()=>{});
   currentUser=null;
+  // Clear personalization so a logged-out Home shows no recommendations (re-login
+  // restores prefs from the profile via syncPrefs). Saved events are left as a local convenience.
+  prefs={cities:[],djs:[],genres:[]}; persistPrefsLocal();
   resetLoginForm();
   updateAuthUI();
+  renderPersonalHome(); renderAccount();
 }
 
 // ── MARKETING CONSENT / PROFILE ─────────────────────────────────────────────

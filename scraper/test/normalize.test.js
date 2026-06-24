@@ -25,6 +25,21 @@ test('canonCity: folds accents/scripts to ASCII so variants merge', () => {
   assert.equal(canonCity('Madrid'), 'Madrid');
 });
 
+test('canonCity: Title-cases so caps/hyphen-case variants merge', () => {
+  assert.equal(canonCity('BOCHUM'), 'Bochum');
+  assert.equal(canonCity('Bochum'), 'Bochum');
+  assert.equal(canonCity('rio de janeiro'), 'Rio De Janeiro');
+  assert.equal(canonCity('Rio De Janeiro'), 'Rio De Janeiro');
+  assert.equal(canonCity('Cluj-napoca'), 'Cluj-Napoca');
+  assert.equal(canonCity('Cluj-Napoca'), 'Cluj-Napoca');
+});
+
+test('canonCity: drops uppercase nickname acronyms, keeps lowercase disambiguators', () => {
+  assert.equal(canonCity('New York (NYC)'), 'New York');
+  assert.equal(canonCity('Los Angeles (LA)'), 'Los Angeles');
+  assert.equal(canonCity('Frankfurt (oder)'), 'Frankfurt (oder)');   // real, distinct city — kept
+});
+
 test('canonCity: trims & handles empty', () => {
   assert.equal(canonCity('  Madrid  '), 'Madrid');
   assert.equal(canonCity('New   York'), 'New York');

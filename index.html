@@ -993,12 +993,16 @@ async function fetchAudioDBImg(name){
 // cache successes (localStorage) to avoid re-hitting the API, and fall back to initials.
 let DJ_PHOTO={}; try{ DJ_PHOTO=JSON.parse(localStorage.getItem('sm_djphoto')||'{}'); }catch(e){}
 const _djPhotoPending={};
-function saveDJPhoto(){ try{ localStorage.setItem('sm_djphoto',JSON.stringify(Object.fromEntries(Object.entries(DJ_PHOTO).filter(([,v])=>v)))); }catch(e){} }
+// Manual overrides for TheAudioDB wrong/missing matches (djNorm → url, or '' to force
+// clean initials). TheAudioDB keys on name and collides (e.g. a different "Jamie Jones").
+const DJ_PHOTO_FIX={ 'jamiejones':'' };
+function saveDJPhoto(){ try{ localStorage.setItem('sm_djphoto',JSON.stringify(DJ_PHOTO)); }catch(e){} }
 function fetchDJPhoto(name){
   const k=djNorm(name);
-  if(DJ_PHOTO[k]!==undefined) return Promise.resolve(DJ_PHOTO[k]);
+  if(DJ_PHOTO_FIX[k]!==undefined) return Promise.resolve(DJ_PHOTO_FIX[k]||null);   // manual override wins
+  if(DJ_PHOTO[k]) return Promise.resolve(DJ_PHOTO[k]);                              // cached success only — nulls aren't cached, so a rate-limited DJ retries later
   if(_djPhotoPending[k]) return _djPhotoPending[k];
-  const p=fetchAudioDBImg(name).then(u=>{ DJ_PHOTO[k]=u||null; if(u) saveDJPhoto(); delete _djPhotoPending[k]; return DJ_PHOTO[k]; }).catch(()=>{ delete _djPhotoPending[k]; return null; });
+  const p=fetchAudioDBImg(name).then(u=>{ if(u){ DJ_PHOTO[k]=u; saveDJPhoto(); } delete _djPhotoPending[k]; return u||null; }).catch(()=>{ delete _djPhotoPending[k]; return null; });
   _djPhotoPending[k]=p; return p;
 }
 function djInitials(name){ const w=(name||'').trim().split(/\s+/); return ((w.length>1?(w[0][0]||'')+(w[1][0]||''):(name||'').trim().slice(0,2))||'?').toUpperCase(); }
@@ -1008,9 +1012,11 @@ function hydrateAvatars(root){
   if(!root) return;
   const els=[...root.querySelectorAll('[data-djav]:not([data-hy])')];
   let i=0;
+  // Low concurrency + a small gap: TheAudioDB's public key is rate-limited, and bursts
+  // were tripping it (circles stayed empty). Cached successes make later loads instant.
   const run=()=>{ if(i>=els.length) return; const el=els[i++], name=el.getAttribute('data-djav'); el.setAttribute('data-hy','1');
-    fetchDJPhoto(name).then(u=>{ if(!u) return; const im=new Image(); im.onload=()=>{ el.style.backgroundImage=`url("${u}")`; el.classList.add('has-img'); }; im.src=u; }).catch(()=>{}).finally(run); };
-  for(let c=0;c<Math.min(4,els.length);c++) run();
+    fetchDJPhoto(name).then(u=>{ if(!u) return; const im=new Image(); im.onload=()=>{ el.style.backgroundImage=`url("${u}")`; el.classList.add('has-img'); }; im.src=u; }).catch(()=>{}).finally(()=>setTimeout(run,120)); };
+  for(let c=0;c<Math.min(2,els.length);c++) run();
 }
 
 async function renderSpotlight(){
@@ -1839,7 +1845,7 @@ function renderMonths(){
   }).join('');
 }
 
-function selectMonth(m){
+function selectMonth(m,skipPush){
   selMonth=m;
   const results=EVENTS.filter(e=>e.city===selCity&&parseInt(e.date.split("-")[1])-1===m).sort((a,b)=>new Date(a.date)-new Date(b.date));
   const grouped=groupEvents(results);
@@ -1847,10 +1853,10 @@ function selectMonth(m){
   document.getElementById('events-month-label').textContent=MONTHS[m];
   document.getElementById('events-list').innerHTML=grouped.map(ev=>eventRowHTML(ev)).join('');
   goStep(2);
-  try{ history.pushState({smPlan:1},''); }catch(e){}   // Back → month
+  if(!skipPush) try{ history.pushState({smPlan:1},''); }catch(e){}   // Back → month
 }
 
-function selectDJ(dj){
+function selectDJ(dj,skipPush){
   selDJ=dj;
   const results=EVENTS.filter(e=>e.djs.some(d=>d.toLowerCase()===dj.toLowerCase())).sort((a,b)=>new Date(a.date)-new Date(b.date));
   const grouped=groupEvents(results);
@@ -1864,7 +1870,7 @@ function selectDJ(dj){
   document.getElementById('bc-month').textContent=dj;
   document.getElementById('bc-month').className='bc-btn active';
   document.getElementById('bc-events').className='bc-btn active';
-  try{ history.pushState({smPlan:1},''); }catch(e){}   // Back → DJ list
+  if(!skipPush) try{ history.pushState({smPlan:1},''); }catch(e){}   // Back → DJ list
 }
 
 // ── EVENT ROW ─────────────────────────────────────────────────────────────────
@@ -1895,22 +1901,22 @@ async function toggleSave(id){
   const wasSaved=saved.includes(id);
   saved=wasSaved?saved.filter(x=>x!==id):[...saved,id];
   localStorage.setItem('sm_saved',JSON.stringify(saved));
-  if(currentUser){
-    if(!wasSaved) await sb.from('saved_events').upsert({user_id:currentUser.id,event_id:id});
-    else await sb.from('saved_events').delete().eq('user_id',currentUser.id).eq('event_id',id);
-  }
-  renderSaved();
-  renderFeatured();
-  renderPersonalHome();                       // update hearts on the personalized home cards
-  const stab=document.getElementById('tab-search');
-  if(stab&&stab.classList.contains('active')) renderGlobalSearch();
-  if(currentStep===2){
-    if(selDJ) selectDJ(selDJ); else if(selMonth!=null) selectMonth(selMonth);
-  }
+  // Visual feedback FIRST. The detail heart updates immediately, and every section
+  // re-render is guarded so one failing render (or a slow/failed auth write) can no
+  // longer block the others — the bug where likes saved but never showed marked.
   if(detailEv&&detailEv.id===id){
     const btn=document.getElementById('det-save');
-    btn.className='det-icbtn'+(saved.includes(id)?' saved':'');
-    btn.textContent=saved.includes(id)?'♥':'♡';
+    if(btn){ btn.className='det-icbtn'+(saved.includes(id)?' saved':''); btn.textContent=saved.includes(id)?'♥':'♡'; }
+  }
+  [renderSaved,renderFeatured,renderPersonalHome].forEach(fn=>{ try{ fn(); }catch(e){ console.warn('toggleSave render',e); } });
+  try{ const stab=document.getElementById('tab-search'); if(stab&&stab.classList.contains('active')) renderGlobalSearch(); }catch(e){}
+  try{ if(currentStep===2){ if(selDJ) selectDJ(selDJ,true); else if(selMonth!=null) selectMonth(selMonth,true); } }catch(e){}
+  // Persist to the account last (guarded so a hung/failed call never affects the UI).
+  if(currentUser){
+    try{
+      if(!wasSaved) await sb.from('saved_events').upsert({user_id:currentUser.id,event_id:id});
+      else await sb.from('saved_events').delete().eq('user_id',currentUser.id).eq('event_id',id);
+    }catch(e){ console.warn('saved_events sync',e); }
   }
 }
 function toggleDetailSave(){toggleSave(detailEv.id);}
@@ -1988,9 +1994,9 @@ function renderDJ(name){
   const fb=document.getElementById('djd-follow'), isFav=prefs.djs.map(djNorm).includes(key);
   fb.className='djd-follow'+(isFav?' on':''); fb.textContent=isFav?'★ Following':'☆ Follow this DJ'; fb.onclick=()=>toggleFollowDJ(name);
   document.getElementById('djd-events').innerHTML=evs.length?evs.map(eventRowHTML).join(''):'<div style="color:var(--text-mute);font-size:13px;padding:14px 0;">No upcoming events listed.</div>';
-  const img=document.getElementById('djd-img'), reuse=DJ_IMG[key];
-  if(reuse){ img.src=reuse; img.style.display=''; } else { img.style.display='none'; img.removeAttribute('src'); }
-  fetchAudioDBImg(name).then(u=>{ if(u && djDetailName===name){ img.src=u; img.style.display=''; } }).catch(()=>{});
+  const img=document.getElementById('djd-img');
+  img.style.display='none'; img.removeAttribute('src');
+  fetchDJPhoto(name).then(u=>{ if(u && djDetailName===name){ img.src=u; img.style.display=''; } }).catch(()=>{});   // same resolver as the line-up circles (override + cache)
 }
 function openDJ(name){
   if(!name) return;
@@ -2041,7 +2047,8 @@ function renderSaved(){
   const bar=document.getElementById('route-bar');
   const list=document.getElementById('saved-list');
   if(!countEl||!emptyEl||!bar||!list) return;
-  const evs=EVENTS.filter(e=>saved.includes(e.id)).sort((a,b)=>new Date(a.date)-new Date(b.date));
+  const todayStr=new Date().toISOString().split('T')[0];
+  const evs=EVENTS.filter(e=>saved.includes(e.id)&&e.date>=todayStr).sort((a,b)=>new Date(a.date)-new Date(b.date));
   countEl.textContent=`${evs.length} saved`;
   emptyEl.style.display=evs.length===0?'block':'none';
   const cities=[...new Set(evs.map(e=>e.city))];

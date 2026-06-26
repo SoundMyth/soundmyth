@@ -1010,7 +1010,7 @@ let DJ_PHOTO={}; try{ DJ_PHOTO=JSON.parse(localStorage.getItem('sm_djphoto')||'{
 const _djPhotoPending={};
 // Manual overrides for TheAudioDB wrong/missing matches (djNorm → url, or '' to force
 // clean initials). TheAudioDB keys on name and collides (e.g. a different "Jamie Jones").
-const DJ_PHOTO_FIX={ 'jamiejones':'' };
+const DJ_PHOTO_FIX={ 'jamie jones':'' };   // key matches djNorm() (lowercased, spaces kept)
 function saveDJPhoto(){ try{ localStorage.setItem('sm_djphoto',JSON.stringify(DJ_PHOTO)); }catch(e){} }
 function fetchDJPhoto(name){
   const k=djNorm(name);
@@ -1025,12 +1025,15 @@ function djAvatarHTML(name,cls){ return `<div class="djav ${cls||''}" data-djav=
 // Replace initials with the real photo once loaded (concurrency-limited, cache-backed).
 function hydrateAvatars(root){
   if(!root) return;
-  const els=[...root.querySelectorAll('[data-djav]:not([data-hy])')];
+  // Circle avatars ([data-djav], background-image) AND image-less event cards
+  // (img[data-evphoto], src) both upgrade to the DJ's real photo once fetched.
+  const els=[...root.querySelectorAll('[data-djav]:not([data-hy]),img[data-evphoto]:not([data-hy])')];
   let i=0;
   // Low concurrency + a small gap: TheAudioDB's public key is rate-limited, and bursts
-  // were tripping it (circles stayed empty). Cached successes make later loads instant.
-  const run=()=>{ if(i>=els.length) return; const el=els[i++], name=el.getAttribute('data-djav'); el.setAttribute('data-hy','1');
-    fetchDJPhoto(name).then(u=>{ if(!u) return; const im=new Image(); im.onload=()=>{ el.style.backgroundImage=`url("${u}")`; el.classList.add('has-img'); }; im.src=u; }).catch(()=>{}).finally(()=>setTimeout(run,120)); };
+  // were tripping it (photos stayed empty). Cached successes make later loads instant.
+  const run=()=>{ if(i>=els.length) return; const el=els[i++]; el.setAttribute('data-hy','1');
+    const isImg=el.tagName==='IMG', name=el.getAttribute(isImg?'data-evphoto':'data-djav');
+    fetchDJPhoto(name).then(u=>{ if(!u) return; const im=new Image(); im.onload=()=>{ if(isImg) el.src=u; else { el.style.backgroundImage=`url("${u}")`; el.classList.add('has-img'); } }; im.src=u; }).catch(()=>{}).finally(()=>setTimeout(run,120)); };
   for(let c=0;c<Math.min(2,els.length);c++) run();
 }
 
@@ -1143,8 +1146,9 @@ function renderFeatured(){
   document.getElementById('home-featured').innerHTML=top.map(ev=>{
     const{day,mon}=fmtDate(ev.date);
     const isSaved=saved.includes(ev.id);
+    const feat=realImg(ev)?'':featDJ(ev);
     return`<div class="ev-card-h" role="button" tabindex="0" onclick='openDetail(${JSON.stringify(ev.id)})'>
-      <img src="${bestImg(ev)}" alt="" onerror="this.src='${COUNTRY_IMG_FALLBACK}'"/>
+      <img src="${bestImg(ev)}" ${feat?`data-evphoto="${escAttr(feat)}"`:''} alt="" onerror="this.src='${COUNTRY_IMG_FALLBACK}'"/>
       <div class="ev-card-h-grad"></div>
       <button aria-label="Save event" class="ev-card-h-save${isSaved?' saved':''}" onclick='event.stopPropagation();toggleSave(${JSON.stringify(ev.id)})'>${isSaved?'♥':'♡'}</button>
       <div class="ev-card-h-body">
@@ -1154,6 +1158,7 @@ function renderFeatured(){
       </div>
     </div>`;
   }).join('');
+  hydrateAvatars(document.getElementById('home-featured'));
   }catch(err){console.error('renderFeatured error:',err);}
 
   // DJ spotlight
@@ -1399,7 +1404,11 @@ const CITY_IMG={
 };
 const CITY_IMG_FALLBACK='https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?w=200&h=130&fit=crop&auto=format';
 function cityImg(city){return CITY_IMG[city]||CITY_IMG_FALLBACK;}
-function bestImg(ev){return ev.img||(ev.djs&&ev.djs.length&&DJ_IMG[djNorm(ev.djs[0])])||CITY_IMG[ev.city]||countryImg(ev.country);}
+// The DJ featured in the title (else the first act) — used to put a real face on the card.
+function featDJ(ev){ const d=ev.djs||[]; if(!d.length) return ''; const n=(ev.name||'').toLowerCase(); return d.find(x=>x&&n.includes(x.toLowerCase()))||d[0]; }
+// Skip Songkick event-flyer placeholders — they often render as a blank grey box (no 404, so onerror won't fire).
+function realImg(ev){ return ev.img && !/profile_images\/events\//.test(ev.img) ? ev.img : ''; }
+function bestImg(ev){ return realImg(ev) || DJ_PHOTO[djNorm(featDJ(ev))] || (ev.djs&&ev.djs.length&&DJ_IMG[djNorm(ev.djs[0])]) || CITY_IMG[ev.city] || countryImg(ev.country); }
 function bestImgHero(ev){
   const base=(ev.img||CITY_IMG[ev.city]||COUNTRY_IMG[ev.country]||COUNTRY_IMG_FALLBACK).replace(/\?.*$/,'');
   return base+'?w=800&h=400&fit=crop&auto=format';
@@ -1833,6 +1842,7 @@ function selectVenue(venueName){
   document.getElementById('events-label').textContent=`${grouped.length} events · ${venueName}`;
   document.getElementById('events-month-label').textContent='';
   document.getElementById('events-list').innerHTML=grouped.map(ev=>eventRowHTML(ev)).join('');
+  hydrateAvatars(document.getElementById('events-list'));
   currentStep=2;
   document.getElementById('step-city').style.display='none';
   document.getElementById('step-month').style.display='none';
@@ -1867,6 +1877,7 @@ function selectMonth(m,skipPush){
   document.getElementById('events-label').textContent=`${grouped.length} events in ${selCity}`;
   document.getElementById('events-month-label').textContent=MONTHS[m];
   document.getElementById('events-list').innerHTML=grouped.map(ev=>eventRowHTML(ev)).join('');
+  hydrateAvatars(document.getElementById('events-list'));
   goStep(2);
   if(!skipPush) try{ history.pushState({smPlan:1},''); }catch(e){}   // Back → month
 }
@@ -1878,6 +1889,7 @@ function selectDJ(dj,skipPush){
   document.getElementById('events-label').textContent=`${grouped.length} events with ${dj}`;
   document.getElementById('events-month-label').textContent='';
   document.getElementById('events-list').innerHTML=grouped.map(ev=>eventRowHTML(ev)).join('');
+  hydrateAvatars(document.getElementById('events-list'));
   currentStep=2;
   document.getElementById('step-city').style.display='none';
   document.getElementById('step-month').style.display='none';
@@ -1897,7 +1909,7 @@ function eventRowHTML(ev){
   const isPast=ev.date<todayStr;
   const click=isPast?'':'role="button" tabindex="0" onclick=\'openDetail('+JSON.stringify(ev.id)+')\'';
   return`<div class="event-row${isPast?' past':''}" ${click}>
-    <img class="ev-thumb" src="${thumb}" alt="" onerror="this.src='${COUNTRY_IMG_FALLBACK}'"/>
+    <img class="ev-thumb" src="${thumb}" ${!realImg(ev)&&ev.djs&&ev.djs.length?`data-evphoto="${escAttr(featDJ(ev))}"`:''} alt="" onerror="this.src='${COUNTRY_IMG_FALLBACK}'"/>
     <div class="ev-date"><div class="ev-day">${day}</div><div class="ev-mon">${mon}</div></div>
     <div class="ev-divider"></div>
     <div class="ev-info">
@@ -1977,7 +1989,8 @@ function openDetail(id){
   saveBtn.className='det-icbtn'+(isSaved?' saved':'');
   saveBtn.textContent=isSaved?'♥':'♡';
   saveBtn.style.cssText=hasTicket?'':'flex:1';
-  document.getElementById('detail').className='open';
+  const detEl=document.getElementById('detail');
+  detEl.className='open'; detEl.style.zIndex=(++overlayZ);   // last-opened overlay on top (so a detail opened from inside a DJ profile shows ABOVE it, not behind)
   document.body.style.overflow='hidden';
   // push a history entry so the browser Back / edge-swipe CLOSES the detail
   // (returns to the list) instead of leaving the site.
@@ -1985,18 +1998,21 @@ function openDetail(id){
 }
 function closeDetail(){
   document.getElementById('detail').className='';
-  document.body.style.overflow='';
+  if(document.getElementById('dj-detail').className!=='open'){ document.body.style.overflow=''; overlayZ=210; }
   detailEv=null;
 }
-// Back / edge-swipe closes the top overlay (DJ profile, then event detail) instead of leaving.
+// Back / edge-swipe closes the TOP-MOST overlay (whichever was opened last) instead of leaving.
 window.addEventListener('popstate', function(){
-  if(document.getElementById('dj-detail').className==='open'){ closeDJ(); return; }
-  if(document.getElementById('detail').className==='open'){ closeDetail(); return; }
+  const d=document.getElementById('detail'), j=document.getElementById('dj-detail');
+  const dO=d.className==='open', jO=j.className==='open';
+  if(dO&&jO){ ((parseInt(d.style.zIndex)||0)>=(parseInt(j.style.zIndex)||0) ? closeDetail() : closeDJ()); return; }
+  if(jO){ closeDJ(); return; }
+  if(dO){ closeDetail(); return; }
   planBack();   // step back one plan level (country/city/month/events)
 });
 
 // ── DJ PROFILE OVERLAY ──────────────────────────────────────────────────────
-let djDetailName=null;
+let djDetailName=null, overlayZ=210;
 function renderDJ(name){
   djDetailName=name;
   const key=djNorm(name), today=new Date().toISOString().split('T')[0];
@@ -2009,6 +2025,7 @@ function renderDJ(name){
   const fb=document.getElementById('djd-follow'), isFav=prefs.djs.map(djNorm).includes(key);
   fb.className='djd-follow'+(isFav?' on':''); fb.textContent=isFav?'★ Following':'☆ Follow this DJ'; fb.onclick=()=>toggleFollowDJ(name);
   document.getElementById('djd-events').innerHTML=evs.length?evs.map(eventRowHTML).join(''):'<div style="color:var(--text-mute);font-size:13px;padding:14px 0;">No upcoming events listed.</div>';
+  hydrateAvatars(document.getElementById('djd-events'));
   const img=document.getElementById('djd-img');
   img.style.display='none'; img.removeAttribute('src');
   fetchDJPhoto(name).then(u=>{ if(u && djDetailName===name){ img.src=u; img.style.display=''; } }).catch(()=>{});   // same resolver as the line-up circles (override + cache)
@@ -2016,13 +2033,14 @@ function renderDJ(name){
 function openDJ(name){
   if(!name) return;
   renderDJ(name);
-  document.getElementById('dj-detail').className='open';
+  const djEl=document.getElementById('dj-detail');
+  djEl.className='open'; djEl.style.zIndex=(++overlayZ);   // last-opened overlay on top
   document.body.style.overflow='hidden';
   try{ history.pushState({smDJ:1},''); }catch(e){}
 }
 function closeDJ(){
   document.getElementById('dj-detail').className='';
-  if(document.getElementById('detail').className!=='open') document.body.style.overflow='';
+  if(document.getElementById('detail').className!=='open'){ document.body.style.overflow=''; overlayZ=210; }
   djDetailName=null;
 }
 function toggleFollowDJ(name){
@@ -2072,6 +2090,7 @@ function renderSaved(){
     bar.innerHTML=cities.map((c,i)=>`<span class="route-city">${FLAGS[EVENTS.find(e=>e.city===c)?.country]||''} ${esc(c)}</span>${i<cities.length-1?'<span class="route-arr">→</span>':''}`).join('');
   } else bar.style.display='none';
   list.innerHTML=groupEvents(evs).map(ev=>eventRowHTML(ev)).join('');
+  hydrateAvatars(list);
 }
 
 // ── AUTH ───────────────────────────────────────────────────────────────────────
@@ -2399,9 +2418,9 @@ function festDateRange(ev){
   return a.mon===b.mon?`${a.day}–${b.day} ${a.mon}`:`${a.day} ${a.mon} – ${b.day} ${b.mon}`;
 }
 function pCard(ev){
-  const{day,mon}=fmtDate(ev.date), isSaved=saved.includes(ev.id), img=bestImg(ev), r=matchReasonP(ev), fest=ev.tags&&ev.tags.includes('festival'), dr=fest?festDateRange(ev):null;
+  const{day,mon}=fmtDate(ev.date), isSaved=saved.includes(ev.id), img=bestImg(ev), r=matchReasonP(ev), fest=ev.tags&&ev.tags.includes('festival'), dr=fest?festDateRange(ev):null, feat=realImg(ev)?'':featDJ(ev);
   return `<div class="ev-card-h" role="button" tabindex="0" onclick='openDetail(${JSON.stringify(ev.id)})'>
-    <img src="${img}" alt="" onerror="this.src='${COUNTRY_IMG_FALLBACK}'"/>
+    <img src="${img}" ${feat?`data-evphoto="${escAttr(feat)}"`:''} alt="" onerror="this.src='${COUNTRY_IMG_FALLBACK}'"/>
     <div class="ev-card-h-grad"></div>
     ${r?`<div class="match-chip">★ ${esc(r)}</div>`:''}
     <button aria-label="Save event" class="ev-card-h-save${isSaved?' saved':''}" onclick='event.stopPropagation();toggleSave(${JSON.stringify(ev.id)})'>${isSaved?'♥':'♡'}</button>
@@ -2447,6 +2466,7 @@ function renderPersonalHome(){
     prefs.cities.slice(0,2).forEach(c=>{ const inC=fut.filter(e=>e.city===c).sort((a,b)=>new Date(a.date)-new Date(b.date)).slice(0,10); if(inC.length){ h+=secP('In '+c, inC.length+' upcoming'); h+=`<div class="hscroll">${inC.map(pCard).join('')}</div>`; } });
   }catch(e){ console.warn('personal home section failed',e); }
   el.innerHTML=h;
+  hydrateAvatars(el);
 }
 
 // ── onboarding sheet (cities → styles → DJs, skippable) ─────────────────────────

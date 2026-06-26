@@ -4,7 +4,7 @@
  * - Same-origin static assets + Google Fonts: cache-first (fast, offline).
  * - Everything else (Supabase API, Unsplash, TheAudioDB…): untouched → normal network.
  */
-const CACHE = 'soundmyth-v2';
+const CACHE = 'soundmyth-v3';
 const SHELL = ['/', '/index.html', '/favicon.svg', '/manifest.webmanifest', '/icon-192.png', '/icon-512.png', '/apple-touch-icon.png'];
 
 self.addEventListener('install', e => {

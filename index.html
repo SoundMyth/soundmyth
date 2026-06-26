@@ -1938,6 +1938,7 @@ async function toggleSave(id){
   [renderSaved,renderFeatured,renderPersonalHome].forEach(fn=>{ try{ fn(); }catch(e){ console.warn('toggleSave render',e); } });
   try{ const stab=document.getElementById('tab-search'); if(stab&&stab.classList.contains('active')) renderGlobalSearch(); }catch(e){}
   try{ if(currentStep===2){ if(selDJ) selectDJ(selDJ,true); else if(selMonth!=null) selectMonth(selMonth,true); } }catch(e){}
+  try{ if(djDetailName && document.getElementById('dj-detail').className==='open') renderDJ(djDetailName); }catch(e){}   // refresh hearts inside the open DJ profile
   // Persist to the account last (guarded so a hung/failed call never affects the UI).
   if(currentUser){
     try{

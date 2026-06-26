@@ -832,6 +832,9 @@ function esc(s){ return String(s==null?'':s).replace(/[&<>"']/g, c=>ESC_MAP[c]);
 let DJ_CANON={};
 // reuse an artist's real photo on their other events that have none
 let DJ_IMG={};
+// DJ → real photo from their OWN (non-festival) show — server-enriched face, avoids
+// festival posters & blank placeholders. Built in loadEvents; a fast local avatar source.
+let DJ_SHOW_IMG={};
 // DJ(lowercase) → style, learned from the stamped events.genre (built in loadEvents).
 // Covers EVERY DJ with events, so styles/suggestions aren't limited to DJ_GENRE's ~100.
 let DJ_STYLE={};
@@ -1021,6 +1024,9 @@ function fetchDJPhoto(name){
   _djPhotoPending[k]=p; return p;
 }
 function djInitials(name){ const w=(name||'').trim().split(/\s+/); return ((w.length>1?(w[0][0]||'')+(w[1][0]||''):(name||'').trim().slice(0,2))||'?').toUpperCase(); }
+// Best photo we already have locally (no network): TheAudioDB cache → the DJ's own show
+// photo. Honours the manual override ('' forces clean initials).
+function djPhotoSync(name){ const k=djNorm(name); if(DJ_PHOTO_FIX[k]!==undefined) return DJ_PHOTO_FIX[k]||''; return DJ_PHOTO[k]||DJ_SHOW_IMG[k]||''; }
 function djAvatarHTML(name,cls){ return `<div class="djav ${cls||''}" data-djav="${esc(name)}"><span class="djav-i">${esc(djInitials(name))}</span></div>`; }
 // Replace initials with the real photo once loaded (concurrency-limited, cache-backed).
 function hydrateAvatars(root){
@@ -1033,7 +1039,8 @@ function hydrateAvatars(root){
   // were tripping it (photos stayed empty). Cached successes make later loads instant.
   const run=()=>{ if(i>=els.length) return; const el=els[i++]; el.setAttribute('data-hy','1');
     const isImg=el.tagName==='IMG', name=el.getAttribute(isImg?'data-evphoto':'data-djav');
-    fetchDJPhoto(name).then(u=>{ if(!u) return; const im=new Image(); im.onload=()=>{ if(isImg) el.src=u; else { el.style.backgroundImage=`url("${u}")`; el.classList.add('has-img'); } }; im.src=u; }).catch(()=>{}).finally(()=>setTimeout(run,120)); };
+    const sync=djPhotoSync(name);   // local photo first (instant, no API); only hit TheAudioDB when we have nothing
+    (sync?Promise.resolve(sync):fetchDJPhoto(name)).then(u=>{ if(!u) return; const im=new Image(); im.onload=()=>{ if(isImg) el.src=u; else { el.style.backgroundImage=`url("${u}")`; el.classList.add('has-img'); } }; im.src=u; }).catch(()=>{}).finally(()=>setTimeout(run, sync?0:120)); };
   for(let c=0;c<Math.min(2,els.length);c++) run();
 }
 
@@ -1408,7 +1415,7 @@ function cityImg(city){return CITY_IMG[city]||CITY_IMG_FALLBACK;}
 function featDJ(ev){ const d=ev.djs||[]; if(!d.length) return ''; const n=(ev.name||'').toLowerCase(); return d.find(x=>x&&n.includes(x.toLowerCase()))||d[0]; }
 // Skip Songkick event-flyer placeholders — they often render as a blank grey box (no 404, so onerror won't fire).
 function realImg(ev){ return ev.img && !/profile_images\/events\//.test(ev.img) ? ev.img : ''; }
-function bestImg(ev){ return realImg(ev) || DJ_PHOTO[djNorm(featDJ(ev))] || (ev.djs&&ev.djs.length&&DJ_IMG[djNorm(ev.djs[0])]) || CITY_IMG[ev.city] || countryImg(ev.country); }
+function bestImg(ev){ return realImg(ev) || djPhotoSync(featDJ(ev)) || (ev.djs&&ev.djs.length&&DJ_IMG[djNorm(ev.djs[0])]) || CITY_IMG[ev.city] || countryImg(ev.country); }
 function bestImgHero(ev){
   const base=(ev.img||CITY_IMG[ev.city]||COUNTRY_IMG[ev.country]||COUNTRY_IMG_FALLBACK).replace(/\?.*$/,'');
   return base+'?w=800&h=400&fit=crop&auto=format';
@@ -1577,6 +1584,8 @@ async function loadEvents(){
   PREF_GENRES=[...new Set([...Object.values(DJ_GENRE), ...futureEvents.map(e=>e.genre).filter(g=>g && g.toLowerCase()!=='electronic')])].sort();
   DJ_STYLE={};
   for(const e of futureEvents){ const g=e.genre; if(!g||g.toLowerCase()==='electronic') continue; for(const d of (e.djs||[])){ const k=d.toLowerCase(); if(!DJ_STYLE[k]) DJ_STYLE[k]=g; } }
+  DJ_SHOW_IMG={};
+  for(const e of futureEvents){ if((e.tags||[]).includes('festival')) continue; const im=realImg(e); if(!im) continue; const k=djNorm(featDJ(e)); if(k&&!DJ_SHOW_IMG[k]) DJ_SHOW_IMG[k]=im; }   // the event's photo belongs to the featured/headliner DJ
   document.getElementById('event-count-label').textContent=`${futureEvents.length} EVENTS`;
   document.getElementById('stat-events').textContent=futureEvents.length;
   document.getElementById('stat-countries').textContent=ALL_COUNTRIES.length;
@@ -2027,9 +2036,9 @@ function renderDJ(name){
   fb.className='djd-follow'+(isFav?' on':''); fb.textContent=isFav?'★ Following':'☆ Follow this DJ'; fb.onclick=()=>toggleFollowDJ(name);
   document.getElementById('djd-events').innerHTML=evs.length?evs.map(eventRowHTML).join(''):'<div style="color:var(--text-mute);font-size:13px;padding:14px 0;">No upcoming events listed.</div>';
   hydrateAvatars(document.getElementById('djd-events'));
-  const img=document.getElementById('djd-img');
-  img.style.display='none'; img.removeAttribute('src');
-  fetchDJPhoto(name).then(u=>{ if(u && djDetailName===name){ img.src=u; img.style.display=''; } }).catch(()=>{});   // same resolver as the line-up circles (override + cache)
+  const img=document.getElementById('djd-img'), sync=djPhotoSync(name);
+  if(sync){ img.src=sync; img.style.display=''; } else { img.style.display='none'; img.removeAttribute('src'); }
+  fetchDJPhoto(name).then(u=>{ if(u && djDetailName===name){ img.src=u; img.style.display=''; } }).catch(()=>{});   // upgrade to the TheAudioDB headshot if found
 }
 function openDJ(name){
   if(!name) return;

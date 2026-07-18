@@ -1363,8 +1363,8 @@ const COUNTRY_IMG={
   'South Korea':     'https://images.unsplash.com/photo-1517154421773-0529f29ea451?w=200&h=130&fit=crop&auto=format',
   'United Arab Emirates':'https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=200&h=130&fit=crop&auto=format',
 };
-const COUNTRY_IMG_FALLBACK='https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?w=200&h=130&fit=crop&auto=format';
-const COUNTRY_IMG_HERO_FALLBACK='https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?w=800&h=400&fit=crop&auto=format';
+const COUNTRY_IMG_FALLBACK='https://images.unsplash.com/photo-1755428642736-951036a304ea?w=200&h=130&fit=crop&auto=format';
+const COUNTRY_IMG_HERO_FALLBACK='https://images.unsplash.com/photo-1755428642736-951036a304ea?w=800&h=400&fit=crop&auto=format';
 function countryImg(country){return COUNTRY_IMG[country]||COUNTRY_IMG_FALLBACK;}
 function countryImgHero(country){
   const base=(COUNTRY_IMG[country]||COUNTRY_IMG_FALLBACK).replace(/\?.*$/,'');

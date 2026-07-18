@@ -1092,7 +1092,7 @@ async function renderSpotlight(){
   const genre=djEvents[0]?.genre||'Electronic';
   const card=document.getElementById('dj-spotlight-card');
   card.innerHTML=`
-    ${img?`<img src="${img}" alt="" onerror="this.style.display='none'"/>`:''}
+    <img src="${img||COUNTRY_IMG_HERO_FALLBACK}" alt="" onerror="this.src=COUNTRY_IMG_HERO_FALLBACK;this.onerror=null"/>
     <div class="dj-spotlight-grad"></div>
     <div class="dj-spotlight-body">
       <div class="dj-badge">DJ OF THE MONTH</div>
@@ -1437,7 +1437,7 @@ const CITY_IMG={
   'Seattle':     'https://images.unsplash.com/photo-1502175353174-a7a70e73b362?w=200&h=130&fit=crop&auto=format',
   'Nashville':   'https://images.unsplash.com/photo-1587162146766-e06b1189b907?w=200&h=130&fit=crop&auto=format',
 };
-const CITY_IMG_FALLBACK='https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?w=200&h=130&fit=crop&auto=format';
+const CITY_IMG_FALLBACK='https://images.unsplash.com/photo-1755428642736-951036a304ea?w=200&h=130&fit=crop&auto=format';
 function cityImg(city){return CITY_IMG[city]||CITY_IMG_FALLBACK;}
 // The DJ featured in the title (else the first act) — used to put a real face on the card.
 function featDJ(ev){ const d=ev.djs||[]; if(!d.length) return ''; const n=(ev.name||'').toLowerCase(); return d.find(x=>x&&n.includes(x.toLowerCase()))||d[0]; }
@@ -2549,7 +2549,7 @@ function renderPersonalHome(){
   const shownIds=new Set();
   if(heroEv){ shownIds.add(heroEv.e.id); const{day,mon}=fmtDate(heroEv.e.date), du=daysUntil(heroEv.e.date);
     h+=`<div class="ctx-hero" role="button" tabindex="0" onclick='openDetail(${JSON.stringify(heroEv.e.id)})'>
-      <img src="${bestImg(heroEv.e)}" alt="" onerror="this.style.display='none'"/><div class="ctx-grad"></div>
+      <img src="${bestImg(heroEv.e)}" alt="" onerror="this.src=COUNTRY_IMG_HERO_FALLBACK;this.onerror=null"/><div class="ctx-grad"></div>
       <div class="ctx-count">${du<=0?'Today':du===1?'Tomorrow':'In '+du+'d'}</div>
       <div class="ctx-body"><div class="ctx-eyebrow">${heroEv.eyebrow}</div><div class="ctx-title">${esc(heroEv.e.name)}</div>
       <div class="ctx-meta">${esc(heroEv.e.venue||heroEv.e.city)} · ${esc(heroEv.e.city)} · ${day} ${mon}</div></div></div>`;

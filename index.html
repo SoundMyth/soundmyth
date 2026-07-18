@@ -2535,7 +2535,7 @@ function renderObStep(filter,keepFocus){
     <div class="sm-top"><div class="sm-dots">${OB_STEPS.map((_,i)=>`<i class="${i===sm_ob.step?'on':''}"></i>`).join('')}</div><button class="sm-skip" onclick="obSkip()">Skip</button></div>
     <h2>${st.title}</h2><p class="sm-lead">${st.lead}</p>
     <input class="sm-search" id="sm-obSearch" placeholder="${st.ph}" value="${escAttr(filter)}" oninput="renderObStep(this.value,true)" autocomplete="off">
-    <div id="sm-chips-wrap">${inner}</div>
+    <div id="sm-chips-wrap" style="min-height:38vh">${inner}</div>
     <div class="sm-actions">${sm_ob.step>0?`<button class="btn-soft sm-back" onclick="obPrev()">Back</button>`:''}
       <button class="btn-accent" onclick="obNext()">${last?`Done (${sel.length})`:`Continue (${sel.length})`}</button></div>`;
 }
@@ -2569,7 +2569,7 @@ function renderPicker(filter,keepFocus){
     <div class="sm-top"><button class="sm-skip" onclick="openPrefsEditor()">‹ Back</button><span></span></div>
     <h2>${titleMap[kind]}</h2><p class="sm-lead">Tap to add or remove.</p>
     <input class="sm-search" id="sm-pkSearch" placeholder="${phMap[kind]}" value="${escAttr(filter)}" oninput="renderPicker(this.value,true)" autocomplete="off">
-    <div id="sm-chips-wrap">${inner}</div>
+    <div id="sm-chips-wrap" style="min-height:38vh">${inner}</div>
     <div class="sm-actions"><button class="btn-accent btn-block" onclick="savePicker()">Save (${sm_pkDraft.length})</button></div>`;
 }
 function savePicker(){ prefs[sm_pkKind]=sm_pkDraft.slice(); savePrefs(); renderPersonalHome(); openPrefsEditor(); }

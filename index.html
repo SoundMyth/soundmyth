@@ -2557,7 +2557,7 @@ function renderPersonalHome(){
       const matchedDjs=[...new Set(forYou.flatMap(e=>e.djs||[]).filter(d=>prefs.djs.some(p=>p.toLowerCase()===d.toLowerCase())))];
       const matchedCities=[...new Set(forYou.map(e=>e.city).filter(c=>prefs.cities.includes(c)))];
       const sub=matchedDjs.length?matchedDjs.slice(0,2).join(' · '):matchedCities.length?matchedCities.slice(0,2).join(' · '):'';
-      h+=secP('For you',sub);
+      h+=secP('Recommended events for you',sub);
       h+=`<div style="padding:0 16px 4px">${forYou.map(e=>{shownIds.add(e.id);return eventRowHTML(e);}).join('')}</div>`;
     }
     // 2. Festivals for you — sorted by score; DJs you follow in lineup as subtitle
@@ -2566,14 +2566,14 @@ function renderPersonalHome(){
     if(festFor.length){
       const djsInFests=[...new Set(festFor.flatMap(e=>e.djs||[]).filter(d=>prefs.djs.some(p=>p.toLowerCase()===d.toLowerCase())))];
       const festSub=djsInFests.length?djsInFests.slice(0,2).join(' · '):'';
-      h+=secP('Festivals for you',festSub);
+      h+=secP('Recommended festivals for you',festSub);
       h+=`<div class="hscroll">${festFor.map(e=>{shownIds.add(e.id);return pCard(e);}).join('')}</div>`;
     }
     // 3. In [City] — vertical rows, score-sorted, what's left after top picks
     for(const c of prefs.cities){
       const inC=fut.filter(e=>!shownIds.has(e.id)&&e.city===c).map(e=>({e,s:scoreEventP(e)})).sort((a,b)=>b.s-a.s||new Date(a.e.date)-new Date(b.e.date)).slice(0,6).map(x=>x.e);
       if(inC.length){
-        h+=secP('In '+c,inC.length+' upcoming');
+        h+=secP('Top events in '+c,inC.length+' upcoming');
         h+=`<div style="padding:0 16px 4px">${inC.map(e=>{shownIds.add(e.id);return eventRowHTML(e);}).join('')}</div>`;
       }
     }

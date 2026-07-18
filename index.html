@@ -1041,7 +1041,7 @@ let DJ_PHOTO={}; try{ DJ_PHOTO=JSON.parse(localStorage.getItem('sm_djphoto')||'{
 const _djPhotoPending={};
 // Manual overrides for TheAudioDB wrong/missing matches (djNorm → url, or '' to force
 // clean initials). TheAudioDB keys on name and collides (e.g. a different "Jamie Jones").
-const DJ_PHOTO_FIX={ 'jamie jones':'' };   // key matches djNorm() (lowercased, spaces kept)
+const DJ_PHOTO_FIX={ 'jamie jones':'', 'fisher':'' };   // key matches djNorm() (lowercased, spaces kept)
 function saveDJPhoto(){ try{ localStorage.setItem('sm_djphoto',JSON.stringify(DJ_PHOTO)); }catch(e){} }
 function fetchDJPhoto(name){
   const k=djNorm(name);

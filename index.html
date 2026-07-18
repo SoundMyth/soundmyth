@@ -2554,19 +2554,14 @@ function renderPersonalHome(){
     // 1. For you — top non-festival events by score; DJ+city intersection floats to the top naturally
     const forYou=scored.filter(x=>!shownIds.has(x.e.id)&&!isFest(x.e)&&x.s>0).slice(0,6).map(x=>x.e);
     if(forYou.length){
-      const matchedDjs=[...new Set(forYou.flatMap(e=>e.djs||[]).filter(d=>prefs.djs.some(p=>p.toLowerCase()===d.toLowerCase())))];
-      const matchedCities=[...new Set(forYou.map(e=>e.city).filter(c=>prefs.cities.includes(c)))];
-      const sub=matchedDjs.length?matchedDjs.slice(0,2).join(' · '):matchedCities.length?matchedCities.slice(0,2).join(' · '):'';
-      h+=secP('Recommended events for you',sub);
+      h+=secP('Recommended events for you','');
       h+=`<div style="padding:0 16px 4px">${forYou.map(e=>{shownIds.add(e.id);return eventRowHTML(e);}).join('')}</div>`;
     }
     // 2. Festivals for you — sorted by score; DJs you follow in lineup as subtitle
     const seenF=new Set();
     const festFor=fut.filter(e=>!shownIds.has(e.id)&&isFest(e)&&scoreEventP(e)>15).sort((a,b)=>scoreEventP(b)-scoreEventP(a)).filter(e=>{if(seenF.has(e.name))return false;seenF.add(e.name);return true;}).slice(0,10);
     if(festFor.length){
-      const djsInFests=[...new Set(festFor.flatMap(e=>e.djs||[]).filter(d=>prefs.djs.some(p=>p.toLowerCase()===d.toLowerCase())))];
-      const festSub=djsInFests.length?djsInFests.slice(0,2).join(' · '):'';
-      h+=secP('Recommended festivals for you',festSub);
+      h+=secP('Recommended festivals for you','');
       h+=`<div class="hscroll">${festFor.map(e=>{shownIds.add(e.id);return pCard(e);}).join('')}</div>`;
     }
     // 3. In [City] — vertical rows, score-sorted, what's left after top picks

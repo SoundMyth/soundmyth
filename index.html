@@ -792,30 +792,47 @@ let prefs=(function(){ try{ return Object.assign({cities:[],djs:[],genres:[]}, J
 // DJ → primary genre. Lets "styles" work client-side without waiting for the
 // scraper to stamp events.genre. Keys are lowercased DJ names (match TOP100_DJS).
 const DJ_GENRE={
-  'david guetta':'Big Room','martin garrix':'Big Room','alok':'Big Room','dimitri vegas & like mike':'Big Room',
+  // Big Room / Festival EDM
+  'david guetta':'Big Room','martin garrix':'Big Room','dimitri vegas & like mike':'Big Room',
   'timmy trumpet':'Big Room','afrojack':'Big Room','steve aoki':'Big Room','hardwell':'Big Room','calvin harris':'Big Room',
-  'w&w':'Big Room','tiësto':'Big Room','kshmr':'Big Room','alan walker':'Big Room','r3hab':'Big Room','nicky romero':'Big Room',
-  'swedish house mafia':'Big Room','dj snake':'Big Room','marshmello':'Big Room','zedd':'Big Room','bassjackers':'Big Room',
-  'quintino':'Big Room','alesso':'Big Room','nervo':'Big Room','lucas & steve':'Big Room','the chainsmokers':'Big Room',
-  'mike williams':'Big Room','kaaze':'Big Room','marnik':'Big Room','dubvision':'Big Room','cuebrick':'Big Room',
-  'mariana bo':'Big Room','vinai':'Big Room',
-  'charlotte de witte':'Techno','reinier zonneveld':'Techno','carl cox':'Techno','amelie lens':'Techno','maddix':'Techno',
-  'lilly palmer':'Techno','deborah de luca':'Techno','liu':'Techno','i hate models':'Techno','boris brejcha':'Techno',
-  'sara landry':'Hard Techno','nico moreno':'Hard Techno',
-  'anyma':'Melodic Techno','korolova':'Melodic Techno','kölsch':'Melodic Techno','artbat':'Melodic Techno','miss monique':'Melodic Techno',
-  'solomun':'Melodic House',
+  'w&w':'Big Room','tiësto':'Big Room','kshmr':'Big Room','nicky romero':'Big Room',
+  'bassjackers':'Big Room','quintino':'Big Room','kaaze':'Big Room','marnik':'Big Room','mariana bo':'Big Room','vinai':'Big Room',
+  'b jones':'Big Room','le twins':'Big Room','fedde le grand':'Big Room','plastik funk':'Big Room',
+  // Progressive House
+  'swedish house mafia':'Progressive','alesso':'Progressive','lucas & steve':'Progressive','dubvision':'Progressive','cuebrick':'Progressive',
+  'eric prydz':'Progressive','deadmau5':'Progressive',
+  // Pop / Crossover
+  'alan walker':'Pop','r3hab':'Pop','marshmello':'Pop','zedd':'Pop','nervo':'Pop','the chainsmokers':'Pop',
+  'joel corry':'Pop','burak yeter':'Pop','nils van zandt':'Pop','topic':'Pop',
+  // House
+  'alok':'House','mike williams':'House','don diablo':'House','lost frequencies':'House','oliver heldens':'House',
+  // Deep House
+  'vintage culture':'Deep House','peggy gou':'Deep House','claptone':'Deep House','nora en pure':'Deep House',
+  'meduza':'Deep House','honey dijon':'Deep House',
+  // Afro House
+  'black coffee':'Afro House','keinemusik':'Afro House',
+  // Tech House
   'fisher':'Tech House','jamie jones':'Tech House','dom dolla':'Tech House','the martinez brothers':'Tech House','john summit':'Tech House',
   'michael bibi':'Tech House','james hype':'Tech House','mochakk':'Tech House','gordo':'Tech House','pawsa':'Tech House',
-  'mau p':'Tech House','chris stussy':'Tech House','b jones':'Tech House','chris lake':'Tech House','le twins':'Tech House',
-  'vintage culture':'House','peggy gou':'House','don diablo':'House','lost frequencies':'House','oliver heldens':'House',
-  'claptone':'House','joel corry':'House','hugel':'House','nora en pure':'House','burak yeter':'House','fedde le grand':'House',
-  'plastik funk':'House','meduza':'House','honey dijon':'House','nils van zandt':'House','topic':'House','marlon hoffstadt':'House','faustix':'House',
-  'black coffee':'Afro House','keinemusik':'Afro House',
-  'armin van buuren':'Trance','paul van dyk':'Trance','atb':'Trance','above & beyond':'Trance','ferry corsten':'Trance','giuseppe ottaviani':'Trance',
+  'mau p':'Tech House','chris stussy':'Tech House','chris lake':'Tech House','hugel':'Tech House',
+  // Melodic House
+  'solomun':'Melodic House',
+  // Melodic Techno
+  'anyma':'Melodic Techno','korolova':'Melodic Techno','kölsch':'Melodic Techno','artbat':'Melodic Techno','miss monique':'Melodic Techno',
+  // Techno
+  'charlotte de witte':'Techno','reinier zonneveld':'Techno','carl cox':'Techno','amelie lens':'Techno',
+  'lilly palmer':'Techno','deborah de luca':'Techno','i hate models':'Techno','boris brejcha':'Techno',
+  // Hard Techno
+  'maddix':'Hard Techno','sara landry':'Hard Techno','nico moreno':'Hard Techno',
+  // Trance
+  'armin van buuren':'Trance','paul van dyk':'Trance','atb':'Trance','above & beyond':'Trance','ferry corsten':'Trance',
+  'giuseppe ottaviani':'Trance','marlon hoffstadt':'Trance',
+  // Psytrance
   'vini vici':'Psytrance','indira paganotto':'Psytrance',
+  // Hardstyle
   'sub zero project':'Hardstyle',
-  'eric prydz':'Progressive','deadmau5':'Progressive',
-  'skrillex':'Bass'
+  // Bass
+  'dj snake':'Bass','liu':'Bass','faustix':'Bass','skrillex':'Bass'
 };
 // Recomputed (data-driven) in loadEvents from the styles actually present in
 // events.genre ∪ DJ_GENRE, so the picker offers every stamped style, not just the top-100.

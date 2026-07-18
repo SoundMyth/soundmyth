@@ -2530,14 +2530,14 @@ function renderObStep(filter,keepFocus){
     inner=label+`<div class="sm-chips">${opts.map((o,i)=>`<span role="button" tabindex="0" class="sm-chip ${sel.includes(o)?'on':''}" data-ob="${i}">${esc(o)}</span>`).join('')||'<span style="color:var(--text-mute)">No matches</span>'}</div>`;
   }
   const last=sm_ob.step===OB_STEPS.length-1;
+  if(keepFocus){ const w=document.getElementById('sm-chips-wrap'); if(w){ w.innerHTML=inner; return; } }
   document.getElementById('sm-sheet').innerHTML=`<div class="sm-grip"></div>
     <div class="sm-top"><div class="sm-dots">${OB_STEPS.map((_,i)=>`<i class="${i===sm_ob.step?'on':''}"></i>`).join('')}</div><button class="sm-skip" onclick="obSkip()">Skip</button></div>
     <h2>${st.title}</h2><p class="sm-lead">${st.lead}</p>
     <input class="sm-search" id="sm-obSearch" placeholder="${st.ph}" value="${escAttr(filter)}" oninput="renderObStep(this.value,true)" autocomplete="off">
-    ${inner}
+    <div id="sm-chips-wrap">${inner}</div>
     <div class="sm-actions">${sm_ob.step>0?`<button class="btn-soft sm-back" onclick="obPrev()">Back</button>`:''}
       <button class="btn-accent" onclick="obNext()">${last?`Done (${sel.length})`:`Continue (${sel.length})`}</button></div>`;
-  const s=document.getElementById('sm-obSearch'); if(s&&keepFocus){ s.focus(); try{s.setSelectionRange(filter.length,filter.length);}catch(e){} }
 }
 function obPrev(){ if(sm_ob.step>0){ sm_ob.step--; renderObStep(); } }
 function obNext(){
@@ -2564,13 +2564,13 @@ function renderPicker(filter,keepFocus){
     const list=kind==='cities'?ALL_CITIES:PREF_GENRES; const opts=list.filter(o=>o.toLowerCase().includes(f)); sm_pkList=opts;
     inner=`<div class="sm-chips">${opts.map((o,i)=>`<span role="button" tabindex="0" class="sm-chip ${sm_pkDraft.includes(o)?'on':''}" data-pk="${i}">${esc(o)}</span>`).join('')||'<span style="color:var(--text-mute)">No matches</span>'}</div>`;
   }
+  if(keepFocus){ const w=document.getElementById('sm-chips-wrap'); if(w){ w.innerHTML=inner; return; } }
   document.getElementById('sm-sheet').innerHTML=`<div class="sm-grip"></div>
     <div class="sm-top"><button class="sm-skip" onclick="openPrefsEditor()">‹ Back</button><span></span></div>
     <h2>${titleMap[kind]}</h2><p class="sm-lead">Tap to add or remove.</p>
     <input class="sm-search" id="sm-pkSearch" placeholder="${phMap[kind]}" value="${escAttr(filter)}" oninput="renderPicker(this.value,true)" autocomplete="off">
-    ${inner}
+    <div id="sm-chips-wrap">${inner}</div>
     <div class="sm-actions"><button class="btn-accent btn-block" onclick="savePicker()">Save (${sm_pkDraft.length})</button></div>`;
-  const s=document.getElementById('sm-pkSearch'); if(s&&keepFocus){ s.focus(); try{s.setSelectionRange(filter.length,filter.length);}catch(e){} }
 }
 function savePicker(){ prefs[sm_pkKind]=sm_pkDraft.slice(); savePrefs(); renderPersonalHome(); openPrefsEditor(); }
 

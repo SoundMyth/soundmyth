@@ -2285,7 +2285,22 @@ function getAvatarSrc(){ try{ return localStorage.getItem('sm_avatar')||''; }cat
 function handleAvatarChange(input){
   const file=input.files[0]; if(!file) return;
   const r=new FileReader();
-  r.onload=function(ev){ try{ localStorage.setItem('sm_avatar',ev.target.result); }catch(ex){} renderAccount(); };
+  r.onload=function(ev){
+    const img=new Image();
+    img.onload=function(){
+      const canvas=document.createElement('canvas');
+      const SIZE=220;
+      canvas.width=SIZE; canvas.height=SIZE;
+      const ctx=canvas.getContext('2d');
+      const scale=Math.max(SIZE/img.width,SIZE/img.height);
+      const w=img.width*scale, h=img.height*scale;
+      ctx.drawImage(img,(SIZE-w)/2,(SIZE-h)/2,w,h);
+      const dataUrl=canvas.toDataURL('image/jpeg',0.82);
+      try{ localStorage.setItem('sm_avatar',dataUrl); }catch(ex){ console.warn('avatar save failed',ex); }
+      renderAccount();
+    };
+    img.src=ev.target.result;
+  };
   r.readAsDataURL(file);
 }
 function openNameEditor(){
@@ -2524,7 +2539,6 @@ function renderPersonalHome(){
   const scored=fut.map(e=>({e,s:scoreEventP(e)})).sort((a,b)=>b.s-a.s);
   const hour=new Date().getHours(), part=hour<6?'Good night':hour<13?'Good morning':hour<20?'Good afternoon':'Good evening';
   let h=`<div class="greet"><div class="greet-hi">${part}, <span>${esc(getDisplayName())}</span></div></div>`;
-  // Context hero: next saved event, else top scored match
   const savedSoon=fut.filter(e=>saved.includes(e.id)).sort((a,b)=>new Date(a.date)-new Date(b.date))[0];
   const top=scored[0];
   const heroEv=savedSoon?{e:savedSoon,eyebrow:'Your next saved plan'}:(top&&top.s>30?{e:top.e,eyebrow:'Your top match'}:null);
@@ -2537,22 +2551,35 @@ function renderPersonalHome(){
       <div class="ctx-meta">${esc(heroEv.e.venue||heroEv.e.city)} · ${esc(heroEv.e.city)} · ${day} ${mon}</div></div></div>`;
   }
   try{
-    // 1. DJs you follow — pCards sorted by date, exclude hero
+    // 1. DJ shows — vertical rows sorted by date (feels like a gig listing, not HBO)
     if(prefs.djs.length){
       const djEvs=fut.filter(e=>!shownIds.has(e.id)&&djHitP(e)).sort((a,b)=>new Date(a.date)-new Date(b.date)).slice(0,6);
-      if(djEvs.length){ h+=secP('DJs you follow',prefs.djs.slice(0,3).join(' · ')); h+=`<div class="hscroll">${djEvs.map(e=>{shownIds.add(e.id);return pCard(e);}).join('')}</div>`; }
+      if(djEvs.length){
+        const label=prefs.djs.slice(0,2).join(', ')+(prefs.djs.length>2?' +':'');
+        h+=secP('DJ shows',label);
+        h+=`<div style="padding:0 16px 4px">${djEvs.map(e=>{shownIds.add(e.id);return eventRowHTML(e);}).join('')}</div>`;
+      }
     }
-    // 2. Festivals for you — score > 15, dedupe by name, exclude already shown
+    // 2. Festivals — horizontal cards (images carry the visual weight here)
     const seenF=new Set();
     const festFor=fut.filter(e=>!shownIds.has(e.id)&&isFest(e)&&scoreEventP(e)>15).sort((a,b)=>scoreEventP(b)-scoreEventP(a)).filter(e=>{if(seenF.has(e.name))return false;seenF.add(e.name);return true;}).slice(0,10);
-    if(festFor.length){ h+=secP('Festivals for you',"Line-ups you'll like"); h+=`<div class="hscroll">${festFor.map(e=>{shownIds.add(e.id);return pCard(e);}).join('')}</div>`; }
-    // 3. For you — non-festival, score > 20, exclude DJs & festivals already shown
-    const forYou=scored.filter(x=>!shownIds.has(x.e.id)&&x.s>20&&!isFest(x.e)).map(x=>x.e).slice(0,10);
-    if(forYou.length){ h+=secP('For you','Based on your cities & styles'); h+=`<div class="hscroll">${forYou.map(e=>{shownIds.add(e.id);return pCard(e);}).join('')}</div>`; }
-    // 4. In [City] — all preferred cities, score-sorted, exclude already shown
+    if(festFor.length){
+      h+=secP('Festivals','');
+      h+=`<div class="hscroll">${festFor.map(e=>{shownIds.add(e.id);return pCard(e);}).join('')}</div>`;
+    }
+    // 3. In [City] — vertical rows per city (date + venue prominent, like a real lineup)
     for(const c of prefs.cities){
-      const inC=fut.filter(e=>!shownIds.has(e.id)&&e.city===c).map(e=>({e,s:scoreEventP(e)})).sort((a,b)=>b.s-a.s||new Date(a.e.date)-new Date(b.e.date)).slice(0,10).map(x=>x.e);
-      if(inC.length){ h+=secP('In '+c,inC.length+' upcoming'); h+=`<div class="hscroll">${inC.map(pCard).join('')}</div>`; }
+      const inC=fut.filter(e=>!shownIds.has(e.id)&&e.city===c).map(e=>({e,s:scoreEventP(e)})).sort((a,b)=>b.s-a.s||new Date(a.e.date)-new Date(b.e.date)).slice(0,6).map(x=>x.e);
+      if(inC.length){
+        h+=secP('In '+c,inC.length+' upcoming');
+        h+=`<div style="padding:0 16px 4px">${inC.map(e=>{shownIds.add(e.id);return eventRowHTML(e);}).join('')}</div>`;
+      }
+    }
+    // 4. Discover — if there's more to show after DJ/city sections
+    const discover=scored.filter(x=>!shownIds.has(x.e.id)&&x.s>20&&!isFest(x.e)).map(x=>x.e).slice(0,8);
+    if(discover.length){
+      h+=secP('Discover','Based on your style');
+      h+=`<div class="hscroll">${discover.map(e=>{shownIds.add(e.id);return pCard(e);}).join('')}</div>`;
     }
   }catch(e){ console.warn('personal home section failed',e); }
   el.innerHTML=h;

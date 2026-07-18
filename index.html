@@ -2505,7 +2505,7 @@ const OB_STEPS=[
   {key:'djs',title:'Your favourite DJs',lead:'We put them on top and flag their shows.',ph:'Search a DJ…',list:()=>ALL_DJS}
 ];
 function openSheet(){ document.getElementById('sm-mask').classList.add('show'); }
-function closeSheet(){ document.getElementById('sm-mask').classList.remove('show'); smMode=null; }
+function closeSheet(){ document.getElementById('sm-mask').classList.remove('show'); document.getElementById('sm-sheet').style.minHeight=''; smMode=null; }
 function startOnboarding(){ sm_ob={step:0,draft:{cities:[...prefs.cities],genres:[...prefs.genres],djs:[...prefs.djs]}}; smMode='ob'; renderObStep(); openSheet(); }
 function renderObStep(filter,keepFocus){
   filter=filter||''; const st=OB_STEPS[sm_ob.step], sel=sm_ob.draft[st.key], f=filter.toLowerCase();
@@ -2531,13 +2531,15 @@ function renderObStep(filter,keepFocus){
   }
   const last=sm_ob.step===OB_STEPS.length-1;
   if(keepFocus){ const w=document.getElementById('sm-chips-wrap'); if(w){ w.innerHTML=inner; return; } }
-  document.getElementById('sm-sheet').innerHTML=`<div class="sm-grip"></div>
+  const sh=document.getElementById('sm-sheet');
+  sh.innerHTML=`<div class="sm-grip"></div>
     <div class="sm-top"><div class="sm-dots">${OB_STEPS.map((_,i)=>`<i class="${i===sm_ob.step?'on':''}"></i>`).join('')}</div><button class="sm-skip" onclick="obSkip()">Skip</button></div>
     <h2>${st.title}</h2><p class="sm-lead">${st.lead}</p>
     <input class="sm-search" id="sm-obSearch" placeholder="${st.ph}" value="${escAttr(filter)}" oninput="renderObStep(this.value,true)" autocomplete="off">
-    <div id="sm-chips-wrap" style="min-height:38vh">${inner}</div>
+    <div id="sm-chips-wrap">${inner}</div>
     <div class="sm-actions">${sm_ob.step>0?`<button class="btn-soft sm-back" onclick="obPrev()">Back</button>`:''}
       <button class="btn-accent" onclick="obNext()">${last?`Done (${sel.length})`:`Continue (${sel.length})`}</button></div>`;
+  sh.style.minHeight = sh.offsetHeight + 'px';
 }
 function obPrev(){ if(sm_ob.step>0){ sm_ob.step--; renderObStep(); } }
 function obNext(){
@@ -2565,18 +2567,21 @@ function renderPicker(filter,keepFocus){
     inner=`<div class="sm-chips">${opts.map((o,i)=>`<span role="button" tabindex="0" class="sm-chip ${sm_pkDraft.includes(o)?'on':''}" data-pk="${i}">${esc(o)}</span>`).join('')||'<span style="color:var(--text-mute)">No matches</span>'}</div>`;
   }
   if(keepFocus){ const w=document.getElementById('sm-chips-wrap'); if(w){ w.innerHTML=inner; return; } }
-  document.getElementById('sm-sheet').innerHTML=`<div class="sm-grip"></div>
+  const sh=document.getElementById('sm-sheet');
+  sh.innerHTML=`<div class="sm-grip"></div>
     <div class="sm-top"><button class="sm-skip" onclick="openPrefsEditor()">‹ Back</button><span></span></div>
     <h2>${titleMap[kind]}</h2><p class="sm-lead">Tap to add or remove.</p>
     <input class="sm-search" id="sm-pkSearch" placeholder="${phMap[kind]}" value="${escAttr(filter)}" oninput="renderPicker(this.value,true)" autocomplete="off">
-    <div id="sm-chips-wrap" style="min-height:38vh">${inner}</div>
+    <div id="sm-chips-wrap">${inner}</div>
     <div class="sm-actions"><button class="btn-accent btn-block" onclick="savePicker()">Save (${sm_pkDraft.length})</button></div>`;
+  sh.style.minHeight = sh.offsetHeight + 'px';
 }
 function savePicker(){ prefs[sm_pkKind]=sm_pkDraft.slice(); savePrefs(); renderPersonalHome(); openPrefsEditor(); }
 
 // ── prefs editor (opened from Account) ──────────────────────────────────────
 function openPrefsEditor(){ smMode='editor'; renderEditor(); openSheet(); }
 function renderEditor(){
+  document.getElementById('sm-sheet').style.minHeight='';
   const chips=(arr,kind)=> arr.length? `<div class="sm-chips">${arr.map((v,i)=>`<span role="button" tabindex="0" class="sm-chip on" data-rmk="${kind}" data-rmi="${i}">${esc(v)} <span class="x">✕</span></span>`).join('')}</div>` : `<span style="color:var(--text-mute);font-size:12.5px">None yet — tap Edit.</span>`;
   const sec=(t,kind)=>`<div style="display:flex;justify-content:space-between;align-items:center;margin:18px 0 9px"><b style="font-size:13px">${t}</b><button class="sm-skip" style="color:var(--accent)" onclick="openPicker('${kind}')">Edit</button></div>${chips(prefs[kind],kind)}`;
   document.getElementById('sm-sheet').innerHTML=`<div class="sm-grip"></div>

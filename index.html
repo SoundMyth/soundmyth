@@ -680,7 +680,7 @@ button:focus{outline:none;}
 <!-- DJ PROFILE -->
 <div id="dj-detail">
   <div class="djd-hero">
-    <img id="djd-img" src="" alt="" onerror="this.style.display='none'"/>
+    <img id="djd-img" src="" alt="" onerror="this.src=COUNTRY_IMG_HERO_FALLBACK;this.onerror=null"/>
     <div class="djd-grad"></div>
     <button class="detail-back" onclick="history.back()">← Back</button>
     <div class="djd-info">
@@ -1449,7 +1449,10 @@ function realImg(ev){ const u=ev.img; if(!u||/profile_images\/events\//.test(u))
 // artist (enrich mis-match — e.g. an Anyma photo attached to a CamelPhat night).
 function eventImg(ev){
   const dj=djPhotoSync(featDJ(ev));
-  return ((ev.tags||[]).includes('festival') ? (realImg(ev)||dj) : (dj||realImg(ev))) || CITY_IMG[ev.city] || countryImg(ev.country);
+  // Festivals keep city/country as location context; DJ shows use EDM fallback (avoids
+  // showing e.g. Madrid's skyline for a Marbella night just because Spain = Madrid image).
+  if((ev.tags||[]).includes('festival')) return realImg(ev)||dj||CITY_IMG[ev.city]||countryImg(ev.country);
+  return dj||realImg(ev)||COUNTRY_IMG_FALLBACK;
 }
 function bestImg(ev){ return eventImg(ev); }
 function bestImgHero(ev){ const base=eventImg(ev).replace(/\?.*$/,''); return base+'?w=800&h=400&fit=crop&auto=format'; }
@@ -2080,7 +2083,8 @@ function renderDJ(name){
   document.getElementById('djd-events').innerHTML=evs.length?evs.map(eventRowHTML).join(''):'<div style="color:var(--text-mute);font-size:13px;padding:14px 0;">No upcoming events listed.</div>';
   hydrateAvatars(document.getElementById('djd-events'));
   const img=document.getElementById('djd-img'), sync=djPhotoSync(name);
-  if(sync){ img.src=sync; img.style.display=''; } else { img.style.display='none'; img.removeAttribute('src'); }
+  img.src=sync||COUNTRY_IMG_HERO_FALLBACK; img.style.display='';
+  img.onerror=()=>{ img.src=COUNTRY_IMG_HERO_FALLBACK; img.onerror=null; };
   fetchDJPhoto(name).then(u=>{ if(u && djDetailName===name){ img.src=u; img.style.display=''; } }).catch(()=>{});   // upgrade to the TheAudioDB headshot if found
 }
 function openDJ(name){

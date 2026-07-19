@@ -21,27 +21,6 @@
     "sample": "ARC Music Festival 2026 · Chicago"
   },
   {
-    "name": "fumi (DE)",
-    "key": "fumide",
-    "events": 4,
-    "sources": [
-      "ra"
-    ],
-    "onRA": true,
-    "sample": "ARC Music Festival 2026 · Chicago"
-  },
-  {
-    "name": "Audien",
-    "key": "audien",
-    "events": 3,
-    "sources": [
-      "bandsintown",
-      "songkick"
-    ],
-    "onRA": true,
-    "sample": "Audien @ Concourse Project · Austin"
-  },
-  {
     "name": "David Morales",
     "key": "davidmorales",
     "events": 3,
@@ -50,6 +29,16 @@
     ],
     "onRA": true,
     "sample": "David Morales @ Cavo Paradiso · Mykonos"
+  },
+  {
+    "name": "fumi (DE)",
+    "key": "fumide",
+    "events": 3,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "ARC Music Festival 2026 · Chicago"
   },
   {
     "name": "Gareth Emery",
@@ -62,15 +51,14 @@
     "sample": "LSR/CITY @ Concourse Project · Austin"
   },
   {
-    "name": "Maxi Meraki",
-    "key": "maximeraki",
+    "name": "Laidlaw",
+    "key": "laidlaw",
     "events": 3,
     "sources": [
-      "ra",
-      "songkick"
+      "ra"
     ],
     "onRA": true,
-    "sample": "Voodoo Village 2026 · Brussels"
+    "sample": "[16th Aug] ➔ FUSE x Brunch Electronik Ibiza ➔ Day + Night · Ibiza"
   },
   {
     "name": "Robin Schulz",
@@ -80,7 +68,7 @@
       "songkick"
     ],
     "onRA": true,
-    "sample": "Robin Schulz @ Pacha Ibiza · Ibiza"
+    "sample": "Oliver Heldens @ El Hotel Pacha · Ibiza"
   },
   {
     "name": "1991 (UK)",
@@ -104,26 +92,6 @@
     "sample": "Isle of Summer Festival Vienna · Vienna"
   },
   {
-    "name": "Aiden (DE)",
-    "key": "aidende",
-    "events": 2,
-    "sources": [
-      "ra"
-    ],
-    "onRA": true,
-    "sample": "Teletech FESTIVAL 2026 · Manchester"
-  },
-  {
-    "name": "Alba Franch",
-    "key": "albafranch",
-    "events": 2,
-    "sources": [
-      "ra"
-    ],
-    "onRA": true,
-    "sample": "Teletech FESTIVAL 2026 · Manchester"
-  },
-  {
     "name": "Aline Umber",
     "key": "alineumber",
     "events": 2,
@@ -142,7 +110,7 @@
       "ra"
     ],
     "onRA": true,
-    "sample": "XRDS festival 2026 · Brussels"
+    "sample": "Voodoo Village 2026 · Brussels"
   },
   {
     "name": "AMAYAH",
@@ -237,6 +205,17 @@
     "sample": "III Points & Club Space presents Andrew Music Club 2026 · Miami"
   },
   {
+    "name": "Audien",
+    "key": "audien",
+    "events": 2,
+    "sources": [
+      "bandsintown",
+      "songkick"
+    ],
+    "onRA": true,
+    "sample": "Audien @ Concourse Project · Austin"
+  },
+  {
     "name": "Bambi-S",
     "key": "bambis",
     "events": 2,
@@ -246,16 +225,6 @@
     ],
     "onRA": true,
     "sample": "Paradies Garten Festival 2026 · Vienna"
-  },
-  {
-    "name": "Baran Kok",
-    "key": "barankok",
-    "events": 2,
-    "sources": [
-      "bandsintown"
-    ],
-    "onRA": true,
-    "sample": "Lollapalooza 2026 · Berlin"
   },
   {
     "name": "Basstripper",
@@ -276,26 +245,6 @@
     ],
     "onRA": true,
     "sample": "Harbourlife 2026 · Sydney"
-  },
-  {
-    "name": "Ben Techy",
-    "key": "bentechy",
-    "events": 2,
-    "sources": [
-      "bandsintown"
-    ],
-    "onRA": true,
-    "sample": "Yasmin Gardezi at The Garden Tisno · Tisno"
-  },
-  {
-    "name": "BENNETT",
-    "key": "bennett",
-    "events": 2,
-    "sources": [
-      "bandsintown"
-    ],
-    "onRA": true,
-    "sample": "Yasmin Gardezi at The Garden Tisno · Tisno"
   },
   {
     "name": "Bradeazy",
@@ -362,27 +311,6 @@
     "sample": "Eli & Fur at Old Royal Naval College · East London"
   },
   {
-    "name": "Cera Khin",
-    "key": "cerakhin",
-    "events": 2,
-    "sources": [
-      "bandsintown"
-    ],
-    "onRA": true,
-    "sample": "Yasmin Gardezi at The Garden Tisno · Tisno"
-  },
-  {
-    "name": "Charlotte Newman",
-    "key": "charlottenewman",
-    "events": 2,
-    "sources": [
-      "bandsintown",
-      "songkick"
-    ],
-    "onRA": true,
-    "sample": "Yasmin Gardezi at Poney Club · Blagnac"
-  },
-  {
     "name": "Cleopard2000",
     "key": "cleopard2000",
     "events": 2,
@@ -403,16 +331,6 @@
     "sample": "AVELLO @ Nova SD · San Diego"
   },
   {
-    "name": "CRUSH3d",
-    "key": "crush3d",
-    "events": 2,
-    "sources": [
-      "bandsintown"
-    ],
-    "onRA": true,
-    "sample": "Yasmin Gardezi at The Garden Tisno · Tisno"
-  },
-  {
     "name": "Daniel Avery",
     "key": "danielavery",
     "events": 2,
@@ -431,17 +349,6 @@
     ],
     "onRA": true,
     "sample": "Darude @ Avalon · Hollywood"
-  },
-  {
-    "name": "De La Swing",
-    "key": "delaswing",
-    "events": 2,
-    "sources": [
-      "bandsintown",
-      "songkick"
-    ],
-    "onRA": true,
-    "sample": "Jeff Mills at Amnesia Ibiza · Ibiza"
   },
   {
     "name": "Derrick Carter",
@@ -485,17 +392,6 @@
     "sample": "Outside Lands 2026 · San Francisco"
   },
   {
-    "name": "Dillinja",
-    "key": "dillinja",
-    "events": 2,
-    "sources": [
-      "bandsintown",
-      "songkick"
-    ],
-    "onRA": true,
-    "sample": "Worried About Henry returns to Malta in September 2026 for 3 days of D"
-  },
-  {
     "name": "Dimension",
     "key": "dimension",
     "events": 2,
@@ -504,16 +400,6 @@
     ],
     "onRA": true,
     "sample": "WORSHIP NORTH AMERICA 2026 · Miami"
-  },
-  {
-    "name": "DJ Colette",
-    "key": "djcolette",
-    "events": 2,
-    "sources": [
-      "ra"
-    ],
-    "onRA": true,
-    "sample": "ARC Music Festival 2026 · Chicago"
   },
   {
     "name": "DJ Godfather",
@@ -554,7 +440,7 @@
       "bandsintown"
     ],
     "onRA": true,
-    "sample": "North Coast Music Festival 2026 · Bridgeview"
+    "sample": "Capitol Hill Block Party 2026 · Seattle"
   },
   {
     "name": "Donato Dozzy",
@@ -565,17 +451,6 @@
     ],
     "onRA": true,
     "sample": "XRDS festival 2026 · Brussels"
-  },
-  {
-    "name": "Dual Damage",
-    "key": "dualdamage",
-    "events": 2,
-    "sources": [
-      "ra",
-      "songkick"
-    ],
-    "onRA": true,
-    "sample": "Dual Damage Present: Built2Break · Liverpool"
   },
   {
     "name": "Dungeon Meat",
@@ -618,16 +493,6 @@
     "sample": "Creamfields 2026 · Cheshire West And Chester"
   },
   {
-    "name": "Feder",
-    "key": "feder",
-    "events": 2,
-    "sources": [
-      "bandsintown"
-    ],
-    "onRA": true,
-    "sample": "Lilly Palmer at Château de la Ferté Saint-Aubin · La Ferte-Saint-Aubin"
-  },
-  {
     "name": "Flava D",
     "key": "flavad",
     "events": 2,
@@ -647,17 +512,6 @@
     ],
     "onRA": true,
     "sample": "Fleetmac Wood @ Ductwork at Silo Dallas · Dallas"
-  },
-  {
-    "name": "Fleur Shore",
-    "key": "fleurshore",
-    "events": 2,
-    "sources": [
-      "bandsintown",
-      "songkick"
-    ],
-    "onRA": true,
-    "sample": "Chelina Manuhutu at Parc des Expositions de Montpellier, Pérols · Pero"
   },
   {
     "name": "Frank Storm",
@@ -836,17 +690,6 @@
     "sample": "Outside Lands 2026 · San Francisco"
   },
   {
-    "name": "Jeremy Olander",
-    "key": "jeremyolander",
-    "events": 2,
-    "sources": [
-      "ra",
-      "songkick"
-    ],
-    "onRA": true,
-    "sample": "Jeremy Olander @ DIGITAL NEWCASTLE · Newcastle Upon Tyne"
-  },
-  {
     "name": "Jordan Brando",
     "key": "jordanbrando",
     "events": 2,
@@ -865,16 +708,6 @@
     ],
     "onRA": true,
     "sample": "[2nd Aug] ➔ FUSE x Brunch Electronik Ibiza ➔ Day + Night · Ibiza"
-  },
-  {
-    "name": "Julya Karma",
-    "key": "julyakarma",
-    "events": 2,
-    "sources": [
-      "bandsintown"
-    ],
-    "onRA": true,
-    "sample": "Dixon at Boston Manor Park · South West London"
   },
   {
     "name": "Kalte Liebe",
@@ -918,16 +751,6 @@
     "sample": "Hixxy @ Ministry of Sound · London"
   },
   {
-    "name": "Laidlaw",
-    "key": "laidlaw",
-    "events": 2,
-    "sources": [
-      "ra"
-    ],
-    "onRA": true,
-    "sample": "[16th Aug] ➔ FUSE x Brunch Electronik Ibiza ➔ Day + Night · Ibiza"
-  },
-  {
     "name": "LB aka LABAT",
     "key": "lbakalabat",
     "events": 2,
@@ -937,17 +760,6 @@
     ],
     "onRA": true,
     "sample": "Yasmin Gardezi at Poney Club · Blagnac"
-  },
-  {
-    "name": "Lee Burridge",
-    "key": "leeburridge",
-    "events": 2,
-    "sources": [
-      "ra",
-      "songkick"
-    ],
-    "onRA": true,
-    "sample": "Lee Burridge @ Q Nightclub · Seattle"
   },
   {
     "name": "Levi (AU)",
@@ -960,17 +772,6 @@
     "sample": "LEVI - Las Vegas, NV · Las Vegas"
   },
   {
-    "name": "Lil’ Texas",
-    "key": "liltexas",
-    "events": 2,
-    "sources": [
-      "bandsintown",
-      "songkick"
-    ],
-    "onRA": true,
-    "sample": "Lil’ Texas @ Avalon · Hollywood"
-  },
-  {
     "name": "Loukeman",
     "key": "loukeman",
     "events": 2,
@@ -980,17 +781,6 @@
     ],
     "onRA": true,
     "sample": "Loukeman @ fabric · London"
-  },
-  {
-    "name": "LOVEFOXY",
-    "key": "lovefoxy",
-    "events": 2,
-    "sources": [
-      "bandsintown",
-      "ra"
-    ],
-    "onRA": true,
-    "sample": "Lollapalooza 2026 · Berlin"
   },
   {
     "name": "Marvin Humes",
@@ -1013,6 +803,17 @@
     "sample": "Electrolapse 2026 · Saint-Sorlin-En-Valloire"
   },
   {
+    "name": "Maxi Meraki",
+    "key": "maximeraki",
+    "events": 2,
+    "sources": [
+      "ra",
+      "songkick"
+    ],
+    "onRA": true,
+    "sample": "Voodoo Village 2026 · Brussels"
+  },
+  {
     "name": "Mella Dee",
     "key": "melladee",
     "events": 2,
@@ -1032,27 +833,6 @@
     ],
     "onRA": true,
     "sample": "Pre sale tickets for 2027 drop on Friday 8th May at 10am. Scroll down "
-  },
-  {
-    "name": "Mikey Lion",
-    "key": "mikeylion",
-    "events": 2,
-    "sources": [
-      "ra",
-      "songkick"
-    ],
-    "onRA": true,
-    "sample": "Desert Hearts @ Ductwork at Silo Dallas · Dallas"
-  },
-  {
-    "name": "Miss Bashful",
-    "key": "missbashful",
-    "events": 2,
-    "sources": [
-      "bandsintown"
-    ],
-    "onRA": true,
-    "sample": "Yasmin Gardezi at The Garden Tisno · Tisno"
   },
   {
     "name": "Mungo's Hi Fi",
@@ -1096,17 +876,6 @@
     "sample": "Kobosil at 74HALL · Istanbul"
   },
   {
-    "name": "Nick Castle",
-    "key": "nickcastle",
-    "events": 2,
-    "sources": [
-      "bandsintown",
-      "ra"
-    ],
-    "onRA": true,
-    "sample": "Adriatique at The Chapel, Old Royal Naval College · London"
-  },
-  {
     "name": "Night Tapes",
     "key": "nighttapes",
     "events": 2,
@@ -1115,16 +884,6 @@
     ],
     "onRA": true,
     "sample": "Outside Lands 2026 · San Francisco"
-  },
-  {
-    "name": "Noga Erez",
-    "key": "nogaerez",
-    "events": 2,
-    "sources": [
-      "bandsintown"
-    ],
-    "onRA": true,
-    "sample": "Lollapalooza 2026 · Berlin"
   },
   {
     "name": "NTO",
@@ -1146,17 +905,6 @@
     ],
     "onRA": true,
     "sample": "Honey Dijon at Suvilahti · Helsinki"
-  },
-  {
-    "name": "Oliver Huntemann",
-    "key": "oliverhuntemann",
-    "events": 2,
-    "sources": [
-      "bandsintown",
-      "songkick"
-    ],
-    "onRA": true,
-    "sample": "Bart Skils at Festival Eucalyptus · Plouhinec"
   },
   {
     "name": "P Money",
@@ -1201,16 +949,6 @@
     "sample": "Dave Clarke Presents at ADE · Amsterdam"
   },
   {
-    "name": "Patrischa",
-    "key": "patrischa",
-    "events": 2,
-    "sources": [
-      "ra"
-    ],
-    "onRA": true,
-    "sample": "THE TREE OPENAIR · Zurich"
-  },
-  {
     "name": "PinkPantheress",
     "key": "pinkpantheress",
     "events": 2,
@@ -1239,16 +977,6 @@
     ],
     "onRA": true,
     "sample": "HARDSTYLER with Fantasm · Venice"
-  },
-  {
-    "name": "Quest (IT)",
-    "key": "questit",
-    "events": 2,
-    "sources": [
-      "ra"
-    ],
-    "onRA": true,
-    "sample": "ARC Music Festival 2026 · Chicago"
   },
   {
     "name": "Reaper",
@@ -1415,16 +1143,6 @@
     "sample": "Isle of Summer Festival Vienna · Vienna"
   },
   {
-    "name": "Seb Fontaine",
-    "key": "sebfontaine",
-    "events": 2,
-    "sources": [
-      "bandsintown"
-    ],
-    "onRA": true,
-    "sample": "15th July - 20th July, six days of Clockwork Orange bliss · Ibiza"
-  },
-  {
     "name": "Showtek",
     "key": "showtek",
     "events": 2,
@@ -1434,26 +1152,6 @@
     ],
     "onRA": true,
     "sample": "Lilly Palmer at STEREOPARC · Rochefort"
-  },
-  {
-    "name": "SIMONE",
-    "key": "simone",
-    "events": 2,
-    "sources": [
-      "bandsintown"
-    ],
-    "onRA": true,
-    "sample": "Yasmin Gardezi at The Garden Tisno · Tisno"
-  },
-  {
-    "name": "Sofiia Zoloto",
-    "key": "sofiiazoloto",
-    "events": 2,
-    "sources": [
-      "ra"
-    ],
-    "onRA": true,
-    "sample": "Schall im Schilf Festival 2026 · Munich"
   },
   {
     "name": "Son of Son",
@@ -1474,16 +1172,6 @@
     ],
     "onRA": true,
     "sample": "Experts Only Festival 2026 · New York City"
-  },
-  {
-    "name": "Stum",
-    "key": "stum",
-    "events": 2,
-    "sources": [
-      "bandsintown"
-    ],
-    "onRA": true,
-    "sample": "Yasmin Gardezi at The Garden Tisno · Tisno"
   },
   {
     "name": "Supergloss",
@@ -1514,16 +1202,6 @@
     ],
     "onRA": true,
     "sample": "Together Again Festival 2026 · Cheshire West And Chester"
-  },
-  {
-    "name": "Tall Paul",
-    "key": "tallpaul",
-    "events": 2,
-    "sources": [
-      "bandsintown"
-    ],
-    "onRA": true,
-    "sample": "15th July - 20th July, six days of Clockwork Orange bliss · Ibiza"
   },
   {
     "name": "TDJ",
@@ -1564,16 +1242,6 @@
     ],
     "onRA": true,
     "sample": "Isle of Summer Festival Vienna · Vienna"
-  },
-  {
-    "name": "Trikk",
-    "key": "trikk",
-    "events": 2,
-    "sources": [
-      "bandsintown"
-    ],
-    "onRA": true,
-    "sample": "Dixon at Boston Manor Park · South West London"
   },
   {
     "name": "Unai Trotti",
@@ -1740,16 +1408,6 @@
     "sample": "Lollapalooza · Chicago"
   },
   {
-    "name": "600-cell",
-    "key": "600cell",
-    "events": 1,
-    "sources": [
-      "ra"
-    ],
-    "onRA": true,
-    "sample": "Schall im Schilf Festival 2026 · Munich"
-  },
-  {
     "name": "619!",
     "key": "619",
     "events": 1,
@@ -1808,16 +1466,6 @@
     ],
     "onRA": true,
     "sample": "Audio Obscura Festival [By Night] · Rotterdam"
-  },
-  {
-    "name": "Abstraal",
-    "key": "abstraal",
-    "events": 1,
-    "sources": [
-      "songkick"
-    ],
-    "onRA": true,
-    "sample": "Chelina Manuhutu at Parc des Expositions de Montpellier, Pérols · Pero"
   },
   {
     "name": "AC Slater",
@@ -1900,16 +1548,6 @@
     "sample": "Overmono at Velodrom · Stare Brno"
   },
   {
-    "name": "Aida Arko",
-    "key": "aidaarko",
-    "events": 1,
-    "sources": [
-      "songkick"
-    ],
-    "onRA": true,
-    "sample": "Ricardo Villalobos at Amnesia Ibiza · Ibiza"
-  },
-  {
     "name": "Aisha",
     "key": "aisha",
     "events": 1,
@@ -1990,14 +1628,14 @@
     "sample": "UNREAL @Afterparty Zurich Street-Parade · Zurich"
   },
   {
-    "name": "ALBA (3)",
-    "key": "alba3",
+    "name": "Alba Franch",
+    "key": "albafranch",
     "events": 1,
     "sources": [
       "ra"
     ],
     "onRA": true,
-    "sample": "Schall im Schilf Festival 2026 · Munich"
+    "sample": "Unreal Stage @Nibirii Festival · Cologne"
   },
   {
     "name": "Alec Falconer",
@@ -2008,16 +1646,6 @@
     ],
     "onRA": true,
     "sample": "FUSE ➔ Malta 2026 · All"
-  },
-  {
-    "name": "Alex P",
-    "key": "alexp",
-    "events": 1,
-    "sources": [
-      "bandsintown"
-    ],
-    "onRA": true,
-    "sample": "15th July - 20th July, six days of Clockwork Orange bliss · Ibiza"
   },
   {
     "name": "Alexis Raphael",
@@ -2040,16 +1668,6 @@
     "sample": "XRDS festival 2026 · Brussels"
   },
   {
-    "name": "Alicea",
-    "key": "alicea",
-    "events": 1,
-    "sources": [
-      "ra"
-    ],
-    "onRA": true,
-    "sample": "Lucid Glow · Munich"
-  },
-  {
     "name": "Alix Perez",
     "key": "alixperez",
     "events": 1,
@@ -2060,16 +1678,6 @@
     "sample": "Worried About Henry returns to Malta in September 2026 for 3 days of D"
   },
   {
-    "name": "ALLKNIGHT",
-    "key": "allknight",
-    "events": 1,
-    "sources": [
-      "ra"
-    ],
-    "onRA": true,
-    "sample": "COLORIZE TORONTO 2026 (ALLKNIGHT, Estiva, Fejká, Ocula) · Toronto"
-  },
-  {
     "name": "Almedina (2)",
     "key": "almedina2",
     "events": 1,
@@ -2078,16 +1686,6 @@
     ],
     "onRA": true,
     "sample": "Moments Festival · Munich"
-  },
-  {
-    "name": "Alonzo",
-    "key": "alonzo",
-    "events": 1,
-    "sources": [
-      "bandsintown"
-    ],
-    "onRA": true,
-    "sample": "Dour Festival 2026 · Dour"
   },
   {
     "name": "Altinbas",
@@ -2200,16 +1798,6 @@
     "sample": "XRDS festival 2026 · Brussels"
   },
   {
-    "name": "Ankhoï",
-    "key": "ankhoi",
-    "events": 1,
-    "sources": [
-      "songkick"
-    ],
-    "onRA": true,
-    "sample": "Ankhoï @ New City Gas · Montreal"
-  },
-  {
     "name": "Anna Ullrich",
     "key": "annaullrich",
     "events": 1,
@@ -2250,16 +1838,6 @@
     "sample": "FUSE ➔ Malta 2026 · All"
   },
   {
-    "name": "Anton Tumas",
-    "key": "antontumas",
-    "events": 1,
-    "sources": [
-      "ra"
-    ],
-    "onRA": true,
-    "sample": "Love Long Beach Festival 2026 · Los Angeles"
-  },
-  {
     "name": "AREA ØNE",
     "key": "areane",
     "events": 1,
@@ -2268,16 +1846,6 @@
     ],
     "onRA": true,
     "sample": "Electrolapse 2026 · Saint-Sorlin-En-Valloire"
-  },
-  {
-    "name": "Ares Carter",
-    "key": "arescarter",
-    "events": 1,
-    "sources": [
-      "songkick"
-    ],
-    "onRA": true,
-    "sample": "Chelina Manuhutu at Parc des Expositions de Montpellier, Pérols · Pero"
   },
   {
     "name": "Arkaik",
@@ -2298,16 +1866,6 @@
     ],
     "onRA": true,
     "sample": "Arlo @ Q Nightclub · Seattle"
-  },
-  {
-    "name": "Arodes",
-    "key": "arodes",
-    "events": 1,
-    "sources": [
-      "songkick"
-    ],
-    "onRA": true,
-    "sample": "Chelina Manuhutu at Parc des Expositions de Montpellier, Pérols · Pero"
   },
   {
     "name": "Art Of Fighters",
@@ -2380,16 +1938,6 @@
     "sample": "BOOTS OFFICIAL LOLLAPALOOZA AFTERSHOW - WITH 2charm, River Moon, Avalo"
   },
   {
-    "name": "AVANT",
-    "key": "avant",
-    "events": 1,
-    "sources": [
-      "ra"
-    ],
-    "onRA": true,
-    "sample": "Sonntag Kurzurlaub Open Air at Fühlinger See - THEN, Mark Reeve, Kos:m"
-  },
-  {
     "name": "Azo",
     "key": "azo",
     "events": 1,
@@ -2450,16 +1998,6 @@
     "sample": "Jane Fitz at Omana-Festival · Kalamitsi"
   },
   {
-    "name": "Bambounou",
-    "key": "bambounou",
-    "events": 1,
-    "sources": [
-      "ra"
-    ],
-    "onRA": true,
-    "sample": "Schall im Schilf Festival 2026 · Munich"
-  },
-  {
     "name": "Banchan",
     "key": "banchan",
     "events": 1,
@@ -2468,6 +2006,16 @@
     ],
     "onRA": true,
     "sample": "ARC Music Festival 2026 · Chicago"
+  },
+  {
+    "name": "Baran Kok",
+    "key": "barankok",
+    "events": 1,
+    "sources": [
+      "bandsintown"
+    ],
+    "onRA": true,
+    "sample": "Kygo at Olympiapark Süd · Munich"
   },
   {
     "name": "Basement Jaxx",
@@ -2540,6 +2088,16 @@
     "sample": "Jane Fitz at Omana-Festival · Kalamitsi"
   },
   {
+    "name": "Ben Techy",
+    "key": "bentechy",
+    "events": 1,
+    "sources": [
+      "bandsintown"
+    ],
+    "onRA": true,
+    "sample": "Ellen Allien at The Garden Tisno · Tisno"
+  },
+  {
     "name": "Benga",
     "key": "benga",
     "events": 1,
@@ -2548,6 +2106,16 @@
     ],
     "onRA": true,
     "sample": "Dissonanze Festival · Rome"
+  },
+  {
+    "name": "BENNETT",
+    "key": "bennett",
+    "events": 1,
+    "sources": [
+      "bandsintown"
+    ],
+    "onRA": true,
+    "sample": "Ellen Allien at The Garden Tisno · Tisno"
   },
   {
     "name": "Benny Rodrigues",
@@ -2610,16 +2178,6 @@
     "sample": "Sunday Club - Eris Drew & Octo Octa, Finn, Esqueezy & BFTT · Mancheste"
   },
   {
-    "name": "Big Cee",
-    "key": "bigcee",
-    "events": 1,
-    "sources": [
-      "ra"
-    ],
-    "onRA": true,
-    "sample": "Love Long Beach Festival 2026 · Los Angeles"
-  },
-  {
     "name": "Big Gigantic",
     "key": "biggigantic",
     "events": 1,
@@ -2628,16 +2186,6 @@
     ],
     "onRA": true,
     "sample": "Big Gigantic @ Exchange LA · Los Angeles"
-  },
-  {
-    "name": "Billy Daniel Bunter",
-    "key": "billydanielbunter",
-    "events": 1,
-    "sources": [
-      "bandsintown"
-    ],
-    "onRA": true,
-    "sample": "15th July - 20th July, six days of Clockwork Orange bliss · Ibiza"
   },
   {
     "name": "Björk",
@@ -2710,16 +2258,6 @@
     "sample": "Blondex @ Amnesia Ibiza · Ibiza"
   },
   {
-    "name": "Bob Sinclar",
-    "key": "bobsinclar",
-    "events": 1,
-    "sources": [
-      "bandsintown"
-    ],
-    "onRA": true,
-    "sample": "Lilly Palmer at Château de la Ferté Saint-Aubin · La Ferte-Saint-Aubin"
-  },
-  {
     "name": "Bobbi Watson",
     "key": "bobbiwatson",
     "events": 1,
@@ -2758,16 +2296,6 @@
     ],
     "onRA": true,
     "sample": "ANNĒ - Ben Klock - BONDARŨK - JXXXO - Pampa - Setaoc Mass - + Under Cl"
-  },
-  {
-    "name": "Bongo Ben",
-    "key": "bongoben",
-    "events": 1,
-    "sources": [
-      "bandsintown"
-    ],
-    "onRA": true,
-    "sample": "15th July - 20th July, six days of Clockwork Orange bliss · Ibiza"
   },
   {
     "name": "BOP",
@@ -2878,16 +2406,6 @@
     ],
     "onRA": true,
     "sample": "A Day at the Park Festival 2026 · Rotterdam"
-  },
-  {
-    "name": "Bun Xapa",
-    "key": "bunxapa",
-    "events": 1,
-    "sources": [
-      "songkick"
-    ],
-    "onRA": true,
-    "sample": "Bun Xapa @ Ductwork at Silo Dallas · Dallas"
   },
   {
     "name": "Burnski",
@@ -3050,16 +2568,6 @@
     "sample": "North Coast Music Festival 2026 · Bridgeview"
   },
   {
-    "name": "Cassius",
-    "key": "cassius",
-    "events": 1,
-    "sources": [
-      "bandsintown"
-    ],
-    "onRA": true,
-    "sample": "Lilly Palmer at Château de la Ferté Saint-Aubin · La Ferte-Saint-Aubin"
-  },
-  {
     "name": "Cassy",
     "key": "cassy",
     "events": 1,
@@ -3068,6 +2576,16 @@
     ],
     "onRA": true,
     "sample": "EndUp presents - Cassy · Cork"
+  },
+  {
+    "name": "Cera Khin",
+    "key": "cerakhin",
+    "events": 1,
+    "sources": [
+      "bandsintown"
+    ],
+    "onRA": true,
+    "sample": "Ellen Allien at The Garden Tisno · Tisno"
   },
   {
     "name": "Champion",
@@ -3090,16 +2608,6 @@
     "sample": "ARC Music Festival 2026 · Chicago"
   },
   {
-    "name": "Charles B",
-    "key": "charlesb",
-    "events": 1,
-    "sources": [
-      "bandsintown"
-    ],
-    "onRA": true,
-    "sample": "Lilly Palmer at Château de la Ferté Saint-Aubin · La Ferte-Saint-Aubin"
-  },
-  {
     "name": "Charli xcx",
     "key": "charlixcx",
     "events": 1,
@@ -3118,6 +2626,16 @@
     ],
     "onRA": true,
     "sample": "Worried About Henry returns to Malta in September 2026 for 3 days of D"
+  },
+  {
+    "name": "Charlotte Newman",
+    "key": "charlottenewman",
+    "events": 1,
+    "sources": [
+      "bandsintown"
+    ],
+    "onRA": true,
+    "sample": "Yasmin Gardezi at Poney Club · Blagnac"
   },
   {
     "name": "Cher Semain",
@@ -3280,16 +2798,6 @@
     "sample": "Cosmic Gate @ Q Nightclub · Seattle"
   },
   {
-    "name": "Courtney Bailey",
-    "key": "courtneybailey",
-    "events": 1,
-    "sources": [
-      "ra"
-    ],
-    "onRA": true,
-    "sample": "Schall im Schilf Festival 2026 · Munich"
-  },
-  {
     "name": "Coyu",
     "key": "coyu",
     "events": 1,
@@ -3340,6 +2848,16 @@
     "sample": "Worried About Henry returns to Malta in September 2026 for 3 days of D"
   },
   {
+    "name": "CRUSH3d",
+    "key": "crush3d",
+    "events": 1,
+    "sources": [
+      "bandsintown"
+    ],
+    "onRA": true,
+    "sample": "Ellen Allien at The Garden Tisno · Tisno"
+  },
+  {
     "name": "Cuba (PT)",
     "key": "cubapt",
     "events": 1,
@@ -3348,26 +2866,6 @@
     ],
     "onRA": true,
     "sample": "Hungry4 ps. Mall Grab (extended set) Under The Bridge - Open Air · Lis"
-  },
-  {
-    "name": "Cybersex",
-    "key": "cybersex",
-    "events": 1,
-    "sources": [
-      "ra"
-    ],
-    "onRA": true,
-    "sample": "Teletech FESTIVAL 2026 · Manchester"
-  },
-  {
-    "name": "Cyclops",
-    "key": "cyclops",
-    "events": 1,
-    "sources": [
-      "songkick"
-    ],
-    "onRA": true,
-    "sample": "Cyclops @ Big Night Live · Boston"
   },
   {
     "name": "Cynthia Spiering",
@@ -3388,16 +2886,6 @@
     ],
     "onRA": true,
     "sample": "XRDS festival 2026 · Brussels"
-  },
-  {
-    "name": "D'Julz",
-    "key": "djulz",
-    "events": 1,
-    "sources": [
-      "songkick"
-    ],
-    "onRA": true,
-    "sample": "D'Julz @ Rex Club · Paris"
   },
   {
     "name": "Dabura",
@@ -3458,16 +2946,6 @@
     ],
     "onRA": true,
     "sample": "Veld Music Festival 2026 · Toronto"
-  },
-  {
-    "name": "Danny Rampling",
-    "key": "dannyrampling",
-    "events": 1,
-    "sources": [
-      "bandsintown"
-    ],
-    "onRA": true,
-    "sample": "15th July - 20th July, six days of Clockwork Orange bliss · Ibiza"
   },
   {
     "name": "Danté",
@@ -3550,26 +3028,6 @@
     "sample": "THE PARK · Zurich"
   },
   {
-    "name": "Dave Lee",
-    "key": "davelee",
-    "events": 1,
-    "sources": [
-      "bandsintown"
-    ],
-    "onRA": true,
-    "sample": "15th July - 20th July, six days of Clockwork Orange bliss · Ibiza"
-  },
-  {
-    "name": "DAVI",
-    "key": "davi",
-    "events": 1,
-    "sources": [
-      "ra"
-    ],
-    "onRA": true,
-    "sample": "Love Long Beach Festival 2026 · Los Angeles"
-  },
-  {
     "name": "David Rust",
     "key": "davidrust",
     "events": 1,
@@ -3608,6 +3066,16 @@
     ],
     "onRA": true,
     "sample": "Fatboy Slim at Lulworth Castle · Weymouth"
+  },
+  {
+    "name": "De La Swing",
+    "key": "delaswing",
+    "events": 1,
+    "sources": [
+      "bandsintown"
+    ],
+    "onRA": true,
+    "sample": "Jeff Mills at Amnesia Ibiza · Ibiza"
   },
   {
     "name": "Deadly Guns",
@@ -3670,16 +3138,6 @@
     "sample": "Overmono at Velodrom · Stare Brno"
   },
   {
-    "name": "DENYC",
-    "key": "denyc",
-    "events": 1,
-    "sources": [
-      "ra"
-    ],
-    "onRA": true,
-    "sample": "Koncept at The Pier: Stephan Bodzin (Live) · Los Angeles"
-  },
-  {
     "name": "Deptford Northern Soul Club",
     "key": "deptfordnorthernsoulclub",
     "events": 1,
@@ -3700,16 +3158,6 @@
     "sample": "Desert Hearts @ Ductwork at Silo Dallas · Dallas"
   },
   {
-    "name": "DESIREE",
-    "key": "desiree",
-    "events": 1,
-    "sources": [
-      "bandsintown"
-    ],
-    "onRA": true,
-    "sample": "Dixon at Knockdown Center · East New York"
-  },
-  {
     "name": "Diagnostix",
     "key": "diagnostix",
     "events": 1,
@@ -3718,6 +3166,16 @@
     ],
     "onRA": true,
     "sample": "Worried About Henry returns to Malta in September 2026 for 3 days of D"
+  },
+  {
+    "name": "Didaskein",
+    "key": "didaskein",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "Buena -EP17- · Tokyo"
   },
   {
     "name": "Dieselboy",
@@ -3730,6 +3188,16 @@
     "sample": "Craze @ Concourse Project · Austin"
   },
   {
+    "name": "Dillinja",
+    "key": "dillinja",
+    "events": 1,
+    "sources": [
+      "bandsintown"
+    ],
+    "onRA": true,
+    "sample": "Worried About Henry returns to Malta in September 2026 for 3 days of D"
+  },
+  {
     "name": "Dimatik",
     "key": "dimatik",
     "events": 1,
@@ -3738,16 +3206,6 @@
     ],
     "onRA": true,
     "sample": "Dimatik @ Marquee Singapore · Singapore"
-  },
-  {
-    "name": "Diode Eins",
-    "key": "diodeeins",
-    "events": 1,
-    "sources": [
-      "ra"
-    ],
-    "onRA": true,
-    "sample": "Sonntag Kurzurlaub Open Air at Fühlinger See - THEN, Mark Reeve, Kos:m"
   },
   {
     "name": "DIØN",
@@ -3800,14 +3258,14 @@
     "sample": "Paradies Garten Festival 2026 · Vienna"
   },
   {
-    "name": "DJ BREYTH",
-    "key": "djbreyth",
+    "name": "DJ Colette",
+    "key": "djcolette",
     "events": 1,
     "sources": [
       "ra"
     ],
     "onRA": true,
-    "sample": "Caiiro presents AKHET • Escala 25, Lisbon • 18.7.26 · Lisbon"
+    "sample": "ARC Music Festival 2026 · Chicago"
   },
   {
     "name": "DJ Die",
@@ -3930,16 +3388,6 @@
     "sample": "Lollapalooza · Chicago"
   },
   {
-    "name": "DJ SEINFELD",
-    "key": "djseinfeld",
-    "events": 1,
-    "sources": [
-      "bandsintown"
-    ],
-    "onRA": true,
-    "sample": "Ibiza, SP · Ibiza"
-  },
-  {
     "name": "Dj Vibes",
     "key": "djvibes",
     "events": 1,
@@ -3980,16 +3428,6 @@
     "sample": "Djinn @ fabric · London"
   },
   {
-    "name": "DJoy",
-    "key": "djoy",
-    "events": 1,
-    "sources": [
-      "ra"
-    ],
-    "onRA": true,
-    "sample": "Schall im Schilf Festival 2026 · Munich"
-  },
-  {
     "name": "DMX Krew",
     "key": "dmxkrew",
     "events": 1,
@@ -4008,16 +3446,6 @@
     ],
     "onRA": true,
     "sample": "UNREAL @Afterparty Zurich Street-Parade · Zurich"
-  },
-  {
-    "name": "Doc Martin",
-    "key": "docmartin",
-    "events": 1,
-    "sources": [
-      "ra"
-    ],
-    "onRA": true,
-    "sample": "Love Long Beach Festival 2026 · Los Angeles"
   },
   {
     "name": "DOCTOR MÜCKE",
@@ -4080,14 +3508,14 @@
     "sample": "Hixxy @ Ministry of Sound · London"
   },
   {
-    "name": "Dr. G",
-    "key": "drg",
+    "name": "Dr Dubplate",
+    "key": "drdubplate",
     "events": 1,
     "sources": [
       "ra"
     ],
     "onRA": true,
-    "sample": "Terminal V Croatia 2026 - Barbarella's Open-Air After Parties till sun"
+    "sample": "CUE - Liverpool w. bullet tooth, Laidlaw · Liverpool"
   },
   {
     "name": "Dr. Motte",
@@ -4108,6 +3536,16 @@
     ],
     "onRA": true,
     "sample": "Worried About Henry returns to Malta in September 2026 for 3 days of D"
+  },
+  {
+    "name": "Dual Damage",
+    "key": "dualdamage",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "Dual Damage Present: Built2Break · Liverpool"
   },
   {
     "name": "Dukla",
@@ -4250,16 +3688,6 @@
     "sample": "Marco Faraone at Amnesia Ibiza · Ibiza"
   },
   {
-    "name": "elMefti",
-    "key": "elmefti",
-    "events": 1,
-    "sources": [
-      "ra"
-    ],
-    "onRA": true,
-    "sample": "Teletech FESTIVAL 2026 · Manchester"
-  },
-  {
     "name": "Elotrance",
     "key": "elotrance",
     "events": 1,
@@ -4370,16 +3798,6 @@
     "sample": "Overmono at Old Royal Naval College · East London"
   },
   {
-    "name": "Erol Alkan",
-    "key": "erolalkan",
-    "events": 1,
-    "sources": [
-      "songkick"
-    ],
-    "onRA": true,
-    "sample": "Chelina Manuhutu at Parc des Expositions de Montpellier, Pérols · Pero"
-  },
-  {
     "name": "Esqueezy",
     "key": "esqueezy",
     "events": 1,
@@ -4400,26 +3818,6 @@
     "sample": "Audio Obscura Festival [By Night] · Rotterdam"
   },
   {
-    "name": "Etienne de Crecy",
-    "key": "etiennedecrecy",
-    "events": 1,
-    "sources": [
-      "songkick"
-    ],
-    "onRA": true,
-    "sample": "Chelina Manuhutu at Parc des Expositions de Montpellier, Pérols · Pero"
-  },
-  {
-    "name": "Eulalia",
-    "key": "eulalia",
-    "events": 1,
-    "sources": [
-      "ra"
-    ],
-    "onRA": true,
-    "sample": "boost+++ xxl - day one · Chicago"
-  },
-  {
     "name": "Eva Vrijdag",
     "key": "evavrijdag",
     "events": 1,
@@ -4438,16 +3836,6 @@
     ],
     "onRA": true,
     "sample": "Pre sale tickets for 2027 drop on Friday 8th May at 10am. Scroll down "
-  },
-  {
-    "name": "Evissimax",
-    "key": "evissimax",
-    "events": 1,
-    "sources": [
-      "ra"
-    ],
-    "onRA": true,
-    "sample": "Teletech FESTIVAL 2026 · Manchester"
   },
   {
     "name": "Ezequiel Arias",
@@ -4500,6 +3888,16 @@
     "sample": "Fat Freddy's Drop @ Razzmatazz · Barcelona"
   },
   {
+    "name": "Feder",
+    "key": "feder",
+    "events": 1,
+    "sources": [
+      "bandsintown"
+    ],
+    "onRA": true,
+    "sample": "Novah at Palexpo · Le Grand-Saconnex"
+  },
+  {
     "name": "Feed Me",
     "key": "feedme",
     "events": 1,
@@ -4510,16 +3908,6 @@
     "sample": "Feed Me @ Ductwork at Silo Dallas · Dallas"
   },
   {
-    "name": "Fejká",
-    "key": "fejka",
-    "events": 1,
-    "sources": [
-      "ra"
-    ],
-    "onRA": true,
-    "sample": "COLORIZE TORONTO 2026 (ALLKNIGHT, Estiva, Fejká, Ocula) · Toronto"
-  },
-  {
     "name": "Felix Kröcher",
     "key": "felixkrocher",
     "events": 1,
@@ -4528,16 +3916,6 @@
     ],
     "onRA": true,
     "sample": "Unreal Stage @Nibirii Festival · Cologne"
-  },
-  {
-    "name": "Ferhat Albayrak",
-    "key": "ferhatalbayrak",
-    "events": 1,
-    "sources": [
-      "bandsintown"
-    ],
-    "onRA": true,
-    "sample": "Klangkuenstler at Life Park · Istanbul"
   },
   {
     "name": "Fideles",
@@ -4600,16 +3978,6 @@
     "sample": "Voodoo Village 2026 · Brussels"
   },
   {
-    "name": "fivequestionmarks",
-    "key": "fivequestionmarks",
-    "events": 1,
-    "sources": [
-      "ra"
-    ],
-    "onRA": true,
-    "sample": "NEON pres Ellen Allien · Rome"
-  },
-  {
     "name": "FLETCH",
     "key": "fletch",
     "events": 1,
@@ -4618,6 +3986,16 @@
     ],
     "onRA": true,
     "sample": "Giuseppe Ottaviani at Daresbury · Cheshire West And Chester"
+  },
+  {
+    "name": "Fleur Shore",
+    "key": "fleurshore",
+    "events": 1,
+    "sources": [
+      "bandsintown"
+    ],
+    "onRA": true,
+    "sample": "Alarico at Amnesia Ibiza · Ibiza"
   },
   {
     "name": "Flores Negras",
@@ -4830,26 +4208,6 @@
     "sample": "Nicole Moudaber at Estación esquí La Pinilla · La Pinilla"
   },
   {
-    "name": "Gesaffelstein",
-    "key": "gesaffelstein",
-    "events": 1,
-    "sources": [
-      "bandsintown"
-    ],
-    "onRA": true,
-    "sample": "Lollapalooza 2026 · Berlin"
-  },
-  {
-    "name": "GI.O",
-    "key": "gio",
-    "events": 1,
-    "sources": [
-      "ra"
-    ],
-    "onRA": true,
-    "sample": "Teletech FESTIVAL 2026 · Manchester"
-  },
-  {
     "name": "Giancarlino",
     "key": "giancarlino",
     "events": 1,
@@ -4868,16 +4226,6 @@
     ],
     "onRA": true,
     "sample": "Pre sale tickets for 2027 drop on Friday 8th May at 10am. Scroll down "
-  },
-  {
-    "name": "Glaskin",
-    "key": "glaskin",
-    "events": 1,
-    "sources": [
-      "ra"
-    ],
-    "onRA": true,
-    "sample": "Schall im Schilf Festival 2026 · Munich"
   },
   {
     "name": "GLXY",
@@ -4940,16 +4288,6 @@
     "sample": "Dimensions Festival 2026 - Regional After Parties · All"
   },
   {
-    "name": "Graeme Park",
-    "key": "graemepark",
-    "events": 1,
-    "sources": [
-      "bandsintown"
-    ],
-    "onRA": true,
-    "sample": "15th July - 20th July, six days of Clockwork Orange bliss · Ibiza"
-  },
-  {
     "name": "Grafix",
     "key": "grafix",
     "events": 1,
@@ -4998,16 +4336,6 @@
     ],
     "onRA": true,
     "sample": "Unreal Stage @Nibirii Festival · Cologne"
-  },
-  {
-    "name": "Hades",
-    "key": "hades",
-    "events": 1,
-    "sources": [
-      "ra"
-    ],
-    "onRA": true,
-    "sample": "Teletech FESTIVAL 2026 · Manchester"
   },
   {
     "name": "Halfpipe Records",
@@ -5068,16 +4396,6 @@
     ],
     "onRA": true,
     "sample": "Junction 2 x fabric: Nina Kraviz, Jeff Mills · South West London"
-  },
-  {
-    "name": "Heimlich Knüller",
-    "key": "heimlichknuller",
-    "events": 1,
-    "sources": [
-      "ra"
-    ],
-    "onRA": true,
-    "sample": "Kotori Open Air · Berlin"
   },
   {
     "name": "Hidde van Wee",
@@ -5240,16 +4558,6 @@
     "sample": "Francesco Del Garda @ The Garden Resort · Tisno"
   },
   {
-    "name": "Idriss D",
-    "key": "idrissd",
-    "events": 1,
-    "sources": [
-      "bandsintown"
-    ],
-    "onRA": true,
-    "sample": "MARCO CAROLA PRESENTS MUSIC ON · Ibiza"
-  },
-  {
     "name": "II FACES",
     "key": "iifaces",
     "events": 1,
@@ -5328,16 +4636,6 @@
     ],
     "onRA": true,
     "sample": "Randomer at Hackney Wick   Multiple Venues · East London"
-  },
-  {
-    "name": "Interstellar Funk",
-    "key": "interstellarfunk",
-    "events": 1,
-    "sources": [
-      "ra"
-    ],
-    "onRA": true,
-    "sample": "Schall im Schilf Festival 2026 · Munich"
   },
   {
     "name": "INVT",
@@ -5510,16 +4808,6 @@
     "sample": "ARC Music Festival 2026 · Chicago"
   },
   {
-    "name": "Jason Bye",
-    "key": "jasonbye",
-    "events": 1,
-    "sources": [
-      "bandsintown"
-    ],
-    "onRA": true,
-    "sample": "15th July - 20th July, six days of Clockwork Orange bliss · Ibiza"
-  },
-  {
     "name": "Jaymod",
     "key": "jaymod",
     "events": 1,
@@ -5558,6 +4846,16 @@
     ],
     "onRA": true,
     "sample": "Audio Obscura Festival [By Night] · Rotterdam"
+  },
+  {
+    "name": "Jeremy Olander",
+    "key": "jeremyolander",
+    "events": 1,
+    "sources": [
+      "songkick"
+    ],
+    "onRA": true,
+    "sample": "Jeremy Olander @ DIGITAL NEWCASTLE · Newcastle Upon Tyne"
   },
   {
     "name": "Jerome",
@@ -5650,26 +4948,6 @@
     "sample": "Dimensions Festival 2026 - Regional After Parties · All"
   },
   {
-    "name": "Jôka",
-    "key": "joka",
-    "events": 1,
-    "sources": [
-      "ra"
-    ],
-    "onRA": true,
-    "sample": "Schall im Schilf Festival 2026 · Munich"
-  },
-  {
-    "name": "Jolle",
-    "key": "jolle",
-    "events": 1,
-    "sources": [
-      "bandsintown"
-    ],
-    "onRA": true,
-    "sample": "Lollapalooza 2026 · Berlin"
-  },
-  {
     "name": "Jon Rundell",
     "key": "jonrundell",
     "events": 1,
@@ -5760,6 +5038,16 @@
     "sample": "Audio Obscura Festival [By Night] · Rotterdam"
   },
   {
+    "name": "Julya Karma",
+    "key": "julyakarma",
+    "events": 1,
+    "sources": [
+      "bandsintown"
+    ],
+    "onRA": true,
+    "sample": "Dixon at Boston Manor Park · South West London"
+  },
+  {
     "name": "Junkie Kid",
     "key": "junkiekid",
     "events": 1,
@@ -5778,16 +5066,6 @@
     ],
     "onRA": true,
     "sample": "FUSE ➔ Malta 2026 · All"
-  },
-  {
-    "name": "Justin Martin",
-    "key": "justinmartin",
-    "events": 1,
-    "sources": [
-      "ra"
-    ],
-    "onRA": true,
-    "sample": "Love Long Beach Festival 2026 · Los Angeles"
   },
   {
     "name": "Justin Tinderdate",
@@ -5920,16 +5198,6 @@
     "sample": "Worried About Henry returns to Malta in September 2026 for 3 days of D"
   },
   {
-    "name": "Kassie",
-    "key": "kassie",
-    "events": 1,
-    "sources": [
-      "ra"
-    ],
-    "onRA": true,
-    "sample": "44 X REBELS MÉXICO · Mexico City"
-  },
-  {
     "name": "Katatonic Silentio",
     "key": "katatonicsilentio",
     "events": 1,
@@ -5938,16 +5206,6 @@
     ],
     "onRA": true,
     "sample": "XRDS festival 2026 · Brussels"
-  },
-  {
-    "name": "KATE ZUBOK",
-    "key": "katezubok",
-    "events": 1,
-    "sources": [
-      "songkick"
-    ],
-    "onRA": true,
-    "sample": "Chelina Manuhutu at Parc des Expositions de Montpellier, Pérols · Pero"
   },
   {
     "name": "Katy Rough",
@@ -5968,16 +5226,6 @@
     ],
     "onRA": true,
     "sample": "Unreal Stage @Nibirii Festival · Cologne"
-  },
-  {
-    "name": "KE-YEN",
-    "key": "keyen",
-    "events": 1,
-    "sources": [
-      "songkick"
-    ],
-    "onRA": true,
-    "sample": "KE-YEN @ Rex Club · Paris"
   },
   {
     "name": "KEEO.FM",
@@ -6020,16 +5268,6 @@
     "sample": "Kelsey Lu @ KOKO · London"
   },
   {
-    "name": "Kill the Void",
-    "key": "killthevoid",
-    "events": 1,
-    "sources": [
-      "ra"
-    ],
-    "onRA": true,
-    "sample": "Teletech FESTIVAL 2026 · Manchester"
-  },
-  {
     "name": "Kings of the Rollers",
     "key": "kingsoftherollers",
     "events": 1,
@@ -6048,16 +5286,6 @@
     ],
     "onRA": true,
     "sample": "LINEUPS SUBJECT TO CHANGE · Belfast"
-  },
-  {
-    "name": "KLEA",
-    "key": "klea",
-    "events": 1,
-    "sources": [
-      "ra"
-    ],
-    "onRA": true,
-    "sample": "Nina Kraviz + Quest + KLEA · Venice"
   },
   {
     "name": "Kletis",
@@ -6120,16 +5348,6 @@
     "sample": "Da Tweekaz at Parc des expositions Paris Nord Villepinte · Villepinte"
   },
   {
-    "name": "Kos:mo",
-    "key": "kosmo",
-    "events": 1,
-    "sources": [
-      "ra"
-    ],
-    "onRA": true,
-    "sample": "Sonntag Kurzurlaub Open Air at Fühlinger See - THEN, Mark Reeve, Kos:m"
-  },
-  {
     "name": "KRAWALLBARBIE",
     "key": "krawallbarbie",
     "events": 1,
@@ -6154,20 +5372,10 @@
     "key": "lala",
     "events": 1,
     "sources": [
-      "bandsintown"
+      "songkick"
     ],
     "onRA": true,
     "sample": "Dennis Cruz at DC10 · Ibiza"
-  },
-  {
-    "name": "Lacchesi",
-    "key": "lacchesi",
-    "events": 1,
-    "sources": [
-      "ra"
-    ],
-    "onRA": true,
-    "sample": "boost+++ xxl - day one · Chicago"
   },
   {
     "name": "Lady Dammage",
@@ -6300,16 +5508,6 @@
     "sample": "Nora En Pure Presents Purified Prague · Prague"
   },
   {
-    "name": "Leyla (3)",
-    "key": "leyla3",
-    "events": 1,
-    "sources": [
-      "ra"
-    ],
-    "onRA": true,
-    "sample": "Schall im Schilf Festival 2026 · Munich"
-  },
-  {
     "name": "LIEKS",
     "key": "lieks",
     "events": 1,
@@ -6318,6 +5516,16 @@
     ],
     "onRA": true,
     "sample": "VERKNIPT Poland - Warsaw · Warsaw"
+  },
+  {
+    "name": "LIL TEXAS",
+    "key": "liltexas",
+    "events": 1,
+    "sources": [
+      "bandsintown"
+    ],
+    "onRA": true,
+    "sample": "Da Tweekaz at Parc des expositions Paris Nord Villepinte · Villepinte"
   },
   {
     "name": "Lil' Louis",
@@ -6430,6 +5638,16 @@
     "sample": "Michael Shannon @ KOKO · London"
   },
   {
+    "name": "LOVEFOXY",
+    "key": "lovefoxy",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "Paradies Garten Festival 2026 · Vienna"
+  },
+  {
     "name": "LSDXOXO",
     "key": "lsdxoxo",
     "events": 1,
@@ -6450,24 +5668,14 @@
     "sample": "Street Parade Afterparty by Impact Rave · Zurich"
   },
   {
-    "name": "Luca Musto",
-    "key": "lucamusto",
+    "name": "Lucas Alexander",
+    "key": "lucasalexander",
     "events": 1,
     "sources": [
       "ra"
     ],
     "onRA": true,
-    "sample": "Kotori Open Air · Berlin"
-  },
-  {
-    "name": "Lucas Alexander",
-    "key": "lucasalexander",
-    "events": 1,
-    "sources": [
-      "songkick"
-    ],
-    "onRA": true,
-    "sample": "Lucas Alexander @ Eden Ibiza · Ibiza"
+    "sample": "CUE - Liverpool w. bullet tooth, Laidlaw · Liverpool"
   },
   {
     "name": "Luke Alessi",
@@ -6478,16 +5686,6 @@
     ],
     "onRA": true,
     "sample": "Luke Alessi @ CODA · Toronto"
-  },
-  {
-    "name": "luxus",
-    "key": "luxus",
-    "events": 1,
-    "sources": [
-      "ra"
-    ],
-    "onRA": true,
-    "sample": "Schall im Schilf Festival 2026 · Munich"
   },
   {
     "name": "Lydia Eisenblätter",
@@ -6620,16 +5818,6 @@
     "sample": "KISSTORY on Blackheath · East London"
   },
   {
-    "name": "makko",
-    "key": "makko",
-    "events": 1,
-    "sources": [
-      "bandsintown"
-    ],
-    "onRA": true,
-    "sample": "Lollapalooza 2026 · Berlin"
-  },
-  {
     "name": "Makoto",
     "key": "makoto",
     "events": 1,
@@ -6668,16 +5856,6 @@
     ],
     "onRA": true,
     "sample": "Nicole Moudaber at Estación esquí La Pinilla · La Pinilla"
-  },
-  {
-    "name": "MANTi",
-    "key": "manti",
-    "events": 1,
-    "sources": [
-      "ra"
-    ],
-    "onRA": true,
-    "sample": "Koncept at The Pier: Stephan Bodzin (Live) · Los Angeles"
   },
   {
     "name": "Mantmast",
@@ -6830,16 +6008,6 @@
     "sample": "Sneijder @ Ministry of Sound · London"
   },
   {
-    "name": "Mark Reeve",
-    "key": "markreeve",
-    "events": 1,
-    "sources": [
-      "ra"
-    ],
-    "onRA": true,
-    "sample": "Sonntag Kurzurlaub Open Air at Fühlinger See - THEN, Mark Reeve, Kos:m"
-  },
-  {
     "name": "Markantonio",
     "key": "markantonio",
     "events": 1,
@@ -6878,16 +6046,6 @@
     ],
     "onRA": true,
     "sample": "Mita Gami at Yaanga Park · Los Angeles"
-  },
-  {
-    "name": "Maryline K",
-    "key": "marylinek",
-    "events": 1,
-    "sources": [
-      "ra"
-    ],
-    "onRA": true,
-    "sample": "Lucid Glow · Munich"
   },
   {
     "name": "maša (SI)",
@@ -6978,16 +6136,6 @@
     ],
     "onRA": true,
     "sample": "Clubland · West Hartlepool"
-  },
-  {
-    "name": "MC Flipside",
-    "key": "mcflipside",
-    "events": 1,
-    "sources": [
-      "ra"
-    ],
-    "onRA": true,
-    "sample": "Birthday Trio: Tyler Hill - FLIPSIDE - Randomdoug · Toronto"
   },
   {
     "name": "MC GQ",
@@ -7110,16 +6258,6 @@
     "sample": "Metrik @ Exchange LA · Los Angeles"
   },
   {
-    "name": "Mia Kober",
-    "key": "miakober",
-    "events": 1,
-    "sources": [
-      "ra"
-    ],
-    "onRA": true,
-    "sample": "Kotori Open Air · Berlin"
-  },
-  {
     "name": "Mia Koden",
     "key": "miakoden",
     "events": 1,
@@ -7210,14 +6348,14 @@
     "sample": "Marco Faraone at Amnesia Ibiza · Ibiza"
   },
   {
-    "name": "Mikey Gee",
-    "key": "mikeygee",
+    "name": "Mikey Lion",
+    "key": "mikeylion",
     "events": 1,
     "sources": [
-      "ra"
+      "songkick"
     ],
     "onRA": true,
-    "sample": "Schall im Schilf Festival 2026 · Munich"
+    "sample": "Desert Hearts @ Ductwork at Silo Dallas · Dallas"
   },
   {
     "name": "MIKI",
@@ -7280,6 +6418,16 @@
     "sample": "Randomer at Hackney Wick   Multiple Venues · East London"
   },
   {
+    "name": "Miss Bashful",
+    "key": "missbashful",
+    "events": 1,
+    "sources": [
+      "bandsintown"
+    ],
+    "onRA": true,
+    "sample": "Ellen Allien at The Garden Tisno · Tisno"
+  },
+  {
     "name": "Miss I",
     "key": "missi",
     "events": 1,
@@ -7328,16 +6476,6 @@
     ],
     "onRA": true,
     "sample": "Morgan Page @ Ductwork at Silo Dallas · Dallas"
-  },
-  {
-    "name": "Morwan",
-    "key": "morwan",
-    "events": 1,
-    "sources": [
-      "songkick"
-    ],
-    "onRA": true,
-    "sample": "The Spoiled (ITA) @ Tresor · Berlin"
   },
   {
     "name": "Mother Earth",
@@ -7520,16 +6658,6 @@
     "sample": "Jane Fitz at Omana-Festival · Kalamitsi"
   },
   {
-    "name": "Neek",
-    "key": "neek",
-    "events": 1,
-    "sources": [
-      "ra"
-    ],
-    "onRA": true,
-    "sample": "Teletech FESTIVAL 2026 · Manchester"
-  },
-  {
     "name": "Neil Frances",
     "key": "neilfrances",
     "events": 1,
@@ -7570,6 +6698,16 @@
     "sample": "Outside Lands 2026 · San Francisco"
   },
   {
+    "name": "Nick Castle",
+    "key": "nickcastle",
+    "events": 1,
+    "sources": [
+      "bandsintown"
+    ],
+    "onRA": true,
+    "sample": "Adriatique at The Chapel, Old Royal Naval College · London"
+  },
+  {
     "name": "Nick León",
     "key": "nickleon",
     "events": 1,
@@ -7588,16 +6726,6 @@
     ],
     "onRA": true,
     "sample": "Nick Warren @ Q Nightclub · Seattle"
-  },
-  {
-    "name": "Nico Bondi",
-    "key": "nicobondi",
-    "events": 1,
-    "sources": [
-      "ra"
-    ],
-    "onRA": true,
-    "sample": "KELLER HARD CLUB 36 · Madrid"
   },
   {
     "name": "Nico Morano",
@@ -7660,6 +6788,16 @@
     "sample": "Resistance Amnesia Ibiza · Ibiza"
   },
   {
+    "name": "Noga Erez",
+    "key": "nogaerez",
+    "events": 1,
+    "sources": [
+      "bandsintown"
+    ],
+    "onRA": true,
+    "sample": "Kygo at Olympiapark Süd · Munich"
+  },
+  {
     "name": "NOHR",
     "key": "nohr",
     "events": 1,
@@ -7668,16 +6806,6 @@
     ],
     "onRA": true,
     "sample": "Voodoo Village 2026 · Brussels"
-  },
-  {
-    "name": "Noise Mafia",
-    "key": "noisemafia",
-    "events": 1,
-    "sources": [
-      "songkick"
-    ],
-    "onRA": true,
-    "sample": "KE-YEN @ Rex Club · Paris"
   },
   {
     "name": "Nørbak",
@@ -7770,16 +6898,6 @@
     "sample": "Dissonanze Festival · Rome"
   },
   {
-    "name": "Ocula",
-    "key": "ocula",
-    "events": 1,
-    "sources": [
-      "ra"
-    ],
-    "onRA": true,
-    "sample": "COLORIZE TORONTO 2026 (ALLKNIGHT, Estiva, Fejká, Ocula) · Toronto"
-  },
-  {
     "name": "Odrik",
     "key": "odrik",
     "events": 1,
@@ -7800,16 +6918,6 @@
     "sample": "Audio Obscura Festival [By Night] · Rotterdam"
   },
   {
-    "name": "OK Williams",
-    "key": "okwilliams",
-    "events": 1,
-    "sources": [
-      "ra"
-    ],
-    "onRA": true,
-    "sample": "Schall im Schilf Festival 2026 · Munich"
-  },
-  {
     "name": "Oko Stellar",
     "key": "okostellar",
     "events": 1,
@@ -7818,6 +6926,16 @@
     ],
     "onRA": true,
     "sample": "Voodoo Village 2026 · Brussels"
+  },
+  {
+    "name": "Oliver Huntemann",
+    "key": "oliverhuntemann",
+    "events": 1,
+    "sources": [
+      "bandsintown"
+    ],
+    "onRA": true,
+    "sample": "Bart Skils at Festival Eucalyptus · Plouhinec"
   },
   {
     "name": "Olli Rubber",
@@ -7838,16 +6956,6 @@
     ],
     "onRA": true,
     "sample": "Electrolapse 2026 · Saint-Sorlin-En-Valloire"
-  },
-  {
-    "name": "OMAKS",
-    "key": "omaks",
-    "events": 1,
-    "sources": [
-      "songkick"
-    ],
-    "onRA": true,
-    "sample": "Chelina Manuhutu at Parc des Expositions de Montpellier, Pérols · Pero"
   },
   {
     "name": "Omeria",
@@ -8000,6 +7108,16 @@
     "sample": "Voodoo Village 2026 · Brussels"
   },
   {
+    "name": "Patrischa",
+    "key": "patrischa",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "THE PARK · Zurich"
+  },
+  {
     "name": "PAU (6)",
     "key": "pau6",
     "events": 1,
@@ -8008,26 +7126,6 @@
     ],
     "onRA": true,
     "sample": "Paradies Garten Festival 2026 · Vienna"
-  },
-  {
-    "name": "Paula Cazenave",
-    "key": "paulacazenave",
-    "events": 1,
-    "sources": [
-      "bandsintown"
-    ],
-    "onRA": true,
-    "sample": "Yanamaste at Amnesia Ibiza · Ibiza"
-  },
-  {
-    "name": "Paula Tape",
-    "key": "paulatape",
-    "events": 1,
-    "sources": [
-      "bandsintown"
-    ],
-    "onRA": true,
-    "sample": "Ibiza, SP · Ibiza"
   },
   {
     "name": "Pelin Vedis",
@@ -8210,6 +7308,16 @@
     "sample": "Randomer at Hackney Wick   Multiple Venues · East London"
   },
   {
+    "name": "Quest (IT)",
+    "key": "questit",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "ARC Music Festival 2026 · Chicago"
+  },
+  {
     "name": "R Squared",
     "key": "rsquared",
     "events": 1,
@@ -8300,16 +7408,6 @@
     "sample": "Patrick Mason at Beach Of Palais Des Festivals De Cannes · Nice Saint-"
   },
   {
-    "name": "Randomdoug",
-    "key": "randomdoug",
-    "events": 1,
-    "sources": [
-      "ra"
-    ],
-    "onRA": true,
-    "sample": "Birthday Trio: Tyler Hill - FLIPSIDE - Randomdoug · Toronto"
-  },
-  {
     "name": "Ranger Trucco",
     "key": "rangertrucco",
     "events": 1,
@@ -8348,16 +7446,6 @@
     ],
     "onRA": true,
     "sample": "HARDSTYLER with Vieze Asbak · Venice"
-  },
-  {
-    "name": "Ray Kash",
-    "key": "raykash",
-    "events": 1,
-    "sources": [
-      "ra"
-    ],
-    "onRA": true,
-    "sample": "Love Long Beach Festival 2026 · Los Angeles"
   },
   {
     "name": "Raye",
@@ -8490,16 +7578,6 @@
     "sample": " Mind Medizin 5to Aniversario: Alarico · Mexico City"
   },
   {
-    "name": "Richard Akingbehin",
-    "key": "richardakingbehin",
-    "events": 1,
-    "sources": [
-      "ra"
-    ],
-    "onRA": true,
-    "sample": "Schall im Schilf Festival 2026 · Munich"
-  },
-  {
     "name": "RICHE",
     "key": "riche",
     "events": 1,
@@ -8588,16 +7666,6 @@
     ],
     "onRA": true,
     "sample": "Dissonanze Festival · Rome"
-  },
-  {
-    "name": "Ronny Grauer",
-    "key": "ronnygrauer",
-    "events": 1,
-    "sources": [
-      "ra"
-    ],
-    "onRA": true,
-    "sample": "THE TREE OPENAIR · Zurich"
   },
   {
     "name": "ROOG",
@@ -8720,16 +7788,6 @@
     "sample": "Dillon Francis at REALM PDX · Portland"
   },
   {
-    "name": "Russian Village Boys",
-    "key": "russianvillageboys",
-    "events": 1,
-    "sources": [
-      "ra"
-    ],
-    "onRA": true,
-    "sample": "Teletech FESTIVAL 2026 · Manchester"
-  },
-  {
     "name": "RVRSRVR",
     "key": "rvrsrvr",
     "events": 1,
@@ -8780,16 +7838,6 @@
     "sample": "Patrick Mason at Beach Of Palais Des Festivals De Cannes · Nice Saint-"
   },
   {
-    "name": "SaltySis",
-    "key": "saltysis",
-    "events": 1,
-    "sources": [
-      "ra"
-    ],
-    "onRA": true,
-    "sample": "Teletech FESTIVAL 2026 · Manchester"
-  },
-  {
     "name": "Samantha Loveridge",
     "key": "samanthaloveridge",
     "events": 1,
@@ -8830,21 +7878,11 @@
     "sample": "Sander van Doorn @ Sobar Southampton · Southampton"
   },
   {
-    "name": "SANTOS",
-    "key": "santos",
-    "events": 1,
-    "sources": [
-      "ra"
-    ],
-    "onRA": true,
-    "sample": "Teletech FESTIVAL 2026 · Manchester"
-  },
-  {
     "name": "Saraga",
     "key": "saraga",
     "events": 1,
     "sources": [
-      "bandsintown"
+      "songkick"
     ],
     "onRA": true,
     "sample": "Dennis Cruz at DC10 · Ibiza"
@@ -8858,16 +7896,6 @@
     ],
     "onRA": true,
     "sample": "Maceo Plex at Amnesia Ibiza · Ibiza"
-  },
-  {
-    "name": "Sasson",
-    "key": "sasson",
-    "events": 1,
-    "sources": [
-      "bandsintown"
-    ],
-    "onRA": true,
-    "sample": "MoBlack at DAY ONE BEACH RESORT & SPA  BEACH AREA · Antalya"
   },
   {
     "name": "SATURNSARii",
@@ -8898,6 +7926,16 @@
     ],
     "onRA": true,
     "sample": "Djinn @ fabric · London"
+  },
+  {
+    "name": "Seb Fontaine",
+    "key": "sebfontaine",
+    "events": 1,
+    "sources": [
+      "bandsintown"
+    ],
+    "onRA": true,
+    "sample": "Ministry Of Sound Classical · Theale"
   },
   {
     "name": "Seb Zito",
@@ -8990,16 +8028,6 @@
     "sample": "Moments Festival · Munich"
   },
   {
-    "name": "SHERA",
-    "key": "shera",
-    "events": 1,
-    "sources": [
-      "ra"
-    ],
-    "onRA": true,
-    "sample": "Birthday Trio: Tyler Hill - FLIPSIDE - Randomdoug · Toronto"
-  },
-  {
     "name": "Shermanology",
     "key": "shermanology",
     "events": 1,
@@ -9070,16 +8098,6 @@
     "sample": "SONNY FODERA · Ibiza"
   },
   {
-    "name": "sianza",
-    "key": "sianza",
-    "events": 1,
-    "sources": [
-      "ra"
-    ],
-    "onRA": true,
-    "sample": "Schall im Schilf Festival 2026 · Munich"
-  },
-  {
     "name": "Sibil (1)",
     "key": "sibil1",
     "events": 1,
@@ -9100,6 +8118,16 @@
     "sample": "Salute at Amnesia Ibiza · Ibiza"
   },
   {
+    "name": "SIMONE",
+    "key": "simone",
+    "events": 1,
+    "sources": [
+      "bandsintown"
+    ],
+    "onRA": true,
+    "sample": "Ellen Allien at The Garden Tisno · Tisno"
+  },
+  {
     "name": "Sinego",
     "key": "sinego",
     "events": 1,
@@ -9118,16 +8146,6 @@
     ],
     "onRA": true,
     "sample": " Mind Medizin 5to Aniversario: Alarico · Mexico City"
-  },
-  {
-    "name": "SKALA",
-    "key": "skala",
-    "events": 1,
-    "sources": [
-      "ra"
-    ],
-    "onRA": true,
-    "sample": "Koncept at The Pier: Stephan Bodzin (Live) · Los Angeles"
   },
   {
     "name": "Skantia",
@@ -9170,16 +8188,6 @@
     "sample": "Electrolapse 2026 · Saint-Sorlin-En-Valloire"
   },
   {
-    "name": "SLAMM",
-    "key": "slamm",
-    "events": 1,
-    "sources": [
-      "ra"
-    ],
-    "onRA": true,
-    "sample": "Day Trip In The Park LA: Omnom, Marco Strous, SLAMM · Los Angeles"
-  },
-  {
     "name": "Slone",
     "key": "slone",
     "events": 1,
@@ -9188,16 +8196,6 @@
     ],
     "onRA": true,
     "sample": "Capitol Hill Block Party 2026 · Seattle"
-  },
-  {
-    "name": "Smokin Jo",
-    "key": "smokinjo",
-    "events": 1,
-    "sources": [
-      "bandsintown"
-    ],
-    "onRA": true,
-    "sample": "15th July - 20th July, six days of Clockwork Orange bliss · Ibiza"
   },
   {
     "name": "snoritz",
@@ -9230,14 +8228,14 @@
     "sample": "Jane Fitz at Omana-Festival · Kalamitsi"
   },
   {
-    "name": "Sol Ortega",
-    "key": "solortega",
+    "name": "Sofiia Zoloto",
+    "key": "sofiiazoloto",
     "events": 1,
     "sources": [
       "ra"
     ],
     "onRA": true,
-    "sample": "boost+++ xxl - day one · Chicago"
+    "sample": "Moments Festival · Munich"
   },
   {
     "name": "SoLah",
@@ -9258,16 +8256,6 @@
     ],
     "onRA": true,
     "sample": "XRDS festival 2026 · Brussels"
-  },
-  {
-    "name": "Sora Éke",
-    "key": "soraeke",
-    "events": 1,
-    "sources": [
-      "ra"
-    ],
-    "onRA": true,
-    "sample": "KELLER HARD CLUB 36 · Madrid"
   },
   {
     "name": "SOTA",
@@ -9298,16 +8286,6 @@
     ],
     "onRA": true,
     "sample": "XRDS festival 2026 · Brussels"
-  },
-  {
-    "name": "Sound Rush",
-    "key": "soundrush",
-    "events": 1,
-    "sources": [
-      "songkick"
-    ],
-    "onRA": true,
-    "sample": "RFM Somnii 2026 · Figueira Da Foz"
   },
   {
     "name": "southstar",
@@ -9370,16 +8348,6 @@
     "sample": "Brunch Electronik Lisboa 2026 #3: Sara Landry, ØTTA, Steh, VLB · Lisbo"
   },
   {
-    "name": "Stenny",
-    "key": "stenny",
-    "events": 1,
-    "sources": [
-      "ra"
-    ],
-    "onRA": true,
-    "sample": "Schall im Schilf Festival 2026 · Munich"
-  },
-  {
     "name": "Stephan Krus",
     "key": "stephankrus",
     "events": 1,
@@ -9388,16 +8356,6 @@
     ],
     "onRA": true,
     "sample": "HARDSTYLER with Vieze Asbak · Venice"
-  },
-  {
-    "name": "Stephanie Sykes",
-    "key": "stephaniesykes",
-    "events": 1,
-    "sources": [
-      "ra"
-    ],
-    "onRA": true,
-    "sample": "boost+++ xxl - day one · Chicago"
   },
   {
     "name": "STERAC",
@@ -9450,6 +8408,16 @@
     "sample": "Randomer at Hackney Wick   Multiple Venues · East London"
   },
   {
+    "name": "Stum",
+    "key": "stum",
+    "events": 1,
+    "sources": [
+      "bandsintown"
+    ],
+    "onRA": true,
+    "sample": "Ellen Allien at The Garden Tisno · Tisno"
+  },
+  {
     "name": "su:zy",
     "key": "suzy",
     "events": 1,
@@ -9458,26 +8426,6 @@
     ],
     "onRA": true,
     "sample": "XRDS festival 2026 · Brussels"
-  },
-  {
-    "name": "Subthiel",
-    "key": "subthiel",
-    "events": 1,
-    "sources": [
-      "ra"
-    ],
-    "onRA": true,
-    "sample": "Schall im Schilf Festival 2026 · Munich"
-  },
-  {
-    "name": "Subtrax",
-    "key": "subtrax",
-    "events": 1,
-    "sources": [
-      "ra"
-    ],
-    "onRA": true,
-    "sample": "Teletech FESTIVAL 2026 · Manchester"
   },
   {
     "name": "Sugar Free",
@@ -9580,6 +8528,16 @@
     "sample": "Unreal Stage @Nibirii Festival · Cologne"
   },
   {
+    "name": "Tall Paul",
+    "key": "tallpaul",
+    "events": 1,
+    "sources": [
+      "bandsintown"
+    ],
+    "onRA": true,
+    "sample": "Ministry Of Sound Classical · Theale"
+  },
+  {
     "name": "TANJA MIJU",
     "key": "tanjamiju",
     "events": 1,
@@ -9610,16 +8568,6 @@
     "sample": "North Coast Music Festival 2026 · Bridgeview"
   },
   {
-    "name": "Tereza",
-    "key": "tereza",
-    "events": 1,
-    "sources": [
-      "ra"
-    ],
-    "onRA": true,
-    "sample": "Schall im Schilf Festival 2026 · Munich"
-  },
-  {
     "name": "Terra",
     "key": "terra",
     "events": 1,
@@ -9628,16 +8576,6 @@
     ],
     "onRA": true,
     "sample": "Unreal Stage @Nibirii Festival · Cologne"
-  },
-  {
-    "name": "TeuS",
-    "key": "teus",
-    "events": 1,
-    "sources": [
-      "songkick"
-    ],
-    "onRA": true,
-    "sample": "Chelina Manuhutu at Parc des Expositions de Montpellier, Pérols · Pero"
   },
   {
     "name": "The Avener",
@@ -9830,16 +8768,6 @@
     "sample": "III Points 2026 · Miami"
   },
   {
-    "name": "Tom Pooks",
-    "key": "tompooks",
-    "events": 1,
-    "sources": [
-      "songkick"
-    ],
-    "onRA": true,
-    "sample": "Chelina Manuhutu at Parc des Expositions de Montpellier, Pérols · Pero"
-  },
-  {
     "name": "Tomas Station",
     "key": "tomasstation",
     "events": 1,
@@ -9890,16 +8818,6 @@
     "sample": "Voodoo Village 2026 · Brussels"
   },
   {
-    "name": "Tornado Wallace",
-    "key": "tornadowallace",
-    "events": 1,
-    "sources": [
-      "ra"
-    ],
-    "onRA": true,
-    "sample": "Schall im Schilf Festival 2026 · Munich"
-  },
-  {
     "name": "Tricky",
     "key": "tricky",
     "events": 1,
@@ -9908,6 +8826,16 @@
     ],
     "onRA": true,
     "sample": "III Points 2026 · Miami"
+  },
+  {
+    "name": "Trikk",
+    "key": "trikk",
+    "events": 1,
+    "sources": [
+      "bandsintown"
+    ],
+    "onRA": true,
+    "sample": "Dixon at Boston Manor Park · South West London"
   },
   {
     "name": "Tristan da Cunha",
@@ -9938,26 +8866,6 @@
     ],
     "onRA": true,
     "sample": "Paranoid London @ KOKO · London"
-  },
-  {
-    "name": "Tyler Hill",
-    "key": "tylerhill",
-    "events": 1,
-    "sources": [
-      "ra"
-    ],
-    "onRA": true,
-    "sample": "Birthday Trio: Tyler Hill - FLIPSIDE - Randomdoug · Toronto"
-  },
-  {
-    "name": "u.r.trax",
-    "key": "urtrax",
-    "events": 1,
-    "sources": [
-      "ra"
-    ],
-    "onRA": true,
-    "sample": "boost+++ xxl - day one · Chicago"
   },
   {
     "name": "Udolph",
@@ -10040,16 +8948,6 @@
     "sample": "Vanjee @ Pacha Ibiza · Ibiza"
   },
   {
-    "name": "Varju",
-    "key": "varju",
-    "events": 1,
-    "sources": [
-      "ra"
-    ],
-    "onRA": true,
-    "sample": "Laster Club presents THE CLOSING with Ben Sims, Fireground Live & Varj"
-  },
-  {
     "name": "Victor Kal.",
     "key": "victorkal",
     "events": 1,
@@ -10068,16 +8966,6 @@
     ],
     "onRA": true,
     "sample": "Carl Cox · Sant Rafel"
-  },
-  {
-    "name": "Vinka Wydro",
-    "key": "vinkawydro",
-    "events": 1,
-    "sources": [
-      "songkick"
-    ],
-    "onRA": true,
-    "sample": "Gore @ Rex Club · Paris"
   },
   {
     "name": "Violently Happy",
@@ -10128,16 +9016,6 @@
     ],
     "onRA": true,
     "sample": "Brunch Electronik Lisboa 2026 #3: Sara Landry, ØTTA, Steh, VLB · Lisbo"
-  },
-  {
-    "name": "VOE",
-    "key": "voe",
-    "events": 1,
-    "sources": [
-      "ra"
-    ],
-    "onRA": true,
-    "sample": "Schall im Schilf Festival 2026 · Munich"
   },
   {
     "name": "Voicians",
@@ -10300,16 +9178,6 @@
     "sample": "Jane Fitz at Omana-Festival · Kalamitsi"
   },
   {
-    "name": "XVIA",
-    "key": "xvia",
-    "events": 1,
-    "sources": [
-      "ra"
-    ],
-    "onRA": true,
-    "sample": "boost+++ xxl - day one · Chicago"
-  },
-  {
     "name": "Y U QT",
     "key": "yuqt",
     "events": 1,
@@ -10318,16 +9186,6 @@
     ],
     "onRA": true,
     "sample": "Karrusel 2026 · Copenhagen"
-  },
-  {
-    "name": "YOSHI",
-    "key": "yoshi",
-    "events": 1,
-    "sources": [
-      "bandsintown"
-    ],
-    "onRA": true,
-    "sample": "MoBlack at DAY ONE BEACH RESORT & SPA  BEACH AREA · Antalya"
   },
   {
     "name": "Yoshiko",
@@ -10370,26 +9228,6 @@
     "sample": "Dissonanze Festival · Rome"
   },
   {
-    "name": "Yubik",
-    "key": "yubik",
-    "events": 1,
-    "sources": [
-      "songkick"
-    ],
-    "onRA": true,
-    "sample": "Chelina Manuhutu at Parc des Expositions de Montpellier, Pérols · Pero"
-  },
-  {
-    "name": "Yung Singh",
-    "key": "yungsingh",
-    "events": 1,
-    "sources": [
-      "songkick"
-    ],
-    "onRA": true,
-    "sample": "Yung Singh @ CODA · Toronto"
-  },
-  {
     "name": "Z@p",
     "key": "zp",
     "events": 1,
@@ -10418,16 +9256,6 @@
     ],
     "onRA": true,
     "sample": "BCCO with Yanamaste, future.666  · Cologne"
-  },
-  {
-    "name": "Zeds Dead",
-    "key": "zedsdead",
-    "events": 1,
-    "sources": [
-      "bandsintown"
-    ],
-    "onRA": true,
-    "sample": "Zeds Dead · New York"
   },
   {
     "name": "zeitlos (CH)",

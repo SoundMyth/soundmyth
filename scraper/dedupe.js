@@ -264,7 +264,8 @@ async function main() {
   }
 
   // ── Pass 4: Consecutive-day DJ dedup ──
-  // Same DJ + same venue + same city on consecutive days → merge into one event
+  // Same DJ + same city (festivals) or same venue+city (clubs) on nearby days → merge.
+  // Festivals use a 3-day window to cover a full weekend (Fri–Sun); clubs stay at 1 day.
   console.log('\n  Pass 4: Consecutive-day DJ dedup...');
   let consecMerged = 0;
 
@@ -290,21 +291,36 @@ async function main() {
   for (const [djName, entries] of djEvents) {
     if (entries.length < 2) continue;
 
-    // Group by venue+city
+    // For festivals: group by festival-base-name + city (not venue, which varies per stage).
+    // For clubs/shows: group by venue+city (same DJ at same club on consecutive nights).
+    const isFestEntry = (entry) => (entry.ev.tags || []).includes('festival');
+    const festKey = (entry) => {
+      const n = norm(entry.ev.name), v = norm(entry.ev.venue);
+      const base = festBaseNames.find(fb => n.includes(fb) || v.includes(fb)) || '';
+      return `festival|${base}|${normCity(entry.ev.city)}`;
+    };
+
     const byVenueCity = new Map();
     for (const entry of entries) {
-      const vc = `${normVenue(entry.ev.venue)}|${normCity(entry.ev.city)}`;
+      const vc = isFestEntry(entry)
+        ? festKey(entry)
+        : `${normVenue(entry.ev.venue)}|${normCity(entry.ev.city)}`;
       if (!byVenueCity.has(vc)) byVenueCity.set(vc, []);
       byVenueCity.get(vc).push(entry);
     }
 
     for (const [vc, vcEntries] of byVenueCity) {
       if (vcEntries.length < 2) continue;
+      const isFest = vc.startsWith('festival|');
 
       // Sort by date
       vcEntries.sort((a, b) => a.ev.date.localeCompare(b.ev.date));
 
-      // Find consecutive-day chains
+      // Find nearby-day chains and merge.
+      // Festivals: merge days within the same weekend (gap ≤ 3 days).
+      // Clubs: merge strictly consecutive days (gap = 1 day).
+      // Chain fix: after merging next into curr, update vcEntries[i+1].key to curr.key
+      // so the next iteration can continue the chain (Day1+2+3 in one pass).
       for (let i = 0; i < vcEntries.length - 1; i++) {
         const curr = vcEntries[i];
         const next = vcEntries[i + 1];
@@ -316,12 +332,15 @@ async function main() {
         const d2 = new Date(next.ev.date);
         const diffDays = (d2 - d1) / (1000 * 60 * 60 * 24);
 
-        if (diffDays === 1) {
-          // Consecutive days — merge next into curr's group
+        const maxGap = isFest ? 3 : 1;
+        if (diffDays >= 1 && diffDays <= maxGap) {
+          // Merge next into curr's group
           if (groups.has(curr.key) && groups.has(next.key) && curr.key !== next.key) {
             groups.get(curr.key).push(...groups.get(next.key));
             groups.delete(next.key);
             alreadyMergedKeys.add(next.key);
+            // Update the reference so chaining continues to Day N+2, N+3, etc.
+            vcEntries[i + 1] = { key: curr.key, ev: next.ev };
             consecMerged++;
           }
         }
@@ -409,6 +428,14 @@ async function main() {
       if (dup.name.length > bestName.length) bestName = dup.name;
     }
 
+    // For multi-day festival merges, use the earliest date across the group
+    let bestDate = keeper.date;
+    if (tagSet.has('festival')) {
+      for (const ev of rest) {
+        if (ev.date && ev.date < bestDate) bestDate = ev.date;
+      }
+    }
+
     const djs  = [...djSet];
     const tags = [...tagSet];
 
@@ -418,9 +445,10 @@ async function main() {
     const nameChanged  = bestName !== keeper.name;
     const urlChanged   = ticket_url !== keeper.ticket_url;
     const imgChanged   = img_url !== keeper.img_url;
+    const dateChanged  = bestDate !== keeper.date;
 
-    if (djsChanged || tagsChanged || nameChanged || urlChanged || imgChanged) {
-      await sb.from('events').update({ djs, tags, name: bestName, ticket_url, img_url, price }).eq('id', keeper.id);
+    if (djsChanged || tagsChanged || nameChanged || urlChanged || imgChanged || dateChanged) {
+      await sb.from('events').update({ djs, tags, name: bestName, ticket_url, img_url, price, date: bestDate }).eq('id', keeper.id);
       merged++;
     }
 

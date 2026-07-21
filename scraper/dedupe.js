@@ -377,6 +377,74 @@ async function main() {
   }
   console.log(`  DJ-day merges: ${djDayMerged}`);
 
+  // ── Pass 6: DJ double-booking check ──
+  // A DJ cannot play two different events on the same day.
+  // For each (dj_norm, date) that appears in multiple distinct events, keep the DJ
+  // only in the best event (source priority + richness) and strip from the rest.
+  // Events that become empty (0 DJs) after stripping are deleted.
+  console.log('\n  Pass 6: DJ double-booking check...');
+  let djStripped = 0, emptyDeleted = 0;
+
+  // Snapshot: id → current djs array (mutable; we edit in place then persist)
+  const evById = new Map();
+  for (const evs of groups.values()) {
+    for (const ev of evs) {
+      if (!evById.has(ev.id)) evById.set(ev.id, ev);
+    }
+  }
+
+  // Index: djNorm|date → Set of event ids
+  const djDateIds = new Map();
+  for (const ev of evById.values()) {
+    for (const dj of (ev.djs || [])) {
+      const k = `${norm(dj)}|${ev.date}`;
+      if (!djDateIds.has(k)) djDateIds.set(k, new Set());
+      djDateIds.get(k).add(ev.id);
+    }
+  }
+
+  const stripChanged = new Set(); // event ids whose djs[] was modified
+
+  for (const [k, ids] of djDateIds) {
+    if (ids.size < 2) continue;
+    const [djNorm] = k.split('|');
+    const evs = [...ids].map(id => evById.get(id)).filter(Boolean);
+
+    // Best event: highest source priority, then richness
+    evs.sort((a, b) => {
+      const sp = (SRC_PRIO[a.source] ?? 9) - (SRC_PRIO[b.source] ?? 9);
+      return sp !== 0 ? sp : richness(b) - richness(a);
+    });
+    const winner = evs[0];
+
+    for (const loser of evs.slice(1)) {
+      const before = (loser.djs || []).length;
+      loser.djs = (loser.djs || []).filter(d => norm(d) !== djNorm);
+      if (loser.djs.length < before) {
+        process.stdout.write(`\n  ✂ ${djNorm} | ${loser.date}: stripped from ${loser.source_id} (kept in ${winner.source_id})`);
+        stripChanged.add(loser.id);
+        djStripped++;
+      }
+    }
+  }
+
+  if (stripChanged.size > 0) {
+    for (const id of stripChanged) {
+      const ev = evById.get(id);
+      if (!ev) continue;
+      if (!ev.djs || ev.djs.length === 0) {
+        // No DJs left — delete the event entirely
+        await sb.from('events').delete().eq('id', id);
+        process.stdout.write(`\n  🗑 deleted empty event ${ev.source_id} (${ev.date})`);
+        emptyDeleted++;
+      } else {
+        // Update with the trimmed DJ list
+        await sb.from('events').update({ djs: ev.djs }).eq('id', id);
+      }
+    }
+  }
+  console.log(`\n  DJ strips: ${djStripped}  Empty-event deletes: ${emptyDeleted}`);
+
   const dupeGroups = [...groups.values()].filter(g => g.length > 1);
   console.log(`  Groups with duplicates: ${dupeGroups.length}`);
 

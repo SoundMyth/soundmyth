@@ -70,6 +70,17 @@ jobs:
           SUPABASE_SERVICE_KEY: ${{ secrets.SUPABASE_SERVICE_KEY }}
         run: node scrape-festivals-direct.js
 
+      - name: Scrape Festivals (Resident Advisor)
+        continue-on-error: true
+        timeout-minutes: 10
+        # Covers festivals with no Songkick URL — Songkick retired festival
+        # search, so RA is their only structured source (and the only one that
+        # returns a lineup).
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_SERVICE_KEY: ${{ secrets.SUPABASE_SERVICE_KEY }}
+        run: node scrape-festivals-ra.js
+
       - name: Enrich Clubs (RA URLs)
         continue-on-error: true
         timeout-minutes: 10

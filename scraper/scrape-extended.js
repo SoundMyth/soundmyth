@@ -18,6 +18,7 @@ import { config } from 'dotenv';
 import { fileURLToPath } from 'url';
 import { dirname, resolve } from 'path';
 import { cleanEvent } from './normalize.js';
+import { SK_HEADERS, withRetry } from './http.js';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 config({ path: resolve(__dirname, '.env') });
@@ -35,12 +36,8 @@ const sleep = ms => new Promise(r => setTimeout(r, ms));
 // ── HTTP ─────────────────────────────────────────────────────────────────────
 const UA = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36';
 
-const SK_HEADERS = {
-  'User-Agent': UA,
-  'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
-  'Accept-Language': 'en-US,en;q=0.9',
-  'Referer': 'https://www.songkick.com/',
-};
+// SK_HEADERS comes from http.js — Songkick needs a curl UA, see the note there.
+// WEB_HEADERS stays browser-like: it hits arbitrary artist/festival sites.
 const WEB_HEADERS = {
   'User-Agent': UA,
   'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
@@ -298,11 +295,11 @@ async function flushBuffer() {
   const batch = buffer.splice(0, buffer.length);
   bufferIds.clear();
   batch.forEach(cleanEvent);   // canonical city + drop garbage venue
-  const { error } = await sb.from('events').upsert(batch, {
-    onConflict:     'source_id',
-    ignoreDuplicates: false,
-  });
-  if (error) { console.error(`\n  ⚠️  ${error.message}`); totalErrors += batch.length; }
+  const { error } = await withRetry(
+    () => sb.from('events').upsert(batch, { onConflict: 'source_id', ignoreDuplicates: false }),
+    'Supabase upsert'
+  );
+  if (error) { console.error(`\n  ⚠️  ${error.message || error}`); totalErrors += batch.length; }
   else       { totalUpserted += batch.length; process.stdout.write(` ✓${batch.length}`); }
 }
 

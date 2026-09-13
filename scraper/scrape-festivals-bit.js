@@ -14,6 +14,7 @@ import { config }        from 'dotenv';
 import { fileURLToPath } from 'url';
 import { dirname, resolve } from 'path';
 import { cleanEvent, cleanVenue } from './normalize.js';
+import { SK_HEADERS, withRetry } from './http.js';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 config({ path: resolve(__dirname, '.env') });
@@ -37,20 +38,22 @@ const sleep = ms => new Promise(r => setTimeout(r, ms));
 const TODAY = new Date().toISOString().split('T')[0];
 
 // ── HTTP helpers ──────────────────────────────────────────────────────────────
-const UA = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36';
-const SK_HEADERS = {
-  'User-Agent': UA,
-  'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
-  'Accept-Language': 'en-US,en;q=0.9',
-  'Referer': 'https://www.songkick.com/',
-};
+// Non-404 failures are counted so a site-wide block shows up in the summary
+// instead of looking like "this festival has no events".
+const httpFails = new Map();
 
 async function fetchHTML(url, ms = 12000) {
   try {
     const res = await fetch(url, { headers: SK_HEADERS, signal: AbortSignal.timeout(ms), redirect: 'follow' });
-    if (!res.ok) return null;
+    if (!res.ok) {
+      if (res.status !== 404) httpFails.set(res.status, (httpFails.get(res.status) || 0) + 1);
+      return null;
+    }
     return await res.text();
-  } catch { return null; }
+  } catch {
+    httpFails.set('network', (httpFails.get('network') || 0) + 1);
+    return null;
+  }
 }
 
 // ── ISO country → full name ───────────────────────────────────────────────────
@@ -69,12 +72,30 @@ const COUNTRY_ISO = {
 function normCountry(c) { return COUNTRY_ISO[c] || c || ''; }
 
 // ── 1. BANDSINTOWN ────────────────────────────────────────────────────────────
+// Bandsintown closed its public REST API: every app_id now gets a blanket 403.
+// After a few consecutive denials we stop calling it for the rest of the run
+// rather than burning DELAY_BIT on ~260 guaranteed failures.
+let bitDenied = 0, bitDisabled = false;
+const BIT_GIVE_UP_AFTER = 5;
+
 async function fetchBIT(name) {
+  if (bitDisabled) return [];
   const url = `https://rest.bandsintown.com/artists/${encodeURIComponent(name)}/events`
             + `?app_id=${BIT_APP_ID}&date=upcoming`;
   try {
     const res = await fetch(url, { headers: { 'Accept': 'application/json' }, signal: AbortSignal.timeout(10000) });
-    if (!res.ok) return [];
+    if (!res.ok) {
+      if (res.status === 401 || res.status === 403) {
+        bitDenied++;
+        if (bitDenied === BIT_GIVE_UP_AFTER) {
+          bitDisabled = true;
+          console.warn(`\n\n  ⚠  Bandsintown returned ${res.status} ${BIT_GIVE_UP_AFTER}x in a row — API access denied.`);
+          console.warn(`     Skipping Bandsintown for the rest of this run; falling back to Songkick.\n`);
+        }
+      }
+      return [];
+    }
+    bitDenied = 0;
     const data = await res.json();
     return Array.isArray(data) ? data : [];
   } catch { return []; }
@@ -205,13 +226,9 @@ function normaliseJSONLD(item, festName, fallbackCity, fallbackCountry) {
   };
 }
 
-async function scrapeSK(festName, city, country, cachedSkUrl = null) {
-  // Use pre-enriched URL if available, otherwise search
-  const skUrl = cachedSkUrl || await searchSongkick(festName);
-  if (!skUrl) return [];
-
-  // Festival edition page has JSON-LD MusicEvent directly — no need for /calendar
-  const html = await fetchHTML(skUrl);
+/** Scrape one Songkick festival page (edition or root) for future events */
+async function scrapeSKPage(url, festName, city, country) {
+  const html = await fetchHTML(url);
   if (!html || html.length < 500) return [];
 
   // Parse JSON-LD events from the festival page
@@ -234,6 +251,25 @@ async function scrapeSK(festName, city, country, cachedSkUrl = null) {
   return [];
 }
 
+async function scrapeSK(festName, city, country, cachedSkUrl = null) {
+  // Use pre-enriched URL if available, otherwise search
+  const skUrl = cachedSkUrl || await searchSongkick(festName);
+  if (!skUrl) return [];
+
+  // sk_url is pinned to one edition (/festivals/{id}-slug/id/{edition}). Once
+  // that edition is over it yields only past dates — or 404s when Songkick
+  // retires it — so fall back to the festival root, which lists the next one.
+  const rootUrl = skUrl.replace(/\/id\/.*$/, '');
+  const candidates = rootUrl !== skUrl ? [skUrl, rootUrl] : [skUrl];
+
+  for (const url of candidates) {
+    const events = await scrapeSKPage(url, festName, city, country);
+    if (events.length) return events;
+    if (url !== candidates[candidates.length - 1]) await sleep(400);
+  }
+  return [];
+}
+
 // ── UPSERT BUFFER ────────────────────────────────────────────────────────────
 let buffer = [], totalUpserted = 0;
 
@@ -244,10 +280,11 @@ async function flushBuffer(force = false) {
   const seen = new Set();
   const batch = raw.filter(e => { if (seen.has(e.source_id)) return false; seen.add(e.source_id); return true; });
   batch.forEach(cleanEvent);   // canonical city + drop garbage venue
-  const { error } = await sb
-    .from('events')
-    .upsert(batch, { onConflict: 'source_id', ignoreDuplicates: false });
-  if (error) console.error(`\n  ❌  Supabase: ${error.message}`);
+  const { error } = await withRetry(
+    () => sb.from('events').upsert(batch, { onConflict: 'source_id', ignoreDuplicates: false }),
+    'Supabase upsert'
+  );
+  if (error) console.error(`\n  ❌  Supabase: ${error.message || error}`);
   else totalUpserted += batch.length;
   process.stdout.write(` ✓${batch.length}`);
 }
@@ -324,6 +361,13 @@ async function main() {
   console.log(`║  No events      : ${String(stats.none).padEnd(25)} ║`);
   console.log(`║  Total upserted : ${String(totalUpserted).padEnd(25)} ║`);
   console.log('╚══════════════════════════════════════════════╝');
+
+  if (bitDisabled) console.log('\n⚠  Bandsintown API denied all requests this run (Songkick only).');
+  if (httpFails.size) {
+    console.log('\n⚠  Songkick HTTP failures (excluding 404):');
+    for (const [status, n] of httpFails) console.log(`     ${status}: ${n}`);
+    console.log('   A large count here means Songkick is blocking us — check SK_HEADERS in http.js.');
+  }
 }
 
 main().then(() => process.exit(0)).catch(err => { console.error('Fatal:', err); process.exit(1); });

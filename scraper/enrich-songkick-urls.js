@@ -20,6 +20,7 @@
 import { readFileSync, writeFileSync } from 'fs';
 import { fileURLToPath }               from 'url';
 import { dirname, resolve }            from 'path';
+import { SK_HEADERS }                  from './http.js';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
@@ -30,14 +31,8 @@ const DELAY_OK   = 1300;  // ms after a successful fetch
 const DELAY_MISS = 800;   // ms after "not found"
 const DELAY_ERR  = 2500;  // ms after a rate-limit / error
 
-const UA = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36';
-
-const HEADERS = {
-  'User-Agent':      UA,
-  'Accept':          'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
-  'Accept-Language': 'en-US,en;q=0.9',
-  'Referer':         'https://www.songkick.com/',
-};
+// Songkick requires the curl-style UA in http.js — a browser UA gets 406.
+const HEADERS = SK_HEADERS;
 
 const sleep = ms => new Promise(r => setTimeout(r, ms));
 

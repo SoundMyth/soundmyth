@@ -12,6 +12,7 @@ import { createClient } from '@supabase/supabase-js';
 import { config }       from 'dotenv';
 import { fileURLToPath } from 'url';
 import { dirname, resolve } from 'path';
+import { withRetry } from './http.js';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 config({ path: resolve(__dirname, '.env') });
@@ -42,13 +43,13 @@ async function main() {
   console.log(`🗑  Purge before : ${cutoffStr}  (>${PURGE_DAYS_AGO} days ago)\n`);
 
   // Count first
-  const { count, error: countErr } = await sb
-    .from('events')
-    .select('id', { count: 'exact', head: true })
-    .lt('date', cutoffStr);
+  const { count, error: countErr } = await withRetry(
+    () => sb.from('events').select('id', { count: 'exact', head: true }).lt('date', cutoffStr),
+    'Count'
+  );
 
   if (countErr) {
-    console.error('❌  Count error:', countErr.message);
+    console.error('❌  Count error:', countErr.message || countErr);
     process.exit(1);
   }
 
@@ -63,13 +64,13 @@ async function main() {
   let deleted = 0;
   while (true) {
     // Supabase deletes up to the server row limit per call — use explicit range
-    const { error: delErr, count: batchCount } = await sb
-      .from('events')
-      .delete({ count: 'exact' })
-      .lt('date', cutoffStr);
+    const { error: delErr, count: batchCount } = await withRetry(
+      () => sb.from('events').delete({ count: 'exact' }).lt('date', cutoffStr),
+      'Delete batch'
+    );
 
     if (delErr) {
-      console.error('❌  Delete error:', delErr.message);
+      console.error('❌  Delete error:', delErr.message || delErr);
       process.exit(1);
     }
 
@@ -86,8 +87,11 @@ async function main() {
     let validEvents = [];
     let from = 0;
     while (true) {
-      const { data, error } = await sb.from('events').select('id').range(from, from + 999);
-      if (error) { console.error('  ❌  Error fetching events:', error.message); break; }
+      const { data, error } = await withRetry(
+        () => sb.from('events').select('id').range(from, from + 999),
+        'Fetch events page'
+      );
+      if (error) { console.error('  ❌  Error fetching events:', error.message || error); break; }
       validEvents = validEvents.concat(data || []);
       if (!data || data.length < 1000) break;
       from += 1000;
@@ -98,8 +102,11 @@ async function main() {
     let allSavedEvents = [];
     from = 0;
     while (true) {
-      const { data, error } = await sb.from('saved_events').select('id, event_id').range(from, from + 999);
-      if (error) { console.error('  ❌  Error fetching saved_events:', error.message); break; }
+      const { data, error } = await withRetry(
+        () => sb.from('saved_events').select('id, event_id').range(from, from + 999),
+        'Fetch saved_events page'
+      );
+      if (error) { console.error('  ❌  Error fetching saved_events:', error.message || error); break; }
       allSavedEvents = allSavedEvents.concat(data || []);
       if (!data || data.length < 1000) break;
       from += 1000;
@@ -112,12 +119,12 @@ async function main() {
     if (orphanIds.length > 0) {
       let orphanDeleted = 0;
       for (let i = 0; i < orphanIds.length; i += 100) {
-        const { error: delErr, count: batchCount } = await sb
-          .from('saved_events')
-          .delete({ count: 'exact' })
-          .in('id', orphanIds.slice(i, i + 100));
+        const { error: delErr, count: batchCount } = await withRetry(
+          () => sb.from('saved_events').delete({ count: 'exact' }).in('id', orphanIds.slice(i, i + 100)),
+          'Orphan delete batch'
+        );
         if (delErr) {
-          console.error('  ❌  Orphan delete error:', delErr.message);
+          console.error('  ❌  Orphan delete error:', delErr.message || delErr);
         } else {
           orphanDeleted += batchCount || 0;
         }

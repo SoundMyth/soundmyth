@@ -43,7 +43,8 @@ jobs:
 
       - name: Scrape DJs (BIT + Songkick cascade)
         continue-on-error: true
-        timeout-minutes: 40   # 852 DJs now (was 590) — name+cascade search needs more headroom
+        timeout-minutes: 60   # 852 DJs; Songkick now answers 200 with full pages (it used
+                              # to 406 instantly), so the cascade does real work per DJ
         env:
           SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
           SUPABASE_SERVICE_KEY: ${{ secrets.SUPABASE_SERVICE_KEY }}

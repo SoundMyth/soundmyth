@@ -379,71 +379,83 @@ async function main() {
   const stats = { dj: { bit: 0, sk: 0, webSK: 0, webLD: 0, none: 0 } };
 
   // ── DJs ────────────────────────────────────────────────────────────────────
-  console.log(`\n📀  DJs (${artists.length})\n${'─'.repeat(60)}`);
+  console.log(`\n📀  DJs (${artists.length})  [concurrency: 2]\n${'─'.repeat(60)}`);
 
-  for (let i = 0; i < artists.length; i++) {
-    const dj  = artists[i];
-    const pct = String(Math.round((i / artists.length) * 100)).padStart(3);
-    process.stdout.write(`[${String(i + 1).padStart(3)}/${artists.length}] ${pct}% │ ${dj.name.padEnd(28)} `);
+  // Two DJs are fetched concurrently: each progress line is emitted atomically
+  // (prefix + result in one console.log) so lines from the two workers don't
+  // interleave mid-line.  The flushing guard in flushBuffer() serialises writes
+  // to Supabase, so concurrent addEvents() calls are safe.
+  let djDone = 0;
 
-    // ① Bandsintown API (primary source)
-    {
-      const evs = await scrapeBIT(dj.name, dj.genre, dj.tags);
-      if (evs.length) {
-        addEvents(evs); stats.dj.bit++;
-        console.log(`[BIT]        → ${evs.length} events`);
-        await sleep(DELAY_DJ); continue;
+  async function scrapeDJ(dj, idx) {
+    const pct    = String(Math.round(((idx + 1) / artists.length) * 100)).padStart(3);
+    const prefix = `[${String(idx + 1).padStart(3)}/${artists.length}] ${pct}% │ ${dj.name.padEnd(28)} `;
+    try {
+      // ① Bandsintown
+      const bitEvs = await scrapeBIT(dj.name, dj.genre, dj.tags);
+      if (bitEvs.length) {
+        addEvents(bitEvs); stats.dj.bit++;
+        console.log(prefix + `[BIT]        → ${bitEvs.length} events`);
+        await sleep(DELAY_DJ); return;
       }
-    }
-
-    // ② Songkick direct URL
-    if (dj.songkick_url?.includes('songkick.com')) {
-      const evs = await scrapeSKArtist(dj.songkick_url, dj.name, dj.genre, dj.tags);
-      if (evs.length) {
-        addEvents(evs); stats.dj.sk++;
-        console.log(`[SK direct]  → ${evs.length} events`);
-        await sleep(DELAY_DJ); continue;
+      // ② Songkick direct URL
+      if (dj.songkick_url?.includes('songkick.com')) {
+        const evs = await scrapeSKArtist(dj.songkick_url, dj.name, dj.genre, dj.tags);
+        if (evs.length) {
+          addEvents(evs); stats.dj.sk++;
+          console.log(prefix + `[SK direct]  → ${evs.length} events`);
+          await sleep(DELAY_DJ); return;
+        }
       }
-    }
-
-    // ③ tour_web: look for Songkick embed
-    if (dj.tour_web?.startsWith('http')) {
-      const html = await fetchHTML(dj.tour_web);
-      if (html) {
-        const skUrl = findSKArtistUrl(html);
-        if (skUrl) {
-          await sleep(400);
-          const evs = await scrapeSKArtist(skUrl, dj.name, dj.genre, dj.tags);
-          if (evs.length) {
-            addEvents(evs); stats.dj.webSK++;
-            console.log(`[web→SK]     → ${evs.length} events`);
-            await sleep(DELAY_DJ); continue;
+      // ③ tour_web → Songkick embed
+      if (dj.tour_web?.startsWith('http')) {
+        const html = await fetchHTML(dj.tour_web);
+        if (html) {
+          const skUrl = findSKArtistUrl(html);
+          if (skUrl) {
+            await sleep(400);
+            const evs = await scrapeSKArtist(skUrl, dj.name, dj.genre, dj.tags);
+            if (evs.length) {
+              addEvents(evs); stats.dj.webSK++;
+              console.log(prefix + `[web→SK]     → ${evs.length} events`);
+              await sleep(DELAY_DJ); return;
+            }
+          }
+          // ④ JSON-LD directly on page
+          const ldEvs = extractJSONLDEvents(html)
+            .map(e => normaliseJSONLD(e, dj.name, dj.genre, dj.tags, 'website'))
+            .filter(Boolean);
+          if (ldEvs.length) {
+            addEvents(ldEvs); stats.dj.webLD++;
+            console.log(prefix + `[web→LD]     → ${ldEvs.length} events`);
+            await sleep(DELAY_DJ); return;
           }
         }
-
-        // ④ tour_web: JSON-LD events directly on page
-        const ldEvs = extractJSONLDEvents(html)
-          .map(e => normaliseJSONLD(e, dj.name, dj.genre, dj.tags, 'website'))
-          .filter(Boolean);
-        if (ldEvs.length) {
-          addEvents(ldEvs); stats.dj.webLD++;
-          console.log(`[web→LD]     → ${ldEvs.length} events`);
-          await sleep(DELAY_DJ); continue;
-        }
+      }
+      stats.dj.none++;
+      console.log(prefix + `[–]          no events found`);
+      await sleep(300);
+    } catch (err) {
+      stats.dj.none++;
+      console.error(`\n  ❌  ${dj.name}: ${err.message}`);
+    } finally {
+      djDone++;
+      if (djDone % 10 === 0) {
+        flushBuffer();   // fire-and-forget; flushing guard serialises writes
+        const elapsed = (Date.now() - t0) / 1000;
+        const rem = Math.round((elapsed / djDone) * (artists.length - djDone) / 60);
+        console.log(`\n  ⏱  ~${rem}m remaining for DJs\n`);
       }
     }
-
-    stats.dj.none++;
-    console.log(`[–]          no events found`);
-    await sleep(300);
-
-    if ((i + 1) % 10 === 0) {
-      await flushBuffer();
-      const elapsed = (Date.now() - t0) / 1000;
-      const rem = Math.round((elapsed / (i + 1)) * (artists.length - i - 1) / 60);
-      console.log(`\n  ⏱  ~${rem}m remaining for DJs\n`);
-    }
   }
+
+  let nextDJIdx = 0;
+  await Promise.all(Array.from({ length: 2 }, async () => {
+    while (nextDJIdx < artists.length) {
+      const idx = nextDJIdx++;
+      await scrapeDJ(artists[idx], idx);
+    }
+  }));
   await flushBuffer();
 
   // ── End-of-run retry for failed batches ────────────────────────────────────

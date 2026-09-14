@@ -352,10 +352,6 @@ function addEvents(evs) {
       bufferIds.add(ev.source_id);
     }
   }
-  // Fire-and-forget: the flushing guard ensures only one write runs at a time;
-  // any events that arrive while a flush is in progress stay in the buffer and
-  // are picked up by the next periodic flush (every 10 DJs, awaited).
-  if (buffer.length >= BATCH) flushBuffer();
 }
 
 // ── Main ──────────────────────────────────────────────────────────────────────
@@ -441,7 +437,6 @@ async function main() {
     } finally {
       djDone++;
       if (djDone % 10 === 0) {
-        flushBuffer();   // fire-and-forget; flushing guard serialises writes
         const elapsed = (Date.now() - t0) / 1000;
         const rem = Math.round((elapsed / djDone) * (artists.length - djDone) / 60);
         console.log(`\n  ⏱  ~${rem}m remaining for DJs\n`);
@@ -456,7 +451,27 @@ async function main() {
       await scrapeDJ(artists[idx], idx);
     }
   }));
-  await flushBuffer();
+  // All events accumulated in memory during scraping — flush now in paced batches.
+  bufferIds.clear();
+  console.log(`\n\n💾  Flushing ${buffer.length} events to Supabase…`);
+  while (buffer.length > 0) {
+    const slice = buffer.splice(0, BATCH);
+    slice.forEach(cleanEvent);
+    const { error } = await withRetry(
+      () => sb.from('events').upsert(slice, { onConflict: 'source_id', ignoreDuplicates: false }),
+      'Supabase upsert', 4, 5000
+    );
+    if (error) {
+      console.error(`\n  ⚠️  ${error.message || error} — queued for end-of-run retry`);
+      failQueue.push(slice);
+      totalErrors += slice.length;
+    } else {
+      totalUpserted += slice.length;
+      process.stdout.write(` ✓${slice.length}`);
+    }
+    if (buffer.length > 0) await sleep(800);
+  }
+  process.stdout.write('\n');
 
   // ── End-of-run retry for failed batches ────────────────────────────────────
   if (failQueue.length) {

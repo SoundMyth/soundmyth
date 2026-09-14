@@ -187,14 +187,30 @@ async function main() {
   const batch = events.filter(e => { if (seen.has(e.source_id)) return false; seen.add(e.source_id); return true; });
   batch.forEach(cleanEvent);
 
+  const failQueue = [];
   for (let i = 0; i < batch.length; i += BATCH) {
     const slice = batch.slice(i, i + BATCH);
     const { error } = await withRetry(
       () => sb.from('events').upsert(slice, { onConflict: 'source_id', ignoreDuplicates: false }),
       'Supabase upsert'
     );
-    if (error) console.error('\n❌  Supabase:', error.message || error);
+    if (error) { console.error('\n❌  Supabase:', error.message || error, '— queued for retry'); failQueue.push(slice); }
     else upserted += slice.length;
+  }
+
+  if (failQueue.length) {
+    const total = failQueue.reduce((n, s) => n + s.length, 0);
+    console.log(`\n⏳  ${failQueue.length} batch(es) failed (${total} events). Retrying after 30 s…`);
+    await sleep(30_000);
+    for (const slice of failQueue) {
+      const { error } = await withRetry(
+        () => sb.from('events').upsert(slice, { onConflict: 'source_id', ignoreDuplicates: false }),
+        'End-of-run retry', 5, 10_000
+      );
+      if (!error) upserted += slice.length;
+      else console.error('❌  End-of-run retry failed:', error.message || error);
+      await sleep(3000);
+    }
   }
 
   console.log('\n╔══════════════════════════════════════════════════╗');

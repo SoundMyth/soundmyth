@@ -25,6 +25,12 @@ config({ path: resolve(__dirname, '.env') });
 
 const SB_URL  = process.env.SUPABASE_URL;
 const SB_KEY  = process.env.SUPABASE_SERVICE_KEY;
+
+if (!SB_URL || !SB_KEY) {
+  console.error('❌  Missing SUPABASE_URL or SUPABASE_SERVICE_KEY');
+  process.exit(1);
+}
+
 const TODAY   = new Date().toISOString().split('T')[0];
 const BATCH   = 50;
 const DELAY_DJ   = 800;   // ms
@@ -61,12 +67,29 @@ async function fetchHTML(url, headers = WEB_HEADERS, ms = 12000) {
 // ── Bandsintown API ───────────────────────────────────────────────────────────
 const BIT_APP_ID = process.env.BIT_APP_ID || 'js_bandsintown';
 
+// BIT returns 403 for every app_id since the public API closure. After
+// BIT_GIVE_UP_AFTER consecutive 401/403s we stop calling it for the rest
+// of the run to avoid wasting ~11 minutes of DELAY_DJ on 852 guaranteed failures.
+let bitDenied = 0, bitDisabled = false;
+const BIT_GIVE_UP_AFTER = 5;
+
 async function fetchBIT(artistName) {
+  if (bitDisabled) return [];
   const url = `https://rest.bandsintown.com/artists/${encodeURIComponent(artistName)}/events`
             + `?app_id=${BIT_APP_ID}&date=upcoming`;
   try {
     const res = await fetch(url, { headers: { 'Accept': 'application/json' }, signal: AbortSignal.timeout(10000) });
-    if (!res.ok) return [];
+    if (!res.ok) {
+      if (res.status === 401 || res.status === 403) {
+        bitDenied++;
+        if (bitDenied === BIT_GIVE_UP_AFTER) {
+          bitDisabled = true;
+          console.warn(`\n\n  ⚠  Bandsintown returned ${res.status} ${BIT_GIVE_UP_AFTER}× — API access denied. Skipping BIT for rest of run.\n`);
+        }
+      }
+      return [];
+    }
+    bitDenied = 0;
     const data = await res.json();
     return Array.isArray(data) ? data : [];
   } catch { return []; }

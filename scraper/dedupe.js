@@ -19,6 +19,7 @@ import { readFileSync, existsSync } from 'fs';
 import { config }        from 'dotenv';
 import { fileURLToPath } from 'url';
 import { dirname, resolve } from 'path';
+import { withRetry } from './http.js';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 config({ path: resolve(__dirname, '.env') });
@@ -117,23 +118,37 @@ async function main() {
   const PAGE = 1000;
   let allEvents = [];
   let from = 0;
+  let loadFailed = false;
   const today = new Date().toISOString().split('T')[0];
 
   while (true) {
-    const { data, error } = await sb
-      .from('events')
-      .select('id, name, venue, city, country, date, djs, tags, source, source_id, ticket_url, img_url, price, genre')
-      .gte('date', today)
-      .range(from, from + PAGE - 1)
-      .order('date', { ascending: true });
-
-    if (error) { console.error('  ❌', error.message); break; }
+    const { data, error } = await withRetry(
+      () => sb
+        .from('events')
+        .select('id, name, venue, city, country, date, djs, tags, source, source_id, ticket_url, img_url, price, genre')
+        .gte('date', today)
+        .range(from, from + PAGE - 1)
+        .order('date', { ascending: true }),
+      `Load events page (from=${from})`
+    );
+    if (error) {
+      console.error(`  ❌  Event load failed at offset ${from} — aborting dedup to avoid wrong deletions:`, error.message);
+      loadFailed = true;
+      break;
+    }
     allEvents = allEvents.concat(data);
     if (data.length < PAGE) break;
     from += PAGE;
   }
 
-  console.log(`  Loaded ${allEvents.length} total events`);
+  console.log(`  Loaded ${allEvents.length} total events${loadFailed ? ' (INCOMPLETE — skipping merge/delete passes)' : ''}`);
+
+  if (loadFailed) {
+    console.log('\n╔══════════════════════════════════════════════╗');
+    console.log('║  Dedup skipped — incomplete event load       ║');
+    console.log('╚══════════════════════════════════════════════╝');
+    return;
+  }
 
   // Normalise name for comparison
   function normName(s) {
@@ -437,13 +452,18 @@ async function main() {
       const ev = evById.get(id);
       if (!ev) continue;
       if (!ev.djs || ev.djs.length === 0) {
-        // No DJs left — delete the event entirely
-        await sb.from('events').delete().eq('id', id);
-        process.stdout.write(`\n  🗑 deleted empty event ${ev.source_id} (${ev.date})`);
-        emptyDeleted++;
+        const { error: delE } = await withRetry(
+          () => sb.from('events').delete().eq('id', id),
+          `Delete empty event ${ev.source_id}`
+        );
+        if (delE) console.error(`\n  ❌  Delete failed (${ev.source_id}): ${delE.message}`);
+        else { process.stdout.write(`\n  🗑 deleted empty event ${ev.source_id} (${ev.date})`); emptyDeleted++; }
       } else {
-        // Update with the trimmed DJ list
-        await sb.from('events').update({ djs: ev.djs }).eq('id', id);
+        const { error: updE } = await withRetry(
+          () => sb.from('events').update({ djs: ev.djs }).eq('id', id),
+          `Update DJ list ${ev.source_id}`
+        );
+        if (updE) console.error(`\n  ❌  DJ update failed (${ev.source_id}): ${updE.message}`);
       }
     }
   }
@@ -520,13 +540,20 @@ async function main() {
     const dateChanged  = bestDate !== keeper.date;
 
     if (djsChanged || tagsChanged || nameChanged || urlChanged || imgChanged || dateChanged) {
-      await sb.from('events').update({ djs, tags, name: bestName, ticket_url, img_url, price, date: bestDate }).eq('id', keeper.id);
-      merged++;
+      const { error: updErr } = await withRetry(
+        () => sb.from('events').update({ djs, tags, name: bestName, ticket_url, img_url, price, date: bestDate }).eq('id', keeper.id),
+        `Update keeper ${keeper.source_id}`
+      );
+      if (updErr) console.error(`  ❌  Keeper update failed: ${updErr.message}`);
+      else merged++;
     }
 
     // Delete the duplicates
     const idsToDelete = rest.map(r => r.id);
-    const { error: delErr } = await sb.from('events').delete().in('id', idsToDelete);
+    const { error: delErr } = await withRetry(
+      () => sb.from('events').delete().in('id', idsToDelete),
+      `Delete duplicates for ${keeper.source_id}`
+    );
     if (delErr) console.error(`  ❌  Delete error: ${delErr.message}`);
     else deleted += idsToDelete.length;
 

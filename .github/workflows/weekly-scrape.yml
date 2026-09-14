@@ -99,6 +99,7 @@ jobs:
         run: node scrape-clubs-ra.js
 
       - name: Deduplicate events
+        continue-on-error: true
         timeout-minutes: 5
         env:
           SUPABASE_URL: ${{ secrets.SUPABASE_URL }}

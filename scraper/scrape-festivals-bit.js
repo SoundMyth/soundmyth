@@ -272,6 +272,7 @@ async function scrapeSK(festName, city, country, cachedSkUrl = null) {
 
 // ── UPSERT BUFFER ────────────────────────────────────────────────────────────
 let buffer = [], totalUpserted = 0;
+const failQueue = [];   // batches that exhausted retries — retried at end of run
 
 async function flushBuffer(force = false) {
   if (!force && buffer.length < BATCH) return;
@@ -279,14 +280,18 @@ async function flushBuffer(force = false) {
   const raw  = buffer.splice(0, buffer.length);
   const seen = new Set();
   const batch = raw.filter(e => { if (seen.has(e.source_id)) return false; seen.add(e.source_id); return true; });
-  batch.forEach(cleanEvent);   // canonical city + drop garbage venue
+  batch.forEach(cleanEvent);
   const { error } = await withRetry(
     () => sb.from('events').upsert(batch, { onConflict: 'source_id', ignoreDuplicates: false }),
     'Supabase upsert'
   );
-  if (error) console.error(`\n  ❌  Supabase: ${error.message || error}`);
-  else totalUpserted += batch.length;
-  process.stdout.write(` ✓${batch.length}`);
+  if (error) {
+    console.error(`\n  ❌  Supabase: ${error.message || error} — queued for end-of-run retry`);
+    failQueue.push(batch);
+  } else {
+    totalUpserted += batch.length;
+    process.stdout.write(` ✓${batch.length}`);
+  }
 }
 
 // ── MAIN ─────────────────────────────────────────────────────────────────────
@@ -349,6 +354,26 @@ async function main() {
   }
 
   await flushBuffer(true);
+
+  // End-of-run retry for batches that failed all attempts during the main loop
+  if (failQueue.length) {
+    const total = failQueue.reduce((n, b) => n + b.length, 0);
+    console.log(`\n\n⏳  ${failQueue.length} batch(es) failed (${total} events). Retrying after 30 s…`);
+    await sleep(30_000);
+    let recovered = 0;
+    for (const batch of failQueue) {
+      const { error } = await withRetry(
+        () => sb.from('events').upsert(batch, { onConflict: 'source_id', ignoreDuplicates: false }),
+        'End-of-run retry',
+        5,
+        10_000
+      );
+      if (!error) { totalUpserted += batch.length; recovered += batch.length; }
+      else console.error(`❌  End-of-run retry still failed: ${error.message || error}`);
+      await sleep(3000);
+    }
+    if (recovered) console.log(`✅  Recovered ${recovered} events from retry queue`);
+  }
 
   const elapsed = Math.round((Date.now() - t0) / 1000);
   const mm = Math.floor(elapsed / 60), ss = elapsed % 60;

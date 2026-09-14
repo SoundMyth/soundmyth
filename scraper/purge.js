@@ -60,12 +60,14 @@ async function main() {
     return;
   }
 
-  // Delete in batches of 1000 to avoid timeouts
+  // Delete in batches of 1000 to avoid timeouts.
+  // .limit(1000) is essential: without it, a single DELETE with no row limit could
+  // time out on a large backlog and cause the step to exit(1), which blocks the
+  // "Commit data files" step (purge has no continue-on-error in the workflow).
   let deleted = 0;
   while (true) {
-    // Supabase deletes up to the server row limit per call — use explicit range
     const { error: delErr, count: batchCount } = await withRetry(
-      () => sb.from('events').delete({ count: 'exact' }).lt('date', cutoffStr),
+      () => sb.from('events').delete({ count: 'exact' }).lt('date', cutoffStr).limit(1000),
       'Delete batch'
     );
 

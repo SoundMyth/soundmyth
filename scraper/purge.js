@@ -42,10 +42,13 @@ async function main() {
   console.log(`\n🗓  Today       : ${new Date().toISOString().split('T')[0]}`);
   console.log(`🗑  Purge before : ${cutoffStr}  (>${PURGE_DAYS_AGO} days ago)\n`);
 
-  // Count first
+  // Count first — use a generous retry budget: purge runs at the end of a 1.5h
+  // scrape, when Supabase connections may be transiently exhausted.
   const { count, error: countErr } = await withRetry(
     () => sb.from('events').select('id', { count: 'exact', head: true }).lt('date', cutoffStr),
-    'Count'
+    'Count',
+    5,
+    5000
   );
 
   if (countErr) {
@@ -68,7 +71,9 @@ async function main() {
   while (true) {
     const { error: delErr, count: batchCount } = await withRetry(
       () => sb.from('events').delete({ count: 'exact' }).lt('date', cutoffStr).limit(1000),
-      'Delete batch'
+      'Delete batch',
+      5,
+      5000
     );
 
     if (delErr) {

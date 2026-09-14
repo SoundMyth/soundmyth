@@ -13,7 +13,7 @@
  */
 
 import { createClient } from '@supabase/supabase-js';
-import { readFileSync, existsSync } from 'fs';
+import { readFileSync } from 'fs';
 import { config } from 'dotenv';
 import { fileURLToPath } from 'url';
 import { dirname, resolve } from 'path';
@@ -33,8 +33,7 @@ if (!SB_URL || !SB_KEY) {
 
 const TODAY   = new Date().toISOString().split('T')[0];
 const BATCH   = 50;
-const DELAY_DJ   = 800;   // ms
-const DELAY_FEST = 700;   // ms per festival (one fetch)
+const DELAY_DJ   = 800;   // ms between DJ Songkick requests
 
 const sb    = createClient(SB_URL, SB_KEY, { auth: { persistSession: false } });
 const sleep = ms => new Promise(r => setTimeout(r, ms));
@@ -365,20 +364,19 @@ async function main() {
   const t0 = Date.now();
   console.log('\n╔══════════════════════════════════════════╗');
   console.log('║  SoundMyth – Extended Scraper            ║');
-  console.log('║  DJs:       Songkick URL → JSON-LD       ║');
-  console.log('║             tour_web → SK embed → LD     ║');
-  console.log('║  Festivals: own website → JSON-LD        ║');
-  console.log('║  Mode: purge past + upsert new           ║');
+  console.log('║  DJs:  Songkick URL → JSON-LD            ║');
+  console.log('║        tour_web → SK embed → LD          ║');
   console.log('╚══════════════════════════════════════════╝\n');
 
   // NOTE: purge moved to dedicated purge.js (keeps 15-day retention window)
 
   const artists  = JSON.parse(readFileSync(resolve(__dirname, 'data/artists_all.json'), 'utf8'));
-  const festivals = JSON.parse(readFileSync(
-    resolve(__dirname, existsSync(resolve(__dirname, 'data/festivals_all.json'))
-      ? 'data/festivals_all.json' : 'data/festivals_top100.json'), 'utf8'));
 
-  const stats = { dj: { bit: 0, sk: 0, webSK: 0, webLD: 0, none: 0 }, fest: { found: 0, none: 0 } };
+  // Festivals are handled by the three dedicated festival steps
+  // (scrape-festivals-bit, scrape-festivals-direct, scrape-festivals-ra).
+  // Removing the duplicate festival loop here saves ~10 minutes per run.
+
+  const stats = { dj: { bit: 0, sk: 0, webSK: 0, webLD: 0, none: 0 } };
 
   // ── DJs ────────────────────────────────────────────────────────────────────
   console.log(`\n📀  DJs (${artists.length})\n${'─'.repeat(60)}`);
@@ -448,40 +446,6 @@ async function main() {
   }
   await flushBuffer();
 
-  // ── Festivals ──────────────────────────────────────────────────────────────
-  console.log(`\n\n🎪  Festivals (${festivals.length}) – scraping own websites\n${'─'.repeat(60)}`);
-  console.log('  (Note: Songkick festival search is JS-rendered; using website JSON-LD instead)\n');
-
-  for (let i = 0; i < festivals.length; i++) {
-    const fest = festivals[i];
-    const pct  = String(Math.round((i / festivals.length) * 100)).padStart(3);
-    process.stdout.write(`[${String(i + 1).padStart(3)}/${festivals.length}] ${pct}% │ ${fest.name.padEnd(38)} `);
-
-    if (!fest.website?.startsWith('http')) {
-      stats.fest.none++;
-      console.log(`[–] no website URL`);
-      continue;
-    }
-
-    const evs = await scrapeFestivalWebsite(fest.website, fest.name, fest.city, fest.country);
-    if (evs.length) {
-      addEvents(evs); stats.fest.found++;
-      console.log(`[WEB→LD]  → ${evs.length} events`);
-    } else {
-      stats.fest.none++;
-      console.log(`[–]       no JSON-LD events`);
-    }
-
-    await sleep(DELAY_FEST);
-    if ((i + 1) % 10 === 0) {
-      await flushBuffer();
-      const elapsed = (Date.now() - t0) / 1000;
-      const rem = Math.round((elapsed / (artists.length + i + 1)) * (festivals.length - i - 1) / 60);
-      console.log(`\n  ⏱  ~${rem}m remaining for Festivals\n`);
-    }
-  }
-  await flushBuffer();
-
   // ── End-of-run retry for failed batches ────────────────────────────────────
   if (failQueue.length) {
     const queuedCount = failQueue.reduce((n, b) => n + b.length, 0);
@@ -512,7 +476,6 @@ async function main() {
   console.log(`║  Time: ${mm}m${ss}s                              ║`);
   console.log(`║  DJs (new events from):                  ║`);
   console.log(`║    BIT=${stats.dj.bit}  SK=${stats.dj.sk}  web→SK=${stats.dj.webSK}  web→LD=${stats.dj.webLD}  none=${stats.dj.none}  ║`);
-  console.log(`║  Festivals: found=${stats.fest.found}  none=${stats.fest.none}         ║`);
   console.log(`║  Total upserted: ${String(totalUpserted).padEnd(24)}║`);
   console.log(`║  Errors: ${String(totalErrors).padEnd(32)}║`);
   console.log('╚══════════════════════════════════════════╝\n');

@@ -26,7 +26,7 @@ const sleep = ms => new Promise(r => setTimeout(r, ms));
  * Handles both thrown errors (TypeError: fetch failed) and returned { error }.
  * Returns the last result/error if every attempt fails.
  */
-export async function withRetry(fn, label, maxRetries = 3) {
+export async function withRetry(fn, label, maxRetries = 3, baseMs = 1000) {
   let lastErr;
   for (let attempt = 1; attempt <= maxRetries; attempt++) {
     try {
@@ -37,7 +37,7 @@ export async function withRetry(fn, label, maxRetries = 3) {
       lastErr = err;
     }
     if (attempt < maxRetries) {
-      const wait = 1000 * attempt;   // 1s, 2s
+      const wait = baseMs * attempt;
       console.warn(`\n  ⚠  ${label} failed (attempt ${attempt}/${maxRetries}): ${lastErr?.message || lastErr}. Retrying in ${wait}ms…`);
       await sleep(wait);
     }

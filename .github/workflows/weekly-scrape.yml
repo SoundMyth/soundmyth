@@ -13,7 +13,7 @@ permissions:
 jobs:
   scrape:
     runs-on: ubuntu-latest
-    timeout-minutes: 150   # step budgets sum to ~159m; 150 gives real headroom as DJ list grows
+    timeout-minutes: 165   # step budgets: DJ 75 + others ~80; headroom as DJ list grows
 
     defaults:
       run:
@@ -43,8 +43,9 @@ jobs:
 
       - name: Scrape DJs (BIT + Songkick cascade)
         continue-on-error: true
-        timeout-minutes: 60   # 852 DJs; Songkick now answers 200 with full pages (it used
-                              # to 406 instantly), so the cascade does real work per DJ
+        timeout-minutes: 75   # 852 DJs; Songkick now answers 200 with full pages (it used
+                              # to 406 instantly), so the cascade does real work per DJ.
+                              # Extra 15 m budget covers the end-of-run Supabase retry pass.
         env:
           SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
           SUPABASE_SERVICE_KEY: ${{ secrets.SUPABASE_SERVICE_KEY }}

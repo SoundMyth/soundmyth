@@ -289,18 +289,37 @@ let buffer         = [];
 let bufferIds      = new Set();   // dedup within buffer
 let totalUpserted  = 0;
 let totalErrors    = 0;
+// Prevents concurrent upserts: addEvents() is synchronous so flushBuffer()
+// can be called without await; the guard ensures only one write runs at a time.
+let flushing       = false;
+// Batches that failed all retries — retried once at end of run after a long pause.
+const failQueue    = [];
 
 async function flushBuffer() {
-  if (!buffer.length) return;
-  const batch = buffer.splice(0, buffer.length);
-  bufferIds.clear();
-  batch.forEach(cleanEvent);   // canonical city + drop garbage venue
-  const { error } = await withRetry(
-    () => sb.from('events').upsert(batch, { onConflict: 'source_id', ignoreDuplicates: false }),
-    'Supabase upsert'
-  );
-  if (error) { console.error(`\n  ⚠️  ${error.message || error}`); totalErrors += batch.length; }
-  else       { totalUpserted += batch.length; process.stdout.write(` ✓${batch.length}`); }
+  if (flushing || !buffer.length) return;
+  flushing = true;
+  try {
+    const batch = buffer.splice(0, buffer.length);
+    bufferIds.clear();
+    batch.forEach(cleanEvent);
+    // 4 attempts, 5 s base → waits 5 s / 10 s / 15 s before giving up
+    const { error } = await withRetry(
+      () => sb.from('events').upsert(batch, { onConflict: 'source_id', ignoreDuplicates: false }),
+      'Supabase upsert',
+      4,
+      5000
+    );
+    if (error) {
+      console.error(`\n  ⚠️  ${error.message || error} — queued for end-of-run retry`);
+      failQueue.push(batch);
+      totalErrors += batch.length;
+    } else {
+      totalUpserted += batch.length;
+      process.stdout.write(` ✓${batch.length}`);
+    }
+  } finally {
+    flushing = false;
+  }
 }
 
 function addEvents(evs) {
@@ -311,6 +330,9 @@ function addEvents(evs) {
       bufferIds.add(ev.source_id);
     }
   }
+  // Fire-and-forget: the flushing guard ensures only one write runs at a time;
+  // any events that arrive while a flush is in progress stay in the buffer and
+  // are picked up by the next periodic flush (every 10 DJs, awaited).
   if (buffer.length >= BATCH) flushBuffer();
 }
 
@@ -436,6 +458,26 @@ async function main() {
     }
   }
   await flushBuffer();
+
+  // ── End-of-run retry for failed batches ────────────────────────────────────
+  if (failQueue.length) {
+    const queuedCount = failQueue.reduce((n, b) => n + b.length, 0);
+    console.log(`\n\n⏳  ${failQueue.length} batch(es) failed during the run (${queuedCount} events). Retrying after 30 s pause…`);
+    await sleep(30_000);
+    let recovered = 0;
+    for (const batch of failQueue) {
+      const { error } = await withRetry(
+        () => sb.from('events').upsert(batch, { onConflict: 'source_id', ignoreDuplicates: false }),
+        'End-of-run retry',
+        5,
+        10_000
+      );
+      if (!error) { totalUpserted += batch.length; totalErrors -= batch.length; recovered += batch.length; }
+      else console.error(`❌  End-of-run retry still failed: ${error.message || error}`);
+      await sleep(3000);
+    }
+    if (recovered) console.log(`✅  Recovered ${recovered} events from retry queue`);
+  }
 
   // ── Summary ────────────────────────────────────────────────────────────────
   const elapsed = Math.round((Date.now() - t0) / 1000);

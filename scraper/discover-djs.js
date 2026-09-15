@@ -26,6 +26,7 @@ import { readFileSync, writeFileSync } from 'fs';
 import { fileURLToPath }           from 'url';
 import { dirname, resolve }        from 'path';
 import { pickCanon }               from './normalize.js';
+import { withRetry }               from './http.js';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const readJ = p => { try { return JSON.parse(readFileSync(resolve(__dirname, p), 'utf8')); } catch { return []; } };
@@ -62,8 +63,11 @@ const cache     = new Map(prev.map(c => [c.key || djKey(c.name), c]));   // djKe
 // ── pull every future event (paged) ────────────────────────────────────────────
 let rows = [], from = 0;
 while (true) {
-  const { data, error } = await sb.from('events').select('name,djs,source,city,date').gte('date', TODAY).range(from, from + 999);
-  if (error) { console.error(error.message); process.exit(1); }
+  const { data, error } = await withRetry(
+    () => sb.from('events').select('name,djs,source,city,date').gte('date', TODAY).range(from, from + 999),
+    `Load events page (from=${from})`, 5, 5000
+  );
+  if (error) { console.error(`❌  Event load failed at offset ${from}: ${error.message || error}`); process.exit(1); }
   rows = rows.concat(data); if (data.length < 1000) break; from += 1000;
 }
 

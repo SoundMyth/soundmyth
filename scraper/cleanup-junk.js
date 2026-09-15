@@ -17,6 +17,7 @@ import { config }        from 'dotenv';
 import { fileURLToPath } from 'url';
 import { dirname, resolve } from 'path';
 import { canonCity, canonCountry, canonStyle, djNorm, buildDjCanon } from './normalize.js';
+import { withRetry } from './http.js';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 config({ path: resolve(__dirname, '.env') });
@@ -69,9 +70,16 @@ function isJunk(e) {
 
 let rows = [], from = 0;
 while (true) {
-  const { data, error } = await sb.from('events')
-    .select('id,name,venue,djs,tags,city,date,img_url,source').gte('date', TODAY).order('date').range(from, from + 999);
-  if (error) { console.error(error.message); process.exit(1); }
+  // Generous retry budget: this runs right after the heavy scrape steps, when
+  // Supabase connections are transiently exhausted. Aborting on a partial load
+  // is deliberate — this script deletes events, so incomplete data must never
+  // reach the isJunk() pass.
+  const { data, error } = await withRetry(
+    () => sb.from('events')
+      .select('id,name,venue,djs,tags,city,date,img_url,source').gte('date', TODAY).order('date').range(from, from + 999),
+    `Load events page (from=${from})`, 5, 5000
+  );
+  if (error) { console.error(`❌  Event load failed at offset ${from}: ${error.message || error}`); process.exit(1); }
   rows = rows.concat(data); if (data.length < 1000) break; from += 1000;
 }
 

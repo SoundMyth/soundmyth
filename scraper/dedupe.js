@@ -129,7 +129,7 @@ async function main() {
         .gte('date', today)
         .range(from, from + PAGE - 1)
         .order('date', { ascending: true }),
-      `Load events page (from=${from})`
+      `Load events page (from=${from})`, 5, 5000
     );
     if (error) {
       console.error(`  ❌  Event load failed at offset ${from} — aborting dedup to avoid wrong deletions:`, error.message);

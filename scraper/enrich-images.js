@@ -20,6 +20,7 @@ import { readFileSync, writeFileSync, existsSync } from 'fs';
 import { config } from 'dotenv';
 import { fileURLToPath } from 'url';
 import { dirname, resolve } from 'path';
+import { withRetry } from './http.js';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 config({ path: resolve(__dirname, '.env') });
@@ -283,15 +284,18 @@ async function main() {
   let from = 0;
 
   while (true) {
-    const { data, error } = await sb
-      .from('events')
-      .select('id, name, djs, tags, img_url')
-      .gte('date', today)
-      .or('img_url.is.null,img_url.eq.')
-      .range(from, from + 999)
-      .order('date', { ascending: true });
+    const { data, error } = await withRetry(
+      () => sb
+        .from('events')
+        .select('id, name, djs, tags, img_url')
+        .gte('date', today)
+        .or('img_url.is.null,img_url.eq.')
+        .range(from, from + 999)
+        .order('date', { ascending: true }),
+      `Load events page (from=${from})`, 5, 5000
+    );
 
-    if (error) { console.error('Fetch error:', error.message); break; }
+    if (error) { console.error('Fetch error:', error.message || error); break; }
     allEvents = allEvents.concat(data);
     if (data.length < 1000) break;
     from += 1000;

@@ -13,6 +13,7 @@ import { createClient } from '@supabase/supabase-js';
 import { config }       from 'dotenv';
 import { fileURLToPath } from 'url';
 import { dirname, resolve } from 'path';
+import { withRetry } from './http.js';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 config({ path: resolve(__dirname, '.env') });
@@ -140,14 +141,17 @@ async function main() {
   let from = 0;
 
   while (true) {
-    const { data, error } = await sb
-      .from('events')
-      .select('id, name, venue, city, country, date, djs, tags, source, source_id, genre, ticket_url, img_url, price')
-      .gte('date', today)
-      .range(from, from + PAGE - 1)
-      .order('date', { ascending: true });
+    const { data, error } = await withRetry(
+      () => sb
+        .from('events')
+        .select('id, name, venue, city, country, date, djs, tags, source, source_id, genre, ticket_url, img_url, price')
+        .gte('date', today)
+        .range(from, from + PAGE - 1)
+        .order('date', { ascending: true }),
+      `Load events page (from=${from})`, 5, 5000
+    );
 
-    if (error) { console.error('  Fetch error:', error.message); break; }
+    if (error) { console.error('  Fetch error:', error.message || error); break; }
     allEvents = allEvents.concat(data);
     if (data.length < PAGE) break;
     from += PAGE;

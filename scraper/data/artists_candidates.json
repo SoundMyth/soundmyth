@@ -1,15 +1,5 @@
 [
   {
-    "name": "Bedouin",
-    "key": "bedouin",
-    "events": 5,
-    "sources": [
-      "songkick"
-    ],
-    "onRA": true,
-    "sample": "Bedouin @ Chinois · Ibiza"
-  },
-  {
     "name": "Laidlaw",
     "key": "laidlaw",
     "events": 4,
@@ -17,7 +7,7 @@
       "ra"
     ],
     "onRA": true,
-    "sample": "DGTL ADE FUSE · Amsterdam"
+    "sample": "FUSE 18th Birthday w/ Enzo Siragusa, Luciano, Rossi., Reeshy, Sweely, "
   },
   {
     "name": "ADMNTi",
@@ -27,7 +17,17 @@
       "ra"
     ],
     "onRA": true,
-    "sample": "DGTL ADE FUSE · Amsterdam"
+    "sample": "FUSE 18th Birthday w/ Enzo Siragusa, Luciano, Rossi., Reeshy, Sweely, "
+  },
+  {
+    "name": "Bedouin",
+    "key": "bedouin",
+    "events": 3,
+    "sources": [
+      "songkick"
+    ],
+    "onRA": true,
+    "sample": "Bedouin @ Chinois · Ibiza"
   },
   {
     "name": "Dungeon Meat",
@@ -39,16 +39,6 @@
     ],
     "onRA": true,
     "sample": "Michael Bibi at DC10 · Ibiza"
-  },
-  {
-    "name": "Gareth Emery",
-    "key": "garethemery",
-    "events": 3,
-    "sources": [
-      "songkick"
-    ],
-    "onRA": true,
-    "sample": "LSR/CITY @ Concourse Project · Austin"
   },
   {
     "name": "Mella Dee",
@@ -70,27 +60,6 @@
     ],
     "onRA": true,
     "sample": "Michael Bibi at DC10 · Ibiza"
-  },
-  {
-    "name": "Aline Umber",
-    "key": "alineumber",
-    "events": 2,
-    "sources": [
-      "bandsintown",
-      "ra"
-    ],
-    "onRA": true,
-    "sample": "Dissonanze Festival · Rome"
-  },
-  {
-    "name": "AMAYAH",
-    "key": "amayah",
-    "events": 2,
-    "sources": [
-      "ra"
-    ],
-    "onRA": true,
-    "sample": "UNREAL NA TOUR: CHICAGO · Chicago"
   },
   {
     "name": "Anthea",
@@ -124,6 +93,17 @@
     "sample": "FUSE 18th Birthday w/ Enzo Siragusa, Luciano, Rossi., Reeshy, Sweely, "
   },
   {
+    "name": "Dan Shake",
+    "key": "danshake",
+    "events": 2,
+    "sources": [
+      "bandsintown",
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "Defected Malta 2026 / GLITTERBOX · Malta"
+  },
+  {
     "name": "Elina",
     "key": "elina",
     "events": 2,
@@ -134,15 +114,57 @@
     "sample": "FUSE 18th Birthday w/ Enzo Siragusa, Luciano, Rossi., Reeshy, Sweely, "
   },
   {
-    "name": "Ignez",
-    "key": "ignez",
+    "name": "Enzo is Burning",
+    "key": "enzoisburning",
     "events": 2,
     "sources": [
       "bandsintown",
       "ra"
     ],
     "onRA": true,
-    "sample": "Mad Katz mit Ignez & MARRØN · Zurich"
+    "sample": "aera presents: Enzo Is Burning · Liverpool"
+  },
+  {
+    "name": "Gareth Emery",
+    "key": "garethemery",
+    "events": 2,
+    "sources": [
+      "songkick"
+    ],
+    "onRA": true,
+    "sample": "Gareth Emery @ New City Gas · Montreal"
+  },
+  {
+    "name": "Garrett David",
+    "key": "garrettdavid",
+    "events": 2,
+    "sources": [
+      "bandsintown",
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "LOCUS x Modern Funktion Halloween · London"
+  },
+  {
+    "name": "Gravagerz",
+    "key": "gravagerz",
+    "events": 2,
+    "sources": [
+      "ra",
+      "songkick"
+    ],
+    "onRA": true,
+    "sample": "GRAVAGERZ @ Time Nightclub · Costa Mesa"
+  },
+  {
+    "name": "HoneyLuv",
+    "key": "honeyluv",
+    "events": 2,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "Defected Malta 2026 / GLITTERBOX · Malta"
   },
   {
     "name": "Isaac Carter",
@@ -153,17 +175,6 @@
     ],
     "onRA": true,
     "sample": "DGTL ADE FUSE · Amsterdam"
-  },
-  {
-    "name": "ISAbella",
-    "key": "isabella",
-    "events": 2,
-    "sources": [
-      "bandsintown",
-      "ra"
-    ],
-    "onRA": true,
-    "sample": "Dissonanze Festival · Rome"
   },
   {
     "name": "Jhobei",
@@ -226,14 +237,14 @@
     "sample": "FUSE 18th Birthday w/ Enzo Siragusa, Luciano, Rossi., Reeshy, Sweely, "
   },
   {
-    "name": "Paranoid London",
-    "key": "paranoidlondon",
+    "name": "Phill de Janeiro",
+    "key": "philldejaneiro",
     "events": 2,
     "sources": [
       "ra"
     ],
     "onRA": true,
-    "sample": "Acid Ballroom: Paranoid London · Leeds"
+    "sample": "Defected Malta 2026 / GLITTERBOX · Malta"
   },
   {
     "name": "Reeshy",
@@ -246,6 +257,27 @@
     "sample": "FUSE 18th Birthday w/ Enzo Siragusa, Luciano, Rossi., Reeshy, Sweely, "
   },
   {
+    "name": "Rich NXT",
+    "key": "richnxt",
+    "events": 2,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "LOCUS x Modern Funktion Halloween · London"
+  },
+  {
+    "name": "Risa Taniguchi",
+    "key": "risataniguchi",
+    "events": 2,
+    "sources": [
+      "ra",
+      "songkick"
+    ],
+    "onRA": true,
+    "sample": "Luke Slater at Melkweg · Amsterdam"
+  },
+  {
     "name": "Robin Schulz",
     "key": "robinschulz",
     "events": 2,
@@ -254,27 +286,6 @@
     ],
     "onRA": true,
     "sample": "Robin Schulz @ Pacha Ibiza · Ibiza"
-  },
-  {
-    "name": "Rossko",
-    "key": "rossko",
-    "events": 2,
-    "sources": [
-      "bandsintown",
-      "ra"
-    ],
-    "onRA": true,
-    "sample": "Marco Carola at DC10 · Ibiza"
-  },
-  {
-    "name": "San Holo",
-    "key": "sanholo",
-    "events": 2,
-    "sources": [
-      "songkick"
-    ],
-    "onRA": true,
-    "sample": "San Holo @ Echostage · Washington"
   },
   {
     "name": "Sweely",
@@ -317,6 +328,16 @@
     "sample": "ZHU @ Concourse Project · Austin"
   },
   {
+    "name": "&friends",
+    "key": "andfriends",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "EDC Thailand 2026 · Phuket"
+  },
+  {
     "name": "1991 (UK)",
     "key": "1991uk",
     "events": 1,
@@ -327,6 +348,16 @@
     "sample": "WORSHIP NORTH AMERICA 2026 · Miami"
   },
   {
+    "name": "A For Alpha",
+    "key": "aforalpha",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "LOCUS x Modern Funktion Halloween · London"
+  },
+  {
     "name": "A.D.H.S.",
     "key": "adhs",
     "events": 1,
@@ -335,6 +366,16 @@
     ],
     "onRA": true,
     "sample": "Feiern wie früher, nur früher by Anna Reusch & Thomas Schumacher · Col"
+  },
+  {
+    "name": "Across Boundaries",
+    "key": "acrossboundaries",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "FUSE ➔ Malta 2026 · All"
   },
   {
     "name": "Adam F",
@@ -357,26 +398,6 @@
     "sample": "Layton Giordani + Agustin Giri - by DESERT IN ME, PALACIO ALSINA · Bue"
   },
   {
-    "name": "AJNA",
-    "key": "ajna",
-    "events": 1,
-    "sources": [
-      "ra"
-    ],
-    "onRA": true,
-    "sample": "Voodoo Village 2026 · Brussels"
-  },
-  {
-    "name": "Al Twisted",
-    "key": "altwisted",
-    "events": 1,
-    "sources": [
-      "songkick"
-    ],
-    "onRA": true,
-    "sample": "Hixxy @ Ministry of Sound · London"
-  },
-  {
     "name": "Alec Falconer",
     "key": "alecfalconer",
     "events": 1,
@@ -387,6 +408,26 @@
     "sample": "FUSE ➔ Malta 2026 · All"
   },
   {
+    "name": "ALEXANDER M",
+    "key": "alexanderm",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "ULTRA JAPAN RESISTANCE TOKYO OFFICIAL AFTER PARTY DAY 1 · Tokio"
+  },
+  {
+    "name": "Alexandria",
+    "key": "alexandria",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "LOCUS x Modern Funktion Halloween · London"
+  },
+  {
     "name": "Alexis Raphael",
     "key": "alexisraphael",
     "events": 1,
@@ -395,6 +436,26 @@
     ],
     "onRA": true,
     "sample": "Pre sale tickets for 2027 drop on Friday 8th May at 10am. Scroll down "
+  },
+  {
+    "name": "Aline Rocha",
+    "key": "alinerocha",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "Defected Malta 2026 / GLITTERBOX · Malta"
+  },
+  {
+    "name": "Alley Kay",
+    "key": "alleykay",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "Groove Cruise Miami 2027 - Ambassador Code: GrooveCruiseChris · Miami"
   },
   {
     "name": "Altın Gün",
@@ -417,14 +478,74 @@
     "sample": "Jane Fitz at Omana-Festival · Kalamitsi"
   },
   {
-    "name": "Amalie",
-    "key": "amalie",
+    "name": "ALY",
+    "key": "aly",
     "events": 1,
     "sources": [
       "ra"
     ],
     "onRA": true,
-    "sample": "Voodoo Village 2026 · Brussels"
+    "sample": "EDC Korea · Seoul"
+  },
+  {
+    "name": "AMAYAH",
+    "key": "amayah",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "Unreal Chicago · Chicago"
+  },
+  {
+    "name": "AMPRS&ND",
+    "key": "amprsandnd",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "Groove Cruise Miami 2027 - Ambassador Code: GrooveCruiseChris · Miami"
+  },
+  {
+    "name": "Amy Wiles",
+    "key": "amywiles",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "Groove Cruise Miami 2027 - Ambassador Code: GrooveCruiseChris · Miami"
+  },
+  {
+    "name": "Anabel Englund",
+    "key": "anabelenglund",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "Groove Cruise Miami 2027 - Ambassador Code: GrooveCruiseChris · Miami"
+  },
+  {
+    "name": "Anane",
+    "key": "anane",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "Defected Malta 2026 / GLITTERBOX · Malta"
+  },
+  {
+    "name": "ANDY DEDE",
+    "key": "andydede",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "ULTRA JAPAN RESISTANCE TOKYO OFFICIAL AFTER PARTY DAY 1 · Tokio"
   },
   {
     "name": "Anna Reusch",
@@ -457,6 +578,36 @@
     "sample": "FUSE ➔ Malta 2026 · All"
   },
   {
+    "name": "Annie Lew",
+    "key": "annielew",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "Time Warp NYC 2026 · Nueva York"
+  },
+  {
+    "name": "Anthony Attalla",
+    "key": "anthonyattalla",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "Groove Cruise Miami 2027 - Ambassador Code: GrooveCruiseChris · Miami"
+  },
+  {
+    "name": "Archie Hamilton",
+    "key": "archiehamilton",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "LOCUS x Modern Funktion Halloween · London"
+  },
+  {
     "name": "Arlo",
     "key": "arlo",
     "events": 1,
@@ -485,6 +636,16 @@
     ],
     "onRA": true,
     "sample": "Assassin @ Warehouse Nantes · Nantes"
+  },
+  {
+    "name": "Aurede",
+    "key": "aurede",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "EDC Korea · Seoul"
   },
   {
     "name": "B.Love",
@@ -517,6 +678,16 @@
     "sample": "Jane Fitz at Omana-Festival · Kalamitsi"
   },
   {
+    "name": "Bass Modulators",
+    "key": "bassmodulators",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "Creamfields Chile 2026 · Santiago De Chile"
+  },
+  {
     "name": "Bella Backe",
     "key": "bellabacke",
     "events": 1,
@@ -525,6 +696,16 @@
     ],
     "onRA": true,
     "sample": "Harbourlife 2026 · Sydney"
+  },
+  {
+    "name": "Bella Renee",
+    "key": "bellarenee",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "Groove Cruise Miami 2027 - Ambassador Code: GrooveCruiseChris · Miami"
   },
   {
     "name": "Ben Balance",
@@ -537,44 +718,14 @@
     "sample": "Jane Fitz at Omana-Festival · Kalamitsi"
   },
   {
-    "name": "Benga",
-    "key": "benga",
+    "name": "Benji King",
+    "key": "benjiking",
     "events": 1,
     "sources": [
       "ra"
     ],
     "onRA": true,
-    "sample": "Dissonanze Festival · Rome"
-  },
-  {
-    "name": "Big Gigantic",
-    "key": "biggigantic",
-    "events": 1,
-    "sources": [
-      "songkick"
-    ],
-    "onRA": true,
-    "sample": "Big Gigantic @ Exchange LA · Los Angeles"
-  },
-  {
-    "name": "Björk",
-    "key": "bjork",
-    "events": 1,
-    "sources": [
-      "ra"
-    ],
-    "onRA": true,
-    "sample": "Dissonanze Festival · Rome"
-  },
-  {
-    "name": "Blck Mamba",
-    "key": "blckmamba",
-    "events": 1,
-    "sources": [
-      "ra"
-    ],
-    "onRA": true,
-    "sample": "Voodoo Village 2026 · Brussels"
+    "sample": "LOCUS x Modern Funktion Halloween · London"
   },
   {
     "name": "Bondarük",
@@ -587,14 +738,24 @@
     "sample": "ANNĒ - Ben Klock - BONDARŨK - JXXXO - Pampa - Setaoc Mass - + Under Cl"
   },
   {
-    "name": "Bradeazy",
-    "key": "bradeazy",
+    "name": "Brunello",
+    "key": "brunello",
     "events": 1,
     "sources": [
-      "songkick"
+      "ra"
     ],
     "onRA": true,
-    "sample": "Bradeazy @ Bauhaus · Houston"
+    "sample": "Time Warp NYC 2026 · Nueva York"
+  },
+  {
+    "name": "Bruno Martini",
+    "key": "brunomartini",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "Creamfields Chile 2026 · Santiago De Chile"
   },
   {
     "name": "Burnski",
@@ -607,26 +768,6 @@
     "sample": "Jeff Mills at Amnesia Ibiza · Ibiza"
   },
   {
-    "name": "Calcium",
-    "key": "calcium",
-    "events": 1,
-    "sources": [
-      "songkick"
-    ],
-    "onRA": true,
-    "sample": "Calcium @ Ductwork at Silo Dallas · Dallas"
-  },
-  {
-    "name": "Caleb Jackson",
-    "key": "calebjackson",
-    "events": 1,
-    "sources": [
-      "songkick"
-    ],
-    "onRA": true,
-    "sample": "Caleb Jackson @ Chinois · Ibiza"
-  },
-  {
     "name": "Callush",
     "key": "callush",
     "events": 1,
@@ -635,26 +776,6 @@
     ],
     "onRA": true,
     "sample": "Novah at Palexpo · Le Grand-Saconnex"
-  },
-  {
-    "name": "Cally",
-    "key": "cally",
-    "events": 1,
-    "sources": [
-      "songkick"
-    ],
-    "onRA": true,
-    "sample": "Hixxy @ Ministry of Sound · London"
-  },
-  {
-    "name": "Camilo Franco",
-    "key": "camilofranco",
-    "events": 1,
-    "sources": [
-      "ra"
-    ],
-    "onRA": true,
-    "sample": "Voodoo Village 2026 · Brussels"
   },
   {
     "name": "Cap",
@@ -667,6 +788,26 @@
     "sample": "FUSE ➔ Malta 2026 · All"
   },
   {
+    "name": "Captain Wallop",
+    "key": "captainwallop",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "LOCUS x Modern Funktion Halloween · London"
+  },
+  {
+    "name": "Casepeat",
+    "key": "casepeat",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "EDC Korea · Seoul"
+  },
+  {
     "name": "Cassy",
     "key": "cassy",
     "events": 1,
@@ -675,6 +816,26 @@
     ],
     "onRA": true,
     "sample": "EndUp presents - Cassy · Cork"
+  },
+  {
+    "name": "Catz 'N Dogz",
+    "key": "catzndogz",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "Defected Malta 2026 / GLITTERBOX · Malta"
+  },
+  {
+    "name": "Chez Damier",
+    "key": "chezdamier",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "Defected Malta 2026 / GLITTERBOX · Malta"
   },
   {
     "name": "Chris Watson",
@@ -697,34 +858,34 @@
     "sample": "Jane Fitz at Omana-Festival · Kalamitsi"
   },
   {
-    "name": "CRITICAL ERROR 404",
-    "key": "criticalerror404",
+    "name": "Cristobal Pesce",
+    "key": "cristobalpesce",
     "events": 1,
     "sources": [
       "ra"
     ],
     "onRA": true,
-    "sample": "BCCO with Yanamaste, future.666  · Cologne"
+    "sample": "Creamfields Chile 2026 · Santiago De Chile"
   },
   {
-    "name": "Dan Ghenacia",
-    "key": "danghenacia",
+    "name": "DAISY",
+    "key": "daisy",
     "events": 1,
     "sources": [
-      "bandsintown"
+      "ra"
     ],
     "onRA": true,
-    "sample": "Marco Carola at DC10 · Ibiza"
+    "sample": "LOCUS x Modern Funktion Halloween · London"
   },
   {
-    "name": "Dan Shake",
-    "key": "danshake",
+    "name": "Daisybelle",
+    "key": "daisybelle",
     "events": 1,
     "sources": [
-      "bandsintown"
+      "ra"
     ],
     "onRA": true,
-    "sample": "Pre sale tickets for 2027 drop on Friday 8th May at 10am. Scroll down "
+    "sample": "Defected Malta 2026 / GLITTERBOX · Malta"
   },
   {
     "name": "Dana Ruh",
@@ -741,40 +902,30 @@
     "key": "danielavery",
     "events": 1,
     "sources": [
-      "bandsintown"
+      "songkick"
     ],
     "onRA": true,
     "sample": "Luke Slater at Melkweg · Amsterdam"
   },
   {
-    "name": "Danté",
-    "key": "dante",
+    "name": "Darius Syrossian",
+    "key": "dariussyrossian",
     "events": 1,
     "sources": [
       "ra"
     ],
     "onRA": true,
-    "sample": "Dissonanze Festival · Rome"
+    "sample": "Defected Malta 2026 / GLITTERBOX · Malta"
   },
   {
-    "name": "Danyelino",
-    "key": "danyelino",
-    "events": 1,
-    "sources": [
-      "bandsintown"
-    ],
-    "onRA": true,
-    "sample": "MARCO CAROLA PRESENTS MUSIC ON · Ibiza"
-  },
-  {
-    "name": "Daphni",
-    "key": "daphni",
+    "name": "David Morales",
+    "key": "davidmorales",
     "events": 1,
     "sources": [
       "ra"
     ],
     "onRA": true,
-    "sample": "Dissonanze Festival · Rome"
+    "sample": "Defected Malta 2026 / GLITTERBOX · Malta"
   },
   {
     "name": "De La Swing",
@@ -787,6 +938,26 @@
     "sample": "Jeff Mills at Amnesia Ibiza · Ibiza"
   },
   {
+    "name": "Deeper Purpose",
+    "key": "deeperpurpose",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "Groove Cruise Miami 2027 - Ambassador Code: GrooveCruiseChris · Miami"
+  },
+  {
+    "name": "DEEPFAKE",
+    "key": "deepfake",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "Groove Cruise Miami 2027 - Ambassador Code: GrooveCruiseChris · Miami"
+  },
+  {
     "name": "Delilah",
     "key": "delilah",
     "events": 1,
@@ -794,7 +965,7 @@
       "ra"
     ],
     "onRA": true,
-    "sample": "Voodoo Village 2026 · Brussels"
+    "sample": "Defected Malta 2026 / GLITTERBOX · Malta"
   },
   {
     "name": "DESIREE (RSA)",
@@ -817,11 +988,31 @@
     "sample": "WORSHIP NORTH AMERICA 2026 · Miami"
   },
   {
+    "name": "Dimibo",
+    "key": "dimibo",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "Groove Cruise Miami 2027 - Ambassador Code: GrooveCruiseChris · Miami"
+  },
+  {
+    "name": "DJ Bin",
+    "key": "djbin",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "ULTRA JAPAN RESISTANCE TOKYO OFFICIAL AFTER PARTY DAY 2 · Tokio"
+  },
+  {
     "name": "DJ Godfather",
     "key": "djgodfather",
     "events": 1,
     "sources": [
-      "bandsintown"
+      "songkick"
     ],
     "onRA": true,
     "sample": "Luke Slater at Melkweg · Amsterdam"
@@ -841,7 +1032,7 @@
     "key": "djmellg",
     "events": 1,
     "sources": [
-      "bandsintown"
+      "songkick"
     ],
     "onRA": true,
     "sample": "Luke Slater at Melkweg · Amsterdam"
@@ -857,24 +1048,24 @@
     "sample": "Jeff Mills at Amnesia Ibiza · Ibiza"
   },
   {
-    "name": "Dj Vibes",
-    "key": "djvibes",
+    "name": "DJ Split",
+    "key": "djsplit",
     "events": 1,
     "sources": [
-      "songkick"
+      "ra"
     ],
     "onRA": true,
-    "sample": "Hixxy @ Ministry of Sound · London"
+    "sample": "LOCUS x Modern Funktion Halloween · London"
   },
   {
-    "name": "Djebali",
-    "key": "djebali",
+    "name": "Doc Brown",
+    "key": "docbrown",
     "events": 1,
     "sources": [
-      "bandsintown"
+      "ra"
     ],
     "onRA": true,
-    "sample": "Marco Carola at DC10 · Ibiza"
+    "sample": "Groove Cruise Miami 2027 - Ambassador Code: GrooveCruiseChris · Miami"
   },
   {
     "name": "Don't F**k with Disco",
@@ -887,14 +1078,14 @@
     "sample": "Don't F**k with Disco, Halloween in Liverpool · Liverpool"
   },
   {
-    "name": "Donato Dozzy",
-    "key": "donatodozzy",
+    "name": "Dose",
+    "key": "dose",
     "events": 1,
     "sources": [
       "ra"
     ],
     "onRA": true,
-    "sample": "Dissonanze Festival · Rome"
+    "sample": "Groove Cruise Miami 2027 - Ambassador Code: GrooveCruiseChris · Miami"
   },
   {
     "name": "Doudou MD",
@@ -905,16 +1096,6 @@
     ],
     "onRA": true,
     "sample": "FUSE ➔ Malta 2026 · All"
-  },
-  {
-    "name": "Dougal",
-    "key": "dougal",
-    "events": 1,
-    "sources": [
-      "songkick"
-    ],
-    "onRA": true,
-    "sample": "Hixxy @ Ministry of Sound · London"
   },
   {
     "name": "Dr Dubplate",
@@ -944,7 +1125,7 @@
       "songkick"
     ],
     "onRA": true,
-    "sample": "Dusky @ Shelter Amsterdam · Amsterdam"
+    "sample": "Patrick Topping @ Amsterdam · Amsterdam"
   },
   {
     "name": "E-Boo",
@@ -955,6 +1136,16 @@
     ],
     "onRA": true,
     "sample": "Acid Ballroom: Paranoid London · Leeds"
+  },
+  {
+    "name": "Edd (1)",
+    "key": "edd1",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "Defected Malta 2026 / GLITTERBOX · Malta"
   },
   {
     "name": "Edele Andaya",
@@ -971,7 +1162,7 @@
     "key": "egyptianlover",
     "events": 1,
     "sources": [
-      "bandsintown"
+      "songkick"
     ],
     "onRA": true,
     "sample": "Luke Slater at Melkweg · Amsterdam"
@@ -987,6 +1178,16 @@
     "sample": "Elder Island @ KOKO · London"
   },
   {
+    "name": "Eliana",
+    "key": "eliana",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "EDC Korea · Seoul"
+  },
+  {
     "name": "Elisa Bee",
     "key": "elisabee",
     "events": 1,
@@ -995,6 +1196,36 @@
     ],
     "onRA": true,
     "sample": "Marco Faraone at Amnesia Ibiza · Ibiza"
+  },
+  {
+    "name": "Ella Knight",
+    "key": "ellaknight",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "Defected Malta 2026 / GLITTERBOX · Malta"
+  },
+  {
+    "name": "Ely Oaks",
+    "key": "elyoaks",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "Groove Cruise Miami 2027 - Ambassador Code: GrooveCruiseChris · Miami"
+  },
+  {
+    "name": "Emily Nash",
+    "key": "emilynash",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "Creamfields Chile 2026 · Santiago De Chile"
   },
   {
     "name": "Enrica Falqui",
@@ -1007,14 +1238,14 @@
     "sample": "Jane Fitz at Omana-Festival · Kalamitsi"
   },
   {
-    "name": "Enzo is Burning",
-    "key": "enzoisburning",
+    "name": "Eskuche",
+    "key": "eskuche",
     "events": 1,
     "sources": [
-      "bandsintown"
+      "ra"
     ],
     "onRA": true,
-    "sample": "Pre sale tickets for 2027 drop on Friday 8th May at 10am. Scroll down "
+    "sample": "Groove Cruise Miami 2027 - Ambassador Code: GrooveCruiseChris · Miami"
   },
   {
     "name": "Evie",
@@ -1027,6 +1258,26 @@
     "sample": "Pre sale tickets for 2027 drop on Friday 8th May at 10am. Scroll down "
   },
   {
+    "name": "Fahlberg",
+    "key": "fahlberg",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "Fahlberg (360 Set) · Toronto"
+  },
+  {
+    "name": "Faithless",
+    "key": "faithless",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "Creamfields Chile 2026 · Santiago De Chile"
+  },
+  {
     "name": "Fat Freddy's Drop",
     "key": "fatfreddysdrop",
     "events": 1,
@@ -1035,6 +1286,16 @@
     ],
     "onRA": true,
     "sample": "Fat Freddy's Drop @ Razzmatazz · Barcelona"
+  },
+  {
+    "name": "Fatzo",
+    "key": "fatzo",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "Defected Malta 2026 / GLITTERBOX · Malta"
   },
   {
     "name": "Feder",
@@ -1047,6 +1308,16 @@
     "sample": "Novah at Palexpo · Le Grand-Saconnex"
   },
   {
+    "name": "Ferreck Dawn",
+    "key": "ferreckdawn",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "Defected Malta 2026 / GLITTERBOX · Malta"
+  },
+  {
     "name": "Finnebassen",
     "key": "finnebassen",
     "events": 1,
@@ -1057,14 +1328,14 @@
     "sample": "Pre sale tickets for 2027 drop on Friday 8th May at 10am. Scroll down "
   },
   {
-    "name": "Fiona Kraft",
-    "key": "fionakraft",
+    "name": "Fish56Octagon",
+    "key": "fish56octagon",
     "events": 1,
     "sources": [
       "ra"
     ],
     "onRA": true,
-    "sample": "Voodoo Village 2026 · Brussels"
+    "sample": "The Dome Presents: Fish56Octagon · Liverpool"
   },
   {
     "name": "Franco Cinelli",
@@ -1087,16 +1358,6 @@
     "sample": "MARCO CAROLA PRESENTS MUSIC ON - CLOSING PARTY (PART 1) · Ibiza"
   },
   {
-    "name": "fumi (DE)",
-    "key": "fumide",
-    "events": 1,
-    "sources": [
-      "ra"
-    ],
-    "onRA": true,
-    "sample": "Sara Landry · Miami"
-  },
-  {
     "name": "Gabbs",
     "key": "gabbs",
     "events": 1,
@@ -1105,26 +1366,6 @@
     ],
     "onRA": true,
     "sample": "Jane Fitz at Omana-Festival · Kalamitsi"
-  },
-  {
-    "name": "Garrett David",
-    "key": "garrettdavid",
-    "events": 1,
-    "sources": [
-      "bandsintown"
-    ],
-    "onRA": true,
-    "sample": "Jane Fitz at Omana-Festival · Kalamitsi"
-  },
-  {
-    "name": "GENNARO",
-    "key": "gennaro",
-    "events": 1,
-    "sources": [
-      "ra"
-    ],
-    "onRA": true,
-    "sample": "Palm Tree Festival · Quebec City"
   },
   {
     "name": "George Mensah",
@@ -1147,16 +1388,6 @@
     "sample": "Michael Bibi at DC10 · Ibiza"
   },
   {
-    "name": "Giancarlino",
-    "key": "giancarlino",
-    "events": 1,
-    "sources": [
-      "ra"
-    ],
-    "onRA": true,
-    "sample": "Dissonanze Festival · Rome"
-  },
-  {
     "name": "Girls Don't Sync",
     "key": "girlsdontsync",
     "events": 1,
@@ -1165,16 +1396,6 @@
     ],
     "onRA": true,
     "sample": "Pre sale tickets for 2027 drop on Friday 8th May at 10am. Scroll down "
-  },
-  {
-    "name": "GNMR",
-    "key": "gnmr",
-    "events": 1,
-    "sources": [
-      "ra"
-    ],
-    "onRA": true,
-    "sample": "Dissonanze Festival · Rome"
   },
   {
     "name": "Golpe",
@@ -1201,20 +1422,10 @@
     "key": "gramatik",
     "events": 1,
     "sources": [
-      "bandsintown"
-    ],
-    "onRA": true,
-    "sample": "Same Same But Different Music Festival 2026 · Perris"
-  },
-  {
-    "name": "GRAVAGERZ",
-    "key": "gravagerz",
-    "events": 1,
-    "sources": [
       "songkick"
     ],
     "onRA": true,
-    "sample": "GRAVAGERZ @ Time Nightclub · Costa Mesa"
+    "sample": "Same Same But Different Music Festival 2026 · Perris"
   },
   {
     "name": "Hamish & Toby",
@@ -1225,6 +1436,16 @@
     ],
     "onRA": true,
     "sample": "FUSE ➔ Malta 2026 · All"
+  },
+  {
+    "name": "Harry Romero",
+    "key": "harryromero",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "Defected Malta 2026 / GLITTERBOX · Malta"
   },
   {
     "name": "Harry Shotta",
@@ -1247,14 +1468,24 @@
     "sample": "Hayden James @ Savaya · Bali"
   },
   {
-    "name": "hhunter",
-    "key": "hhunter",
+    "name": "Heidi Lawden",
+    "key": "heidilawden",
     "events": 1,
     "sources": [
       "ra"
     ],
     "onRA": true,
-    "sample": "Sara Landry · Miami"
+    "sample": "Defected Malta 2026 / GLITTERBOX · Malta"
+  },
+  {
+    "name": "Hidde van Wee",
+    "key": "hiddevanwee",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "LOCUS x Modern Funktion Halloween · London"
   },
   {
     "name": "Hitam",
@@ -1267,34 +1498,14 @@
     "sample": "Mad Katz x Tresor · Zurich"
   },
   {
-    "name": "Hixxy",
-    "key": "hixxy",
-    "events": 1,
-    "sources": [
-      "songkick"
-    ],
-    "onRA": true,
-    "sample": "Hixxy @ Ministry of Sound · London"
-  },
-  {
-    "name": "HoneyLuv",
-    "key": "honeyluv",
+    "name": "Ignez",
+    "key": "ignez",
     "events": 1,
     "sources": [
       "ra"
     ],
     "onRA": true,
-    "sample": "Harbourlife 2026 · Sydney"
-  },
-  {
-    "name": "Ian Asher",
-    "key": "ianasher",
-    "events": 1,
-    "sources": [
-      "songkick"
-    ],
-    "onRA": true,
-    "sample": "Ian Asher @ Big Night Live · Boston"
+    "sample": "Mad Katz mit Ignez & MARRØN · Zurich"
   },
   {
     "name": "II FACES",
@@ -1317,24 +1528,34 @@
     "sample": "Pre sale tickets for 2027 drop on Friday 8th May at 10am. Scroll down "
   },
   {
-    "name": "IRIDE",
-    "key": "iride",
+    "name": "ISAbella",
+    "key": "isabella",
     "events": 1,
     "sources": [
-      "ra"
+      "bandsintown"
     ],
     "onRA": true,
-    "sample": "Dissonanze Festival · Rome"
+    "sample": "East End Dubs at DC10 · Ibiza"
   },
   {
-    "name": "Isa Roos",
-    "key": "isaroos",
+    "name": "Izzy",
+    "key": "izzy",
     "events": 1,
     "sources": [
       "ra"
     ],
     "onRA": true,
-    "sample": "Voodoo Village 2026 · Brussels"
+    "sample": "LOCUS x Modern Funktion Halloween · London"
+  },
+  {
+    "name": "j:me",
+    "key": "jme",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "LOCUS x Modern Funktion Halloween · London"
   },
   {
     "name": "Jake Rollinson",
@@ -1367,16 +1588,6 @@
     "sample": "Jane Fitz at Omana-Festival · Kalamitsi"
   },
   {
-    "name": "Jazzanova",
-    "key": "jazzanova",
-    "events": 1,
-    "sources": [
-      "ra"
-    ],
-    "onRA": true,
-    "sample": "Dissonanze Festival · Rome"
-  },
-  {
     "name": "Jeremy Olander",
     "key": "jeremyolander",
     "events": 1,
@@ -1397,16 +1608,6 @@
     "sample": "Novah at Palexpo · Le Grand-Saconnex"
   },
   {
-    "name": "Job Jobse",
-    "key": "jobjobse",
-    "events": 1,
-    "sources": [
-      "ra"
-    ],
-    "onRA": true,
-    "sample": "Dissonanze Festival · Rome"
-  },
-  {
     "name": "Joe Rolét",
     "key": "joerolet",
     "events": 1,
@@ -1415,6 +1616,16 @@
     ],
     "onRA": true,
     "sample": "Pre sale tickets for 2027 drop on Friday 8th May at 10am. Scroll down "
+  },
+  {
+    "name": "JOMMY",
+    "key": "jommy",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "ULTRA JAPAN RESISTANCE TOKYO OFFICIAL AFTER PARTY DAY 1 · Tokio"
   },
   {
     "name": "Jon Rundell",
@@ -1447,6 +1658,26 @@
     "sample": "Harbourlife 2026 · Sydney"
   },
   {
+    "name": "Joshwa (IT)",
+    "key": "joshwait",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "Groove Cruise Miami 2027 - Ambassador Code: GrooveCruiseChris · Miami"
+  },
+  {
+    "name": "Jude Lenihan",
+    "key": "judelenihan",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "LOCUS x Modern Funktion Halloween · London"
+  },
+  {
     "name": "Julian Mesa",
     "key": "julianmesa",
     "events": 1,
@@ -1455,6 +1686,16 @@
     ],
     "onRA": true,
     "sample": "Nomadika Music Festival · Manama"
+  },
+  {
+    "name": "Julya Karma",
+    "key": "julyakarma",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "Time Warp NYC 2026 · Nueva York"
   },
   {
     "name": "Just Jam",
@@ -1467,14 +1708,14 @@
     "sample": "FUSE ➔ Malta 2026 · All"
   },
   {
-    "name": "JUWLZ",
-    "key": "juwlz",
+    "name": "jWave",
+    "key": "jwave",
     "events": 1,
     "sources": [
       "ra"
     ],
     "onRA": true,
-    "sample": "Voodoo Village 2026 · Brussels"
+    "sample": "LOCUS x Modern Funktion Halloween · London"
   },
   {
     "name": "JXXXO",
@@ -1517,6 +1758,16 @@
     "sample": "III Points 2026 · Miami"
   },
   {
+    "name": "Kellie Allen",
+    "key": "kellieallen",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "Defected Malta 2026 / GLITTERBOX · Malta"
+  },
+  {
     "name": "Kelsey Lu",
     "key": "kelseylu",
     "events": 1,
@@ -1527,24 +1778,24 @@
     "sample": "Kelsey Lu @ KOKO · London"
   },
   {
-    "name": "KLOUD",
-    "key": "kloud",
+    "name": "Kilopatrah Jones",
+    "key": "kilopatrahjones",
     "events": 1,
     "sources": [
       "ra"
     ],
     "onRA": true,
-    "sample": "KLOUD inside NOIR · Toronto"
+    "sample": "Time Warp NYC 2026 · Nueva York"
   },
   {
-    "name": "Klubfiller",
-    "key": "klubfiller",
+    "name": "Koki Byrd",
+    "key": "kokibyrd",
     "events": 1,
     "sources": [
-      "songkick"
+      "ra"
     ],
     "onRA": true,
-    "sample": "Hixxy @ Ministry of Sound · London"
+    "sample": "ULTRA JAPAN RESISTANCE TOKYO OFFICIAL AFTER PARTY DAY 1 · Tokio"
   },
   {
     "name": "Kollektiv Ost",
@@ -1555,6 +1806,16 @@
     ],
     "onRA": true,
     "sample": "Jane Fitz at Omana-Festival · Kalamitsi"
+  },
+  {
+    "name": "KYRUH",
+    "key": "kyruh",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "Time Warp NYC 2026 · Nueva York"
   },
   {
     "name": "Lady Dammage",
@@ -1597,14 +1858,24 @@
     "sample": "Pre sale tickets for 2027 drop on Friday 8th May at 10am. Scroll down "
   },
   {
-    "name": "Lefto Early Bird",
-    "key": "leftoearlybird",
+    "name": "Leena Punks",
+    "key": "leenapunks",
     "events": 1,
     "sources": [
       "ra"
     ],
     "onRA": true,
-    "sample": "Dissonanze Festival · Rome"
+    "sample": "Groove Cruise Miami 2027 - Ambassador Code: GrooveCruiseChris · Miami"
+  },
+  {
+    "name": "Licaxxx",
+    "key": "licaxxx",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "ULTRA JAPAN RESISTANCE TOKYO OFFICIAL AFTER PARTY DAY 1 · Tokio"
   },
   {
     "name": "LIEKS",
@@ -1617,6 +1888,16 @@
     "sample": "VERKNIPT Poland - Warsaw · Warsaw"
   },
   {
+    "name": "Lil' Louis",
+    "key": "lillouis",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "Defected Malta 2026 / GLITTERBOX · Malta"
+  },
+  {
     "name": "Liou",
     "key": "liou",
     "events": 1,
@@ -1625,6 +1906,16 @@
     ],
     "onRA": true,
     "sample": "Jane Fitz at Omana-Festival · Kalamitsi"
+  },
+  {
+    "name": "Louie Vega",
+    "key": "louievega",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "Defected Malta 2026 / GLITTERBOX · Malta"
   },
   {
     "name": "Loukeman",
@@ -1647,6 +1938,26 @@
     "sample": "CUE - Liverpool w. bullet tooth, Laidlaw · Liverpool"
   },
   {
+    "name": "Luccio",
+    "key": "luccio",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "Groove Cruise Miami 2027 - Ambassador Code: GrooveCruiseChris · Miami"
+  },
+  {
+    "name": "Luke Alexander",
+    "key": "lukealexander",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "Groove Cruise Miami 2027 - Ambassador Code: GrooveCruiseChris · Miami"
+  },
+  {
     "name": "Madman",
     "key": "madman",
     "events": 1,
@@ -1655,6 +1966,16 @@
     ],
     "onRA": true,
     "sample": "Madman @ Duel Club · Pozzuoli"
+  },
+  {
+    "name": "MADVILLA",
+    "key": "madvilla",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "LOCUS x Modern Funktion Halloween · London"
   },
   {
     "name": "Magda",
@@ -1667,34 +1988,24 @@
     "sample": "Jane Fitz at Omana-Festival · Kalamitsi"
   },
   {
-    "name": "Maher Daniel",
-    "key": "maherdaniel",
-    "events": 1,
-    "sources": [
-      "bandsintown"
-    ],
-    "onRA": true,
-    "sample": "Marco Carola at DC10 · Ibiza"
-  },
-  {
-    "name": "Mahony",
-    "key": "mahony",
-    "events": 1,
-    "sources": [
-      "bandsintown"
-    ],
-    "onRA": true,
-    "sample": "MARCO CAROLA PRESENTS MUSIC ON · Ibiza"
-  },
-  {
-    "name": "Marcellus Pittman",
-    "key": "marcelluspittman",
+    "name": "Makèz",
+    "key": "makez",
     "events": 1,
     "sources": [
       "ra"
     ],
     "onRA": true,
-    "sample": "Dissonanze Festival · Rome"
+    "sample": "Defected Malta 2026 / GLITTERBOX · Malta"
+  },
+  {
+    "name": "Mamazu",
+    "key": "mamazu",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "ULTRA JAPAN RESISTANCE TOKYO OFFICIAL AFTER PARTY DAY 1 · Tokio"
   },
   {
     "name": "Mareena",
@@ -1707,16 +2018,6 @@
     "sample": "Mad Katz x Tresor · Zurich"
   },
   {
-    "name": "Mariona",
-    "key": "mariona",
-    "events": 1,
-    "sources": [
-      "ra"
-    ],
-    "onRA": true,
-    "sample": "Voodoo Village 2026 · Brussels"
-  },
-  {
     "name": "Markantonio",
     "key": "markantonio",
     "events": 1,
@@ -1725,6 +2026,16 @@
     ],
     "onRA": true,
     "sample": "Ben Klock at Amnesia Ibiza · Ibiza"
+  },
+  {
+    "name": "Markus Schulz",
+    "key": "markusschulz",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "Groove Cruise Miami 2027 - Ambassador Code: GrooveCruiseChris · Miami"
   },
   {
     "name": "Marten Lou",
@@ -1767,34 +2078,14 @@
     "sample": "jpegmafia @ Echostage · Washington"
   },
   {
-    "name": "Maxi Meraki",
-    "key": "maximeraki",
+    "name": "Maxinne",
+    "key": "maxinne",
     "events": 1,
     "sources": [
       "ra"
     ],
     "onRA": true,
-    "sample": "Voodoo Village 2026 · Brussels"
-  },
-  {
-    "name": "MC Shocker",
-    "key": "mcshocker",
-    "events": 1,
-    "sources": [
-      "songkick"
-    ],
-    "onRA": true,
-    "sample": "Hixxy @ Ministry of Sound · London"
-  },
-  {
-    "name": "meera (NO)",
-    "key": "meerano",
-    "events": 1,
-    "sources": [
-      "ra"
-    ],
-    "onRA": true,
-    "sample": "Voodoo Village 2026 · Brussels"
+    "sample": "Groove Cruise Miami 2027 - Ambassador Code: GrooveCruiseChris · Miami"
   },
   {
     "name": "Melody RA+RE",
@@ -1807,14 +2098,14 @@
     "sample": "FUSE ➔ Malta 2026 · All"
   },
   {
-    "name": "Miamor",
-    "key": "miamor",
+    "name": "Melvo Baptiste",
+    "key": "melvobaptiste",
     "events": 1,
     "sources": [
       "ra"
     ],
     "onRA": true,
-    "sample": "Voodoo Village 2026 · Brussels"
+    "sample": "Defected Malta 2026 / GLITTERBOX · Malta"
   },
   {
     "name": "Micah Baxter",
@@ -1827,6 +2118,16 @@
     "sample": "Pre sale tickets for 2027 drop on Friday 8th May at 10am. Scroll down "
   },
   {
+    "name": "Michael Gray",
+    "key": "michaelgray",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "Defected Malta 2026 / GLITTERBOX · Malta"
+  },
+  {
     "name": "Michel de Hey",
     "key": "micheldehey",
     "events": 1,
@@ -1835,6 +2136,16 @@
     ],
     "onRA": true,
     "sample": "Pre sale tickets for 2027 drop on Friday 8th May at 10am. Scroll down "
+  },
+  {
+    "name": "MiNNA",
+    "key": "minna",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "Defected Malta 2026 / GLITTERBOX · Malta"
   },
   {
     "name": "Miss I",
@@ -1877,6 +2188,16 @@
     "sample": "DGTL ADE FUSE · Amsterdam"
   },
   {
+    "name": "MPH (1)",
+    "key": "mph1",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "Groove Cruise Miami 2027 - Ambassador Code: GrooveCruiseChris · Miami"
+  },
+  {
     "name": "Mrs Magoo",
     "key": "mrsmagoo",
     "events": 1,
@@ -1897,34 +2218,54 @@
     "sample": "East End Dubs at DC10 · Ibiza"
   },
   {
-    "name": "Nadja",
-    "key": "nadja",
+    "name": "Murphy's Law",
+    "key": "murphyslaw",
     "events": 1,
     "sources": [
       "ra"
     ],
     "onRA": true,
-    "sample": "Voodoo Village 2026 · Brussels"
+    "sample": "Defected Malta 2026 / GLITTERBOX · Malta"
+  },
+  {
+    "name": "Mya (1)",
+    "key": "mya1",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "LOCUS x Modern Funktion Halloween · London"
+  },
+  {
+    "name": "NAMIMI SENSEI",
+    "key": "namimisensei",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "ULTRA JAPAN RESISTANCE TOKYO OFFICIAL AFTER PARTY DAY 1 · Tokio"
   },
   {
     "name": "Nastia Reigel",
     "key": "nastiareigel",
     "events": 1,
     "sources": [
-      "bandsintown"
+      "songkick"
     ],
     "onRA": true,
     "sample": "Luke Slater at Melkweg · Amsterdam"
   },
   {
-    "name": "Natascha Polké",
-    "key": "nataschapolke",
+    "name": "Natasha Diggs",
+    "key": "natashadiggs",
     "events": 1,
     "sources": [
       "ra"
     ],
     "onRA": true,
-    "sample": "Voodoo Village 2026 · Brussels"
+    "sample": "Defected Malta 2026 / GLITTERBOX · Malta"
   },
   {
     "name": "NATHASSIA",
@@ -1967,6 +2308,16 @@
     "sample": "Dual Damage: Built2Break · Liverpool"
   },
   {
+    "name": "Nick Curly",
+    "key": "nickcurly",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "Defected Malta 2026 / GLITTERBOX · Malta"
+  },
+  {
     "name": "Nick Warren",
     "key": "nickwarren",
     "events": 1,
@@ -1977,34 +2328,24 @@
     "sample": "Nick Warren @ Q Nightclub · Seattle"
   },
   {
-    "name": "Nico Morano",
-    "key": "nicomorano",
-    "events": 1,
-    "sources": [
-      "ra"
-    ],
-    "onRA": true,
-    "sample": "Voodoo Village 2026 · Brussels"
-  },
-  {
     "name": "no_ip",
     "key": "noip",
     "events": 1,
     "sources": [
-      "bandsintown"
+      "songkick"
     ],
     "onRA": true,
     "sample": "Resistance Amnesia Ibiza · Ibiza"
   },
   {
-    "name": "NOHR",
-    "key": "nohr",
+    "name": "nocapz.",
+    "key": "nocapz",
     "events": 1,
     "sources": [
       "ra"
     ],
     "onRA": true,
-    "sample": "Voodoo Village 2026 · Brussels"
+    "sample": "Defected Malta 2026 / GLITTERBOX · Malta"
   },
   {
     "name": "Nørbak",
@@ -2017,44 +2358,24 @@
     "sample": "Jeff Mills at Amnesia Ibiza · Ibiza"
   },
   {
-    "name": "Nosedrip",
-    "key": "nosedrip",
+    "name": "O'Flynn",
+    "key": "oflynn",
     "events": 1,
     "sources": [
       "ra"
     ],
     "onRA": true,
-    "sample": "Voodoo Village 2026 · Brussels"
+    "sample": "Defected Malta 2026 / GLITTERBOX · Malta"
   },
   {
-    "name": "NTO",
-    "key": "nto",
+    "name": "Oden",
+    "key": "oden",
     "events": 1,
     "sources": [
       "ra"
     ],
     "onRA": true,
-    "sample": "Voodoo Village 2026 · Brussels"
-  },
-  {
-    "name": "Octave One",
-    "key": "octaveone",
-    "events": 1,
-    "sources": [
-      "ra"
-    ],
-    "onRA": true,
-    "sample": "Dissonanze Festival · Rome"
-  },
-  {
-    "name": "Odrik",
-    "key": "odrik",
-    "events": 1,
-    "sources": [
-      "ra"
-    ],
-    "onRA": true,
-    "sample": "Voodoo Village 2026 · Brussels"
+    "sample": "Defected Malta 2026 / GLITTERBOX · Malta"
   },
   {
     "name": "OJ Willis",
@@ -2067,24 +2388,14 @@
     "sample": "Acid Ballroom: Paranoid London · Leeds"
   },
   {
-    "name": "Oko Stellar",
-    "key": "okostellar",
+    "name": "Oldboy",
+    "key": "oldboy",
     "events": 1,
     "sources": [
       "ra"
     ],
     "onRA": true,
-    "sample": "Voodoo Village 2026 · Brussels"
-  },
-  {
-    "name": "Omeria",
-    "key": "omeria",
-    "events": 1,
-    "sources": [
-      "ra"
-    ],
-    "onRA": true,
-    "sample": "Dissonanze Festival · Rome"
+    "sample": "LOCUS x Modern Funktion Halloween · London"
   },
   {
     "name": "Onur Özer",
@@ -2097,14 +2408,14 @@
     "sample": "Jane Fitz at Omana-Festival · Kalamitsi"
   },
   {
-    "name": "Orbit",
-    "key": "orbit",
+    "name": "Osamu M",
+    "key": "osamum",
     "events": 1,
     "sources": [
       "ra"
     ],
     "onRA": true,
-    "sample": "Voodoo Village 2026 · Brussels"
+    "sample": "ULTRA JAPAN RESISTANCE TOKYO OFFICIAL AFTER PARTY DAY 2 · Tokio"
   },
   {
     "name": "Oshana",
@@ -2117,6 +2428,16 @@
     "sample": "Jane Fitz at Omana-Festival · Kalamitsi"
   },
   {
+    "name": "Paisley Jensen",
+    "key": "paisleyjensen",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "Defected Malta 2026 / GLITTERBOX · Malta"
+  },
+  {
     "name": "Pampa",
     "key": "pampa",
     "events": 1,
@@ -2125,6 +2446,16 @@
     ],
     "onRA": true,
     "sample": "ANNĒ - Ben Klock - BONDARŨK - JXXXO - Pampa - Setaoc Mass - + Under Cl"
+  },
+  {
+    "name": "Paranoid London",
+    "key": "paranoidlondon",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "Acid Ballroom: Paranoid London · Leeds"
   },
   {
     "name": "PARISI",
@@ -2137,21 +2468,11 @@
     "sample": "PARISI @ Duel Club · Pozzuoli"
   },
   {
-    "name": "Parra for Cuva",
-    "key": "parraforcuva",
-    "events": 1,
-    "sources": [
-      "ra"
-    ],
-    "onRA": true,
-    "sample": "Voodoo Village 2026 · Brussels"
-  },
-  {
     "name": "Parrish Smith",
     "key": "parrishsmith",
     "events": 1,
     "sources": [
-      "bandsintown"
+      "songkick"
     ],
     "onRA": true,
     "sample": "Luke Slater at Melkweg · Amsterdam"
@@ -2187,6 +2508,16 @@
     "sample": "VORTEK'S @ Razzmatazz · Barcelona"
   },
   {
+    "name": "Pretty Pink",
+    "key": "prettypink",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "Groove Cruise Miami 2027 - Ambassador Code: GrooveCruiseChris · Miami"
+  },
+  {
     "name": "Protokseed",
     "key": "protokseed",
     "events": 1,
@@ -2195,6 +2526,16 @@
     ],
     "onRA": true,
     "sample": "Amber Broos at Fort l'Écluse · Leaz"
+  },
+  {
+    "name": "Purple Rabbit",
+    "key": "purplerabbit",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "EDC Korea · Seoul"
   },
   {
     "name": "R Squared",
@@ -2207,24 +2548,44 @@
     "sample": "Pre sale tickets for 2027 drop on Friday 8th May at 10am. Scroll down "
   },
   {
-    "name": "Rampue",
-    "key": "rampue",
+    "name": "R8YZ",
+    "key": "r8yz",
     "events": 1,
     "sources": [
       "ra"
     ],
     "onRA": true,
-    "sample": "Voodoo Village 2026 · Brussels"
+    "sample": "Fahlberg (360 Set) · Toronto"
   },
   {
-    "name": "Reelow",
-    "key": "reelow",
+    "name": "RaeCola",
+    "key": "raecola",
     "events": 1,
     "sources": [
-      "bandsintown"
+      "ra"
     ],
     "onRA": true,
-    "sample": "Marco Carola at DC10 · Ibiza"
+    "sample": "Groove Cruise Miami 2027 - Ambassador Code: GrooveCruiseChris · Miami"
+  },
+  {
+    "name": "Ranger Trucco",
+    "key": "rangertrucco",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "Groove Cruise Miami 2027 - Ambassador Code: GrooveCruiseChris · Miami"
+  },
+  {
+    "name": "Red Axes",
+    "key": "redaxes",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "Time Warp NYC 2026 · Nueva York"
   },
   {
     "name": "Reflex Blue",
@@ -2237,11 +2598,21 @@
     "sample": "FUSE ➔ Malta 2026 · All"
   },
   {
+    "name": "Ren Yokoi",
+    "key": "renyokoi",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "ULTRA JAPAN RESISTANCE TOKYO OFFICIAL AFTER PARTY DAY 2 · Tokio"
+  },
+  {
     "name": "Rene Wise",
     "key": "renewise",
     "events": 1,
     "sources": [
-      "bandsintown"
+      "songkick"
     ],
     "onRA": true,
     "sample": "Luke Slater at Melkweg · Amsterdam"
@@ -2257,44 +2628,14 @@
     "sample": "Dual Damage: Built2Break · Liverpool"
   },
   {
-    "name": "Riana Holley",
-    "key": "rianaholley",
-    "events": 1,
-    "sources": [
-      "ra"
-    ],
-    "onRA": true,
-    "sample": "Voodoo Village 2026 · Brussels"
-  },
-  {
-    "name": "Rich NXT",
-    "key": "richnxt",
-    "events": 1,
-    "sources": [
-      "ra"
-    ],
-    "onRA": true,
-    "sample": "FUSE ➔ Malta 2026 · All"
-  },
-  {
     "name": "Richard Fearless",
     "key": "richardfearless",
     "events": 1,
     "sources": [
-      "bandsintown"
+      "songkick"
     ],
     "onRA": true,
     "sample": "Luke Slater at Melkweg · Amsterdam"
-  },
-  {
-    "name": "RICHE",
-    "key": "riche",
-    "events": 1,
-    "sources": [
-      "ra"
-    ],
-    "onRA": true,
-    "sample": "Voodoo Village 2026 · Brussels"
   },
   {
     "name": "Riley",
@@ -2305,16 +2646,6 @@
     ],
     "onRA": true,
     "sample": "Pre sale tickets for 2027 drop on Friday 8th May at 10am. Scroll down "
-  },
-  {
-    "name": "Risa Taniguchi",
-    "key": "risataniguchi",
-    "events": 1,
-    "sources": [
-      "bandsintown"
-    ],
-    "onRA": true,
-    "sample": "Luke Slater at Melkweg · Amsterdam"
   },
   {
     "name": "Riva Starr",
@@ -2357,14 +2688,34 @@
     "sample": "Novah at Palexpo · Le Grand-Saconnex"
   },
   {
-    "name": "Ron Trent",
-    "key": "rontrent",
+    "name": "Romeo",
+    "key": "romeo",
     "events": 1,
     "sources": [
       "ra"
     ],
     "onRA": true,
-    "sample": "Dissonanze Festival · Rome"
+    "sample": "Groove Cruise Miami 2027 - Ambassador Code: GrooveCruiseChris · Miami"
+  },
+  {
+    "name": "Rose Kourts",
+    "key": "rosekourts",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "Time Warp NYC 2026 · Nueva York"
+  },
+  {
+    "name": "Rossko",
+    "key": "rossko",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "FUSE ➔ Malta 2026 · All"
   },
   {
     "name": "RTK Tarantino",
@@ -2377,14 +2728,24 @@
     "sample": "FUSE ➔ Malta 2026 · All"
   },
   {
-    "name": "RY X",
-    "key": "ryx",
+    "name": "RUZE",
+    "key": "ruze",
     "events": 1,
     "sources": [
       "ra"
     ],
     "onRA": true,
-    "sample": "Voodoo Village 2026 · Brussels"
+    "sample": "Defected Malta 2026 / GLITTERBOX · Malta"
+  },
+  {
+    "name": "RYOHEI",
+    "key": "ryohei",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "ULTRA JAPAN RESISTANCE TOKYO OFFICIAL AFTER PARTY DAY 1 · Tokio"
   },
   {
     "name": "Saffron Stone",
@@ -2437,6 +2798,16 @@
     "sample": "Pre sale tickets for 2027 drop on Friday 8th May at 10am. Scroll down "
   },
   {
+    "name": "San Holo",
+    "key": "sanholo",
+    "events": 1,
+    "sources": [
+      "songkick"
+    ],
+    "onRA": true,
+    "sample": "San Holo @ Big Night Live · Boston"
+  },
+  {
     "name": "Sander van Doorn",
     "key": "sandervandoorn",
     "events": 1,
@@ -2447,14 +2818,44 @@
     "sample": "Sander van Doorn @ Sobar Southampton · Southampton"
   },
   {
-    "name": "Sasha Carassi",
-    "key": "sashacarassi",
+    "name": "Sandy Rivera",
+    "key": "sandyrivera",
     "events": 1,
     "sources": [
-      "bandsintown"
+      "ra"
     ],
     "onRA": true,
-    "sample": "Maceo Plex at Amnesia Ibiza · Ibiza"
+    "sample": "Defected Malta 2026 / GLITTERBOX · Malta"
+  },
+  {
+    "name": "Scarlett O'Malley",
+    "key": "scarlettomalley",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "Defected Malta 2026 / GLITTERBOX · Malta"
+  },
+  {
+    "name": "Scooter",
+    "key": "scooter",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "Groove Cruise Miami 2027 - Ambassador Code: GrooveCruiseChris · Miami"
+  },
+  {
+    "name": "Scotty Boy",
+    "key": "scottyboy",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "Groove Cruise Miami 2027 - Ambassador Code: GrooveCruiseChris · Miami"
   },
   {
     "name": "Seb Zito",
@@ -2467,14 +2868,14 @@
     "sample": "FUSE ➔ Malta 2026 · All"
   },
   {
-    "name": "Session Victim",
-    "key": "sessionvictim",
+    "name": "Sebastian Morxx",
+    "key": "sebastianmorxx",
     "events": 1,
     "sources": [
       "ra"
     ],
     "onRA": true,
-    "sample": "Dissonanze Festival · Rome"
+    "sample": "Groove Cruise Miami 2027 - Ambassador Code: GrooveCruiseChris · Miami"
   },
   {
     "name": "Shakèd",
@@ -2487,6 +2888,26 @@
     "sample": "Jane Fitz at Omana-Festival · Kalamitsi"
   },
   {
+    "name": "Shermanology",
+    "key": "shermanology",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "Defected Malta 2026 / GLITTERBOX · Malta"
+  },
+  {
+    "name": "Showtek",
+    "key": "showtek",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "Don't Let Daddy Know Poland · Gdansk"
+  },
+  {
     "name": "Sim0ne",
     "key": "sim0ne",
     "events": 1,
@@ -2495,16 +2916,6 @@
     ],
     "onRA": true,
     "sample": "Salute at Amnesia Ibiza · Ibiza"
-  },
-  {
-    "name": "Sinego",
-    "key": "sinego",
-    "events": 1,
-    "sources": [
-      "ra"
-    ],
-    "onRA": true,
-    "sample": "Voodoo Village 2026 · Brussels"
   },
   {
     "name": "Socrates",
@@ -2517,14 +2928,14 @@
     "sample": "Jane Fitz at Omana-Festival · Kalamitsi"
   },
   {
-    "name": "Son of Son",
-    "key": "sonofson",
+    "name": "Soraere Brocken",
+    "key": "soraerebrocken",
     "events": 1,
     "sources": [
       "ra"
     ],
     "onRA": true,
-    "sample": "Voodoo Village 2026 · Brussels"
+    "sample": "EDC Korea · Seoul"
   },
   {
     "name": "soraya",
@@ -2547,54 +2958,34 @@
     "sample": "Pre sale tickets for 2027 drop on Friday 8th May at 10am. Scroll down "
   },
   {
-    "name": "Stanislawa",
-    "key": "stanislawa",
+    "name": "Stuart Patterson",
+    "key": "stuartpatterson",
     "events": 1,
     "sources": [
       "ra"
     ],
     "onRA": true,
-    "sample": "Voodoo Village 2026 · Brussels"
+    "sample": "Defected Malta 2026 / GLITTERBOX · Malta"
   },
   {
-    "name": "Stasi Sanlin",
-    "key": "stasisanlin",
+    "name": "Terry Farley",
+    "key": "terryfarley",
     "events": 1,
     "sources": [
       "ra"
     ],
     "onRA": true,
-    "sample": "Voodoo Village 2026 · Brussels"
+    "sample": "Defected Malta 2026 / GLITTERBOX · Malta"
   },
   {
-    "name": "Sugar Free",
-    "key": "sugarfree",
+    "name": "The Brothers Grim",
+    "key": "thebrothersgrim",
     "events": 1,
     "sources": [
       "ra"
     ],
     "onRA": true,
-    "sample": "Dissonanze Festival · Rome"
-  },
-  {
-    "name": "Supergloss",
-    "key": "supergloss",
-    "events": 1,
-    "sources": [
-      "ra"
-    ],
-    "onRA": true,
-    "sample": "Sara Landry · Miami"
-  },
-  {
-    "name": "The Blaze",
-    "key": "theblaze",
-    "events": 1,
-    "sources": [
-      "ra"
-    ],
-    "onRA": true,
-    "sample": "Voodoo Village 2026 · Brussels"
+    "sample": "Groove Cruise Miami 2027 - Ambassador Code: GrooveCruiseChris · Miami"
   },
   {
     "name": "The Ghost",
@@ -2607,34 +2998,14 @@
     "sample": "FUSE ➔ Malta 2026 · All"
   },
   {
-    "name": "THELMA",
-    "key": "thelma",
+    "name": "The Shapeshifters",
+    "key": "theshapeshifters",
     "events": 1,
     "sources": [
       "ra"
     ],
     "onRA": true,
-    "sample": "Voodoo Village 2026 · Brussels"
-  },
-  {
-    "name": "Ti Es",
-    "key": "ties",
-    "events": 1,
-    "sources": [
-      "ra"
-    ],
-    "onRA": true,
-    "sample": "Dissonanze Festival · Rome"
-  },
-  {
-    "name": "Tiger & Woods",
-    "key": "tigerandwoods",
-    "events": 1,
-    "sources": [
-      "ra"
-    ],
-    "onRA": true,
-    "sample": "Dissonanze Festival · Rome"
+    "sample": "Defected Malta 2026 / GLITTERBOX · Malta"
   },
   {
     "name": "Tikis",
@@ -2665,16 +3036,6 @@
     ],
     "onRA": true,
     "sample": "III Points 2026 · Miami"
-  },
-  {
-    "name": "TORI ANN",
-    "key": "toriann",
-    "events": 1,
-    "sources": [
-      "ra"
-    ],
-    "onRA": true,
-    "sample": "Voodoo Village 2026 · Brussels"
   },
   {
     "name": "Tricky",
@@ -2721,7 +3082,7 @@
     "key": "veronicavasicka",
     "events": 1,
     "sources": [
-      "bandsintown"
+      "songkick"
     ],
     "onRA": true,
     "sample": "Luke Slater at Melkweg · Amsterdam"
@@ -2731,7 +3092,7 @@
     "key": "vondi",
     "events": 1,
     "sources": [
-      "bandsintown"
+      "songkick"
     ],
     "onRA": true,
     "sample": "Luke Slater at Melkweg · Amsterdam"
@@ -2747,14 +3108,14 @@
     "sample": "VORTEK'S @ Razzmatazz · Barcelona"
   },
   {
-    "name": "Wayne Snow",
-    "key": "waynesnow",
+    "name": "Watchers",
+    "key": "watchers",
     "events": 1,
     "sources": [
       "ra"
     ],
     "onRA": true,
-    "sample": "Dissonanze Festival · Rome"
+    "sample": "LOCUS x Modern Funktion Halloween · London"
   },
   {
     "name": "Wheats",
@@ -2827,24 +3188,14 @@
     "sample": "Second Speed Accelerate Festival 2026. · Gateshead"
   },
   {
-    "name": "Young Marco",
-    "key": "youngmarco",
+    "name": "Yuka",
+    "key": "yuka",
     "events": 1,
     "sources": [
       "ra"
     ],
     "onRA": true,
-    "sample": "Voodoo Village 2026 · Brussels"
-  },
-  {
-    "name": "Yu Su",
-    "key": "yusu",
-    "events": 1,
-    "sources": [
-      "ra"
-    ],
-    "onRA": true,
-    "sample": "Dissonanze Festival · Rome"
+    "sample": "EDC Korea · Seoul"
   },
   {
     "name": "Z@p",
@@ -2855,16 +3206,6 @@
     ],
     "onRA": true,
     "sample": "Jane Fitz at Omana-Festival · Kalamitsi"
-  },
-  {
-    "name": "ZAHNATZIN",
-    "key": "zahnatzin",
-    "events": 1,
-    "sources": [
-      "ra"
-    ],
-    "onRA": true,
-    "sample": "BCCO with Yanamaste, future.666  · Cologne"
   },
   {
     "name": "Beyond Wonderland",

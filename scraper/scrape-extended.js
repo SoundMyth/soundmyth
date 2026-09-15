@@ -317,27 +317,41 @@ let flushing       = false;
 // Batches that failed all retries — retried once at end of run after a long pause.
 const failQueue    = [];
 
+// A paused Supabase project loses its DNS record, so every attempt fails at the
+// network layer and no amount of retrying helps. Without this breaker the run
+// burns its whole time budget on a dead host: that is what turned a 9-minute
+// scrape into a 45-minute timeout with 3270 events lost.
+let sbDown     = false;
+let flushFails = 0;
+const SB_GIVE_UP_AFTER = 3;
+
 async function flushBuffer() {
-  if (flushing || !buffer.length) return;
+  if (flushing || sbDown || !buffer.length) return;
   flushing = true;
   try {
-    const batch = buffer.splice(0, buffer.length);
-    bufferIds.clear();
-    batch.forEach(cleanEvent);
-    // 4 attempts, 5 s base → waits 5 s / 10 s / 15 s before giving up
-    const { error } = await withRetry(
-      () => sb.from('events').upsert(batch, { onConflict: 'source_id', ignoreDuplicates: false }),
-      'Supabase upsert',
-      4,
-      5000
-    );
-    if (error) {
-      console.error(`\n  ⚠️  ${error.message || error} — queued for end-of-run retry`);
-      failQueue.push(batch);
-      totalErrors += batch.length;
-    } else {
-      totalUpserted += batch.length;
-      process.stdout.write(` ✓${batch.length}`);
+    while (buffer.length && !sbDown) {
+      const slice = buffer.splice(0, BATCH);
+      slice.forEach(cleanEvent);
+      // 4 attempts, 5 s base → waits 5 s / 10 s / 15 s before giving up
+      const { error } = await withRetry(
+        () => sb.from('events').upsert(slice, { onConflict: 'source_id', ignoreDuplicates: false }),
+        'Supabase upsert',
+        4,
+        5000
+      );
+      if (error) {
+        failQueue.push(slice);
+        totalErrors += slice.length;
+        if (++flushFails >= SB_GIVE_UP_AFTER) {
+          sbDown = true;
+          console.error(`\n  ⛔  Supabase unreachable (${SB_GIVE_UP_AFTER} batches failed in a row) — buffering locally, one retry at end of run.`);
+        }
+      } else {
+        flushFails = 0;
+        totalUpserted += slice.length;
+        process.stdout.write(` ✓${slice.length}`);
+      }
+      if (buffer.length) await sleep(300);
     }
   } finally {
     flushing = false;
@@ -436,6 +450,9 @@ async function main() {
       console.error(`\n  ❌  ${dj.name}: ${err.message}`);
     } finally {
       djDone++;
+      // Awaited, so writes stay serialised and never pile up on Supabase; the
+      // other worker keeps scraping meanwhile. Caps data at risk to ~25 DJs.
+      if (djDone % 25 === 0) await flushBuffer();
       if (djDone % 10 === 0) {
         const elapsed = (Date.now() - t0) / 1000;
         const rem = Math.round((elapsed / djDone) * (artists.length - djDone) / 60);
@@ -451,25 +468,16 @@ async function main() {
       await scrapeDJ(artists[idx], idx);
     }
   }));
-  // All events accumulated in memory during scraping — flush now in paced batches.
-  bufferIds.clear();
-  console.log(`\n\n💾  Flushing ${buffer.length} events to Supabase…`);
-  while (buffer.length > 0) {
+  // Clear the breaker for one last attempt — Supabase may have recovered.
+  sbDown = false; flushFails = 0;
+  if (buffer.length) console.log(`\n\n💾  Flushing ${buffer.length} remaining events to Supabase…`);
+  await flushBuffer();
+  // Breaker tripped again mid-drain: hand the rest to the end-of-run retry.
+  while (buffer.length) {
     const slice = buffer.splice(0, BATCH);
     slice.forEach(cleanEvent);
-    const { error } = await withRetry(
-      () => sb.from('events').upsert(slice, { onConflict: 'source_id', ignoreDuplicates: false }),
-      'Supabase upsert', 4, 5000
-    );
-    if (error) {
-      console.error(`\n  ⚠️  ${error.message || error} — queued for end-of-run retry`);
-      failQueue.push(slice);
-      totalErrors += slice.length;
-    } else {
-      totalUpserted += slice.length;
-      process.stdout.write(` ✓${slice.length}`);
-    }
-    if (buffer.length > 0) await sleep(800);
+    failQueue.push(slice);
+    totalErrors += slice.length;
   }
   process.stdout.write('\n');
 
@@ -478,16 +486,25 @@ async function main() {
     const queuedCount = failQueue.reduce((n, b) => n + b.length, 0);
     console.log(`\n\n⏳  ${failQueue.length} batch(es) failed during the run (${queuedCount} events). Retrying after 30 s pause…`);
     await sleep(30_000);
-    let recovered = 0;
+    let recovered = 0, consecutiveFails = 0;
     for (const batch of failQueue) {
+      if (consecutiveFails >= 2) {
+        console.error('⛔  Supabase still unreachable — abandoning the remaining batches.');
+        break;
+      }
       const { error } = await withRetry(
         () => sb.from('events').upsert(batch, { onConflict: 'source_id', ignoreDuplicates: false }),
         'End-of-run retry',
         5,
         10_000
       );
-      if (!error) { totalUpserted += batch.length; totalErrors -= batch.length; recovered += batch.length; }
-      else console.error(`❌  End-of-run retry still failed: ${error.message || error}`);
+      if (!error) {
+        totalUpserted += batch.length; totalErrors -= batch.length;
+        recovered += batch.length; consecutiveFails = 0;
+      } else {
+        consecutiveFails++;
+        console.error(`❌  End-of-run retry still failed: ${error.message || error}`);
+      }
       await sleep(3000);
     }
     if (recovered) console.log(`✅  Recovered ${recovered} events from retry queue`);

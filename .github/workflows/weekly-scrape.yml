@@ -43,8 +43,8 @@ jobs:
 
       - name: Scrape DJs (BIT + Songkick cascade)
         continue-on-error: true
-        timeout-minutes: 45   # 852 DJs × Songkick at concurrency=2 ≈ 25-30 min scraping
-                              # + 15 min retry-pass budget.
+        timeout-minutes: 30   # 852 DJs at concurrency=2 ≈ 9 min scraping + ~1 min of
+                              # flushes; the rest is headroom for a slow Songkick.
         env:
           SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
           SUPABASE_SERVICE_KEY: ${{ secrets.SUPABASE_SERVICE_KEY }}
@@ -158,3 +158,24 @@ jobs:
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add scraper/data/*.json
           git diff --staged --quiet || { git commit -m "data: weekly scrape update $(date +%Y-%m-%d)" && git pull --rebase && git push; }
+
+      - name: Verify the run actually wrote data
+        # Deliberately has NO continue-on-error. Every other step has one, so a run
+        # where Supabase was unreachable for 90 minutes and wrote zero events still
+        # reported "Success" — this step is what makes that run red.
+        timeout-minutes: 5
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_SERVICE_KEY: ${{ secrets.SUPABASE_SERVICE_KEY }}
+        run: |
+          total=$(curl -sS --max-time 30 -D - -o /dev/null \
+            -H "apikey: $SUPABASE_SERVICE_KEY" \
+            -H "Authorization: Bearer $SUPABASE_SERVICE_KEY" \
+            -H "Prefer: count=exact" -H "Range: 0-0" \
+            "$SUPABASE_URL/rest/v1/events?select=id&date=gte.$(date +%F)" \
+            | tr -d '\r' | sed -n 's/^[Cc]ontent-[Rr]ange: .*\///p')
+          echo "Future events in DB: ${total:-<unreachable>}"
+          if ! [ "$total" -ge 100 ] 2>/dev/null; then
+            echo "::error::Supabase unreachable or events table nearly empty (${total:-none}). Check the project is not paused at https://supabase.com/dashboard"
+            exit 1
+          fi

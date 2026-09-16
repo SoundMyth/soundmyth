@@ -3844,10 +3844,11 @@
     "genre": "House",
     "subgenre": "Deep House",
     "tags": "underground",
-    "tour_web": "https://www.midlandofficial.com/tour/#/",
-    "songkick_url": "https://www.songkick.com/artists/10350492-midland-uk",
+    "tour_web": "",
+    "songkick_url": "",
     "bit_url": "https://www.bandsintown.com/a/898590-dj-midland",
-    "ra_url": "https://ra.co/dj/midland"
+    "ra_url": "https://ra.co/dj/midland",
+    "songkick_skip": true
   },
   {
     "ranking": 351,

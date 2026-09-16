@@ -35,7 +35,8 @@ jobs:
 
       - name: Enrich Songkick URLs
         continue-on-error: true
-        timeout-minutes: 10
+        timeout-minutes: 15   # one-off: ~250 newly promoted DJs need a first lookup
+                              # (~1 s each). Steady state is under a minute.
         env:
           SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
           SUPABASE_SERVICE_KEY: ${{ secrets.SUPABASE_SERVICE_KEY }}

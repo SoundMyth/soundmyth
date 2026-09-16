@@ -39,7 +39,7 @@ const UA = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML,
 const DJ_CACHE_PATH = resolve(__dirname, 'data/dj_images_cache.json');
 const FEST_CACHE_PATH = resolve(__dirname, 'data/festival_images_cache.json');
 
-const CACHE_VERSION = 4; // Bump when search logic improves to force retry of failed lookups
+const CACHE_VERSION = 5; // Bump when search logic improves to force retry of failed lookups
 
 let djCache = {};
 let festCache = {};
@@ -120,9 +120,12 @@ async function fetchFestivalImage(url) {
                || html.match(/<meta[^>]+name=["']twitter:image["'][^>]+content=["']([^"']+)["']/i)?.[1]
                || null;
 
-    // Validate: must be a real image URL (not empty, not a tracking pixel)
-    const img = ogImg && ogImg.startsWith('http') && !ogImg.includes('1x1') && !ogImg.includes('pixel')
-      ? ogImg : null;
+    // Detect tracking pixels by filename, never by substring: "1x1" is a legitimate
+    // aspect-ratio marker in poster filenames (…-Decadence-1x1_Phase1-1200x1200.jpg),
+    // so the old `includes('1x1')` test silently discarded square festival artwork.
+    const basename = (ogImg || '').split(/[?#]/)[0].split('/').pop();
+    const isPixel  = /^(1x1|pixel|spacer|blank|transparent)\.(gif|png|jpe?g|webp)$/i.test(basename);
+    const img = ogImg && ogImg.startsWith('http') && !isPixel ? ogImg : null;
 
     festCache[key] = img;
     return img;

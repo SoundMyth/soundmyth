@@ -9588,7 +9588,7 @@
     "subgenre": "",
     "tags": "discovered",
     "tour_web": "",
-    "songkick_url": "https://www.songkick.com/artists/1323837-andy-dee",
+    "songkick_url": "",
     "bit_url": "",
     "ra_url": ""
   },
@@ -9632,7 +9632,7 @@
     "subgenre": "",
     "tags": "discovered",
     "tour_web": "",
-    "songkick_url": "https://www.songkick.com/artists/9605909-annie-lewandowski",
+    "songkick_url": "",
     "bit_url": "",
     "ra_url": ""
   },
@@ -10017,7 +10017,7 @@
     "subgenre": "",
     "tags": "discovered",
     "tour_web": "",
-    "songkick_url": "https://www.songkick.com/artists/286527-dj-ben",
+    "songkick_url": "",
     "bit_url": "",
     "ra_url": ""
   },
@@ -10556,9 +10556,10 @@
     "subgenre": "",
     "tags": "discovered",
     "tour_web": "",
-    "songkick_url": "https://www.songkick.com/artists/426367-jme",
+    "songkick_url": "",
     "bit_url": "",
-    "ra_url": ""
+    "ra_url": "",
+    "songkick_skip": true
   },
   {
     "ranking": 963,
@@ -11172,9 +11173,10 @@
     "subgenre": "",
     "tags": "discovered",
     "tour_web": "",
-    "songkick_url": "https://www.songkick.com/artists/343069-murphys-law",
+    "songkick_url": "",
     "bit_url": "",
-    "ra_url": ""
+    "ra_url": "",
+    "songkick_skip": true
   },
   {
     "ranking": 1019,
@@ -11403,7 +11405,7 @@
     "subgenre": "",
     "tags": "discovered",
     "tour_web": "",
-    "songkick_url": "https://www.songkick.com/artists/10342660-roma-de-janeiro",
+    "songkick_url": "",
     "bit_url": "",
     "ra_url": ""
   },
@@ -11953,7 +11955,7 @@
     "subgenre": "",
     "tags": "discovered",
     "tour_web": "",
-    "songkick_url": "https://www.songkick.com/artists/578861-jukebox-the-ghost",
+    "songkick_url": "",
     "bit_url": "",
     "ra_url": ""
   },

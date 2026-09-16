@@ -9,7 +9,7 @@
  *   1. GET https://www.songkick.com/search?query={name}&type=artists
  *   2. Extract all /artists/ID-slug links from the HTML
  *   3. Score each slug against the artist name (normalised)
- *   4. Accept the best match if score ≥ 0.5
+ *   4. Accept the best match if score ≥ 0.8
  *
  * Usage:
  *   node enrich-songkick-urls.js
@@ -56,7 +56,7 @@ async function fetchHTML(url) {
 // ── Name normalisation & scoring ──────────────────────────────────────────────
 
 /** Convert artist name to a URL-slug-like string for comparison */
-function slugify(name) {
+function slugify(name, dropAmpersand = false) {
   return name
     .toLowerCase()
     // Explicit replacements for chars that don't decompose via NFD into ASCII
@@ -66,7 +66,12 @@ function slugify(name) {
     .normalize('NFD').replace(/[\u0300-\u036f]/g, '') // strip accents: ë→e, é→e
     .replace(/ß/g,  'ss')
     .replace(/\bw&w\b/g, 'ww')                       // W&W special case
-    .replace(/[&+]/g, 'and')
+    .replace(/[&+]/g, dropAmpersand ? '' : 'and')
+    // Drop intra-word punctuation rather than splitting on it, matching how
+    // Songkick builds slugs: O'Flynn → oflynn, A.D.H.S. → adhs. Splitting gave
+    // "murphy-s-law" against Songkick's "murphys-law" and scored a correct name
+    // at 0.50 — the same score a genuinely different artist gets.
+    .replace(/['’`.]/g, '')
     .replace(/[^a-z0-9]+/g, '-')
     .replace(/^-|-$/g, '');
 }
@@ -75,8 +80,16 @@ function slugify(name) {
 function matchScore(artistName, skPath) {
   // skPath looks like  /artists/5003643-martin-garrix
   const slugRaw = skPath.replace(/^\/artists\/\d+-/, '').toLowerCase(); // e.g. "martin-garrix"
-  const a = slugify(artistName);
+  // Songkick is inconsistent about "&"/"+": it spells them out for some artists
+  // and drops them for others ("Melody RA+RE" is slugged melody-rare), so score
+  // both readings and keep the better one.
+  return Math.max(
+    scoreSlug(slugify(artistName), slugRaw),
+    scoreSlug(slugify(artistName, true), slugRaw),
+  );
+}
 
+function scoreSlug(a, slugRaw) {
   if (!slugRaw || !a) return 0;
 
   // Perfect match
@@ -85,6 +98,10 @@ function matchScore(artistName, skPath) {
   // One starts with the other (handles "tiesto" vs "tiesto-official")
   if (slugRaw.startsWith(a + '-') || a.startsWith(slugRaw + '-')) return 0.9;
   if (slugRaw === a.replace(/-/g, '') || slugRaw.replace(/-/g, '') === a) return 0.85;
+
+  // A leading article is noise: "The Shapeshifters" is slugged "shapeshifters".
+  const noThe = s => s.replace(/^the-/, '');
+  if (noThe(a) === noThe(slugRaw)) return 0.85;
 
   // Word-level overlap
   const aWords = a.split('-').filter(w => w.length > 1);
@@ -130,7 +147,10 @@ async function findSongkickUrl(artistName) {
   // Also try: does the HTML contain the artist name near the top result?
   const best = scored[0];
 
-  if (best.score >= 0.5) {
+  // 0.8, not 0.5: at 0.5 a single shared word was enough, which matched
+  // "Annie Lew" to annie-lewandowski and "The Ghost" to jukebox-the-ghost and
+  // imported their tours. Legitimate punctuation variants now score ≥0.85.
+  if (best.score >= 0.8) {
     return { url: `https://www.songkick.com${best.path}`, limited: false, score: best.score };
   }
 

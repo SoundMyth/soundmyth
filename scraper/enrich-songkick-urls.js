@@ -77,16 +77,23 @@ function slugify(name, dropAmpersand = false) {
 }
 
 /** Score how well a Songkick URL path matches an artist name (0–1) */
+/** Multi-word or long enough that matching it is unlikely to be a coincidence. */
+const specific = s => s.includes('-') || s.length >= 8;
+
 function matchScore(artistName, skPath) {
   // skPath looks like  /artists/5003643-martin-garrix
   const slugRaw = skPath.replace(/^\/artists\/\d+-/, '').toLowerCase(); // e.g. "martin-garrix"
-  // Songkick is inconsistent about "&"/"+": it spells them out for some artists
-  // and drops them for others ("Melody RA+RE" is slugged melody-rare), so score
-  // both readings and keep the better one.
-  return Math.max(
-    scoreSlug(slugify(artistName), slugRaw),
-    scoreSlug(slugify(artistName, true), slugRaw),
-  );
+  const plain = slugify(artistName);
+  let best = scoreSlug(plain, slugRaw);
+
+  // Songkick is inconsistent about "&"/"+": spelled out for some artists, dropped
+  // for others ("Melody RA+RE" is slugged melody-rare). Only trust the dropped
+  // reading when what remains is still specific — "Omar+" reduces to "omar",
+  // which matched a British soul singer and imported his jazz-club dates.
+  const noAmp = slugify(artistName, true);
+  if (noAmp !== plain && specific(noAmp)) best = Math.max(best, scoreSlug(noAmp, slugRaw));
+
+  return best;
 }
 
 function scoreSlug(a, slugRaw) {
@@ -100,8 +107,10 @@ function scoreSlug(a, slugRaw) {
   if (slugRaw === a.replace(/-/g, '') || slugRaw.replace(/-/g, '') === a) return 0.85;
 
   // A leading article is noise: "The Shapeshifters" is slugged "shapeshifters".
+  // Gated on specificity for the same reason as "&": dropping it from "The Ghost"
+  // leaves "ghost", which matched the Swedish metal band of that name.
   const noThe = s => s.replace(/^the-/, '');
-  if (noThe(a) === noThe(slugRaw)) return 0.85;
+  if (noThe(a) === noThe(slugRaw) && specific(noThe(a))) return 0.85;
 
   // Word-level overlap
   const aWords = a.split('-').filter(w => w.length > 1);

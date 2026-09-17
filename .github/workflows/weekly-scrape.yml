@@ -20,6 +20,10 @@ jobs:
         working-directory: scraper
 
     steps:
+      - name: Record start time
+        # report.js uses this to count what THIS run wrote, via created_at.
+        run: echo "RUN_STARTED=$(date -u +%Y-%m-%dT%H:%M:%SZ)" >> $GITHUB_ENV
+
       - name: Checkout repo
         uses: actions/checkout@v6
 
@@ -34,6 +38,7 @@ jobs:
         run: npm ci
 
       - name: Enrich Songkick URLs
+        id: enrich_sk
         continue-on-error: true
         timeout-minutes: 15   # one-off: ~250 newly promoted DJs need a first lookup
                               # (~1 s each). Steady state is under a minute.
@@ -43,6 +48,7 @@ jobs:
         run: node enrich-songkick-urls.js
 
       - name: Scrape DJs (BIT + Songkick cascade)
+        id: djs
         continue-on-error: true
         timeout-minutes: 30   # 852 DJs at concurrency=2 ≈ 9 min scraping + ~1 min of
                               # flushes; the rest is headroom for a slow Songkick.
@@ -53,6 +59,7 @@ jobs:
         run: node scrape-extended.js
 
       - name: Scrape Festivals (BIT + Songkick)
+        id: fest_bit
         continue-on-error: true
         timeout-minutes: 15
         env:
@@ -65,6 +72,7 @@ jobs:
         run: npx playwright install chromium --with-deps
 
       - name: Scrape Festivals (direct websites)
+        id: fest_web
         continue-on-error: true
         timeout-minutes: 15
         env:
@@ -73,6 +81,7 @@ jobs:
         run: node scrape-festivals-direct.js
 
       - name: Scrape Festivals (Resident Advisor)
+        id: fest_ra
         continue-on-error: true
         timeout-minutes: 10
         # Covers festivals with no Songkick URL — Songkick retired festival
@@ -84,6 +93,7 @@ jobs:
         run: node scrape-festivals-ra.js
 
       - name: Enrich Clubs (RA URLs)
+        id: clubs_enrich
         continue-on-error: true
         timeout-minutes: 10
         # Auto-fills ra_url for clubs that have none (no secrets: only calls ra.co).
@@ -91,6 +101,7 @@ jobs:
         run: node enrich-clubs-ra.js
 
       - name: Scrape Clubs (Resident Advisor)
+        id: clubs
         continue-on-error: true
         timeout-minutes: 10
         env:
@@ -99,6 +110,7 @@ jobs:
         run: node scrape-clubs-ra.js
 
       - name: Deduplicate events
+        id: dedupe
         continue-on-error: true
         timeout-minutes: 5
         env:
@@ -107,6 +119,7 @@ jobs:
         run: node dedupe.js
 
       - name: Discover unlisted EDM DJs (RA-verified)
+        id: discover
         continue-on-error: true
         timeout-minutes: 15
         # Reads events (anon) + verifies non-list DJs on Resident Advisor, writes
@@ -121,6 +134,7 @@ jobs:
         run: node discover-djs.js
 
       - name: Clean mislabelled junk events
+        id: cleanup
         continue-on-error: true
         timeout-minutes: 12   # combined single-pass + parallel updates; headroom for the heavy first run
         env:
@@ -129,6 +143,7 @@ jobs:
         run: node cleanup-junk.js
 
       - name: Enrich event images (festivals + DJs)
+        id: images
         continue-on-error: true
         timeout-minutes: 20
         env:
@@ -137,6 +152,7 @@ jobs:
         run: node enrich-images.js
 
       - name: Validate & fix data quality
+        id: validate
         continue-on-error: true
         timeout-minutes: 5
         env:
@@ -145,6 +161,7 @@ jobs:
         run: node validate.js
 
       - name: Purge old events (>15 days)
+        id: purge
         continue-on-error: true
         timeout-minutes: 10
         env:
@@ -153,6 +170,7 @@ jobs:
         run: node purge.js
 
       - name: Commit updated data files
+        id: commit
         run: |
           cd ..
           git config user.name "github-actions[bot]"
@@ -161,6 +179,7 @@ jobs:
           git diff --staged --quiet || { git commit -m "data: weekly scrape update $(date +%Y-%m-%d)" && git pull --rebase && git push; }
 
       - name: Verify the run actually wrote data
+        id: verify
         # Deliberately has NO continue-on-error. Every other step has one, so a run
         # where Supabase was unreachable for 90 minutes and wrote zero events still
         # reported "Success" — this step is what makes that run red.
@@ -180,3 +199,37 @@ jobs:
             echo "::error::Supabase unreachable or events table nearly empty (${total:-none}). Check the project is not paused at https://supabase.com/dashboard"
             exit 1
           fi
+
+      - name: Send run report
+        # always(): the email matters most on the runs that broke, including when
+        # the verify step above fails. Missing Brevo secrets only skip the send.
+        if: always()
+        continue-on-error: true
+        timeout-minutes: 5
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_SERVICE_KEY: ${{ secrets.SUPABASE_SERVICE_KEY }}
+          BREVO_API_KEY: ${{ secrets.BREVO_API_KEY }}
+          NOTIFY_EMAIL: ${{ secrets.NOTIFY_EMAIL }}
+          NOTIFY_FROM: ${{ secrets.NOTIFY_FROM }}
+          RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+          RUN_NUMBER: ${{ github.run_number }}
+          STEP_OUTCOMES: >-
+            {
+            "Enrich Songkick URLs": "${{ steps.enrich_sk.outcome }}",
+            "Scrape DJs": "${{ steps.djs.outcome }}",
+            "Festivals (BIT + Songkick)": "${{ steps.fest_bit.outcome }}",
+            "Festivals (websites)": "${{ steps.fest_web.outcome }}",
+            "Festivals (RA)": "${{ steps.fest_ra.outcome }}",
+            "Enrich Clubs (RA URLs)": "${{ steps.clubs_enrich.outcome }}",
+            "Clubs (RA)": "${{ steps.clubs.outcome }}",
+            "Deduplicate": "${{ steps.dedupe.outcome }}",
+            "Discover DJs": "${{ steps.discover.outcome }}",
+            "Clean junk": "${{ steps.cleanup.outcome }}",
+            "Enrich images": "${{ steps.images.outcome }}",
+            "Validate": "${{ steps.validate.outcome }}",
+            "Purge": "${{ steps.purge.outcome }}",
+            "Commit data files": "${{ steps.commit.outcome }}",
+            "Verify wrote data": "${{ steps.verify.outcome }}"
+            }
+        run: node report.js

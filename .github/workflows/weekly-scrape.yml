@@ -20,12 +20,15 @@ jobs:
         working-directory: scraper
 
     steps:
-      - name: Record start time
-        # report.js uses this to count what THIS run wrote, via created_at.
-        run: echo "RUN_STARTED=$(date -u +%Y-%m-%dT%H:%M:%SZ)" >> $GITHUB_ENV
-
       - name: Checkout repo
         uses: actions/checkout@v6
+
+      - name: Record start time
+        # MUST stay after checkout: defaults.run.working-directory is scraper/,
+        # which does not exist until the repo is cloned. Placed before it, this
+        # step died in 0s and took the whole job with it for two Sundays.
+        # report.js uses this to count what THIS run wrote, via created_at.
+        run: echo "RUN_STARTED=$(date -u +%Y-%m-%dT%H:%M:%SZ)" >> $GITHUB_ENV
 
       - name: Setup Node.js
         uses: actions/setup-node@v6

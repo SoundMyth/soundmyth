@@ -1,26 +1,5 @@
 [
   {
-    "name": "Jhobei",
-    "key": "jhobei",
-    "events": 2,
-    "sources": [
-      "ra"
-    ],
-    "onRA": true,
-    "sample": "FUSE 18th Birthday w/ Enzo Siragusa, Luciano, Rossi., Reeshy, Sweely, "
-  },
-  {
-    "name": "Yoshiko",
-    "key": "yoshiko",
-    "events": 2,
-    "sources": [
-      "bandsintown",
-      "ra"
-    ],
-    "onRA": true,
-    "sample": "FCKNYE Festival 2026 · Brussels"
-  },
-  {
     "name": "1991 (UK)",
     "key": "1991uk",
     "events": 1,
@@ -49,26 +28,6 @@
     ],
     "onRA": true,
     "sample": "LOCUS x Modern Funktion Halloween · London"
-  },
-  {
-    "name": "Altın Gün",
-    "key": "altngun",
-    "events": 1,
-    "sources": [
-      "songkick"
-    ],
-    "onRA": true,
-    "sample": "Altın Gün @ Big Night Live · Boston"
-  },
-  {
-    "name": "Arlo",
-    "key": "arlo",
-    "events": 1,
-    "sources": [
-      "songkick"
-    ],
-    "onRA": true,
-    "sample": "Arlo @ Q Nightclub · Seattle"
   },
   {
     "name": "ascendant vierge",
@@ -129,16 +88,6 @@
     ],
     "onRA": true,
     "sample": "Novah at Palexpo · Le Grand-Saconnex"
-  },
-  {
-    "name": "Cap",
-    "key": "cap",
-    "events": 1,
-    "sources": [
-      "ra"
-    ],
-    "onRA": true,
-    "sample": "FUSE ➔ Malta 2026 · All"
   },
   {
     "name": "Chris Watson",
@@ -261,16 +210,6 @@
     "sample": "Pre sale tickets for 2027 drop on Friday 8th May at 10am. Scroll down "
   },
   {
-    "name": "Fat Freddy's Drop",
-    "key": "fatfreddysdrop",
-    "events": 1,
-    "sources": [
-      "songkick"
-    ],
-    "onRA": true,
-    "sample": "Fat Freddy's Drop @ Razzmatazz · Barcelona"
-  },
-  {
     "name": "Fatzo",
     "key": "fatzo",
     "events": 1,
@@ -289,16 +228,6 @@
     ],
     "onRA": true,
     "sample": "Jane Fitz at Omana-Festival · Kalamitsi"
-  },
-  {
-    "name": "Georgia",
-    "key": "georgia",
-    "events": 1,
-    "sources": [
-      "bandsintown"
-    ],
-    "onRA": true,
-    "sample": "Michael Bibi at DC10 · Ibiza"
   },
   {
     "name": "GIVIO",
@@ -321,16 +250,6 @@
     "sample": "Ministry of Rave Prague · Prague"
   },
   {
-    "name": "Hitam",
-    "key": "hitam",
-    "events": 1,
-    "sources": [
-      "ra"
-    ],
-    "onRA": true,
-    "sample": "Mad Katz x Tresor · Zurich"
-  },
-  {
     "name": "Ignez",
     "key": "ignez",
     "events": 1,
@@ -339,6 +258,16 @@
     ],
     "onRA": true,
     "sample": "Mad Katz mit Ignez & MARRØN · Zurich"
+  },
+  {
+    "name": "Isla Den",
+    "key": "isladen",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "Igloofest MTL #6: Ninajirachi & Frost Children (DJ set) · Montreal"
   },
   {
     "name": "Izzy",
@@ -359,6 +288,16 @@
     ],
     "onRA": true,
     "sample": "Jane Fitz at Omana-Festival · Kalamitsi"
+  },
+  {
+    "name": "Jhobei",
+    "key": "jhobei",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "FUSE 18th Birthday w/ Enzo Siragusa, Luciano, Rossi., Reeshy, Sweely, "
   },
   {
     "name": "Jonn",
@@ -471,26 +410,6 @@
     "sample": "Madman @ Duel Club · Pozzuoli"
   },
   {
-    "name": "Mamazu",
-    "key": "mamazu",
-    "events": 1,
-    "sources": [
-      "ra"
-    ],
-    "onRA": true,
-    "sample": "ULTRA JAPAN RESISTANCE TOKYO OFFICIAL AFTER PARTY DAY 1 · Tokio"
-  },
-  {
-    "name": "MATO",
-    "key": "mato",
-    "events": 1,
-    "sources": [
-      "ra"
-    ],
-    "onRA": true,
-    "sample": "FUSE ➔ Malta 2026 · All"
-  },
-  {
     "name": "Morgan",
     "key": "morgan",
     "events": 1,
@@ -499,16 +418,6 @@
     ],
     "onRA": true,
     "sample": "DGTL ADE FUSE · Amsterdam"
-  },
-  {
-    "name": "Mother Earth",
-    "key": "motherearth",
-    "events": 1,
-    "sources": [
-      "ra"
-    ],
-    "onRA": true,
-    "sample": "FUSE ➔ Malta 2026 · All"
   },
   {
     "name": "MPH (1)",
@@ -529,16 +438,6 @@
     ],
     "onRA": true,
     "sample": "LOCUS x Modern Funktion Halloween · London"
-  },
-  {
-    "name": "Nausica",
-    "key": "nausica",
-    "events": 1,
-    "sources": [
-      "bandsintown"
-    ],
-    "onRA": true,
-    "sample": "Amber Broos at Fort l'Écluse · Leaz"
   },
   {
     "name": "Nausicaa",
@@ -631,14 +530,14 @@
     "sample": "Pre sale tickets for 2027 drop on Friday 8th May at 10am. Scroll down "
   },
   {
-    "name": "Rohaan",
-    "key": "rohaan",
+    "name": "Rinaly",
+    "key": "rinaly",
     "events": 1,
     "sources": [
-      "bandsintown"
+      "ra"
     ],
     "onRA": true,
-    "sample": "Experts Only Festival 2026 · New York City"
+    "sample": "Groove Cruise Miami 2027 - Ambassador Code: GrooveCruiseChris · Miami"
   },
   {
     "name": "Romeo",
@@ -661,6 +560,16 @@
     "sample": "Defected Malta 2026 / GLITTERBOX · Malta"
   },
   {
+    "name": "Samuel Moriero (2)",
+    "key": "samuelmoriero2",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "FCKNYE Festival 2026 · Brussels"
+  },
+  {
     "name": "Sköne",
     "key": "skone",
     "events": 1,
@@ -679,16 +588,6 @@
     ],
     "onRA": true,
     "sample": "Jane Fitz at Omana-Festival · Kalamitsi"
-  },
-  {
-    "name": "soraya",
-    "key": "soraya",
-    "events": 1,
-    "sources": [
-      "bandsintown"
-    ],
-    "onRA": true,
-    "sample": "Experts Only Festival 2026 · New York City"
   },
   {
     "name": "The Checkup",
@@ -771,24 +670,14 @@
     "sample": "FCKNYE Festival 2026 · Brussels"
   },
   {
-    "name": "Willow",
-    "key": "willow",
+    "name": "Yoshiko",
+    "key": "yoshiko",
     "events": 1,
     "sources": [
       "ra"
     ],
     "onRA": true,
-    "sample": "FUSE ➔ Malta 2026 · All"
-  },
-  {
-    "name": "Wodda",
-    "key": "wodda",
-    "events": 1,
-    "sources": [
-      "ra"
-    ],
-    "onRA": true,
-    "sample": "FUSE ➔ Malta 2026 · All"
+    "sample": "FCKNYE Festival 2026 · Brussels"
   },
   {
     "name": "Yuka",

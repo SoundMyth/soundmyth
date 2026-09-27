@@ -1,0 +1,45 @@
+name: Keep Supabase awake
+
+# Supabase pauses a free-tier project after 7 days with no activity, and the
+# weekly scrape is the only thing that touches the database — a 7-day cron
+# against a 7-day timeout, so any missed Sunday kills it. That is exactly what
+# happened: a workflow bug broke the scrape on 2026-09-20, no run touched the DB
+# for 11 days, and the project was paused. A paused project loses its DNS record,
+# so every scraper then fails with TypeError: fetch failed.
+#
+# One cheap read every other day keeps the clock reset with real margin.
+
+on:
+  schedule:
+    - cron: '0 6 */2 * *'   # every second day at 06:00 UTC
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Ping the events table
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_SERVICE_KEY: ${{ secrets.SUPABASE_SERVICE_KEY }}
+        run: |
+          code=$(curl -sS --max-time 30 -o /dev/null -w '%{http_code}' \
+            -H "apikey: $SUPABASE_SERVICE_KEY" \
+            -H "Authorization: Bearer $SUPABASE_SERVICE_KEY" \
+            -H "Range: 0-0" \
+            "$SUPABASE_URL/rest/v1/events?select=id" || echo 000)
+          echo "HTTP $code"
+          # 000 means the host did not even resolve — the paused-project signature.
+          if [ "$code" = "000" ]; then
+            echo "::error::Supabase did not resolve. The project is almost certainly paused — restore it at https://supabase.com/dashboard"
+            exit 1
+          fi
+          if [ "$code" -ge 400 ]; then
+            echo "::error::Supabase answered HTTP $code. Check the project status and the service key."
+            exit 1
+          fi
+          echo "Supabase is awake."

@@ -34,6 +34,13 @@ jobs:
         timeout-minutes: 15
         # Refreshes data/artists_candidates.json before the gate runs so EDM DJs we
         # don't track yet are kept (not deleted). Incremental — only new DJs hit RA.
+        # The env vars are not optional in spirit: without them the script falls back
+        # to regex-parsing ../index.html, and if that ever stops matching it exits 1,
+        # continue-on-error hides it, and the next step deletes against a stale
+        # candidates file — dropping events for EDM DJs we simply don't track yet.
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_ANON_KEY: ${{ secrets.SUPABASE_ANON_KEY }}
         run: node discover-djs.js
 
       - name: Clean junk + canonicalize cities

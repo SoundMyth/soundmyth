@@ -72,6 +72,8 @@ jobs:
         run: node scrape-festivals-bit.js
 
       - name: Install Playwright Chromium
+        timeout-minutes: 20   # without this a hung download burns the 120-min job
+                              # ceiling and reports as a job timeout, not as this step
         run: npx playwright install chromium --with-deps
 
       - name: Scrape Festivals (direct websites)

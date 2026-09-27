@@ -90,13 +90,21 @@ toRemove.slice(0, 40).forEach(e => console.log(`  - ${e.date} ${JSON.stringify((
 
 if (process.env.DRY === '1') { console.log('DRY run — nothing deleted.'); process.exit(0); }
 
-let deleted = 0;
+// Same generous budget as the event load above: this runs after the heavy scrape
+// steps, when Supabase connections are transiently exhausted. Without a retry a
+// failed batch was only logged, so a partial delete still reported success.
+let deleted = 0, failedBatches = 0;
 for (let i = 0; i < toRemove.length; i += 100) {
   const ids = toRemove.slice(i, i + 100).map(e => e.id);
-  const { error } = await sb.from('events').delete().in('id', ids);
-  if (error) console.error('  ❌ delete:', error.message); else deleted += ids.length;
+  const { error } = await withRetry(
+    () => sb.from('events').delete().in('id', ids),
+    `Delete junk batch (${i})`, 5, 5000
+  );
+  if (error) { failedBatches++; console.error('  ❌ delete:', error.message || error); }
+  else deleted += ids.length;
 }
-console.log(`✓ Deleted ${deleted} events.`);
+console.log(`✓ Deleted ${deleted}/${toRemove.length} events.`);
+if (failedBatches) console.error(`⚠️  ${failedBatches} batch(es) failed — ${toRemove.length - deleted} junk events remain.`);
 
 const removedIds = new Set(toRemove.map(e => e.id));
 const live = rows.filter(e => !removedIds.has(e.id));

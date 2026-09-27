@@ -192,6 +192,8 @@ async function main() {
   console.log(`   To search      : ${todo.length}\n`);
 
   let found = 0, notFound = 0, limited = 0;
+  let rateLimited = 0;                  // consecutive rate-limits on the current artist
+  const MAX_RATE_LIMIT_RETRIES = 5;
 
   for (let i = 0; i < todo.length; i++) {
     const artist = todo[i];
@@ -202,11 +204,22 @@ async function main() {
 
     if (result.limited) {
       limited++;
+      // Capped: i-- repeats the SAME artist, so without a ceiling one name that
+      // Songkick keeps refusing loops until the step's 15-minute timeout kills it,
+      // and continue-on-error then hides the fact that nothing got enriched.
+      if (++rateLimited > MAX_RATE_LIMIT_RETRIES) {
+        rateLimited = 0;
+        notFound++;
+        console.log(`⏭  rate-limited ${MAX_RATE_LIMIT_RETRIES}× – skipping`);
+        await sleep(DELAY_ERR);
+        continue;   // no i--: give up on this one and move on
+      }
       console.log('⏸  rate-limited – waiting 8s');
       await sleep(8000);
       i--;  // retry same artist
       continue;
     }
+    rateLimited = 0;
 
     if (result.url) {
       const idx = artists.findIndex(a => a.name === artist.name);

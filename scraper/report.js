@@ -40,15 +40,23 @@ const since = RUN_STARTED || new Date(Date.now() - 3 * 3600_000).toISOString();
 
 const headers = { apikey: SB_KEY, Authorization: `Bearer ${SB_KEY}` };
 
-/** Row count for a filter, via PostgREST's exact-count header. */
+let failedQueries = 0;
+
+/** Row count for a filter, via PostgREST's exact-count header. Never throws:
+ *  the report matters most when Supabase is down, so a rejected fetch here must
+ *  not abort the very report that would have told you so. */
 async function count(query) {
-  const res = await fetch(`${SB_URL}/rest/v1/events?select=id&${query}`, {
-    headers: { ...headers, Prefer: 'count=exact', Range: '0-0' },
-    signal: AbortSignal.timeout(30_000),
-  });
-  const range = res.headers.get('content-range');
-  const total = range ? Number(range.split('/')[1]) : NaN;
-  return Number.isFinite(total) ? total : null;
+  try {
+    const res = await fetch(`${SB_URL}/rest/v1/events?select=id&${query}`, {
+      headers: { ...headers, Prefer: 'count=exact', Range: '0-0' },
+      signal: AbortSignal.timeout(30_000),
+    });
+    const range = res.headers.get('content-range');
+    const total = range ? Number(range.split('/')[1]) : NaN;
+    if (Number.isFinite(total)) return total;
+  } catch { /* falls through */ }
+  failedQueries++;
+  return null;
 }
 
 async function main() {
@@ -73,8 +81,10 @@ async function main() {
   }
 
   // Supabase unreachable is the failure that used to hide behind a green run.
+  // failedQueries catches partial degradation too: the totals can answer while the
+  // per-source queries time out, which must not read as a clean run.
   const broken = total === null;
-  const ok     = !broken && !failed.length && total > 100;
+  const ok     = !broken && !failed.length && !failedQueries && total > 100;
   const status = broken ? '🔴 sin conexión a Supabase' : ok ? '✅ correcto' : '⚠️ con incidencias';
 
   const rows = [

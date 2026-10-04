@@ -1,5 +1,25 @@
 [
   {
+    "name": "MPH (1)",
+    "key": "mph1",
+    "events": 3,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "MPH at Cermak Hall · Chicago"
+  },
+  {
+    "name": "Neek",
+    "key": "neek",
+    "events": 2,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "FCKNYE Festival 2026 · Brussels"
+  },
+  {
     "name": "1991 (UK)",
     "key": "1991uk",
     "events": 1,
@@ -10,6 +30,16 @@
     "sample": "WORSHIP NORTH AMERICA 2026 · Miami"
   },
   {
+    "name": "2 Bad Mice",
+    "key": "2badmice",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "Big Fish Little Fish Family Rave - fabric london · London"
+  },
+  {
     "name": "2HOT2PLAY",
     "key": "2hot2play",
     "events": 1,
@@ -18,6 +48,16 @@
     ],
     "onRA": true,
     "sample": "FCKNYE Festival 2026 · Brussels"
+  },
+  {
+    "name": "Aiobahn",
+    "key": "aiobahn",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "MIX TOKYO DJ PARTY 'NEO' · Tokyo"
   },
   {
     "name": "Alexandria",
@@ -50,24 +90,34 @@
     "sample": "Assassin @ Warehouse Nantes · Nantes"
   },
   {
-    "name": "Aurede",
-    "key": "aurede",
+    "name": "Bego Martin",
+    "key": "begomartin",
     "events": 1,
     "sources": [
       "ra"
     ],
     "onRA": true,
-    "sample": "EDC Korea · Seoul"
+    "sample": "Brunch Electronik Madrid x BSMT LIVE 07.11 - The Blaze (DJ Set) · Madr"
   },
   {
-    "name": "bako",
-    "key": "bako",
+    "name": "Bou (UK)",
+    "key": "bouuk",
     "events": 1,
     "sources": [
-      "bandsintown"
+      "ra"
     ],
     "onRA": true,
-    "sample": "Jane Fitz at Omana-Festival · Kalamitsi"
+    "sample": "FCKNYE Festival 2026 · Brussels"
+  },
+  {
+    "name": "Brawther",
+    "key": "brawther",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "FUSE 18th Birthday w/ Enzo Siragusa b2b Rossi., Luciano, Marlie b2b Na"
   },
   {
     "name": "Brunello",
@@ -80,6 +130,16 @@
     "sample": "Time Warp NYC 2026 · Nueva York"
   },
   {
+    "name": "cablu",
+    "key": "cablu",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "Weiberfastnacht im Bootshaus with Trash Island, Mickie Krause · Cologn"
+  },
+  {
     "name": "Callush",
     "key": "callush",
     "events": 1,
@@ -88,6 +148,46 @@
     ],
     "onRA": true,
     "sample": "Novah at Palexpo · Le Grand-Saconnex"
+  },
+  {
+    "name": "CARAVEL",
+    "key": "caravel",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "FCKNYE Festival 2026 · Brussels"
+  },
+  {
+    "name": "Casey Club",
+    "key": "caseyclub",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "Bassrush presents: Crankdat, AHEE, Casey Club [NYW] · Washington Dc"
+  },
+  {
+    "name": "Chicane",
+    "key": "chicane",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "30 Years of Chicane, Australian National Tour - Sydney · Sydney"
+  },
+  {
+    "name": "CHRIS STASSY",
+    "key": "chrisstassy",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "Brunch Electronik Madrid x BSMT LIVE 08.11 - CHRIS STASSY · Madrid"
   },
   {
     "name": "Chris Watson",
@@ -100,14 +200,14 @@
     "sample": "Chris Watson @ Ministry of Sound · London"
   },
   {
-    "name": "Clovis",
-    "key": "clovis",
+    "name": "Daft Funk Live",
+    "key": "daftfunklive",
     "events": 1,
     "sources": [
-      "bandsintown"
+      "ra"
     ],
     "onRA": true,
-    "sample": "Jane Fitz at Omana-Festival · Kalamitsi"
+    "sample": "Club de Jour invite Daft Funk Live · Nantes"
   },
   {
     "name": "DAISY",
@@ -120,14 +220,24 @@
     "sample": "LOCUS x Modern Funktion Halloween · London"
   },
   {
-    "name": "Delilah",
-    "key": "delilah",
+    "name": "Dan Bono",
+    "key": "danbono",
     "events": 1,
     "sources": [
       "ra"
     ],
     "onRA": true,
-    "sample": "Defected Malta 2026 / GLITTERBOX · Malta"
+    "sample": "CLUB DE JOUR with Worakls présente OVERTURE feat. Ekaterina Shelehova "
+  },
+  {
+    "name": "Dan Ghenacia",
+    "key": "danghenacia",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "FUSE 18th Birthday w/ Enzo Siragusa b2b Rossi., Luciano, Marlie b2b Na"
   },
   {
     "name": "DESIREE (RSA)",
@@ -138,6 +248,16 @@
     ],
     "onRA": true,
     "sample": "Jackies Lisboa House Music Festival 2026 - Chris Stussy & Desiree · Li"
+  },
+  {
+    "name": "DLOU",
+    "key": "dlou",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "Brunch Electronik Madrid x BSMT LIVE 08.11 - CHRIS STASSY · Madrid"
   },
   {
     "name": "Doc Brown",
@@ -170,16 +290,6 @@
     "sample": "FCKNYE Festival 2026 · Brussels"
   },
   {
-    "name": "Edd (1)",
-    "key": "edd1",
-    "events": 1,
-    "sources": [
-      "ra"
-    ],
-    "onRA": true,
-    "sample": "Defected Malta 2026 / GLITTERBOX · Malta"
-  },
-  {
     "name": "Elder Island",
     "key": "elderisland",
     "events": 1,
@@ -188,16 +298,6 @@
     ],
     "onRA": true,
     "sample": "Elder Island @ KOKO · London"
-  },
-  {
-    "name": "Eliana",
-    "key": "eliana",
-    "events": 1,
-    "sources": [
-      "ra"
-    ],
-    "onRA": true,
-    "sample": "EDC Korea · Seoul"
   },
   {
     "name": "Evie",
@@ -210,34 +310,34 @@
     "sample": "Pre sale tickets for 2027 drop on Friday 8th May at 10am. Scroll down "
   },
   {
-    "name": "Fatzo",
-    "key": "fatzo",
+    "name": "Fra (24)",
+    "key": "fra24",
     "events": 1,
     "sources": [
       "ra"
     ],
     "onRA": true,
-    "sample": "Defected Malta 2026 / GLITTERBOX · Malta"
+    "sample": "MIX TOKYO DJ PARTY 'NEO' · Tokyo"
   },
   {
-    "name": "Gabbs",
-    "key": "gabbs",
-    "events": 1,
-    "sources": [
-      "bandsintown"
-    ],
-    "onRA": true,
-    "sample": "Jane Fitz at Omana-Festival · Kalamitsi"
-  },
-  {
-    "name": "GIVIO",
-    "key": "givio",
+    "name": "fumi (DE)",
+    "key": "fumide",
     "events": 1,
     "sources": [
       "ra"
     ],
     "onRA": true,
-    "sample": "Jackies Open Air Daytime w/ Jayda G · Barcelona"
+    "sample": "LOOP NYD FESTIVAL 2027 · Madrid"
+  },
+  {
+    "name": "GHEIST",
+    "key": "gheist",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "Brunch Electronik Madrid x BSMT LIVE 07.11 - The Blaze (DJ Set) · Madr"
   },
   {
     "name": "Golpe",
@@ -280,16 +380,6 @@
     "sample": "LOCUS x Modern Funktion Halloween · London"
   },
   {
-    "name": "Jaymod",
-    "key": "jaymod",
-    "events": 1,
-    "sources": [
-      "bandsintown"
-    ],
-    "onRA": true,
-    "sample": "Jane Fitz at Omana-Festival · Kalamitsi"
-  },
-  {
     "name": "Jhobei",
     "key": "jhobei",
     "events": 1,
@@ -297,17 +387,7 @@
       "ra"
     ],
     "onRA": true,
-    "sample": "FUSE 18th Birthday w/ Enzo Siragusa, Luciano, Rossi., Reeshy, Sweely, "
-  },
-  {
-    "name": "Jonn",
-    "key": "jonn",
-    "events": 1,
-    "sources": [
-      "bandsintown"
-    ],
-    "onRA": true,
-    "sample": "Jane Fitz at Omana-Festival · Kalamitsi"
+    "sample": "FUSE 18th Birthday w/ Enzo Siragusa b2b Rossi., Luciano, Marlie b2b Na"
   },
   {
     "name": "Joshwa (IT)",
@@ -318,6 +398,16 @@
     ],
     "onRA": true,
     "sample": "Groove Cruise Miami 2027 - Ambassador Code: GrooveCruiseChris · Miami"
+  },
+  {
+    "name": "Kaitlyn Aurelia Smith",
+    "key": "kaitlynaureliasmith",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "Kaitlyn Aurelia Smith · London"
   },
   {
     "name": "Kamelot",
@@ -350,8 +440,28 @@
     "sample": "Kelsey Lu @ KOKO · London"
   },
   {
+    "name": "Kice",
+    "key": "kice",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "Sirocco Sessions: After Dark Boston · Boston"
+  },
+  {
     "name": "Krowdexx",
     "key": "krowdexx",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "FCKNYE Festival 2026 · Brussels"
+  },
+  {
+    "name": "L.zwo",
+    "key": "lzwo",
     "events": 1,
     "sources": [
       "ra"
@@ -380,16 +490,6 @@
     "sample": "FCKNYE Festival 2026 · Brussels"
   },
   {
-    "name": "Liou",
-    "key": "liou",
-    "events": 1,
-    "sources": [
-      "bandsintown"
-    ],
-    "onRA": true,
-    "sample": "Jane Fitz at Omana-Festival · Kalamitsi"
-  },
-  {
     "name": "Luccio",
     "key": "luccio",
     "events": 1,
@@ -410,6 +510,36 @@
     "sample": "Madman @ Duel Club · Pozzuoli"
   },
   {
+    "name": "Mandragora",
+    "key": "mandragora",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "FCKNYE Festival 2026 · Brussels"
+  },
+  {
+    "name": "Marius Tiberian",
+    "key": "mariustiberian",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "WEST COAST RIOT · Los Angeles"
+  },
+  {
+    "name": "Miss Bashful",
+    "key": "missbashful",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "Miss Bashful (Live) Full Venue Takeover · New York City"
+  },
+  {
     "name": "Morgan",
     "key": "morgan",
     "events": 1,
@@ -418,16 +548,6 @@
     ],
     "onRA": true,
     "sample": "DGTL ADE FUSE · Amsterdam"
-  },
-  {
-    "name": "MPH (1)",
-    "key": "mph1",
-    "events": 1,
-    "sources": [
-      "ra"
-    ],
-    "onRA": true,
-    "sample": "Groove Cruise Miami 2027 - Ambassador Code: GrooveCruiseChris · Miami"
   },
   {
     "name": "Mya (1)",
@@ -440,26 +560,6 @@
     "sample": "LOCUS x Modern Funktion Halloween · London"
   },
   {
-    "name": "Nausicaa",
-    "key": "nausicaa",
-    "events": 1,
-    "sources": [
-      "bandsintown"
-    ],
-    "onRA": true,
-    "sample": "Jane Fitz at Omana-Festival · Kalamitsi"
-  },
-  {
-    "name": "Neek",
-    "key": "neek",
-    "events": 1,
-    "sources": [
-      "ra"
-    ],
-    "onRA": true,
-    "sample": "Dual Damage: Built2Break · Liverpool"
-  },
-  {
     "name": "NoName",
     "key": "noname",
     "events": 1,
@@ -470,14 +570,24 @@
     "sample": "FCKNYE Festival 2026 · Brussels"
   },
   {
-    "name": "Oden",
-    "key": "oden",
+    "name": "NOR (4)",
+    "key": "nor4",
     "events": 1,
     "sources": [
       "ra"
     ],
     "onRA": true,
-    "sample": "Defected Malta 2026 / GLITTERBOX · Malta"
+    "sample": "MIX TOKYO DJ PARTY 'NEO' · Tokyo"
+  },
+  {
+    "name": "NTO",
+    "key": "nto",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "NTO · Barcelona"
   },
   {
     "name": "Oldboy",
@@ -490,24 +600,34 @@
     "sample": "LOCUS x Modern Funktion Halloween · London"
   },
   {
-    "name": "Oshana",
-    "key": "oshana",
-    "events": 1,
-    "sources": [
-      "bandsintown"
-    ],
-    "onRA": true,
-    "sample": "Jane Fitz at Omana-Festival · Kalamitsi"
-  },
-  {
-    "name": "Pampa",
-    "key": "pampa",
+    "name": "Paco Osuna",
+    "key": "pacoosuna",
     "events": 1,
     "sources": [
       "ra"
     ],
     "onRA": true,
-    "sample": "ANNĒ - Ben Klock - BONDARŨK - JXXXO - Pampa - Setaoc Mass - + Under Cl"
+    "sample": "LOOP NYD FESTIVAL 2027 · Madrid"
+  },
+  {
+    "name": "Part Time Killer",
+    "key": "parttimekiller",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "FCKNYE Festival 2026 · Brussels"
+  },
+  {
+    "name": "Quentin Schneider",
+    "key": "quentinschneider",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "CLUB DE JOUR with Worakls présente OVERTURE feat. Ekaterina Shelehova "
   },
   {
     "name": "Revelation",
@@ -550,14 +670,14 @@
     "sample": "Groove Cruise Miami 2027 - Ambassador Code: GrooveCruiseChris · Miami"
   },
   {
-    "name": "RUZE",
-    "key": "ruze",
+    "name": "Ryan Nicholls",
+    "key": "ryannicholls",
     "events": 1,
     "sources": [
       "ra"
     ],
     "onRA": true,
-    "sample": "Defected Malta 2026 / GLITTERBOX · Malta"
+    "sample": "KOKO Electronic: East End Dubs · London"
   },
   {
     "name": "Samuel Moriero (2)",
@@ -580,34 +700,34 @@
     "sample": "FCKNYE Festival 2026 · Brussels"
   },
   {
-    "name": "Socrates",
-    "key": "socrates",
-    "events": 1,
-    "sources": [
-      "bandsintown"
-    ],
-    "onRA": true,
-    "sample": "Jane Fitz at Omana-Festival · Kalamitsi"
-  },
-  {
-    "name": "The Checkup",
-    "key": "thecheckup",
+    "name": "The Blaze",
+    "key": "theblaze",
     "events": 1,
     "sources": [
       "ra"
     ],
     "onRA": true,
-    "sample": "Jackies Open Air Daytime w/ Jayda G · Barcelona"
+    "sample": "Brunch Electronik Madrid x BSMT LIVE 07.11 - The Blaze (DJ Set) · Madr"
   },
   {
-    "name": "Tikis",
-    "key": "tikis",
+    "name": "The Dark Horror",
+    "key": "thedarkhorror",
     "events": 1,
     "sources": [
-      "bandsintown"
+      "ra"
     ],
     "onRA": true,
-    "sample": "Jane Fitz at Omana-Festival · Kalamitsi"
+    "sample": "FCKNYE Festival 2026 · Brussels"
+  },
+  {
+    "name": "TiTi",
+    "key": "titi",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "FCKNYE Festival 2026 · Brussels"
   },
   {
     "name": "Todiefor",
@@ -640,6 +760,26 @@
     "sample": "III Points 2026 · Miami"
   },
   {
+    "name": "Urumi",
+    "key": "urumi",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "FCKNYE Festival 2026 · Brussels"
+  },
+  {
+    "name": "Violin Girl",
+    "key": "violingirl",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "Sirocco Sessions: After Dark Boston · Boston"
+  },
+  {
     "name": "Watchers",
     "key": "watchers",
     "events": 1,
@@ -670,6 +810,16 @@
     "sample": "FCKNYE Festival 2026 · Brussels"
   },
   {
+    "name": "Worakls",
+    "key": "worakls",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "CLUB DE JOUR with Worakls présente OVERTURE feat. Ekaterina Shelehova "
+  },
+  {
     "name": "Yoshiko",
     "key": "yoshiko",
     "events": 1,
@@ -678,16 +828,6 @@
     ],
     "onRA": true,
     "sample": "FCKNYE Festival 2026 · Brussels"
-  },
-  {
-    "name": "Yuka",
-    "key": "yuka",
-    "events": 1,
-    "sources": [
-      "ra"
-    ],
-    "onRA": true,
-    "sample": "EDC Korea · Seoul"
   },
   {
     "name": "Beyond Wonderland",

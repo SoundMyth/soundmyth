@@ -20,16 +20,6 @@
     "sample": "FCKNYE Festival 2026 · Brussels"
   },
   {
-    "name": "1991 (UK)",
-    "key": "1991uk",
-    "events": 1,
-    "sources": [
-      "ra"
-    ],
-    "onRA": true,
-    "sample": "WORSHIP NORTH AMERICA 2026 · Miami"
-  },
-  {
     "name": "2 Bad Mice",
     "key": "2badmice",
     "events": 1,
@@ -58,6 +48,16 @@
     ],
     "onRA": true,
     "sample": "MIX TOKYO DJ PARTY 'NEO' · Tokyo"
+  },
+  {
+    "name": "Akalex",
+    "key": "akalex",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "CLUB DE JOUR with Myd, Mayou Picchu & Akalex · Nantes"
   },
   {
     "name": "Alexandria",
@@ -98,6 +98,16 @@
     ],
     "onRA": true,
     "sample": "Brunch Electronik Madrid x BSMT LIVE 07.11 - The Blaze (DJ Set) · Madr"
+  },
+  {
+    "name": "billx",
+    "key": "billx",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "FCKNYE Festival 2026 · Brussels"
   },
   {
     "name": "Bou (UK)",
@@ -300,6 +310,16 @@
     "sample": "Elder Island @ KOKO · London"
   },
   {
+    "name": "Eli Escobar",
+    "key": "eliescobar",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "Eli Escobar (Open to Close) · New York City"
+  },
+  {
     "name": "Evie",
     "key": "evie",
     "events": 1,
@@ -328,6 +348,16 @@
     ],
     "onRA": true,
     "sample": "LOOP NYD FESTIVAL 2027 · Madrid"
+  },
+  {
+    "name": "George Smeddles",
+    "key": "georgesmeddles",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "Max Dean b2b Luke Dean · Austin"
   },
   {
     "name": "GHEIST",
@@ -460,6 +490,16 @@
     "sample": "FCKNYE Festival 2026 · Brussels"
   },
   {
+    "name": "KX CHR",
+    "key": "kxchr",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "FCKNYE Festival 2026 · Brussels"
+  },
+  {
     "name": "L.zwo",
     "key": "lzwo",
     "events": 1,
@@ -478,6 +518,26 @@
     ],
     "onRA": true,
     "sample": "Lagos @ Razzmatazz · Barcelona"
+  },
+  {
+    "name": "LB aka LABAT",
+    "key": "lbakalabat",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "FCKNYE Festival 2026 · Brussels"
+  },
+  {
+    "name": "Lewis Doherty",
+    "key": "lewisdoherty",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "Bedroom Traxx Presents: Nyra · Glasgow"
   },
   {
     "name": "Lil Texas",
@@ -508,6 +568,16 @@
     ],
     "onRA": true,
     "sample": "Madman @ Duel Club · Pozzuoli"
+  },
+  {
+    "name": "Mandidextrous",
+    "key": "mandidextrous",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "FCKNYE Festival 2026 · Brussels"
   },
   {
     "name": "Mandragora",
@@ -560,6 +630,26 @@
     "sample": "LOCUS x Modern Funktion Halloween · London"
   },
   {
+    "name": "Myd",
+    "key": "myd",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "CLUB DE JOUR with Myd, Mayou Picchu & Akalex · Nantes"
+  },
+  {
+    "name": "Nicolas Masseyeff",
+    "key": "nicolasmasseyeff",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "Marco Carola · All"
+  },
+  {
     "name": "NoName",
     "key": "noname",
     "events": 1,
@@ -588,6 +678,16 @@
     ],
     "onRA": true,
     "sample": "NTO · Barcelona"
+  },
+  {
+    "name": "Nyra",
+    "key": "nyra",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "Bedroom Traxx Presents: Nyra · Glasgow"
   },
   {
     "name": "Oldboy",
@@ -760,6 +860,16 @@
     "sample": "III Points 2026 · Miami"
   },
   {
+    "name": "uphoria",
+    "key": "uphoria",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "FCKNYE Festival 2026 · Brussels"
+  },
+  {
     "name": "Urumi",
     "key": "urumi",
     "events": 1,
@@ -778,6 +888,16 @@
     ],
     "onRA": true,
     "sample": "Sirocco Sessions: After Dark Boston · Boston"
+  },
+  {
+    "name": "Von Bikräv",
+    "key": "vonbikrav",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "FCKNYE Festival 2026 · Brussels"
   },
   {
     "name": "Watchers",

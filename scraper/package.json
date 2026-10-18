@@ -1,16 +1,32 @@
 {
   "name": "soundmyth-scraper",
-  "version": "1.0.0",
-  "description": "Weekly scraper for SoundMyth events",
+  "version": "1.1.0",
+  "private": true,
+  "description": "SoundMyth event pipeline: scrapes EDM events into Supabase (run weekly by .github/workflows/weekly-scrape.yml)",
   "type": "module",
+  "engines": {
+    "node": ">=22"
+  },
   "scripts": {
+    "check": "node tools/check.js",
     "test": "node --test",
-    "scrape": "node scrape-all.js && node scrape-extended.js",
-    "scrape:bit": "node scrape-all.js",
-    "scrape:extended": "node scrape-extended.js",
-    "export": "node export-excel.mjs",
-    "bandsintown": "node bandsintown.js",
-    "test-api": "node test-api.js"
+    "step:enrich-songkick-urls": "node steps/01-enrich-songkick-urls.js",
+    "step:scrape-extended": "node steps/02-scrape-extended.js",
+    "step:discover-festivals": "node steps/03-discover-festivals.js",
+    "step:scrape-festivals-bit": "node steps/04-scrape-festivals-bit.js",
+    "step:scrape-festivals-direct": "node steps/05-scrape-festivals-direct.js",
+    "step:scrape-festivals-ra": "node steps/06-scrape-festivals-ra.js",
+    "step:enrich-clubs-ra": "node steps/07-enrich-clubs-ra.js",
+    "step:scrape-clubs-ra": "node steps/08-scrape-clubs-ra.js",
+    "step:dedupe": "node steps/09-dedupe.js",
+    "step:discover-djs": "node steps/10-discover-djs.js",
+    "step:cleanup-junk": "node steps/11-cleanup-junk.js",
+    "step:validate": "node steps/12-validate.js",
+    "step:classify": "node steps/13-classify.js",
+    "step:enrich-images": "node steps/14-enrich-images.js",
+    "step:build-artists": "node steps/15-build-artists.js",
+    "step:purge": "node steps/16-purge.js",
+    "step:report": "node steps/17-report.js"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.49.1",

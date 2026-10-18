@@ -1,0 +1,39 @@
+name: CI
+
+# Fast, offline checks on every push and pull request: no secrets, no network
+# calls to Supabase or the scraped sites. Fails if a file no longer parses, an
+# import or __dirname data path is broken, or a workflow points at a missing step.
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  scraper:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    defaults:
+      run:
+        working-directory: scraper
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v6
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v6
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: scraper/package-lock.json
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Syntax (node --check) and import/path resolution
+        run: npm run check
+
+      - name: Unit tests
+        run: npm test

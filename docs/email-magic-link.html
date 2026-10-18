@@ -1,0 +1,71 @@
+<!-- ============================================================= -->
+<!--  SoundMyth · plantilla de email "Magic Link"                  -->
+<!--  Pegar en: Supabase Dashboard → Authentication → Emails →     -->
+<!--  Magic Link → (Source / Message body, formato HTML)           -->
+<!--  Variable de Supabase usada: {{ .ConfirmationURL }}           -->
+<!--  Asunto sugerido: Tu acceso a Sound Myth                      -->
+<!-- ============================================================= -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="dark light">
+<meta name="supported-color-schemes" content="dark light">
+<title>Sound Myth</title>
+</head>
+<body style="margin:0;padding:0;background:#08080b;-webkit-text-size-adjust:100%;">
+  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background:#08080b;">
+    <tr>
+      <td align="center" style="padding:34px 16px;">
+        <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="max-width:440px;margin:0 auto;">
+
+          <!-- Marca -->
+          <tr>
+            <td align="center" style="padding:4px 0 24px;">
+              <table role="presentation" cellpadding="0" cellspacing="0" border="0">
+                <tr>
+                  <td style="vertical-align:middle;padding-right:9px;">
+                    <div style="width:30px;height:30px;border:1.5px solid #c7f23c;border-radius:9px;text-align:center;line-height:28px;color:#c7f23c;font-size:14px;font-family:Arial,Helvetica,sans-serif;">&#9651;</div>
+                  </td>
+                  <td style="vertical-align:middle;color:#f4f4f6;font-family:'Segoe UI',Roboto,Helvetica,Arial,sans-serif;font-size:18px;font-weight:700;letter-spacing:-0.3px;">Sound Myth</td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+
+          <!-- Tarjeta -->
+          <tr>
+            <td style="background:#121217;border:1px solid rgba(255,255,255,0.08);border-radius:20px;padding:36px 30px;">
+              <div style="color:#c7f23c;font-family:'Segoe UI',Roboto,Helvetica,Arial,sans-serif;font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:14px;">Acceso a tu lista</div>
+
+              <h1 style="margin:0 0 16px;color:#f4f4f6;font-family:'Segoe UI',Roboto,Helvetica,Arial,sans-serif;font-size:26px;line-height:1.2;font-weight:800;letter-spacing:-0.5px;">Tu enlace de acceso est&aacute; listo</h1>
+
+              <p style="margin:0 0 14px;color:#a6a6b2;font-family:'Segoe UI',Roboto,Helvetica,Arial,sans-serif;font-size:15px;line-height:1.6;">Haz click en el bot&oacute;n para entrar a Sound Myth y acceder a tu lista de eventos guardados.</p>
+
+              <p style="margin:0 0 28px;color:#a6a6b2;font-family:'Segoe UI',Roboto,Helvetica,Arial,sans-serif;font-size:15px;line-height:1.6;">El enlace es v&aacute;lido durante <strong style="color:#f4f4f6;">1 hora</strong> y solo funciona una vez.</p>
+
+              <!-- Bot&oacute;n -->
+              <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
+                <tr>
+                  <td align="center">
+                    <a href="{{ .ConfirmationURL }}" target="_blank" style="display:block;background:#c7f23c;color:#0c0c0f;font-family:'Segoe UI',Roboto,Helvetica,Arial,sans-serif;font-size:15px;font-weight:700;letter-spacing:0.3px;text-decoration:none;text-align:center;padding:16px 24px;border-radius:999px;">ENTRAR A SOUND MYTH &rarr;</a>
+                  </td>
+                </tr>
+              </table>
+
+              <p style="margin:26px 0 0;color:#6c6c79;font-family:'Segoe UI',Roboto,Helvetica,Arial,sans-serif;font-size:12.5px;line-height:1.6;text-align:center;">Si no solicitaste este acceso, ignora este email.<br>Nadie m&aacute;s puede usar este enlace.</p>
+            </td>
+          </tr>
+
+          <!-- Pie -->
+          <tr>
+            <td align="center" style="padding:24px 0 6px;color:#6c6c79;font-family:'Segoe UI',Roboto,Helvetica,Arial,sans-serif;font-size:11px;letter-spacing:1px;">SOUND MYTH &middot; EDM EVENT EXPLORER</td>
+          </tr>
+
+        </table>
+      </td>
+    </tr>
+  </table>
+</body>
+</html>

@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { canonCity, canonCountry, canonStyle, cleanVenue, looksLikeBareArtist, djNorm, pickCanon, buildDjCanon } from '../normalize.js';
+import { canonCity, canonCountry, cleanVenue, looksLikeBareArtist, djNorm, pickCanon, buildDjCanon } from '../lib/normalize.js';
 
 test('canonCity: explicit aliases & exonyms win', () => {
   assert.equal(canonCity('Eivissa'), 'Ibiza');
@@ -50,7 +50,7 @@ test('canonCity: strips region suffix / "City, Region" / Praha districts', () =>
 
 test('canonCity: provinces / downtown / centre labels and area roll-ups', () => {
   assert.equal(canonCity('Provincia Di Brescia'), 'Brescia');
-  assert.equal(canonCity('Downtown Brooklyn'), 'Brooklyn');
+  assert.equal(canonCity('Downtown Brooklyn'), 'New York');   // contract §6: boroughs fold into the city
   assert.equal(canonCity('Los Angeles Downtown'), 'Los Angeles');
   assert.equal(canonCity('Santiago Centro'), 'Santiago');
   assert.equal(canonCity('Innsbruck City Center'), 'Innsbruck');
@@ -78,18 +78,6 @@ test('canonCountry: folds long-form variants to one canonical name', () => {
   assert.equal(canonCountry('Spain'), 'Spain');                   // untouched
   assert.equal(canonCountry(''), '');
   assert.equal(canonCountry(null), '');
-});
-
-test('canonStyle: folds verbose genre/subgenre into clean buckets (idempotent)', () => {
-  assert.equal(canonStyle('Big Room / Festival EDM', ''), 'Big Room');
-  assert.equal(canonStyle('Pop Electronic / Crossover', ''), 'Pop');
-  assert.equal(canonStyle('House', 'Tech House'), 'Tech House');   // subgenre wins
-  assert.equal(canonStyle('Techno', 'Hard Techno'), 'Hard Techno');
-  assert.equal(canonStyle('Big Room', ''), 'Big Room');            // already clean → itself
-  assert.equal(canonStyle('Tech House', ''), 'Tech House');        // idempotent
-  assert.equal(canonStyle('Electronic', ''), 'Electronic');
-  assert.equal(canonStyle('Garage', ''), 'Electronic');            // unknown → fallback
-  assert.equal(canonStyle('', ''), 'Electronic');
 });
 
 test('cleanVenue: drops a venue that just repeats the title', () => {

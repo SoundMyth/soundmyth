@@ -1,85 +1,110 @@
 # CLAUDE.md
 
-This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+Guidance for AI sessions in this repository. Keep this file short and true. Detail lives in `docs/`.
 
 ## What this is
 
-SoundMyth is a mobile-first webapp that aggregates upcoming EDM events (DJ shows, festivals, club nights) scraped from Bandsintown, Songkick, Resident Advisor, and festival websites. It has two independent halves connected only through a Supabase `events` table:
+SoundMyth: a mobile-first webapp of upcoming EDM events, live at soundmyth.vercel.app.
+Two halves that meet only at the Supabase `events` table and at `data/artists.json`:
 
-1. **Frontend** — a single self-contained `index.html` (vanilla JS, no framework, no build step), deployed as a static site to Vercel at `https://soundmyth.vercel.app`. It reads events from Supabase at runtime via the CDN UMD build of `@supabase/supabase-js`.
-2. **Scrapers** — Node ESM scripts in `scraper/` that run weekly via GitHub Actions, populate the `events` table using the Supabase **service** key, and commit refreshed source lists back to the repo.
+1. **Frontend**: `index.html`, one self-contained file (inline CSS and one script, vanilla JS, no build). Served as static files from the repo root by Vercel.
+2. **Pipeline**: `scraper/`, Node ESM. Runs weekly on GitHub Actions, writes `events` with the Supabase service key, and commits refreshed JSON back to the repo.
 
-The frontend never imports scraper code and vice-versa; the database row shape is the only contract between them.
+The frontend never imports scraper code. The row shape of `events` is the contract.
+
+Root `../CLAUDE.md` (outside git) only says this folder is the project. Ignore `../_archive/`.
 
 ## Commands
 
-**Frontend** — there is no build, bundler, or test suite. Edit `index.html` and open it / serve it statically (e.g. `python -m http.server`). Deployment is a static push to Vercel; `index.html` is the entry point.
-
-**Scrapers** (all run from `scraper/`):
 ```bash
-cd scraper
-npm ci                      # install deps
-node scrape-extended.js     # run one pipeline step (see pipeline order below)
+# Frontend: no build. Serve the root statically.
+npx serve . --listen 3000        # or: python -m http.server 3000
+
+# Scraper (run from scraper/)
+npm ci
+npm run check                    # node --check + import/path/workflow resolution
+npm test                         # node --test (lib, steps, tools, data invariants)
+npm run step:<name>              # one pipeline step, e.g. step:dedupe
 ```
-Each step is an independent `node <file>.js` invocation. Run a single step by running its file directly — that is also how the CI workflow runs them.
 
-> ⚠️ The `scripts` block in `scraper/package.json` is **stale** — it references `scrape-all.js` / `export-excel.mjs` / `bandsintown.js` which no longer exist. Ignore `npm run scrape`; the authoritative pipeline is `.github/workflows/weekly-scrape.yml`.
+There is no frontend test suite. `test/maps-sync.test.js` checks the frontend lookup tables against the scraper.
 
-Scrapers require env vars (loaded from `scraper/.env` locally, GitHub Secrets in CI):
-- `SUPABASE_URL`, `SUPABASE_SERVICE_KEY` (service role — bypasses RLS to write events)
-- `BIT_APP_ID` (Bandsintown app id)
+## Pipeline
 
-**Weekly pipeline** (`.github/workflows/weekly-scrape.yml`, Sundays 02:00 UTC, manually triggerable). Order matters:
-```
-enrich-songkick-urls → scrape-extended → scrape-festivals-bit →
-scrape-festivals-direct → enrich-clubs-ra → scrape-clubs-ra → dedupe →
-discover-djs → cleanup-junk → enrich-images → validate → purge → commit data/*.json
-```
-`dedupe.js` MUST run after every scrape (BIT returns festival events fragmented per-DJ; dedupe consolidates them into one event with the full lineup). `purge.js` is the **only** file allowed to delete events by date (15-day retention window).
+`.github/workflows/weekly-scrape.yml` runs `scraper/steps/01-…` to `17-…` in that order. The order matters:
 
-Three steps added since original docs:
-- **`enrich-clubs-ra.js`** — auto-fills `ra_url` for clubs that have none (reads ra.co, no secrets). Run before `scrape-clubs-ra` so new clubs are scraped immediately.
-- **`discover-djs.js`** — reads events (anon key), checks non-listed DJs against Resident Advisor, writes `data/artists_candidates.json`. Incremental: only NEW DJs hit RA (cache = committed candidates file). No secrets.
-- **`cleanup-junk.js`** — deletes mislabelled events: events whose entire DJ lineup has no EDM presence (not in `artists_all.json`, not RA-verified in `artists_candidates.json`, and not in `artists_allow.json`). **Can permanently delete events** — runs after dedupe, before enrich-images. Respects `artists_allow.json` (manual rescue list) and `artists_block.json` (manual block list). Candidates with `err:true` (RA throttled, result uncertain) are treated as "keep" to avoid false positives.
+`01 enrich-songkick-urls → 02 scrape-extended → 03 discover-festivals → 04 scrape-festivals-bit → 05 scrape-festivals-direct → 06 scrape-festivals-ra → 07 enrich-clubs-ra → 08 scrape-clubs-ra → 09 dedupe → 10 discover-djs → 11 cleanup-junk → 12 validate → 13 classify → 14 enrich-images → 15 build-artists → 16 purge → commit → verify → 17 report`
 
-## Frontend architecture (`index.html`)
+- `09-dedupe` must run after every scrape (see invariants).
+- `11-cleanup-junk` and `16-purge` **delete** events. `16-purge` is the only step that deletes by date.
+- `cleanup-db.yml` runs `10` and `11` on demand. `keepalive.yml` pings Supabase every second day.
 
-Everything lives in one file: inline `<style>` (CSS-variable design system in `:root`), then one big `<script>`. Layout is locked to `max-width:430px` (mobile app shell). Tabs are show/hide `div`s toggled by `switchTab()`; each tab has a `render*()` function. State (saved events, current filters) is module-level `let`s persisted to `localStorage` under `sm_*` keys.
+Full runbook, data-file kinds and manual tasks: [docs/OPERATIONS.md](docs/OPERATIONS.md).
 
-**Two Supabase clients (do not collapse into one):**
-- `sb` — authenticated client, `flowType:'implicit'`, persists session. Used only for auth + per-user data (profiles, saved events).
-- `sbPublic` — anon client with `persistSession:false`. Used for **all public event reads** so loading works even when a user's token is expired or auth calls hang. Event loading must never depend on auth state.
+## Environment
 
-`loadEvents()` paginates the `events` table in 1000-row pages with retry, maps rows to the in-memory `EVENTS` shape, and caches a capped future-events subset to `localStorage` (`sm_events_cache`) as an offline fallback.
+Steps read `scraper/.env` locally, or GitHub secrets in CI:
+- `SUPABASE_URL`, `SUPABASE_SERVICE_KEY` (service role, writes events and bypasses RLS)
+- `SUPABASE_ANON_KEY` (read-only steps 03 and 10)
+- `BIT_APP_ID` (Bandsintown, step 02 and 04)
+- Optional: `BREVO_API_KEY`, `NOTIFY_EMAIL`, `NOTIFY_FROM` (report email), `THEAUDIODB_KEY`, `DJ_TIME_BUDGET_MIN`
 
-**Hardcoded lookup tables that must be kept in sync:**
-- `TOP100_DJS` (Set, ~line 570) — drives "Upcoming Highlights" + DJ spotlight. Mirror of `scraper/data/artists_top100.json`; edit **both** when changing the top-100.
-- `FLAGS` / `COUNTRY_ISO` — country→emoji and ISO normalization. Scrapers surface new countries constantly; `FLAGS[country]` always needs a `||'🌍'` fallback, and any ISO code must map in **both** `index.html` (`COUNTRY_ISO`) and `scraper/validate.js` (`COUNTRY_NORM`).
+Never commit `.env` or any key.
 
-## `events` table shape
+## Frontend invariants (`index.html`)
 
-Key columns (see `loadEvents()` mapping and the scrapers): `id`, `name`, `venue`, `city`, `country`, `date`, `djs` (array), `genre`, `tags` (array), `price`, `ticket_url`, `img_url`, `source`, `source_id`. `source_id` is the idempotency/dedup key — it **must include the city** when an event can occur in multiple locations, and a scraper may only delete/update its own `source_id` rows (never blanket date deletes).
+- **Two Supabase clients.** `sb` (auth, implicit flow, persists session) is for auth and per-user rows only. `sbPublic` (no session) reads events. Event loading must never depend on auth state.
+- **Magic-link login** uses `signInWithOtp` with `emailRedirectTo` hard-coded to `https://soundmyth.vercel.app`, never `location.href`. `flowType` stays `'implicit'`. Both rules come from real outages (BUG-003, BUG-004).
+- `loadEvents()` pages `events` in 1000-row pages with retry, maps rows to the in-memory shape, and caches future events in `localStorage` (`sm_events_cache`) for offline use.
+- Local state is in module-level `let`s, persisted under `sm_*` keys.
+- Layout is a 430px mobile shell. Tabs are show/hide `div`s toggled by `switchTab()`.
+- Every `render*()` for a home section runs independently: wrap, and never call one section from inside another without try/catch.
+- Hand-kept tables that must match the scraper: `TOP100_DJS` (mirror of `scraper/data/artists_top100.json`), `CITY_ALIAS_RAW` (mirror of `scraper/lib/normalize.js`), `FLAGS` and `COUNTRY_ISO` (country names and ISO codes). Edit both sides; the test catches drift for `CITY_ALIAS_RAW` only.
 
-## Auth & email
+## Data invariants (`events`)
 
-Login is passwordless magic link via `sb.auth.signInWithOtp(...)`. Two non-negotiables (both caused real outages — see BUGS.md):
-- `emailRedirectTo` must be the **hardcoded** `'https://soundmyth.vercel.app'`, never `location.href` (the link can be opened in a different browser).
-- `flowType:'implicit'` (PKCE breaks cross-browser/email-client magic links).
+- `source_id` is the idempotency key. It **includes the city** when the same event can occur in several cities. A scraper touches only its own `source_id` rows and never deletes by date.
+- Festival events from Bandsintown arrive fragmented per DJ. Dedupe consolidates them. Dedupe merges lineups and never removes a DJ, except in the double-booking pass, which writes `scraper/data/conflicts.json`.
+- Partial loads never drive deletes: `fetchAllRows` returns an error, and cleanup, dedupe and classify abort on it.
+- Dates are calendar dates. Never derive a date with `toISOString()` from an offset timestamp.
+- Events are kept 8 days in the past (`16-purge.js`). The frontend greys out the last 7.
+- Genre and tags come from the canonical 16-style taxonomy in `scraper/lib/genres.js`. An event with no known DJ or festival style is `Multi-genre`.
 
-The Supabase project's URL allowlist (Site URL + Redirect URLs) must include the production domain — configured in the Supabase dashboard, not in this repo. Auth emails are sent through a custom SMTP provider (Brevo, port 465) configured in the dashboard; the email template is `email-magic-link.html`. Marketing consent is captured at signup and stored redundantly (localStorage + `profiles` row + auth `user_metadata`) because GoTrue `updateUser` calls can hang.
+Full rules with their incidents: [docs/BUGS.md](docs/BUGS.md).
 
-## Conventions (hard-won — full list in BUGS.md)
+## Conventions
 
-- **`onclick` with dynamic strings**: use single outer quotes + `JSON.stringify`, e.g. `onclick='openDetail("${id}")'`. Double-quoted `onclick="fn("x")"` breaks the attribute.
-- **Any element with `position:absolute` children needs an explicit `min-height`/`height`**, or it collapses to 0 when an image `onerror`-hides.
-- **Form `<input>`s must be `font-size:≥16px`** and rely on `touch-action:manipulation` (on `*`) to stop iOS auto-zoom — the viewport meta tag is not enough.
-- **Home sections render independently** — never chain one `render*()` inside another without try/catch, or one failure blanks the whole page.
-- **All scraper string fields used with `.method()` need a `|| ''` fallback**, and name normalization strips diacritics via NFD: `.normalize('NFD').replace(/[̀-ͯ]/g,'')`.
-- **After a UI translation pass**, grep for leftover Spanish strings (the UI is English; comments/alerts are often Spanish).
-- **Image enrichment**: bump `CACHE_VERSION` in `scraper/enrich-images.js` when search logic improves (auto-retries past failures); JS-rendered festival sites (Tomorrowland, EDC) need entries in `FESTIVAL_IMAGE_OVERRIDES`.
+- **Quoting in `onclick`:** single outer quotes around `JSON.stringify`: `onclick='openDetail(${JSON.stringify(id)})'`.
+- **Escaping:** scraped text rendered into `innerHTML` goes through `esc()`.
+- **Nulls:** every API string used with a method has a `|| ''` fallback, and `FLAGS[c] || '🌍'`.
+- **Inputs:** `font-size: 16px` or more, and `touch-action: manipulation` on `*`, to stop iOS zoom.
+- **Normalisation for matching:** NFD-fold diacritics before any ASCII regex.
+- **Scraper modules:** shared code goes in `scraper/lib/` (`db.js` for Supabase, env and paging; `ra.js` for the Resident Advisor transport; `http.js`; `normalize.js`; `genres.js`; `run-stats.js`). Steps and tools import from `lib/`, and read data with `resolve(__dirname, '../data/…')`.
+- **Layout rules** (enforced by `test/imports.test.js`): every `steps/NN-*.js` is run by `weekly-scrape.yml`, no `tools/*` file is run by CI, and every `lib/*.js` is imported somewhere.
+- **Bumping caches:** `DJ_CACHE_VERSION` or `FEST_CACHE_VERSION` in `steps/14-enrich-images.js` when lookup logic changes. `CACHE` in `sw.js` when the app shell changes.
+- **Commits:** small and logically separate. The workflow file must stay valid YAML.
 
-## Reference files
+## File map
 
-- **`OPERATIONS.md`** — step-by-step for adding a DJ / festival / club, the data files in `scraper/data/`, and triggering a manual scrape.
-- **`BUGS.md`** — full bug log with root causes and the complete 22-rule preventive table. Read it before non-trivial changes.
-- `prototype.html` / `prototype-v1.html` — design prototypes (UI is iterated here before touching `index.html`). `index-pre-redesign.html` is the previous production version, kept for reference only.
+| Path | Role |
+|---|---|
+| `index.html` | Frontend (production) |
+| `sw.js`, `manifest.webmanifest`, `favicon.svg`, `icon-*.png`, `apple-touch-icon.png`, `robots.txt`, `sitemap.xml` | PWA and SEO. Must stay at the root |
+| `data/artists.json` | DJ artifact served to the frontend (built by step 15) |
+| `scraper/steps/` | The 17 pipeline steps, in run order |
+| `scraper/lib/` | Shared modules: `db.js`, `ra.js`, `http.js`, `normalize.js`, `genres.js`, `run-stats.js` |
+| `scraper/tools/` | Manual scripts, never run by CI: `check.js`, `static-scan.js`, `promote-candidates.js`, `infer-styles.js`, `analyze-quality.mjs`, `enrich-festivals-*.js` |
+| `scraper/data/` | Curated lists, caches and run outputs. Kinds are documented in docs/OPERATIONS.md |
+| `scraper/sql/` | One-off Supabase SQL (`harden-rls.sql`, `personalization.sql`) |
+| `scraper/test/` | `node --test` suites |
+| `.github/workflows/` | `weekly-scrape.yml`, `cleanup-db.yml`, `keepalive.yml`, `ci.yml` |
+| `docs/` | Runbook, rules and incidents, personalization backlog, genre audit, Supabase email template |
+| `design/` | Event-detail prototype and icon source artwork. Not served |
+
+## Reference
+
+- [README.md](README.md): overview for people
+- [docs/OPERATIONS.md](docs/OPERATIONS.md): pipeline, data files, how-tos
+- [docs/BUGS.md](docs/BUGS.md): rules and incident log. Read before non-trivial changes
+- [docs/PERSONALIZATION_NOTES.md](docs/PERSONALIZATION_NOTES.md): personalization backlog
+- [docs/genre-audit-2026-10.md](docs/genre-audit-2026-10.md): genre reclassification audit

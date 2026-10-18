@@ -1,0 +1,530 @@
+/**
+ * SoundMyth – Extended Scraper
+ *
+ * DJ scraping priority (cascade – stops at first hit):
+ *   1) Bandsintown API  (bit_url or artist name lookup)
+ *   2) Songkick JSON-LD (songkick_url → /calendar)
+ *   3) tour_web → detect Songkick embed → JSON-LD calendar
+ *   4) tour_web → JSON-LD MusicEvents directly on page
+ *
+ * Festivals → own website → JSON-LD Event blocks
+ *
+ * Usage: node steps/02-scrape-extended.js
+ */
+
+import { readFileSync } from 'fs';
+import { fileURLToPath } from 'url';
+import { dirname, resolve } from 'path';
+import { cleanEvent, todayISO, localDate, resolveLDDate, cleanEventTitle } from '../lib/normalize.js';
+import { makeClient, loadEnv } from '../lib/db.js';
+import { SK_HEADERS, withRetry } from '../lib/http.js';
+
+const __dirname = dirname(fileURLToPath(import.meta.url));
+loadEnv();
+
+const SB_URL  = process.env.SUPABASE_URL;
+const SB_KEY  = process.env.SUPABASE_SERVICE_KEY;
+
+if (!SB_URL || !SB_KEY) {
+  console.error('❌  Missing SUPABASE_URL or SUPABASE_SERVICE_KEY');
+  process.exit(1);
+}
+
+const TODAY   = todayISO();
+const BATCH   = 50;
+const DELAY_DJ   = 800;   // ms between DJ Songkick requests
+
+const sb    = makeClient(SB_URL, SB_KEY);
+const sleep = ms => new Promise(r => setTimeout(r, ms));
+
+// ── HTTP ─────────────────────────────────────────────────────────────────────
+const UA = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36';
+
+// SK_HEADERS comes from lib/http.js — Songkick needs a curl UA, see the note there.
+// WEB_HEADERS stays browser-like: it hits arbitrary artist/festival sites.
+const WEB_HEADERS = {
+  'User-Agent': UA,
+  'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+  'Accept-Language': 'en-US,en;q=0.9',
+};
+
+async function fetchHTML(url, headers = WEB_HEADERS, ms = 12000) {
+  try {
+    const res = await fetch(url, {
+      headers,
+      signal: AbortSignal.timeout(ms),
+      redirect: 'follow',
+    });
+    if (!res.ok) return null;
+    return await res.text();
+  } catch {
+    return null;
+  }
+}
+
+// ── Bandsintown API ───────────────────────────────────────────────────────────
+const BIT_APP_ID = process.env.BIT_APP_ID || 'js_bandsintown';
+
+// BIT returns 403 for every app_id since the public API closure. After
+// BIT_GIVE_UP_AFTER consecutive 401/403s we stop calling it for the rest
+// of the run to avoid wasting ~11 minutes of DELAY_DJ on 852 guaranteed failures.
+let bitDenied = 0, bitDisabled = false;
+const BIT_GIVE_UP_AFTER = 5;
+
+async function fetchBIT(artistName) {
+  if (bitDisabled) return [];
+  const url = `https://rest.bandsintown.com/artists/${encodeURIComponent(artistName)}/events`
+            + `?app_id=${BIT_APP_ID}&date=upcoming`;
+  try {
+    const res = await fetch(url, { headers: { 'Accept': 'application/json' }, signal: AbortSignal.timeout(10000) });
+    if (!res.ok) {
+      if (res.status === 401 || res.status === 403) {
+        bitDenied++;
+        if (bitDenied === BIT_GIVE_UP_AFTER) {
+          bitDisabled = true;
+          console.warn(`\n\n  ⚠  Bandsintown returned ${res.status} ${BIT_GIVE_UP_AFTER}× — API access denied. Skipping BIT for rest of run.\n`);
+        }
+      }
+      return [];
+    }
+    bitDenied = 0;
+    const data = await res.json();
+    return Array.isArray(data) ? data : [];
+  } catch { return []; }
+}
+
+function normaliseBIT(e, djName, genre, tags) {
+  const dateStr = localDate(e.datetime || e.starts_at);   // BIT times are local wall-clock
+  if (!dateStr || dateStr < TODAY) return null;
+  const v = e.venue || {};
+  const lineup = Array.isArray(e.lineup) && e.lineup.length ? e.lineup : [djName];
+  const ticketUrl = e.offers?.find(o => o.type === 'Tickets')?.url || e.url || '';
+  const rawTitle = (e.title || '').trim();
+  const rawDesc  = (e.description || '').trim();
+  const name = rawTitle || (rawDesc.length <= 120 ? rawDesc : '') || `${djName} at ${v.name || v.city || 'TBC'}`;
+  return {
+    name,
+    venue:      v.name     || '',
+    city:       v.city     || '',
+    country:    normCountry(v.country || ''),
+    date:       dateStr,
+    djs:        lineup,
+    genre:      genre || '',
+    tags:       [],   // steps/13-classify.js sets type + vibe tags
+    price:      e.free ? 'Free' : '',
+    ticket_url: ticketUrl,
+    img_url:    e.artist?.image_url || '',
+    source:     'bandsintown',
+    source_id:  `bit_${e.id}`,
+  };
+}
+
+async function scrapeBIT(djName, genre, tags) {
+  const raw = await fetchBIT(djName);
+  return raw.map(e => normaliseBIT(e, djName, genre, tags)).filter(Boolean);
+}
+
+// ── ISO country code → full name ──────────────────────────────────────────────
+const COUNTRY_ISO = {
+  'GB':'United Kingdom','UK':'United Kingdom',
+  'DE':'Germany','FR':'France','ES':'Spain','NL':'Netherlands',
+  'BE':'Belgium','IT':'Italy','PL':'Poland','PT':'Portugal',
+  'CH':'Switzerland','AT':'Austria','HR':'Croatia','DK':'Denmark',
+  'SE':'Sweden','CZ':'Czechia','MT':'Malta','FI':'Finland',
+  'NO':'Norway','RO':'Romania','IE':'Ireland','GR':'Greece',
+  'LV':'Latvia','RS':'Serbia','CY':'Cyprus','LU':'Luxembourg',
+  'LT':'Lithuania','EE':'Estonia','IS':'Iceland','AL':'Albania',
+  'MK':'North Macedonia','BY':'Belarus','SK':'Slovakia','RU':'Russia',
+  'TR':'Turkey','HU':'Hungary','UA':'Ukraine','BG':'Bulgaria',
+  'SI':'Slovenia','BA':'Bosnia and Herzegovina','XK':'Kosovo',
+  'ME':'Montenegro','MD':'Moldova','AM':'Armenia','GE':'Georgia',
+  'AZ':'Azerbaijan','KZ':'Kazakhstan','UZ':'Uzbekistan',
+  'US':'United States','CA':'Canada','AU':'Australia','JP':'Japan',
+  'MX':'Mexico','BR':'Brazil','AR':'Argentina','CL':'Chile',
+  'CO':'Colombia','ZA':'South Africa','IN':'India','CN':'China',
+};
+function normCountry(c) { return COUNTRY_ISO[c] || c; }
+
+// ── HTML parsers ──────────────────────────────────────────────────────────────
+
+/** Extract js-initial-data JSON (Songkick) */
+function extractSKInitialData(html) {
+  const m = html?.match(/<script id="js-initial-data"[^>]*>([\s\S]*?)<\/script>/);
+  if (!m) return null;
+  try { return JSON.parse(m[1]); } catch { return null; }
+}
+
+/** Find first Songkick artist URL embedded in page HTML */
+function findSKArtistUrl(html) {
+  const m = html?.match(/songkick\.com\/artists\/(\d+[^"'\s>?#]+)/);
+  return m ? `https://www.songkick.com/artists/${m[1]}` : null;
+}
+
+/** Extract all JSON-LD MusicEvent/Event blocks from HTML */
+function extractJSONLDEvents(html) {
+  if (!html) return [];
+  const events = [];
+  for (const m of html.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)) {
+    try {
+      const ld    = JSON.parse(m[1]);
+      const items = Array.isArray(ld) ? ld : [ld];
+      for (const item of items) {
+        if (item['@type'] === 'MusicEvent' || item['@type'] === 'Event') {
+          events.push(item);
+        }
+        if (item['@type'] === 'ItemList' && Array.isArray(item.itemListElement)) {
+          for (const li of item.itemListElement) {
+            const inner = li.item || li;
+            if (inner['@type'] === 'MusicEvent' || inner['@type'] === 'Event') events.push(inner);
+          }
+        }
+      }
+    } catch { /* skip */ }
+  }
+  return events;
+}
+
+// ── Normalisers ───────────────────────────────────────────────────────────────
+
+
+/** Normalise a Songkick concert object from js-initial-data */
+function normaliseSKConcert(c, name, genre, tags) {
+  const dateStr = localDate(c.start?.date);
+  if (!dateStr || dateStr < TODAY) return null;
+  const venue   = c.venue?.displayName || '';
+  const city    = c.venue?.metroArea?.displayName || '';
+  const country = normCountry(c.venue?.metroArea?.country?.displayName || '');
+  const lineup  = (c.performance || []).map(p => p.artist?.displayName).filter(Boolean);
+  if (!lineup.length) lineup.push(name);
+  return {
+    name:       c.displayName || `${name} at ${venue || city}`,
+    venue, city, country,
+    date:       dateStr,
+    djs:        lineup,
+    genre:      genre || '',
+    tags:       [],
+    price:      '',
+    ticket_url: c.uri || '',
+    img_url:    '',
+    source:     'songkick',
+    source_id:  `sk_${c.id}`,
+  };
+}
+
+/** Normalise a JSON-LD Event/MusicEvent.
+ *  fallback{City,Country} used when JSON-LD location is missing (festival case). */
+function normaliseJSONLD(item, fallbackName, genre, tags, source, fallbackCity = '', fallbackCountry = '') {
+  const dateStr = resolveLDDate(item, TODAY).date;
+  if (!dateStr || dateStr < TODAY) return null;
+
+  const loc     = item.location || item.place || {};
+  const addr    = loc.address   || {};
+  const venue   = loc.name      || '';
+  const city    = addr.addressLocality || addr.addressRegion || fallbackCity || '';
+  const country = normCountry(addr.addressCountry || fallbackCountry || '');
+
+  // Use URL-based concert ID when available (Songkick /concerts/12345) — prevents duplicate
+  // source_id collisions when the same artist plays the same venue on the same date.
+  const urlConcertId = (item.url || '').match(/\/concerts\/(\d+)/)?.[1]
+                    || (item.url || '').match(/\/events\/(\d+)/)?.[1];
+  const source_id = urlConcertId
+    ? `sk_${urlConcertId}`
+    : `${fallbackName}_${dateStr}_${venue || city}`.replace(/\W+/g, '_').toLowerCase();
+
+  return {
+    name:       item.name || `${fallbackName} at ${venue || city}`,
+    venue, city, country,
+    date:       dateStr,
+    djs:        [fallbackName],
+    genre:      genre || '',
+    tags:       [],
+    price:      item.offers?.price ? `${item.offers.price} ${item.offers.priceCurrency || ''}`.trim() : '',
+    ticket_url: item.url || item.offers?.url || '',
+    img_url:    item.image || '',
+    source:     source || 'website',
+    source_id,
+  };
+}
+
+/** Tour-website JSON-LD (DJ cascade step ④). Rebuilt because the old rows were unreliable:
+ *  the name was the page title ("Friday November 20th 2026 - Dreamstate SoCal 2026"), the date
+ *  could shift a day (UTC timestamp), and city/country were often empty. Now: name = "<DJ> @ <venue>",
+ *  date via resolveLDDate (UTC-only stamps are skipped unless the title carries a date), and
+ *  city/country only from the JSON-LD address (no region-as-city). Missing city/country is
+ *  dropped later by steps/12-validate.js. source_id keeps the old formula so legacy rows are overwritten. */
+function normaliseWebsiteLD(item, djName, genre, tags) {
+  const { date } = resolveLDDate(item, TODAY);
+  if (!date || date < TODAY) return null;
+  const loc     = item.location || item.place || {};
+  const addr    = loc.address   || {};
+  const venue   = (loc.name || '').trim();
+  const title   = cleanEventTitle(item.name || '');
+  const city    = addr.addressLocality || '';
+  const country = normCountry(addr.addressCountry || '');
+  const where   = venue || title;
+  return {
+    name:       where ? `${djName} @ ${where}` : djName,
+    venue,
+    city,
+    country,
+    date,
+    djs:        [djName],
+    genre:      genre || '',
+    tags:       [],
+    price:      item.offers?.price ? `${item.offers.price} ${item.offers.priceCurrency || ''}`.trim() : '',
+    ticket_url: item.url || item.offers?.url || '',
+    img_url:    item.image || '',
+    source:     'website',
+    source_id:  `${djName}_${date}_${venue || city}`.replace(/\W+/g, '_').toLowerCase(),
+  };
+}
+
+// ── Songkick artist calendar ──────────────────────────────────────────────────
+
+async function scrapeSKArtist(skUrl, djName, genre, tags) {
+  const calUrl = skUrl.replace(/\/?$/, '') + '/calendar';
+  const html   = await fetchHTML(calUrl, SK_HEADERS);
+  if (!html || html.length < 500) return [];
+  if (/access denied|cf-challenge/i.test(html)) return [];
+
+  // Try js-initial-data first (older pages)
+  const data = extractSKInitialData(html);
+  if (data) {
+    const concerts =
+      data?.gigography?.upcomingConcerts   ||
+      data?.calendarData?.upcomingConcerts ||
+      data?.upcomingConcerts               ||
+      data?.concerts?.upcoming             ||
+      [];
+    if (Array.isArray(concerts) && concerts.length) {
+      return concerts.map(c => normaliseSKConcert(c, djName, genre, tags)).filter(Boolean);
+    }
+  }
+
+  // Fallback: JSON-LD (confirmed working on current SK pages)
+  return extractJSONLDEvents(html)
+    .map(e => normaliseJSONLD(e, djName, genre, tags, 'songkick'))
+    .filter(Boolean);
+}
+
+// ── Supabase buffer ───────────────────────────────────────────────────────────
+
+let buffer         = [];
+let bufferIds      = new Set();   // dedup within buffer
+let totalUpserted  = 0;
+let totalErrors    = 0;
+// Prevents concurrent upserts: addEvents() is synchronous so flushBuffer()
+// can be called without await; the guard ensures only one write runs at a time.
+let flushing       = false;
+// Batches that failed all retries — retried once at end of run after a long pause.
+const failQueue    = [];
+
+// A paused Supabase project loses its DNS record, so every attempt fails at the
+// network layer and no amount of retrying helps. Without this breaker the run
+// burns its whole time budget on a dead host: that is what turned a 9-minute
+// scrape into a 45-minute timeout with 3270 events lost.
+let sbDown     = false;
+let flushFails = 0;
+const SB_GIVE_UP_AFTER = 3;
+
+async function flushBuffer() {
+  if (flushing || sbDown || !buffer.length) return;
+  flushing = true;
+  try {
+    while (buffer.length && !sbDown) {
+      const slice = buffer.splice(0, BATCH);
+      slice.forEach(cleanEvent);
+      // 4 attempts, 5 s base → waits 5 s / 10 s / 15 s before giving up
+      const { error } = await withRetry(
+        () => sb.from('events').upsert(slice, { onConflict: 'source_id', ignoreDuplicates: false }),
+        'Supabase upsert',
+        4,
+        5000
+      );
+      if (error) {
+        failQueue.push(slice);
+        totalErrors += slice.length;
+        if (++flushFails >= SB_GIVE_UP_AFTER) {
+          sbDown = true;
+          console.error(`\n  ⛔  Supabase unreachable (${SB_GIVE_UP_AFTER} batches failed in a row) — buffering locally, one retry at end of run.`);
+        }
+      } else {
+        flushFails = 0;
+        totalUpserted += slice.length;
+        process.stdout.write(` ✓${slice.length}`);
+      }
+      if (buffer.length) await sleep(300);
+    }
+  } finally {
+    flushing = false;
+  }
+}
+
+function addEvents(evs) {
+  for (const ev of evs) {
+    if (!ev?.source_id || !ev?.date) continue;
+    if (!bufferIds.has(ev.source_id)) {
+      buffer.push(ev);
+      bufferIds.add(ev.source_id);
+    }
+  }
+}
+
+// ── Main ──────────────────────────────────────────────────────────────────────
+
+async function main() {
+  const t0 = Date.now();
+  console.log('\n╔══════════════════════════════════════════╗');
+  console.log('║  SoundMyth – Extended Scraper            ║');
+  console.log('║  DJs:  Songkick URL → JSON-LD            ║');
+  console.log('║        tour_web → SK embed → LD          ║');
+  console.log('╚══════════════════════════════════════════╝\n');
+
+  // NOTE: purge moved to dedicated steps/16-purge.js (keeps 15-day retention window)
+
+  const artists  = JSON.parse(readFileSync(resolve(__dirname, '../data/artists_all.json'), 'utf8'));
+
+  // Festivals are handled by the three dedicated festival steps
+  // (scrape-festivals-bit, scrape-festivals-direct, scrape-festivals-ra).
+  // Removing the duplicate festival loop here saves ~10 minutes per run.
+
+  const stats = { dj: { bit: 0, sk: 0, webSK: 0, webLD: 0, none: 0 } };
+
+  // ── DJs ────────────────────────────────────────────────────────────────────
+  console.log(`\n📀  DJs (${artists.length})  [concurrency: 2]\n${'─'.repeat(60)}`);
+
+  // Two DJs are fetched concurrently: each progress line is emitted atomically
+  // (prefix + result in one console.log) so lines from the two workers don't
+  // interleave mid-line.  The flushing guard in flushBuffer() serialises writes
+  // to Supabase, so concurrent addEvents() calls are safe.
+  let djDone = 0;
+
+  async function scrapeDJ(dj, idx) {
+    const pct    = String(Math.round(((idx + 1) / artists.length) * 100)).padStart(3);
+    const prefix = `[${String(idx + 1).padStart(3)}/${artists.length}] ${pct}% │ ${dj.name.padEnd(28)} `;
+    try {
+      // ① Bandsintown
+      const bitEvs = await scrapeBIT(dj.name, dj.genre, '');
+      if (bitEvs.length) {
+        addEvents(bitEvs); stats.dj.bit++;
+        console.log(prefix + `[BIT]        → ${bitEvs.length} events`);
+        await sleep(DELAY_DJ); return;
+      }
+      // ② Songkick direct URL
+      if (dj.songkick_url?.includes('songkick.com')) {
+        const evs = await scrapeSKArtist(dj.songkick_url, dj.name, dj.genre, '');
+        if (evs.length) {
+          addEvents(evs); stats.dj.sk++;
+          console.log(prefix + `[SK direct]  → ${evs.length} events`);
+          await sleep(DELAY_DJ); return;
+        }
+      }
+      // ③ tour_web → Songkick embed
+      if (dj.tour_web?.startsWith('http')) {
+        const html = await fetchHTML(dj.tour_web);
+        if (html) {
+          const skUrl = findSKArtistUrl(html);
+          if (skUrl) {
+            await sleep(400);
+            const evs = await scrapeSKArtist(skUrl, dj.name, dj.genre, '');
+            if (evs.length) {
+              addEvents(evs); stats.dj.webSK++;
+              console.log(prefix + `[web→SK]     → ${evs.length} events`);
+              await sleep(DELAY_DJ); return;
+            }
+          }
+          // ④ JSON-LD directly on page
+          const ldEvs = extractJSONLDEvents(html)
+            .map(e => normaliseWebsiteLD(e, dj.name, dj.genre, ''))
+            .filter(Boolean);
+          if (ldEvs.length) {
+            addEvents(ldEvs); stats.dj.webLD++;
+            console.log(prefix + `[web→LD]     → ${ldEvs.length} events`);
+            await sleep(DELAY_DJ); return;
+          }
+        }
+      }
+      stats.dj.none++;
+      console.log(prefix + `[–]          no events found`);
+      await sleep(300);
+    } catch (err) {
+      stats.dj.none++;
+      console.error(`\n  ❌  ${dj.name}: ${err.message}`);
+    } finally {
+      djDone++;
+      // Awaited, so writes stay serialised and never pile up on Supabase; the
+      // other worker keeps scraping meanwhile. Caps data at risk to ~25 DJs.
+      if (djDone % 25 === 0) await flushBuffer();
+      if (djDone % 10 === 0) {
+        const elapsed = (Date.now() - t0) / 1000;
+        const rem = Math.round((elapsed / djDone) * (artists.length - djDone) / 60);
+        console.log(`\n  ⏱  ~${rem}m remaining for DJs\n`);
+      }
+    }
+  }
+
+  let nextDJIdx = 0;
+  await Promise.all(Array.from({ length: 2 }, async () => {
+    while (nextDJIdx < artists.length) {
+      const idx = nextDJIdx++;
+      await scrapeDJ(artists[idx], idx);
+    }
+  }));
+  // Clear the breaker for one last attempt — Supabase may have recovered.
+  sbDown = false; flushFails = 0;
+  if (buffer.length) console.log(`\n\n💾  Flushing ${buffer.length} remaining events to Supabase…`);
+  await flushBuffer();
+  // Breaker tripped again mid-drain: hand the rest to the end-of-run retry.
+  while (buffer.length) {
+    const slice = buffer.splice(0, BATCH);
+    slice.forEach(cleanEvent);
+    failQueue.push(slice);
+    totalErrors += slice.length;
+  }
+  process.stdout.write('\n');
+
+  // ── End-of-run retry for failed batches ────────────────────────────────────
+  if (failQueue.length) {
+    const queuedCount = failQueue.reduce((n, b) => n + b.length, 0);
+    console.log(`\n\n⏳  ${failQueue.length} batch(es) failed during the run (${queuedCount} events). Retrying after 30 s pause…`);
+    await sleep(30_000);
+    let recovered = 0, consecutiveFails = 0;
+    for (const batch of failQueue) {
+      if (consecutiveFails >= 2) {
+        console.error('⛔  Supabase still unreachable — abandoning the remaining batches.');
+        break;
+      }
+      const { error } = await withRetry(
+        () => sb.from('events').upsert(batch, { onConflict: 'source_id', ignoreDuplicates: false }),
+        'End-of-run retry',
+        5,
+        10_000
+      );
+      if (!error) {
+        totalUpserted += batch.length; totalErrors -= batch.length;
+        recovered += batch.length; consecutiveFails = 0;
+      } else {
+        consecutiveFails++;
+        console.error(`❌  End-of-run retry still failed: ${error.message || error}`);
+      }
+      await sleep(3000);
+    }
+    if (recovered) console.log(`✅  Recovered ${recovered} events from retry queue`);
+  }
+
+  // ── Summary ────────────────────────────────────────────────────────────────
+  const elapsed = Math.round((Date.now() - t0) / 1000);
+  const mm = String(Math.floor(elapsed / 60)).padStart(2, '0');
+  const ss = String(elapsed % 60).padStart(2, '0');
+
+  console.log('\n\n╔══════════════════════════════════════════╗');
+  console.log('║  Extended scrape complete                ║');
+  console.log(`║  Time: ${mm}m${ss}s                              ║`);
+  console.log(`║  DJs (new events from):                  ║`);
+  console.log(`║    BIT=${stats.dj.bit}  SK=${stats.dj.sk}  web→SK=${stats.dj.webSK}  web→LD=${stats.dj.webLD}  none=${stats.dj.none}  ║`);
+  console.log(`║  Total upserted: ${String(totalUpserted).padEnd(24)}║`);
+  console.log(`║  Errors: ${String(totalErrors).padEnd(32)}║`);
+  console.log('╚══════════════════════════════════════════╝\n');
+}
+
+main().then(() => process.exit(0)).catch(err => { console.error('Fatal:', err); process.exit(1); });

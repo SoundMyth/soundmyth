@@ -1,0 +1,585 @@
+/**
+ * SoundMyth – Event Deduplicator
+ *
+ * Problem 1: same BIT event scrapped twice under different source_ids
+ *   (bit_12345  vs  bit_fest_12345 — now fixed upstream, but clean existing)
+ *
+ * Problem 2: multiple DJs at same venue on same day → separate rows per DJ
+ *   BIT creates one booking per artist; same party appears N times.
+ *
+ * Fix:
+ *   1. Delete orphaned bit_fest_* rows where a bit_* row with same (date+venue+city) exists
+ *   2. Group events by (date, venue_norm, city_norm) — keep the richest, merge djs[], tags[]
+ *
+ * Usage: node steps/09-dedupe.js
+ */
+
+import { readFileSync, existsSync } from 'fs';
+import { fileURLToPath } from 'url';
+import { dirname, resolve } from 'path';
+import { withRetry } from '../lib/http.js';
+import { makeClient, loadEnv, fetchAllRows, uniqueById } from '../lib/db.js';
+import { canonCity, todayISO, planFestivalFragments, findDoubleBookings, makeFestivalTest, djMatchKey, splitKeeper, mergedDate, venueMatch } from '../lib/normalize.js';
+import { writeRunStat } from '../lib/run-stats.js';
+import { writeFileSync } from 'fs';
+
+const __dirname = dirname(fileURLToPath(import.meta.url));
+const CONFLICTS_PATH = resolve(__dirname, '../data/conflicts.json');
+// A festival runs up to ~4 days (Fri–Mon). Per-artist fragments further than this from the
+// festival row are not merged into it.
+const FEST_SPAN_DAYS = 4;
+loadEnv();
+
+const SB_URL = process.env.SUPABASE_URL;
+const SB_KEY = process.env.SUPABASE_SERVICE_KEY;
+
+if (!SB_URL || !SB_KEY) { console.error('❌  Missing Supabase env vars'); process.exit(1); }
+
+const sb = makeClient(SB_URL, SB_KEY);
+
+// Normalise: lowercase, strip diacritics (NFD), strip punctuation, collapse spaces
+function norm(s) {
+  return (s || '').normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().replace(/[^a-z0-9\s]/g, '').replace(/\s+/g, ' ').trim();
+}
+const normVenue = norm;
+// City keys go through the shared canon: "Manhattan", "Brooklyn" and "New York" are one city.
+const normCity  = s => norm(canonCity(s));
+
+// Score richness of an event (higher = more info = prefer to keep)
+function richness(e) {
+  return (e.djs?.length || 0) * 10
+       + (e.ticket_url ? 5 : 0)
+       + (e.img_url    ? 3 : 0)
+       + (e.price      ? 2 : 0)
+       + (e.name?.length || 0) * 0.01;
+}
+
+// Source priority (lower = better)
+const SRC_PRIO = { ra: 0, songkick: 1, bandsintown: 2, direct: 3, website: 4 };
+
+async function main() {
+  console.log('╔══════════════════════════════════════════════╗');
+  console.log('║  SoundMyth – Deduplicator                    ║');
+  console.log('╚══════════════════════════════════════════════╝\n');
+
+  // ── Step 1: Remove bit_fest_* orphans ─────────────────────────────────────
+  // These were created by the old festival scraper; the new one uses bit_* instead.
+  // If a bit_* row already exists for the same event, delete the bit_fest_* one.
+  console.log('Step 1: Remove legacy bit_fest_* duplicates...');
+  const { data: bitFest, error: bfe } = await sb
+    .from('events')
+    .select('id, source_id, date, venue, city')
+    .like('source_id', 'bit_fest_%');
+
+  if (bfe) { console.error('  ❌', bfe.message); }
+  else {
+    console.log(`  Found ${bitFest.length} bit_fest_* rows`);
+    let removed = 0;
+    for (const row of bitFest) {
+      // Derive the canonical bit_* id: bit_fest_12345 → bit_12345
+      const canonId = row.source_id.replace('bit_fest_', 'bit_');
+      // Check if a row with that canonical id exists
+      const { data: canon } = await sb
+        .from('events')
+        .select('id')
+        .eq('source_id', canonId)
+        .maybeSingle();
+      if (canon) {
+        // Canonical row exists → delete the bit_fest_* row
+        await sb.from('events').delete().eq('id', row.id);
+        removed++;
+        process.stdout.write('.');
+      } else {
+        // No canonical row — rename bit_fest_* → bit_* to fix for future
+        await sb.from('events').update({ source_id: canonId }).eq('id', row.id);
+        process.stdout.write('r');
+      }
+    }
+    console.log(`\n  Removed: ${removed}  Renamed: ${bitFest.length - removed}\n`);
+  }
+
+  // ── Step 2: Merge duplicate events at same venue+date (or same name+date) ──
+  console.log('Step 2: Find duplicate events...');
+
+  let loadFailed = false;
+  const today = todayISO();
+
+  // A partial load skips the merge/delete passes below: they must never act on half the data.
+  const { data: loadedEvents, error: loadErr, failedAt } = await fetchAllRows(
+    (from, to) => sb
+      .from('events')
+      .select('id, name, venue, city, country, date, djs, tags, source, source_id, ticket_url, img_url, price, genre')
+      .gte('date', today)
+      .order('id', { ascending: true })
+      .range(from, to));
+  if (loadErr) {
+    console.error(`  ❌  Event load failed at offset ${failedAt} — aborting dedup to avoid wrong deletions:`, loadErr.message);
+    loadFailed = true;
+  }
+  // Offset paging can repeat a row across pages: every later pass sees each event once.
+  const allEvents = uniqueById(loadedEvents);
+
+  console.log(`  Loaded ${allEvents.length} total events${loadFailed ? ' (INCOMPLETE — skipping merge/delete passes)' : ''}`);
+
+  if (loadFailed) {
+    console.log('\n╔══════════════════════════════════════════════╗');
+    console.log('║  Dedup skipped — incomplete event load       ║');
+    console.log('╚══════════════════════════════════════════════╝');
+    process.exit(1);   // partial data must not look like a clean run to the workflow
+  }
+
+  // Normalise name for comparison
+  function normName(s) {
+    return (s || '').normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase()
+      .replace(/\b(festival|fest|presents|pres\.?)\b/g, '')
+      .replace(/[^a-z0-9\s]/g, '').replace(/\s+/g, ' ').trim();
+  }
+
+  // Extract the real venue from "DJ at Venue" / "DJ @ Venue" patterns
+  // BIT creates entries like "Amelie Lens @ Brunch Electronik Bordeaux"
+  // where both name AND venue fields contain the DJ prefix.
+  function extractRealVenue(name, venue) {
+    // Try extracting venue from name: "DJ at X", "DJ @ X", "DJ pres. X"
+    const nm = (name || '').match(/^.+?\s+(?:at|@|pres\.?)\s+(.+)$/i);
+    // Try cleaning venue field if it also has "DJ @ X" pattern
+    const vm = (venue || '').match(/^.+?\s+(?:at|@|pres\.?)\s+(.+)$/i);
+    return norm(nm ? nm[1] : (vm ? vm[1] : venue));
+  }
+
+  // ── Pass 1: Exact key grouping ──
+  //   A) Events WITH venue:  (date, venue_norm, city_norm)
+  //   B) Events WITHOUT venue (festivals): (date, name_norm, city_norm)
+  //   Also tries extracting "real venue" from "DJ at/@ Venue" patterns
+  const groups = new Map();
+  for (const ev of allEvents) {
+    const rawVenue = normVenue(ev.venue);
+    const realVenue = extractRealVenue(ev.name, ev.venue);
+    // Use the real venue (stripped of DJ prefix) if it's shorter/cleaner
+    const venue = (realVenue && realVenue.length >= 3 && realVenue.length < rawVenue.length)
+      ? realVenue : rawVenue;
+    let key;
+    if (venue.length >= 3) {
+      key = `venue|${ev.date}|${venue}|${normCity(ev.city)}`;
+    } else {
+      const nn = normName(ev.name);
+      if (!nn) continue;
+      key = `name|${ev.date}|${nn}|${normCity(ev.city)}`;
+    }
+    if (!groups.has(key)) groups.set(key, []);
+    groups.get(key).push(ev);
+  }
+
+  // ── Pass 2: Fuzzy venue merge ──
+  // Merge groups with same date+city where venues are similar ("Ushuaia" vs "Ushuaia Ibiza Beach Hotel")
+  const keys = [...groups.keys()].filter(k => k.startsWith('venue|'));
+  for (let i = 0; i < keys.length; i++) {
+    const [, dateA, venueA, cityA] = keys[i].split('|');
+    if (!groups.has(keys[i])) continue; // already merged away
+    for (let j = i + 1; j < keys.length; j++) {
+      if (!groups.has(keys[j])) continue;
+      const [, dateB, venueB, cityB] = keys[j].split('|');
+      if (dateA !== dateB || cityA !== cityB) continue;
+      if (venueMatch(venueA, venueB, cityA)) {
+        // Merge j into i
+        groups.get(keys[i]).push(...groups.get(keys[j]));
+        groups.delete(keys[j]);
+      }
+    }
+  }
+
+  // ── Pass 3: Festival consolidation ──
+  // BIT creates separate entries per DJ at a festival ("Anyma pres. ÆDEN at Coachella",
+  // "Heineken House Coachella", etc). Consolidate: same date + same city + name/venue
+  // contains a known festival BASE name → merge into one event.
+  console.log('\n  Pass 3: Festival consolidation...');
+  const FESTIVALS_PATH = resolve(__dirname, '../data/festivals_all.json');
+  let festBaseNames = [];
+  if (existsSync(FESTIVALS_PATH)) {
+    const fests = JSON.parse(readFileSync(FESTIVALS_PATH, 'utf8'));
+    // Build BOTH full names and base names (strip city/country suffixes)
+    // "Brunch Electronik Barcelona" → base: "brunch electronik"
+    // "Tomorrowland Belgium" → base: "tomorrowland"
+    const fullNames = fests.map(f => norm(f.name)).filter(n => n.length >= 5);
+    const baseNames = new Set();
+    for (const fn of fullNames) {
+      baseNames.add(fn);
+      // Strip last word if it looks like a city/country (≤15 chars, fest name > 8 chars after strip)
+      const words = fn.split(' ');
+      if (words.length >= 2) {
+        const base = words.slice(0, -1).join(' ');
+        if (base.length >= 8) baseNames.add(base);
+        // Also try stripping last 2 words: "brunch electronik bcn" → "brunch electronik"
+        if (words.length >= 3) {
+          const base2 = words.slice(0, -2).join(' ');
+          if (base2.length >= 8) baseNames.add(base2);
+        }
+      }
+    }
+    festBaseNames = [...baseNames].sort((a, b) => b.length - a.length); // longest first
+  }
+
+  if (festBaseNames.length) {
+    // Index events by date+city
+    const byDateCity = new Map();
+    for (const [key, evs] of groups) {
+      for (const ev of evs) {
+        const dc = `${ev.date}|${normCity(ev.city)}`;
+        if (!byDateCity.has(dc)) byDateCity.set(dc, []);
+        byDateCity.get(dc).push({ key, ev });
+      }
+    }
+
+    let festMerged = 0;
+    for (const [dc, entries] of byDateCity) {
+      if (entries.length < 2) continue;
+      // For each known festival name (base or full), check if multiple events reference it
+      for (const fest of festBaseNames) {
+        const matching = entries.filter(({ ev }) => {
+          const n = norm(ev.name);
+          const v = norm(ev.venue);
+          return n.includes(fest) || v.includes(fest);
+        });
+        if (matching.length < 2) continue;
+
+        // Merge all matching into the first group
+        const targetKey = matching[0].key;
+        for (let m = 1; m < matching.length; m++) {
+          const srcKey = matching[m].key;
+          if (srcKey === targetKey) continue;
+          if (!groups.has(srcKey)) continue;
+          groups.get(targetKey).push(...groups.get(srcKey));
+          groups.delete(srcKey);
+          festMerged++;
+        }
+      }
+    }
+    console.log(`  Festival groups consolidated: ${festMerged}`);
+  }
+
+  // ── Pass 3b: festival per-artist fragments → festival event ──
+  // Songkick/BIT list one row per artist on a festival stage ("Martin Garrix @ Tinker Field",
+  // dated per performance day) while the festival itself is one row with NO lineup
+  // ("Electric Daisy Carnival - EDC Orlando … @ Tinker Field", 0 DJs). Same venue, same city,
+  // date within the festival span → the fragment joins the festival's group, so the merge
+  // below fills the festival's lineup instead of leaving N orphan rows (and phantom bookings).
+  console.log('\n  Pass 3b: festival fragments → festival event...');
+  const festNamesAll = existsSync(FESTIVALS_PATH)
+    ? JSON.parse(readFileSync(FESTIVALS_PATH, 'utf8')).map(f => f.name)
+    : [];
+  const isFestivalNamed = makeFestivalTest(festNamesAll);
+  const flat = [];
+  for (const [key, evs] of groups) for (const ev of evs) flat.push({ key, ev });
+  // Festival masters: festival-named rows with no lineup (the same test planFestivalFragments uses).
+  const masterIds = new Set(flat.map(x => x.ev).filter(ev => isFestivalNamed(ev) && !(ev.djs || []).length).map(ev => ev.id));
+  const whereKey = new Map(flat.map(x => [x.ev.id, x.key]));
+  const byId     = new Map(flat.map(x => [x.ev.id, x.ev]));
+  const fragPlan = planFestivalFragments(flat.map(x => x.ev), festNamesAll, { spanDays: FEST_SPAN_DAYS });
+  let festMerged = 0;
+  for (const { fragmentId, masterId } of fragPlan) {
+    const fromKey = whereKey.get(fragmentId), toKey = whereKey.get(masterId);
+    const fragEv = byId.get(fragmentId), masterEv = byId.get(masterId);
+    if (!fromKey || !toKey || !fragEv || !masterEv) continue;
+    fragEv._festival = true;
+    masterEv._festival = true;
+    if (fromKey !== toKey && groups.has(fromKey) && groups.has(toKey)) {
+      const arr = groups.get(fromKey);
+      const i = arr.indexOf(fragEv);
+      if (i >= 0) arr.splice(i, 1);
+      if (!arr.length) groups.delete(fromKey);
+      groups.get(toKey).push(fragEv);
+      whereKey.set(fragmentId, toKey);
+      festMerged++;
+    }
+  }
+  console.log(`  Festival fragments moved into festival events: ${festMerged}`);
+
+  // ── Pass 4: Consecutive-day DJ dedup ──
+  // Same DJ + same city (festivals) or same venue+city (clubs) on nearby days → merge.
+  // Festivals use a 3-day window to cover a full weekend (Fri–Sun); clubs stay at 1 day.
+  console.log('\n  Pass 4: Consecutive-day DJ dedup...');
+  let consecMerged = 0;
+
+  // Flatten all remaining events from groups
+  const allGrouped = [];
+  for (const [key, evs] of groups) {
+    for (const ev of evs) allGrouped.push({ key, ev });
+  }
+
+  // Build index: for each DJ, find all events they appear in
+  const djEvents = new Map(); // dj_lower → [{key, ev}, ...]
+  for (const entry of allGrouped) {
+    const djs = entry.ev.djs || [];
+    for (const dj of djs) {
+      const djLow = dj.trim().toLowerCase();
+      if (!djEvents.has(djLow)) djEvents.set(djLow, []);
+      djEvents.get(djLow).push(entry);
+    }
+  }
+
+  const alreadyMergedKeys = new Set();
+
+  for (const [djName, entries] of djEvents) {
+    if (entries.length < 2) continue;
+
+    // For festivals: group by festival-base-name + city (not venue, which varies per stage).
+    // For clubs/shows: group by venue+city (same DJ at same club on consecutive nights).
+    const isFestEntry = (entry) => (entry.ev.tags || []).includes('festival');
+    const festKey = (entry) => {
+      const n = norm(entry.ev.name), v = norm(entry.ev.venue);
+      const base = festBaseNames.find(fb => n.includes(fb) || v.includes(fb));
+      if (!base) {
+        // unknown festival — use normalized name to avoid over-merging
+        return `festival|${n}|${normCity(entry.ev.city)}`;
+      }
+      return `festival|${base}|${normCity(entry.ev.city)}`;
+    };
+
+    const byVenueCity = new Map();
+    for (const entry of entries) {
+      const vc = isFestEntry(entry)
+        ? festKey(entry)
+        : `${normVenue(entry.ev.venue)}|${normCity(entry.ev.city)}`;
+      if (!byVenueCity.has(vc)) byVenueCity.set(vc, []);
+      byVenueCity.get(vc).push(entry);
+    }
+
+    for (const [vc, vcEntries] of byVenueCity) {
+      if (vcEntries.length < 2) continue;
+      const isFest = vc.startsWith('festival|');
+
+      // Sort by date
+      vcEntries.sort((a, b) => a.ev.date.localeCompare(b.ev.date));
+
+      // Find nearby-day chains and merge.
+      // Festivals: merge days within the same weekend (gap ≤ 3 days).
+      // Clubs: merge strictly consecutive days (gap = 1 day).
+      // Chain fix: after merging next into curr, update vcEntries[i+1].key to curr.key
+      // so the next iteration can continue the chain (Day1+2+3 in one pass).
+      for (let i = 0; i < vcEntries.length - 1; i++) {
+        const curr = vcEntries[i];
+        const next = vcEntries[i + 1];
+
+        if (alreadyMergedKeys.has(next.key) && !groups.has(next.key)) continue;
+        if (curr.key === next.key) continue; // already in same group
+
+        const d1 = new Date(curr.ev.date);
+        const d2 = new Date(next.ev.date);
+        const diffDays = (d2 - d1) / (1000 * 60 * 60 * 24);
+
+        const maxGap = isFest ? 3 : 1;
+        if (diffDays >= 1 && diffDays <= maxGap) {
+          // Merge next into curr's group
+          if (groups.has(curr.key) && groups.has(next.key) && curr.key !== next.key) {
+            groups.get(curr.key).push(...groups.get(next.key));
+            groups.delete(next.key);
+            alreadyMergedKeys.add(next.key);
+            // Update the reference so chaining continues to Day N+2, N+3, etc.
+            vcEntries[i + 1] = { key: curr.key, ev: next.ev };
+            consecMerged++;
+          }
+        }
+      }
+    }
+  }
+  console.log(`  Consecutive-day merges: ${consecMerged}`);
+
+  // ── Pass 5: same primary DJ + same city + same day (cross-source dups) ──
+  // Merges groups so the keeper-selection below picks the best source (ra>sk>bit).
+  console.log('\n  Pass 5: same DJ + city + day...');
+  let djDayMerged = 0;
+  const byDjDay = new Map();
+  for (const [key, evs] of groups) {
+    for (const ev of evs) {
+      if ((ev.tags || []).includes('festival')) continue;
+      if (!ev.djs || !ev.djs.length) continue;
+      const dc = `${ev.date}|${normCity(ev.city)}|${norm(ev.djs[0])}`;
+      if (!byDjDay.has(dc)) byDjDay.set(dc, []);
+      byDjDay.get(dc).push(key);
+    }
+  }
+  for (const [dc, keysArr] of byDjDay) {
+    const uniqueKeys = [...new Set(keysArr)].filter(k => groups.has(k));
+    if (uniqueKeys.length < 2) continue;
+    const targetKey = uniqueKeys[0];
+    for (let m = 1; m < uniqueKeys.length; m++) {
+      const srcKey = uniqueKeys[m];
+      if (srcKey === targetKey || !groups.has(srcKey)) continue;
+      groups.get(targetKey).push(...groups.get(srcKey));
+      groups.delete(srcKey);
+      djDayMerged++;
+    }
+  }
+  console.log(`  DJ-day merges: ${djDayMerged}`);
+
+  // ── Pass 6: DJ double-booking (authoritative) ──
+  // The same DJ on the same date in events of DIFFERENT cities cannot be right. The detector
+  // (normalize.findDoubleBookings) keeps the most reliable event:
+  //   tier 0  official / RA listing      (ra, direct, website)
+  //   tier 1  Songkick / BIT single show
+  //   tier 2  festival per-artist fragment or festival listing
+  // then the richest. The DJ is removed from every other event (the event is deleted when its
+  // lineup empties). Every conflict, with both events and the action taken, goes to
+  // data/conflicts.json for manual review (steps/17-report.js emails it).
+  console.log('\n  Pass 6: DJ double-booking check...');
+  const evById = new Map();
+  for (const evs of groups.values()) for (const ev of evs) if (!evById.has(ev.id)) evById.set(ev.id, ev);
+
+  const isFestival = ev => !!ev._festival || /^(sk_fest_|bit_fest_)/.test(ev.source_id || '') || isFestivalNamed(ev);
+  const summarize = ev => ({
+    id: ev.id, source_id: ev.source_id, name: ev.name, venue: ev.venue || '', city: ev.city || '',
+    country: ev.country || '', date: ev.date, source: ev.source, ticket_url: ev.ticket_url || '',
+  });
+
+  const conflicts = findDoubleBookings([...evById.values()], { isFestival, richness });
+  const conflictLog = [];
+  const touched = new Set(), deletedIds = new Set();
+  for (const c of conflicts) {
+    const removed = [];
+    for (const loser of c.losers) {
+      const before = (loser.djs || []).length;
+      loser.djs = (loser.djs || []).filter(d => djMatchKey(d) !== c.djKey);
+      if (loser.djs.length === before) continue;
+      const action = loser.djs.length ? 'stripped' : 'deleted';
+      if (action === 'deleted') deletedIds.add(loser.id);
+      touched.add(loser.id);
+      removed.push({ ...summarize(loser), action });
+    }
+    if (!removed.length) continue;
+    conflictLog.push({ date: c.date, dj: c.dj, kept: { ...summarize(c.winner), action: 'kept' }, removed });
+  }
+
+  let djStripped = 0, emptyDeleted = 0;
+  for (const id of touched) {
+    const ev = evById.get(id);
+    if (deletedIds.has(id)) {
+      const { error: delE } = await withRetry(
+        () => sb.from('events').delete().eq('id', id),
+        `Delete empty event ${ev.source_id}`
+      );
+      if (delE) console.error(`\n  ❌  Delete failed (${ev.source_id}): ${delE.message}`);
+      else emptyDeleted++;
+    } else {
+      const { error: updE } = await withRetry(
+        () => sb.from('events').update({ djs: ev.djs }).eq('id', id),
+        `Update DJ list ${ev.source_id}`
+      );
+      if (updE) console.error(`\n  ❌  DJ update failed (${ev.source_id}): ${updE.message}`);
+      else djStripped++;
+    }
+  }
+  // Deleted rows must not survive into the merge below, where they could be picked as keeper.
+  for (const [k, evs] of [...groups]) {
+    const kept = evs.filter(e => !deletedIds.has(e.id));
+    if (kept.length) groups.set(k, kept); else groups.delete(k);
+  }
+  for (const c of conflictLog) {
+    console.log(`  ⚠ ${c.dj} | ${c.date}: kept ${c.kept.source_id} (${c.kept.city}) · removed from ` +
+      c.removed.map(r => `${r.source_id} (${r.city}, ${r.action})`).join(', '));
+  }
+  console.log(`\n  Double bookings: ${conflictLog.length} conflicts · DJ removed from ${djStripped} events · ${emptyDeleted} empty events deleted`);
+
+  writeFileSync(CONFLICTS_PATH, JSON.stringify({
+    generated: new Date().toISOString(),
+    count: conflictLog.length,
+    conflicts: conflictLog,
+  }, null, 2) + '\n');
+  const doubleBookingStats = { conflicts: conflictLog.length, djsRemoved: djStripped, eventsDeleted: emptyDeleted };
+  const festivalStats = { fragmentsMerged: festMerged };
+
+  console.log(`  DJ strips: ${djStripped}  Empty-event deletes: ${emptyDeleted}`);
+
+  const dupeGroups = [...groups.values()].filter(g => g.length > 1);
+  console.log(`  Groups with duplicates: ${dupeGroups.length}`);
+
+  if (!dupeGroups.length) {
+    console.log('  ✅  No duplicates found!\n');
+  }
+
+  let merged = 0, deleted = 0;
+  for (const group of dupeGroups) {
+    // Sort: best source first, then richness
+    group.sort((a, b) => {
+      const sp = (SRC_PRIO[a.source] ?? 9) - (SRC_PRIO[b.source] ?? 9);
+      if (sp !== 0) return sp;
+      return richness(b) - richness(a);
+    });
+
+    const { keeper, rest } = splitKeeper(group);
+
+    // Merge djs (union, deduplicated, case-insensitive)
+    const djSet = new Set((keeper.djs || []).map(d => d.trim()));
+    for (const dup of rest) {
+      for (const dj of (dup.djs || [])) {
+        const norm = dj.trim();
+        if (![...djSet].some(d => d.toLowerCase() === norm.toLowerCase())) {
+          djSet.add(norm);
+        }
+      }
+    }
+
+    // Merge tags
+    const tagSet = new Set(keeper.tags || []);
+    for (const dup of rest) for (const t of (dup.tags || [])) tagSet.add(t);
+
+    // Prefer better ticket_url, img_url, price from any row
+    const ticket_url = keeper.ticket_url || rest.find(r => r.ticket_url)?.ticket_url || '';
+    const img_url    = keeper.img_url    || rest.find(r => r.img_url)?.img_url || '';
+    const price      = keeper.price      || rest.find(r => r.price)?.price || '';
+
+    // Pick best name: prefer festival/venue name over "DJ at Festival" pattern
+    let bestName = keeper.name;
+    for (const dup of rest) {
+      if (!dup.name) continue;
+      // Skip "DJ at Festival" or "DJ @ Festival" patterns — prefer the full festival name
+      const isGenericDJat = /^.+\s+(at|@|pres\.?)\s+.+$/i.test(dup.name);
+      const keeperIsGeneric = /^.+\s+(at|@|pres\.?)\s+.+$/i.test(bestName);
+      if (keeperIsGeneric && !isGenericDJat) { bestName = dup.name; continue; }
+      if (!keeperIsGeneric && isGenericDJat) continue;
+      if (dup.name.length > bestName.length) bestName = dup.name;
+    }
+
+    // A festival master keeps its date; fragments never move it (see mergedDate).
+    const bestDate = mergedDate({ keeper, rest, masterIds, isFestival: tagSet.has('festival') });
+
+    const djs  = [...djSet];
+    const tags = [...tagSet];
+
+    // Only update if something actually changed
+    const djsChanged   = JSON.stringify(djs.sort()) !== JSON.stringify((keeper.djs || []).slice().sort());
+    const tagsChanged  = JSON.stringify(tags.sort()) !== JSON.stringify((keeper.tags || []).slice().sort());
+    const nameChanged  = bestName !== keeper.name;
+    const urlChanged   = ticket_url !== keeper.ticket_url;
+    const imgChanged   = img_url !== keeper.img_url;
+    const dateChanged  = bestDate !== keeper.date;
+
+    if (djsChanged || tagsChanged || nameChanged || urlChanged || imgChanged || dateChanged) {
+      const { error: updErr } = await withRetry(
+        () => sb.from('events').update({ djs, tags, name: bestName, ticket_url, img_url, price, date: bestDate }).eq('id', keeper.id),
+        `Update keeper ${keeper.source_id}`
+      );
+      if (updErr) console.error(`  ❌  Keeper update failed: ${updErr.message}`);
+      else merged++;
+    }
+
+    // Delete the duplicates
+    const idsToDelete = rest.map(r => r.id);
+    const { error: delErr } = await withRetry(
+      () => sb.from('events').delete().in('id', idsToDelete),
+      `Delete duplicates for ${keeper.source_id}`
+    );
+    if (delErr) console.error(`  ❌  Delete error: ${delErr.message}`);
+    else deleted += idsToDelete.length;
+
+    const venueTrunc = (keeper.venue || '').slice(0, 30).padEnd(30);
+    console.log(`  ✓ ${keeper.date} │ ${venueTrunc} │ kept ${keeper.source_id.slice(0,18)} │ merged ${djs.length} DJs │ deleted ${idsToDelete.length}`);
+  }
+
+  console.log(`\n╔══════════════════════════════════════════════╗`);
+  writeRunStat('dedupe', { ...doubleBookingStats, fragmentsMerged: festivalStats.fragmentsMerged, keepersMerged: merged, rowsDeleted: deleted });
+  console.log(`║  Dedup complete                              ║`);
+  console.log(`║  Groups merged   : ${String(merged).padEnd(25)} ║`);
+  console.log(`║  Rows deleted    : ${String(deleted).padEnd(25)} ║`);
+  console.log(`╚══════════════════════════════════════════════╝`);
+}
+
+main().then(() => process.exit(0)).catch(err => { console.error('Fatal:', err); process.exit(1); });

@@ -13,7 +13,7 @@ permissions:
 jobs:
   scrape:
     runs-on: ubuntu-latest
-    timeout-minutes: 120   # step budgets: DJ 45 + others ~65; headroom as DJ list grows
+    timeout-minutes: 180   # real runs take ~90m; step budgets sum to well over 120m, so a slow Sunday must not cut purge/commit
 
     defaults:
       run:
@@ -27,7 +27,7 @@ jobs:
         # MUST stay after checkout: defaults.run.working-directory is scraper/,
         # which does not exist until the repo is cloned. Placed before it, this
         # step died in 0s and took the whole job with it for two Sundays.
-        # report.js uses this to count what THIS run wrote, via created_at.
+        # steps/17-report.js uses this to count what THIS run wrote, via created_at.
         run: echo "RUN_STARTED=$(date -u +%Y-%m-%dT%H:%M:%SZ)" >> $GITHUB_ENV
 
       - name: Setup Node.js
@@ -48,7 +48,7 @@ jobs:
         env:
           SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
           SUPABASE_SERVICE_KEY: ${{ secrets.SUPABASE_SERVICE_KEY }}
-        run: node enrich-songkick-urls.js
+        run: node steps/01-enrich-songkick-urls.js
 
       - name: Scrape DJs (BIT + Songkick cascade)
         id: djs
@@ -59,7 +59,21 @@ jobs:
           SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
           SUPABASE_SERVICE_KEY: ${{ secrets.SUPABASE_SERVICE_KEY }}
           BIT_APP_ID: ${{ secrets.BIT_APP_ID }}
-        run: node scrape-extended.js
+        run: node steps/02-scrape-extended.js
+
+      - name: Discover festivals (RA brand editions + candidates)
+        id: fest_discover
+        continue-on-error: true
+        timeout-minutes: 15
+        # Adds new editions of touring brands (data/festival_brands.json) and
+        # RA-verified festivals to data/festivals_all.json BEFORE the festival
+        # scrapes below, so they are scraped this same run. Everything uncertain
+        # goes to data/festivals_candidates.json for review. Read-only on the DB
+        # (anon key); writes only scraper/data/*.json, committed by the step below.
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_ANON_KEY: ${{ secrets.SUPABASE_ANON_KEY }}
+        run: node steps/03-discover-festivals.js
 
       - name: Scrape Festivals (BIT + Songkick)
         id: fest_bit
@@ -69,7 +83,7 @@ jobs:
           SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
           SUPABASE_SERVICE_KEY: ${{ secrets.SUPABASE_SERVICE_KEY }}
           BIT_APP_ID: ${{ secrets.BIT_APP_ID }}
-        run: node scrape-festivals-bit.js
+        run: node steps/04-scrape-festivals-bit.js
 
       - name: Install Playwright Chromium
         timeout-minutes: 20   # without this a hung download burns the 120-min job
@@ -83,7 +97,7 @@ jobs:
         env:
           SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
           SUPABASE_SERVICE_KEY: ${{ secrets.SUPABASE_SERVICE_KEY }}
-        run: node scrape-festivals-direct.js
+        run: node steps/05-scrape-festivals-direct.js
 
       - name: Scrape Festivals (Resident Advisor)
         id: fest_ra
@@ -95,7 +109,7 @@ jobs:
         env:
           SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
           SUPABASE_SERVICE_KEY: ${{ secrets.SUPABASE_SERVICE_KEY }}
-        run: node scrape-festivals-ra.js
+        run: node steps/06-scrape-festivals-ra.js
 
       - name: Enrich Clubs (RA URLs)
         id: clubs_enrich
@@ -103,7 +117,7 @@ jobs:
         timeout-minutes: 10
         # Auto-fills ra_url for clubs that have none (no secrets: only calls ra.co).
         # The filled URLs are persisted by the "Commit updated data files" step.
-        run: node enrich-clubs-ra.js
+        run: node steps/07-enrich-clubs-ra.js
 
       - name: Scrape Clubs (Resident Advisor)
         id: clubs
@@ -112,7 +126,7 @@ jobs:
         env:
           SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
           SUPABASE_SERVICE_KEY: ${{ secrets.SUPABASE_SERVICE_KEY }}
-        run: node scrape-clubs-ra.js
+        run: node steps/08-scrape-clubs-ra.js
 
       - name: Deduplicate events
         id: dedupe
@@ -121,7 +135,7 @@ jobs:
         env:
           SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
           SUPABASE_SERVICE_KEY: ${{ secrets.SUPABASE_SERVICE_KEY }}
-        run: node dedupe.js
+        run: node steps/09-dedupe.js
 
       - name: Discover unlisted EDM DJs (RA-verified)
         id: discover
@@ -136,7 +150,7 @@ jobs:
         env:
           SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
           SUPABASE_ANON_KEY: ${{ secrets.SUPABASE_ANON_KEY }}
-        run: node discover-djs.js
+        run: node steps/10-discover-djs.js
 
       - name: Clean mislabelled junk events
         id: cleanup
@@ -145,16 +159,7 @@ jobs:
         env:
           SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
           SUPABASE_SERVICE_KEY: ${{ secrets.SUPABASE_SERVICE_KEY }}
-        run: node cleanup-junk.js
-
-      - name: Enrich event images (festivals + DJs)
-        id: images
-        continue-on-error: true
-        timeout-minutes: 20
-        env:
-          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
-          SUPABASE_SERVICE_KEY: ${{ secrets.SUPABASE_SERVICE_KEY }}
-        run: node enrich-images.js
+        run: node steps/11-cleanup-junk.js
 
       - name: Validate & fix data quality
         id: validate
@@ -163,16 +168,44 @@ jobs:
         env:
           SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
           SUPABASE_SERVICE_KEY: ${{ secrets.SUPABASE_SERVICE_KEY }}
-        run: node validate.js
+        run: node steps/12-validate.js
 
-      - name: Purge old events (>15 days)
+      - name: Classify genre & tags (canonical styles)
+        id: classify
+        continue-on-error: true
+        timeout-minutes: 10
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_SERVICE_KEY: ${{ secrets.SUPABASE_SERVICE_KEY }}
+        run: node steps/13-classify.js
+
+      - name: Enrich event images (festivals + DJs)
+        id: images
+        continue-on-error: true
+        timeout-minutes: 30   # festival og:images + a time-budgeted DJ pass (DJ_TIME_BUDGET_MIN); resumable
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_SERVICE_KEY: ${{ secrets.SUPABASE_SERVICE_KEY }}
+          DJ_TIME_BUDGET_MIN: 18
+        run: node steps/14-enrich-images.js
+
+      - name: Build DJ artifact (web/data/artists.json)
+        id: artists
+        continue-on-error: true
+        timeout-minutes: 5
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_SERVICE_KEY: ${{ secrets.SUPABASE_SERVICE_KEY }}
+        run: node steps/15-build-artists.js
+
+      - name: Purge old events (>8 days)
         id: purge
         continue-on-error: true
         timeout-minutes: 10
         env:
           SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
           SUPABASE_SERVICE_KEY: ${{ secrets.SUPABASE_SERVICE_KEY }}
-        run: node purge.js
+        run: node steps/16-purge.js
 
       - name: Commit updated data files
         id: commit
@@ -180,7 +213,7 @@ jobs:
           cd ..
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add scraper/data/*.json
+          git add scraper/data/*.json data/artists.json
           git diff --staged --quiet || { git commit -m "data: weekly scrape update $(date +%Y-%m-%d)" && git pull --rebase && git push; }
 
       - name: Verify the run actually wrote data
@@ -223,6 +256,7 @@ jobs:
             {
             "Enrich Songkick URLs": "${{ steps.enrich_sk.outcome }}",
             "Scrape DJs": "${{ steps.djs.outcome }}",
+            "Discover festivals": "${{ steps.fest_discover.outcome }}",
             "Festivals (BIT + Songkick)": "${{ steps.fest_bit.outcome }}",
             "Festivals (websites)": "${{ steps.fest_web.outcome }}",
             "Festivals (RA)": "${{ steps.fest_ra.outcome }}",
@@ -231,10 +265,12 @@ jobs:
             "Deduplicate": "${{ steps.dedupe.outcome }}",
             "Discover DJs": "${{ steps.discover.outcome }}",
             "Clean junk": "${{ steps.cleanup.outcome }}",
-            "Enrich images": "${{ steps.images.outcome }}",
             "Validate": "${{ steps.validate.outcome }}",
+            "Classify": "${{ steps.classify.outcome }}",
+            "Enrich images": "${{ steps.images.outcome }}",
+            "Build artists": "${{ steps.artists.outcome }}",
             "Purge": "${{ steps.purge.outcome }}",
             "Commit data files": "${{ steps.commit.outcome }}",
             "Verify wrote data": "${{ steps.verify.outcome }}"
             }
-        run: node report.js
+        run: node steps/17-report.js

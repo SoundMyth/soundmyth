@@ -1,0 +1,262 @@
+/**
+ * SoundMyth – Direct Festival Website Scraper
+ *
+ * For festivals NOT covered by BIT or Songkick, fetches their own website
+ * and extracts date/location from:
+ *   1. JSON-LD @type Festival / Event / MusicEvent
+ *   2. meta tags (og:description, article dates)
+ *   3. ISO date patterns in HTML
+ *
+ * Creates 1 Supabase event per festival (no lineup — JS-rendered sites).
+ * Only processes festivals that have NO events yet in the current run list.
+ *
+ * Fallback: if a plain fetch() yields no usable data, retries with a headless
+ * Chromium browser (Playwright) for JS-rendered festival sites (Tomorrowland,
+ * EDC, etc.). The browser is launched lazily and shared across all retries.
+ *
+ * Usage: node steps/05-scrape-festivals-direct.js
+ */
+
+import { readFileSync }  from 'fs';
+import { fileURLToPath } from 'url';
+import { dirname, resolve } from 'path';
+import { cleanEvent, todayISO, resolveLDDate, checkEventDate } from '../lib/normalize.js';
+import { makeClient, loadEnv } from '../lib/db.js';
+import { withRetry } from '../lib/http.js';
+import { chromium } from 'playwright';
+
+const __dirname = dirname(fileURLToPath(import.meta.url));
+loadEnv();
+
+const SB_URL  = process.env.SUPABASE_URL;
+const SB_KEY  = process.env.SUPABASE_SERVICE_KEY;
+const TODAY   = todayISO();
+const DELAY   = 600;   // ms between requests
+
+if (!SB_URL || !SB_KEY) { console.error('❌  Missing Supabase env vars'); process.exit(1); }
+
+const sb = makeClient(SB_URL, SB_KEY);
+const sleep = ms => new Promise(r => setTimeout(r, ms));
+
+const UA = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36';
+const HEADERS = {
+  'User-Agent':      UA,
+  'Accept':          'text/html,application/xhtml+xml',
+  'Accept-Language': 'en-US,en;q=0.9',
+};
+
+const FESTIVALS_PATH = resolve(__dirname, '../data/festivals_all.json');
+
+// ── Helpers ───────────────────────────────────────────────────────────────────
+
+async function fetchHTML(url) {
+  try {
+    const res = await fetch(url, { headers: HEADERS, signal: AbortSignal.timeout(8000), redirect: 'follow' });
+    if (!res.ok) return null;
+    return await res.text();
+  } catch { return null; }
+}
+
+// Lazy-initialised browser — only started when a fetch fallback is needed
+let _browser = null;
+
+async function fetchWithBrowser(url) {
+  try {
+    if (!_browser) _browser = await chromium.launch({ headless: true });
+    const page = await _browser.newPage();
+    try {
+      await page.setExtraHTTPHeaders({ 'Accept-Language': 'en-US,en;q=0.9' });
+      await page.goto(url, { waitUntil: 'domcontentloaded', timeout: 15000 });
+      await page.waitForTimeout(2500);  // let JS frameworks render
+      return await page.content();
+    } finally {
+      await page.close().catch(() => {});
+    }
+  } catch { return null; }
+}
+
+function normCountry(c) {
+  if (!c) return '';
+  const map = { 'BE':'Belgium','US':'United States','GB':'United Kingdom','DE':'Germany',
+    'NL':'Netherlands','ES':'Spain','FR':'France','IT':'Italy','PT':'Portugal',
+    'HR':'Croatia','HU':'Hungary','AT':'Austria','CH':'Switzerland','TH':'Thailand',
+    'KR':'South Korea','JP':'Japan','BR':'Brazil','MX':'Mexico','AU':'Australia',
+    'CO':'Colombia','AR':'Argentina','ZA':'South Africa','RS':'Serbia','RO':'Romania' };
+  return map[c] || c;
+}
+
+/** Extract festival event data from page HTML */
+function extractFestivalEvent(html, fest) {
+  if (!html) return null;
+
+  // 1. JSON-LD: Festival / Event / MusicEvent
+  const ldBlocks = [...html.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)]
+    .map(m => { try { const j = JSON.parse(m[1]); return Array.isArray(j) ? j : [j]; } catch { return []; } })
+    .flat()
+    .filter(j => ['Festival','Event','MusicEvent'].includes(j?.['@type']));
+
+  for (const ld of ldBlocks) {
+    const startDate = resolveLDDate(ld, TODAY).date;
+    if (!startDate || startDate < TODAY) continue;
+
+    const loc   = ld.location || {};
+    const addr  = loc.address  || {};
+    const city    = addr.addressLocality || addr.addressRegion || fest.city || '';
+    const country = normCountry(addr.addressCountry || '') || fest.country || '';
+    const img     = typeof ld.image === 'string' ? ld.image : ld.image?.url || '';
+
+    return {
+      name:       ld.name || fest.name,
+      venue:      loc.name || '',
+      city, country,
+      date:       startDate,
+      djs:        [],
+      genre:      'Multi-genre',
+      tags:       ['festival'],
+      img_url:    img,
+      ticket_url: ld.offers?.url || ld.url || fest.website || '',
+      source:     'direct',
+      source_id:  `direct_${fest.name.replace(/\W+/g,'_').toLowerCase()}_${(fest.city||'').replace(/\W+/g,'_').toLowerCase()}_${startDate.slice(0,4)}`,
+    };
+  }
+
+  // 2. Fallback: find upcoming ISO dates in HTML
+  // Only accept dates that appear near event-relevant keywords
+  const eventKeywords = /\b(date|festival|edition|event|ticket|lineup|stage|schedule|when|opens?|starts?)\b/i;
+  const noisePatterns = /copyright|©|\blast.?modified\b|<meta[^>]+modified/i;
+
+  const rawDates = (html.match(/20\d{2}-\d{2}-\d{2}/g) || []);
+  const validDates = rawDates.filter(d => {
+    if (checkEventDate(d, TODAY) !== 'ok') return false;   // past, invalid, or > 15 months out (contract §5)
+    const idx = html.indexOf(d);
+    if (idx === -1) return true; // can't check, keep
+    const ctx = html.slice(Math.max(0, idx - 200), idx + 200);
+    if (noisePatterns.test(ctx)) return false; // skip noise dates
+    return true; // keep if no noise signal (even without keyword — reduces false negatives)
+  }).sort();
+
+  if (!validDates.length) return null;
+
+  // Take the earliest valid future date
+  const startDate = validDates[0];
+
+  // Try og:image for the festival image
+  const ogImg = html.match(/<meta[^>]+property="og:image"[^>]+content="([^"]+)"/i)?.[1] || '';
+
+  return {
+    name:       fest.name,
+    venue:      '',
+    city:       fest.city    || '',
+    country:    fest.country || '',
+    date:       startDate,
+    djs:        [],
+    genre:      'Multi-genre',
+    tags:       ['festival'],
+    img_url:    ogImg,
+    ticket_url: fest.website || '',
+    source:     'direct',
+    source_id:  `direct_${fest.name.replace(/\W+/g,'_').toLowerCase()}_${(fest.city||'').replace(/\W+/g,'_').toLowerCase()}_${startDate.slice(0,4)}`,
+  };
+}
+
+// ── MAIN ─────────────────────────────────────────────────────────────────────
+
+async function main() {
+  const festivals = JSON.parse(readFileSync(FESTIVALS_PATH, 'utf8'));
+
+  // Only process festivals WITHOUT sk_url (already handled by BIT→SK scraper)
+  // AND that have a real website (not facebook/twitter)
+  const todo = festivals.filter(f =>
+    !f.sk_url &&
+    f.website &&
+    !f.website.includes('facebook') &&
+    !f.website.includes('twitter') &&
+    !f.website.includes('instagram')
+  );
+
+  console.log('╔══════════════════════════════════════════════════╗');
+  console.log('║  SoundMyth – Direct Festival Website Scraper     ║');
+  console.log('╚══════════════════════════════════════════════════╝');
+  console.log(`\n📋  Festivals to try : ${todo.length}  (no SK URL, has website)`);
+  console.log(`🗓  Cutoff date      : ${TODAY}  (only future events)\n`);
+  console.log('─'.repeat(60));
+
+  let found = 0, skipped = 0, errors = 0, upserted = 0, browserFallbacks = 0;
+  const events = [];
+
+  for (let i = 0; i < todo.length; i++) {
+    const fest = todo[i];
+    const pct  = String(Math.round(((i + 1) / todo.length) * 100)).padStart(3);
+    process.stdout.write(`[${String(i+1).padStart(3)}/${todo.length}] ${pct}% │ ${fest.name.padEnd(38)} `);
+
+    let html = await fetchHTML(fest.website);
+    let ev   = html ? extractFestivalEvent(html, fest) : null;
+    let usedBrowser = false;
+
+    // Fallback to headless browser if fetch failed or yielded no event data
+    if (!ev) {
+      const htmlBrowser = await fetchWithBrowser(fest.website);
+      if (htmlBrowser) {
+        ev = extractFestivalEvent(htmlBrowser, fest);
+        if (ev) { usedBrowser = true; browserFallbacks++; }
+      }
+    }
+
+    if (!ev) {
+      if (!html) {
+        process.stdout.write(`✗  fetch error\n`);
+        errors++;
+      } else {
+        process.stdout.write(`–  no upcoming date found\n`);
+        skipped++;
+      }
+      await sleep(DELAY);
+      continue;
+    }
+
+    process.stdout.write(`✓  ${ev.date}  ${ev.city}, ${ev.country}${usedBrowser ? '  [browser]' : ''}\n`);
+    found++;
+    events.push(ev);
+
+    await sleep(DELAY);
+  }
+
+  // Upsert all found events
+  if (events.length) {
+    // Deduplicate by source_id
+    const seen = new Set();
+    const batch = events.filter(e => { if (seen.has(e.source_id)) return false; seen.add(e.source_id); return true; });
+    batch.forEach(cleanEvent);   // canonical city + drop garbage venue
+
+    const { error } = await withRetry(
+      () => sb.from('events').upsert(batch, { onConflict: 'source_id', ignoreDuplicates: false }),
+      'Supabase upsert'
+    );
+    if (error) console.error('\n❌  Supabase:', error.message || error);
+    else { upserted = batch.length; }
+  }
+
+  console.log('\n╔══════════════════════════════════════════════════╗');
+  console.log('║  Direct scrape complete                          ║');
+  console.log(`║  Found upcoming : ${String(found).padEnd(30)}║`);
+  console.log(`║  Browser fallbk : ${String(browserFallbacks).padEnd(30)}║`);
+  console.log(`║  No future date : ${String(skipped).padEnd(30)}║`);
+  console.log(`║  Fetch errors   : ${String(errors).padEnd(30)}║`);
+  console.log(`║  Total upserted : ${String(upserted).padEnd(30)}║`);
+  console.log('╚══════════════════════════════════════════════════╝');
+
+  if (events.length) {
+    console.log('\nEvents added:');
+    events.forEach(e => console.log(`  ✓ ${e.name.padEnd(35)} ${e.date}  ${e.city}, ${e.country}`));
+  }
+}
+
+async function run() {
+  try {
+    await main();
+  } finally {
+    if (_browser) await _browser.close().catch(() => {});
+  }
+}
+
+run().then(() => process.exit(0)).catch(err => { console.error('Fatal:', err); process.exit(1); });

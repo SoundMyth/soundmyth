@@ -23,7 +23,7 @@ import { fileURLToPath, pathToFileURL } from 'url';
 import { dirname, resolve } from 'path';
 import { loadDJCache, loadOverrides } from './14-enrich-images.js';
 import { djKey, djStyle, normVibes, FALLBACK_GENRE } from '../lib/genres.js';
-import { makeClient } from '../lib/db.js';
+import { makeClient, fetchAllRows } from '../lib/db.js';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const readJ = (p, fallback) => {
@@ -43,19 +43,35 @@ export const vibesFromTags = tags => normVibes(tags).slice(0, 3);
 const isHttp = u => typeof u === 'string' && /^https?:\/\//.test(u);
 
 // ── Main ─────────────────────────────────────────────────────────────────────
+/** Upcoming event rows, paged in id order. `error` set: the caller must not publish. */
+export async function loadUpcomingRows(sb, today) {
+  return fetchAllRows(
+    (from, to) => sb.from('events').select('djs,date').gte('date', today).order('id').range(from, to));
+}
+
+/** djKey → first spelling seen, over every DJ on the given event rows. */
+export function djNamesFromRows(rows) {
+  const names = new Map();
+  for (const e of rows) for (const d of (e.djs || [])) {
+    const k = djKey(d);
+    if (k && !names.has(k)) names.set(k, d);
+  }
+  return names;
+}
+
+/** { ok, names }. ok=false when the event read failed: the artifact must then be left alone. */
 async function upcomingDJNames() {
   const today = new Date().toISOString().split('T')[0];
   const SB_URL = process.env.SUPABASE_URL;
   const SB_KEY = process.env.SUPABASE_SERVICE_KEY || process.env.SUPABASE_ANON_KEY;
   let rows = [];
   if (SB_URL && SB_KEY) {
-    const sb = makeClient(SB_URL, SB_KEY);
-    for (let from = 0; ; from += 1000) {
-      const { data, error } = await sb.from('events').select('djs,date').gte('date', today).order('id').range(from, from + 999);
-      if (error) { console.warn(`  ⚠ events read failed (${error.message || error}); using lists only`); rows = []; break; }
-      rows = rows.concat(data);
-      if (data.length < 1000) break;
+    const { data, error, failedAt } = await loadUpcomingRows(makeClient(SB_URL, SB_KEY), today);
+    if (error) {
+      console.error(`  ❌  events read failed at offset ${failedAt} (${error.message || error})`);
+      return { ok: false, names: new Map() };
     }
+    rows = data;
     console.log(`  Upcoming events from Supabase: ${rows.length}`);
   } else if (process.env.EVENTS_JSON && existsSync(process.env.EVENTS_JSON)) {
     rows = JSON.parse(readFileSync(process.env.EVENTS_JSON, 'utf8')).filter(e => (e.date || '') >= today);
@@ -63,12 +79,7 @@ async function upcomingDJNames() {
   } else {
     console.log('  No event source (set SUPABASE_URL + key, or EVENTS_JSON): artists from lists only');
   }
-  const names = new Map();   // djKey → first spelling seen
-  for (const e of rows) for (const d of (e.djs || [])) {
-    const k = djKey(d);
-    if (k && !names.has(k)) names.set(k, d);
-  }
-  return names;
+  return { ok: true, names: djNamesFromRows(rows) };
 }
 
 async function main() {
@@ -77,6 +88,14 @@ async function main() {
   const candidates = readJ('../data/artists_candidates.json', []).filter(c => c.onRA === true);
   const cache = loadDJCache();
   const overrides = loadOverrides();
+
+  // Read before anything is written: a failed read must not publish a lists-only artifact,
+  // because the commit step would ship it. Exit leaves the previous data/artists.json in place.
+  const upcoming = await upcomingDJNames();
+  if (!upcoming.ok) {
+    console.error('  Not writing data/artists.json: the previous artifact is kept.');
+    process.exit(1);
+  }
 
   const artists = {};
   const put = (name, meta) => {
@@ -99,11 +118,10 @@ async function main() {
   // 2. RA-verified candidates (EDM-only source; no genre known → fallback)
   for (const c of candidates) put(c.name, {});
   // 3. Every other DJ on an upcoming event
-  const upcoming = await upcomingDJNames();
-  for (const [k, name] of upcoming) if (!artists[k]) put(name, {});
+  for (const [k, name] of upcoming.names) if (!artists[k]) put(name, {});
 
   // Coverage report — the number that matters is verified photos among upcoming DJs
-  const upcomingKeys = [...upcoming.keys()];
+  const upcomingKeys = [...upcoming.names.keys()];
   const withImgUp = upcomingKeys.filter(k => artists[k]?.img).length;
   const withImgAll = Object.values(artists).filter(a => a.img).length;
   const genreCount = {};

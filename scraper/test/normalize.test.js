@@ -50,7 +50,7 @@ test('canonCity: strips region suffix / "City, Region" / Praha districts', () =>
 
 test('canonCity: provinces / downtown / centre labels and area roll-ups', () => {
   assert.equal(canonCity('Provincia Di Brescia'), 'Brescia');
-  assert.equal(canonCity('Downtown Brooklyn'), 'Brooklyn');
+  assert.equal(canonCity('Downtown Brooklyn'), 'New York');   // contract §6: boroughs fold into the city
   assert.equal(canonCity('Los Angeles Downtown'), 'Los Angeles');
   assert.equal(canonCity('Santiago Centro'), 'Santiago');
   assert.equal(canonCity('Innsbruck City Center'), 'Innsbruck');

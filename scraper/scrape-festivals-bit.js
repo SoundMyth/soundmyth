@@ -13,7 +13,7 @@ import { readFileSync }  from 'fs';
 import { config }        from 'dotenv';
 import { fileURLToPath } from 'url';
 import { dirname, resolve } from 'path';
-import { cleanEvent, cleanVenue } from './normalize.js';
+import { cleanEvent, cleanVenue, todayISO, localDate, resolveLDDate } from './normalize.js';
 import { SK_HEADERS, withRetry } from './http.js';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
@@ -35,7 +35,7 @@ if (!SB_URL || !SB_KEY) {
 
 const sb    = createClient(SB_URL, SB_KEY, { auth: { persistSession: false } });
 const sleep = ms => new Promise(r => setTimeout(r, ms));
-const TODAY = new Date().toISOString().split('T')[0];
+const TODAY = todayISO();
 
 // ── HTTP helpers ──────────────────────────────────────────────────────────────
 // Non-404 failures are counted so a site-wide block shows up in the summary
@@ -102,7 +102,7 @@ async function fetchBIT(name) {
 }
 
 function normaliseBIT(e, festName, fallbackCity, fallbackCountry) {
-  const dateStr = (e.datetime || e.starts_at || '').split('T')[0];
+  const dateStr = localDate(e.datetime || e.starts_at);   // BIT times are local wall-clock
   if (!dateStr || dateStr < TODAY) return null;
   if (!e.id) return null;
   const v        = e.venue || {};
@@ -120,8 +120,8 @@ function normaliseBIT(e, festName, fallbackCity, fallbackCountry) {
     country:    normCountry(v.country || fallbackCountry || ''),
     date:       dateStr,
     djs:        lineup,
-    genre:      'Electronic',
-    tags:       ['festival', 'bandsintown'],
+    genre:      'Multi-genre',
+    tags:       ['festival'],
     price:      e.free ? 'Free' : '',
     ticket_url: e.offers?.find(o => o.type === 'Tickets')?.url || e.url || '',
     img_url:    e.artist?.image_url || '',
@@ -181,7 +181,7 @@ function extractSKInitialData(html) {
 }
 
 function normaliseSKConcert(c, festName, fallbackCity, fallbackCountry) {
-  const dateStr = (c.start?.date || '').split('T')[0];
+  const dateStr = localDate(c.start?.date);
   if (!dateStr || dateStr < TODAY) return null;
   const venue   = c.venue?.displayName || '';
   const city    = c.venue?.metroArea?.displayName || fallbackCity || '';
@@ -192,8 +192,8 @@ function normaliseSKConcert(c, festName, fallbackCity, fallbackCountry) {
     venue, city, country,
     date:       dateStr,
     djs:        lineup,
-    genre:      'Electronic',
-    tags:       ['festival', 'songkick'],
+    genre:      'Multi-genre',
+    tags:       ['festival'],
     price:      '',
     ticket_url: c.uri || '',
     img_url:    '',
@@ -203,7 +203,7 @@ function normaliseSKConcert(c, festName, fallbackCity, fallbackCountry) {
 }
 
 function normaliseJSONLD(item, festName, fallbackCity, fallbackCountry) {
-  const dateStr = (item.startDate || '').split('T')[0];
+  const dateStr = resolveLDDate(item, TODAY).date;
   if (!dateStr || dateStr < TODAY) return null;
   const loc     = item.location || item.place || {};
   const addr    = loc.address   || {};
@@ -216,8 +216,8 @@ function normaliseJSONLD(item, festName, fallbackCity, fallbackCountry) {
     country:    normCountry(addr.addressCountry || fallbackCountry || ''),
     date:       dateStr,
     djs:        [],
-    genre:      'Electronic',
-    tags:       ['festival', 'songkick'],
+    genre:      'Multi-genre',
+    tags:       ['festival'],
     price:      item.offers?.price ? `${item.offers.price} ${item.offers.priceCurrency || ''}`.trim() : '',
     ticket_url: item.url || item.offers?.url || '',
     img_url:    item.image || '',

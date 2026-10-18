@@ -22,7 +22,7 @@ import { readFileSync }  from 'fs';
 import { config }        from 'dotenv';
 import { fileURLToPath } from 'url';
 import { dirname, resolve } from 'path';
-import { cleanEvent } from './normalize.js';
+import { cleanEvent, todayISO, resolveLDDate, checkEventDate } from './normalize.js';
 import { withRetry } from './http.js';
 import { chromium } from 'playwright';
 
@@ -31,7 +31,7 @@ config({ path: resolve(__dirname, '.env') });
 
 const SB_URL  = process.env.SUPABASE_URL;
 const SB_KEY  = process.env.SUPABASE_SERVICE_KEY;
-const TODAY   = new Date().toISOString().split('T')[0];
+const TODAY   = todayISO();
 const DELAY   = 600;   // ms between requests
 
 if (!SB_URL || !SB_KEY) { console.error('❌  Missing Supabase env vars'); process.exit(1); }
@@ -97,7 +97,7 @@ function extractFestivalEvent(html, fest) {
     .filter(j => ['Festival','Event','MusicEvent'].includes(j?.['@type']));
 
   for (const ld of ldBlocks) {
-    const startDate = (ld.startDate || '').split('T')[0];
+    const startDate = resolveLDDate(ld, TODAY).date;
     if (!startDate || startDate < TODAY) continue;
 
     const loc   = ld.location || {};
@@ -112,7 +112,7 @@ function extractFestivalEvent(html, fest) {
       city, country,
       date:       startDate,
       djs:        [],
-      genre:      'Electronic',
+      genre:      'Multi-genre',
       tags:       ['festival'],
       img_url:    img,
       ticket_url: ld.offers?.url || ld.url || fest.website || '',
@@ -128,7 +128,7 @@ function extractFestivalEvent(html, fest) {
 
   const rawDates = (html.match(/20\d{2}-\d{2}-\d{2}/g) || []);
   const validDates = rawDates.filter(d => {
-    if (d < TODAY) return false;
+    if (checkEventDate(d, TODAY) !== 'ok') return false;   // past, invalid, or > 15 months out (contract §5)
     const idx = html.indexOf(d);
     if (idx === -1) return true; // can't check, keep
     const ctx = html.slice(Math.max(0, idx - 200), idx + 200);
@@ -151,7 +151,7 @@ function extractFestivalEvent(html, fest) {
     country:    fest.country || '',
     date:       startDate,
     djs:        [],
-    genre:      'Electronic',
+    genre:      'Multi-genre',
     tags:       ['festival'],
     img_url:    ogImg,
     ticket_url: fest.website || '',

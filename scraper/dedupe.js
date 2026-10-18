@@ -20,8 +20,15 @@ import { config }        from 'dotenv';
 import { fileURLToPath } from 'url';
 import { dirname, resolve } from 'path';
 import { withRetry } from './http.js';
+import { canonCity, todayISO, planFestivalFragments, findDoubleBookings, makeFestivalTest, djMatchKey } from './normalize.js';
+import { writeRunStat } from './run-stats.js';
+import { writeFileSync } from 'fs';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
+const CONFLICTS_PATH = resolve(__dirname, 'data/conflicts.json');
+// A festival runs up to ~4 days (Fri–Mon). Per-artist fragments further than this from the
+// festival row are not merged into it.
+const FEST_SPAN_DAYS = 4;
 config({ path: resolve(__dirname, '.env') });
 
 const SB_URL = process.env.SUPABASE_URL;
@@ -36,7 +43,8 @@ function norm(s) {
   return (s || '').normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().replace(/[^a-z0-9\s]/g, '').replace(/\s+/g, ' ').trim();
 }
 const normVenue = norm;
-const normCity  = norm;
+// City keys go through the shared canon: "Manhattan", "Brooklyn" and "New York" are one city.
+const normCity  = s => norm(canonCity(s));
 
 // Check if two venue names are similar enough to be the same place
 // Handles "Ushuaia Ibiza" vs "Ushuaia Ibiza Beach Hotel", "DC-10" vs "DC 10",
@@ -119,7 +127,7 @@ async function main() {
   let allEvents = [];
   let from = 0;
   let loadFailed = false;
-  const today = new Date().toISOString().split('T')[0];
+  const today = todayISO();
 
   while (true) {
     const { data, error } = await withRetry(
@@ -278,6 +286,41 @@ async function main() {
     console.log(`  Festival groups consolidated: ${festMerged}`);
   }
 
+  // ── Pass 3b: festival per-artist fragments → festival event ──
+  // Songkick/BIT list one row per artist on a festival stage ("Martin Garrix @ Tinker Field",
+  // dated per performance day) while the festival itself is one row with NO lineup
+  // ("Electric Daisy Carnival - EDC Orlando … @ Tinker Field", 0 DJs). Same venue, same city,
+  // date within the festival span → the fragment joins the festival's group, so the merge
+  // below fills the festival's lineup instead of leaving N orphan rows (and phantom bookings).
+  console.log('\n  Pass 3b: festival fragments → festival event...');
+  const festNamesAll = existsSync(FESTIVALS_PATH)
+    ? JSON.parse(readFileSync(FESTIVALS_PATH, 'utf8')).map(f => f.name)
+    : [];
+  const isFestivalNamed = makeFestivalTest(festNamesAll);
+  const flat = [];
+  for (const [key, evs] of groups) for (const ev of evs) flat.push({ key, ev });
+  const whereKey = new Map(flat.map(x => [x.ev.id, x.key]));
+  const byId     = new Map(flat.map(x => [x.ev.id, x.ev]));
+  const fragPlan = planFestivalFragments(flat.map(x => x.ev), festNamesAll, { spanDays: FEST_SPAN_DAYS });
+  let festMerged = 0;
+  for (const { fragmentId, masterId } of fragPlan) {
+    const fromKey = whereKey.get(fragmentId), toKey = whereKey.get(masterId);
+    const fragEv = byId.get(fragmentId), masterEv = byId.get(masterId);
+    if (!fromKey || !toKey || !fragEv || !masterEv) continue;
+    fragEv._festival = true;
+    masterEv._festival = true;
+    if (fromKey !== toKey && groups.has(fromKey) && groups.has(toKey)) {
+      const arr = groups.get(fromKey);
+      const i = arr.indexOf(fragEv);
+      if (i >= 0) arr.splice(i, 1);
+      if (!arr.length) groups.delete(fromKey);
+      groups.get(toKey).push(fragEv);
+      whereKey.set(fragmentId, toKey);
+      festMerged++;
+    }
+  }
+  console.log(`  Festival fragments moved into festival events: ${festMerged}`);
+
   // ── Pass 4: Consecutive-day DJ dedup ──
   // Same DJ + same city (festivals) or same venue+city (clubs) on nearby days → merge.
   // Festivals use a 3-day window to cover a full weekend (Fri–Sun); clubs stay at 1 day.
@@ -396,78 +439,82 @@ async function main() {
   }
   console.log(`  DJ-day merges: ${djDayMerged}`);
 
-  // ── Pass 6: DJ double-booking check ──
-  // A DJ cannot play two different events on the same day.
-  // For each (dj_norm, date) that appears in multiple distinct events, keep the DJ
-  // only in the best event (source priority + richness) and strip from the rest.
-  // Events that become empty (0 DJs) after stripping are deleted.
+  // ── Pass 6: DJ double-booking (authoritative) ──
+  // The same DJ on the same date in events of DIFFERENT cities cannot be right. The detector
+  // (normalize.findDoubleBookings) keeps the most reliable event:
+  //   tier 0  official / RA listing      (ra, direct, website)
+  //   tier 1  Songkick / BIT single show
+  //   tier 2  festival per-artist fragment or festival listing
+  // then the richest. The DJ is removed from every other event (the event is deleted when its
+  // lineup empties). Every conflict, with both events and the action taken, goes to
+  // data/conflicts.json for manual review (report.js emails it).
   console.log('\n  Pass 6: DJ double-booking check...');
-  let djStripped = 0, emptyDeleted = 0;
-
-  // Snapshot: id → current djs array (mutable; we edit in place then persist)
   const evById = new Map();
-  for (const evs of groups.values()) {
-    for (const ev of evs) {
-      if (!evById.has(ev.id)) evById.set(ev.id, ev);
-    }
-  }
+  for (const evs of groups.values()) for (const ev of evs) if (!evById.has(ev.id)) evById.set(ev.id, ev);
 
-  // Index: djNorm|date → Set of event ids
-  const djDateIds = new Map();
-  for (const ev of evById.values()) {
-    for (const dj of (ev.djs || [])) {
-      const k = `${norm(dj)}|${ev.date}`;
-      if (!djDateIds.has(k)) djDateIds.set(k, new Set());
-      djDateIds.get(k).add(ev.id);
-    }
-  }
+  const isFestival = ev => !!ev._festival || /^(sk_fest_|bit_fest_)/.test(ev.source_id || '') || isFestivalNamed(ev);
+  const summarize = ev => ({
+    id: ev.id, source_id: ev.source_id, name: ev.name, venue: ev.venue || '', city: ev.city || '',
+    country: ev.country || '', date: ev.date, source: ev.source, ticket_url: ev.ticket_url || '',
+  });
 
-  const stripChanged = new Set(); // event ids whose djs[] was modified
-
-  for (const [k, ids] of djDateIds) {
-    if (ids.size < 2) continue;
-    const [djNorm] = k.split('|');
-    const evs = [...ids].map(id => evById.get(id)).filter(Boolean);
-
-    // Best event: highest source priority, then richness
-    evs.sort((a, b) => {
-      const sp = (SRC_PRIO[a.source] ?? 9) - (SRC_PRIO[b.source] ?? 9);
-      return sp !== 0 ? sp : richness(b) - richness(a);
-    });
-    const winner = evs[0];
-
-    for (const loser of evs.slice(1)) {
+  const conflicts = findDoubleBookings([...evById.values()], { isFestival, richness });
+  const conflictLog = [];
+  const touched = new Set(), deletedIds = new Set();
+  for (const c of conflicts) {
+    const removed = [];
+    for (const loser of c.losers) {
       const before = (loser.djs || []).length;
-      loser.djs = (loser.djs || []).filter(d => norm(d) !== djNorm);
-      if (loser.djs.length < before) {
-        process.stdout.write(`\n  ✂ ${djNorm} | ${loser.date}: stripped from ${loser.source_id} (kept in ${winner.source_id})`);
-        stripChanged.add(loser.id);
-        djStripped++;
-      }
+      loser.djs = (loser.djs || []).filter(d => djMatchKey(d) !== c.djKey);
+      if (loser.djs.length === before) continue;
+      const action = loser.djs.length ? 'stripped' : 'deleted';
+      if (action === 'deleted') deletedIds.add(loser.id);
+      touched.add(loser.id);
+      removed.push({ ...summarize(loser), action });
     }
+    if (!removed.length) continue;
+    conflictLog.push({ date: c.date, dj: c.dj, kept: { ...summarize(c.winner), action: 'kept' }, removed });
   }
 
-  if (stripChanged.size > 0) {
-    for (const id of stripChanged) {
-      const ev = evById.get(id);
-      if (!ev) continue;
-      if (!ev.djs || ev.djs.length === 0) {
-        const { error: delE } = await withRetry(
-          () => sb.from('events').delete().eq('id', id),
-          `Delete empty event ${ev.source_id}`
-        );
-        if (delE) console.error(`\n  ❌  Delete failed (${ev.source_id}): ${delE.message}`);
-        else { process.stdout.write(`\n  🗑 deleted empty event ${ev.source_id} (${ev.date})`); emptyDeleted++; }
-      } else {
-        const { error: updE } = await withRetry(
-          () => sb.from('events').update({ djs: ev.djs }).eq('id', id),
-          `Update DJ list ${ev.source_id}`
-        );
-        if (updE) console.error(`\n  ❌  DJ update failed (${ev.source_id}): ${updE.message}`);
-      }
+  let djStripped = 0, emptyDeleted = 0;
+  for (const id of touched) {
+    const ev = evById.get(id);
+    if (deletedIds.has(id)) {
+      const { error: delE } = await withRetry(
+        () => sb.from('events').delete().eq('id', id),
+        `Delete empty event ${ev.source_id}`
+      );
+      if (delE) console.error(`\n  ❌  Delete failed (${ev.source_id}): ${delE.message}`);
+      else emptyDeleted++;
+    } else {
+      const { error: updE } = await withRetry(
+        () => sb.from('events').update({ djs: ev.djs }).eq('id', id),
+        `Update DJ list ${ev.source_id}`
+      );
+      if (updE) console.error(`\n  ❌  DJ update failed (${ev.source_id}): ${updE.message}`);
+      else djStripped++;
     }
   }
-  console.log(`\n  DJ strips: ${djStripped}  Empty-event deletes: ${emptyDeleted}`);
+  // Deleted rows must not survive into the merge below, where they could be picked as keeper.
+  for (const [k, evs] of [...groups]) {
+    const kept = evs.filter(e => !deletedIds.has(e.id));
+    if (kept.length) groups.set(k, kept); else groups.delete(k);
+  }
+  for (const c of conflictLog) {
+    console.log(`  ⚠ ${c.dj} | ${c.date}: kept ${c.kept.source_id} (${c.kept.city}) · removed from ` +
+      c.removed.map(r => `${r.source_id} (${r.city}, ${r.action})`).join(', '));
+  }
+  console.log(`\n  Double bookings: ${conflictLog.length} conflicts · DJ removed from ${djStripped} events · ${emptyDeleted} empty events deleted`);
+
+  writeFileSync(CONFLICTS_PATH, JSON.stringify({
+    generated: new Date().toISOString(),
+    count: conflictLog.length,
+    conflicts: conflictLog,
+  }, null, 2) + '\n');
+  const doubleBookingStats = { conflicts: conflictLog.length, djsRemoved: djStripped, eventsDeleted: emptyDeleted };
+  const festivalStats = { fragmentsMerged: festMerged };
+
+  console.log(`  DJ strips: ${djStripped}  Empty-event deletes: ${emptyDeleted}`);
 
   const dupeGroups = [...groups.values()].filter(g => g.length > 1);
   console.log(`  Groups with duplicates: ${dupeGroups.length}`);
@@ -562,6 +609,7 @@ async function main() {
   }
 
   console.log(`\n╔══════════════════════════════════════════════╗`);
+  writeRunStat('dedupe', { ...doubleBookingStats, fragmentsMerged: festivalStats.fragmentsMerged, keepersMerged: merged, rowsDeleted: deleted });
   console.log(`║  Dedup complete                              ║`);
   console.log(`║  Groups merged   : ${String(merged).padEnd(25)} ║`);
   console.log(`║  Rows deleted    : ${String(deleted).padEnd(25)} ║`);

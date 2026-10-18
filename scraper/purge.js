@@ -13,6 +13,8 @@ import { config }       from 'dotenv';
 import { fileURLToPath } from 'url';
 import { dirname, resolve } from 'path';
 import { withRetry } from './http.js';
+import { todayISO, addDaysISO } from './normalize.js';
+import { writeRunStat } from './run-stats.js';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 config({ path: resolve(__dirname, '.env') });
@@ -28,18 +30,17 @@ if (!SB_URL || !SB_KEY) {
 const sb = createClient(SB_URL, SB_KEY, { auth: { persistSession: false } });
 
 // ── CONFIG ────────────────────────────────────────────────────────────────────
-const PURGE_DAYS_AGO = 15;   // delete events older than this many days
+const PURGE_DAYS_AGO = 8;    // contract §5: keep 8 days of past events (frontend shows last 7)
 
 // ── MAIN ─────────────────────────────────────────────────────────────────────
 async function main() {
-  const cutoff = new Date();
-  cutoff.setDate(cutoff.getDate() - PURGE_DAYS_AGO);
-  const cutoffStr = cutoff.toISOString().split('T')[0];
+  const today     = todayISO();
+  const cutoffStr = addDaysISO(today, -PURGE_DAYS_AGO);
 
   console.log('╔══════════════════════════════════════════╗');
   console.log('║  SoundMyth – Supabase Event Purge        ║');
   console.log('╚══════════════════════════════════════════╝');
-  console.log(`\n🗓  Today       : ${new Date().toISOString().split('T')[0]}`);
+  console.log(`\n🗓  Today       : ${today}`);
   console.log(`🗑  Purge before : ${cutoffStr}  (>${PURGE_DAYS_AGO} days ago)\n`);
 
   // Count first — use a generous retry budget: purge runs at the end of a 1.5h
@@ -60,6 +61,7 @@ async function main() {
 
   if (!count || count === 0) {
     console.log('\n✅  Nothing to purge. DB is clean.');
+    writeRunStat('purge', { cutoff: cutoffStr, retentionDays: PURGE_DAYS_AGO, deleted: 0 });
     return;
   }
 
@@ -143,6 +145,8 @@ async function main() {
   } catch (err) {
     console.error('  ❌  Orphan cleanup error:', err.message);
   }
+
+  writeRunStat('purge', { cutoff: cutoffStr, retentionDays: PURGE_DAYS_AGO, deleted });
 
   console.log('\n╔══════════════════════════════════════════╗');
   console.log(`║  Purge complete  →  ${String(deleted).padEnd(18)} deleted ║`);

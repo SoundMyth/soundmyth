@@ -240,7 +240,8 @@ jobs:
 
       - name: Send run report
         # always(): the email matters most on the runs that broke, including when
-        # the verify step above fails. Missing Brevo secrets only skip the send.
+        # the verify step above fails. If the email cannot be sent (missing Brevo
+        # secrets or Brevo rejects it) the step goes red; the run is unaffected.
         if: always()
         continue-on-error: true
         timeout-minutes: 5

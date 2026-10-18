@@ -12,8 +12,10 @@
  * double bookings from data/conflicts.json. Both are only shown when written at/after
  * RUN_STARTED, so a step that died this week cannot leak last week's numbers.
  *
- * Degrades on purpose: with no BREVO_API_KEY it prints the report and exits 0,
- * so a missing secret never fails the run.
+ * If the email can't be sent (missing BREVO_API_KEY / NOTIFY_EMAIL, or Brevo rejects it)
+ * it still prints the report but exits 1, so the step shows as failed in Actions instead
+ * of a silent green tick. The workflow runs it with continue-on-error, so the run itself
+ * is never failed by the report.
  *
  * Usage: node steps/17-report.js
  */
@@ -196,7 +198,8 @@ async function main() {
   console.log(text);
 
   if (!API_KEY || !TO) {
-    console.log('\n⚠️  BREVO_API_KEY o NOTIFY_EMAIL sin definir — informe no enviado.');
+    console.error('\n❌  BREVO_API_KEY o NOTIFY_EMAIL sin definir — informe no enviado. Añádelos en Settings → Secrets and variables → Actions.');
+    process.exitCode = 1;
     return;
   }
 
@@ -258,7 +261,10 @@ async function main() {
   });
 
   if (res.ok) console.log(`\n📧  Informe enviado a ${TO}`);
-  else console.error(`\n❌  Brevo respondió ${res.status}: ${(await res.text()).slice(0, 300)}`);
+  else {
+    console.error(`\n❌  Brevo respondió ${res.status}: ${(await res.text()).slice(0, 300)}`);
+    process.exitCode = 1;
+  }
 }
 
 main().catch(err => { console.error('Fatal:', err.message); process.exit(1); });

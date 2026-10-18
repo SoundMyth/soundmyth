@@ -1,10 +1,12 @@
 /* SoundMyth service worker — minimal & conservative.
  * - App shell (navigations): NETWORK-FIRST so a new deploy always lands; cache only as
  *   an offline fallback (never serves stale HTML while online).
- * - Same-origin static assets + Google Fonts: cache-first (fast, offline).
- * - Everything else (Supabase API, Unsplash, TheAudioDB…): untouched → normal network.
+ * - /data/artists.json (DJ genres/photos, refreshed by each weekly pipeline run):
+ *   NETWORK-FIRST, cache fallback offline.
+ * - Other same-origin static assets + Google Fonts: cache-first (fast, offline).
+ * - Everything else (Supabase API, Unsplash, image hosts…): untouched → normal network.
  */
-const CACHE = 'soundmyth-v5';
+const CACHE = 'soundmyth-v6';
 const SHELL = ['/', '/index.html', '/favicon.svg', '/manifest.webmanifest', '/icon-192.png', '/icon-512.png', '/apple-touch-icon.png'];
 
 self.addEventListener('install', e => {
@@ -30,6 +32,16 @@ self.addEventListener('fetch', e => {
       fetch(req)
         .then(r => { const cp = r.clone(); caches.open(CACHE).then(c => c.put('/', cp)); return r; })
         .catch(() => caches.match('/').then(m => m || caches.match('/index.html')))
+    );
+    return;
+  }
+
+  // DJ artifact → network-first (fresh each weekly run), cache fallback offline
+  if (url.origin === location.origin && url.pathname === '/data/artists.json') {
+    e.respondWith(
+      fetch(req)
+        .then(r => { if (r && r.ok) { const cp = r.clone(); caches.open(CACHE).then(c => c.put(req, cp)); } return r; })
+        .catch(() => caches.match(req))
     );
     return;
   }

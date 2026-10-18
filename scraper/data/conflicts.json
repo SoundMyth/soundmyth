@@ -1,72 +1,12 @@
 {
-  "generated": "2026-10-18T23:04:13.708Z",
+  "generated": "2026-10-18T23:52:47.731Z",
   "count": 142,
   "conflicts": [
-    {
-      "date": "2026-10-30",
-      "dj": "Sara Landry",
-      "kept": {
-        "id": 92195,
-        "source_id": "sara_landry_2026_10_30_edmonton_expo_centre_eec_",
-        "name": "Sara Landry @ Edmonton EXPO Centre (EEC)",
-        "venue": "Edmonton EXPO Centre (EEC)",
-        "city": "Edmonton",
-        "country": "Canada",
-        "date": "2026-10-30",
-        "source": "songkick",
-        "ticket_url": "https://www.songkick.com/festivals/916004-scream/id/43133962-scream-2026?utm_medium=organic&utm_source=microformat",
-        "action": "kept"
-      },
-      "removed": [
-        {
-          "id": 215789,
-          "source_id": "sara_landry_2026_10_30_wamu_theater",
-          "name": "Sara Landry @ WAMU Theater",
-          "venue": "WAMU Theater",
-          "city": "Seattle",
-          "country": "United States",
-          "date": "2026-10-30",
-          "source": "songkick",
-          "ticket_url": "https://www.songkick.com/festivals/3383391-boo-seattle/id/43270801-boo-seattle-2026?utm_medium=organic&utm_source=microformat",
-          "action": "deleted"
-        }
-      ]
-    },
-    {
-      "date": "2026-10-30",
-      "dj": "A Little Sound",
-      "kept": {
-        "id": 192622,
-        "source_id": "a_little_sound_2026_10_30_escape_halloween",
-        "name": "A Little Sound @ Escape Halloween",
-        "venue": "Escape Halloween",
-        "city": "San Bernardino",
-        "country": "United States",
-        "date": "2026-10-30",
-        "source": "songkick",
-        "ticket_url": "https://www.songkick.com/festivals/3373538-escape-socal/id/43356280-escape-socal-2026?utm_medium=organic&utm_source=microformat",
-        "action": "kept"
-      },
-      "removed": [
-        {
-          "id": 218097,
-          "source_id": "a_little_sound_2026_10_30_wamu_theater",
-          "name": "A Little Sound @ WAMU Theater",
-          "venue": "WAMU Theater",
-          "city": "Seattle",
-          "country": "United States",
-          "date": "2026-10-30",
-          "source": "songkick",
-          "ticket_url": "https://www.songkick.com/festivals/3383391-boo-seattle/id/43270801-boo-seattle-2026?utm_medium=organic&utm_source=microformat",
-          "action": "deleted"
-        }
-      ]
-    },
     {
       "date": "2026-10-22",
       "dj": "Ben Böhmer",
       "kept": {
-        "id": 216976,
+        "id": 220582,
         "source_id": "ben_b_hmer_2026_10_22_spirit_of_the_suwannee_music_park",
         "name": "Ben Böhmer @ Spirit of the Suwannee Music Park",
         "venue": "Spirit of the Suwannee Music Park",
@@ -79,7 +19,7 @@
       },
       "removed": [
         {
-          "id": 216975,
+          "id": 220581,
           "source_id": "sk_43343846",
           "name": "Ben Böhmer @ Concourse Project",
           "venue": "Concourse Project",
@@ -109,7 +49,7 @@
       },
       "removed": [
         {
-          "id": 211743,
+          "id": 218929,
           "source_id": "martin_garrix_2026_11_06_tinker_field",
           "name": "Martin Garrix @ Tinker Field",
           "venue": "Tinker Field",
@@ -139,7 +79,7 @@
       },
       "removed": [
         {
-          "id": 215413,
+          "id": 219019,
           "source_id": "sk_43309164",
           "name": "Vintage Culture @ Teresina",
           "venue": "Teresina",
@@ -169,7 +109,7 @@
       },
       "removed": [
         {
-          "id": 216166,
+          "id": 219772,
           "source_id": "sk_43365461",
           "name": "KREAM @ Time Nightclub",
           "venue": "Time Nightclub",
@@ -178,6 +118,36 @@
           "date": "2026-10-30",
           "source": "songkick",
           "ticket_url": "https://www.songkick.com/concerts/43365461-kream-at-time-nightclub?utm_medium=organic&utm_source=microformat",
+          "action": "deleted"
+        }
+      ]
+    },
+    {
+      "date": "2026-10-30",
+      "dj": "Sara Landry",
+      "kept": {
+        "id": 92195,
+        "source_id": "sara_landry_2026_10_30_edmonton_expo_centre_eec_",
+        "name": "Sara Landry @ Edmonton EXPO Centre (EEC)",
+        "venue": "Edmonton EXPO Centre (EEC)",
+        "city": "Edmonton",
+        "country": "Canada",
+        "date": "2026-10-30",
+        "source": "songkick",
+        "ticket_url": "https://www.songkick.com/festivals/916004-scream/id/43133962-scream-2026?utm_medium=organic&utm_source=microformat",
+        "action": "kept"
+      },
+      "removed": [
+        {
+          "id": 219395,
+          "source_id": "sara_landry_2026_10_30_wamu_theater",
+          "name": "Sara Landry @ WAMU Theater",
+          "venue": "WAMU Theater",
+          "city": "Seattle",
+          "country": "United States",
+          "date": "2026-10-30",
+          "source": "songkick",
+          "ticket_url": "https://www.songkick.com/festivals/3383391-boo-seattle/id/43270801-boo-seattle-2026?utm_medium=organic&utm_source=microformat",
           "action": "deleted"
         }
       ]
@@ -199,7 +169,7 @@
       },
       "removed": [
         {
-          "id": 215498,
+          "id": 219104,
           "source_id": "sk_43222922",
           "name": "Tiësto @ Omnia Nightclub",
           "venue": "Omnia Nightclub",
@@ -229,7 +199,7 @@
       },
       "removed": [
         {
-          "id": 215913,
+          "id": 219519,
           "source_id": "dubdogz_2026_12_26_praia_de_cumbuco",
           "name": "Dubdogz @ Praia de Cumbuco",
           "venue": "Praia de Cumbuco",
@@ -259,7 +229,7 @@
       },
       "removed": [
         {
-          "id": 216103,
+          "id": 219709,
           "source_id": "sk_43365128",
           "name": "Luca Testa @ OGR",
           "venue": "OGR",
@@ -289,7 +259,7 @@
       },
       "removed": [
         {
-          "id": 217013,
+          "id": 220619,
           "source_id": "sk_43353780",
           "name": "Rossi @ Concourse Project",
           "venue": "Concourse Project",
@@ -319,7 +289,7 @@
       },
       "removed": [
         {
-          "id": 217203,
+          "id": 220809,
           "source_id": "sk_43293382",
           "name": "A.M.C @ Suburbia",
           "venue": "Suburbia",
@@ -349,7 +319,7 @@
       },
       "removed": [
         {
-          "id": 217268,
+          "id": 220874,
           "source_id": "sk_43244613",
           "name": "Talla 2XLC @ Amsterdam",
           "venue": "Amsterdam",
@@ -379,7 +349,7 @@
       },
       "removed": [
         {
-          "id": 217276,
+          "id": 220882,
           "source_id": "sk_43276283",
           "name": "Talla 2XLC @ Capitol Halle",
           "venue": "Capitol Halle",
@@ -409,7 +379,7 @@
       },
       "removed": [
         {
-          "id": 217322,
+          "id": 220934,
           "source_id": "sk_43387991",
           "name": "Whipped Cream @ Mosaic",
           "venue": "Mosaic",
@@ -439,7 +409,7 @@
       },
       "removed": [
         {
-          "id": 215577,
+          "id": 219183,
           "source_id": "sk_43181651",
           "name": "Vini Vici @ Studio 338",
           "venue": "Studio 338",
@@ -469,7 +439,7 @@
       },
       "removed": [
         {
-          "id": 217741,
+          "id": 221347,
           "source_id": "sk_43202131",
           "name": "horsegiirL @ The Eastern",
           "venue": "The Eastern",
@@ -499,7 +469,7 @@
       },
       "removed": [
         {
-          "id": 217812,
+          "id": 221418,
           "source_id": "billy_gillies_2026_12_05_warsaw",
           "name": "Billy Gillies @ Warsaw",
           "venue": "Warsaw",
@@ -516,7 +486,7 @@
       "date": "2026-11-13",
       "dj": "Carl Cox",
       "kept": {
-        "id": 215545,
+        "id": 219151,
         "source_id": "carl_cox_2026_11_13_goldring_woldenberg_riverfront_park",
         "name": "Carl Cox @ Goldring Woldenberg Riverfront Park",
         "venue": "Goldring Woldenberg Riverfront Park",
@@ -529,7 +499,7 @@
       },
       "removed": [
         {
-          "id": 215544,
+          "id": 219150,
           "source_id": "sk_43250594",
           "name": "Carl Cox @ Coca-Cola Roxy",
           "venue": "Coca-Cola Roxy",
@@ -546,7 +516,7 @@
       "date": "2026-11-13",
       "dj": "Sammy Virji",
       "kept": {
-        "id": 216025,
+        "id": 219631,
         "source_id": "sammy_virji_2026_11_13_goldring_woldenberg_riverfront_park",
         "name": "Sammy Virji @ Goldring Woldenberg Riverfront Park",
         "venue": "Goldring Woldenberg Riverfront Park",
@@ -559,7 +529,7 @@
       },
       "removed": [
         {
-          "id": 216024,
+          "id": 219630,
           "source_id": "sk_43372582",
           "name": "Sammy Virji @ Cow Palace",
           "venue": "Cow Palace",
@@ -576,7 +546,7 @@
       "date": "2026-11-13",
       "dj": "Blond:ish",
       "kept": {
-        "id": 216066,
+        "id": 219672,
         "source_id": "blond_ish_2026_11_13_goldring_woldenberg_riverfront_park",
         "name": "BLOND:ISH @ Goldring Woldenberg Riverfront Park",
         "venue": "Goldring Woldenberg Riverfront Park",
@@ -589,7 +559,7 @@
       },
       "removed": [
         {
-          "id": 216065,
+          "id": 219671,
           "source_id": "blond_ish_2026_11_13_shell_energy_stadium",
           "name": "BLOND:ISH @ Shell Energy Stadium",
           "venue": "Shell Energy Stadium",
@@ -606,7 +576,7 @@
       "date": "2026-11-13",
       "dj": "Max Styler",
       "kept": {
-        "id": 216122,
+        "id": 219728,
         "source_id": "max_styler_2026_11_13_goldring_woldenberg_riverfront_park",
         "name": "Max Styler @ Goldring Woldenberg Riverfront Park",
         "venue": "Goldring Woldenberg Riverfront Park",
@@ -619,7 +589,7 @@
       },
       "removed": [
         {
-          "id": 216121,
+          "id": 219727,
           "source_id": "sk_43338487",
           "name": "Max Styler @ LIV Nightclub Las Vegas",
           "venue": "LIV Nightclub Las Vegas",
@@ -649,7 +619,7 @@
       },
       "removed": [
         {
-          "id": 217886,
+          "id": 221492,
           "source_id": "sk_43438759",
           "name": "Seven Lions @ Rebel",
           "venue": "Rebel",
@@ -679,7 +649,7 @@
       },
       "removed": [
         {
-          "id": 216323,
+          "id": 219929,
           "source_id": "marsh_2026_12_11_pattaya_area",
           "name": "Marsh @ Pattaya Area",
           "venue": "Pattaya Area",
@@ -709,7 +679,7 @@
       },
       "removed": [
         {
-          "id": 215567,
+          "id": 219173,
           "source_id": "r3hab_2026_12_11_pattaya_area",
           "name": "R3HAB @ Pattaya Area",
           "venue": "Pattaya Area",
@@ -721,7 +691,7 @@
           "action": "deleted"
         },
         {
-          "id": 215566,
+          "id": 219172,
           "source_id": "r3hab_2026_12_11_djakarta_warehouse_project_2026",
           "name": "R3HAB @ Djakarta Warehouse Project 2026",
           "venue": "Djakarta Warehouse Project 2026",
@@ -751,7 +721,7 @@
       },
       "removed": [
         {
-          "id": 216063,
+          "id": 219669,
           "source_id": "sk_43445370",
           "name": "BLOND:ISH @ ONYX ARENA",
           "venue": "ONYX ARENA",
@@ -768,7 +738,7 @@
       "date": "2026-10-30",
       "dj": "Excision",
       "kept": {
-        "id": 218201,
+        "id": 221807,
         "source_id": "excision_2026_10_30_rawhide_western_town_event_center",
         "name": "Excision @ Rawhide Western Town & Event Center",
         "venue": "Rawhide Western Town & Event Center",
@@ -781,7 +751,7 @@
       },
       "removed": [
         {
-          "id": 218200,
+          "id": 221806,
           "source_id": "excision_2026_10_30_escape_halloween",
           "name": "Excision @ Escape Halloween",
           "venue": "Escape Halloween",
@@ -811,7 +781,7 @@
       },
       "removed": [
         {
-          "id": 218289,
+          "id": 221895,
           "source_id": "sk_43366266",
           "name": "Notion @ GASWRX",
           "venue": "GASWRX",
@@ -841,7 +811,7 @@
       },
       "removed": [
         {
-          "id": 215879,
+          "id": 219485,
           "source_id": "meduza_2026_10_30_factory_town",
           "name": "MEDUZA @ Factory Town",
           "venue": "Factory Town",
@@ -855,8 +825,1292 @@
       ]
     },
     {
-      "date": "2026-11-20",
+      "date": "2026-10-31",
+      "dj": "Delta Heavy",
+      "kept": {
+        "id": 171086,
+        "source_id": "sk_43319378",
+        "name": "Delta Heavy @ Bvv Brno - Pavilon G1",
+        "venue": "Bvv Brno - Pavilon G1",
+        "city": "Brno",
+        "country": "Czechia",
+        "date": "2026-10-31",
+        "source": "songkick",
+        "ticket_url": "https://www.songkick.com/concerts/43319378-delta-heavy-at-bvv-brno-pavilon-g1?utm_medium=organic&utm_source=microformat",
+        "action": "kept"
+      },
+      "removed": [
+        {
+          "id": 220820,
+          "source_id": "sk_43368304",
+          "name": "Delta Heavy @ Portland Expo Center",
+          "venue": "Portland Expo Center",
+          "city": "Portland",
+          "country": "United States",
+          "date": "2026-10-31",
+          "source": "songkick",
+          "ticket_url": "https://www.songkick.com/concerts/43368304-delta-heavy-at-portland-expo-center?utm_medium=organic&utm_source=microformat",
+          "action": "deleted"
+        }
+      ]
+    },
+    {
+      "date": "2026-12-11",
+      "dj": "Frost Children",
+      "kept": {
+        "id": 172205,
+        "source_id": "frost_children_2026_12_11_radio_east",
+        "name": "Frost Children @ The Far Out Lounge",
+        "venue": "Radio/East",
+        "city": "Austin",
+        "country": "United States",
+        "date": "2026-12-11",
+        "source": "songkick",
+        "ticket_url": "https://www.songkick.com/festivals/36561-holiday-hootenanny/id/43320233-holiday-hootenanny-2026?utm_medium=organic&utm_source=microformat",
+        "action": "kept"
+      },
+      "removed": [
+        {
+          "id": 221577,
+          "source_id": "sk_43367774",
+          "name": "Frost Children @ Fonda Theatre",
+          "venue": "Fonda Theatre",
+          "city": "Los Angeles",
+          "country": "United States",
+          "date": "2026-12-11",
+          "source": "songkick",
+          "ticket_url": "https://www.songkick.com/concerts/43367774-frost-children-at-fonda-theatre?utm_medium=organic&utm_source=microformat",
+          "action": "deleted"
+        }
+      ]
+    },
+    {
+      "date": "2026-11-13",
+      "dj": "Cloonee",
+      "kept": {
+        "id": 219893,
+        "source_id": "cloonee_2026_11_13_shell_energy_stadium",
+        "name": "Cloonee @ Shell Energy Stadium",
+        "venue": "Shell Energy Stadium",
+        "city": "Houston",
+        "country": "United States",
+        "date": "2026-11-13",
+        "source": "songkick",
+        "ticket_url": "https://www.songkick.com/festivals/3792036-breakaway-music-houston/id/43278835-breakaway-music-festival-houston-2026?utm_medium=organic&utm_source=microformat",
+        "action": "kept"
+      },
+      "removed": [
+        {
+          "id": 219892,
+          "source_id": "cloonee_2026_11_13_parque_fundidora",
+          "name": "Cloonee @ Parque Fundidora",
+          "venue": "Parque Fundidora",
+          "city": "Monterrey",
+          "country": "Mexico",
+          "date": "2026-11-13",
+          "source": "songkick",
+          "ticket_url": "https://www.songkick.com/festivals/3793033-futur-mexico/id/43291401-futur-festival-mexico-2026?utm_medium=organic&utm_source=microformat",
+          "action": "deleted"
+        }
+      ]
+    },
+    {
+      "date": "2026-10-30",
       "dj": "Indira Paganotto",
+      "kept": {
+        "id": 174805,
+        "source_id": "sk_43332705",
+        "name": "Indira Paganotto @ Gold Bar Hangar",
+        "venue": "Gold Bar Hangar",
+        "city": "Alameda",
+        "country": "United States",
+        "date": "2026-10-30",
+        "source": "songkick",
+        "ticket_url": "https://www.songkick.com/concerts/43332705-richie-hawtin-at-gold-bar-hangar?utm_medium=organic&utm_source=microformat",
+        "action": "kept"
+      },
+      "removed": [
+        {
+          "id": 219191,
+          "source_id": "indira_paganotto_2026_10_30_factory_town",
+          "name": "Indira Paganotto @ Factory Town",
+          "venue": "Factory Town",
+          "city": "Miami",
+          "country": "United States",
+          "date": "2026-10-30",
+          "source": "songkick",
+          "ticket_url": "https://www.songkick.com/festivals/3492880-hocus-pocus/id/43357056-hocus-pocus-2026?utm_medium=organic&utm_source=microformat",
+          "action": "deleted"
+        }
+      ]
+    },
+    {
+      "date": "2026-10-30",
+      "dj": "DeVault",
+      "kept": {
+        "id": 221334,
+        "source_id": "devault_2026_10_30_mardi_gras_world",
+        "name": "DEVAULT @ Mardi Gras World",
+        "venue": "Mardi Gras World",
+        "city": "New Orleans",
+        "country": "United States",
+        "date": "2026-10-30",
+        "source": "songkick",
+        "ticket_url": "https://www.songkick.com/festivals/3809791-freaky-deaky-new-orleans-2-day-pass-18/id/43466647-freaky-deaky-new-orleans--2-day-pass-18-2026?utm_medium=organic&utm_source=microformat",
+        "action": "kept"
+      },
+      "removed": [
+        {
+          "id": 221333,
+          "source_id": "sk_43368165",
+          "name": "DEVAULT @ Magic Stick",
+          "venue": "Magic Stick",
+          "city": "Detroit",
+          "country": "United States",
+          "date": "2026-10-30",
+          "source": "songkick",
+          "ticket_url": "https://www.songkick.com/concerts/43368165-devault-at-magic-stick?utm_medium=organic&utm_source=microformat",
+          "action": "deleted"
+        }
+      ]
+    },
+    {
+      "date": "2026-11-06",
+      "dj": "Franky Rizardo",
+      "kept": {
+        "id": 180718,
+        "source_id": "sk_43335774",
+        "name": "Franky Rizardo @ District Atlanta",
+        "venue": "District Atlanta",
+        "city": "Atlanta",
+        "country": "United States",
+        "date": "2026-11-06",
+        "source": "songkick",
+        "ticket_url": "https://www.songkick.com/concerts/43335774-franky-rizardo-at-district-atlanta?utm_medium=organic&utm_source=microformat",
+        "action": "kept"
+      },
+      "removed": [
+        {
+          "id": 220625,
+          "source_id": "franky_rizardo_2026_11_06_tinker_field",
+          "name": "Franky Rizardo @ Tinker Field",
+          "venue": "Tinker Field",
+          "city": "Orlando",
+          "country": "United States",
+          "date": "2026-11-06",
+          "source": "songkick",
+          "ticket_url": "https://www.songkick.com/festivals/10816-electric-daisy-carnival/id/43117678-electric-daisy-carnival-2026?utm_medium=organic&utm_source=microformat",
+          "action": "deleted"
+        }
+      ]
+    },
+    {
+      "date": "2026-11-06",
+      "dj": "Steve Aoki",
+      "kept": {
+        "id": 184396,
+        "source_id": "steve_aoki_2026_11_06_russell_industrial_center",
+        "name": "Steve Aoki @ Russell Industrial Center",
+        "venue": "Russell Industrial Center",
+        "city": "Detroit",
+        "country": "United States",
+        "date": "2026-11-06",
+        "source": "songkick",
+        "ticket_url": "https://www.songkick.com/festivals/3798455-steve-aoki-dim-mak-30-tour/id/43345852-steve-aoki-dim-mak-30-tour-2026?utm_medium=organic&utm_source=microformat",
+        "action": "kept"
+      },
+      "removed": [
+        {
+          "id": 219039,
+          "source_id": "steve_aoki_2026_11_06_tinker_field",
+          "name": "Steve Aoki @ Tinker Field",
+          "venue": "Tinker Field",
+          "city": "Orlando",
+          "country": "United States",
+          "date": "2026-11-06",
+          "source": "songkick",
+          "ticket_url": "https://www.songkick.com/festivals/10816-electric-daisy-carnival/id/43117678-electric-daisy-carnival-2026?utm_medium=organic&utm_source=microformat",
+          "action": "deleted"
+        }
+      ]
+    },
+    {
+      "date": "2026-10-29",
+      "dj": "Oklou",
+      "kept": {
+        "id": 187568,
+        "source_id": "sk_43267349",
+        "name": "Oklou @ X-TRA Haus der Musik",
+        "venue": "X-TRA Haus der Musik",
+        "city": "Zurich",
+        "country": "Switzerland",
+        "date": "2026-10-29",
+        "source": "songkick",
+        "ticket_url": "https://www.songkick.com/concerts/43267349-oklou-at-xtra-haus-der-musik?utm_medium=organic&utm_source=microformat",
+        "action": "kept"
+      },
+      "removed": [
+        {
+          "id": 221307,
+          "source_id": "oklou_2026_10_29_lingotto",
+          "name": "Oklou @ Lingotto",
+          "venue": "Lingotto",
+          "city": "Turin",
+          "country": "Italy",
+          "date": "2026-10-29",
+          "source": "songkick",
+          "ticket_url": "https://www.songkick.com/festivals/1117783-c2c/id/43072752-c2c-2026?utm_medium=organic&utm_source=microformat",
+          "action": "deleted"
+        }
+      ]
+    },
+    {
+      "date": "2026-12-28",
+      "dj": "John Summit",
+      "kept": {
+        "id": 219287,
+        "source_id": "john_summit_2026_12_28_waiohika_estate_vineyard",
+        "name": "John Summit @ Waiohika Estate Vineyard",
+        "venue": "Waiohika Estate Vineyard",
+        "city": "Gisborne",
+        "country": "New Zealand",
+        "date": "2026-12-28",
+        "source": "songkick",
+        "ticket_url": "https://www.songkick.com/festivals/295-rhythm-and-vines/id/43344433-rhythm-and-vines-festival-2026?utm_medium=organic&utm_source=microformat",
+        "action": "kept"
+      },
+      "removed": [
+        {
+          "id": 219288,
+          "source_id": "john_summit_2026_12_28_glenworth_valley",
+          "name": "John Summit @ Glenworth Valley",
+          "venue": "Glenworth Valley",
+          "city": "Sydney",
+          "country": "Australia",
+          "date": "2026-12-28",
+          "source": "songkick",
+          "ticket_url": "https://www.songkick.com/festivals/1141053-lost-paradise/id/43343257-lost-paradise-2026?utm_medium=organic&utm_source=microformat",
+          "action": "deleted"
+        },
+        {
+          "id": 219286,
+          "source_id": "john_summit_2026_12_28_barunah_plains",
+          "name": "John Summit @ Barunah Plains",
+          "venue": "Barunah Plains",
+          "city": "Hesse",
+          "country": "Australia",
+          "date": "2026-12-28",
+          "source": "songkick",
+          "ticket_url": "https://www.songkick.com/festivals/1125073-beyond-the-valley/id/43355258-beyond-the-valley-2026?utm_medium=organic&utm_source=microformat",
+          "action": "deleted"
+        }
+      ]
+    },
+    {
+      "date": "2026-12-28",
+      "dj": "Hamdi",
+      "kept": {
+        "id": 220229,
+        "source_id": "hamdi_2026_12_28_waiohika_estate_vineyard",
+        "name": "Hamdi @ Waiohika Estate Vineyard",
+        "venue": "Waiohika Estate Vineyard",
+        "city": "Gisborne",
+        "country": "New Zealand",
+        "date": "2026-12-28",
+        "source": "songkick",
+        "ticket_url": "https://www.songkick.com/festivals/295-rhythm-and-vines/id/43344433-rhythm-and-vines-festival-2026?utm_medium=organic&utm_source=microformat",
+        "action": "kept"
+      },
+      "removed": [
+        {
+          "id": 220230,
+          "source_id": "hamdi_2026_12_28_glenworth_valley",
+          "name": "Hamdi @ Glenworth Valley",
+          "venue": "Glenworth Valley",
+          "city": "Sydney",
+          "country": "Australia",
+          "date": "2026-12-28",
+          "source": "songkick",
+          "ticket_url": "https://www.songkick.com/festivals/1141053-lost-paradise/id/43343257-lost-paradise-2026?utm_medium=organic&utm_source=microformat",
+          "action": "deleted"
+        },
+        {
+          "id": 220228,
+          "source_id": "hamdi_2026_12_28_barunah_plains",
+          "name": "Hamdi @ Barunah Plains",
+          "venue": "Barunah Plains",
+          "city": "Hesse",
+          "country": "Australia",
+          "date": "2026-12-28",
+          "source": "songkick",
+          "ticket_url": "https://www.songkick.com/festivals/1125073-beyond-the-valley/id/43355258-beyond-the-valley-2026?utm_medium=organic&utm_source=microformat",
+          "action": "deleted"
+        }
+      ]
+    },
+    {
+      "date": "2026-10-31",
+      "dj": "Obskür",
+      "kept": {
+        "id": 187703,
+        "source_id": "sk_43346765",
+        "name": "Obskür @ BALLIN' Maidstone",
+        "venue": "BALLIN' Maidstone",
+        "city": "Maidstone",
+        "country": "United Kingdom",
+        "date": "2026-10-31",
+        "source": "songkick",
+        "ticket_url": "https://www.songkick.com/concerts/43346765-obskur-at-ballin-maidstone?utm_medium=organic&utm_source=microformat",
+        "action": "kept"
+      },
+      "removed": [
+        {
+          "id": 221395,
+          "source_id": "sk_43350531",
+          "name": "Obskür @ Concorde 2",
+          "venue": "Concorde 2",
+          "city": "Brighton",
+          "country": "United Kingdom",
+          "date": "2026-10-31",
+          "source": "songkick",
+          "ticket_url": "https://www.songkick.com/concerts/43350531-obskur-at-concorde-2?utm_medium=organic&utm_source=microformat",
+          "action": "deleted"
+        }
+      ]
+    },
+    {
+      "date": "2026-11-28",
+      "dj": "Kepler",
+      "kept": {
+        "id": 188702,
+        "source_id": "ra_2458554",
+        "name": "FUSE 18th Birthday w/ Enzo Siragusa b2b Rossi., Luciano, Marlie b2b Natalia Roth, Marsolo",
+        "venue": "DRUMSHEDS",
+        "city": "London",
+        "country": "United Kingdom",
+        "date": "2026-11-28",
+        "source": "ra",
+        "ticket_url": "",
+        "action": "kept"
+      },
+      "removed": [
+        {
+          "id": 221463,
+          "source_id": "sk_43454846",
+          "name": "Kepler @ Great Hall, Cardiff University Students' Union",
+          "venue": "Great Hall, Cardiff University Students' Union",
+          "city": "Cardiff",
+          "country": "United Kingdom",
+          "date": "2026-11-28",
+          "source": "songkick",
+          "ticket_url": "https://www.songkick.com/concerts/43454846-kepler-at-great-hall-cardiff-university-students-union?utm_medium=organic&utm_source=microformat",
+          "action": "deleted"
+        }
+      ]
+    },
+    {
+      "date": "2026-11-28",
+      "dj": "Marsolo",
+      "kept": {
+        "id": 188702,
+        "source_id": "ra_2458554",
+        "name": "FUSE 18th Birthday w/ Enzo Siragusa b2b Rossi., Luciano, Marlie b2b Natalia Roth, Marsolo",
+        "venue": "DRUMSHEDS",
+        "city": "London",
+        "country": "United Kingdom",
+        "date": "2026-11-28",
+        "source": "ra",
+        "ticket_url": "",
+        "action": "kept"
+      },
+      "removed": [
+        {
+          "id": 221237,
+          "source_id": "sk_43386216",
+          "name": "Marsolo @ Concorde 2",
+          "venue": "Concorde 2",
+          "city": "Brighton",
+          "country": "United Kingdom",
+          "date": "2026-11-28",
+          "source": "songkick",
+          "ticket_url": "https://www.songkick.com/concerts/43386216-marsolo-at-concorde-2?utm_medium=organic&utm_source=microformat",
+          "action": "deleted"
+        }
+      ]
+    },
+    {
+      "date": "2026-10-25",
+      "dj": "O.BEE",
+      "kept": {
+        "id": 189264,
+        "source_id": "ra_2479433",
+        "name": "DGTL ADE FUSE",
+        "venue": "NDSM Scheepsbouwloods",
+        "city": "Amsterdam",
+        "country": "Netherlands",
+        "date": "2026-10-25",
+        "source": "ra",
+        "ticket_url": "",
+        "action": "kept"
+      },
+      "removed": [
+        {
+          "id": 222259,
+          "source_id": "sk_43463303",
+          "name": "O.bee @ The Basement",
+          "venue": "The Basement",
+          "city": "Nashville",
+          "country": "United States",
+          "date": "2026-10-25",
+          "source": "songkick",
+          "ticket_url": "https://www.songkick.com/concerts/43463303-obee-at-basement?utm_medium=organic&utm_source=microformat",
+          "action": "deleted"
+        }
+      ]
+    },
+    {
+      "date": "2026-11-06",
+      "dj": "Paranoid London",
+      "kept": {
+        "id": 189544,
+        "source_id": "ra_2527706",
+        "name": "Acid Ballroom: Paranoid London",
+        "venue": "Beaver Works",
+        "city": "Leeds",
+        "country": "United Kingdom",
+        "date": "2026-11-06",
+        "source": "ra",
+        "ticket_url": "",
+        "action": "kept"
+      },
+      "removed": [
+        {
+          "id": 222265,
+          "source_id": "paranoid_london_2026_11_06_sonic_city_festival",
+          "name": "Paranoid London @ Sonic City Festival",
+          "venue": "Sonic City Festival",
+          "city": "Kortrijk",
+          "country": "Belgium",
+          "date": "2026-11-06",
+          "source": "songkick",
+          "ticket_url": "https://www.songkick.com/festivals/463439-sonic-city/id/43195722-sonic-city-2026?utm_medium=organic&utm_source=microformat",
+          "action": "deleted"
+        }
+      ]
+    },
+    {
+      "date": "2026-11-13",
+      "dj": "Vintage Culture",
+      "kept": {
+        "id": 189779,
+        "source_id": "sk_43409822",
+        "name": "Vintage Culture @ The Rady Shell at Jacobs Park",
+        "venue": "The Rady Shell at Jacobs Park",
+        "city": "San Diego",
+        "country": "United States",
+        "date": "2026-11-13",
+        "source": "songkick",
+        "ticket_url": "https://www.songkick.com/concerts/43409822-vintage-culture-at-rady-shell-at-jacobs-park?utm_medium=organic&utm_source=microformat",
+        "action": "kept"
+      },
+      "removed": [
+        {
+          "id": 219022,
+          "source_id": "vintage_culture_2026_11_13_parque_fundidora",
+          "name": "Vintage Culture @ Parque Fundidora",
+          "venue": "Parque Fundidora",
+          "city": "Monterrey",
+          "country": "Mexico",
+          "date": "2026-11-13",
+          "source": "songkick",
+          "ticket_url": "https://www.songkick.com/festivals/3793033-futur-mexico/id/43291401-futur-festival-mexico-2026?utm_medium=organic&utm_source=microformat",
+          "action": "deleted"
+        }
+      ]
+    },
+    {
+      "date": "2026-11-13",
+      "dj": "Calvin Harris",
+      "kept": {
+        "id": 189820,
+        "source_id": "calvin_harris_2026_11_13_parque_ecol_gico_metropolitano",
+        "name": "Calvin Harris @ Parque Ecológico Metropolitano",
+        "venue": "Parque Ecológico Metropolitano",
+        "city": "Leon",
+        "country": "Mexico",
+        "date": "2026-11-13",
+        "source": "songkick",
+        "ticket_url": "https://www.songkick.com/festivals/1654464-internacional-del-globo/id/43373688-festival-internacional-del-globo-2026?utm_medium=organic&utm_source=microformat",
+        "action": "kept"
+      },
+      "removed": [
+        {
+          "id": 219057,
+          "source_id": "sk_43421163",
+          "name": "Calvin Harris @ Coliseo MedPlus",
+          "venue": "Coliseo MedPlus",
+          "city": "Bogota",
+          "country": "Colombia",
+          "date": "2026-11-13",
+          "source": "songkick",
+          "ticket_url": "https://www.songkick.com/concerts/43421163-calvin-harris-at-coliseo-medplus?utm_medium=organic&utm_source=microformat",
+          "action": "deleted"
+        }
+      ]
+    },
+    {
+      "date": "2026-11-13",
+      "dj": "Alok",
+      "kept": {
+        "id": 218959,
+        "source_id": "alok_2026_11_13_parque_ecol_gico_metropolitano",
+        "name": "Alok @ Parque Ecológico Metropolitano",
+        "venue": "Parque Ecológico Metropolitano",
+        "city": "Leon",
+        "country": "Mexico",
+        "date": "2026-11-13",
+        "source": "songkick",
+        "ticket_url": "https://www.songkick.com/festivals/1654464-internacional-del-globo/id/43373688-festival-internacional-del-globo-2026?utm_medium=organic&utm_source=microformat",
+        "action": "kept"
+      },
+      "removed": [
+        {
+          "id": 218958,
+          "source_id": "sk_43227710",
+          "name": "Alok @ Schottenstein Center",
+          "venue": "Schottenstein Center",
+          "city": "Columbus",
+          "country": "United States",
+          "date": "2026-11-13",
+          "source": "songkick",
+          "ticket_url": "https://www.songkick.com/concerts/43227710-john-summit-at-schottenstein-center?utm_medium=organic&utm_source=microformat",
+          "action": "deleted"
+        }
+      ]
+    },
+    {
+      "date": "2026-11-07",
+      "dj": "Eric Prydz",
+      "kept": {
+        "id": 189965,
+        "source_id": "sk_43366778",
+        "name": "Eric Prydz @ Ductwork Houston",
+        "venue": "Ductwork Houston",
+        "city": "Houston",
+        "country": "United States",
+        "date": "2026-11-07",
+        "source": "songkick",
+        "ticket_url": "https://www.songkick.com/concerts/43366778-eric-prydz-at-ductwork-houston?utm_medium=organic&utm_source=microformat",
+        "action": "kept"
+      },
+      "removed": [
+        {
+          "id": 219204,
+          "source_id": "eric_prydz_2026_11_07_estadio_banorte",
+          "name": "Eric Prydz @ Estadio Banorte",
+          "venue": "Estadio Banorte",
+          "city": "Mexico City",
+          "country": "Mexico",
+          "date": "2026-11-07",
+          "source": "songkick",
+          "ticket_url": "https://www.songkick.com/festivals/1924389-ultra-mexico/id/43342911-ultra-mexico-2026?utm_medium=organic&utm_source=microformat",
+          "action": "deleted"
+        }
+      ]
+    },
+    {
+      "date": "2026-10-30",
+      "dj": "Nora En Pure",
+      "kept": {
+        "id": 190174,
+        "source_id": "sk_43383884",
+        "name": "Nora en Pure @ Ductwork Houston",
+        "venue": "Ductwork Houston",
+        "city": "Houston",
+        "country": "United States",
+        "date": "2026-10-30",
+        "source": "songkick",
+        "ticket_url": "https://www.songkick.com/concerts/43383884-nora-en-pure-at-ductwork-houston?utm_medium=organic&utm_source=microformat",
+        "action": "kept"
+      },
+      "removed": [
+        {
+          "id": 219371,
+          "source_id": "nora_en_pure_2026_10_30_factory_town",
+          "name": "Nora en Pure @ Factory Town",
+          "venue": "Factory Town",
+          "city": "Miami",
+          "country": "United States",
+          "date": "2026-10-30",
+          "source": "songkick",
+          "ticket_url": "https://www.songkick.com/festivals/3492880-hocus-pocus/id/43357056-hocus-pocus-2026?utm_medium=organic&utm_source=microformat",
+          "action": "deleted"
+        }
+      ]
+    },
+    {
+      "date": "2026-10-30",
+      "dj": "Odd Mob",
+      "kept": {
+        "id": 219765,
+        "source_id": "sk_43422503",
+        "name": "Odd Mob @ Ductwork Houston",
+        "venue": "Ductwork Houston",
+        "city": "Houston",
+        "country": "United States",
+        "date": "2026-10-30",
+        "source": "songkick",
+        "ticket_url": "https://www.songkick.com/concerts/43422503-odd-mob-at-ductwork-houston?utm_medium=organic&utm_source=microformat",
+        "action": "kept"
+      },
+      "removed": [
+        {
+          "id": 219766,
+          "source_id": "odd_mob_2026_10_30_factory_town",
+          "name": "Odd Mob @ Factory Town",
+          "venue": "Factory Town",
+          "city": "Miami",
+          "country": "United States",
+          "date": "2026-10-30",
+          "source": "songkick",
+          "ticket_url": "https://www.songkick.com/festivals/3492880-hocus-pocus/id/43357056-hocus-pocus-2026?utm_medium=organic&utm_source=microformat",
+          "action": "deleted"
+        }
+      ]
+    },
+    {
+      "date": "2026-11-06",
+      "dj": "KI/KI",
+      "kept": {
+        "id": 190361,
+        "source_id": "sk_43403137",
+        "name": "KI/KI @ Theatre Monsigny",
+        "venue": "Theatre Monsigny",
+        "city": "Boulogne Sur Mer",
+        "country": "France",
+        "date": "2026-11-06",
+        "source": "songkick",
+        "ticket_url": "https://www.songkick.com/concerts/43403137-kiki-at-theatre-monsigny?utm_medium=organic&utm_source=microformat",
+        "action": "kept"
+      },
+      "removed": [
+        {
+          "id": 219574,
+          "source_id": "ki_ki_2026_11_06_tinker_field",
+          "name": "KI/KI @ Tinker Field",
+          "venue": "Tinker Field",
+          "city": "Orlando",
+          "country": "United States",
+          "date": "2026-11-06",
+          "source": "songkick",
+          "ticket_url": "https://www.songkick.com/festivals/10816-electric-daisy-carnival/id/43117678-electric-daisy-carnival-2026?utm_medium=organic&utm_source=microformat",
+          "action": "deleted"
+        }
+      ]
+    },
+    {
+      "date": "2026-10-31",
+      "dj": "Luca Testa",
+      "kept": {
+        "id": 190492,
+        "source_id": "sk_43376587",
+        "name": "Luca Testa @ Open Air Castelletto Stura",
+        "venue": "Open Air Castelletto Stura",
+        "city": "Cuneo",
+        "country": "Italy",
+        "date": "2026-10-31",
+        "source": "songkick",
+        "ticket_url": "https://www.songkick.com/concerts/43376587-luca-testa-at-open-air-castelletto-stura?utm_medium=organic&utm_source=microformat",
+        "action": "kept"
+      },
+      "removed": [
+        {
+          "id": 219700,
+          "source_id": "sk_43418732",
+          "name": "Luca Testa @ Tabata",
+          "venue": "Tabata",
+          "city": "Turin",
+          "country": "Italy",
+          "date": "2026-10-31",
+          "source": "songkick",
+          "ticket_url": "https://www.songkick.com/concerts/43418732-luca-testa-at-tabata?utm_medium=organic&utm_source=microformat",
+          "action": "deleted"
+        }
+      ]
+    },
+    {
+      "date": "2026-11-13",
+      "dj": "Brutalismus 3000",
+      "kept": {
+        "id": 207434,
+        "source_id": "sk_43388642",
+        "name": "Brutalismus 3000 @ Echostage",
+        "venue": "Echostage",
+        "city": "Washington",
+        "country": "United States",
+        "date": "2026-11-13",
+        "source": "songkick",
+        "ticket_url": "https://www.songkick.com/concerts/43388642-brutalismus-3000-at-echostage?utm_medium=organic&utm_source=microformat",
+        "action": "kept"
+      },
+      "removed": [
+        {
+          "id": 221743,
+          "source_id": "sk_43232484",
+          "name": "Brutalismus 3000 @ Radius",
+          "venue": "Radius",
+          "city": "Chicago",
+          "country": "United States",
+          "date": "2026-11-13",
+          "source": "songkick",
+          "ticket_url": "https://www.songkick.com/concerts/43232484-brutalismus-3000-at-radius?utm_medium=organic&utm_source=microformat",
+          "action": "deleted"
+        }
+      ]
+    },
+    {
+      "date": "2026-12-05",
+      "dj": "Andy C",
+      "kept": {
+        "id": 190914,
+        "source_id": "sk_43374997",
+        "name": "Andy C @ Unit 13",
+        "venue": "Unit 13",
+        "city": "Nottingham",
+        "country": "United Kingdom",
+        "date": "2026-12-05",
+        "source": "songkick",
+        "ticket_url": "https://www.songkick.com/concerts/43374997-andy-c-at-unit-13?utm_medium=organic&utm_source=microformat",
+        "action": "kept"
+      },
+      "removed": [
+        {
+          "id": 220063,
+          "source_id": "sk_43466401",
+          "name": "Andy C @ XOYO",
+          "venue": "XOYO",
+          "city": "London",
+          "country": "United Kingdom",
+          "date": "2026-12-05",
+          "source": "songkick",
+          "ticket_url": "https://www.songkick.com/concerts/43466401-andy-c-at-xoyo?utm_medium=organic&utm_source=microformat",
+          "action": "deleted"
+        }
+      ]
+    },
+    {
+      "date": "2026-10-31",
+      "dj": "Patrick Topping",
+      "kept": {
+        "id": 190929,
+        "source_id": "sk_43413587",
+        "name": "Patrick Topping @ Drumsheds",
+        "venue": "Drumsheds",
+        "city": "London",
+        "country": "United Kingdom",
+        "date": "2026-10-31",
+        "source": "songkick",
+        "ticket_url": "https://www.songkick.com/concerts/43413587-patrick-topping-at-drumsheds?utm_medium=organic&utm_source=microformat",
+        "action": "kept"
+      },
+      "removed": [
+        {
+          "id": 220071,
+          "source_id": "sk_43413590",
+          "name": "Patrick Topping @ Milan",
+          "venue": "Milan",
+          "city": "Milan",
+          "country": "Italy",
+          "date": "2026-10-31",
+          "source": "songkick",
+          "ticket_url": "https://www.songkick.com/concerts/43413590-patrick-topping-at-unknown-venue?utm_medium=organic&utm_source=microformat",
+          "action": "deleted"
+        }
+      ]
+    },
+    {
+      "date": "2026-11-06",
+      "dj": "Sofi Tukker",
+      "kept": {
+        "id": 191049,
+        "source_id": "sk_43352964",
+        "name": "SOFI TUKKER @ West Palm Beach",
+        "venue": "West Palm Beach",
+        "city": "West Palm Beach",
+        "country": "United States",
+        "date": "2026-11-06",
+        "source": "songkick",
+        "ticket_url": "https://www.songkick.com/concerts/43352964-sofi-tukker-at-unknown-venue?utm_medium=organic&utm_source=microformat",
+        "action": "kept"
+      },
+      "removed": [
+        {
+          "id": 220174,
+          "source_id": "sofi_tukker_2026_11_06_momentous_2026",
+          "name": "SOFI TUKKER @ Momentous 2026",
+          "venue": "Momentous 2026",
+          "city": "Bentonville",
+          "country": "United States",
+          "date": "2026-11-06",
+          "source": "songkick",
+          "ticket_url": "https://www.songkick.com/festivals/3627116-momentous/id/43236797-momentous-2026?utm_medium=organic&utm_source=microformat",
+          "action": "deleted"
+        }
+      ]
+    },
+    {
+      "date": "2026-12-04",
+      "dj": "Solardo",
+      "kept": {
+        "id": 191175,
+        "source_id": "sk_43406347",
+        "name": "Solardo @ NX Newcastle",
+        "venue": "NX Newcastle",
+        "city": "Newcastle Upon Tyne",
+        "country": "United Kingdom",
+        "date": "2026-12-04",
+        "source": "songkick",
+        "ticket_url": "https://www.songkick.com/concerts/43406347-ellie-scougall-at-nx-newcastle?utm_medium=organic&utm_source=microformat",
+        "action": "kept"
+      },
+      "removed": [
+        {
+          "id": 220260,
+          "source_id": "sk_43469041",
+          "name": "Solardo @ Halcyon",
+          "venue": "Halcyon",
+          "city": "San Francisco",
+          "country": "United States",
+          "date": "2026-12-04",
+          "source": "songkick",
+          "ticket_url": "https://www.songkick.com/concerts/43469041-solardo-at-halcyon?utm_medium=organic&utm_source=microformat",
+          "action": "deleted"
+        }
+      ]
+    },
+    {
+      "date": "2026-10-30",
+      "dj": "Kevin Saunderson",
+      "kept": {
+        "id": 191288,
+        "source_id": "sk_43377779",
+        "name": "Kevin Saunderson @ Lincoln Factory",
+        "venue": "Lincoln Factory",
+        "city": "Detroit",
+        "country": "United States",
+        "date": "2026-10-30",
+        "source": "songkick",
+        "ticket_url": "https://www.songkick.com/concerts/43377779-kevin-saunderson-at-lincoln-factory?utm_medium=organic&utm_source=microformat",
+        "action": "kept"
+      },
+      "removed": [
+        {
+          "id": 220385,
+          "source_id": "kevin_saunderson_2026_10_30_factory_town",
+          "name": "Kevin Saunderson @ Factory Town",
+          "venue": "Factory Town",
+          "city": "Miami",
+          "country": "United States",
+          "date": "2026-10-30",
+          "source": "songkick",
+          "ticket_url": "https://www.songkick.com/festivals/3492880-hocus-pocus/id/43357056-hocus-pocus-2026?utm_medium=organic&utm_source=microformat",
+          "action": "deleted"
+        }
+      ]
+    },
+    {
+      "date": "2026-10-30",
+      "dj": "Vendex",
+      "kept": {
+        "id": 191555,
+        "source_id": "sk_43408379",
+        "name": "Vendex @ Edinburgh Corn Exchange",
+        "venue": "Edinburgh Corn Exchange",
+        "city": "Edinburgh",
+        "country": "United Kingdom",
+        "date": "2026-10-30",
+        "source": "songkick",
+        "ticket_url": "https://www.songkick.com/concerts/43408379-natte-visstick-at-edinburgh-corn-exchange?utm_medium=organic&utm_source=microformat",
+        "action": "kept"
+      },
+      "removed": [
+        {
+          "id": 220640,
+          "source_id": "sk_43382903",
+          "name": "Vendex @ Livehouse",
+          "venue": "Livehouse",
+          "city": "Dundee",
+          "country": "United Kingdom",
+          "date": "2026-10-30",
+          "source": "songkick",
+          "ticket_url": "https://www.songkick.com/concerts/43382903-vendex-at-livehouse?utm_medium=organic&utm_source=microformat",
+          "action": "deleted"
+        }
+      ]
+    },
+    {
+      "date": "2026-10-30",
+      "dj": "Prospa",
+      "kept": {
+        "id": 191668,
+        "source_id": "sk_43366852",
+        "name": "PROSPA @ A.i. Warehouse at Union Market",
+        "venue": "A.i. Warehouse at Union Market",
+        "city": "Washington",
+        "country": "United States",
+        "date": "2026-10-30",
+        "source": "songkick",
+        "ticket_url": "https://www.songkick.com/concerts/43366852-prospa-at-ai-warehouse-at-union-market?utm_medium=organic&utm_source=microformat",
+        "action": "kept"
+      },
+      "removed": [
+        {
+          "id": 220761,
+          "source_id": "prospa_2026_10_30_factory_town",
+          "name": "PROSPA @ Factory Town",
+          "venue": "Factory Town",
+          "city": "Miami",
+          "country": "United States",
+          "date": "2026-10-30",
+          "source": "songkick",
+          "ticket_url": "https://www.songkick.com/festivals/3492880-hocus-pocus/id/43357056-hocus-pocus-2026?utm_medium=organic&utm_source=microformat",
+          "action": "deleted"
+        }
+      ]
+    },
+    {
+      "date": "2026-11-13",
+      "dj": "A.M.C",
+      "kept": {
+        "id": 191711,
+        "source_id": "sk_43298731",
+        "name": "A.M.C @ Thê Depø Venue",
+        "venue": "Thê Depø Venue",
+        "city": "Plymouth",
+        "country": "United Kingdom",
+        "date": "2026-11-13",
+        "source": "songkick",
+        "ticket_url": "https://www.songkick.com/concerts/43298731-depo-at-depo-venue?utm_medium=organic&utm_source=microformat",
+        "action": "kept"
+      },
+      "removed": [
+        {
+          "id": 220807,
+          "source_id": "sk_43293379",
+          "name": "A.M.C @ Move Exeter",
+          "venue": "Move Exeter",
+          "city": "Exeter",
+          "country": "United Kingdom",
+          "date": "2026-11-13",
+          "source": "songkick",
+          "ticket_url": "https://www.songkick.com/concerts/43293379-amc-at-move-exeter?utm_medium=organic&utm_source=microformat",
+          "action": "deleted"
+        }
+      ]
+    },
+    {
+      "date": "2026-12-04",
+      "dj": "A.M.C",
+      "kept": {
+        "id": 220812,
+        "source_id": "a_m_c_2026_12_04_v_stavi_t_bvv_veletrhy_brno_brno_exhibition_center_pavil_n_p",
+        "name": "A.M.C @ Výstaviště (BVV Veletrhy Brno, Brno Exhibition Center) Pavilón P",
+        "venue": "Výstaviště (BVV Veletrhy Brno, Brno Exhibition Center) Pavilón P",
+        "city": "Brno",
+        "country": "Czechia",
+        "date": "2026-12-04",
+        "source": "songkick",
+        "ticket_url": "https://www.songkick.com/festivals/3791638-beats-for-love-winter/id/43274028-beats-for-love-winter-2026?utm_medium=organic&utm_source=microformat",
+        "action": "kept"
+      },
+      "removed": [
+        {
+          "id": 220811,
+          "source_id": "sk_43293383",
+          "name": "A.M.C @ Bar Seven",
+          "venue": "Bar Seven",
+          "city": "Kettering",
+          "country": "United Kingdom",
+          "date": "2026-12-04",
+          "source": "songkick",
+          "ticket_url": "https://www.songkick.com/concerts/43293383-amc-at-bar-seven?utm_medium=organic&utm_source=microformat",
+          "action": "deleted"
+        }
+      ]
+    },
+    {
+      "date": "2026-10-30",
+      "dj": "Maddix",
+      "kept": {
+        "id": 219334,
+        "source_id": "sk_43404195",
+        "name": "Maddix @ Westworld of Scottsdale",
+        "venue": "Westworld of Scottsdale",
+        "city": "Scottsdale",
+        "country": "United States",
+        "date": "2026-10-30",
+        "source": "songkick",
+        "ticket_url": "https://www.songkick.com/concerts/43404195-maddix-at-westworld-of-scottsdale?utm_medium=organic&utm_source=microformat",
+        "action": "kept"
+      },
+      "removed": [
+        {
+          "id": 219335,
+          "source_id": "maddix_2026_10_30_escape_halloween",
+          "name": "Maddix @ Escape Halloween",
+          "venue": "Escape Halloween",
+          "city": "San Bernardino",
+          "country": "United States",
+          "date": "2026-10-30",
+          "source": "songkick",
+          "ticket_url": "https://www.songkick.com/festivals/3373538-escape-socal/id/43356280-escape-socal-2026?utm_medium=organic&utm_source=microformat",
+          "action": "deleted"
+        }
+      ]
+    },
+    {
+      "date": "2026-10-30",
+      "dj": "Dombresky",
+      "kept": {
+        "id": 221774,
+        "source_id": "dombresky_2026_10_30_westworld_of_scottsdale",
+        "name": "Dombresky @ Westworld of Scottsdale",
+        "venue": "Westworld of Scottsdale",
+        "city": "Scottsdale",
+        "country": "United States",
+        "date": "2026-10-30",
+        "source": "songkick",
+        "ticket_url": "https://www.songkick.com/festivals/1627844-boo-arizona/id/43357202-boo-arizona-2026?utm_medium=organic&utm_source=microformat",
+        "action": "kept"
+      },
+      "removed": [
+        {
+          "id": 221773,
+          "source_id": "sk_43294408",
+          "name": "Dombresky @ Concourse Project",
+          "venue": "Concourse Project",
+          "city": "Austin",
+          "country": "United States",
+          "date": "2026-10-30",
+          "source": "songkick",
+          "ticket_url": "https://www.songkick.com/concerts/43294408-dombresky-at-concourse-project?utm_medium=organic&utm_source=microformat",
+          "action": "deleted"
+        }
+      ]
+    },
+    {
+      "date": "2026-12-05",
+      "dj": "Morgan Seatree",
+      "kept": {
+        "id": 192498,
+        "source_id": "sk_43401078",
+        "name": "Morgan Seatree @ Blackstone Street Warehouse",
+        "venue": "Blackstone Street Warehouse",
+        "city": "Liverpool",
+        "country": "United Kingdom",
+        "date": "2026-12-05",
+        "source": "songkick",
+        "ticket_url": "https://www.songkick.com/concerts/43401078-morgan-seatree-at-blackstone-street-warehouse?utm_medium=organic&utm_source=microformat",
+        "action": "kept"
+      },
+      "removed": [
+        {
+          "id": 221606,
+          "source_id": "sk_43386217",
+          "name": "Morgan Seatree @ Unit Nine",
+          "venue": "Unit Nine",
+          "city": "Milton Keynes",
+          "country": "United Kingdom",
+          "date": "2026-12-05",
+          "source": "songkick",
+          "ticket_url": "https://www.songkick.com/concerts/43386217-morgan-seatree-at-unit-nine?utm_medium=organic&utm_source=microformat",
+          "action": "deleted"
+        }
+      ]
+    },
+    {
+      "date": "2026-10-30",
+      "dj": "A Little Sound",
+      "kept": {
+        "id": 192622,
+        "source_id": "a_little_sound_2026_10_30_escape_halloween",
+        "name": "A Little Sound @ Escape Halloween",
+        "venue": "Escape Halloween",
+        "city": "San Bernardino",
+        "country": "United States",
+        "date": "2026-10-30",
+        "source": "songkick",
+        "ticket_url": "https://www.songkick.com/festivals/3373538-escape-socal/id/43356280-escape-socal-2026?utm_medium=organic&utm_source=microformat",
+        "action": "kept"
+      },
+      "removed": [
+        {
+          "id": 221703,
+          "source_id": "a_little_sound_2026_10_30_wamu_theater",
+          "name": "A Little Sound @ WAMU Theater",
+          "venue": "WAMU Theater",
+          "city": "Seattle",
+          "country": "United States",
+          "date": "2026-10-30",
+          "source": "songkick",
+          "ticket_url": "https://www.songkick.com/festivals/3383391-boo-seattle/id/43270801-boo-seattle-2026?utm_medium=organic&utm_source=microformat",
+          "action": "deleted"
+        }
+      ]
+    },
+    {
+      "date": "2026-11-06",
+      "dj": "Kaskade",
+      "kept": {
+        "id": 192783,
+        "source_id": "sk_43406778",
+        "name": "Kaskade @ Radius Chicago",
+        "venue": "Radius Chicago",
+        "city": "Chicago",
+        "country": "United States",
+        "date": "2026-11-06",
+        "source": "songkick",
+        "ticket_url": "https://www.songkick.com/concerts/43406778-kaskade-at-radius-chicago?utm_medium=organic&utm_source=microformat",
+        "action": "kept"
+      },
+      "removed": [
+        {
+          "id": 221840,
+          "source_id": "kaskade_2026_11_06_tinker_field",
+          "name": "Kaskade @ Tinker Field",
+          "venue": "Tinker Field",
+          "city": "Orlando",
+          "country": "United States",
+          "date": "2026-11-06",
+          "source": "songkick",
+          "ticket_url": "https://www.songkick.com/festivals/10816-electric-daisy-carnival/id/43117678-electric-daisy-carnival-2026?utm_medium=organic&utm_source=microformat",
+          "action": "deleted"
+        }
+      ]
+    },
+    {
+      "date": "2026-11-28",
+      "dj": "Mish",
+      "kept": {
+        "id": 192817,
+        "source_id": "mish_2026_11_28_hanover_fairground",
+        "name": "Mish @ Hanover Fairground",
+        "venue": "Hanover Fairground",
+        "city": "Hannover",
+        "country": "Germany",
+        "date": "2026-11-28",
+        "source": "songkick",
+        "ticket_url": "https://www.songkick.com/festivals/3215462-fairground/id/43386508-fairground-festival-2026?utm_medium=organic&utm_source=microformat",
+        "action": "kept"
+      },
+      "removed": [
+        {
+          "id": 221865,
+          "source_id": "mish_2026_11_28_sparkassen_arena",
+          "name": "Mish @ Sparkassen-Arena",
+          "venue": "Sparkassen-Arena",
+          "city": "Kiel",
+          "country": "Germany",
+          "date": "2026-11-28",
+          "source": "songkick",
+          "ticket_url": "https://www.songkick.com/festivals/3802659-one-step-harder/id/43386493-one-step-harder-2026?utm_medium=organic&utm_source=microformat",
+          "action": "deleted"
+        }
+      ]
+    },
+    {
+      "date": "2026-10-31",
+      "dj": "Todd Terry",
+      "kept": {
+        "id": 214769,
+        "source_id": "sk_43420056",
+        "name": "Todd Terry @ Leicester St Andrews Fc",
+        "venue": "Leicester St Andrews Fc",
+        "city": "Leicester",
+        "country": "United Kingdom",
+        "date": "2026-10-31",
+        "source": "songkick",
+        "ticket_url": "https://www.songkick.com/concerts/43420056-beyond-chicago-at-leicester-st-andrews-fc?utm_medium=organic&utm_source=microformat",
+        "action": "kept"
+      },
+      "removed": [
+        {
+          "id": 221969,
+          "source_id": "sk_43392943",
+          "name": "Todd Terry @ Freeze Project",
+          "venue": "Freeze Project",
+          "city": "Liverpool",
+          "country": "United Kingdom",
+          "date": "2026-10-31",
+          "source": "songkick",
+          "ticket_url": "https://www.songkick.com/concerts/43392943-todd-terry-at-freeze-project?utm_medium=organic&utm_source=microformat",
+          "action": "deleted"
+        }
+      ]
+    },
+    {
+      "date": "2026-11-21",
+      "dj": "Tommy phillips",
+      "kept": {
+        "id": 192942,
+        "source_id": "sk_43352301",
+        "name": "Tommy Phillips @ Secret Vault",
+        "venue": "Secret Vault",
+        "city": "Nottingham",
+        "country": "United Kingdom",
+        "date": "2026-11-21",
+        "source": "songkick",
+        "ticket_url": "https://www.songkick.com/concerts/43352301-tommy-phillips-at-secret-vault?utm_medium=organic&utm_source=microformat",
+        "action": "kept"
+      },
+      "removed": [
+        {
+          "id": 221976,
+          "source_id": "sk_43432178",
+          "name": "Tommy Phillips @ LAB11",
+          "venue": "LAB11",
+          "city": "Digbeth",
+          "country": "United Kingdom",
+          "date": "2026-11-21",
+          "source": "songkick",
+          "ticket_url": "https://www.songkick.com/concerts/43432178-tommy-phillips-at-lab11?utm_medium=organic&utm_source=microformat",
+          "action": "deleted"
+        }
+      ]
+    },
+    {
+      "date": "2026-11-20",
+      "dj": "Adiel",
+      "kept": {
+        "id": 193026,
+        "source_id": "ra_2518700",
+        "name": "Time Warp NYC 2026",
+        "venue": "Duggal Greenhouse",
+        "city": "New York",
+        "country": "United States",
+        "date": "2026-11-20",
+        "source": "ra",
+        "ticket_url": "https://ra.co/events/2518700",
+        "action": "kept"
+      },
+      "removed": [
+        {
+          "id": 220693,
+          "source_id": "sk_43364431",
+          "name": "Adiel @ Cermak Hall (inside Radius)",
+          "venue": "Cermak Hall (inside Radius)",
+          "city": "Chicago",
+          "country": "United States",
+          "date": "2026-11-20",
+          "source": "songkick",
+          "ticket_url": "https://www.songkick.com/concerts/43364431-adiel-at-cermak-hall?utm_medium=organic&utm_source=microformat",
+          "action": "deleted"
+        }
+      ]
+    },
+    {
+      "date": "2026-11-20",
+      "dj": "Chlär",
       "kept": {
         "id": 218849,
         "source_id": "ra_2376196",
@@ -886,7 +2140,7 @@
     },
     {
       "date": "2026-11-20",
-      "dj": "Sven Vath",
+      "dj": "DJ Tennis",
       "kept": {
         "id": 218849,
         "source_id": "ra_2376196",
@@ -976,7 +2230,7 @@
     },
     {
       "date": "2026-11-20",
-      "dj": "Chlär",
+      "dj": "Indira Paganotto",
       "kept": {
         "id": 218849,
         "source_id": "ra_2376196",
@@ -1036,7 +2290,7 @@
     },
     {
       "date": "2026-11-20",
-      "dj": "DJ Tennis",
+      "dj": "Sven Vath",
       "kept": {
         "id": 218849,
         "source_id": "ra_2376196",
@@ -1065,1486 +2319,10 @@
       ]
     },
     {
-      "date": "2026-10-31",
-      "dj": "Delta Heavy",
-      "kept": {
-        "id": 171086,
-        "source_id": "sk_43319378",
-        "name": "Delta Heavy @ Bvv Brno - Pavilon G1",
-        "venue": "Bvv Brno - Pavilon G1",
-        "city": "Brno",
-        "country": "Czechia",
-        "date": "2026-10-31",
-        "source": "songkick",
-        "ticket_url": "https://www.songkick.com/concerts/43319378-delta-heavy-at-bvv-brno-pavilon-g1?utm_medium=organic&utm_source=microformat",
-        "action": "kept"
-      },
-      "removed": [
-        {
-          "id": 217214,
-          "source_id": "sk_43368304",
-          "name": "Delta Heavy @ Portland Expo Center",
-          "venue": "Portland Expo Center",
-          "city": "Portland",
-          "country": "United States",
-          "date": "2026-10-31",
-          "source": "songkick",
-          "ticket_url": "https://www.songkick.com/concerts/43368304-delta-heavy-at-portland-expo-center?utm_medium=organic&utm_source=microformat",
-          "action": "deleted"
-        }
-      ]
-    },
-    {
-      "date": "2026-12-11",
-      "dj": "Frost Children",
-      "kept": {
-        "id": 172205,
-        "source_id": "frost_children_2026_12_11_radio_east",
-        "name": "Frost Children @ The Far Out Lounge",
-        "venue": "Radio/East",
-        "city": "Austin",
-        "country": "United States",
-        "date": "2026-12-11",
-        "source": "songkick",
-        "ticket_url": "https://www.songkick.com/festivals/36561-holiday-hootenanny/id/43320233-holiday-hootenanny-2026?utm_medium=organic&utm_source=microformat",
-        "action": "kept"
-      },
-      "removed": [
-        {
-          "id": 217971,
-          "source_id": "sk_43367774",
-          "name": "Frost Children @ Fonda Theatre",
-          "venue": "Fonda Theatre",
-          "city": "Los Angeles",
-          "country": "United States",
-          "date": "2026-12-11",
-          "source": "songkick",
-          "ticket_url": "https://www.songkick.com/concerts/43367774-frost-children-at-fonda-theatre?utm_medium=organic&utm_source=microformat",
-          "action": "deleted"
-        }
-      ]
-    },
-    {
-      "date": "2026-11-13",
-      "dj": "Cloonee",
-      "kept": {
-        "id": 216287,
-        "source_id": "cloonee_2026_11_13_shell_energy_stadium",
-        "name": "Cloonee @ Shell Energy Stadium",
-        "venue": "Shell Energy Stadium",
-        "city": "Houston",
-        "country": "United States",
-        "date": "2026-11-13",
-        "source": "songkick",
-        "ticket_url": "https://www.songkick.com/festivals/3792036-breakaway-music-houston/id/43278835-breakaway-music-festival-houston-2026?utm_medium=organic&utm_source=microformat",
-        "action": "kept"
-      },
-      "removed": [
-        {
-          "id": 216286,
-          "source_id": "cloonee_2026_11_13_parque_fundidora",
-          "name": "Cloonee @ Parque Fundidora",
-          "venue": "Parque Fundidora",
-          "city": "Monterrey",
-          "country": "Mexico",
-          "date": "2026-11-13",
-          "source": "songkick",
-          "ticket_url": "https://www.songkick.com/festivals/3793033-futur-mexico/id/43291401-futur-festival-mexico-2026?utm_medium=organic&utm_source=microformat",
-          "action": "deleted"
-        }
-      ]
-    },
-    {
-      "date": "2026-10-30",
-      "dj": "Indira Paganotto",
-      "kept": {
-        "id": 174805,
-        "source_id": "sk_43332705",
-        "name": "Indira Paganotto @ Gold Bar Hangar",
-        "venue": "Gold Bar Hangar",
-        "city": "Alameda",
-        "country": "United States",
-        "date": "2026-10-30",
-        "source": "songkick",
-        "ticket_url": "https://www.songkick.com/concerts/43332705-richie-hawtin-at-gold-bar-hangar?utm_medium=organic&utm_source=microformat",
-        "action": "kept"
-      },
-      "removed": [
-        {
-          "id": 215585,
-          "source_id": "indira_paganotto_2026_10_30_factory_town",
-          "name": "Indira Paganotto @ Factory Town",
-          "venue": "Factory Town",
-          "city": "Miami",
-          "country": "United States",
-          "date": "2026-10-30",
-          "source": "songkick",
-          "ticket_url": "https://www.songkick.com/festivals/3492880-hocus-pocus/id/43357056-hocus-pocus-2026?utm_medium=organic&utm_source=microformat",
-          "action": "deleted"
-        }
-      ]
-    },
-    {
-      "date": "2026-10-30",
-      "dj": "DeVault",
-      "kept": {
-        "id": 217728,
-        "source_id": "devault_2026_10_30_mardi_gras_world",
-        "name": "DEVAULT @ Mardi Gras World",
-        "venue": "Mardi Gras World",
-        "city": "New Orleans",
-        "country": "United States",
-        "date": "2026-10-30",
-        "source": "songkick",
-        "ticket_url": "https://www.songkick.com/festivals/3809791-freaky-deaky-new-orleans-2-day-pass-18/id/43466647-freaky-deaky-new-orleans--2-day-pass-18-2026?utm_medium=organic&utm_source=microformat",
-        "action": "kept"
-      },
-      "removed": [
-        {
-          "id": 217727,
-          "source_id": "sk_43368165",
-          "name": "DEVAULT @ Magic Stick",
-          "venue": "Magic Stick",
-          "city": "Detroit",
-          "country": "United States",
-          "date": "2026-10-30",
-          "source": "songkick",
-          "ticket_url": "https://www.songkick.com/concerts/43368165-devault-at-magic-stick?utm_medium=organic&utm_source=microformat",
-          "action": "deleted"
-        }
-      ]
-    },
-    {
-      "date": "2026-11-20",
-      "dj": "Adiel",
-      "kept": {
-        "id": 193026,
-        "source_id": "ra_2518700",
-        "name": "Time Warp NYC 2026",
-        "venue": "Duggal Greenhouse",
-        "city": "New York",
-        "country": "United States",
-        "date": "2026-11-20",
-        "source": "ra",
-        "ticket_url": "https://ra.co/events/2518700",
-        "action": "kept"
-      },
-      "removed": [
-        {
-          "id": 217087,
-          "source_id": "sk_43364431",
-          "name": "Adiel @ Cermak Hall (inside Radius)",
-          "venue": "Cermak Hall (inside Radius)",
-          "city": "Chicago",
-          "country": "United States",
-          "date": "2026-11-20",
-          "source": "songkick",
-          "ticket_url": "https://www.songkick.com/concerts/43364431-adiel-at-cermak-hall?utm_medium=organic&utm_source=microformat",
-          "action": "deleted"
-        }
-      ]
-    },
-    {
-      "date": "2026-11-06",
-      "dj": "Franky Rizardo",
-      "kept": {
-        "id": 180718,
-        "source_id": "sk_43335774",
-        "name": "Franky Rizardo @ District Atlanta",
-        "venue": "District Atlanta",
-        "city": "Atlanta",
-        "country": "United States",
-        "date": "2026-11-06",
-        "source": "songkick",
-        "ticket_url": "https://www.songkick.com/concerts/43335774-franky-rizardo-at-district-atlanta?utm_medium=organic&utm_source=microformat",
-        "action": "kept"
-      },
-      "removed": [
-        {
-          "id": 217019,
-          "source_id": "franky_rizardo_2026_11_06_tinker_field",
-          "name": "Franky Rizardo @ Tinker Field",
-          "venue": "Tinker Field",
-          "city": "Orlando",
-          "country": "United States",
-          "date": "2026-11-06",
-          "source": "songkick",
-          "ticket_url": "https://www.songkick.com/festivals/10816-electric-daisy-carnival/id/43117678-electric-daisy-carnival-2026?utm_medium=organic&utm_source=microformat",
-          "action": "deleted"
-        }
-      ]
-    },
-    {
-      "date": "2026-11-06",
-      "dj": "Steve Aoki",
-      "kept": {
-        "id": 184396,
-        "source_id": "steve_aoki_2026_11_06_russell_industrial_center",
-        "name": "Steve Aoki @ Russell Industrial Center",
-        "venue": "Russell Industrial Center",
-        "city": "Detroit",
-        "country": "United States",
-        "date": "2026-11-06",
-        "source": "songkick",
-        "ticket_url": "https://www.songkick.com/festivals/3798455-steve-aoki-dim-mak-30-tour/id/43345852-steve-aoki-dim-mak-30-tour-2026?utm_medium=organic&utm_source=microformat",
-        "action": "kept"
-      },
-      "removed": [
-        {
-          "id": 215433,
-          "source_id": "steve_aoki_2026_11_06_tinker_field",
-          "name": "Steve Aoki @ Tinker Field",
-          "venue": "Tinker Field",
-          "city": "Orlando",
-          "country": "United States",
-          "date": "2026-11-06",
-          "source": "songkick",
-          "ticket_url": "https://www.songkick.com/festivals/10816-electric-daisy-carnival/id/43117678-electric-daisy-carnival-2026?utm_medium=organic&utm_source=microformat",
-          "action": "deleted"
-        }
-      ]
-    },
-    {
-      "date": "2026-10-29",
-      "dj": "Oklou",
-      "kept": {
-        "id": 187568,
-        "source_id": "sk_43267349",
-        "name": "Oklou @ X-TRA Haus der Musik",
-        "venue": "X-TRA Haus der Musik",
-        "city": "Zurich",
-        "country": "Switzerland",
-        "date": "2026-10-29",
-        "source": "songkick",
-        "ticket_url": "https://www.songkick.com/concerts/43267349-oklou-at-xtra-haus-der-musik?utm_medium=organic&utm_source=microformat",
-        "action": "kept"
-      },
-      "removed": [
-        {
-          "id": 217708,
-          "source_id": "oklou_2026_10_29_lingotto",
-          "name": "Oklou @ Lingotto",
-          "venue": "Lingotto",
-          "city": "Turin",
-          "country": "Italy",
-          "date": "2026-10-29",
-          "source": "songkick",
-          "ticket_url": "https://www.songkick.com/festivals/1117783-c2c/id/43072752-c2c-2026?utm_medium=organic&utm_source=microformat",
-          "action": "deleted"
-        }
-      ]
-    },
-    {
-      "date": "2026-12-28",
-      "dj": "John Summit",
-      "kept": {
-        "id": 215682,
-        "source_id": "john_summit_2026_12_28_waiohika_estate_vineyard",
-        "name": "John Summit @ Waiohika Estate Vineyard",
-        "venue": "Waiohika Estate Vineyard",
-        "city": "Gisborne",
-        "country": "New Zealand",
-        "date": "2026-12-28",
-        "source": "songkick",
-        "ticket_url": "https://www.songkick.com/festivals/295-rhythm-and-vines/id/43344433-rhythm-and-vines-festival-2026?utm_medium=organic&utm_source=microformat",
-        "action": "kept"
-      },
-      "removed": [
-        {
-          "id": 215683,
-          "source_id": "john_summit_2026_12_28_glenworth_valley",
-          "name": "John Summit @ Glenworth Valley",
-          "venue": "Glenworth Valley",
-          "city": "Sydney",
-          "country": "Australia",
-          "date": "2026-12-28",
-          "source": "songkick",
-          "ticket_url": "https://www.songkick.com/festivals/1141053-lost-paradise/id/43343257-lost-paradise-2026?utm_medium=organic&utm_source=microformat",
-          "action": "deleted"
-        },
-        {
-          "id": 215681,
-          "source_id": "john_summit_2026_12_28_barunah_plains",
-          "name": "John Summit @ Barunah Plains",
-          "venue": "Barunah Plains",
-          "city": "Hesse",
-          "country": "Australia",
-          "date": "2026-12-28",
-          "source": "songkick",
-          "ticket_url": "https://www.songkick.com/festivals/1125073-beyond-the-valley/id/43355258-beyond-the-valley-2026?utm_medium=organic&utm_source=microformat",
-          "action": "deleted"
-        }
-      ]
-    },
-    {
-      "date": "2026-12-28",
-      "dj": "Hamdi",
-      "kept": {
-        "id": 216623,
-        "source_id": "hamdi_2026_12_28_waiohika_estate_vineyard",
-        "name": "Hamdi @ Waiohika Estate Vineyard",
-        "venue": "Waiohika Estate Vineyard",
-        "city": "Gisborne",
-        "country": "New Zealand",
-        "date": "2026-12-28",
-        "source": "songkick",
-        "ticket_url": "https://www.songkick.com/festivals/295-rhythm-and-vines/id/43344433-rhythm-and-vines-festival-2026?utm_medium=organic&utm_source=microformat",
-        "action": "kept"
-      },
-      "removed": [
-        {
-          "id": 216624,
-          "source_id": "hamdi_2026_12_28_glenworth_valley",
-          "name": "Hamdi @ Glenworth Valley",
-          "venue": "Glenworth Valley",
-          "city": "Sydney",
-          "country": "Australia",
-          "date": "2026-12-28",
-          "source": "songkick",
-          "ticket_url": "https://www.songkick.com/festivals/1141053-lost-paradise/id/43343257-lost-paradise-2026?utm_medium=organic&utm_source=microformat",
-          "action": "deleted"
-        },
-        {
-          "id": 216622,
-          "source_id": "hamdi_2026_12_28_barunah_plains",
-          "name": "Hamdi @ Barunah Plains",
-          "venue": "Barunah Plains",
-          "city": "Hesse",
-          "country": "Australia",
-          "date": "2026-12-28",
-          "source": "songkick",
-          "ticket_url": "https://www.songkick.com/festivals/1125073-beyond-the-valley/id/43355258-beyond-the-valley-2026?utm_medium=organic&utm_source=microformat",
-          "action": "deleted"
-        }
-      ]
-    },
-    {
-      "date": "2026-10-31",
-      "dj": "Obskür",
-      "kept": {
-        "id": 187703,
-        "source_id": "sk_43346765",
-        "name": "Obskür @ BALLIN' Maidstone",
-        "venue": "BALLIN' Maidstone",
-        "city": "Maidstone",
-        "country": "United Kingdom",
-        "date": "2026-10-31",
-        "source": "songkick",
-        "ticket_url": "https://www.songkick.com/concerts/43346765-obskur-at-ballin-maidstone?utm_medium=organic&utm_source=microformat",
-        "action": "kept"
-      },
-      "removed": [
-        {
-          "id": 217789,
-          "source_id": "sk_43350531",
-          "name": "Obskür @ Concorde 2",
-          "venue": "Concorde 2",
-          "city": "Brighton",
-          "country": "United Kingdom",
-          "date": "2026-10-31",
-          "source": "songkick",
-          "ticket_url": "https://www.songkick.com/concerts/43350531-obskur-at-concorde-2?utm_medium=organic&utm_source=microformat",
-          "action": "deleted"
-        }
-      ]
-    },
-    {
-      "date": "2026-11-28",
-      "dj": "Kepler",
-      "kept": {
-        "id": 188702,
-        "source_id": "ra_2458554",
-        "name": "FUSE 18th Birthday w/ Enzo Siragusa b2b Rossi., Luciano, Marlie b2b Natalia Roth, Marsolo",
-        "venue": "DRUMSHEDS",
-        "city": "London",
-        "country": "United Kingdom",
-        "date": "2026-11-28",
-        "source": "ra",
-        "ticket_url": "",
-        "action": "kept"
-      },
-      "removed": [
-        {
-          "id": 217857,
-          "source_id": "sk_43454846",
-          "name": "Kepler @ Great Hall, Cardiff University Students' Union",
-          "venue": "Great Hall, Cardiff University Students' Union",
-          "city": "Cardiff",
-          "country": "United Kingdom",
-          "date": "2026-11-28",
-          "source": "songkick",
-          "ticket_url": "https://www.songkick.com/concerts/43454846-kepler-at-great-hall-cardiff-university-students-union?utm_medium=organic&utm_source=microformat",
-          "action": "deleted"
-        }
-      ]
-    },
-    {
-      "date": "2026-11-28",
-      "dj": "Marsolo",
-      "kept": {
-        "id": 188702,
-        "source_id": "ra_2458554",
-        "name": "FUSE 18th Birthday w/ Enzo Siragusa b2b Rossi., Luciano, Marlie b2b Natalia Roth, Marsolo",
-        "venue": "DRUMSHEDS",
-        "city": "London",
-        "country": "United Kingdom",
-        "date": "2026-11-28",
-        "source": "ra",
-        "ticket_url": "",
-        "action": "kept"
-      },
-      "removed": [
-        {
-          "id": 217631,
-          "source_id": "sk_43386216",
-          "name": "Marsolo @ Concorde 2",
-          "venue": "Concorde 2",
-          "city": "Brighton",
-          "country": "United Kingdom",
-          "date": "2026-11-28",
-          "source": "songkick",
-          "ticket_url": "https://www.songkick.com/concerts/43386216-marsolo-at-concorde-2?utm_medium=organic&utm_source=microformat",
-          "action": "deleted"
-        }
-      ]
-    },
-    {
-      "date": "2026-10-25",
-      "dj": "O.BEE",
-      "kept": {
-        "id": 189264,
-        "source_id": "ra_2479433",
-        "name": "DGTL ADE FUSE",
-        "venue": "NDSM Scheepsbouwloods",
-        "city": "Amsterdam",
-        "country": "Netherlands",
-        "date": "2026-10-25",
-        "source": "ra",
-        "ticket_url": "",
-        "action": "kept"
-      },
-      "removed": [
-        {
-          "id": 218653,
-          "source_id": "sk_43463303",
-          "name": "O.bee @ The Basement",
-          "venue": "The Basement",
-          "city": "Nashville",
-          "country": "United States",
-          "date": "2026-10-25",
-          "source": "songkick",
-          "ticket_url": "https://www.songkick.com/concerts/43463303-obee-at-basement?utm_medium=organic&utm_source=microformat",
-          "action": "deleted"
-        }
-      ]
-    },
-    {
-      "date": "2026-11-06",
-      "dj": "Paranoid London",
-      "kept": {
-        "id": 189544,
-        "source_id": "ra_2527706",
-        "name": "Acid Ballroom: Paranoid London",
-        "venue": "Beaver Works",
-        "city": "Leeds",
-        "country": "United Kingdom",
-        "date": "2026-11-06",
-        "source": "ra",
-        "ticket_url": "",
-        "action": "kept"
-      },
-      "removed": [
-        {
-          "id": 215063,
-          "source_id": "paranoid_london_2026_11_06_sonic_city_festival",
-          "name": "Paranoid London @ Sonic City Festival",
-          "venue": "Sonic City Festival",
-          "city": "Kortrijk",
-          "country": "Belgium",
-          "date": "2026-11-06",
-          "source": "songkick",
-          "ticket_url": "https://www.songkick.com/festivals/463439-sonic-city/id/43195722-sonic-city-2026?utm_medium=organic&utm_source=microformat",
-          "action": "deleted"
-        }
-      ]
-    },
-    {
-      "date": "2026-11-13",
-      "dj": "Vintage Culture",
-      "kept": {
-        "id": 189779,
-        "source_id": "sk_43409822",
-        "name": "Vintage Culture @ The Rady Shell at Jacobs Park",
-        "venue": "The Rady Shell at Jacobs Park",
-        "city": "San Diego",
-        "country": "United States",
-        "date": "2026-11-13",
-        "source": "songkick",
-        "ticket_url": "https://www.songkick.com/concerts/43409822-vintage-culture-at-rady-shell-at-jacobs-park?utm_medium=organic&utm_source=microformat",
-        "action": "kept"
-      },
-      "removed": [
-        {
-          "id": 215416,
-          "source_id": "vintage_culture_2026_11_13_parque_fundidora",
-          "name": "Vintage Culture @ Parque Fundidora",
-          "venue": "Parque Fundidora",
-          "city": "Monterrey",
-          "country": "Mexico",
-          "date": "2026-11-13",
-          "source": "songkick",
-          "ticket_url": "https://www.songkick.com/festivals/3793033-futur-mexico/id/43291401-futur-festival-mexico-2026?utm_medium=organic&utm_source=microformat",
-          "action": "deleted"
-        }
-      ]
-    },
-    {
-      "date": "2026-11-13",
-      "dj": "Calvin Harris",
-      "kept": {
-        "id": 189820,
-        "source_id": "calvin_harris_2026_11_13_parque_ecol_gico_metropolitano",
-        "name": "Calvin Harris @ Parque Ecológico Metropolitano",
-        "venue": "Parque Ecológico Metropolitano",
-        "city": "Leon",
-        "country": "Mexico",
-        "date": "2026-11-13",
-        "source": "songkick",
-        "ticket_url": "https://www.songkick.com/festivals/1654464-internacional-del-globo/id/43373688-festival-internacional-del-globo-2026?utm_medium=organic&utm_source=microformat",
-        "action": "kept"
-      },
-      "removed": [
-        {
-          "id": 215451,
-          "source_id": "sk_43421163",
-          "name": "Calvin Harris @ Coliseo MedPlus",
-          "venue": "Coliseo MedPlus",
-          "city": "Bogota",
-          "country": "Colombia",
-          "date": "2026-11-13",
-          "source": "songkick",
-          "ticket_url": "https://www.songkick.com/concerts/43421163-calvin-harris-at-coliseo-medplus?utm_medium=organic&utm_source=microformat",
-          "action": "deleted"
-        }
-      ]
-    },
-    {
-      "date": "2026-11-13",
-      "dj": "Alok",
-      "kept": {
-        "id": 215351,
-        "source_id": "alok_2026_11_13_parque_ecol_gico_metropolitano",
-        "name": "Alok @ Parque Ecológico Metropolitano",
-        "venue": "Parque Ecológico Metropolitano",
-        "city": "Leon",
-        "country": "Mexico",
-        "date": "2026-11-13",
-        "source": "songkick",
-        "ticket_url": "https://www.songkick.com/festivals/1654464-internacional-del-globo/id/43373688-festival-internacional-del-globo-2026?utm_medium=organic&utm_source=microformat",
-        "action": "kept"
-      },
-      "removed": [
-        {
-          "id": 215350,
-          "source_id": "sk_43227710",
-          "name": "Alok @ Schottenstein Center",
-          "venue": "Schottenstein Center",
-          "city": "Columbus",
-          "country": "United States",
-          "date": "2026-11-13",
-          "source": "songkick",
-          "ticket_url": "https://www.songkick.com/concerts/43227710-john-summit-at-schottenstein-center?utm_medium=organic&utm_source=microformat",
-          "action": "deleted"
-        }
-      ]
-    },
-    {
-      "date": "2026-11-07",
-      "dj": "Eric Prydz",
-      "kept": {
-        "id": 189965,
-        "source_id": "sk_43366778",
-        "name": "Eric Prydz @ Ductwork Houston",
-        "venue": "Ductwork Houston",
-        "city": "Houston",
-        "country": "United States",
-        "date": "2026-11-07",
-        "source": "songkick",
-        "ticket_url": "https://www.songkick.com/concerts/43366778-eric-prydz-at-ductwork-houston?utm_medium=organic&utm_source=microformat",
-        "action": "kept"
-      },
-      "removed": [
-        {
-          "id": 215598,
-          "source_id": "eric_prydz_2026_11_07_estadio_banorte",
-          "name": "Eric Prydz @ Estadio Banorte",
-          "venue": "Estadio Banorte",
-          "city": "Mexico City",
-          "country": "Mexico",
-          "date": "2026-11-07",
-          "source": "songkick",
-          "ticket_url": "https://www.songkick.com/festivals/1924389-ultra-mexico/id/43342911-ultra-mexico-2026?utm_medium=organic&utm_source=microformat",
-          "action": "deleted"
-        }
-      ]
-    },
-    {
-      "date": "2026-10-30",
-      "dj": "Nora En Pure",
-      "kept": {
-        "id": 190174,
-        "source_id": "sk_43383884",
-        "name": "Nora en Pure @ Ductwork Houston",
-        "venue": "Ductwork Houston",
-        "city": "Houston",
-        "country": "United States",
-        "date": "2026-10-30",
-        "source": "songkick",
-        "ticket_url": "https://www.songkick.com/concerts/43383884-nora-en-pure-at-ductwork-houston?utm_medium=organic&utm_source=microformat",
-        "action": "kept"
-      },
-      "removed": [
-        {
-          "id": 215765,
-          "source_id": "nora_en_pure_2026_10_30_factory_town",
-          "name": "Nora en Pure @ Factory Town",
-          "venue": "Factory Town",
-          "city": "Miami",
-          "country": "United States",
-          "date": "2026-10-30",
-          "source": "songkick",
-          "ticket_url": "https://www.songkick.com/festivals/3492880-hocus-pocus/id/43357056-hocus-pocus-2026?utm_medium=organic&utm_source=microformat",
-          "action": "deleted"
-        }
-      ]
-    },
-    {
-      "date": "2026-10-30",
-      "dj": "Odd Mob",
-      "kept": {
-        "id": 216159,
-        "source_id": "sk_43422503",
-        "name": "Odd Mob @ Ductwork Houston",
-        "venue": "Ductwork Houston",
-        "city": "Houston",
-        "country": "United States",
-        "date": "2026-10-30",
-        "source": "songkick",
-        "ticket_url": "https://www.songkick.com/concerts/43422503-odd-mob-at-ductwork-houston?utm_medium=organic&utm_source=microformat",
-        "action": "kept"
-      },
-      "removed": [
-        {
-          "id": 216160,
-          "source_id": "odd_mob_2026_10_30_factory_town",
-          "name": "Odd Mob @ Factory Town",
-          "venue": "Factory Town",
-          "city": "Miami",
-          "country": "United States",
-          "date": "2026-10-30",
-          "source": "songkick",
-          "ticket_url": "https://www.songkick.com/festivals/3492880-hocus-pocus/id/43357056-hocus-pocus-2026?utm_medium=organic&utm_source=microformat",
-          "action": "deleted"
-        }
-      ]
-    },
-    {
-      "date": "2026-11-06",
-      "dj": "KI/KI",
-      "kept": {
-        "id": 190361,
-        "source_id": "sk_43403137",
-        "name": "KI/KI @ Theatre Monsigny",
-        "venue": "Theatre Monsigny",
-        "city": "Boulogne Sur Mer",
-        "country": "France",
-        "date": "2026-11-06",
-        "source": "songkick",
-        "ticket_url": "https://www.songkick.com/concerts/43403137-kiki-at-theatre-monsigny?utm_medium=organic&utm_source=microformat",
-        "action": "kept"
-      },
-      "removed": [
-        {
-          "id": 212380,
-          "source_id": "ki_ki_2026_11_06_tinker_field",
-          "name": "KI/KI @ Tinker Field",
-          "venue": "Tinker Field",
-          "city": "Orlando",
-          "country": "United States",
-          "date": "2026-11-06",
-          "source": "songkick",
-          "ticket_url": "https://www.songkick.com/festivals/10816-electric-daisy-carnival/id/43117678-electric-daisy-carnival-2026?utm_medium=organic&utm_source=microformat",
-          "action": "deleted"
-        }
-      ]
-    },
-    {
-      "date": "2026-10-31",
-      "dj": "Luca Testa",
-      "kept": {
-        "id": 190492,
-        "source_id": "sk_43376587",
-        "name": "Luca Testa @ Open Air Castelletto Stura",
-        "venue": "Open Air Castelletto Stura",
-        "city": "Cuneo",
-        "country": "Italy",
-        "date": "2026-10-31",
-        "source": "songkick",
-        "ticket_url": "https://www.songkick.com/concerts/43376587-luca-testa-at-open-air-castelletto-stura?utm_medium=organic&utm_source=microformat",
-        "action": "kept"
-      },
-      "removed": [
-        {
-          "id": 216094,
-          "source_id": "sk_43418732",
-          "name": "Luca Testa @ Tabata",
-          "venue": "Tabata",
-          "city": "Turin",
-          "country": "Italy",
-          "date": "2026-10-31",
-          "source": "songkick",
-          "ticket_url": "https://www.songkick.com/concerts/43418732-luca-testa-at-tabata?utm_medium=organic&utm_source=microformat",
-          "action": "deleted"
-        }
-      ]
-    },
-    {
-      "date": "2026-11-13",
-      "dj": "Brutalismus 3000",
-      "kept": {
-        "id": 207434,
-        "source_id": "sk_43388642",
-        "name": "Brutalismus 3000 @ Echostage",
-        "venue": "Echostage",
-        "city": "Washington",
-        "country": "United States",
-        "date": "2026-11-13",
-        "source": "songkick",
-        "ticket_url": "https://www.songkick.com/concerts/43388642-brutalismus-3000-at-echostage?utm_medium=organic&utm_source=microformat",
-        "action": "kept"
-      },
-      "removed": [
-        {
-          "id": 218138,
-          "source_id": "sk_43232484",
-          "name": "Brutalismus 3000 @ Radius",
-          "venue": "Radius",
-          "city": "Chicago",
-          "country": "United States",
-          "date": "2026-11-13",
-          "source": "songkick",
-          "ticket_url": "https://www.songkick.com/concerts/43232484-brutalismus-3000-at-radius?utm_medium=organic&utm_source=microformat",
-          "action": "deleted"
-        }
-      ]
-    },
-    {
-      "date": "2026-12-05",
-      "dj": "Andy C",
-      "kept": {
-        "id": 190914,
-        "source_id": "sk_43374997",
-        "name": "Andy C @ Unit 13",
-        "venue": "Unit 13",
-        "city": "Nottingham",
-        "country": "United Kingdom",
-        "date": "2026-12-05",
-        "source": "songkick",
-        "ticket_url": "https://www.songkick.com/concerts/43374997-andy-c-at-unit-13?utm_medium=organic&utm_source=microformat",
-        "action": "kept"
-      },
-      "removed": [
-        {
-          "id": 216457,
-          "source_id": "sk_43466401",
-          "name": "Andy C @ XOYO",
-          "venue": "XOYO",
-          "city": "London",
-          "country": "United Kingdom",
-          "date": "2026-12-05",
-          "source": "songkick",
-          "ticket_url": "https://www.songkick.com/concerts/43466401-andy-c-at-xoyo?utm_medium=organic&utm_source=microformat",
-          "action": "deleted"
-        }
-      ]
-    },
-    {
-      "date": "2026-10-31",
-      "dj": "Patrick Topping",
-      "kept": {
-        "id": 190929,
-        "source_id": "sk_43413587",
-        "name": "Patrick Topping @ Drumsheds",
-        "venue": "Drumsheds",
-        "city": "London",
-        "country": "United Kingdom",
-        "date": "2026-10-31",
-        "source": "songkick",
-        "ticket_url": "https://www.songkick.com/concerts/43413587-patrick-topping-at-drumsheds?utm_medium=organic&utm_source=microformat",
-        "action": "kept"
-      },
-      "removed": [
-        {
-          "id": 216465,
-          "source_id": "sk_43413590",
-          "name": "Patrick Topping @ Milan",
-          "venue": "Milan",
-          "city": "Milan",
-          "country": "Italy",
-          "date": "2026-10-31",
-          "source": "songkick",
-          "ticket_url": "https://www.songkick.com/concerts/43413590-patrick-topping-at-unknown-venue?utm_medium=organic&utm_source=microformat",
-          "action": "deleted"
-        }
-      ]
-    },
-    {
-      "date": "2026-11-06",
-      "dj": "Sofi Tukker",
-      "kept": {
-        "id": 191049,
-        "source_id": "sk_43352964",
-        "name": "SOFI TUKKER @ West Palm Beach",
-        "venue": "West Palm Beach",
-        "city": "West Palm Beach",
-        "country": "United States",
-        "date": "2026-11-06",
-        "source": "songkick",
-        "ticket_url": "https://www.songkick.com/concerts/43352964-sofi-tukker-at-unknown-venue?utm_medium=organic&utm_source=microformat",
-        "action": "kept"
-      },
-      "removed": [
-        {
-          "id": 216568,
-          "source_id": "sofi_tukker_2026_11_06_momentous_2026",
-          "name": "SOFI TUKKER @ Momentous 2026",
-          "venue": "Momentous 2026",
-          "city": "Bentonville",
-          "country": "United States",
-          "date": "2026-11-06",
-          "source": "songkick",
-          "ticket_url": "https://www.songkick.com/festivals/3627116-momentous/id/43236797-momentous-2026?utm_medium=organic&utm_source=microformat",
-          "action": "deleted"
-        }
-      ]
-    },
-    {
-      "date": "2026-12-04",
-      "dj": "Solardo",
-      "kept": {
-        "id": 191175,
-        "source_id": "sk_43406347",
-        "name": "Solardo @ NX Newcastle",
-        "venue": "NX Newcastle",
-        "city": "Newcastle Upon Tyne",
-        "country": "United Kingdom",
-        "date": "2026-12-04",
-        "source": "songkick",
-        "ticket_url": "https://www.songkick.com/concerts/43406347-ellie-scougall-at-nx-newcastle?utm_medium=organic&utm_source=microformat",
-        "action": "kept"
-      },
-      "removed": [
-        {
-          "id": 216654,
-          "source_id": "sk_43469041",
-          "name": "Solardo @ Halcyon",
-          "venue": "Halcyon",
-          "city": "San Francisco",
-          "country": "United States",
-          "date": "2026-12-04",
-          "source": "songkick",
-          "ticket_url": "https://www.songkick.com/concerts/43469041-solardo-at-halcyon?utm_medium=organic&utm_source=microformat",
-          "action": "deleted"
-        }
-      ]
-    },
-    {
-      "date": "2026-10-30",
-      "dj": "Kevin Saunderson",
-      "kept": {
-        "id": 191288,
-        "source_id": "sk_43377779",
-        "name": "Kevin Saunderson @ Lincoln Factory",
-        "venue": "Lincoln Factory",
-        "city": "Detroit",
-        "country": "United States",
-        "date": "2026-10-30",
-        "source": "songkick",
-        "ticket_url": "https://www.songkick.com/concerts/43377779-kevin-saunderson-at-lincoln-factory?utm_medium=organic&utm_source=microformat",
-        "action": "kept"
-      },
-      "removed": [
-        {
-          "id": 216779,
-          "source_id": "kevin_saunderson_2026_10_30_factory_town",
-          "name": "Kevin Saunderson @ Factory Town",
-          "venue": "Factory Town",
-          "city": "Miami",
-          "country": "United States",
-          "date": "2026-10-30",
-          "source": "songkick",
-          "ticket_url": "https://www.songkick.com/festivals/3492880-hocus-pocus/id/43357056-hocus-pocus-2026?utm_medium=organic&utm_source=microformat",
-          "action": "deleted"
-        }
-      ]
-    },
-    {
-      "date": "2026-10-30",
-      "dj": "Vendex",
-      "kept": {
-        "id": 191555,
-        "source_id": "sk_43408379",
-        "name": "Vendex @ Edinburgh Corn Exchange",
-        "venue": "Edinburgh Corn Exchange",
-        "city": "Edinburgh",
-        "country": "United Kingdom",
-        "date": "2026-10-30",
-        "source": "songkick",
-        "ticket_url": "https://www.songkick.com/concerts/43408379-natte-visstick-at-edinburgh-corn-exchange?utm_medium=organic&utm_source=microformat",
-        "action": "kept"
-      },
-      "removed": [
-        {
-          "id": 217034,
-          "source_id": "sk_43382903",
-          "name": "Vendex @ Livehouse",
-          "venue": "Livehouse",
-          "city": "Dundee",
-          "country": "United Kingdom",
-          "date": "2026-10-30",
-          "source": "songkick",
-          "ticket_url": "https://www.songkick.com/concerts/43382903-vendex-at-livehouse?utm_medium=organic&utm_source=microformat",
-          "action": "deleted"
-        }
-      ]
-    },
-    {
-      "date": "2026-10-30",
-      "dj": "Prospa",
-      "kept": {
-        "id": 191668,
-        "source_id": "sk_43366852",
-        "name": "PROSPA @ A.i. Warehouse at Union Market",
-        "venue": "A.i. Warehouse at Union Market",
-        "city": "Washington",
-        "country": "United States",
-        "date": "2026-10-30",
-        "source": "songkick",
-        "ticket_url": "https://www.songkick.com/concerts/43366852-prospa-at-ai-warehouse-at-union-market?utm_medium=organic&utm_source=microformat",
-        "action": "kept"
-      },
-      "removed": [
-        {
-          "id": 217155,
-          "source_id": "prospa_2026_10_30_factory_town",
-          "name": "PROSPA @ Factory Town",
-          "venue": "Factory Town",
-          "city": "Miami",
-          "country": "United States",
-          "date": "2026-10-30",
-          "source": "songkick",
-          "ticket_url": "https://www.songkick.com/festivals/3492880-hocus-pocus/id/43357056-hocus-pocus-2026?utm_medium=organic&utm_source=microformat",
-          "action": "deleted"
-        }
-      ]
-    },
-    {
-      "date": "2026-11-13",
-      "dj": "A.M.C",
-      "kept": {
-        "id": 191711,
-        "source_id": "sk_43298731",
-        "name": "A.M.C @ Thê Depø Venue",
-        "venue": "Thê Depø Venue",
-        "city": "Plymouth",
-        "country": "United Kingdom",
-        "date": "2026-11-13",
-        "source": "songkick",
-        "ticket_url": "https://www.songkick.com/concerts/43298731-depo-at-depo-venue?utm_medium=organic&utm_source=microformat",
-        "action": "kept"
-      },
-      "removed": [
-        {
-          "id": 217201,
-          "source_id": "sk_43293379",
-          "name": "A.M.C @ Move Exeter",
-          "venue": "Move Exeter",
-          "city": "Exeter",
-          "country": "United Kingdom",
-          "date": "2026-11-13",
-          "source": "songkick",
-          "ticket_url": "https://www.songkick.com/concerts/43293379-amc-at-move-exeter?utm_medium=organic&utm_source=microformat",
-          "action": "deleted"
-        }
-      ]
-    },
-    {
-      "date": "2026-12-04",
-      "dj": "A.M.C",
-      "kept": {
-        "id": 217206,
-        "source_id": "a_m_c_2026_12_04_v_stavi_t_bvv_veletrhy_brno_brno_exhibition_center_pavil_n_p",
-        "name": "A.M.C @ Výstaviště (BVV Veletrhy Brno, Brno Exhibition Center) Pavilón P",
-        "venue": "Výstaviště (BVV Veletrhy Brno, Brno Exhibition Center) Pavilón P",
-        "city": "Brno",
-        "country": "Czechia",
-        "date": "2026-12-04",
-        "source": "songkick",
-        "ticket_url": "https://www.songkick.com/festivals/3791638-beats-for-love-winter/id/43274028-beats-for-love-winter-2026?utm_medium=organic&utm_source=microformat",
-        "action": "kept"
-      },
-      "removed": [
-        {
-          "id": 217205,
-          "source_id": "sk_43293383",
-          "name": "A.M.C @ Bar Seven",
-          "venue": "Bar Seven",
-          "city": "Kettering",
-          "country": "United Kingdom",
-          "date": "2026-12-04",
-          "source": "songkick",
-          "ticket_url": "https://www.songkick.com/concerts/43293383-amc-at-bar-seven?utm_medium=organic&utm_source=microformat",
-          "action": "deleted"
-        }
-      ]
-    },
-    {
-      "date": "2026-10-30",
-      "dj": "Maddix",
-      "kept": {
-        "id": 215728,
-        "source_id": "sk_43404195",
-        "name": "Maddix @ Westworld of Scottsdale",
-        "venue": "Westworld of Scottsdale",
-        "city": "Scottsdale",
-        "country": "United States",
-        "date": "2026-10-30",
-        "source": "songkick",
-        "ticket_url": "https://www.songkick.com/concerts/43404195-maddix-at-westworld-of-scottsdale?utm_medium=organic&utm_source=microformat",
-        "action": "kept"
-      },
-      "removed": [
-        {
-          "id": 215729,
-          "source_id": "maddix_2026_10_30_escape_halloween",
-          "name": "Maddix @ Escape Halloween",
-          "venue": "Escape Halloween",
-          "city": "San Bernardino",
-          "country": "United States",
-          "date": "2026-10-30",
-          "source": "songkick",
-          "ticket_url": "https://www.songkick.com/festivals/3373538-escape-socal/id/43356280-escape-socal-2026?utm_medium=organic&utm_source=microformat",
-          "action": "deleted"
-        }
-      ]
-    },
-    {
-      "date": "2026-10-30",
-      "dj": "Dombresky",
-      "kept": {
-        "id": 218168,
-        "source_id": "dombresky_2026_10_30_westworld_of_scottsdale",
-        "name": "Dombresky @ Westworld of Scottsdale",
-        "venue": "Westworld of Scottsdale",
-        "city": "Scottsdale",
-        "country": "United States",
-        "date": "2026-10-30",
-        "source": "songkick",
-        "ticket_url": "https://www.songkick.com/festivals/1627844-boo-arizona/id/43357202-boo-arizona-2026?utm_medium=organic&utm_source=microformat",
-        "action": "kept"
-      },
-      "removed": [
-        {
-          "id": 218167,
-          "source_id": "sk_43294408",
-          "name": "Dombresky @ Concourse Project",
-          "venue": "Concourse Project",
-          "city": "Austin",
-          "country": "United States",
-          "date": "2026-10-30",
-          "source": "songkick",
-          "ticket_url": "https://www.songkick.com/concerts/43294408-dombresky-at-concourse-project?utm_medium=organic&utm_source=microformat",
-          "action": "deleted"
-        }
-      ]
-    },
-    {
-      "date": "2026-12-05",
-      "dj": "Morgan Seatree",
-      "kept": {
-        "id": 192498,
-        "source_id": "sk_43401078",
-        "name": "Morgan Seatree @ Blackstone Street Warehouse",
-        "venue": "Blackstone Street Warehouse",
-        "city": "Liverpool",
-        "country": "United Kingdom",
-        "date": "2026-12-05",
-        "source": "songkick",
-        "ticket_url": "https://www.songkick.com/concerts/43401078-morgan-seatree-at-blackstone-street-warehouse?utm_medium=organic&utm_source=microformat",
-        "action": "kept"
-      },
-      "removed": [
-        {
-          "id": 218000,
-          "source_id": "sk_43386217",
-          "name": "Morgan Seatree @ Unit Nine",
-          "venue": "Unit Nine",
-          "city": "Milton Keynes",
-          "country": "United Kingdom",
-          "date": "2026-12-05",
-          "source": "songkick",
-          "ticket_url": "https://www.songkick.com/concerts/43386217-morgan-seatree-at-unit-nine?utm_medium=organic&utm_source=microformat",
-          "action": "deleted"
-        }
-      ]
-    },
-    {
-      "date": "2026-11-06",
-      "dj": "Kaskade",
-      "kept": {
-        "id": 192783,
-        "source_id": "sk_43406778",
-        "name": "Kaskade @ Radius Chicago",
-        "venue": "Radius Chicago",
-        "city": "Chicago",
-        "country": "United States",
-        "date": "2026-11-06",
-        "source": "songkick",
-        "ticket_url": "https://www.songkick.com/concerts/43406778-kaskade-at-radius-chicago?utm_medium=organic&utm_source=microformat",
-        "action": "kept"
-      },
-      "removed": [
-        {
-          "id": 218234,
-          "source_id": "kaskade_2026_11_06_tinker_field",
-          "name": "Kaskade @ Tinker Field",
-          "venue": "Tinker Field",
-          "city": "Orlando",
-          "country": "United States",
-          "date": "2026-11-06",
-          "source": "songkick",
-          "ticket_url": "https://www.songkick.com/festivals/10816-electric-daisy-carnival/id/43117678-electric-daisy-carnival-2026?utm_medium=organic&utm_source=microformat",
-          "action": "deleted"
-        }
-      ]
-    },
-    {
-      "date": "2026-11-28",
-      "dj": "Mish",
-      "kept": {
-        "id": 192817,
-        "source_id": "mish_2026_11_28_hanover_fairground",
-        "name": "Mish @ Hanover Fairground",
-        "venue": "Hanover Fairground",
-        "city": "Hannover",
-        "country": "Germany",
-        "date": "2026-11-28",
-        "source": "songkick",
-        "ticket_url": "https://www.songkick.com/festivals/3215462-fairground/id/43386508-fairground-festival-2026?utm_medium=organic&utm_source=microformat",
-        "action": "kept"
-      },
-      "removed": [
-        {
-          "id": 218259,
-          "source_id": "mish_2026_11_28_sparkassen_arena",
-          "name": "Mish @ Sparkassen-Arena",
-          "venue": "Sparkassen-Arena",
-          "city": "Kiel",
-          "country": "Germany",
-          "date": "2026-11-28",
-          "source": "songkick",
-          "ticket_url": "https://www.songkick.com/festivals/3802659-one-step-harder/id/43386493-one-step-harder-2026?utm_medium=organic&utm_source=microformat",
-          "action": "deleted"
-        }
-      ]
-    },
-    {
-      "date": "2026-10-31",
-      "dj": "Todd Terry",
-      "kept": {
-        "id": 214769,
-        "source_id": "sk_43420056",
-        "name": "Todd Terry @ Leicester St Andrews Fc",
-        "venue": "Leicester St Andrews Fc",
-        "city": "Leicester",
-        "country": "United Kingdom",
-        "date": "2026-10-31",
-        "source": "songkick",
-        "ticket_url": "https://www.songkick.com/concerts/43420056-beyond-chicago-at-leicester-st-andrews-fc?utm_medium=organic&utm_source=microformat",
-        "action": "kept"
-      },
-      "removed": [
-        {
-          "id": 218363,
-          "source_id": "sk_43392943",
-          "name": "Todd Terry @ Freeze Project",
-          "venue": "Freeze Project",
-          "city": "Liverpool",
-          "country": "United Kingdom",
-          "date": "2026-10-31",
-          "source": "songkick",
-          "ticket_url": "https://www.songkick.com/concerts/43392943-todd-terry-at-freeze-project?utm_medium=organic&utm_source=microformat",
-          "action": "deleted"
-        }
-      ]
-    },
-    {
-      "date": "2026-11-21",
-      "dj": "Tommy phillips",
-      "kept": {
-        "id": 192942,
-        "source_id": "sk_43352301",
-        "name": "Tommy Phillips @ Secret Vault",
-        "venue": "Secret Vault",
-        "city": "Nottingham",
-        "country": "United Kingdom",
-        "date": "2026-11-21",
-        "source": "songkick",
-        "ticket_url": "https://www.songkick.com/concerts/43352301-tommy-phillips-at-secret-vault?utm_medium=organic&utm_source=microformat",
-        "action": "kept"
-      },
-      "removed": [
-        {
-          "id": 218370,
-          "source_id": "sk_43432178",
-          "name": "Tommy Phillips @ LAB11",
-          "venue": "LAB11",
-          "city": "Digbeth",
-          "country": "United Kingdom",
-          "date": "2026-11-21",
-          "source": "songkick",
-          "ticket_url": "https://www.songkick.com/concerts/43432178-tommy-phillips-at-lab11?utm_medium=organic&utm_source=microformat",
-          "action": "deleted"
-        }
-      ]
-    },
-    {
-      "date": "2026-11-06",
-      "dj": "Alok",
-      "kept": {
-        "id": 211760,
-        "source_id": "sk_43227707",
-        "name": "Alok @ Moody Center",
-        "venue": "Moody Center",
-        "city": "Austin",
-        "country": "United States",
-        "date": "2026-11-06",
-        "source": "songkick",
-        "ticket_url": "https://www.songkick.com/concerts/43227707-john-summit-at-moody-center?utm_medium=organic&utm_source=microformat",
-        "action": "kept"
-      },
-      "removed": [
-        {
-          "id": 211761,
-          "source_id": "alok_2026_11_06_tinker_field",
-          "name": "Alok @ Tinker Field",
-          "venue": "Tinker Field",
-          "city": "Orlando",
-          "country": "United States",
-          "date": "2026-11-06",
-          "source": "songkick",
-          "ticket_url": "https://www.songkick.com/festivals/10816-electric-daisy-carnival/id/43117678-electric-daisy-carnival-2026?utm_medium=organic&utm_source=microformat",
-          "action": "deleted"
-        }
-      ]
-    },
-    {
-      "date": "2026-11-06",
-      "dj": "Adrian Mills",
-      "kept": {
-        "id": 216867,
-        "source_id": "adrian_mills_2026_11_06_east_lake_park_underpass_rb",
-        "name": "Adrian Mills @ East Lake Park Underpass - Rb",
-        "venue": "East Lake Park Underpass - Rb",
-        "city": "Phoenix",
-        "country": "United States",
-        "date": "2026-11-06",
-        "source": "songkick",
-        "ticket_url": "https://www.songkick.com/festivals/3752696-rb-festivals-presents-obsidian/id/43450427-rb--festivals-presents-obsidian-2026?utm_medium=organic&utm_source=microformat",
-        "action": "kept"
-      },
-      "removed": [
-        {
-          "id": 213516,
-          "source_id": "adri_n_mills_2026_11_06_tinker_field",
-          "name": "Adrian Mills @ Tinker Field",
-          "venue": "Tinker Field",
-          "city": "Orlando",
-          "country": "United States",
-          "date": "2026-11-06",
-          "source": "songkick",
-          "ticket_url": "https://www.songkick.com/festivals/10816-electric-daisy-carnival/id/43117678-electric-daisy-carnival-2026?utm_medium=organic&utm_source=microformat",
-          "action": "deleted"
-        },
-        {
-          "id": 216866,
-          "source_id": "adrian_mills_2026_11_06_tinker_field",
-          "name": "Adrian Mills @ Tinker Field",
-          "venue": "Tinker Field",
-          "city": "Orlando",
-          "country": "United States",
-          "date": "2026-11-06",
-          "source": "songkick",
-          "ticket_url": "https://www.songkick.com/festivals/10816-electric-daisy-carnival/id/43117678-electric-daisy-carnival-2026?utm_medium=organic&utm_source=microformat",
-          "action": "deleted"
-        }
-      ]
-    },
-    {
-      "date": "2026-11-06",
-      "dj": "Boys Noize",
-      "kept": {
-        "id": 217823,
-        "source_id": "boys_noize_2026_11_06_east_lake_park_underpass_rb",
-        "name": "Boys Noize @ East Lake Park Underpass - Rb",
-        "venue": "East Lake Park Underpass - Rb",
-        "city": "Phoenix",
-        "country": "United States",
-        "date": "2026-11-06",
-        "source": "songkick",
-        "ticket_url": "https://www.songkick.com/festivals/3752696-rb-festivals-presents-obsidian/id/43450427-rb--festivals-presents-obsidian-2026?utm_medium=organic&utm_source=microformat",
-        "action": "kept"
-      },
-      "removed": [
-        {
-          "id": 214227,
-          "source_id": "boys_noize_2026_11_06_tinker_field",
-          "name": "Boys Noize @ Tinker Field",
-          "venue": "Tinker Field",
-          "city": "Orlando",
-          "country": "United States",
-          "date": "2026-11-06",
-          "source": "songkick",
-          "ticket_url": "https://www.songkick.com/festivals/10816-electric-daisy-carnival/id/43117678-electric-daisy-carnival-2026?utm_medium=organic&utm_source=microformat",
-          "action": "deleted"
-        }
-      ]
-    },
-    {
-      "date": "2026-11-06",
-      "dj": "Nico Moreno",
-      "kept": {
-        "id": 215812,
-        "source_id": "sk_43417571",
-        "name": "Nico Moreno @ Echostage",
-        "venue": "Echostage",
-        "city": "Washington",
-        "country": "United States",
-        "date": "2026-11-06",
-        "source": "songkick",
-        "ticket_url": "https://www.songkick.com/concerts/43417571-nico-moreno-at-echostage?utm_medium=organic&utm_source=microformat",
-        "action": "kept"
-      },
-      "removed": [
-        {
-          "id": 215813,
-          "source_id": "nico_moreno_2026_11_06_tinker_field",
-          "name": "Nico Moreno @ Tinker Field",
-          "venue": "Tinker Field",
-          "city": "Orlando",
-          "country": "United States",
-          "date": "2026-11-06",
-          "source": "songkick",
-          "ticket_url": "https://www.songkick.com/festivals/10816-electric-daisy-carnival/id/43117678-electric-daisy-carnival-2026?utm_medium=organic&utm_source=microformat",
-          "action": "deleted"
-        }
-      ]
-    },
-    {
-      "date": "2026-11-06",
-      "dj": "Klangkuenstler",
-      "kept": {
-        "id": 215916,
-        "source_id": "sk_43423705",
-        "name": "Klangkuenstler @ Ductwork Houston",
-        "venue": "Ductwork Houston",
-        "city": "Houston",
-        "country": "United States",
-        "date": "2026-11-06",
-        "source": "songkick",
-        "ticket_url": "https://www.songkick.com/concerts/43423705-klangkuenstler-at-ductwork-houston?utm_medium=organic&utm_source=microformat",
-        "action": "kept"
-      },
-      "removed": [
-        {
-          "id": 215917,
-          "source_id": "klangkuenstler_2026_11_06_tinker_field",
-          "name": "Klangkuenstler @ Tinker Field",
-          "venue": "Tinker Field",
-          "city": "Orlando",
-          "country": "United States",
-          "date": "2026-11-06",
-          "source": "songkick",
-          "ticket_url": "https://www.songkick.com/festivals/10816-electric-daisy-carnival/id/43117678-electric-daisy-carnival-2026?utm_medium=organic&utm_source=microformat",
-          "action": "deleted"
-        }
-      ]
-    },
-    {
-      "date": "2026-11-06",
-      "dj": "Jessica Audiffred",
-      "kept": {
-        "id": 217402,
-        "source_id": "sk_43287667",
-        "name": "Jessica Audiffred @ The Complex",
-        "venue": "The Complex",
-        "city": "Salt Lake City",
-        "country": "United States",
-        "date": "2026-11-06",
-        "source": "songkick",
-        "ticket_url": "https://www.songkick.com/concerts/43287667-jessica-audiffred-at-complex?utm_medium=organic&utm_source=microformat",
-        "action": "kept"
-      },
-      "removed": [
-        {
-          "id": 217403,
-          "source_id": "jessica_audiffred_2026_11_06_tinker_field",
-          "name": "Jessica Audiffred @ Tinker Field",
-          "venue": "Tinker Field",
-          "city": "Orlando",
-          "country": "United States",
-          "date": "2026-11-06",
-          "source": "songkick",
-          "ticket_url": "https://www.songkick.com/festivals/10816-electric-daisy-carnival/id/43117678-electric-daisy-carnival-2026?utm_medium=organic&utm_source=microformat",
-          "action": "deleted"
-        }
-      ]
-    },
-    {
-      "date": "2026-11-06",
-      "dj": "KinAhau",
-      "kept": {
-        "id": 214648,
-        "source_id": "sk_43329285",
-        "name": "KinAhau @ It'll Do Club",
-        "venue": "It'll Do Club",
-        "city": "Dallas",
-        "country": "United States",
-        "date": "2026-11-06",
-        "source": "songkick",
-        "ticket_url": "https://www.songkick.com/concerts/43329285-kinahau-at-itll-do-club?utm_medium=organic&utm_source=microformat",
-        "action": "kept"
-      },
-      "removed": [
-        {
-          "id": 218244,
-          "source_id": "kinahau_2026_11_06_tinker_field",
-          "name": "KinAhau @ Tinker Field",
-          "venue": "Tinker Field",
-          "city": "Orlando",
-          "country": "United States",
-          "date": "2026-11-06",
-          "source": "songkick",
-          "ticket_url": "https://www.songkick.com/festivals/10816-electric-daisy-carnival/id/43117678-electric-daisy-carnival-2026?utm_medium=organic&utm_source=microformat",
-          "action": "deleted"
-        }
-      ]
-    },
-    {
       "date": "2026-10-30",
       "dj": "Netsky",
       "kept": {
-        "id": 216903,
+        "id": 220509,
         "source_id": "netsky_2026_10_30_parc_des_expositions_paris_nord",
         "name": "Netsky @ Parc des Expositions Paris Nord",
         "venue": "Parc des Expositions Paris Nord",
@@ -2557,7 +2335,7 @@
       },
       "removed": [
         {
-          "id": 216902,
+          "id": 220508,
           "source_id": "sk_43251785",
           "name": "Netsky @ Maassilo",
           "venue": "Maassilo",
@@ -2574,7 +2352,7 @@
       "date": "2026-10-30",
       "dj": "Andromedik",
       "kept": {
-        "id": 216936,
+        "id": 220542,
         "source_id": "andromedik_2026_10_30_parc_des_expositions_paris_nord",
         "name": "Andromedik @ Parc des Expositions Paris Nord",
         "venue": "Parc des Expositions Paris Nord",
@@ -2587,7 +2365,7 @@
       },
       "removed": [
         {
-          "id": 216935,
+          "id": 220541,
           "source_id": "sk_43249617",
           "name": "Andromedik @ Antwerp Expo",
           "venue": "Antwerp Expo",
@@ -2617,7 +2395,7 @@
       },
       "removed": [
         {
-          "id": 218598,
+          "id": 222197,
           "source_id": "sk_43419240",
           "name": "Lucas Alexander @ Patterns, Brighton",
           "venue": "Patterns, Brighton",
@@ -2647,7 +2425,7 @@
       },
       "removed": [
         {
-          "id": 216425,
+          "id": 220031,
           "source_id": "sk_43393349",
           "name": "Richie Hawtin @ OUTPUT",
           "venue": "OUTPUT",
@@ -2677,7 +2455,7 @@
       },
       "removed": [
         {
-          "id": 216136,
+          "id": 219742,
           "source_id": "layton_giordani_2026_10_30_factory_town",
           "name": "Layton Giordani @ Factory Town",
           "venue": "Factory Town",
@@ -2707,7 +2485,7 @@
       },
       "removed": [
         {
-          "id": 216644,
+          "id": 220250,
           "source_id": "jayda_g_2026_10_30_factory_town",
           "name": "Jayda G @ Factory Town",
           "venue": "Factory Town",
@@ -2737,7 +2515,7 @@
       },
       "removed": [
         {
-          "id": 216482,
+          "id": 220088,
           "source_id": "maceo_plex_2026_11_13_parque_fundidora",
           "name": "Maceo Plex @ Parque Fundidora",
           "venue": "Parque Fundidora",
@@ -2767,7 +2545,7 @@
       },
       "removed": [
         {
-          "id": 217044,
+          "id": 220650,
           "source_id": "sk_43332712",
           "name": "Kanine @ Drumsheds",
           "venue": "Drumsheds",
@@ -2784,7 +2562,7 @@
       "date": "2026-12-31",
       "dj": "Seven Lions",
       "kept": {
-        "id": 217890,
+        "id": 221496,
         "source_id": "seven_lions_2026_12_31_national_orange_show_nos_event_center",
         "name": "Seven Lions @ National Orange Show (NOS) Event Center",
         "venue": "National Orange Show (NOS) Event Center",
@@ -2797,7 +2575,7 @@
       },
       "removed": [
         {
-          "id": 217889,
+          "id": 221495,
           "source_id": "sk_43428220",
           "name": "Seven Lions @ The Rave / Eagles Club",
           "venue": "The Rave / Eagles Club",
@@ -2827,7 +2605,7 @@
       },
       "removed": [
         {
-          "id": 218383,
+          "id": 221989,
           "source_id": "sk_43411816",
           "name": "Ultrabeat @ 147 Nightclub",
           "venue": "147 Nightclub",
@@ -2836,36 +2614,6 @@
           "date": "2026-10-24",
           "source": "songkick",
           "ticket_url": "https://www.songkick.com/concerts/43411816-ultrabeat-at-147-nightclub?utm_medium=organic&utm_source=microformat",
-          "action": "deleted"
-        }
-      ]
-    },
-    {
-      "date": "2026-11-20",
-      "dj": "Paul van Dyk",
-      "kept": {
-        "id": 215618,
-        "source_id": "sk_43356189",
-        "name": "Paul van Dyk @ Sky",
-        "venue": "Sky",
-        "city": "Salt Lake City",
-        "country": "United States",
-        "date": "2026-11-20",
-        "source": "songkick",
-        "ticket_url": "https://www.songkick.com/concerts/43356189-paul-van-dyk-at-sky?utm_medium=organic&utm_source=microformat",
-        "action": "kept"
-      },
-      "removed": [
-        {
-          "id": 204948,
-          "source_id": "paul_van_dyk_2026_11_20_queen_mary_waterfront",
-          "name": "Paul van Dyk @ Queen Mary Waterfront",
-          "venue": "Queen Mary Waterfront",
-          "city": "Long Beach",
-          "country": "United States",
-          "date": "2026-11-20",
-          "source": "songkick",
-          "ticket_url": "https://www.songkick.com/festivals/1627549-dreamstate-socal/id/43308101-dreamstate-socal-2026?utm_medium=organic&utm_source=microformat",
           "action": "deleted"
         }
       ]
@@ -2887,7 +2635,7 @@
       },
       "removed": [
         {
-          "id": 215366,
+          "id": 218972,
           "source_id": "armin_van_buuren_2026_11_07_estadio_banorte",
           "name": "Armin van Buuren @ Estadio Banorte",
           "venue": "Estadio Banorte",
@@ -2904,7 +2652,7 @@
       "date": "2026-11-07",
       "dj": "Innellea",
       "kept": {
-        "id": 216278,
+        "id": 219884,
         "source_id": "innellea_2026_11_07_estadio_banorte",
         "name": "Innellea @ Estadio Banorte",
         "venue": "Estadio Banorte",
@@ -2917,7 +2665,7 @@
       },
       "removed": [
         {
-          "id": 216277,
+          "id": 219883,
           "source_id": "sk_43419599",
           "name": "Innellea @ Celebrities",
           "venue": "Celebrities",
@@ -2947,7 +2695,7 @@
       },
       "removed": [
         {
-          "id": 217908,
+          "id": 221514,
           "source_id": "bashkka_2026_11_07_estadio_banorte",
           "name": "Bashkka @ Estadio Banorte",
           "venue": "Estadio Banorte",
@@ -2977,7 +2725,7 @@
       },
       "removed": [
         {
-          "id": 217217,
+          "id": 220823,
           "source_id": "sk_43453261",
           "name": "Delta Heavy @ Nextdoor",
           "venue": "Nextdoor",
@@ -3007,7 +2755,7 @@
       },
       "removed": [
         {
-          "id": 217624,
+          "id": 221230,
           "source_id": "sk_43372616",
           "name": "Sidney Charles @ SWG3",
           "venue": "SWG3",
@@ -3037,7 +2785,7 @@
       },
       "removed": [
         {
-          "id": 218187,
+          "id": 221793,
           "source_id": "eksman_2026_12_31_sawmills",
           "name": "Eksman @ Sawmills",
           "venue": "Sawmills",
@@ -3054,7 +2802,7 @@
       "date": "2026-10-30",
       "dj": "Galantis",
       "kept": {
-        "id": 216491,
+        "id": 220097,
         "source_id": "galantis_2026_10_30_national_orange_show_nos_event_center",
         "name": "Galantis @ National Orange Show (NOS) Event Center",
         "venue": "National Orange Show (NOS) Event Center",
@@ -3067,7 +2815,7 @@
       },
       "removed": [
         {
-          "id": 216490,
+          "id": 220096,
           "source_id": "sk_43382953",
           "name": "Galantis @ The Rave / Eagles Club",
           "venue": "The Rave / Eagles Club",
@@ -3081,430 +2829,10 @@
       ]
     },
     {
-      "date": "2027-03-12",
-      "dj": "Marlon Hoffstadt",
-      "kept": {
-        "id": 215904,
-        "source_id": "marlon_hoffstadt_2027_03_12_parque_o_higgins",
-        "name": "Marlon Hoffstadt @ Parque O'Higgins",
-        "venue": "Parque O'Higgins",
-        "city": "Santiago",
-        "country": "Chile",
-        "date": "2027-03-12",
-        "source": "songkick",
-        "ticket_url": "https://www.songkick.com/festivals/1235-lollapalooza/id/43456088-lollapalooza-2027?utm_medium=organic&utm_source=microformat",
-        "action": "kept"
-      },
-      "removed": [
-        {
-          "id": 208779,
-          "source_id": "marlon_hoffstadt_2027_03_12_hip_dromo_de_san_isidro",
-          "name": "Marlon Hoffstadt @ Hipódromo de San Isidro",
-          "venue": "Hipódromo de San Isidro",
-          "city": "San Isidro",
-          "country": "Argentina",
-          "date": "2027-03-12",
-          "source": "songkick",
-          "ticket_url": "https://www.songkick.com/festivals/1235-lollapalooza/id/43456086-lollapalooza-2027?utm_medium=organic&utm_source=microformat",
-          "action": "deleted"
-        }
-      ]
-    },
-    {
-      "date": "2027-03-12",
-      "dj": "David Guetta",
-      "kept": {
-        "id": 215323,
-        "source_id": "david_guetta_2027_03_12_parque_o_higgins",
-        "name": "David Guetta @ Parque O'Higgins",
-        "venue": "Parque O'Higgins",
-        "city": "Santiago",
-        "country": "Chile",
-        "date": "2027-03-12",
-        "source": "songkick",
-        "ticket_url": "https://www.songkick.com/festivals/1235-lollapalooza/id/43456088-lollapalooza-2027?utm_medium=organic&utm_source=microformat",
-        "action": "kept"
-      },
-      "removed": [
-        {
-          "id": 215322,
-          "source_id": "david_guetta_2027_03_12_hip_dromo_de_san_isidro",
-          "name": "David Guetta @ Hipódromo de San Isidro",
-          "venue": "Hipódromo de San Isidro",
-          "city": "San Isidro",
-          "country": "Argentina",
-          "date": "2027-03-12",
-          "source": "songkick",
-          "ticket_url": "https://www.songkick.com/festivals/1235-lollapalooza/id/43456086-lollapalooza-2027?utm_medium=organic&utm_source=microformat",
-          "action": "deleted"
-        }
-      ]
-    },
-    {
-      "date": "2027-03-12",
-      "dj": "Sammy Virji",
-      "kept": {
-        "id": 216028,
-        "source_id": "sammy_virji_2027_03_12_parque_o_higgins",
-        "name": "Sammy Virji @ Parque O'Higgins",
-        "venue": "Parque O'Higgins",
-        "city": "Santiago",
-        "country": "Chile",
-        "date": "2027-03-12",
-        "source": "songkick",
-        "ticket_url": "https://www.songkick.com/festivals/1235-lollapalooza/id/43456088-lollapalooza-2027?utm_medium=organic&utm_source=microformat",
-        "action": "kept"
-      },
-      "removed": [
-        {
-          "id": 216027,
-          "source_id": "sammy_virji_2027_03_12_hip_dromo_de_san_isidro",
-          "name": "Sammy Virji @ Hipódromo de San Isidro",
-          "venue": "Hipódromo de San Isidro",
-          "city": "San Isidro",
-          "country": "Argentina",
-          "date": "2027-03-12",
-          "source": "songkick",
-          "ticket_url": "https://www.songkick.com/festivals/1235-lollapalooza/id/43456086-lollapalooza-2027?utm_medium=organic&utm_source=microformat",
-          "action": "deleted"
-        }
-      ]
-    },
-    {
-      "date": "2027-03-12",
-      "dj": "Carlita",
-      "kept": {
-        "id": 216633,
-        "source_id": "carlita_2027_03_12_parque_o_higgins",
-        "name": "Carlita @ Parque O'Higgins",
-        "venue": "Parque O'Higgins",
-        "city": "Santiago",
-        "country": "Chile",
-        "date": "2027-03-12",
-        "source": "songkick",
-        "ticket_url": "https://www.songkick.com/festivals/1235-lollapalooza/id/43456088-lollapalooza-2027?utm_medium=organic&utm_source=microformat",
-        "action": "kept"
-      },
-      "removed": [
-        {
-          "id": 216632,
-          "source_id": "carlita_2027_03_12_hip_dromo_de_san_isidro",
-          "name": "Carlita @ Hipódromo de San Isidro",
-          "venue": "Hipódromo de San Isidro",
-          "city": "San Isidro",
-          "country": "Argentina",
-          "date": "2027-03-12",
-          "source": "songkick",
-          "ticket_url": "https://www.songkick.com/festivals/1235-lollapalooza/id/43456086-lollapalooza-2027?utm_medium=organic&utm_source=microformat",
-          "action": "deleted"
-        }
-      ]
-    },
-    {
-      "date": "2027-03-12",
-      "dj": "Four Tet",
-      "kept": {
-        "id": 217481,
-        "source_id": "four_tet_2027_03_12_parque_o_higgins",
-        "name": "Four Tet @ Parque O'Higgins",
-        "venue": "Parque O'Higgins",
-        "city": "Santiago",
-        "country": "Chile",
-        "date": "2027-03-12",
-        "source": "songkick",
-        "ticket_url": "https://www.songkick.com/festivals/1235-lollapalooza/id/43456088-lollapalooza-2027?utm_medium=organic&utm_source=microformat",
-        "action": "kept"
-      },
-      "removed": [
-        {
-          "id": 217480,
-          "source_id": "four_tet_2027_03_12_hip_dromo_de_san_isidro",
-          "name": "Four Tet @ Hipódromo de San Isidro",
-          "venue": "Hipódromo de San Isidro",
-          "city": "San Isidro",
-          "country": "Argentina",
-          "date": "2027-03-12",
-          "source": "songkick",
-          "ticket_url": "https://www.songkick.com/festivals/1235-lollapalooza/id/43456086-lollapalooza-2027?utm_medium=organic&utm_source=microformat",
-          "action": "deleted"
-        }
-      ]
-    },
-    {
-      "date": "2027-03-12",
-      "dj": "Ninajirachi",
-      "kept": {
-        "id": 217576,
-        "source_id": "ninajirachi_2027_03_12_parque_o_higgins",
-        "name": "Ninajirachi @ Parque O'Higgins",
-        "venue": "Parque O'Higgins",
-        "city": "Santiago",
-        "country": "Chile",
-        "date": "2027-03-12",
-        "source": "songkick",
-        "ticket_url": "https://www.songkick.com/festivals/1235-lollapalooza/id/43456088-lollapalooza-2027?utm_medium=organic&utm_source=microformat",
-        "action": "kept"
-      },
-      "removed": [
-        {
-          "id": 217575,
-          "source_id": "ninajirachi_2027_03_12_hip_dromo_de_san_isidro",
-          "name": "Ninajirachi @ Hipódromo de San Isidro",
-          "venue": "Hipódromo de San Isidro",
-          "city": "San Isidro",
-          "country": "Argentina",
-          "date": "2027-03-12",
-          "source": "songkick",
-          "ticket_url": "https://www.songkick.com/festivals/1235-lollapalooza/id/43456086-lollapalooza-2027?utm_medium=organic&utm_source=microformat",
-          "action": "deleted"
-        }
-      ]
-    },
-    {
-      "date": "2027-03-12",
-      "dj": "Boys Noize",
-      "kept": {
-        "id": 217828,
-        "source_id": "boys_noize_2027_03_12_parque_o_higgins",
-        "name": "Boys Noize @ Parque O'Higgins",
-        "venue": "Parque O'Higgins",
-        "city": "Santiago",
-        "country": "Chile",
-        "date": "2027-03-12",
-        "source": "songkick",
-        "ticket_url": "https://www.songkick.com/festivals/1235-lollapalooza/id/43456088-lollapalooza-2027?utm_medium=organic&utm_source=microformat",
-        "action": "kept"
-      },
-      "removed": [
-        {
-          "id": 217827,
-          "source_id": "boys_noize_2027_03_12_hip_dromo_de_san_isidro",
-          "name": "Boys Noize @ Hipódromo de San Isidro",
-          "venue": "Hipódromo de San Isidro",
-          "city": "San Isidro",
-          "country": "Argentina",
-          "date": "2027-03-12",
-          "source": "songkick",
-          "ticket_url": "https://www.songkick.com/festivals/1235-lollapalooza/id/43456086-lollapalooza-2027?utm_medium=organic&utm_source=microformat",
-          "action": "deleted"
-        }
-      ]
-    },
-    {
-      "date": "2027-03-12",
-      "dj": "Tiga",
-      "kept": {
-        "id": 218356,
-        "source_id": "tiga_2027_03_12_parque_o_higgins",
-        "name": "Tiga @ Parque O'Higgins",
-        "venue": "Parque O'Higgins",
-        "city": "Santiago",
-        "country": "Chile",
-        "date": "2027-03-12",
-        "source": "songkick",
-        "ticket_url": "https://www.songkick.com/festivals/1235-lollapalooza/id/43456088-lollapalooza-2027?utm_medium=organic&utm_source=microformat",
-        "action": "kept"
-      },
-      "removed": [
-        {
-          "id": 218355,
-          "source_id": "tiga_2027_03_12_hip_dromo_de_san_isidro",
-          "name": "Tiga @ Hipódromo de San Isidro",
-          "venue": "Hipódromo de San Isidro",
-          "city": "San Isidro",
-          "country": "Argentina",
-          "date": "2027-03-12",
-          "source": "songkick",
-          "ticket_url": "https://www.songkick.com/festivals/1235-lollapalooza/id/43456086-lollapalooza-2027?utm_medium=organic&utm_source=microformat",
-          "action": "deleted"
-        }
-      ]
-    },
-    {
-      "date": "2027-03-19",
-      "dj": "Marlon Hoffstadt",
-      "kept": {
-        "id": 215906,
-        "source_id": "marlon_hoffstadt_2027_03_19_parque_metropolitano_sim_n_bol_var",
-        "name": "Marlon Hoffstadt @ Parque Metropolitano Simón Bolívar",
-        "venue": "Parque Metropolitano Simón Bolívar",
-        "city": "Bogota",
-        "country": "Colombia",
-        "date": "2027-03-19",
-        "source": "songkick",
-        "ticket_url": "https://www.songkick.com/festivals/387188-estereo-picnic/id/43456096-festival-estereo-picnic-2027?utm_medium=organic&utm_source=microformat",
-        "action": "kept"
-      },
-      "removed": [
-        {
-          "id": 208781,
-          "source_id": "marlon_hoffstadt_2027_03_19_aut_dromo_jos_carlos_pace_interlagos_",
-          "name": "Marlon Hoffstadt @ Autódromo José Carlos Pace (Interlagos)",
-          "venue": "Autódromo José Carlos Pace (Interlagos)",
-          "city": "Sao Paulo",
-          "country": "Brazil",
-          "date": "2027-03-19",
-          "source": "songkick",
-          "ticket_url": "https://www.songkick.com/festivals/1235-lollapalooza/id/43456089-lollapalooza-2027?utm_medium=organic&utm_source=microformat",
-          "action": "deleted"
-        }
-      ]
-    },
-    {
-      "date": "2027-03-19",
-      "dj": "David Guetta",
-      "kept": {
-        "id": 215325,
-        "source_id": "david_guetta_2027_03_19_parque_metropolitano_sim_n_bol_var",
-        "name": "David Guetta @ Parque Metropolitano Simón Bolívar",
-        "venue": "Parque Metropolitano Simón Bolívar",
-        "city": "Bogota",
-        "country": "Colombia",
-        "date": "2027-03-19",
-        "source": "songkick",
-        "ticket_url": "https://www.songkick.com/festivals/387188-estereo-picnic/id/43456096-festival-estereo-picnic-2027?utm_medium=organic&utm_source=microformat",
-        "action": "kept"
-      },
-      "removed": [
-        {
-          "id": 215324,
-          "source_id": "david_guetta_2027_03_19_aut_dromo_jos_carlos_pace_interlagos_",
-          "name": "David Guetta @ Autódromo José Carlos Pace (Interlagos)",
-          "venue": "Autódromo José Carlos Pace (Interlagos)",
-          "city": "Sao Paulo",
-          "country": "Brazil",
-          "date": "2027-03-19",
-          "source": "songkick",
-          "ticket_url": "https://www.songkick.com/festivals/1235-lollapalooza/id/43456089-lollapalooza-2027?utm_medium=organic&utm_source=microformat",
-          "action": "deleted"
-        }
-      ]
-    },
-    {
-      "date": "2027-03-19",
-      "dj": "Sammy Virji",
-      "kept": {
-        "id": 216030,
-        "source_id": "sammy_virji_2027_03_19_parque_metropolitano_sim_n_bol_var",
-        "name": "Sammy Virji @ Parque Metropolitano Simón Bolívar",
-        "venue": "Parque Metropolitano Simón Bolívar",
-        "city": "Bogota",
-        "country": "Colombia",
-        "date": "2027-03-19",
-        "source": "songkick",
-        "ticket_url": "https://www.songkick.com/festivals/387188-estereo-picnic/id/43456096-festival-estereo-picnic-2027?utm_medium=organic&utm_source=microformat",
-        "action": "kept"
-      },
-      "removed": [
-        {
-          "id": 216029,
-          "source_id": "sammy_virji_2027_03_19_aut_dromo_jos_carlos_pace_interlagos_",
-          "name": "Sammy Virji @ Autódromo José Carlos Pace (Interlagos)",
-          "venue": "Autódromo José Carlos Pace (Interlagos)",
-          "city": "Sao Paulo",
-          "country": "Brazil",
-          "date": "2027-03-19",
-          "source": "songkick",
-          "ticket_url": "https://www.songkick.com/festivals/1235-lollapalooza/id/43456089-lollapalooza-2027?utm_medium=organic&utm_source=microformat",
-          "action": "deleted"
-        }
-      ]
-    },
-    {
-      "date": "2027-03-19",
-      "dj": "Four Tet",
-      "kept": {
-        "id": 217483,
-        "source_id": "four_tet_2027_03_19_parque_metropolitano_sim_n_bol_var",
-        "name": "Four Tet @ Parque Metropolitano Simón Bolívar",
-        "venue": "Parque Metropolitano Simón Bolívar",
-        "city": "Bogota",
-        "country": "Colombia",
-        "date": "2027-03-19",
-        "source": "songkick",
-        "ticket_url": "https://www.songkick.com/festivals/387188-estereo-picnic/id/43456096-festival-estereo-picnic-2027?utm_medium=organic&utm_source=microformat",
-        "action": "kept"
-      },
-      "removed": [
-        {
-          "id": 217482,
-          "source_id": "four_tet_2027_03_19_aut_dromo_jos_carlos_pace_interlagos_",
-          "name": "Four Tet @ Autódromo José Carlos Pace (Interlagos)",
-          "venue": "Autódromo José Carlos Pace (Interlagos)",
-          "city": "Sao Paulo",
-          "country": "Brazil",
-          "date": "2027-03-19",
-          "source": "songkick",
-          "ticket_url": "https://www.songkick.com/festivals/1235-lollapalooza/id/43456089-lollapalooza-2027?utm_medium=organic&utm_source=microformat",
-          "action": "deleted"
-        }
-      ]
-    },
-    {
-      "date": "2027-03-19",
-      "dj": "Ninajirachi",
-      "kept": {
-        "id": 217578,
-        "source_id": "ninajirachi_2027_03_19_parque_metropolitano_sim_n_bol_var",
-        "name": "Ninajirachi @ Parque Metropolitano Simón Bolívar",
-        "venue": "Parque Metropolitano Simón Bolívar",
-        "city": "Bogota",
-        "country": "Colombia",
-        "date": "2027-03-19",
-        "source": "songkick",
-        "ticket_url": "https://www.songkick.com/festivals/387188-estereo-picnic/id/43456096-festival-estereo-picnic-2027?utm_medium=organic&utm_source=microformat",
-        "action": "kept"
-      },
-      "removed": [
-        {
-          "id": 217577,
-          "source_id": "ninajirachi_2027_03_19_aut_dromo_jos_carlos_pace_interlagos_",
-          "name": "Ninajirachi @ Autódromo José Carlos Pace (Interlagos)",
-          "venue": "Autódromo José Carlos Pace (Interlagos)",
-          "city": "Sao Paulo",
-          "country": "Brazil",
-          "date": "2027-03-19",
-          "source": "songkick",
-          "ticket_url": "https://www.songkick.com/festivals/1235-lollapalooza/id/43456089-lollapalooza-2027?utm_medium=organic&utm_source=microformat",
-          "action": "deleted"
-        }
-      ]
-    },
-    {
-      "date": "2027-03-19",
-      "dj": "Boys Noize",
-      "kept": {
-        "id": 217830,
-        "source_id": "boys_noize_2027_03_19_parque_metropolitano_sim_n_bol_var",
-        "name": "Boys Noize @ Parque Metropolitano Simón Bolívar",
-        "venue": "Parque Metropolitano Simón Bolívar",
-        "city": "Bogota",
-        "country": "Colombia",
-        "date": "2027-03-19",
-        "source": "songkick",
-        "ticket_url": "https://www.songkick.com/festivals/387188-estereo-picnic/id/43456096-festival-estereo-picnic-2027?utm_medium=organic&utm_source=microformat",
-        "action": "kept"
-      },
-      "removed": [
-        {
-          "id": 217829,
-          "source_id": "boys_noize_2027_03_19_aut_dromo_jos_carlos_pace_interlagos_",
-          "name": "Boys Noize @ Autódromo José Carlos Pace (Interlagos)",
-          "venue": "Autódromo José Carlos Pace (Interlagos)",
-          "city": "Sao Paulo",
-          "country": "Brazil",
-          "date": "2027-03-19",
-          "source": "songkick",
-          "ticket_url": "https://www.songkick.com/festivals/1235-lollapalooza/id/43456089-lollapalooza-2027?utm_medium=organic&utm_source=microformat",
-          "action": "deleted"
-        }
-      ]
-    },
-    {
       "date": "2026-11-13",
       "dj": "Lilly Palmer",
       "kept": {
-        "id": 215761,
+        "id": 219362,
         "source_id": "lilly_palmer_2026_11_13_parque_fundidora",
         "name": "Lilly Palmer @ Parque Fundidora",
         "venue": "Parque Fundidora",
@@ -3517,7 +2845,7 @@
       },
       "removed": [
         {
-          "id": 215760,
+          "id": 219361,
           "source_id": "sk_43289757",
           "name": "Lilly Palmer @ 11:11 El Paso",
           "venue": "11:11 El Paso",
@@ -3534,7 +2862,7 @@
       "date": "2026-11-13",
       "dj": "Dennis Cruz",
       "kept": {
-        "id": 215983,
+        "id": 219589,
         "source_id": "dennis_cruz_2026_11_13_parque_fundidora",
         "name": "Dennis Cruz @ Parque Fundidora",
         "venue": "Parque Fundidora",
@@ -3547,7 +2875,7 @@
       },
       "removed": [
         {
-          "id": 215982,
+          "id": 219588,
           "source_id": "sk_43398819",
           "name": "Dennis Cruz @ LooLoo",
           "venue": "LooLoo",
@@ -3564,7 +2892,7 @@
       "date": "2026-11-13",
       "dj": "DJ Tennis",
       "kept": {
-        "id": 217944,
+        "id": 221550,
         "source_id": "dj_tennis_2026_11_13_parque_fundidora",
         "name": "DJ Tennis @ Parque Fundidora",
         "venue": "Parque Fundidora",
@@ -3577,7 +2905,7 @@
       },
       "removed": [
         {
-          "id": 217943,
+          "id": 221549,
           "source_id": "sk_43393903",
           "name": "DJ Tennis @ CODA",
           "venue": "CODA",
@@ -3607,7 +2935,7 @@
       },
       "removed": [
         {
-          "id": 218128,
+          "id": 221734,
           "source_id": "sk_43443242",
           "name": "Basslayerz @ EngineRooms",
           "venue": "EngineRooms",
@@ -3637,7 +2965,7 @@
       },
       "removed": [
         {
-          "id": 218479,
+          "id": 222085,
           "source_id": "sk_43405524",
           "name": "Dusky @ The Huskisson Hotel",
           "venue": "The Huskisson Hotel",
@@ -3649,7 +2977,7 @@
           "action": "deleted"
         },
         {
-          "id": 218478,
+          "id": 222084,
           "source_id": "sk_43295351",
           "name": "Dusky @ Selinas",
           "venue": "Selinas",
@@ -3679,7 +3007,7 @@
       },
       "removed": [
         {
-          "id": 218615,
+          "id": 222221,
           "source_id": "sk_43412089",
           "name": "Marten Lou @ KOKO",
           "venue": "KOKO",
@@ -3688,6 +3016,36 @@
           "date": "2026-10-31",
           "source": "songkick",
           "ticket_url": "https://www.songkick.com/concerts/43412089-arodes-at-koko?utm_medium=organic&utm_source=microformat",
+          "action": "deleted"
+        }
+      ]
+    },
+    {
+      "date": "2026-11-06",
+      "dj": "Alok",
+      "kept": {
+        "id": 211760,
+        "source_id": "sk_43227707",
+        "name": "Alok @ Moody Center",
+        "venue": "Moody Center",
+        "city": "Austin",
+        "country": "United States",
+        "date": "2026-11-06",
+        "source": "songkick",
+        "ticket_url": "https://www.songkick.com/concerts/43227707-john-summit-at-moody-center?utm_medium=organic&utm_source=microformat",
+        "action": "kept"
+      },
+      "removed": [
+        {
+          "id": 218956,
+          "source_id": "alok_2026_11_06_tinker_field",
+          "name": "Alok @ Tinker Field",
+          "venue": "Tinker Field",
+          "city": "Orlando",
+          "country": "United States",
+          "date": "2026-11-06",
+          "source": "songkick",
+          "ticket_url": "https://www.songkick.com/festivals/10816-electric-daisy-carnival/id/43117678-electric-daisy-carnival-2026?utm_medium=organic&utm_source=microformat",
           "action": "deleted"
         }
       ]
@@ -3709,7 +3067,7 @@
       },
       "removed": [
         {
-          "id": 215394,
+          "id": 219000,
           "source_id": "sk_43281837",
           "name": "Afrojack @ Level 1, Cannonball Arts",
           "venue": "Level 1, Cannonball Arts",
@@ -3739,7 +3097,7 @@
       },
       "removed": [
         {
-          "id": 216711,
+          "id": 220317,
           "source_id": "sk_43420061",
           "name": "Skream @ Public Works",
           "venue": "Public Works",
@@ -3769,7 +3127,7 @@
       },
       "removed": [
         {
-          "id": 215821,
+          "id": 219427,
           "source_id": "gordo_2026_10_31_st_pete_pier",
           "name": "Gordo @ St. Pete Pier",
           "venue": "St. Pete Pier",
@@ -3799,7 +3157,7 @@
       },
       "removed": [
         {
-          "id": 216050,
+          "id": 219656,
           "source_id": "sk_43446740",
           "name": "ILLENIUM @ Dobson Arena",
           "venue": "Dobson Arena",
@@ -3829,7 +3187,7 @@
       },
       "removed": [
         {
-          "id": 216246,
+          "id": 219852,
           "source_id": "sk_43299523",
           "name": "Eli Brown @ Echostage",
           "venue": "Echostage",
@@ -3846,7 +3204,7 @@
       "date": "2026-10-30",
       "dj": "GORDO",
       "kept": {
-        "id": 215819,
+        "id": 219425,
         "source_id": "gordo_2026_10_30_st_pete_pier",
         "name": "Gordo @ St. Pete Pier",
         "venue": "St. Pete Pier",
@@ -3859,7 +3217,7 @@
       },
       "removed": [
         {
-          "id": 215818,
+          "id": 219424,
           "source_id": "sk_43422263",
           "name": "Gordo @ Wall Street",
           "venue": "Wall Street",
@@ -3889,7 +3247,7 @@
       },
       "removed": [
         {
-          "id": 216249,
+          "id": 219855,
           "source_id": "eli_brown_2026_10_31_st_pete_pier",
           "name": "Eli Brown @ St. Pete Pier",
           "venue": "St. Pete Pier",
@@ -3906,7 +3264,7 @@
       "date": "2027-03-26",
       "dj": "Sofi Tukker",
       "kept": {
-        "id": 216573,
+        "id": 220179,
         "source_id": "sofi_tukker_2027_03_26_fpl_solar_amphitheater_at_bayfront_park",
         "name": "SOFI TUKKER @ FPL Solar Amphitheater at Bayfront Park",
         "venue": "FPL Solar Amphitheater at Bayfront Park",
@@ -3919,7 +3277,7 @@
       },
       "removed": [
         {
-          "id": 216572,
+          "id": 220178,
           "source_id": "sk_43237253",
           "name": "SOFI TUKKER @ Pepsi Center WTC",
           "venue": "Pepsi Center WTC",
@@ -3949,7 +3307,7 @@
       },
       "removed": [
         {
-          "id": 216738,
+          "id": 220344,
           "source_id": "sk_43388845",
           "name": "Sam Divine @ Halcyon",
           "venue": "Halcyon",
@@ -3966,7 +3324,7 @@
       "date": "2026-12-30",
       "dj": "Zomboy",
       "kept": {
-        "id": 216510,
+        "id": 220118,
         "source_id": "zomboy_2026_12_30_orlando_amphitheater_at_central_florida_fairgrounds",
         "name": "Zomboy @ Orlando Amphitheater at Central Florida Fairgrounds",
         "venue": "Orlando Amphitheater at Central Florida Fairgrounds",
@@ -3979,7 +3337,7 @@
       },
       "removed": [
         {
-          "id": 216511,
+          "id": 220119,
           "source_id": "zomboy_2026_12_30_phoenix_raceway",
           "name": "Zomboy @ Phoenix Raceway",
           "venue": "Phoenix Raceway",
@@ -3996,7 +3354,7 @@
       "date": "2026-10-23",
       "dj": "MEDUZA",
       "kept": {
-        "id": 215877,
+        "id": 219483,
         "source_id": "meduza_2026_10_23_the_great_saltair",
         "name": "MEDUZA @ The Great Saltair",
         "venue": "The Great Saltair",
@@ -4009,7 +3367,7 @@
       },
       "removed": [
         {
-          "id": 215876,
+          "id": 219482,
           "source_id": "sk_43287238",
           "name": "MEDUZA @ District Atlanta",
           "venue": "District Atlanta",
@@ -4039,7 +3397,7 @@
       },
       "removed": [
         {
-          "id": 217095,
+          "id": 220701,
           "source_id": "sk_43356670",
           "name": "Svdden Death @ Brooklyn Monarch",
           "venue": "Brooklyn Monarch",
@@ -4069,7 +3427,7 @@
       },
       "removed": [
         {
-          "id": 217124,
+          "id": 220718,
           "source_id": "sk_43386211",
           "name": "East End Dubs @ LAB11",
           "venue": "LAB11",
@@ -4099,7 +3457,7 @@
       },
       "removed": [
         {
-          "id": 217412,
+          "id": 221018,
           "source_id": "tape_b_2026_10_30_stage_ae",
           "name": "Tape B @ Stage AE",
           "venue": "Stage AE",
@@ -4116,7 +3474,7 @@
       "date": "2026-10-31",
       "dj": "DJ Tennis",
       "kept": {
-        "id": 217941,
+        "id": 221547,
         "source_id": "dj_tennis_2026_10_31_grass_clippings_rolling_hills",
         "name": "DJ Tennis @ Grass Clippings Rolling Hills",
         "venue": "Grass Clippings Rolling Hills",
@@ -4129,7 +3487,7 @@
       },
       "removed": [
         {
-          "id": 217940,
+          "id": 221546,
           "source_id": "sk_43439203",
           "name": "DJ Tennis @ The Loft, Warehouse on Watts",
           "venue": "The Loft, Warehouse on Watts",
@@ -4143,10 +3501,40 @@
       ]
     },
     {
+      "date": "2026-11-06",
+      "dj": "KinAhau",
+      "kept": {
+        "id": 214648,
+        "source_id": "sk_43329285",
+        "name": "KinAhau @ It'll Do Club",
+        "venue": "It'll Do Club",
+        "city": "Dallas",
+        "country": "United States",
+        "date": "2026-11-06",
+        "source": "songkick",
+        "ticket_url": "https://www.songkick.com/concerts/43329285-kinahau-at-itll-do-club?utm_medium=organic&utm_source=microformat",
+        "action": "kept"
+      },
+      "removed": [
+        {
+          "id": 221850,
+          "source_id": "kinahau_2026_11_06_tinker_field",
+          "name": "KinAhau @ Tinker Field",
+          "venue": "Tinker Field",
+          "city": "Orlando",
+          "country": "United States",
+          "date": "2026-11-06",
+          "source": "songkick",
+          "ticket_url": "https://www.songkick.com/festivals/10816-electric-daisy-carnival/id/43117678-electric-daisy-carnival-2026?utm_medium=organic&utm_source=microformat",
+          "action": "deleted"
+        }
+      ]
+    },
+    {
       "date": "2026-10-31",
       "dj": "HEDEX",
       "kept": {
-        "id": 217114,
+        "id": 220730,
         "source_id": "hedex_2026_10_31_owlerton_greyhound_stadium",
         "name": "Hedex @ Owlerton Greyhound Stadium",
         "venue": "Owlerton Greyhound Stadium",
@@ -4159,7 +3547,7 @@
       },
       "removed": [
         {
-          "id": 217113,
+          "id": 220729,
           "source_id": "sk_43404038",
           "name": "Hedex @ DOCUMENT Bristol",
           "venue": "DOCUMENT Bristol",
@@ -4176,7 +3564,7 @@
       "date": "2026-10-31",
       "dj": "Riordan",
       "kept": {
-        "id": 216360,
+        "id": 219966,
         "source_id": "riordan_2026_10_31_owlerton_greyhound_stadium",
         "name": "Riordan @ Owlerton Greyhound Stadium",
         "venue": "Owlerton Greyhound Stadium",
@@ -4189,7 +3577,7 @@
       },
       "removed": [
         {
-          "id": 216359,
+          "id": 219965,
           "source_id": "sk_43300689",
           "name": "Riordan @ Depot Mayfield",
           "venue": "Depot Mayfield",
@@ -4206,7 +3594,7 @@
       "date": "2026-10-31",
       "dj": "Hybrid Minds",
       "kept": {
-        "id": 217681,
+        "id": 221287,
         "source_id": "hybrid_minds_2026_10_31_owlerton_greyhound_stadium",
         "name": "Hybrid Minds @ Owlerton Greyhound Stadium",
         "venue": "Owlerton Greyhound Stadium",
@@ -4219,7 +3607,7 @@
       },
       "removed": [
         {
-          "id": 217680,
+          "id": 221286,
           "source_id": "sk_43384515",
           "name": "Hybrid Minds @ O2 Academy Bournemouth",
           "venue": "O2 Academy Bournemouth",
@@ -4236,7 +3624,7 @@
       "date": "2026-10-31",
       "dj": "Kepler",
       "kept": {
-        "id": 217855,
+        "id": 221461,
         "source_id": "kepler_2026_10_31_owlerton_greyhound_stadium",
         "name": "Kepler @ Owlerton Greyhound Stadium",
         "venue": "Owlerton Greyhound Stadium",
@@ -4249,7 +3637,7 @@
       },
       "removed": [
         {
-          "id": 217854,
+          "id": 221460,
           "source_id": "sk_43323560",
           "name": "Kepler @ Mint Warehouse",
           "venue": "Mint Warehouse",
@@ -4266,7 +3654,7 @@
       "date": "2026-10-31",
       "dj": "DXNBY",
       "kept": {
-        "id": 217948,
+        "id": 221554,
         "source_id": "dxnby_2026_10_31_owlerton_greyhound_stadium",
         "name": "DXNBY @ Owlerton Greyhound Stadium",
         "venue": "Owlerton Greyhound Stadium",
@@ -4279,7 +3667,7 @@
       },
       "removed": [
         {
-          "id": 217947,
+          "id": 221553,
           "source_id": "sk_43388327",
           "name": "DXNBY @ Idra",
           "venue": "Idra",
@@ -4309,7 +3697,7 @@
       },
       "removed": [
         {
-          "id": 218627,
+          "id": 222233,
           "source_id": "sk_43397949",
           "name": "Mella Dee @ Ouseburn Garden",
           "venue": "Ouseburn Garden",
@@ -4318,6 +3706,618 @@
           "date": "2026-10-31",
           "source": "songkick",
           "ticket_url": "https://www.songkick.com/concerts/43397949-mella-dee-at-ouseburn-garden?utm_medium=organic&utm_source=microformat",
+          "action": "deleted"
+        }
+      ]
+    },
+    {
+      "date": "2026-11-20",
+      "dj": "Paul van Dyk",
+      "kept": {
+        "id": 219225,
+        "source_id": "paul_van_dyk_2026_11_20_queen_mary_waterfront",
+        "name": "Paul van Dyk @ Queen Mary Waterfront",
+        "venue": "Queen Mary Waterfront",
+        "city": "Long Beach",
+        "country": "United States",
+        "date": "2026-11-20",
+        "source": "songkick",
+        "ticket_url": "https://www.songkick.com/festivals/1627549-dreamstate-socal/id/43308101-dreamstate-socal-2026?utm_medium=organic&utm_source=microformat",
+        "action": "kept"
+      },
+      "removed": [
+        {
+          "id": 215618,
+          "source_id": "sk_43356189",
+          "name": "Paul van Dyk @ Sky",
+          "venue": "Sky",
+          "city": "Salt Lake City",
+          "country": "United States",
+          "date": "2026-11-20",
+          "source": "songkick",
+          "ticket_url": "https://www.songkick.com/concerts/43356189-paul-van-dyk-at-sky?utm_medium=organic&utm_source=microformat",
+          "action": "deleted"
+        }
+      ]
+    },
+    {
+      "date": "2026-11-06",
+      "dj": "Nico Moreno",
+      "kept": {
+        "id": 215812,
+        "source_id": "sk_43417571",
+        "name": "Nico Moreno @ Echostage",
+        "venue": "Echostage",
+        "city": "Washington",
+        "country": "United States",
+        "date": "2026-11-06",
+        "source": "songkick",
+        "ticket_url": "https://www.songkick.com/concerts/43417571-nico-moreno-at-echostage?utm_medium=organic&utm_source=microformat",
+        "action": "kept"
+      },
+      "removed": [
+        {
+          "id": 219419,
+          "source_id": "nico_moreno_2026_11_06_tinker_field",
+          "name": "Nico Moreno @ Tinker Field",
+          "venue": "Tinker Field",
+          "city": "Orlando",
+          "country": "United States",
+          "date": "2026-11-06",
+          "source": "songkick",
+          "ticket_url": "https://www.songkick.com/festivals/10816-electric-daisy-carnival/id/43117678-electric-daisy-carnival-2026?utm_medium=organic&utm_source=microformat",
+          "action": "deleted"
+        }
+      ]
+    },
+    {
+      "date": "2027-03-12",
+      "dj": "Marlon Hoffstadt",
+      "kept": {
+        "id": 215904,
+        "source_id": "marlon_hoffstadt_2027_03_12_parque_o_higgins",
+        "name": "Marlon Hoffstadt @ Parque O'Higgins",
+        "venue": "Parque O'Higgins",
+        "city": "Santiago",
+        "country": "Chile",
+        "date": "2027-03-12",
+        "source": "songkick",
+        "ticket_url": "https://www.songkick.com/festivals/1235-lollapalooza/id/43456088-lollapalooza-2027?utm_medium=organic&utm_source=microformat",
+        "action": "kept"
+      },
+      "removed": [
+        {
+          "id": 219509,
+          "source_id": "marlon_hoffstadt_2027_03_12_hip_dromo_de_san_isidro",
+          "name": "Marlon Hoffstadt @ Hipódromo de San Isidro",
+          "venue": "Hipódromo de San Isidro",
+          "city": "San Isidro",
+          "country": "Argentina",
+          "date": "2027-03-12",
+          "source": "songkick",
+          "ticket_url": "https://www.songkick.com/festivals/1235-lollapalooza/id/43456086-lollapalooza-2027?utm_medium=organic&utm_source=microformat",
+          "action": "deleted"
+        }
+      ]
+    },
+    {
+      "date": "2027-03-12",
+      "dj": "David Guetta",
+      "kept": {
+        "id": 218942,
+        "source_id": "david_guetta_2027_03_12_parque_o_higgins",
+        "name": "David Guetta @ Parque O'Higgins",
+        "venue": "Parque O'Higgins",
+        "city": "Santiago",
+        "country": "Chile",
+        "date": "2027-03-12",
+        "source": "songkick",
+        "ticket_url": "https://www.songkick.com/festivals/1235-lollapalooza/id/43456088-lollapalooza-2027?utm_medium=organic&utm_source=microformat",
+        "action": "kept"
+      },
+      "removed": [
+        {
+          "id": 218941,
+          "source_id": "david_guetta_2027_03_12_hip_dromo_de_san_isidro",
+          "name": "David Guetta @ Hipódromo de San Isidro",
+          "venue": "Hipódromo de San Isidro",
+          "city": "San Isidro",
+          "country": "Argentina",
+          "date": "2027-03-12",
+          "source": "songkick",
+          "ticket_url": "https://www.songkick.com/festivals/1235-lollapalooza/id/43456086-lollapalooza-2027?utm_medium=organic&utm_source=microformat",
+          "action": "deleted"
+        }
+      ]
+    },
+    {
+      "date": "2027-03-12",
+      "dj": "Sammy Virji",
+      "kept": {
+        "id": 219634,
+        "source_id": "sammy_virji_2027_03_12_parque_o_higgins",
+        "name": "Sammy Virji @ Parque O'Higgins",
+        "venue": "Parque O'Higgins",
+        "city": "Santiago",
+        "country": "Chile",
+        "date": "2027-03-12",
+        "source": "songkick",
+        "ticket_url": "https://www.songkick.com/festivals/1235-lollapalooza/id/43456088-lollapalooza-2027?utm_medium=organic&utm_source=microformat",
+        "action": "kept"
+      },
+      "removed": [
+        {
+          "id": 219633,
+          "source_id": "sammy_virji_2027_03_12_hip_dromo_de_san_isidro",
+          "name": "Sammy Virji @ Hipódromo de San Isidro",
+          "venue": "Hipódromo de San Isidro",
+          "city": "San Isidro",
+          "country": "Argentina",
+          "date": "2027-03-12",
+          "source": "songkick",
+          "ticket_url": "https://www.songkick.com/festivals/1235-lollapalooza/id/43456086-lollapalooza-2027?utm_medium=organic&utm_source=microformat",
+          "action": "deleted"
+        }
+      ]
+    },
+    {
+      "date": "2027-03-12",
+      "dj": "Carlita",
+      "kept": {
+        "id": 220239,
+        "source_id": "carlita_2027_03_12_parque_o_higgins",
+        "name": "Carlita @ Parque O'Higgins",
+        "venue": "Parque O'Higgins",
+        "city": "Santiago",
+        "country": "Chile",
+        "date": "2027-03-12",
+        "source": "songkick",
+        "ticket_url": "https://www.songkick.com/festivals/1235-lollapalooza/id/43456088-lollapalooza-2027?utm_medium=organic&utm_source=microformat",
+        "action": "kept"
+      },
+      "removed": [
+        {
+          "id": 220238,
+          "source_id": "carlita_2027_03_12_hip_dromo_de_san_isidro",
+          "name": "Carlita @ Hipódromo de San Isidro",
+          "venue": "Hipódromo de San Isidro",
+          "city": "San Isidro",
+          "country": "Argentina",
+          "date": "2027-03-12",
+          "source": "songkick",
+          "ticket_url": "https://www.songkick.com/festivals/1235-lollapalooza/id/43456086-lollapalooza-2027?utm_medium=organic&utm_source=microformat",
+          "action": "deleted"
+        }
+      ]
+    },
+    {
+      "date": "2027-03-12",
+      "dj": "Four Tet",
+      "kept": {
+        "id": 221087,
+        "source_id": "four_tet_2027_03_12_parque_o_higgins",
+        "name": "Four Tet @ Parque O'Higgins",
+        "venue": "Parque O'Higgins",
+        "city": "Santiago",
+        "country": "Chile",
+        "date": "2027-03-12",
+        "source": "songkick",
+        "ticket_url": "https://www.songkick.com/festivals/1235-lollapalooza/id/43456088-lollapalooza-2027?utm_medium=organic&utm_source=microformat",
+        "action": "kept"
+      },
+      "removed": [
+        {
+          "id": 221086,
+          "source_id": "four_tet_2027_03_12_hip_dromo_de_san_isidro",
+          "name": "Four Tet @ Hipódromo de San Isidro",
+          "venue": "Hipódromo de San Isidro",
+          "city": "San Isidro",
+          "country": "Argentina",
+          "date": "2027-03-12",
+          "source": "songkick",
+          "ticket_url": "https://www.songkick.com/festivals/1235-lollapalooza/id/43456086-lollapalooza-2027?utm_medium=organic&utm_source=microformat",
+          "action": "deleted"
+        }
+      ]
+    },
+    {
+      "date": "2027-03-12",
+      "dj": "Ninajirachi",
+      "kept": {
+        "id": 221182,
+        "source_id": "ninajirachi_2027_03_12_parque_o_higgins",
+        "name": "Ninajirachi @ Parque O'Higgins",
+        "venue": "Parque O'Higgins",
+        "city": "Santiago",
+        "country": "Chile",
+        "date": "2027-03-12",
+        "source": "songkick",
+        "ticket_url": "https://www.songkick.com/festivals/1235-lollapalooza/id/43456088-lollapalooza-2027?utm_medium=organic&utm_source=microformat",
+        "action": "kept"
+      },
+      "removed": [
+        {
+          "id": 221181,
+          "source_id": "ninajirachi_2027_03_12_hip_dromo_de_san_isidro",
+          "name": "Ninajirachi @ Hipódromo de San Isidro",
+          "venue": "Hipódromo de San Isidro",
+          "city": "San Isidro",
+          "country": "Argentina",
+          "date": "2027-03-12",
+          "source": "songkick",
+          "ticket_url": "https://www.songkick.com/festivals/1235-lollapalooza/id/43456086-lollapalooza-2027?utm_medium=organic&utm_source=microformat",
+          "action": "deleted"
+        }
+      ]
+    },
+    {
+      "date": "2027-03-12",
+      "dj": "Boys Noize",
+      "kept": {
+        "id": 221442,
+        "source_id": "boys_noize_2027_03_12_parque_o_higgins",
+        "name": "Boys Noize @ Parque O'Higgins",
+        "venue": "Parque O'Higgins",
+        "city": "Santiago",
+        "country": "Chile",
+        "date": "2027-03-12",
+        "source": "songkick",
+        "ticket_url": "https://www.songkick.com/festivals/1235-lollapalooza/id/43456088-lollapalooza-2027?utm_medium=organic&utm_source=microformat",
+        "action": "kept"
+      },
+      "removed": [
+        {
+          "id": 221441,
+          "source_id": "boys_noize_2027_03_12_hip_dromo_de_san_isidro",
+          "name": "Boys Noize @ Hipódromo de San Isidro",
+          "venue": "Hipódromo de San Isidro",
+          "city": "San Isidro",
+          "country": "Argentina",
+          "date": "2027-03-12",
+          "source": "songkick",
+          "ticket_url": "https://www.songkick.com/festivals/1235-lollapalooza/id/43456086-lollapalooza-2027?utm_medium=organic&utm_source=microformat",
+          "action": "deleted"
+        }
+      ]
+    },
+    {
+      "date": "2027-03-12",
+      "dj": "Tiga",
+      "kept": {
+        "id": 221962,
+        "source_id": "tiga_2027_03_12_parque_o_higgins",
+        "name": "Tiga @ Parque O'Higgins",
+        "venue": "Parque O'Higgins",
+        "city": "Santiago",
+        "country": "Chile",
+        "date": "2027-03-12",
+        "source": "songkick",
+        "ticket_url": "https://www.songkick.com/festivals/1235-lollapalooza/id/43456088-lollapalooza-2027?utm_medium=organic&utm_source=microformat",
+        "action": "kept"
+      },
+      "removed": [
+        {
+          "id": 221961,
+          "source_id": "tiga_2027_03_12_hip_dromo_de_san_isidro",
+          "name": "Tiga @ Hipódromo de San Isidro",
+          "venue": "Hipódromo de San Isidro",
+          "city": "San Isidro",
+          "country": "Argentina",
+          "date": "2027-03-12",
+          "source": "songkick",
+          "ticket_url": "https://www.songkick.com/festivals/1235-lollapalooza/id/43456086-lollapalooza-2027?utm_medium=organic&utm_source=microformat",
+          "action": "deleted"
+        }
+      ]
+    },
+    {
+      "date": "2027-03-19",
+      "dj": "Marlon Hoffstadt",
+      "kept": {
+        "id": 215906,
+        "source_id": "marlon_hoffstadt_2027_03_19_parque_metropolitano_sim_n_bol_var",
+        "name": "Marlon Hoffstadt @ Parque Metropolitano Simón Bolívar",
+        "venue": "Parque Metropolitano Simón Bolívar",
+        "city": "Bogota",
+        "country": "Colombia",
+        "date": "2027-03-19",
+        "source": "songkick",
+        "ticket_url": "https://www.songkick.com/festivals/387188-estereo-picnic/id/43456096-festival-estereo-picnic-2027?utm_medium=organic&utm_source=microformat",
+        "action": "kept"
+      },
+      "removed": [
+        {
+          "id": 219511,
+          "source_id": "marlon_hoffstadt_2027_03_19_aut_dromo_jos_carlos_pace_interlagos_",
+          "name": "Marlon Hoffstadt @ Autódromo José Carlos Pace (Interlagos)",
+          "venue": "Autódromo José Carlos Pace (Interlagos)",
+          "city": "Sao Paulo",
+          "country": "Brazil",
+          "date": "2027-03-19",
+          "source": "songkick",
+          "ticket_url": "https://www.songkick.com/festivals/1235-lollapalooza/id/43456089-lollapalooza-2027?utm_medium=organic&utm_source=microformat",
+          "action": "deleted"
+        }
+      ]
+    },
+    {
+      "date": "2027-03-19",
+      "dj": "David Guetta",
+      "kept": {
+        "id": 218944,
+        "source_id": "david_guetta_2027_03_19_parque_metropolitano_sim_n_bol_var",
+        "name": "David Guetta @ Parque Metropolitano Simón Bolívar",
+        "venue": "Parque Metropolitano Simón Bolívar",
+        "city": "Bogota",
+        "country": "Colombia",
+        "date": "2027-03-19",
+        "source": "songkick",
+        "ticket_url": "https://www.songkick.com/festivals/387188-estereo-picnic/id/43456096-festival-estereo-picnic-2027?utm_medium=organic&utm_source=microformat",
+        "action": "kept"
+      },
+      "removed": [
+        {
+          "id": 218943,
+          "source_id": "david_guetta_2027_03_19_aut_dromo_jos_carlos_pace_interlagos_",
+          "name": "David Guetta @ Autódromo José Carlos Pace (Interlagos)",
+          "venue": "Autódromo José Carlos Pace (Interlagos)",
+          "city": "Sao Paulo",
+          "country": "Brazil",
+          "date": "2027-03-19",
+          "source": "songkick",
+          "ticket_url": "https://www.songkick.com/festivals/1235-lollapalooza/id/43456089-lollapalooza-2027?utm_medium=organic&utm_source=microformat",
+          "action": "deleted"
+        }
+      ]
+    },
+    {
+      "date": "2027-03-19",
+      "dj": "Sammy Virji",
+      "kept": {
+        "id": 219636,
+        "source_id": "sammy_virji_2027_03_19_parque_metropolitano_sim_n_bol_var",
+        "name": "Sammy Virji @ Parque Metropolitano Simón Bolívar",
+        "venue": "Parque Metropolitano Simón Bolívar",
+        "city": "Bogota",
+        "country": "Colombia",
+        "date": "2027-03-19",
+        "source": "songkick",
+        "ticket_url": "https://www.songkick.com/festivals/387188-estereo-picnic/id/43456096-festival-estereo-picnic-2027?utm_medium=organic&utm_source=microformat",
+        "action": "kept"
+      },
+      "removed": [
+        {
+          "id": 219635,
+          "source_id": "sammy_virji_2027_03_19_aut_dromo_jos_carlos_pace_interlagos_",
+          "name": "Sammy Virji @ Autódromo José Carlos Pace (Interlagos)",
+          "venue": "Autódromo José Carlos Pace (Interlagos)",
+          "city": "Sao Paulo",
+          "country": "Brazil",
+          "date": "2027-03-19",
+          "source": "songkick",
+          "ticket_url": "https://www.songkick.com/festivals/1235-lollapalooza/id/43456089-lollapalooza-2027?utm_medium=organic&utm_source=microformat",
+          "action": "deleted"
+        }
+      ]
+    },
+    {
+      "date": "2027-03-19",
+      "dj": "Four Tet",
+      "kept": {
+        "id": 221089,
+        "source_id": "four_tet_2027_03_19_parque_metropolitano_sim_n_bol_var",
+        "name": "Four Tet @ Parque Metropolitano Simón Bolívar",
+        "venue": "Parque Metropolitano Simón Bolívar",
+        "city": "Bogota",
+        "country": "Colombia",
+        "date": "2027-03-19",
+        "source": "songkick",
+        "ticket_url": "https://www.songkick.com/festivals/387188-estereo-picnic/id/43456096-festival-estereo-picnic-2027?utm_medium=organic&utm_source=microformat",
+        "action": "kept"
+      },
+      "removed": [
+        {
+          "id": 221088,
+          "source_id": "four_tet_2027_03_19_aut_dromo_jos_carlos_pace_interlagos_",
+          "name": "Four Tet @ Autódromo José Carlos Pace (Interlagos)",
+          "venue": "Autódromo José Carlos Pace (Interlagos)",
+          "city": "Sao Paulo",
+          "country": "Brazil",
+          "date": "2027-03-19",
+          "source": "songkick",
+          "ticket_url": "https://www.songkick.com/festivals/1235-lollapalooza/id/43456089-lollapalooza-2027?utm_medium=organic&utm_source=microformat",
+          "action": "deleted"
+        }
+      ]
+    },
+    {
+      "date": "2027-03-19",
+      "dj": "Ninajirachi",
+      "kept": {
+        "id": 221184,
+        "source_id": "ninajirachi_2027_03_19_parque_metropolitano_sim_n_bol_var",
+        "name": "Ninajirachi @ Parque Metropolitano Simón Bolívar",
+        "venue": "Parque Metropolitano Simón Bolívar",
+        "city": "Bogota",
+        "country": "Colombia",
+        "date": "2027-03-19",
+        "source": "songkick",
+        "ticket_url": "https://www.songkick.com/festivals/387188-estereo-picnic/id/43456096-festival-estereo-picnic-2027?utm_medium=organic&utm_source=microformat",
+        "action": "kept"
+      },
+      "removed": [
+        {
+          "id": 221183,
+          "source_id": "ninajirachi_2027_03_19_aut_dromo_jos_carlos_pace_interlagos_",
+          "name": "Ninajirachi @ Autódromo José Carlos Pace (Interlagos)",
+          "venue": "Autódromo José Carlos Pace (Interlagos)",
+          "city": "Sao Paulo",
+          "country": "Brazil",
+          "date": "2027-03-19",
+          "source": "songkick",
+          "ticket_url": "https://www.songkick.com/festivals/1235-lollapalooza/id/43456089-lollapalooza-2027?utm_medium=organic&utm_source=microformat",
+          "action": "deleted"
+        }
+      ]
+    },
+    {
+      "date": "2027-03-19",
+      "dj": "Boys Noize",
+      "kept": {
+        "id": 221444,
+        "source_id": "boys_noize_2027_03_19_parque_metropolitano_sim_n_bol_var",
+        "name": "Boys Noize @ Parque Metropolitano Simón Bolívar",
+        "venue": "Parque Metropolitano Simón Bolívar",
+        "city": "Bogota",
+        "country": "Colombia",
+        "date": "2027-03-19",
+        "source": "songkick",
+        "ticket_url": "https://www.songkick.com/festivals/387188-estereo-picnic/id/43456096-festival-estereo-picnic-2027?utm_medium=organic&utm_source=microformat",
+        "action": "kept"
+      },
+      "removed": [
+        {
+          "id": 221443,
+          "source_id": "boys_noize_2027_03_19_aut_dromo_jos_carlos_pace_interlagos_",
+          "name": "Boys Noize @ Autódromo José Carlos Pace (Interlagos)",
+          "venue": "Autódromo José Carlos Pace (Interlagos)",
+          "city": "Sao Paulo",
+          "country": "Brazil",
+          "date": "2027-03-19",
+          "source": "songkick",
+          "ticket_url": "https://www.songkick.com/festivals/1235-lollapalooza/id/43456089-lollapalooza-2027?utm_medium=organic&utm_source=microformat",
+          "action": "deleted"
+        }
+      ]
+    },
+    {
+      "date": "2026-11-06",
+      "dj": "Klangkuenstler",
+      "kept": {
+        "id": 215916,
+        "source_id": "sk_43423705",
+        "name": "Klangkuenstler @ Ductwork Houston",
+        "venue": "Ductwork Houston",
+        "city": "Houston",
+        "country": "United States",
+        "date": "2026-11-06",
+        "source": "songkick",
+        "ticket_url": "https://www.songkick.com/concerts/43423705-klangkuenstler-at-ductwork-houston?utm_medium=organic&utm_source=microformat",
+        "action": "kept"
+      },
+      "removed": [
+        {
+          "id": 219523,
+          "source_id": "klangkuenstler_2026_11_06_tinker_field",
+          "name": "Klangkuenstler @ Tinker Field",
+          "venue": "Tinker Field",
+          "city": "Orlando",
+          "country": "United States",
+          "date": "2026-11-06",
+          "source": "songkick",
+          "ticket_url": "https://www.songkick.com/festivals/10816-electric-daisy-carnival/id/43117678-electric-daisy-carnival-2026?utm_medium=organic&utm_source=microformat",
+          "action": "deleted"
+        }
+      ]
+    },
+    {
+      "date": "2026-11-06",
+      "dj": "Adrian Mills",
+      "kept": {
+        "id": 220473,
+        "source_id": "adrian_mills_2026_11_06_east_lake_park_underpass_rb",
+        "name": "Adrian Mills @ East Lake Park Underpass - Rb",
+        "venue": "East Lake Park Underpass - Rb",
+        "city": "Phoenix",
+        "country": "United States",
+        "date": "2026-11-06",
+        "source": "songkick",
+        "ticket_url": "https://www.songkick.com/festivals/3752696-rb-festivals-presents-obsidian/id/43450427-rb--festivals-presents-obsidian-2026?utm_medium=organic&utm_source=microformat",
+        "action": "kept"
+      },
+      "removed": [
+        {
+          "id": 220472,
+          "source_id": "adrian_mills_2026_11_06_tinker_field",
+          "name": "Adrian Mills @ Tinker Field",
+          "venue": "Tinker Field",
+          "city": "Orlando",
+          "country": "United States",
+          "date": "2026-11-06",
+          "source": "songkick",
+          "ticket_url": "https://www.songkick.com/festivals/10816-electric-daisy-carnival/id/43117678-electric-daisy-carnival-2026?utm_medium=organic&utm_source=microformat",
+          "action": "deleted"
+        },
+        {
+          "id": 220715,
+          "source_id": "adri_n_mills_2026_11_06_tinker_field",
+          "name": "Adrian Mills @ Tinker Field",
+          "venue": "Tinker Field",
+          "city": "Orlando",
+          "country": "United States",
+          "date": "2026-11-06",
+          "source": "songkick",
+          "ticket_url": "https://www.songkick.com/festivals/10816-electric-daisy-carnival/id/43117678-electric-daisy-carnival-2026?utm_medium=organic&utm_source=microformat",
+          "action": "deleted"
+        }
+      ]
+    },
+    {
+      "date": "2026-11-06",
+      "dj": "Boys Noize",
+      "kept": {
+        "id": 221437,
+        "source_id": "boys_noize_2026_11_06_east_lake_park_underpass_rb",
+        "name": "Boys Noize @ East Lake Park Underpass - Rb",
+        "venue": "East Lake Park Underpass - Rb",
+        "city": "Phoenix",
+        "country": "United States",
+        "date": "2026-11-06",
+        "source": "songkick",
+        "ticket_url": "https://www.songkick.com/festivals/3752696-rb-festivals-presents-obsidian/id/43450427-rb--festivals-presents-obsidian-2026?utm_medium=organic&utm_source=microformat",
+        "action": "kept"
+      },
+      "removed": [
+        {
+          "id": 221436,
+          "source_id": "boys_noize_2026_11_06_tinker_field",
+          "name": "Boys Noize @ Tinker Field",
+          "venue": "Tinker Field",
+          "city": "Orlando",
+          "country": "United States",
+          "date": "2026-11-06",
+          "source": "songkick",
+          "ticket_url": "https://www.songkick.com/festivals/10816-electric-daisy-carnival/id/43117678-electric-daisy-carnival-2026?utm_medium=organic&utm_source=microformat",
+          "action": "deleted"
+        }
+      ]
+    },
+    {
+      "date": "2026-11-06",
+      "dj": "Jessica Audiffred",
+      "kept": {
+        "id": 217402,
+        "source_id": "sk_43287667",
+        "name": "Jessica Audiffred @ The Complex",
+        "venue": "The Complex",
+        "city": "Salt Lake City",
+        "country": "United States",
+        "date": "2026-11-06",
+        "source": "songkick",
+        "ticket_url": "https://www.songkick.com/concerts/43287667-jessica-audiffred-at-complex?utm_medium=organic&utm_source=microformat",
+        "action": "kept"
+      },
+      "removed": [
+        {
+          "id": 221009,
+          "source_id": "jessica_audiffred_2026_11_06_tinker_field",
+          "name": "Jessica Audiffred @ Tinker Field",
+          "venue": "Tinker Field",
+          "city": "Orlando",
+          "country": "United States",
+          "date": "2026-11-06",
+          "source": "songkick",
+          "ticket_url": "https://www.songkick.com/festivals/10816-electric-daisy-carnival/id/43117678-electric-daisy-carnival-2026?utm_medium=organic&utm_source=microformat",
           "action": "deleted"
         }
       ]

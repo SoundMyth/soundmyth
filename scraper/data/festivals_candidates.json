@@ -353,5 +353,19 @@
     "status": "pending",
     "reason": "DB festival-like title; needs review",
     "first_seen": "2026-10-18"
+  },
+  {
+    "key": "kune festival",
+    "name": "KUNE Festival",
+    "city": "Copenhagen",
+    "country": "Denmark",
+    "date": "2027-07-28",
+    "ra_id": "2496983",
+    "via": "generic",
+    "artists": 0,
+    "known_artists": 0,
+    "first_seen": "2026-10-18",
+    "status": "pending",
+    "reason": "only 0 listed artists"
   }
 ]

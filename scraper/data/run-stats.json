@@ -1,35 +1,29 @@
 {
   "festivals": {
-    "added": [
-      "Time Warp Mexico",
-      "Time Warp Los Angeles",
-      "Awakenings ADE",
-      "Awakenings EXO",
-      "Beyond Wonderland Southern California"
-    ],
-    "candidates": 21
+    "added": [],
+    "candidates": 22
   },
   "dedupe": {
-    "generated": "2026-10-18T23:05:32.854Z",
+    "generated": "2026-10-18T23:53:44.736Z",
     "conflicts": 142,
     "djsRemoved": 1,
     "eventsDeleted": 140,
     "fragmentsMerged": 62,
     "keepersMerged": 164,
-    "rowsDeleted": 930
+    "rowsDeleted": 933
   },
   "validate": {
-    "generated": "2026-10-18T23:05:40.956Z",
-    "future": 2633,
-    "cityCanonicalized": 1,
+    "generated": "2026-10-18T23:53:51.778Z",
+    "future": 2626,
+    "cityCanonicalized": 0,
     "cityFromVenue": 0,
     "countryFilled": 0,
     "hubCountryFixed": 0,
     "djListsCleaned": 0,
     "droppedNoGeo": 0,
-    "droppedDate": 2,
-    "droppedLegacyWebsite": 2,
-    "dropped": 4,
+    "droppedDate": 1,
+    "droppedLegacyWebsite": 0,
+    "dropped": 1,
     "geoFlags": {
       "hubMismatch": [],
       "hubMismatchCount": 0,
@@ -89,14 +83,9 @@
     "droppedSamples": []
   },
   "purge": {
-    "generated": "2026-10-18T23:06:41.089Z",
+    "generated": "2026-10-18T23:54:38.817Z",
     "cutoff": "2026-10-10",
     "retentionDays": 8,
-    "deleted": 329,
-    "orphanSavedEvents": {
-      "status": "ok",
-      "found": 18,
-      "deleted": 18
-    }
+    "deleted": 0
   }
 }

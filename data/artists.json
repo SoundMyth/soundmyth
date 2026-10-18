@@ -1,5 +1,5 @@
 {
- "generated": "2026-10-18T23:06:39Z",
+ "generated": "2026-10-18T23:54:38Z",
  "artists": {
   "1926": {
    "name": "19:26",
@@ -7044,13 +7044,6 @@
    "name": "Neek",
    "genre": "Multi-genre",
    "img": "",
-   "top100": false,
-   "vibes": []
-  },
-  "neelix": {
-   "name": "Neelix",
-   "genre": "Multi-genre",
-   "img": "https://images.sk-static.com/images/media/profile_images/artists/162423/huge_avatar",
    "top100": false,
    "vibes": []
   },

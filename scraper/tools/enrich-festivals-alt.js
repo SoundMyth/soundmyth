@@ -18,7 +18,7 @@ import { fileURLToPath }               from 'url';
 import { dirname, resolve }            from 'path';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
-const DATA_FILE = resolve(__dirname, 'data/festivals_all.json');
+const DATA_FILE = resolve(__dirname, '../data/festivals_all.json');
 
 const DELAY_OK   = 1000;
 const DELAY_MISS = 600;

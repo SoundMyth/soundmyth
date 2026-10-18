@@ -25,9 +25,9 @@ const djKey = s => (s || '').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, 
 const stripRegion = n => n.replace(/\s*\((?:[A-Z]{1,3}|[A-Z][a-z]+|\d+)\)\s*$/, '').trim();
 
 const MIN   = Number(process.env.MIN_EVENTS || 4);
-const all   = rd('data/artists_all.json');
-const BLOCK = new Set(rd('data/artists_block.json').map(djKey));
-const cand  = rd('data/artists_candidates.json');
+const all   = rd('../data/artists_all.json');
+const BLOCK = new Set(rd('../data/artists_block.json').map(djKey));
+const cand  = rd('../data/artists_candidates.json');
 
 const seen = new Set(all.map(a => djKey(a.name)));   // existing list (dup guard)
 let next   = Math.max(0, ...all.map(a => a.ranking || 0));
@@ -50,7 +50,7 @@ if (process.env.DRY === '1') {
   console.log(`DRY · would promote ${added.length} DJs (events>=${MIN}). No file written.`);
 } else {
   all.push(...added);
-  writeFileSync(resolve(__dirname, 'data/artists_all.json'), JSON.stringify(all, null, 2) + '\n');
+  writeFileSync(resolve(__dirname, '../data/artists_all.json'), JSON.stringify(all, null, 2) + '\n');
   console.log(`✓ Promoted ${added.length} discovered EDM DJs (events>=${MIN}). artists_all: ${all.length}.`);
 }
 added.forEach(a => console.log('  +', a.name));

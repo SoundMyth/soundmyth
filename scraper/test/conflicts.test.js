@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { findDoubleBookings, planFestivalFragments, eventTier, venueKeyOf, makeFestivalTest } from '../normalize.js';
+import { findDoubleBookings, planFestivalFragments, eventTier, venueKeyOf, makeFestivalTest } from '../lib/normalize.js';
 
 const FESTS = ['Electric Daisy Carnival - EDC Orlando', 'EDC Orlando'];
 

@@ -15,9 +15,9 @@ import { dirname, resolve }  from 'path';
 import { config }            from 'dotenv';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
-config({ path: resolve(__dirname, '.env') });
+config({ path: resolve(__dirname, '../.env') });
 
-const CLUBS_PATH = resolve(__dirname, 'data/clubs_all.json');
+const CLUBS_PATH = resolve(__dirname, '../data/clubs_all.json');
 const DELAY      = 1200;   // ms between RA requests
 const RA_GQL     = 'https://ra.co/graphql';
 

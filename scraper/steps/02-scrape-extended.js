@@ -17,11 +17,11 @@ import { readFileSync } from 'fs';
 import { config } from 'dotenv';
 import { fileURLToPath } from 'url';
 import { dirname, resolve } from 'path';
-import { cleanEvent, todayISO, localDate, resolveLDDate, cleanEventTitle } from './normalize.js';
-import { SK_HEADERS, withRetry } from './http.js';
+import { cleanEvent, todayISO, localDate, resolveLDDate, cleanEventTitle } from '../lib/normalize.js';
+import { SK_HEADERS, withRetry } from '../lib/http.js';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
-config({ path: resolve(__dirname, '.env') });
+config({ path: resolve(__dirname, '../.env') });
 
 const SB_URL  = process.env.SUPABASE_URL;
 const SB_KEY  = process.env.SUPABASE_SERVICE_KEY;
@@ -383,7 +383,7 @@ async function main() {
 
   // NOTE: purge moved to dedicated purge.js (keeps 15-day retention window)
 
-  const artists  = JSON.parse(readFileSync(resolve(__dirname, 'data/artists_all.json'), 'utf8'));
+  const artists  = JSON.parse(readFileSync(resolve(__dirname, '../data/artists_all.json'), 'utf8'));
 
   // Festivals are handled by the three dedicated festival steps
   // (scrape-festivals-bit, scrape-festivals-direct, scrape-festivals-ra).

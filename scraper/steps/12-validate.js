@@ -15,20 +15,20 @@
  */
 
 import { createClient } from '@supabase/supabase-js';
-import { STYLES, FALLBACK_GENRE } from './genres.js';
+import { STYLES, FALLBACK_GENRE } from '../lib/genres.js';
 import { config }       from 'dotenv';
 import { fileURLToPath } from 'url';
 import { dirname, resolve } from 'path';
 import { readFileSync, existsSync } from 'fs';
-import { withRetry } from './http.js';
+import { withRetry } from '../lib/http.js';
 import {
   resolveGeo, makeClubLookup, cleanLineup, checkEventDate, todayISO,
   isLegacyWebsiteRow, cityKey, HUB_COUNTRY,
-} from './normalize.js';
-import { writeRunStat } from './run-stats.js';
+} from '../lib/normalize.js';
+import { writeRunStat } from '../lib/run-stats.js';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
-config({ path: resolve(__dirname, '.env') });
+config({ path: resolve(__dirname, '../.env') });
 
 const SB_URL = process.env.SUPABASE_URL;
 const SB_KEY = process.env.SUPABASE_SERVICE_KEY;
@@ -43,7 +43,7 @@ const sb = createClient(SB_URL, SB_KEY, { auth: { persistSession: false } });
 // Valid event genres: the 16 canonical styles + the festival/event fallback.
 const CANON_GENRE = new Set([...STYLES, FALLBACK_GENRE]);
 
-const clubsPath = resolve(__dirname, 'data/clubs_all.json');
+const clubsPath = resolve(__dirname, '../data/clubs_all.json');
 const clubLookup = makeClubLookup(existsSync(clubsPath) ? JSON.parse(readFileSync(clubsPath, 'utf8')) : []);
 
 // ── Helpers ──────────────────────────────────────────────────────────────────

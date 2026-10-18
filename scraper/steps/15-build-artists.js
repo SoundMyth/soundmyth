@@ -22,8 +22,8 @@ import { writeFileSync, readFileSync, existsSync, mkdirSync } from 'fs';
 import { fileURLToPath, pathToFileURL } from 'url';
 import { dirname, resolve } from 'path';
 import { createClient } from '@supabase/supabase-js';
-import { loadDJCache, loadOverrides } from './enrich-images.js';
-import { djKey, djStyle, normVibes, FALLBACK_GENRE } from './genres.js';
+import { loadDJCache, loadOverrides } from './14-enrich-images.js';
+import { djKey, djStyle, normVibes, FALLBACK_GENRE } from '../lib/genres.js';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const readJ = (p, fallback) => {
@@ -31,7 +31,7 @@ const readJ = (p, fallback) => {
   if (!existsSync(abs)) return fallback;
   try { return JSON.parse(readFileSync(abs, 'utf8')); } catch { return fallback; }
 };
-const OUT = resolve(__dirname, '../data/artists.json');
+const OUT = resolve(__dirname, '../../data/artists.json');
 
 // ── Genre + vibes: the shared taxonomy in genres.js (contract §1/§3) ──────────
 // A DJ with no usable genre gets FALLBACK_GENRE ("Multi-genre" = not classified yet);
@@ -72,9 +72,9 @@ async function upcomingDJNames() {
 }
 
 async function main() {
-  const all = readJ('data/artists_all.json', []);
-  const top100 = new Set(readJ('data/artists_top100.json', []).map(a => djKey(a.name)));
-  const candidates = readJ('data/artists_candidates.json', []).filter(c => c.onRA === true);
+  const all = readJ('../data/artists_all.json', []);
+  const top100 = new Set(readJ('../data/artists_top100.json', []).map(a => djKey(a.name)));
+  const candidates = readJ('../data/artists_candidates.json', []).filter(c => c.onRA === true);
   const cache = loadDJCache();
   const overrides = loadOverrides();
 

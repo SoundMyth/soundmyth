@@ -19,17 +19,17 @@ import { readFileSync, existsSync } from 'fs';
 import { config }        from 'dotenv';
 import { fileURLToPath } from 'url';
 import { dirname, resolve } from 'path';
-import { withRetry } from './http.js';
-import { canonCity, todayISO, planFestivalFragments, findDoubleBookings, makeFestivalTest, djMatchKey } from './normalize.js';
-import { writeRunStat } from './run-stats.js';
+import { withRetry } from '../lib/http.js';
+import { canonCity, todayISO, planFestivalFragments, findDoubleBookings, makeFestivalTest, djMatchKey } from '../lib/normalize.js';
+import { writeRunStat } from '../lib/run-stats.js';
 import { writeFileSync } from 'fs';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
-const CONFLICTS_PATH = resolve(__dirname, 'data/conflicts.json');
+const CONFLICTS_PATH = resolve(__dirname, '../data/conflicts.json');
 // A festival runs up to ~4 days (Fri–Mon). Per-artist fragments further than this from the
 // festival row are not merged into it.
 const FEST_SPAN_DAYS = 4;
-config({ path: resolve(__dirname, '.env') });
+config({ path: resolve(__dirname, '../.env') });
 
 const SB_URL = process.env.SUPABASE_URL;
 const SB_KEY = process.env.SUPABASE_SERVICE_KEY;
@@ -222,7 +222,7 @@ async function main() {
   // "Heineken House Coachella", etc). Consolidate: same date + same city + name/venue
   // contains a known festival BASE name → merge into one event.
   console.log('\n  Pass 3: Festival consolidation...');
-  const FESTIVALS_PATH = resolve(__dirname, 'data/festivals_all.json');
+  const FESTIVALS_PATH = resolve(__dirname, '../data/festivals_all.json');
   let festBaseNames = [];
   if (existsSync(FESTIVALS_PATH)) {
     const fests = JSON.parse(readFileSync(FESTIVALS_PATH, 'utf8'));

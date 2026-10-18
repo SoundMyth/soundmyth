@@ -20,12 +20,12 @@
 import { readFileSync, writeFileSync } from 'fs';
 import { fileURLToPath }               from 'url';
 import { dirname, resolve }            from 'path';
-import { SK_HEADERS }                  from './http.js';
+import { SK_HEADERS }                  from '../lib/http.js';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
-const INPUT  = resolve(__dirname, process.argv[2] || 'data/artists_all.json');
-const OUTPUT = resolve(__dirname, process.argv[3] || process.argv[2] || 'data/artists_all.json');
+const INPUT  = resolve(__dirname, process.argv[2] || '../data/artists_all.json');
+const OUTPUT = resolve(__dirname, process.argv[3] || process.argv[2] || '../data/artists_all.json');
 
 const DELAY_OK   = 1300;  // ms after a successful fetch
 const DELAY_MISS = 800;   // ms after "not found"

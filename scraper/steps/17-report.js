@@ -22,11 +22,11 @@ import { config } from 'dotenv';
 import { fileURLToPath } from 'url';
 import { dirname, resolve } from 'path';
 import { readFileSync, existsSync } from 'fs';
-import { todayISO, addDaysISO } from './normalize.js';
-import { readRunStats } from './run-stats.js';
+import { todayISO, addDaysISO } from '../lib/normalize.js';
+import { readRunStats } from '../lib/run-stats.js';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
-config({ path: resolve(__dirname, '.env') });
+config({ path: resolve(__dirname, '../.env') });
 
 const SB_URL  = process.env.SUPABASE_URL;
 const SB_KEY  = process.env.SUPABASE_SERVICE_KEY;
@@ -74,7 +74,7 @@ function fresh(section) {
 }
 
 function readConflicts() {
-  const p = resolve(__dirname, 'data/conflicts.json');
+  const p = resolve(__dirname, '../data/conflicts.json');
   try {
     const c = existsSync(p) ? JSON.parse(readFileSync(p, 'utf8')) : null;
     return fresh(c);

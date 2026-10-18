@@ -4,10 +4,10 @@
  * DJs without a valid style (genre '' or not one of the 16 canonical styles, e.g. freshly
  * promoted by promote-candidates.js) get the most common style among the already-classified
  * DJs on the same upcoming events. Output is ALWAYS a canonical style from genres.js — never
- * 'Electronic' or a legacy label. This is a suggestion: review data/genre-audit-*.md and
+ * 'Electronic' or a legacy label. This is a suggestion: review docs/genre-audit-*.md and
  * correct by hand when it matters.
  *
- * Read-only on the DB (anon key from ../index.html); writes data/artists_all.json.
+ * Read-only on the DB (anon key from ../../index.html); writes data/artists_all.json.
  * Safe to re-run. Set DRY=1 to preview.
  *
  * Usage: node infer-styles.js   (DRY=1 node infer-styles.js to preview)
@@ -16,10 +16,10 @@ import { readFileSync, writeFileSync } from 'fs';
 import { createClient }               from '@supabase/supabase-js';
 import { fileURLToPath }              from 'url';
 import { dirname, resolve }           from 'path';
-import { djKey, djStyle }             from './genres.js';
+import { djKey, djStyle }             from '../lib/genres.js';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
-const ALL_PATH = resolve(__dirname, 'data/artists_all.json');
+const ALL_PATH = resolve(__dirname, '../data/artists_all.json');
 const all = JSON.parse(readFileSync(ALL_PATH, 'utf8'));
 
 // Known = already has a valid canonical style. Unknown = needs one.
@@ -32,7 +32,7 @@ for (const a of all) {
 console.log(`artists_all: ${all.length} · known style: ${Object.keys(known).length} · unknown: ${unknown.size}`);
 
 // Anon read of upcoming events (no secrets).
-const html = readFileSync(resolve(__dirname, '../index.html'), 'utf8');
+const html = readFileSync(resolve(__dirname, '../../index.html'), 'utf8');
 const sb = createClient((html.match(/SB_URL\s*=\s*['"]([^'"]+)['"]/) || [])[1],
                         (html.match(/SB_KEY\s*=\s*['"]([^'"]+)['"]/) || [])[1], { auth: { persistSession: false } });
 const TODAY = new Date().toISOString().split('T')[0];

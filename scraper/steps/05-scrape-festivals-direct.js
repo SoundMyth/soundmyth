@@ -22,12 +22,12 @@ import { readFileSync }  from 'fs';
 import { config }        from 'dotenv';
 import { fileURLToPath } from 'url';
 import { dirname, resolve } from 'path';
-import { cleanEvent, todayISO, resolveLDDate, checkEventDate } from './normalize.js';
-import { withRetry } from './http.js';
+import { cleanEvent, todayISO, resolveLDDate, checkEventDate } from '../lib/normalize.js';
+import { withRetry } from '../lib/http.js';
 import { chromium } from 'playwright';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
-config({ path: resolve(__dirname, '.env') });
+config({ path: resolve(__dirname, '../.env') });
 
 const SB_URL  = process.env.SUPABASE_URL;
 const SB_KEY  = process.env.SUPABASE_SERVICE_KEY;
@@ -46,7 +46,7 @@ const HEADERS = {
   'Accept-Language': 'en-US,en;q=0.9',
 };
 
-const FESTIVALS_PATH = resolve(__dirname, 'data/festivals_all.json');
+const FESTIVALS_PATH = resolve(__dirname, '../data/festivals_all.json');
 
 // ── Helpers ───────────────────────────────────────────────────────────────────
 

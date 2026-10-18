@@ -12,12 +12,12 @@ import { createClient } from '@supabase/supabase-js';
 import { config }       from 'dotenv';
 import { fileURLToPath } from 'url';
 import { dirname, resolve } from 'path';
-import { withRetry } from './http.js';
-import { todayISO, addDaysISO } from './normalize.js';
-import { writeRunStat } from './run-stats.js';
+import { withRetry } from '../lib/http.js';
+import { todayISO, addDaysISO } from '../lib/normalize.js';
+import { writeRunStat } from '../lib/run-stats.js';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
-config({ path: resolve(__dirname, '.env') });
+config({ path: resolve(__dirname, '../.env') });
 
 const SB_URL  = process.env.SUPABASE_URL;
 const SB_KEY  = process.env.SUPABASE_SERVICE_KEY;

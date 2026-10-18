@@ -16,7 +16,7 @@
  * so EDM-but-unlisted DJs are NOT lost; you promote the good ones into
  * artists_all.json by hand whenever you like.
  *
- * Read-only on the DB (anon key from ../index.html). Incremental: previously
+ * Read-only on the DB (anon key from ../../index.html). Incremental: previously
  * verified DJs are cached, only new ones hit RA. Set LIMIT_NEW=N to cap RA calls.
  *
  * Usage: node discover-djs.js
@@ -25,8 +25,8 @@ import { createClient }            from '@supabase/supabase-js';
 import { readFileSync, writeFileSync } from 'fs';
 import { fileURLToPath }           from 'url';
 import { dirname, resolve }        from 'path';
-import { pickCanon }               from './normalize.js';
-import { withRetry }               from './http.js';
+import { pickCanon }               from '../lib/normalize.js';
+import { withRetry }               from '../lib/http.js';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const readJ = p => { try { return JSON.parse(readFileSync(resolve(__dirname, p), 'utf8')); } catch { return []; } };
@@ -38,7 +38,7 @@ const readJ = p => { try { return JSON.parse(readFileSync(resolve(__dirname, p),
 let SB_URL = process.env.SUPABASE_URL;
 let SB_KEY = process.env.SUPABASE_ANON_KEY;
 if (!SB_URL || !SB_KEY) {
-  const html = readFileSync(resolve(__dirname, '../index.html'), 'utf8');
+  const html = readFileSync(resolve(__dirname, '../../index.html'), 'utf8');
   SB_URL = SB_URL || (html.match(/SB_URL\s*=\s*['"]([^'"]+)['"]/) || [])[1];
   SB_KEY = SB_KEY || (html.match(/SB_KEY\s*=\s*['"]([^'"]+)['"]/) || [])[1];
 }
@@ -49,15 +49,15 @@ const TODAY = new Date().toISOString().split('T')[0];
 const djKey = s => (s || '').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '')
                               .replace(/&/g, ' and ').replace(/[^a-z0-9]+/g, '');
 
-const LIST     = new Set(readJ('data/artists_all.json').map(a => djKey(a.name)));
+const LIST     = new Set(readJ('../data/artists_all.json').map(a => djKey(a.name)));
 // Manual EDM allow-list — DJs RA doesn't index but we know are electronic
 // (Major Lazer, GRiZ…). Forced onRA:true so they're never dropped/stripped.
-const ALLOW    = new Set(readJ('data/artists_allow.json').map(djKey));
+const ALLOW    = new Set(readJ('../data/artists_allow.json').map(djKey));
 // Manual block-list — RA false-positives that are NOT EDM (Florence and The
 // Machine…). Forced onRA:false so they're dropped/stripped from line-ups.
-const BLOCK    = new Set(readJ('data/artists_block.json').map(djKey));
-const CAND_PATH = resolve(__dirname, 'data/artists_candidates.json');
-const prev      = readJ('data/artists_candidates.json');
+const BLOCK    = new Set(readJ('../data/artists_block.json').map(djKey));
+const CAND_PATH = resolve(__dirname, '../data/artists_candidates.json');
+const prev      = readJ('../data/artists_candidates.json');
 const cache     = new Map(prev.map(c => [c.key || djKey(c.name), c]));   // djKey → previous entry
 
 // ── pull every future event (paged) ────────────────────────────────────────────

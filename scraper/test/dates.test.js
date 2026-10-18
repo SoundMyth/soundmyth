@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import {
   todayISO, addDaysISO, addMonthsISO, daysBetween, localDate, isUtcInstant, inferYearISO,
   parseNamedDate, resolveLDDate, cleanEventTitle, checkEventDate, isLegacyWebsiteRow, weekdayName,
-} from '../normalize.js';
+} from '../lib/normalize.js';
 
 const TODAY = '2026-10-18';
 

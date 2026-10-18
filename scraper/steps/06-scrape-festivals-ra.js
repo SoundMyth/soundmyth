@@ -20,11 +20,11 @@ import { readFileSync }  from 'fs';
 import { config }        from 'dotenv';
 import { fileURLToPath } from 'url';
 import { dirname, resolve } from 'path';
-import { cleanEvent, canonCity, canonCountry } from './normalize.js';
-import { withRetry } from './http.js';
+import { cleanEvent, canonCity, canonCountry } from '../lib/normalize.js';
+import { withRetry } from '../lib/http.js';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
-config({ path: resolve(__dirname, '.env') });
+config({ path: resolve(__dirname, '../.env') });
 
 const SB_URL = process.env.SUPABASE_URL;
 const SB_KEY = process.env.SUPABASE_SERVICE_KEY;
@@ -37,7 +37,7 @@ if (!SB_URL || !SB_KEY) { console.error('❌  Missing Supabase env vars'); proce
 const sb    = createClient(SB_URL, SB_KEY, { auth: { persistSession: false } });
 const sleep = ms => new Promise(r => setTimeout(r, ms));
 
-const FESTIVALS_PATH = resolve(__dirname, 'data/festivals_all.json');
+const FESTIVALS_PATH = resolve(__dirname, '../data/festivals_all.json');
 
 // ── RA GraphQL ────────────────────────────────────────────────────────────────
 const RA_GQL = 'https://ra.co/graphql';

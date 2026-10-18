@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { canonCity, canonCountry, resolveGeo, makeClubLookup, cityKey } from '../normalize.js';
+import { canonCity, canonCountry, resolveGeo, makeClubLookup, cityKey } from '../lib/normalize.js';
 
 test('canonCity: borough and sub-area names fold into the city (contract §6)', () => {
   assert.equal(canonCity('Brooklyn'), 'New York');

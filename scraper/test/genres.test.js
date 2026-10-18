@@ -6,7 +6,7 @@ import { dirname, resolve } from 'path';
 import {
   STYLES, FALLBACK_GENRE, VIBES, canonGenre, djStyle, djKey, normVibes,
   buildArtistsIndex, eventGenre, eventTags,
-} from '../genres.js';
+} from '../lib/genres.js';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const artistsAll = JSON.parse(readFileSync(resolve(__dirname, '../data/artists_all.json'), 'utf8'));

@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import { readFileSync } from 'fs';
 import { fileURLToPath } from 'url';
 import { dirname, resolve } from 'path';
-import { CITY_ALIAS_RAW } from '../normalize.js';
+import { CITY_ALIAS_RAW } from '../lib/normalize.js';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const html = readFileSync(resolve(__dirname, '../../index.html'), 'utf8');
@@ -25,7 +25,7 @@ test('CITY_ALIAS_RAW is identical in index.html and scraper/normalize.js', () =>
 // /data/artists.json is the single source of DJ genre/photo for the frontend:
 // keys must be djKey(name), genres canonical, vibes whitelisted, photos https or "".
 test('data/artists.json is well-formed and canonical', async () => {
-  const { djKey, STYLES, FALLBACK_GENRE, VIBES } = await import('../genres.js');
+  const { djKey, STYLES, FALLBACK_GENRE, VIBES } = await import('../lib/genres.js');
   const art = JSON.parse(readFileSync(resolve(__dirname, '../../data/artists.json'), 'utf8'));
   const entries = Object.entries(art.artists || {});
   assert.ok(entries.length > 500, 'artists.json should cover the DJ list');

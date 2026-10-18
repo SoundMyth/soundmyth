@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { cleanLineup } from '../normalize.js';
+import { cleanLineup } from '../lib/normalize.js';
 
 test('cleanLineup: b2b and vs split into two DJs', () => {
   assert.deepEqual(cleanLineup(['Dixon b2b Amelie Lens']), ['Dixon', 'Amelie Lens']);

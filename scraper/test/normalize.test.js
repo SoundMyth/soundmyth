@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { canonCity, canonCountry, cleanVenue, looksLikeBareArtist, djNorm, pickCanon, buildDjCanon } from '../normalize.js';
+import { canonCity, canonCountry, cleanVenue, looksLikeBareArtist, djNorm, pickCanon, buildDjCanon } from '../lib/normalize.js';
 
 test('canonCity: explicit aliases & exonyms win', () => {
   assert.equal(canonCity('Eivissa'), 'Ibiza');

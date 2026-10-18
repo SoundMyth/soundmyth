@@ -41,10 +41,10 @@ jobs:
         env:
           SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
           SUPABASE_ANON_KEY: ${{ secrets.SUPABASE_ANON_KEY }}
-        run: node discover-djs.js
+        run: node steps/10-discover-djs.js
 
       - name: Clean junk + canonicalize cities
         env:
           SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
           SUPABASE_SERVICE_KEY: ${{ secrets.SUPABASE_SERVICE_KEY }}
-        run: node cleanup-junk.js
+        run: node steps/11-cleanup-junk.js

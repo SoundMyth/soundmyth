@@ -21,11 +21,11 @@ import { readFileSync } from 'fs';
 import { config } from 'dotenv';
 import { fileURLToPath } from 'url';
 import { dirname, resolve } from 'path';
-import { withRetry } from './http.js';
-import { STYLES, FALLBACK_GENRE, djKey, djStyle, buildArtistsIndex, eventGenre, eventTags } from './genres.js';
+import { withRetry } from '../lib/http.js';
+import { STYLES, FALLBACK_GENRE, djKey, djStyle, buildArtistsIndex, eventGenre, eventTags } from '../lib/genres.js';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
-config({ path: resolve(__dirname, '.env') });
+config({ path: resolve(__dirname, '../.env') });
 
 const args = process.argv.slice(2);
 const DRY = args.includes('--dry-run');
@@ -65,19 +65,19 @@ console.log(`Loaded ${rows.length} upcoming events${SNAPSHOT ? ` (snapshot ${SNA
 
 // ── Reference data ───────────────────────────────────────────────────────────────
 // Artists: artists_all is authoritative; candidates (RA-verified, no genre yet) fill gaps.
-const artistsRows = readJ('data/artists_all.json');
+const artistsRows = readJ('../data/artists_all.json');
 const artists = buildArtistsIndex(artistsRows);
-for (const c of readJ('data/artists_candidates.json')) {
+for (const c of readJ('../data/artists_candidates.json')) {
   const k = djKey(c.name);
   if (k && !artists[k] && c.genre) artists[k] = buildArtistsIndex([c])[k];
 }
 // Festivals: `style` is added by the festivals scraper; absence is fine (→ Multi-genre).
 const festStyle = new Map();
-for (const f of readJ('data/festivals_all.json')) {
+for (const f of readJ('../data/festivals_all.json')) {
   const k = djKey(f.name);
   if (k && f.style && !festStyle.has(k)) festStyle.set(k, f.style);
 }
-const festKeys = new Set(readJ('data/festivals_all.json').map(f => djKey(f.name)).filter(Boolean));
+const festKeys = new Set(readJ('../data/festivals_all.json').map(f => djKey(f.name)).filter(Boolean));
 
 // ── Event type (festival | club | none) ─────────────────────────────────────────
 // Legacy 'festival'/'club' tags were polluted by DJ tags (a DJ's own 'festival'/'club' vibe

@@ -13,16 +13,16 @@ import { readFileSync }  from 'fs';
 import { config }        from 'dotenv';
 import { fileURLToPath } from 'url';
 import { dirname, resolve } from 'path';
-import { cleanEvent, cleanVenue, todayISO, localDate, resolveLDDate } from './normalize.js';
-import { SK_HEADERS, withRetry } from './http.js';
+import { cleanEvent, cleanVenue, todayISO, localDate, resolveLDDate } from '../lib/normalize.js';
+import { SK_HEADERS, withRetry } from '../lib/http.js';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
-config({ path: resolve(__dirname, '.env') });
+config({ path: resolve(__dirname, '../.env') });
 
 const SB_URL         = process.env.SUPABASE_URL;
 const SB_KEY         = process.env.SUPABASE_SERVICE_KEY;
 const BIT_APP_ID     = process.env.BIT_APP_ID || 'js_bandsintown';
-const FESTIVALS_PATH = resolve(__dirname, 'data/festivals_all.json');
+const FESTIVALS_PATH = resolve(__dirname, '../data/festivals_all.json');
 
 const DELAY_BIT = 650;   // ms between BIT calls
 const DELAY_SK  = 900;   // ms between SK calls (more polite)

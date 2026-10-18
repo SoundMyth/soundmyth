@@ -15,10 +15,10 @@ import { readFileSync, existsSync } from 'fs';
 import { config }        from 'dotenv';
 import { fileURLToPath } from 'url';
 import { dirname, resolve } from 'path';
-import { cleanEvent, canonCity, localDate, todayISO } from './normalize.js';
+import { cleanEvent, canonCity, localDate, todayISO } from '../lib/normalize.js';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
-config({ path: resolve(__dirname, '.env') });
+config({ path: resolve(__dirname, '../.env') });
 
 const SB_URL  = process.env.SUPABASE_URL;
 const SB_KEY  = process.env.SUPABASE_SERVICE_KEY;
@@ -305,8 +305,8 @@ async function main() {
   console.log('║  Mode: upsert new (source_id: ra_*)      ║');
   console.log('╚══════════════════════════════════════════╝\n');
 
-  const clubsFile = existsSync(resolve(__dirname, 'data/clubs_all.json'))
-    ? 'data/clubs_all.json' : 'data/clubs_top100.json';
+  const clubsFile = existsSync(resolve(__dirname, '../data/clubs_all.json'))
+    ? '../data/clubs_all.json' : '../data/clubs_top100.json';
   const clubs = JSON.parse(readFileSync(resolve(__dirname, clubsFile), 'utf8'));
   const withRA = clubs.filter(c => extractRAId(c.ra_url));
   console.log(`📋  ${clubs.length} clubs total | ${withRA.length} with RA URL\n`);

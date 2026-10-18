@@ -29,7 +29,7 @@
  *
  * Flags: --dry-run (or DRY_RUN=1) writes nothing; prints what would change.
  * Reads Supabase with the anon key (SUPABASE_URL + SUPABASE_ANON_KEY, or the
- * SB_URL/SB_KEY literals in ../index.html for local runs). Never writes the DB.
+ * SB_URL/SB_KEY literals in ../../index.html for local runs). Never writes the DB.
  *
  * Usage: node discover-festivals.js [--dry-run]
  */
@@ -37,11 +37,11 @@ import { createClient }                       from '@supabase/supabase-js';
 import { readFileSync, writeFileSync, existsSync } from 'fs';
 import { fileURLToPath }                      from 'url';
 import { dirname, resolve }                   from 'path';
-import { canonCity, canonCountry }            from './normalize.js';
-import { withRetry }                          from './http.js';
+import { canonCity, canonCountry }            from '../lib/normalize.js';
+import { withRetry }                          from '../lib/http.js';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
-const DATA = p => resolve(__dirname, 'data', p);
+const DATA = p => resolve(__dirname, '..', 'data', p);
 const readJ = (p, fb = []) => { try { return JSON.parse(readFileSync(DATA(p), 'utf8')); } catch { return fb; } };
 const DRY_RUN = process.argv.includes('--dry-run') || process.env.DRY_RUN === '1';
 const TODAY   = new Date().toISOString().split('T')[0];
@@ -56,7 +56,7 @@ const MIN_KNOWN    = 3;     // generic auto-add: lineup members in artists_all.j
 let SB_URL = process.env.SUPABASE_URL, SB_KEY = process.env.SUPABASE_ANON_KEY;
 if (!SB_URL || !SB_KEY) {
   try {
-    const html = readFileSync(resolve(__dirname, '../index.html'), 'utf8');
+    const html = readFileSync(resolve(__dirname, '../../index.html'), 'utf8');
     SB_URL = SB_URL || (html.match(/SB_URL\s*=\s*['"]([^'"]+)['"]/) || [])[1];
     SB_KEY = SB_KEY || (html.match(/SB_KEY\s*=\s*['"]([^'"]+)['"]/) || [])[1];
   } catch { /* no index.html: DB pass is skipped below */ }

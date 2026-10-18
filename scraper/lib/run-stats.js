@@ -13,7 +13,7 @@ import { fileURLToPath } from 'url';
 import { dirname, resolve } from 'path';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
-export const RUN_STATS_PATH = resolve(__dirname, 'data/run-stats.json');
+export const RUN_STATS_PATH = resolve(__dirname, '../data/run-stats.json');
 
 export function readRunStats(path = RUN_STATS_PATH) {
   try {

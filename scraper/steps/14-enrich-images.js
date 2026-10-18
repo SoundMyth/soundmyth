@@ -30,10 +30,10 @@ import { readFileSync, writeFileSync, existsSync } from 'fs';
 import { config } from 'dotenv';
 import { fileURLToPath, pathToFileURL } from 'url';
 import { dirname, resolve } from 'path';
-import { withRetry, SK_HEADERS } from './http.js';
+import { withRetry, SK_HEADERS } from '../lib/http.js';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
-config({ path: resolve(__dirname, '.env') });
+config({ path: resolve(__dirname, '../.env') });
 
 const sleep = ms => new Promise(r => setTimeout(r, ms));
 const UA = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36';
@@ -166,9 +166,9 @@ export async function sourceWikipedia(name) {
 }
 
 // ── Caches ─────────────────────────────────────────────────────────────────
-const DJ_CACHE_PATH = resolve(__dirname, 'data/dj_images_cache.json');
-const DJ_OVERRIDES_PATH = resolve(__dirname, 'data/dj_images_overrides.json');
-const FEST_CACHE_PATH = resolve(__dirname, 'data/festival_images_cache.json');
+const DJ_CACHE_PATH = resolve(__dirname, '../data/dj_images_cache.json');
+const DJ_OVERRIDES_PATH = resolve(__dirname, '../data/dj_images_overrides.json');
+const FEST_CACHE_PATH = resolve(__dirname, '../data/festival_images_cache.json');
 
 // DJ cache format changed in v6: entries are keyed by djKey and carry {name, img, source,
 // checked}. The v5 cache (name-keyed TheAudioDB/Wikipedia URLs, unverified) is discarded.
@@ -317,8 +317,8 @@ async function main() {
   if (!sb) console.log('No Supabase service key: caches only, event rows will not be updated.\n');
 
   const readData = p => readJSON(resolve(__dirname, p), []);
-  const festivals = readData('data/festivals_all.json');
-  const artists = readData('data/artists_all.json');
+  const festivals = readData('../data/festivals_all.json');
+  const artists = readData('../data/artists_all.json');
 
   // Future events (paged). Snapshot file used as a fallback when there is no DB access.
   const today = new Date().toISOString().split('T')[0];

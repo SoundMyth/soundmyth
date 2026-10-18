@@ -48,7 +48,7 @@ jobs:
         env:
           SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
           SUPABASE_SERVICE_KEY: ${{ secrets.SUPABASE_SERVICE_KEY }}
-        run: node enrich-songkick-urls.js
+        run: node steps/01-enrich-songkick-urls.js
 
       - name: Scrape DJs (BIT + Songkick cascade)
         id: djs
@@ -59,7 +59,7 @@ jobs:
           SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
           SUPABASE_SERVICE_KEY: ${{ secrets.SUPABASE_SERVICE_KEY }}
           BIT_APP_ID: ${{ secrets.BIT_APP_ID }}
-        run: node scrape-extended.js
+        run: node steps/02-scrape-extended.js
 
       - name: Discover festivals (RA brand editions + candidates)
         id: fest_discover
@@ -73,7 +73,7 @@ jobs:
         env:
           SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
           SUPABASE_ANON_KEY: ${{ secrets.SUPABASE_ANON_KEY }}
-        run: node discover-festivals.js
+        run: node steps/03-discover-festivals.js
 
       - name: Scrape Festivals (BIT + Songkick)
         id: fest_bit
@@ -83,7 +83,7 @@ jobs:
           SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
           SUPABASE_SERVICE_KEY: ${{ secrets.SUPABASE_SERVICE_KEY }}
           BIT_APP_ID: ${{ secrets.BIT_APP_ID }}
-        run: node scrape-festivals-bit.js
+        run: node steps/04-scrape-festivals-bit.js
 
       - name: Install Playwright Chromium
         timeout-minutes: 20   # without this a hung download burns the 120-min job
@@ -97,7 +97,7 @@ jobs:
         env:
           SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
           SUPABASE_SERVICE_KEY: ${{ secrets.SUPABASE_SERVICE_KEY }}
-        run: node scrape-festivals-direct.js
+        run: node steps/05-scrape-festivals-direct.js
 
       - name: Scrape Festivals (Resident Advisor)
         id: fest_ra
@@ -109,7 +109,7 @@ jobs:
         env:
           SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
           SUPABASE_SERVICE_KEY: ${{ secrets.SUPABASE_SERVICE_KEY }}
-        run: node scrape-festivals-ra.js
+        run: node steps/06-scrape-festivals-ra.js
 
       - name: Enrich Clubs (RA URLs)
         id: clubs_enrich
@@ -117,7 +117,7 @@ jobs:
         timeout-minutes: 10
         # Auto-fills ra_url for clubs that have none (no secrets: only calls ra.co).
         # The filled URLs are persisted by the "Commit updated data files" step.
-        run: node enrich-clubs-ra.js
+        run: node steps/07-enrich-clubs-ra.js
 
       - name: Scrape Clubs (Resident Advisor)
         id: clubs
@@ -126,7 +126,7 @@ jobs:
         env:
           SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
           SUPABASE_SERVICE_KEY: ${{ secrets.SUPABASE_SERVICE_KEY }}
-        run: node scrape-clubs-ra.js
+        run: node steps/08-scrape-clubs-ra.js
 
       - name: Deduplicate events
         id: dedupe
@@ -135,7 +135,7 @@ jobs:
         env:
           SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
           SUPABASE_SERVICE_KEY: ${{ secrets.SUPABASE_SERVICE_KEY }}
-        run: node dedupe.js
+        run: node steps/09-dedupe.js
 
       - name: Discover unlisted EDM DJs (RA-verified)
         id: discover
@@ -150,7 +150,7 @@ jobs:
         env:
           SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
           SUPABASE_ANON_KEY: ${{ secrets.SUPABASE_ANON_KEY }}
-        run: node discover-djs.js
+        run: node steps/10-discover-djs.js
 
       - name: Clean mislabelled junk events
         id: cleanup
@@ -159,7 +159,7 @@ jobs:
         env:
           SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
           SUPABASE_SERVICE_KEY: ${{ secrets.SUPABASE_SERVICE_KEY }}
-        run: node cleanup-junk.js
+        run: node steps/11-cleanup-junk.js
 
       - name: Validate & fix data quality
         id: validate
@@ -168,7 +168,7 @@ jobs:
         env:
           SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
           SUPABASE_SERVICE_KEY: ${{ secrets.SUPABASE_SERVICE_KEY }}
-        run: node validate.js
+        run: node steps/12-validate.js
 
       - name: Classify genre & tags (canonical styles)
         id: classify
@@ -177,7 +177,7 @@ jobs:
         env:
           SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
           SUPABASE_SERVICE_KEY: ${{ secrets.SUPABASE_SERVICE_KEY }}
-        run: node classify.js
+        run: node steps/13-classify.js
 
       - name: Enrich event images (festivals + DJs)
         id: images
@@ -187,7 +187,7 @@ jobs:
           SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
           SUPABASE_SERVICE_KEY: ${{ secrets.SUPABASE_SERVICE_KEY }}
           DJ_TIME_BUDGET_MIN: 18
-        run: node enrich-images.js
+        run: node steps/14-enrich-images.js
 
       - name: Build DJ artifact (web/data/artists.json)
         id: artists
@@ -196,7 +196,7 @@ jobs:
         env:
           SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
           SUPABASE_SERVICE_KEY: ${{ secrets.SUPABASE_SERVICE_KEY }}
-        run: node build-artists.js
+        run: node steps/15-build-artists.js
 
       - name: Purge old events (>8 days)
         id: purge
@@ -205,7 +205,7 @@ jobs:
         env:
           SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
           SUPABASE_SERVICE_KEY: ${{ secrets.SUPABASE_SERVICE_KEY }}
-        run: node purge.js
+        run: node steps/16-purge.js
 
       - name: Commit updated data files
         id: commit
@@ -273,4 +273,4 @@ jobs:
             "Commit data files": "${{ steps.commit.outcome }}",
             "Verify wrote data": "${{ steps.verify.outcome }}"
             }
-        run: node report.js
+        run: node steps/17-report.js

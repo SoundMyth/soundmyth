@@ -35,7 +35,7 @@ Each step is `scraper/steps/NN-name.js`. Run one locally with `npm run step:<nam
 | 09 | `09-dedupe.js` | Merges duplicates and festival fragments; resolves double bookings into `conflicts.json`. Skips merge/delete passes if the event load was partial |
 | 10 | `10-discover-djs.js` | Finds DJs in events that are not in our list and verifies them on RA → `artists_candidates.json` |
 | 11 | `11-cleanup-junk.js` | **Deletes** events whose lineup has no EDM presence; canonicalises DJ and city spellings. Respects `artists_allow.json` and `artists_block.json` |
-| 12 | `12-validate.js` | Fixes countries, lineups and genres; drops events with no location, invalid dates, or dates more than 15 months ahead |
+| 12 | `12-validate.js` | Fixes countries and lineups (genre is left to step 13); drops events with no location, invalid dates, or dates more than 15 months ahead |
 | 13 | `13-classify.js` | Recomputes `genre` and `tags` for all upcoming events (canonical styles) |
 | 14 | `14-enrich-images.js` | Festival og:images and DJ photos, within `DJ_TIME_BUDGET_MIN` (resumable) |
 | 15 | `15-build-artists.js` | Writes `data/artists.json`, the DJ artifact the frontend reads |

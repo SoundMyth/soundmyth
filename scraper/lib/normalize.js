@@ -548,3 +548,39 @@ export function mergedDate({ keeper, rest, masterIds = new Set(), isFestival = f
   if (isFestival) for (const ev of rest) if (ev.date && ev.date < best) best = ev.date;
   return best;
 }
+
+// ── Venue matching (dedupe Pass 2: same city and day) ─────────────────────────────
+/** Venue key used for matching: lowercase, accents and punctuation removed (dedupe's norm). */
+const venueKeyText = s => (s || '').normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase()
+  .replace(/[^a-z0-9\s]/g, '').replace(/\s+/g, ' ').trim();
+
+/** Normalized city names: the event's own city and every hub city. A venue named only after a
+ *  city is a different place from "<Name> <City>" ("Pacific Amsterdam" is not "Amsterdam"). */
+function cityNameKeys(city) {
+  const keys = new Set(Object.keys(HUB_COUNTRY).map(venueKeyText));
+  if (city) keys.add(venueKeyText(canonCity(city)));
+  return keys;
+}
+
+/**
+ * Do two venue names refer to the same place? Used by dedupe Pass 2 for events on the same
+ * day in the same city.
+ *  - equal after normalising: same venue;
+ *  - containment ("Amnesia" ≡ "Amnesia Ibiza", "Ushuaia" ≡ "Ushuaia Ibiza Beach Hotel"), but
+ *    never when either name is a city name or shorter than 6 characters;
+ *  - a shared long prefix (≥10 chars and ≥50% of the shorter) for suffix variants
+ *    ("Brunch Electronik France" ≡ "Brunch Electronik Bordeaux"), unless the prefix is a city.
+ */
+export function venueMatch(a, b, city = '') {
+  const na = venueKeyText(a), nb = venueKeyText(b);
+  if (!na || !nb) return na === nb;
+  if (na === nb) return true;
+  const cities = cityNameKeys(city);
+  if (Math.min(na.length, nb.length) >= 6 && !cities.has(na) && !cities.has(nb)
+      && (na.includes(nb) || nb.includes(na))) return true;
+  const shorter = Math.min(na.length, nb.length);
+  let prefix = 0;
+  while (prefix < shorter && na[prefix] === nb[prefix]) prefix++;
+  if (prefix >= 10 && prefix >= shorter * 0.5 && !cities.has(na.slice(0, prefix).trim())) return true;
+  return false;
+}

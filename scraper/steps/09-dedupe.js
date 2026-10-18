@@ -19,7 +19,7 @@ import { fileURLToPath } from 'url';
 import { dirname, resolve } from 'path';
 import { withRetry } from '../lib/http.js';
 import { makeClient, loadEnv, fetchAllRows, uniqueById } from '../lib/db.js';
-import { canonCity, todayISO, planFestivalFragments, findDoubleBookings, makeFestivalTest, djMatchKey, splitKeeper, mergedDate } from '../lib/normalize.js';
+import { canonCity, todayISO, planFestivalFragments, findDoubleBookings, makeFestivalTest, djMatchKey, splitKeeper, mergedDate, venueMatch } from '../lib/normalize.js';
 import { writeRunStat } from '../lib/run-stats.js';
 import { writeFileSync } from 'fs';
 
@@ -44,27 +44,6 @@ function norm(s) {
 const normVenue = norm;
 // City keys go through the shared canon: "Manhattan", "Brooklyn" and "New York" are one city.
 const normCity  = s => norm(canonCity(s));
-
-// Check if two venue names are similar enough to be the same place
-// Handles "Ushuaia Ibiza" vs "Ushuaia Ibiza Beach Hotel", "DC-10" vs "DC 10",
-// "Brunch Electronik France" vs "Brunch Electronik Bordeaux"
-function venueMatch(a, b) {
-  const na = norm(a), nb = norm(b);
-  if (!na || !nb) return na === nb;
-  if (na === nb) return true;
-  // One contains the other (for "Amnesia" vs "Amnesia Ibiza")
-  if (na.includes(nb) || nb.includes(na)) return true;
-  // Common prefix match: if both share a long prefix (≥10 chars and ≥50% of shorter)
-  // they're likely the same venue with different city/country suffix
-  const shorter = Math.min(na.length, nb.length);
-  let prefix = 0;
-  for (let i = 0; i < shorter; i++) {
-    if (na[i] !== nb[i]) break;
-    prefix++;
-  }
-  if (prefix >= 10 && prefix >= shorter * 0.5) return true;
-  return false;
-}
 
 // Score richness of an event (higher = more info = prefer to keep)
 function richness(e) {
@@ -200,7 +179,7 @@ async function main() {
       if (!groups.has(keys[j])) continue;
       const [, dateB, venueB, cityB] = keys[j].split('|');
       if (dateA !== dateB || cityA !== cityB) continue;
-      if (venueMatch(venueA, venueB)) {
+      if (venueMatch(venueA, venueB, cityA)) {
         // Merge j into i
         groups.get(keys[i]).push(...groups.get(keys[j]));
         groups.delete(keys[j]);

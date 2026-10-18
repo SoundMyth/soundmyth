@@ -1031,9 +1031,10 @@ function dedupeEvents(list){
 // real festival vs a mistagged artist club-night (Bandsintown often tags "X and DJ"
 // artist listings as 'festival' with venue==name and a single act → not a festival)
 // Festival = tagged 'festival' (the pipeline sets it from lineup size / festivals_all match). A festival without a lineup still shows.
-function isFest(e){ return !!(e.tags&&e.tags.includes('festival')); }
+const FEST_WORD=/\b(festival|fest|open ?air|weekender)\b/i;
+function isFest(e){ return !!(e.tags&&e.tags.includes('festival')) || FEST_WORD.test(e.name||'') || FEST_WORD.test(e.venue||''); }
 // Club night = RA-sourced or 'club'-tagged (old and new data), never a festival
-function isClubNight(e){ return !(e.tags||[]).includes('festival') && (e.source==='ra'||(e.tags||[]).includes('club')); }
+function isClubNight(e){ return !isFest(e) && (e.source==='ra'||(e.tags||[]).includes('club')); }
 
 // ── SUPABASE ───────────────────────────────────────────────────────────────────
 const SB_URL='https://ekcwqesvujqsyuykqtap.supabase.co';

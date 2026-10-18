@@ -217,6 +217,14 @@ export function makeClubLookup(clubs) {
  * it gives the venue's known city (RA "All" areas, empty cities) and is the evidence needed
  * before a hub mismatch is corrected. Returns what happened so callers can count it.
  */
+// A city named like its own country is either a city-state / territory (the city IS the country:
+// keep it) or a placeholder ("Germany" in Germany says nothing: blank it). "Mexico" in Mexico is
+// the capital in practice.
+const CITY_IS_COUNTRY_OK = new Set([
+  'singapore', 'monaco', 'hong kong', 'macau', 'luxembourg', 'malta', 'gibraltar',
+  'vatican city', 'san marino', 'saint martin', 'saint barthelemy', 'anguilla',
+].map(normText));
+
 export function resolveGeo(ev, clubLookup = () => null) {
   const origCity = (ev.city || '').trim();
   let city = canonCity(origCity);
@@ -224,8 +232,10 @@ export function resolveGeo(ev, clubLookup = () => null) {
   const out = { city: '', country: '', cityChanged: false, cityFallback: false,
                 countryFilled: false, hubFixed: false, hubFlag: null };
 
-  // A "city" that is only the country name (Songkick "Mexico" in Mexico) says nothing.
-  if (city && country && city.toLowerCase() === country.toLowerCase()) city = '';
+  if (city && country && normText(city) === normText(country)) {
+    if (normText(city) === 'mexico') city = 'Mexico City';
+    else if (!CITY_IS_COUNTRY_OK.has(normText(city))) city = '';
+  }
 
   if (!city) {
     const club = clubLookup(ev.venue);

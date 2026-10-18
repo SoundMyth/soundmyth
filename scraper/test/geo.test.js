@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { canonCity, canonCountry, resolveGeo, makeClubLookup, cityKey } from '../lib/normalize.js';
+import { canonCity, canonCountry, resolveGeo, makeClubLookup, cityKey, cleanEvent } from '../lib/normalize.js';
 
 test('canonCity: borough and sub-area names fold into the city (contract §6)', () => {
   assert.equal(canonCity('Brooklyn'), 'New York');
@@ -76,13 +76,39 @@ test('resolveGeo: empty city with no club match stays empty (validate drops it)'
   assert.equal(g.city, '');
 });
 
-test('resolveGeo: a city that is only the country name carries no city', () => {
-  const g = resolveGeo({ city: 'Mexico', country: 'Mexico', venue: 'X' });
-  assert.equal(g.city, '');
+test('resolveGeo: a placeholder city equal to its country carries no city', () => {
+  assert.equal(resolveGeo({ city: 'Germany', country: 'Germany', venue: 'X' }).city, '');
+});
+
+test('resolveGeo: "Mexico" in Mexico is Mexico City (EDC Mexico)', () => {
+  const g = resolveGeo({ city: 'Mexico', country: 'Mexico', venue: 'Autodromo Hermanos Rodriguez' });
+  assert.equal(g.city, 'Mexico City');
+  assert.equal(g.country, 'Mexico');
+});
+
+test('resolveGeo: city-states and territories keep their city (Singapore, Monaco, Hong Kong, Saint Martin)', () => {
+  for (const c of ['Singapore', 'Monaco', 'Hong Kong', 'Macau', 'Luxembourg', 'Malta', 'Saint Martin', 'Saint Barthélemy']) {
+    const g = resolveGeo({ city: c, country: c, venue: 'Some Venue' });
+    assert.equal(g.city, canonCity(c), c);   // canonCity folds accents: "Saint Barthelemy"
+    assert.ok(g.city, c);
+  }
+});
+
+test('resolveGeo: Singapore events keep the city with a venue (Pasir Panjang Power Station)', () => {
+  const g = resolveGeo({ city: 'Singapore', country: 'Singapore', venue: 'Pasir Panjang Power Station' });
+  assert.equal(g.city, 'Singapore');
 });
 
 test('makeClubLookup: exact venue match only ("Pacha New York" must not match Pacha Ibiza)', () => {
   const lookup = makeClubLookup([{ name: 'Pacha', city: 'Ibiza', country: 'Spain' }]);
   assert.equal(lookup('Pacha')?.city, 'Ibiza');
   assert.equal(lookup('Pacha New York'), null);
+});
+
+test('cleanEvent (scrape time): same geo rules as validate, so the rows are right from the start', () => {
+  const sg = cleanEvent({ name: 'Mall Grab @ Pasir Panjang Power Station', venue: 'Pasir Panjang Power Station', city: 'Singapore', country: 'Singapore', djs: ['Mall Grab'] });
+  assert.equal(sg.city, 'Singapore');
+  assert.equal(sg.country, 'Singapore');
+  const mx = cleanEvent({ name: 'EDC Mexico', venue: 'Autodromo', city: 'Mexico', country: 'Mexico', djs: [] });
+  assert.equal(mx.city, 'Mexico City');
 });

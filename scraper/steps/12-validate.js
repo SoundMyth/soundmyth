@@ -14,7 +14,6 @@
  * Usage: node steps/12-validate.js
  */
 
-import { STYLES, FALLBACK_GENRE } from '../lib/genres.js';
 import { makeClient, loadEnv, fetchAllRows } from '../lib/db.js';
 import { fileURLToPath } from 'url';
 import { dirname, resolve } from 'path';
@@ -39,19 +38,10 @@ if (!SB_URL || !SB_KEY) {
 
 const sb = makeClient(SB_URL, SB_KEY);
 
-// Valid event genres: the 16 canonical styles + the festival/event fallback.
-const CANON_GENRE = new Set([...STYLES, FALLBACK_GENRE]);
-
 const clubsPath = resolve(__dirname, '../data/clubs_all.json');
 const clubLookup = makeClubLookup(existsSync(clubsPath) ? JSON.parse(readFileSync(clubsPath, 'utf8')) : []);
 
 // ── Helpers ──────────────────────────────────────────────────────────────────
-
-function isEmpty(val) {
-  if (val === null || val === undefined) return true;
-  if (typeof val === 'string') return val.trim().length === 0;
-  return false;
-}
 
 function isDJatVenuePattern(name) {
   if (!name) return false;
@@ -70,15 +60,18 @@ async function main() {
   console.log(`Fetching future events (date >= ${today})...\n`);
 
   // ── Fetch all future events (paginated) ──────────────────────────────────
-  // On a failed page, carry on with the rows loaded so far (the original policy, kept on purpose).
-  const { data: allEvents, error: fetchErr } = await fetchAllRows(
+  const { data: allEvents, error: fetchErr, failedAt } = await fetchAllRows(
     (from, to) => sb
       .from('events')
       .select('id, name, venue, city, country, date, djs, tags, source, source_id, genre, ticket_url, img_url, price')
       .gte('date', today)
       .order('id', { ascending: true })
       .range(from, to));
-  if (fetchErr) console.error('  Fetch error:', fetchErr.message || fetchErr);
+  // A partial load must never drive drops or patches: abort (non-zero exit, no writes).
+  if (fetchErr) {
+    console.error(`  ❌  Event load failed at offset ${failedAt}: ${fetchErr.message || fetchErr}`);
+    process.exit(1);
+  }
 
   console.log(`Total future events: ${allEvents.length}\n`);
 
@@ -161,27 +154,11 @@ async function main() {
   console.log('  AUTO-FIXES');
   console.log('--------------------------------------------------\n');
 
-  let fixedGenre = 0;
+  // Genre is not touched here: steps/13-classify.js recomputes genre and tags for every upcoming
+  // event. A Multi-genre fallback written here would stick for a week if classify then failed.
 
-  // Fix 1: missing or non-canonical genre → 'Multi-genre' (steps/13-classify.js normally fixes these first)
-  const missingGenre = allEvents.filter(ev => isEmpty(ev.genre) || !CANON_GENRE.has(ev.genre));
-  console.log('Fix 1: Default genre to "Multi-genre" where missing/non-canonical...');
-  for (const ev of missingGenre) {
-    const { error } = await sb
-      .from('events')
-      .update({ genre: FALLBACK_GENRE })
-      .eq('id', ev.id);
-
-    if (error) {
-      console.error(`  Error fixing genre for ${ev.id}: ${error.message}`);
-    } else {
-      fixedGenre++;
-    }
-  }
-  console.log(`  Fixed: ${fixedGenre}\n`);
-
-  // Fix 2: geo / lineup patches on kept rows
-  console.log(`Fix 2: Geo + lineup patches on ${updates.length} rows...`);
+  // Fix 1: geo / lineup patches on kept rows
+  console.log(`Fix 1: Geo + lineup patches on ${updates.length} rows...`);
   let patched = 0;
   for (const { id, patch } of updates) {
     const { error } = await sb.from('events').update(patch).eq('id', id);
@@ -190,9 +167,9 @@ async function main() {
   }
   console.log(`  Patched: ${patched}\n`);
 
-  // Fix 3: drops (by id, in chunks)
+  // Fix 2: drops (by id, in chunks)
   const toDrop = [...dropNoGeo, ...dropDate, ...dropLegacy].map(e => e.id);
-  console.log(`Fix 3: Dropping ${toDrop.length} events...`);
+  console.log(`Fix 2: Dropping ${toDrop.length} events...`);
   let dropped = 0;
   for (let i = 0; i < toDrop.length; i += 100) {
     const chunk = toDrop.slice(i, i + 100);
@@ -224,7 +201,6 @@ async function main() {
   writeRunStat('validate', {
     ...stats,
     dropped,
-    fixedGenre,
     geoFlags: {
       hubMismatch: hubFlags.slice(0, 50),
       hubMismatchCount: hubFlags.length,

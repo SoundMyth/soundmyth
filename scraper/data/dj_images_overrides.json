@@ -1,0 +1,5 @@
+{
+  "_comment": "Manual photo decisions by djKey (lowercase, accents and punctuation stripped; see djKey in enrich-images.js). A URL pins the photo. An empty string forces initials. Overrides beat every automatic source and are re-applied on every run.",
+  "jamiejones": "",
+  "fisher": "https://www.theaudiodb.com/images/media/artist/thumb/fisher-6191256ae5f21.jpg"
+}

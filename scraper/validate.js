@@ -10,6 +10,10 @@
  */
 
 import { createClient } from '@supabase/supabase-js';
+import { STYLES, FALLBACK_GENRE } from './genres.js';
+
+// Valid event genres (contract §1): the 16 styles + the festival/event fallback.
+const CANON_GENRE = new Set([...STYLES, FALLBACK_GENRE]);
 import { config }       from 'dotenv';
 import { fileURLToPath } from 'url';
 import { dirname, resolve } from 'path';
@@ -188,8 +192,8 @@ async function main() {
       issues.missingCountry.push(ev);
     }
 
-    // Missing genre
-    if (isEmpty(ev.genre)) {
+    // Missing or non-canonical genre (classify.js normally fixes these first)
+    if (isEmpty(ev.genre) || !CANON_GENRE.has(ev.genre)) {
       issues.missingGenre.push(ev);
     }
 
@@ -287,12 +291,12 @@ async function main() {
   let fixedCity = 0;
   let fixedCountry = 0;
 
-  // Fix 1: Set genre to 'Electronic' where missing
-  console.log('Fix 1: Default genre to "Electronic" where missing...');
+  // Fix 1: Set genre to the 'Multi-genre' fallback where missing/non-canonical
+  console.log('Fix 1: Default genre to "Multi-genre" where missing...');
   for (const ev of issues.missingGenre) {
     const { error } = await sb
       .from('events')
-      .update({ genre: 'Electronic' })
+      .update({ genre: FALLBACK_GENRE })
       .eq('id', ev.id);
 
     if (error) {

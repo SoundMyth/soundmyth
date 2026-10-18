@@ -16,7 +16,7 @@ import { readFileSync }  from 'fs';
 import { config }        from 'dotenv';
 import { fileURLToPath } from 'url';
 import { dirname, resolve } from 'path';
-import { canonCity, canonCountry, canonStyle, djNorm, buildDjCanon } from './normalize.js';
+import { canonCity, canonCountry, djNorm, buildDjCanon } from './normalize.js';
 import { withRetry } from './http.js';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
@@ -110,18 +110,15 @@ const removedIds = new Set(toRemove.map(e => e.id));
 const live = rows.filter(e => !removedIds.has(e.id));
 
 // ── Canonicalize existing rows in ONE pass (one parallel-batched update per row) ──
-// City + country canon, DJ-name canon + off-genre line-up trim, image back-fill and
-// genre stamping are all computed together so each row is written at most once, and the
+// City + country canon, DJ-name canon + off-genre line-up trim and image back-fill are all computed together so each row is written at most once, and the
 // writes run in small parallel batches — keeping the step well within its time budget
 // even when thousands of rows change on the first run (was 5 separate sequential passes).
 const djCanon = buildDjCanon(live);
 const djImg = {};
 for (const e of live) { if (!e.img_url) continue; for (const d of (e.djs || [])) { const k = djNorm(d); if (k && !djImg[k]) djImg[k] = e.img_url; } }
-const djStyle = {};
-for (const a of readJ('data/artists_all.json')) { const k = djKey(a.name); if (k && !djStyle[k]) djStyle[k] = canonStyle(a.genre, a.subgenre); }
-const GENERIC = new Set(['', 'electronic', 'edm', 'unknown', 'various', 'multi-genre', 'multigenre']);
-
-let cityFixed = 0, countryFixed = 0, djFixed = 0, trimmed = 0, imgFixed = 0, genreFixed = 0;
+// Genre/tags are NOT written here any more: classify.js (next pipeline step) recomputes them
+// from the lineup with genres.js, so a stamp here could only ever be overwritten.
+let cityFixed = 0, countryFixed = 0, djFixed = 0, trimmed = 0, imgFixed = 0;
 const patches = [];
 for (const e of live) {
   const patch = {};
@@ -135,11 +132,6 @@ for (const e of live) {
     if (JSON.stringify(nd) !== JSON.stringify(djs)) { patch.djs = nd; djFixed++; }
   }
   if (!e.img_url) { for (const d of (e.djs || [])) { const c = djImg[djNorm(d)]; if (c) { patch.img_url = c; imgFixed++; break; } } }   // reuse artist photo
-  const cur = (e.genre || '').trim();
-  let g = null;
-  if (GENERIC.has(cur.toLowerCase())) { for (const d of (e.djs || [])) { const s = djStyle[djKey(d)]; if (s && s !== 'Electronic') { g = s; break; } } }   // fill generic from head-liner style
-  else { const cs = canonStyle(cur); if (cs !== 'Electronic') g = cs; }   // fold verbose label → clean bucket (unknown → untouched)
-  if (g && g !== e.genre) { patch.genre = g; genreFixed++; }
   if (Object.keys(patch).length) patches.push({ id: e.id, patch });
 }
 let rowsUpdated = 0;
@@ -147,5 +139,5 @@ for (let i = 0; i < patches.length; i += 12) {
   await Promise.all(patches.slice(i, i + 12).map(p =>
     sb.from('events').update(p.patch).eq('id', p.id).then(({ error }) => { if (error) console.error(`  ❌ update ${p.id}:`, error.message); else rowsUpdated++; })));
 }
-console.log(`✓ Updated ${rowsUpdated}/${patches.length} rows · city ${cityFixed} · country ${countryFixed} · djs ${djFixed} (trimmed ${trimmed}) · img ${imgFixed} · genre ${genreFixed}.`);
+console.log(`✓ Updated ${rowsUpdated}/${patches.length} rows · city ${cityFixed} · country ${countryFixed} · djs ${djFixed} (trimmed ${trimmed}) · img ${imgFixed}.`);
 process.exit(0);

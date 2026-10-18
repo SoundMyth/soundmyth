@@ -127,6 +127,7 @@ img{display:block;}
 /* DJ SPOTLIGHT */
 .dj-spotlight{margin:6px 20px 0;border-radius:var(--r-xl);overflow:hidden;position:relative;cursor:pointer;min-height:210px;background:#15131a;box-shadow:var(--shadow);}
 .dj-spotlight img{width:100%;height:210px;object-fit:cover;object-position:top;filter:brightness(.6);display:block;}
+.dj-spot-init{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:64px;font-weight:800;letter-spacing:-2px;color:rgba(255,255,255,.12);}
 .dj-spotlight-grad{position:absolute;inset:0;background:linear-gradient(100deg,rgba(13,13,17,.92) 38%,rgba(13,13,17,.1) 100%);}
 .dj-spotlight-body{position:absolute;inset:0;padding:22px;display:flex;flex-direction:column;justify-content:flex-end;}
 .dj-badge{align-self:flex-start;display:inline-block;background:var(--accent-soft);border:1px solid var(--accent);border-radius:var(--r-pill);padding:5px 11px;font-size:10.5px;color:var(--accent);font-weight:700;letter-spacing:.4px;margin-bottom:10px;width:fit-content;}
@@ -172,7 +173,7 @@ img{display:block;}
 .event-row.past .ev-save{pointer-events:none;color:#2a2a30!important;}
 .past-badge{font-size:8px;letter-spacing:.5px;color:var(--text-mute);background:var(--surface-2);border:1px solid var(--border);border-radius:4px;padding:2px 5px;margin-left:6px;vertical-align:middle;}
 .ev-thumb{width:56px;height:56px;border-radius:var(--r-md);object-fit:cover;flex-shrink:0;background:#15131a;}
-.ev-date{text-align:center;min-width:34px;flex-shrink:0;}
+.ev-date{text-align:center;min-width:40px;flex-shrink:0;}
 .ev-day{color:var(--text);font-size:16px;font-weight:800;line-height:1;}
 .ev-mon{color:var(--text-mute);font-size:9.5px;font-weight:600;letter-spacing:.3px;margin-top:1px;text-transform:uppercase;}
 .ev-divider{width:1px;height:30px;background:var(--border);flex-shrink:0;}
@@ -181,9 +182,10 @@ img{display:block;}
 .ev-sub{color:var(--text-dim);font-size:12px;margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
 .ev-right{display:flex;align-items:center;gap:10px;flex-shrink:0;}
 .ev-price{color:var(--text);font-size:12px;font-weight:600;}
-.ev-genre{color:var(--accent);font-size:10.5px;font-weight:600;margin-top:1px;text-align:right;max-width:88px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.ev-genre{color:var(--accent);font-size:10.5px;font-weight:600;line-height:1.25;margin-top:1px;text-align:right;max-width:82px;white-space:normal;overflow:hidden;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;}
 .ev-save{background:none;border:none;color:var(--text-mute);font-size:16px;cursor:pointer;padding:4px;transition:color 0.15s;font-family:inherit;}
 .ev-save.saved{color:var(--accent);}
+.ev-month-sep{position:sticky;top:51px;z-index:5;background:var(--bg);margin:6px -20px 10px;padding:10px 20px 8px;font-size:13px;font-weight:800;letter-spacing:.2px;color:var(--text);border-bottom:1px solid var(--border);}
 
 /* ── DETAIL ── */
 #detail{position:fixed;inset:0;z-index:200;background:var(--bg);overflow-y:auto;overflow-x:hidden;display:none;max-width:430px;margin:0 auto;}
@@ -216,9 +218,10 @@ img{display:block;}
 .det-dj.head .det-dj-av{border:2px solid var(--accent);}
 .det-dj-nm{font-size:11.5px;font-weight:600;text-align:center;line-height:1.2;}
 .det-dj-hd{color:var(--accent);font-size:9px;font-weight:800;letter-spacing:.4px;}
-.djav{border-radius:50%;background-color:var(--surface-3);background-size:cover;background-position:center;display:flex;align-items:center;justify-content:center;overflow:hidden;flex-shrink:0;border:1px solid var(--border);}
+.djav{position:relative;border-radius:50%;background-color:var(--surface-3);background-size:cover;background-position:center;display:flex;align-items:center;justify-content:center;overflow:hidden;flex-shrink:0;border:1px solid var(--border);}
 .djav .djav-i{font-weight:800;color:var(--text-dim);font-size:.82em;letter-spacing:.3px;}
 .djav.has-img .djav-i{display:none;}
+.djav>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;}
 .djl-av{width:42px;height:42px;font-size:15px;}
 .det-cta{position:sticky;bottom:0;margin:18px -20px 0;padding:14px 20px calc(14px + env(safe-area-inset-bottom));background:linear-gradient(to top,var(--bg) 72%,transparent);display:flex;gap:10px;align-items:center;}
 .det-get{flex:1;display:block;background:var(--accent);color:var(--accent-ink);text-align:center;padding:15px;border-radius:var(--r-md);font-weight:800;font-size:14.5px;text-decoration:none;box-shadow:0 10px 26px -8px var(--accent);}
@@ -231,6 +234,7 @@ img{display:block;}
 #dj-detail.open{display:block;animation:fadeup .22s ease;}
 .djd-hero{position:relative;height:40vh;min-height:250px;background:#15131a;}
 .djd-hero img{width:100%;height:100%;object-fit:cover;object-position:top;filter:brightness(.6);}
+.djd-init{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:88px;font-weight:800;letter-spacing:-3px;color:rgba(255,255,255,.14);}
 .djd-grad{position:absolute;inset:0;background:linear-gradient(180deg,rgba(13,13,17,.2),rgba(13,13,17,.5) 55%,var(--bg) 100%);}
 .djd-info{position:absolute;bottom:20px;left:22px;right:22px;}
 .djd-eyebrow{color:var(--accent);font-size:12.5px;font-weight:700;margin-bottom:6px;}
@@ -243,6 +247,7 @@ img{display:block;}
 .djd-follow{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;border-radius:var(--r-pill);padding:14px;font-size:14px;font-weight:700;cursor:pointer;font-family:inherit;background:var(--surface-2);color:var(--text);border:1px solid var(--border-strong);transition:.15s;}
 .djd-follow.on{background:var(--accent);color:var(--accent-ink);border-color:var(--accent);}
 .djd-follow:focus-visible{outline:2px solid var(--accent);outline-offset:2px;}
+.tag.tag-type{background:var(--accent);border-color:var(--accent);color:var(--accent-ink);font-weight:700;}
 .tags{display:flex;gap:8px;flex-wrap:wrap;margin-top:18px;margin-bottom:26px;}
 .tag{background:var(--surface-2);border:1px solid var(--border);border-radius:var(--r-pill);padding:6px 13px;font-size:12px;color:var(--text-dim);font-weight:500;letter-spacing:0;}
 .detail-actions{display:flex;gap:11px;}
@@ -435,7 +440,7 @@ button:focus{outline:none;}
       <img class="home-hero-img" src="https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?w=800&q=80" alt=""/>
       <div class="home-hero-grad"></div>
       <div class="home-hero-body">
-        <div class="hero-eyebrow">Electronic · Worldwide · 2026</div>
+        <div class="hero-eyebrow">EDM · Worldwide</div>
         <h1 class="hero-title">The whole scene<br/><em>in one place.</em></h1>
         <p class="hero-desc">No more searching DJ by DJ. No more jumping between sites. All EDM events worldwide, right here.</p>
         <button class="hero-cta" onclick="resetPlan(document.querySelectorAll('.nav-btn')[1])">Find all events →</button>
@@ -514,10 +519,10 @@ button:focus{outline:none;}
   <!-- ── PLAN TAB ── -->
   <div id="tab-plan" class="tab">
     <div id="breadcrumb" style="display:none;">
-      <button class="bc-btn active" id="bc-city" onclick="goStep(0)">Country</button>
-      <span class="bc-sep">›</span>
-      <button class="bc-btn" id="bc-month" onclick="goStep(1)">Month</button>
-      <span class="bc-sep">›</span>
+      <button class="bc-btn" id="bc-country" onclick="goStep(0)">Country</button>
+      <span class="bc-sep" id="bc-sep1">›</span>
+      <button class="bc-btn" id="bc-city" onclick="goToCityList()">City</button>
+      <span class="bc-sep" id="bc-sep2">›</span>
       <span class="bc-btn" id="bc-events">Events</span>
     </div>
 
@@ -560,16 +565,8 @@ button:focus{outline:none;}
       </div>
     </div>
 
-    <div id="step-month" style="padding:16px 20px;display:none;">
-      <div class="section-label" id="month-label" style="margin-bottom:14px;"></div>
-      <div id="month-grid"></div>
-    </div>
-
     <div id="step-events" style="padding:16px 20px;display:none;">
-      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px;">
-        <div class="section-label" id="events-label"></div>
-        <span style="color:var(--text-dim);font-size:12px;letter-spacing:0;" id="events-month-label"></span>
-      </div>
+      <div class="section-label" id="events-label" style="margin-bottom:8px;"></div>
       <div id="events-list"></div>
     </div>
   </div>
@@ -657,7 +654,7 @@ button:focus{outline:none;}
 <!-- DETAIL -->
 <div id="detail">
   <div class="det-hero">
-    <img id="det-img" src="" alt="" onerror="this.onerror=null;this.src=COUNTRY_IMG_HERO_FALLBACK"/>
+    <img id="det-img" alt="" onerror="this.onerror=null;this.src=COUNTRY_IMG_HERO_FALLBACK"/>
     <div class="det-hero-ov"></div>
     <button class="det-back" onclick="history.back()" aria-label="Back">←</button>
     <div class="det-stub"><div class="det-stub-d" id="det-day"></div><div class="det-stub-m" id="det-mon"></div></div>
@@ -683,7 +680,8 @@ button:focus{outline:none;}
 <!-- DJ PROFILE -->
 <div id="dj-detail">
   <div class="djd-hero">
-    <img id="djd-img" src="" alt="" onerror="this.src=COUNTRY_IMG_HERO_FALLBACK;this.onerror=null"/>
+    <img id="djd-img" alt=""/>
+    <div class="djd-init" id="djd-init"></div>
     <div class="djd-grad"></div>
     <button class="detail-back" onclick="history.back()">← Back</button>
     <div class="djd-info">
@@ -793,84 +791,121 @@ const FLAGS={
   'Côte d\'Ivoire':'🇨🇮','Republic of Korea':'🇰🇷',
 };
 const MONTHS=["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+const MONTHS_LONG=["January","February","March","April","May","June","July","August","September","October","November","December"];
+const WD=["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
 let ALL_CITIES=[], ALL_DJS=[], ALL_COUNTRIES=[];
+let UPCOMING=[];        // events from today on: the ONLY set used for any count (contract §5)
+let artistsApplied=false;
 
-let saved=JSON.parse(localStorage.getItem('sm_saved')||'[]'), selCity=null, selCountry=null, selMonth=null, selDJ=null, currentStep=0, detailEv=null, searchMode='city';
+let saved=JSON.parse(localStorage.getItem('sm_saved')||'[]'), selCity=null, selCountry=null, selDJ=null, selVenue=null, currentStep=0, detailEv=null, searchMode='city';
 
-// ── PERSONALIZATION STATE (Phase 1) ─────────────────────────────────────────
-// prefs mirror localStorage (instant/offline) and sync to public.profiles on login.
-let prefs=(function(){ try{ return Object.assign({cities:[],djs:[],genres:[]}, JSON.parse(localStorage.getItem('sm_prefs')||'{}')); }catch(e){ return {cities:[],djs:[],genres:[]}; } })();
-// DJ → primary genre. Lets "styles" work client-side without waiting for the
-// scraper to stamp events.genre. Keys are lowercased DJ names (match TOP100_DJS).
-const DJ_GENRE={
-  // Big Room / Festival EDM
-  'david guetta':'Big Room','martin garrix':'Big Room','dimitri vegas & like mike':'Big Room',
-  'timmy trumpet':'Big Room','afrojack':'Big Room','steve aoki':'Big Room','hardwell':'Big Room','calvin harris':'Big Room',
-  'w&w':'Big Room','tiësto':'Big Room','kshmr':'Big Room','nicky romero':'Big Room',
-  'bassjackers':'Big Room','quintino':'Big Room','kaaze':'Big Room','marnik':'Big Room','mariana bo':'Big Room','vinai':'Big Room',
-  'b jones':'Big Room','le twins':'Big Room','fedde le grand':'Big Room','plastik funk':'Big Room',
-  // Progressive House
-  'swedish house mafia':'Progressive','alesso':'Progressive','lucas & steve':'Progressive','dubvision':'Progressive','cuebrick':'Progressive',
-  'eric prydz':'Progressive','deadmau5':'Progressive','halo':'Progressive',
-  // Pop / Crossover
-  'alan walker':'Pop','r3hab':'Pop','marshmello':'Pop','zedd':'Pop','nervo':'Pop','the chainsmokers':'Pop',
-  'joel corry':'Pop','burak yeter':'Pop','nils van zandt':'Pop','topic':'Pop',
-  // House
-  'alok':'House','mike williams':'House','don diablo':'House','lost frequencies':'House','oliver heldens':'House',
-  // Deep House
-  'vintage culture':'Deep House','peggy gou':'Deep House','claptone':'Deep House','nora en pure':'Deep House',
-  'meduza':'Deep House','honey dijon':'Deep House',
-  // Afro House
-  'black coffee':'Afro House','keinemusik':'Deep House',
-  // Tech House
-  'fisher':'Tech House','jamie jones':'Tech House','dom dolla':'Tech House','the martinez brothers':'Tech House','john summit':'Tech House',
-  'michael bibi':'Tech House','james hype':'Tech House','mochakk':'Tech House','gordo':'Tech House','pawsa':'Tech House',
-  'mau p':'Tech House','chris stussy':'Deep House','chris lake':'Tech House','hugel':'Tech House',
-  // Melodic House
-  'solomun':'Melodic House',
-  // Melodic Techno
-  'anyma':'Melodic Techno','korolova':'Melodic Techno','kölsch':'Melodic Techno','artbat':'Melodic Techno','miss monique':'Melodic Techno',
-  // Techno
-  'charlotte de witte':'Techno','reinier zonneveld':'Techno','carl cox':'Techno','amelie lens':'Techno',
-  'lilly palmer':'Techno','deborah de luca':'Techno','i hate models':'Techno','boris brejcha':'Techno',
-  // Hard Techno
-  'maddix':'Hard Techno','sara landry':'Hard Techno','nico moreno':'Hard Techno',
-  // Trance
-  'armin van buuren':'Trance','paul van dyk':'Trance','atb':'Trance','above & beyond':'Trance','ferry corsten':'Trance',
-  'giuseppe ottaviani':'Trance','marlon hoffstadt':'Trance',
-  // Psytrance
-  'vini vici':'Psytrance','indira paganotto':'Psytrance',
-  // Hardstyle
-  'sub zero project':'Hardstyle',
-  // Bass
-  'dj snake':'Bass','liu':'Bass','faustix':'Bass','skrillex':'Bass'
+// DJ key: exactly the contract §4 function (shared with the pipeline's artists.json).
+const djKey = s => (s || '').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '')
+  .replace(/&/g, ' and ').replace(/[^a-z0-9]+/g, '');
+const TOP100_FB=new Set([...TOP100_DJS].map(djKey));   // used only if artists.json fails
+
+// ── STYLES (contract §1): exactly 16 canonical styles + one fallback ──────────
+const CANON_STYLES=['House','Tech House','Deep House','Afro House','Melodic Techno','Techno','Hard Techno','Trance','Psytrance','Progressive','Big Room','Bass','Drum & Bass','Hardstyle','Indie Dance','Electro'];
+const FALLBACK_STYLE='Multi-genre';
+const CANON_LC=new Map(CANON_STYLES.map(s=>[s.toLowerCase(),s]));
+const LEGACY_STYLE={
+  'big room / festival edm':'Big Room','bass music':'Bass','indie dance / leftfield':'Indie Dance',
+  'drum & bass / breaks':'Drum & Bass','progressive house':'Progressive','hard dance':'Hardstyle',
+  'hardcore':'Hardstyle','acid house':'House','melodic house':'Melodic Techno',
+  'melodic house & techno':'Melodic Techno','electronic':FALLBACK_STYLE,'pop':FALLBACK_STYLE,
+  'pop electronic / crossover':FALLBACK_STYLE,'multi-genre':FALLBACK_STYLE
 };
-// Recomputed (data-driven) in loadEvents from the styles actually present in
-// events.genre ∪ DJ_GENRE, so the picker offers every stamped style, not just the top-100.
-let PREF_GENRES=[...new Set(Object.values(DJ_GENRE))].sort();
+// any stored/legacy style string → canonical style, or null when unknown
+function canonStyle(g){ const k=String(g==null?'':g).trim().toLowerCase(); if(!k) return null; return CANON_LC.get(k)||LEGACY_STYLE[k]||null; }
+// saved preferences → canonical, deduplicated, without the fallback (the picker never offers it)
+function normGenres(arr){ return [...new Set((Array.isArray(arr)?arr:[]).map(canonStyle).filter(s=>s&&s!==FALLBACK_STYLE))].sort(); }
+let PREF_GENRES=CANON_STYLES.slice();
 
-// Escape scraped text before it goes into innerHTML (event names, DJs, venues, cities…
-// come from third-party feeds and could contain HTML/JS — prevents stored XSS).
+// ── PERSONALIZATION STATE ─────────────────────────────────────────────────────
+let prefs=(function(){
+  let p={cities:[],djs:[],genres:[]};
+  try{ p=Object.assign({cities:[],djs:[],genres:[]}, JSON.parse(localStorage.getItem('sm_prefs')||'{}')); }catch(e){}
+  p.genres=normGenres(p.genres);
+  return p;
+})();
+persistPrefsLocal();                                    // store the migrated styles
+try{ localStorage.removeItem('sm_djphoto'); }catch(e){} // retired TheAudioDB photo cache
+
+// Escape scraped text before it goes into innerHTML (prevents stored XSS).
 const ESC_MAP={'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'};
 function esc(s){ return String(s==null?'':s).replace(/[&<>"']/g, c=>ESC_MAP[c]); }
 
-// Canonical DJ display: collapse case/diacritic variants (AME/Âme, alok/Alok,
-// MEDUZA/Meduza…) to ONE spelling so lists/pickers/line-ups don't show duplicates.
-// Built from the live data in loadEvents(); applied centrally in mapRows().
+// Canonical DJ display spelling (built from live data in loadEvents).
 let DJ_CANON={};
-// reuse an artist's real photo on their other events that have none
-let DJ_IMG={};
-// DJ → real photo from their OWN (non-festival) show — server-enriched face, avoids
-// festival posters & blank placeholders. Built in loadEvents; a fast local avatar source.
-let DJ_SHOW_IMG={};
-// artist-image URL → the DJ it rightfully belongs to (built in loadEvents); lets realImg
-// reject an image enrich attached to the wrong DJ's event.
-let IMG_OWNER={};
-// DJ(lowercase) → style, learned from the stamped events.genre (built in loadEvents).
-// Covers EVERY DJ with events, so styles/suggestions aren't limited to DJ_GENRE's ~100.
-let DJ_STYLE={};
-function djStyle(n){ const k=(n||'').toLowerCase(); return DJ_GENRE[k]||DJ_STYLE[k]||''; }
-function buildDjImg(events){ const m={}; for(const e of events){ if(!e.img) continue; for(const d of (e.djs||[])){ const k=djNorm(d); if(k && !m[k]) m[k]=e.img; } } return m; }
+
+// ── DJ ARTIFACT (contract §4): /data/artists.json = genre, photo, top100, vibes per DJ ──
+let ARTISTS={}, ARTISTS_OK=false;
+const artistsReady=(async()=>{
+  const ctrl=new AbortController(), timer=setTimeout(()=>ctrl.abort(),8000);
+  try{
+    const r=await fetch('/data/artists.json',{signal:ctrl.signal});
+    if(!r.ok) throw new Error('HTTP '+r.status);
+    const j=await r.json();
+    if(j&&j.artists&&typeof j.artists==='object'){ ARTISTS=j.artists; ARTISTS_OK=true; }
+  }catch(e){ console.warn('artists.json unavailable, using fallbacks:', e&&e.message); }
+  finally{ clearTimeout(timer); }
+})();
+function artistFor(name){ const k=djKey(name); return (ARTISTS_OK&&k)?(ARTISTS[k]||null):null; }
+function djPhoto(name){ const a=artistFor(name); return (a&&a.img)||''; }
+function artistGenre(name){ const a=artistFor(name); const g=a?canonStyle(a.genre):null; return (g&&g!==FALLBACK_STYLE)?g:null; }
+function artistVibes(name){ const a=artistFor(name); return (a&&Array.isArray(a.vibes))?a.vibes:[]; }
+function isTop100(name){ return ARTISTS_OK ? !!(artistFor(name)&&artistFor(name).top100) : TOP100_FB.has(djKey(name)); }
+function djStyle(n){ return artistGenre(n)||''; }
+// Position in the DJ Mag list (display rank, and tie-break for genres)
+let _magRank=null;
+function magIndex(name){
+  if(!_magRank){ _magRank=new Map(); DJ_MAG_ORDER.forEach((n,i)=>{ const k=djKey(n); if(!_magRank.has(k)) _magRank.set(k,i); }); }
+  const r=_magRank.get(djKey(name)); return r===undefined?-1:r;
+}
+function rankOf(name){ const a=artistFor(name); if(a&&typeof a.rank==='number') return a.rank; const i=magIndex(name); return i<0?Infinity:i; }
+
+// ── EVENT GENRE / VIBES (contract §2, §3) ─────────────────────────────────────
+const VIBES=['melodic','dark','hard','underground','mainstream','vocal','atmospheric','experimental','classic','disco','emotional','psychedelic','latin','afro'];
+const VIBE_SET=new Set(VIBES);
+// lineup entries that are not DJs
+const JUNK_DJ=/^(&|and)\s*friends$|^special guests?$|^(more\s+)?tba$|^tbc$|^tbd$|^((more|djs|artists)\s+)*to be announced$/;
+function cleanLineup(list){
+  const out=[];
+  for(const raw of (list||[])){
+    const s=String(raw==null?'':raw).replace(/\s+/g,' ').trim();
+    const t=s.toLowerCase().replace(/[()]/g,'').replace(/\s+/g,' ').trim();
+    if(!djKey(s)||JUNK_DJ.test(t)) continue;
+    if(!out.some(x=>djKey(x)===djKey(s))) out.push(s);
+  }
+  return out;
+}
+// most frequent canonical genre among lineup DJs; tie → highest-ranked DJ, then lineup order
+function computeEventGenre(ev){
+  const tally=new Map();
+  (ev.djs||[]).forEach((dj,i)=>{
+    const g=artistGenre(dj); if(!g) return;
+    const t=tally.get(g)||{n:0,rank:Infinity,first:i};
+    t.n++; t.rank=Math.min(t.rank,rankOf(dj)); tally.set(g,t);
+  });
+  let best=null;
+  for(const [g,t] of tally){
+    if(!best || t.n>best.t.n || (t.n===best.t.n && (t.rank<best.t.rank || (t.rank===best.t.rank && t.first<best.t.first)))) best={g,t};
+  }
+  return best ? best.g : (canonStyle(ev.genreRaw)||FALLBACK_STYLE);
+}
+// up to 3 whitelisted vibes: most frequent among lineup DJs (fallback: whitelisted raw tags)
+function computeVibes(ev){
+  const cnt=new Map();
+  for(const dj of (ev.djs||[])) for(const v of artistVibes(dj)){ const k=String(v).toLowerCase(); if(VIBE_SET.has(k)) cnt.set(k,(cnt.get(k)||0)+1); }
+  if(!cnt.size) for(const t of (ev.tags||[])){ const k=String(t).toLowerCase(); if(VIBE_SET.has(k)) cnt.set(k,(cnt.get(k)||0)+1); }
+  if(cnt.has('underground')&&cnt.has('mainstream')){
+    const u=cnt.get('underground'), m=cnt.get('mainstream');
+    if(u>m) cnt.delete('mainstream'); else if(m>u) cnt.delete('underground'); else { cnt.delete('underground'); cnt.delete('mainstream'); }
+  }
+  return [...cnt.entries()].sort((a,b)=>b[1]-a[1]||VIBES.indexOf(a[0])-VIBES.indexOf(b[0])).slice(0,3).map(e=>e[0]);
+}
+function finalizeEvents(list){ for(const ev of list){ ev.genre=computeEventGenre(ev); ev.vibes=computeVibes(ev); } return list; }
+function eventGenre(ev){ return ev.genre||FALLBACK_STYLE; }
 
 // City aliases: fold local-language / sub-municipality / non-city values into one
 // recognizable name (Eivissa→Ibiza, София→Sofia, İstanbul→Istanbul, airports→city…).
@@ -902,7 +937,7 @@ const CITY_ALIAS_RAW={
 const CITY_ALIAS={}; for(const k in CITY_ALIAS_RAW){ CITY_ALIAS[k.replace(/\s+/g,' ').trim().toLowerCase()]=CITY_ALIAS_RAW[k]; }
 function titleCaseCity(s){ return s.toLowerCase().replace(/(^|[\s\-\/])([a-z])/g,(m,p,c)=>p+c.toUpperCase()); }
 function canonCity(c){
-  let t=(c||'').replace(/\s+/g,' ').trim(); if(!t) return t;
+  let t=(c||'').replace(/\s+/g,' ').trim(); if(!t||/^all$/i.test(t)) return '';
   t=t.replace(/\s*\([A-Z]{2,4}\)$/,'').trim();        // drop nickname acronyms: "New York (NYC)"→"New York" (keeps lowercase disambiguators like "(oder)")
   if(t.includes(',')) t=t.split(',')[0].trim();        // "Theale, Berkshire" / "Guernsey, Channel Islands" → city before the region
   t=t.replace(/\s+(Municipality|District|County|Province|Region|Metropolitan Area|Prefecture)$/i,'').trim();  // "Copenhagen Municipality"→"Copenhagen"
@@ -912,8 +947,7 @@ function canonCity(c){
   const a=CITY_ALIAS[t.toLowerCase()]; if(a) return a;
   return titleCaseCity(t.normalize('NFD').replace(/[̀-ͯ]/g,''));   // strip accents + Title-case so caps/hyphen-case variants merge
 }
-function djNorm(s){ return (s||'').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'').trim(); }
-function canonDJ(name){ return DJ_CANON[djNorm(name)]||name; }
+function canonDJ(name){ return DJ_CANON[djKey(name)]||name; }
 function pickCanon(variants){
   // variants: {display:count}. Prefer Title-case (not ALL-CAPS), then diacritics, then frequency.
   let best=null,bestScore=-Infinity;
@@ -927,7 +961,7 @@ function pickCanon(variants){
 }
 function buildDjCanon(rows){
   const variants={};
-  for(const e of rows) for(const dj of (e.djs||[])){ const k=djNorm(dj); if(!k) continue; (variants[k]=variants[k]||{})[dj]=(variants[k][dj]||0)+1; }
+  for(const e of rows) for(const dj of (e.djs||[])){ const k=djKey(dj); if(!k) continue; (variants[k]=variants[k]||{})[dj]=(variants[k][dj]||0)+1; }
   const map={}; for(const k in variants) map[k]=pickCanon(variants[k]);
   return map;
 }
@@ -945,10 +979,10 @@ function normEventName(n){
   return r || (n||'').toLowerCase().trim();
 }
 function mergeInto(ex,ev){
-  for(const d of (ev.djs||[])) if(!ex.djs.some(x=>djNorm(x)===djNorm(d))) ex.djs.push(d);
+  for(const d of (ev.djs||[])) if(!ex.djs.some(x=>djKey(x)===djKey(d))) ex.djs.push(d);
   if(!ex.img && ev.img) ex.img=ev.img;
   if((!ex.ticket||ex.ticket==='#') && ev.ticket && ev.ticket!=='#') ex.ticket=ev.ticket;
-  if((!ex.genre||ex.genre==='Electronic') && ev.genre && ev.genre!=='Electronic') ex.genre=ev.genre;
+  if(!ex.genreRaw && ev.genreRaw) ex.genreRaw=ev.genreRaw;
   if((!ex.venue) && ev.venue) ex.venue=ev.venue;
   ex.tags=[...new Set([...(ex.tags||[]),...(ev.tags||[])])];
 }
@@ -963,19 +997,19 @@ function mergeBy(list,keyFn){
 }
 function dedupeEvents(list){
   // 1) same date+city+normalized-name → one event
-  const out=mergeBy(list, e=>`${e.date}|${djNorm(e.city)}|${normEventName(e.name)}`);
+  const out=mergeBy(list, e=>`${e.date}|${djKey(e.city)}|${normEventName(e.name)}`);
   // 2) collapse a "bare artist" row (name == the artist) into a richer same-day+city show
   //    by that artist (e.g. "Korolova" + "Korolova @ Bolivar Beach Bar"). Never merges festivals.
   const byDayCity={};
-  out.forEach(e=>{ const k=`${e.date}|${djNorm(e.city)}`; (byDayCity[k]=byDayCity[k]||[]).push(e); });
+  out.forEach(e=>{ const k=`${e.date}|${djKey(e.city)}`; (byDayCity[k]=byDayCity[k]||[]).push(e); });
   const remove=new Set();
   for(const k in byDayCity){
     const evs=byDayCity[k];
     for(const e of evs){
       if(remove.has(e) || (e.tags&&e.tags.includes('festival')) || !e.djs.length) continue;
-      const bare = normEventName(e.name)===djNorm(e.djs[0]) || normEventName(e.name)===normEventName(e.djs[0]);
+      const bare = normEventName(e.name)===djKey(e.djs[0]) || normEventName(e.name)===normEventName(e.djs[0]);
       if(!bare) continue;
-      const host=evs.find(o=>o!==e && !remove.has(o) && (o.djs||[]).some(d=>djNorm(d)===djNorm(e.djs[0])) && normEventName(o.name)!==normEventName(e.name));
+      const host=evs.find(o=>o!==e && !remove.has(o) && (o.djs||[]).some(d=>djKey(d)===djKey(e.djs[0])) && normEventName(o.name)!==normEventName(e.name));
       if(host){ mergeInto(host,e); remove.add(e); }
     }
   }
@@ -983,13 +1017,16 @@ function dedupeEvents(list){
   //    (a DJ playing the same city twice the same day is almost always a feed duplicate).
   const SRC_RANK={ra:0,songkick:1,bandsintown:2,direct:3,website:4};
   const byDDC={};
-  out.forEach(e=>{ if(remove.has(e)||(e.tags&&e.tags.includes('festival'))||!e.djs||!e.djs.length) return; const k=`${e.date}|${djNorm(e.city)}|${djNorm(e.djs[0])}`; (byDDC[k]=byDDC[k]||[]).push(e); });
+  out.forEach(e=>{ if(remove.has(e)||(e.tags&&e.tags.includes('festival'))||!e.djs||!e.djs.length) return; const k=`${e.date}|${djKey(e.city)}|${djKey(e.djs[0])}`; (byDDC[k]=byDDC[k]||[]).push(e); });
   for(const k in byDDC){ const evs=byDDC[k]; if(evs.length<2) continue; evs.sort((a,b)=>(SRC_RANK[a.source]??9)-(SRC_RANK[b.source]??9)); const keep=evs[0]; for(let i=1;i<evs.length;i++){ mergeInto(keep,evs[i]); remove.add(evs[i]); } }
   return out.filter(e=>!remove.has(e));
 }
 // real festival vs a mistagged artist club-night (Bandsintown often tags "X and DJ"
 // artist listings as 'festival' with venue==name and a single act → not a festival)
-function isFest(e){ return !!(e.tags&&e.tags.includes('festival')) && !(!e.venue && (e.djs||[]).length<=1); }
+// Festival = tagged 'festival' (the pipeline sets it from lineup size / festivals_all match). A festival without a lineup still shows.
+function isFest(e){ return !!(e.tags&&e.tags.includes('festival')); }
+// Club night = RA-sourced or 'club'-tagged (old and new data), never a festival
+function isClubNight(e){ return !(e.tags||[]).includes('festival') && (e.source==='ra'||(e.tags||[]).includes('club')); }
 
 // ── SUPABASE ───────────────────────────────────────────────────────────────────
 const SB_URL='https://ekcwqesvujqsyuykqtap.supabase.co';
@@ -1042,180 +1079,111 @@ function addSkeletons(){
 }
 addSkeletons();
 
-// ── HOME FEATURED ─────────────────────────────────────────────────────────────
-async function fetchAudioDBImg(name){
-  try{
-    const r=await fetch(`https://www.theaudiodb.com/api/v1/json/2/search.php?s=${encodeURIComponent(name)}`);
-    const j=await r.json();
-    return j.artists?.[0]?.strArtistThumb||j.artists?.[0]?.strArtistFanart||null;
-  }catch{return null;}
+// ── HOME SECTIONS (each renders independently — BUG-008) ──────────────────────
+// DJ avatar: artifact photo if any, otherwise initials. Never an empty circle, never a live lookup.
+function djInitials(name){
+  const w=String(name||'').replace(/^dj\s+/i,'').trim().split(/\s+/).filter(Boolean);
+  const ini=w.length>1?(w[0][0]+w[1][0]):(w[0]||'').slice(0,2);
+  return (ini||'?').toUpperCase();
+}
+function djAvatarHTML(name,cls){
+  const img=djPhoto(name);
+  return `<span class="djav ${cls||''}"><span class="djav-i">${esc(djInitials(name))}</span>${img?`<img src="${escAttr(img)}" alt="" loading="lazy" onerror="this.remove()">`:''}</span>`;
 }
 
-// ── DJ avatars (real photos, cached + lazy) ─────────────────────────────────
-// An event's img is NOT the DJ's headshot (often the festival poster), so reusing it
-// for line-up avatars showed wrong faces. Instead fetch the real artist thumb lazily,
-// cache successes (localStorage) to avoid re-hitting the API, and fall back to initials.
-let DJ_PHOTO={}; try{ DJ_PHOTO=JSON.parse(localStorage.getItem('sm_djphoto')||'{}'); }catch(e){}
-const _djPhotoPending={};
-// Manual overrides for TheAudioDB wrong/missing matches (djNorm → url, or '' to force
-// clean initials). TheAudioDB keys on name and collides (e.g. a different "Jamie Jones").
-const DJ_PHOTO_FIX={ 'jamie jones':'', 'fisher':'https://www.theaudiodb.com/images/media/artist/thumb/fisher-6191256ae5f21.jpg' };   // key matches djNorm() (lowercased, spaces kept)
-function saveDJPhoto(){ try{ localStorage.setItem('sm_djphoto',JSON.stringify(DJ_PHOTO)); }catch(e){} }
-function fetchDJPhoto(name){
-  const k=djNorm(name);
-  if(DJ_PHOTO_FIX[k]!==undefined) return Promise.resolve(DJ_PHOTO_FIX[k]||null);   // manual override wins
-  if(DJ_PHOTO[k]) return Promise.resolve(DJ_PHOTO[k]);                              // cached success only — nulls aren't cached, so a rate-limited DJ retries later
-  if(_djPhotoPending[k]) return _djPhotoPending[k];
-  const p=fetchAudioDBImg(name).then(u=>{ if(u){ DJ_PHOTO[k]=u; saveDJPhoto(); } delete _djPhotoPending[k]; return u||null; }).catch(()=>{ delete _djPhotoPending[k]; return null; });
-  _djPhotoPending[k]=p; return p;
-}
-function djInitials(name){ const w=(name||'').trim().split(/\s+/); return ((w.length>1?(w[0][0]||'')+(w[1][0]||''):(name||'').trim().slice(0,2))||'?').toUpperCase(); }
-// Best photo we already have locally (no network): TheAudioDB cache → the DJ's own show
-// photo. Honours the manual override ('' forces clean initials).
-function djPhotoSync(name){ const k=djNorm(name); if(DJ_PHOTO_FIX[k]!==undefined) return DJ_PHOTO_FIX[k]||''; return DJ_PHOTO[k]||DJ_SHOW_IMG[k]||''; }
-function djAvatarHTML(name,cls){ return `<div class="djav ${cls||''}" data-djav="${esc(name)}"><span class="djav-i">${esc(djInitials(name))}</span></div>`; }
-// Replace initials with the real photo once loaded (concurrency-limited, cache-backed).
-function hydrateAvatars(root){
-  if(!root) return;
-  // Circle avatars ([data-djav], background-image) AND image-less event cards
-  // (img[data-evphoto], src) both upgrade to the DJ's real photo once fetched.
-  const els=[...root.querySelectorAll('[data-djav]:not([data-hy]),img[data-evphoto]:not([data-hy])')];
-  let i=0;
-  // Low concurrency + a small gap: TheAudioDB's public key is rate-limited, and bursts
-  // were tripping it (photos stayed empty). Cached successes make later loads instant.
-  const run=()=>{ if(i>=els.length) return; const el=els[i++]; el.setAttribute('data-hy','1');
-    const isImg=el.tagName==='IMG', name=el.getAttribute(isImg?'data-evphoto':'data-djav');
-    const sync=djPhotoSync(name);   // local photo first (instant, no API); only hit TheAudioDB when we have nothing
-    (sync?Promise.resolve(sync):fetchDJPhoto(name)).then(u=>{ if(!u) return; const im=new Image(); im.onload=()=>{ if(isImg) el.src=u; else { el.style.backgroundImage=`url("${u}")`; el.classList.add('has-img'); } }; im.src=u; }).catch(()=>{}).finally(()=>setTimeout(run, sync?0:120)); };
-  for(let c=0;c<Math.min(2,els.length);c++) run();
-}
-
-async function renderSpotlight(){
-  const todayStr=new Date().toISOString().split('T')[0];
-  const counts={};
-  for(const ev of EVENTS){
-    if(ev.date<todayStr) continue;
-    for(const dj of (ev.djs||[])){
-      const key=dj.toLowerCase();
-      if(!TOP100_DJS.has(key)) continue;
-      if(!counts[key]) counts[key]={name:dj,count:0};
-      counts[key].count++;
-    }
+function renderSpotlight(){
+  const card=document.getElementById('dj-spotlight-card'); if(!card) return;
+  const counts=new Map();
+  for(const ev of UPCOMING) for(const dj of ev.djs){
+    if(!isTop100(dj)) continue;
+    const k=djKey(dj), c=counts.get(k)||{name:dj,count:0,ev};
+    c.count++; counts.set(k,c);
   }
-  const sorted=Object.values(counts).sort((a,b)=>b.count-a.count);
-  if(!sorted.length) return;
-  const winner=sorted[0];
-  const img=await fetchAudioDBImg(winner.name);
-  const djEvents=EVENTS.filter(e=>e.djs.some(d=>d.toLowerCase()===winner.name.toLowerCase()));
-  const genre=djEvents[0]?.genre||'Electronic';
-  const card=document.getElementById('dj-spotlight-card');
+  const best=[...counts.values()].sort((a,b)=>b.count-a.count)[0];
+  if(!best){ card.innerHTML=''; return; }
+  const img=djPhoto(best.name);
+  const genre=artistGenre(best.name)||best.ev.genre||'';
   card.innerHTML=`
-    <img src="${img||COUNTRY_IMG_HERO_FALLBACK}" alt="" onerror="this.src=COUNTRY_IMG_HERO_FALLBACK;this.onerror=null"/>
+    <div class="dj-spot-init"${img?' style="display:none"':''}>${esc(djInitials(best.name))}</div>
+    ${img?`<img src="${escAttr(img)}" alt=""/>`:''}
     <div class="dj-spotlight-grad"></div>
     <div class="dj-spotlight-body">
       <div class="dj-badge">DJ SPOTLIGHT</div>
-      <div class="dj-name">${esc(winner.name)}</div>
-      <div class="dj-sub">${esc(genre)} · ${winner.count} upcoming event${winner.count!==1?'s':''}</div>
+      <div class="dj-name">${esc(best.name)}</div>
+      <div class="dj-sub">${esc(genre)}${genre?' · ':''}${best.count} upcoming event${best.count!==1?'s':''}</div>
     </div>`;
-  card.onclick=()=>openDJ(winner.name);
+  const im=card.querySelector('img');
+  if(im) im.onerror=()=>{ im.remove(); const i=card.querySelector('.dj-spot-init'); if(i) i.style.display=''; };
+  card.onclick=()=>openDJ(best.name);
 }
 
 function renderFestivals(){
-  const todayStr=new Date().toISOString().split('T')[0];
-  // Festival events: tagged 'festival', sorted by date, max 1 per name (deduplicated)
+  const el=document.getElementById('home-festivals'); if(!el) return;
   const seen=new Set();
-  const fests=EVENTS.filter(e=>{
-    if(!isFest(e)||e.date<todayStr) return false;
-    if(seen.has(e.name)) return false;
-    seen.add(e.name);
-    return true;
-  }).sort((a,b)=>new Date(a.date)-new Date(b.date)).slice(0,10);
-  document.getElementById('home-festivals').innerHTML=fests.map(ev=>{
-    const{day,mon}=fmtDate(ev.date);
+  const fests=UPCOMING.filter(e=>{ if(!isFest(e)||seen.has(e.name)) return false; seen.add(e.name); return true; }).slice(0,10);
+  el.innerHTML=fests.map(ev=>{
     const isSaved=saved.includes(ev.id);
-    const img=bestImg(ev);
     return`<div class="ev-card-h" role="button" tabindex="0" onclick='openDetail(${JSON.stringify(ev.id)})'>
-      <img src="${img}" alt="" onerror="this.src='${COUNTRY_IMG_FALLBACK}'"/>
+      <img src="${bestImg(ev)}" alt="" onerror="this.onerror=null;this.src='${COUNTRY_IMG_FALLBACK}'"/>
       <div class="ev-card-h-grad"></div>
       <button aria-label="Save event" class="ev-card-h-save${isSaved?' saved':''}" onclick='event.stopPropagation();toggleSave(${JSON.stringify(ev.id)})'>${isSaved?'♥':'♡'}</button>
       <div class="ev-card-h-body">
-        <div class="ev-card-h-genre">${FLAGS[ev.country]||''} ${esc(ev.city)}</div>
+        <div class="ev-card-h-genre">${FLAGS[ev.country]||'🌍'} ${esc(ev.city||ev.country)}</div>
         <div class="ev-card-h-name">${esc(ev.name)}</div>
-        <div class="ev-card-h-meta">${day} ${mon}${ev.djs.length?` · ${esc(ev.djs[0])}`:''}</div>
+        <div class="ev-card-h-meta">${dateShort(ev.date)}${ev.djs.length?` · ${esc(ev.djs[0])}`:''}</div>
       </div>
     </div>`;
   }).join('');
 }
 
 function renderClubs(){
-  const todayStr=new Date().toISOString().split('T')[0];
+  const el=document.getElementById('home-clubs'); if(!el) return;
   // Club events: RA source or SK-venue events (not DJ residencies or festivals)
-  const clubs=EVENTS.filter(e=>e.date>=todayStr&&(e.source==='ra'||(e.source==='songkick'&&e.tags.includes('club')&&!e.tags.includes('dj')&&!e.tags.includes('festival'))))
-    .sort((a,b)=>new Date(a.date)-new Date(b.date))
-    .slice(0,10);
-  document.getElementById('home-clubs').innerHTML=clubs.map(ev=>{
-    const{day,mon}=fmtDate(ev.date);
+  const clubs=UPCOMING.filter(isClubNight).slice(0,10);
+  el.innerHTML=clubs.map(ev=>{
     const isSaved=saved.includes(ev.id);
-    const img=bestImg(ev);
     return`<div class="ev-card-h" role="button" tabindex="0" onclick='openDetail(${JSON.stringify(ev.id)})'>
-      <img src="${img}" alt="" onerror="this.src='${COUNTRY_IMG_FALLBACK}'"/>
+      <img src="${bestImg(ev)}" alt="" onerror="this.onerror=null;this.src='${COUNTRY_IMG_FALLBACK}'"/>
       <div class="ev-card-h-grad"></div>
       <button aria-label="Save event" class="ev-card-h-save${isSaved?' saved':''}" onclick='event.stopPropagation();toggleSave(${JSON.stringify(ev.id)})'>${isSaved?'♥':'♡'}</button>
       <div class="ev-card-h-body">
-        <div class="ev-card-h-genre">${FLAGS[ev.country]||''} ${esc(ev.city)}</div>
+        <div class="ev-card-h-genre">${FLAGS[ev.country]||'🌍'} ${esc(ev.city||ev.country)}</div>
         <div class="ev-card-h-name">${esc(ev.venue||ev.name)}</div>
-        <div class="ev-card-h-meta">${day} ${mon} · ${esc(ev.djs[0]||'TBA')}</div>
+        <div class="ev-card-h-meta">${dateShort(ev.date)} · ${esc(ev.djs[0]||'TBA')}</div>
       </div>
     </div>`;
   }).join('');
 }
 
 function renderFeatured(){
-  // Render festivals + clubs FIRST so they always show even if highlights fail
-  renderFestivals();
-  renderClubs();
-
+  // Each section is isolated: a failure in one must not blank the others (BUG-008)
+  try{ renderFestivals(); }catch(e){ console.error('renderFestivals error:',e); }
+  try{ renderClubs(); }catch(e){ console.error('renderClubs error:',e); }
   try{
-  const todayStr=new Date().toISOString().split('T')[0];
-  // Solo eventos futuros con al menos un DJ top100
-  const upcoming=EVENTS.filter(e=>e.date>=todayStr && e.djs&&e.djs.some(d=>TOP100_DJS.has(d.toLowerCase())));
-  // Pick 8 diverse events: prefer events with images + different countries
-  const withImg=upcoming.filter(e=>e.img);
-  const seenCountries=new Set();
-  const top=[];
-  // First pass: one event per country (with images first)
-  for(const ev of [...withImg,...upcoming.filter(e=>!e.img)]){
-    if(top.length>=8) break;
-    if(!seenCountries.has(ev.country)){
-      seenCountries.add(ev.country);
-      top.push(ev);
+    // Upcoming events with at least one top-100 DJ; one per country first, images first
+    const upcoming=UPCOMING.filter(e=>e.djs.some(d=>isTop100(d)));
+    const withImg=upcoming.filter(e=>e.img);
+    const seenCountries=new Set(), top=[];
+    for(const ev of [...withImg,...upcoming.filter(e=>!e.img)]){
+      if(top.length>=8) break;
+      if(!seenCountries.has(ev.country)){ seenCountries.add(ev.country); top.push(ev); }
     }
-  }
-  // Fill remaining slots if needed
-  for(const ev of upcoming){
-    if(top.length>=8) break;
-    if(!top.includes(ev)) top.push(ev);
-  }
-  document.getElementById('home-featured').innerHTML=top.map(ev=>{
-    const{day,mon}=fmtDate(ev.date);
-    const isSaved=saved.includes(ev.id);
-    const feat=realImg(ev)?'':featDJ(ev);
-    return`<div class="ev-card-h" role="button" tabindex="0" onclick='openDetail(${JSON.stringify(ev.id)})'>
-      <img src="${bestImg(ev)}" ${feat?`data-evphoto="${escAttr(feat)}"`:''} alt="" onerror="this.src='${COUNTRY_IMG_FALLBACK}'"/>
-      <div class="ev-card-h-grad"></div>
-      <button aria-label="Save event" class="ev-card-h-save${isSaved?' saved':''}" onclick='event.stopPropagation();toggleSave(${JSON.stringify(ev.id)})'>${isSaved?'♥':'♡'}</button>
-      <div class="ev-card-h-body">
-        <div class="ev-card-h-genre">${esc(ev.genre||'Electronic')} · ${FLAGS[ev.country]||'🌍'} ${esc(ev.city||'')}</div>
-        <div class="ev-card-h-name">${esc(ev.name)}</div>
-        <div class="ev-card-h-meta">${day} ${mon} · ${esc(ev.djs[0]||ev.venue||'TBA')}</div>
-      </div>
-    </div>`;
-  }).join('');
-  hydrateAvatars(document.getElementById('home-featured'));
-  }catch(err){console.error('renderFeatured error:',err);}
-
-  // DJ spotlight
-  renderSpotlight();
+    for(const ev of upcoming){ if(top.length>=8) break; if(!top.includes(ev)) top.push(ev); }
+    document.getElementById('home-featured').innerHTML=top.map(ev=>{
+      const isSaved=saved.includes(ev.id);
+      return`<div class="ev-card-h" role="button" tabindex="0" onclick='openDetail(${JSON.stringify(ev.id)})'>
+        <img src="${bestImg(ev)}" alt="" onerror="this.onerror=null;this.src='${COUNTRY_IMG_FALLBACK}'"/>
+        <div class="ev-card-h-grad"></div>
+        <button aria-label="Save event" class="ev-card-h-save${isSaved?' saved':''}" onclick='event.stopPropagation();toggleSave(${JSON.stringify(ev.id)})'>${isSaved?'♥':'♡'}</button>
+        <div class="ev-card-h-body">
+          <div class="ev-card-h-genre">${esc(ev.genre)} · ${FLAGS[ev.country]||'🌍'} ${esc(ev.city||'')}</div>
+          <div class="ev-card-h-name">${esc(ev.name)}</div>
+          <div class="ev-card-h-meta">${dateShort(ev.date)} · ${esc(ev.djs[0]||ev.venue||'TBA')}</div>
+        </div>
+      </div>`;
+    }).join('');
+  }catch(err){ console.error('renderFeatured error:',err); }
+  try{ renderSpotlight(); }catch(err){ console.error('renderSpotlight error:',err); }
 }
 
 // ── CURATED DJ LIST (404 artists, ranked) ────────────────────────────────────
@@ -1457,23 +1425,20 @@ const CITY_IMG={
 };
 const CITY_IMG_FALLBACK='https://images.unsplash.com/photo-1755428642736-951036a304ea?w=200&h=130&fit=crop&auto=format';
 function cityImg(city){return CITY_IMG[city]||CITY_IMG_FALLBACK;}
-// The DJ featured in the title (else the first act) — used to put a real face on the card.
+// The DJ featured in the title (else the first act): the "headliner" for photos.
 function featDJ(ev){ const d=ev.djs||[]; if(!d.length) return ''; const n=(ev.name||'').toLowerCase(); return d.find(x=>x&&n.includes(x.toLowerCase()))||d[0]; }
-// The event's own image, but only if trustworthy: skip Songkick event-flyer placeholders
-// (blank grey boxes) AND images whose rightful owner is a DIFFERENT DJ (enrich mis-match).
-function realImg(ev){ const u=ev.img; if(!u||/profile_images\/events\//.test(u)) return ''; const o=IMG_OWNER[u]; return (o && o!==djNorm(featDJ(ev))) ? '' : u; }
-// Best image for an event. Festivals keep their poster; DJ shows / club nights prefer a
-// photo of someone ACTUALLY on the bill, because the stored img is sometimes the WRONG
-// artist (enrich mis-match — e.g. an Anyma photo attached to a CamelPhat night).
+// Stored event image, unless it is a Songkick flyer placeholder.
+function realImg(ev){ const u=ev.img; return (u && !/profile_images\/events\//.test(u)) ? u : ''; }
+// Event image rule: festival → its own image (then city/country generic);
+// otherwise headliner's artifact photo → event image → generic fallback.
 function eventImg(ev){
-  const dj=djPhotoSync(featDJ(ev));
-  // Festivals keep city/country as location context; DJ shows use EDM fallback (avoids
-  // showing e.g. Madrid's skyline for a Marbella night just because Spain = Madrid image).
-  if((ev.tags||[]).includes('festival')) return realImg(ev)||dj||CITY_IMG[ev.city]||countryImg(ev.country);
-  return dj||realImg(ev)||COUNTRY_IMG_FALLBACK;
+  if(isFest(ev)) return realImg(ev)||CITY_IMG[ev.city]||countryImg(ev.country);
+  return djPhoto(featDJ(ev))||realImg(ev)||COUNTRY_IMG_FALLBACK;
 }
 function bestImg(ev){ return eventImg(ev); }
-function bestImgHero(ev){ const base=eventImg(ev).replace(/\?.*$/,''); return base+'?w=800&h=400&fit=crop&auto=format'; }
+// Unsplash URLs get a 16:8 crop for the hero; other hosts are used as-is
+function heroUrl(u){ return /images\.unsplash\.com/.test(u) ? u.replace(/\?.*$/,'')+'?w=800&h=400&fit=crop&auto=format' : u; }
+function bestImgHero(ev){ return heroUrl(eventImg(ev)); }
 
 // ── ISO 2-LETTER → FULL COUNTRY NAME ──────────────────────────────────────────
 const COUNTRY_ISO={
@@ -1536,6 +1501,7 @@ const COUNTRY_ISO={
   'Korea, Republic of':'South Korea',
   'Netherlands Antilles':'Netherlands',
   'Maldives':'Maldives',
+  'Saint Barthélemy':'Saint Barthélemy',
   'Curacao':'Curaçao',
   'Curaçao':'Curaçao',
 };
@@ -1578,88 +1544,90 @@ function groupEvents(events){
 
 // ── LOAD EVENTS FROM SUPABASE ─────────────────────────────────────────────────
 async function loadEvents(){
-  const today=new Date().toISOString().split('T')[0];
-  const minus15=new Date(); minus15.setDate(minus15.getDate()-15);
-  const fetchFrom=minus15.toISOString().split('T')[0];
-  // Fetch one page, retrying up to 3x — resilient to flaky mobile networks / transient Supabase errors
+  const today=todayYMD();
+  const from=addDaysYMD(today,-8);       // 7 days of past events are shown; 8 fetched for safety
+  const maxDate=addDaysYMD(today,460);   // more than ~15 months ahead is invalid (contract §5)
   let lastErr=null;
-  async function fetchPage(from){
+  // Fetch one page, retrying up to 3x — resilient to flaky mobile networks / transient Supabase errors
+  async function fetchPage(offset){
     for(let attempt=0;attempt<3;attempt++){
-      const{data,error}=await sbPublic.from('events').select('id,name,venue,city,country,date,djs,genre,tags,price,ticket_url,img_url,source').gte('date',fetchFrom).order('date').range(from,from+999);
+      const{data,error}=await sbPublic.from('events').select('id,name,venue,city,country,date,djs,genre,tags,price,ticket_url,img_url,source').gte('date',from).order('date').range(offset,offset+999);
       if(!error) return data||[];
       lastErr=error;
       if(attempt<2) await new Promise(r=>setTimeout(r,500*(attempt+1)));
     }
     throw new Error('events fetch failed after retries');
   }
-  let allData=[],from=0,ok=true;
+  let allData=[],offset=0,ok=true;
   try{
     while(true){
-      const data=await fetchPage(from);
+      const data=await fetchPage(offset);
       if(data.length===0) break;
       allData=allData.concat(data);
       if(data.length<1000) break;
-      from+=1000;
+      offset+=1000;
     }
   }catch(err){ ok=false; console.warn('loadEvents:',err&&err.message); }
-  DJ_CANON=buildDjCanon(allData.length?allData:[]);  // canonical DJ spellings from the live data
-  const mapRows=rows=>rows
-    .map(e=>({...e, country:normalizeCountry(e.country||'')}))  // normalise ISO codes
-    .map(e=>({
-      id:e.id, name:e.name,
-      venue:((e.venue||'').trim()===(e.name||'').trim())?'':(e.venue||''),  // drop garbage venue==name (Bandsintown)
-      city:canonCity(e.city||''), country:e.country,
-      date:e.date, djs:[...new Set((e.djs||[]).map(canonDJ))], genre:e.genre||'', tags:e.tags||[],
-      price:e.price||'', ticket:e.ticket_url||'#', img:e.img_url||'',
-      source:e.source||''
-    }));
+  DJ_CANON=buildDjCanon(allData);
+  const mapRows=list=>list.map(e=>({
+    id:e.id, name:e.name||'',
+    venue:((e.venue||'').trim()===(e.name||'').trim())?'':(e.venue||''),   // drop garbage venue==name (Bandsintown)
+    city:canonCity(e.city||''), country:normalizeCountry(e.country||''),
+    date:String(e.date||'').slice(0,10),
+    djs:cleanLineup((e.djs||[]).map(canonDJ)),
+    genreRaw:e.genre||'', genre:FALLBACK_STYLE, vibes:[],
+    tags:Array.isArray(e.tags)?e.tags:[],
+    price:e.price||'', ticket:e.ticket_url||'#', img:e.img_url||'', source:e.source||''
+  })).filter(e=>e.date && e.date>=from && e.date<=maxDate);
+  let base=null;
   if(ok && allData.length>0){
-    EVENTS=dedupeEvents(mapRows(allData));
+    base=dedupeEvents(mapRows(allData));
     // Cache a capped, soonest-first subset — small enough to reliably save in mobile localStorage
-    try{
-      const slim=EVENTS.filter(e=>e.date>=today).slice(0,2500);
-      localStorage.setItem('sm_events_cache', JSON.stringify(slim));
-    }catch(e){}
+    try{ localStorage.setItem('sm_events_cache', JSON.stringify(base.filter(e=>e.date>=today).slice(0,2500))); }catch(e){}
   } else {
     // Fetch failed → fall back to the last cached events so the app is never empty
-    let cached=[];
-    try{ cached=JSON.parse(localStorage.getItem('sm_events_cache')||'[]'); }catch(e){}
-    if(cached.length){ EVENTS=cached; console.warn('loadEvents: using cached events ('+cached.length+')'); }
-    else if(allData.length>0) EVENTS=dedupeEvents(mapRows(allData));
+    let cached=[]; try{ cached=JSON.parse(localStorage.getItem('sm_events_cache')||'[]'); }catch(e){}
+    if(cached.length){ base=cached; console.warn('loadEvents: using cached events ('+cached.length+')'); }
+    else if(allData.length>0) base=dedupeEvents(mapRows(allData));
   }
-  DJ_IMG=buildDjImg(EVENTS);  // reuse artists' photos on their image-less events
-  const futureEvents=EVENTS.filter(e=>e.date>=today);
-  ALL_CITIES=[...new Set(futureEvents.map(e=>e.city))].sort();
-  ALL_DJS=[...new Set(futureEvents.flatMap(e=>e.djs))].sort();
-  // Países en orden alfabético
-  ALL_COUNTRIES=[...new Set(futureEvents.map(e=>e.country).filter(Boolean))].sort();
-  // Styles offered in onboarding/pickers are data-driven: the scraper now stamps a clean
-  // style into events.genre (via canonStyle), so this covers ALL DJs, not just DJ_GENRE.
-  PREF_GENRES=[...new Set([...Object.values(DJ_GENRE), ...futureEvents.map(e=>e.genre).filter(g=>g && g.toLowerCase()!=='electronic')])].sort();
-  DJ_STYLE={};
-  for(const e of futureEvents){ const g=e.genre; if(!g||g.toLowerCase()==='electronic') continue; for(const d of (e.djs||[])){ const k=d.toLowerCase(); if(!DJ_STYLE[k]) DJ_STYLE[k]=g; } }
-  // Map each artist image to its RIGHTFUL owner (the featured DJ it appears with most),
-  // so an image enrich mis-attached to another DJ's event (an Anyma photo on a CamelPhat
-  // night) is rejected for the impostor but kept for the real Anyma events. Used by realImg.
-  IMG_OWNER={};
-  { const cnt={};
-    for(const e of futureEvents){ if((e.tags||[]).includes('festival')) continue; const u=e.img; if(!u||/profile_images\/events\//.test(u)) continue; const k=djNorm(featDJ(e)); if(!k) continue; (cnt[u]=cnt[u]||{})[k]=(cnt[u][k]||0)+1; }
-    for(const u in cnt) IMG_OWNER[u]=Object.entries(cnt[u]).sort((a,b)=>b[1]-a[1])[0][0]; }
-  DJ_SHOW_IMG={};
-  for(const e of futureEvents){ if((e.tags||[]).includes('festival')) continue; const im=realImg(e); if(!im) continue; const k=djNorm(featDJ(e)); if(k&&!DJ_SHOW_IMG[k]) DJ_SHOW_IMG[k]=im; }
-  document.getElementById('event-count-label').textContent=`${futureEvents.length} EVENTS`;
-  document.getElementById('stat-events').textContent=futureEvents.length;
-  document.getElementById('stat-countries').textContent=ALL_COUNTRIES.length;
-  document.getElementById('stat-cities').textContent=ALL_CITIES.length;
-  document.getElementById('stat-djs').textContent=DJ_MAG_ORDER.filter(dj=>ALL_DJS.some(d=>d.toLowerCase()===dj.toLowerCase())).length;
-  renderCountries();
-  renderFeatured();
-  renderPersonalHome();
+  EVENTS=base||[];
+  // The artifact normally arrives well within this; never hold the page longer than that
+  await Promise.race([artistsReady, new Promise(r=>setTimeout(r,1500))]);
+  applyDerived();
+  renderAll();
   hideSplash();
   // Visible diagnostic: if we truly have nothing to show, tell the user why (with the real error) + offer retry
   if(EVENTS.length>0){ hideLoadError(); }
   else { showLoadError(lastErr); }
 }
+
+// Derive every list/count from EVENTS. Past events never enter UPCOMING or any count.
+function applyDerived(){
+  EVENTS=finalizeEvents(EVENTS).sort(byDate);
+  UPCOMING=EVENTS.filter(e=>e.date>=todayYMD());
+  ALL_CITIES=[...new Set(UPCOMING.map(e=>e.city).filter(Boolean))].sort();
+  ALL_DJS=[...new Set(UPCOMING.flatMap(e=>e.djs))].sort();
+  ALL_COUNTRIES=[...new Set(UPCOMING.map(e=>e.country).filter(Boolean))].sort();
+  artistsApplied=ARTISTS_OK;
+}
+
+function renderAll(){
+  const set=(id,v)=>{ const el=document.getElementById(id); if(el) el.textContent=v; };
+  set('event-count-label', `${UPCOMING.length} EVENTS`);
+  set('stat-events', UPCOMING.length);
+  set('stat-countries', ALL_COUNTRIES.length);
+  set('stat-cities', ALL_CITIES.length);
+  set('stat-djs', DJ_MAG_ORDER.filter(n=>ALL_DJS.some(d=>djKey(d)===djKey(n))).length);
+  for(const fn of [renderCountries, renderFeatured, renderPersonalHome]){
+    try{ fn(); }catch(e){ console.error(fn.name+' failed:', e); }
+  }
+  const active=document.querySelector('.tab.active');
+  if(active&&active.id==='tab-plan') refreshPlan();
+  if(active&&active.id==='tab-search') renderGlobalSearch();
+}
+
+// If artists.json arrives after the first paint, upgrade genres and photos in place
+artistsReady.then(()=>{ if(ARTISTS_OK && !artistsApplied && EVENTS.length){ applyDerived(); renderAll(); } });
 
 function hideLoadError(){ const el=document.getElementById('load-error'); if(el) el.style.display='none'; }
 function showLoadError(err){
@@ -1675,7 +1643,6 @@ function showLoadError(err){
   el.style.display='block';
 }
 
-loadEvents();
 
 // ── TABS ──────────────────────────────────────────────────────────────────────
 function switchTab(name, btn){
@@ -1696,146 +1663,138 @@ function switchTab(name, btn){
   if(window.syncNavBubble) window.syncNavBubble();
 }
 function resetPlan(btn){
-  selCity=null; selCountry=null; selMonth=null; selDJ=null; currentStep=0; searchMode='city';
+  selCity=null; selCountry=null; selDJ=null; selVenue=null; currentStep=0; searchMode='city';
   switchTab('plan',btn);
-  document.getElementById('step-city').style.display='block';
-  document.getElementById('step-month').style.display='none';
-  document.getElementById('step-events').style.display='none';
-  document.getElementById('country-view').style.display='block';
-  document.getElementById('city-view').style.display='none';
-  const cs=document.getElementById('country-search'); if(cs) cs.value='';
-  const ds=document.getElementById('dj-search'); if(ds) ds.value='';
-  const vs=document.getElementById('venue-search'); if(vs) vs.value='';
-  const fs=document.getElementById('fest-search'); if(fs) fs.value='';
+  ['country-search','city-search','dj-search','venue-search','fest-search'].forEach(id=>{ const el=document.getElementById(id); if(el) el.value=''; });
   setMode('city');
-  document.getElementById('bc-city').className='bc-btn active';
-  document.getElementById('bc-city').textContent='Country';
-  document.getElementById('bc-month').className='bc-btn';
-  document.getElementById('bc-month').textContent='Month';
-  document.getElementById('bc-events').className='bc-btn';
 }
 
-// ── HELPERS ───────────────────────────────────────────────────────────────────
-function fmtDate(s){
-  const d=new Date(s);
-  return{
-    day:d.toLocaleDateString("en-GB",{day:"2-digit"}),
-    mon:d.toLocaleDateString("en-GB",{month:"short"}).toUpperCase(),
-  };
-}
-function daysUntil(s){return Math.ceil((new Date(s)-new Date())/864e5);}
-function cityCount(c){return EVENTS.filter(e=>e.city===c).length;}
-function monthCount(m){return EVENTS.filter(e=>e.city===selCity&&parseInt(e.date.split("-")[1])-1===m).length;}
+// ── DATES: calendar dates only (never via toISOString — contract §5) ──────────
+const pad2=n=>String(n).padStart(2,'0');
+function ymdOf(d){ return d.getFullYear()+'-'+pad2(d.getMonth()+1)+'-'+pad2(d.getDate()); }
+function todayYMD(){ return ymdOf(new Date()); }
+function addDaysYMD(ymd,n){ const [y,m,d]=String(ymd).split('-').map(Number); return ymdOf(new Date(y,m-1,d+n)); }
+function parseYMD(ymd){ const [y,m,d]=String(ymd).slice(0,10).split('-').map(Number); return new Date(y,m-1,d); }
+function byDate(a,b){ return a.date<b.date?-1:a.date>b.date?1:0; }
+function isPastEv(e){ return e.date<todayYMD(); }
+// year suffix only when the year is not the current one: " '27"
+function yrSfx(d){ return d.getFullYear()!==new Date().getFullYear()?" '"+String(d.getFullYear()).slice(2):''; }
+// compact date stub: {day:'16', mon:"JUL '27"}
+function fmtDate(s){ const d=parseYMD(s); return{day:pad2(d.getDate()), mon:MONTHS[d.getMonth()].toUpperCase()+yrSfx(d)}; }
+function dateShort(s){ const d=parseYMD(s); return `${pad2(d.getDate())} ${MONTHS[d.getMonth()]}${yrSfx(d)}`; }
+// full date for the detail screen: "Fri 16 Jul" or "Fri 16 Jul 2027" when the year differs
+function dateLong(s){ const d=parseYMD(s); return `${WD[d.getDay()]} ${pad2(d.getDate())} ${MONTHS[d.getMonth()]}${d.getFullYear()!==new Date().getFullYear()?' '+d.getFullYear():''}`; }
+function daysUntil(s){ return Math.round((parseYMD(s)-parseYMD(todayYMD()))/864e5); }
+// Events shown in lists: upcoming + the last 7 days (rendered greyed). Never used for counts.
+function windowEvents(){ const from=addDaysYMD(todayYMD(),-7); return EVENTS.filter(e=>e.date>=from); }
 
-// ── PLAN MODE TOGGLE ──────────────────────────────────────────────────────────
+// ── PLAN: Country → City → Events (breadcrumbs, pushState, DJ/Club/Fest modes) ──
+const MODE_IDS=['city','dj','venue','fest'];
 function setMode(mode){
-  searchMode=mode;
-  document.getElementById('mode-city').style.display=mode==='city'?'block':'none';
-  document.getElementById('mode-dj').style.display=mode==='dj'?'block':'none';
-  document.getElementById('mode-venue').style.display=mode==='venue'?'block':'none';
-  document.getElementById('mode-fest').style.display=mode==='fest'?'block':'none';
-  const cb=document.getElementById('mode-city-btn');
-  const db=document.getElementById('mode-dj-btn');
-  const vb=document.getElementById('mode-venue-btn');
-  const fb=document.getElementById('mode-fest-btn');
-  cb.style.cssText+=`;background:${mode==='city'?'var(--accent)':'transparent'};color:${mode==='city'?'var(--accent-ink)':'var(--text-dim)'};font-weight:${mode==='city'?700:500}`;
-  db.style.cssText+=`;background:${mode==='dj'?'var(--accent)':'transparent'};color:${mode==='dj'?'var(--accent-ink)':'var(--text-dim)'};font-weight:${mode==='dj'?700:500}`;
-  vb.style.cssText+=`;background:${mode==='venue'?'var(--accent)':'transparent'};color:${mode==='venue'?'var(--accent-ink)':'var(--text-dim)'};font-weight:${mode==='venue'?700:500}`;
-  fb.style.cssText+=`;background:${mode==='fest'?'var(--accent)':'transparent'};color:${mode==='fest'?'var(--accent-ink)':'var(--text-dim)'};font-weight:${mode==='fest'?700:500}`;
-  if(mode==='dj') renderDJs();
-  else if(mode==='venue') renderVenues();
-  else if(mode==='fest') renderFestList();
-  else if(selCountry) renderCities();
-  else renderCountries();
+  searchMode=mode; selDJ=null; selVenue=null;
+  MODE_IDS.forEach(m=>{
+    document.getElementById('mode-'+m).style.display=m===mode?'block':'none';
+    const b=document.getElementById('mode-'+m+'-btn'), on=m===mode;
+    b.style.background=on?'var(--accent)':'transparent';
+    b.style.color=on?'var(--accent-ink)':'var(--text-dim)';
+    b.style.fontWeight=on?'700':'500';
+  });
+  renderPickerView();
 }
-
-// ── PLAN STEPS ────────────────────────────────────────────────────────────────
+// Show the picker for the current mode: country list → city list (city flow), or DJ / club / festival list
+function renderPickerView(){
+  currentStep=0;
+  document.getElementById('step-city').style.display='block';
+  document.getElementById('step-events').style.display='none';
+  const cityFlow=searchMode==='city';
+  document.getElementById('country-view').style.display=(cityFlow&&!selCountry)?'block':'none';
+  document.getElementById('city-view').style.display=(cityFlow&&selCountry)?'block':'none';
+  if(cityFlow){ if(selCountry) renderCities(); else renderCountries(); }
+  else if(searchMode==='dj') renderDJs();
+  else if(searchMode==='venue') renderVenues();
+  else if(searchMode==='fest') renderFestList();
+  updatePlanBC();
+}
+function refreshPlan(){ if(currentStep===1) renderEventsView(); else renderPickerView(); }
+// Breadcrumb: Country › City › Events (city flow); Mode › DJ/Club › Events (other modes)
+function updatePlanBC(){
+  const bc=document.getElementById('breadcrumb'); if(!bc) return;
+  const cityFlow=searchMode==='city', inEvents=currentStep===1;
+  const show=cityFlow?!!selCountry:inEvents;
+  bc.style.display=show?'flex':'none';
+  if(!show) return;
+  const cBtn=document.getElementById('bc-country'), mBtn=document.getElementById('bc-city'), eBtn=document.getElementById('bc-events');
+  cBtn.textContent=cityFlow?selCountry:(searchMode==='dj'?'DJs':searchMode==='venue'?'Clubs':'Festivals');
+  mBtn.textContent=cityFlow?(selCity===''?'Other locations':(selCity||'')):(searchMode==='dj'?(selDJ||''):(selVenue||''));
+  mBtn.setAttribute('onclick', cityFlow?'goToCityList()':'goStep(0)');
+  document.getElementById('bc-sep1').style.display=inEvents?'':'none';
+  document.getElementById('bc-sep2').style.display=inEvents?'':'none';
+  mBtn.style.display=inEvents?'':'none';
+  eBtn.style.display=inEvents?'':'none';
+  cBtn.className='bc-btn'+(inEvents?'':' active');
+  eBtn.className='bc-btn'+(inEvents?' active':'');
+}
 function goStep(s){
-  if(s===1&&!selCity) return;
-  currentStep=s;
-  document.getElementById('step-city').style.display=s===0?'block':'none';
-  document.getElementById('step-month').style.display=s===1?'block':'none';
-  document.getElementById('step-events').style.display=s===2?'block':'none';
-  // Volver al paso 0 resetea la selección de país
-  if(s===0){
-    selCountry=null;
-    document.getElementById('country-view').style.display='block';
-    document.getElementById('city-view').style.display='none';
-    renderCountries();
-  }
-  document.getElementById('bc-city').className='bc-btn'+(s===0?' active':'');
-  document.getElementById('bc-month').className='bc-btn'+(s>=1?' active':'');
-  document.getElementById('bc-month').textContent=selCity||'Month';
-  document.getElementById('bc-events').className='bc-btn'+(s===2?' active':'');
+  if(s===0){ selCountry=null; selCity=null; selDJ=null; selVenue=null; renderPickerView(); }
 }
 
-// ── PAÍS DRILL-DOWN ───────────────────────────────────────────────────────────
-function countryCount(c){return EVENTS.filter(e=>e.country===c).length;}
-
+// Countries & cities come from UPCOMING only; canonical names; no "All"/empty city entries
+function countryCount(c){ return UPCOMING.filter(e=>e.country===c).length; }
 function renderCountries(){
+  const el=document.getElementById('country-list'); if(!el) return;
   const q=(document.getElementById('country-search')||{value:''}).value.toLowerCase();
-  const countries=ALL_COUNTRIES.filter(c=>c.toLowerCase().includes(q));
-  document.getElementById('country-list').innerHTML=countries.map(country=>{
-    const cnt=countryCount(country);
-    const cities=[...new Set(EVENTS.filter(e=>e.country===country).map(e=>e.city))].length;
+  el.innerHTML=ALL_COUNTRIES.filter(c=>c.toLowerCase().includes(q)).map(country=>{
+    const evs=UPCOMING.filter(e=>e.country===country);
+    const cities=new Set(evs.map(e=>e.city).filter(Boolean)).size;
     return`<button class="city-btn" onclick='selectCountry(${esc(JSON.stringify(country))})'>
-      <span style="font-size:20px">${FLAGS[country]||'🌐'}</span>
+      <span style="font-size:20px">${FLAGS[country]||'🌍'}</span>
       <div style="flex:1;text-align:left"><div class="city-name">${esc(country)}</div><div class="city-country">${cities} cit${cities!==1?'ies':'y'}</div></div>
-      <span class="city-count">${cnt} events</span>
+      <span class="city-count">${evs.length} events</span>
       <span class="city-arrow">›</span>
     </button>`;
   }).join('');
 }
-
 function selectCountry(country){
-  selCountry=country;
-  document.getElementById('country-view').style.display='none';
-  document.getElementById('city-view').style.display='block';
+  selCountry=country; selCity=null;
   document.getElementById('city-view-label').textContent=`Cities in ${country}`;
   const cs=document.getElementById('city-search'); if(cs) cs.value='';
-  renderCities();
+  renderPickerView();
   try{ history.pushState({smPlan:1},''); }catch(e){}   // so Back/edge-swipe returns to the country list
 }
-
-function clearCountry(){
-  selCountry=null;
-  document.getElementById('city-view').style.display='none';
-  document.getElementById('country-view').style.display='block';
-  renderCountries();
-}
-
+function clearCountry(){ selCountry=null; selCity=null; renderPickerView(); }
+function goToCityList(){ selCity=null; renderPickerView(); }
 function renderCities(){
+  const el=document.getElementById('city-list'); if(!el||!selCountry) return;
   const q=(document.getElementById('city-search')||{value:''}).value.toLowerCase();
-  const filtered=EVENTS.filter(e=>!selCountry||e.country===selCountry);
-  const cities=[...new Set(filtered.map(e=>e.city))].sort().filter(c=>c.toLowerCase().includes(q));
-  document.getElementById('city-list').innerHTML=cities.map(city=>{
-    const ev=EVENTS.find(e=>e.city===city);
-    return`<button class="city-btn" onclick='selectCity(${esc(JSON.stringify(city))})'>
-      <span style="font-size:20px">${FLAGS[ev?.country]||'🌐'}</span>
-      <div style="flex:1;text-align:left"><div class="city-name">${esc(city)}</div><div class="city-country">${esc(ev?.country||'')}</div></div>
-      <span class="city-count">${cityCount(city)} events</span>
+  const counts=new Map();
+  for(const e of UPCOMING) if(e.country===selCountry) counts.set(e.city, (counts.get(e.city)||0)+1);   // '' = no city
+  const names=[...counts.keys()].filter(c=>c && c.toLowerCase().includes(q)).sort((a,b)=>a.localeCompare(b));
+  const row=(city,n,label)=>`<button class="city-btn" onclick='selectCity(${esc(JSON.stringify(city))})'>
+      <span style="font-size:20px">${FLAGS[selCountry]||'🌍'}</span>
+      <div style="flex:1;text-align:left"><div class="city-name">${esc(label)}</div><div class="city-country">${esc(selCountry)}</div></div>
+      <span class="city-count">${n} events</span>
       <span class="city-arrow">›</span>
     </button>`;
-  }).join('');
+  let html=names.map(c=>row(c,counts.get(c),c)).join('');
+  const none=counts.get('')||0;
+  if(none && 'other locations'.includes(q)) html+=row('',none,'Other locations');   // events without a city stay under their country
+  el.innerHTML=html||'<div style="color:var(--text-mute);font-size:13px;padding:14px 0;">No upcoming events here.</div>';
 }
 
 function renderDJs(){
+  const el=document.getElementById('dj-list'); if(!el) return;
   const q=(document.getElementById('dj-search')||{value:''}).value.toLowerCase();
-  let djs;
-  if(q){
-    djs=ALL_DJS.filter(d=>d.toLowerCase().includes(q));
-  } else {
-    // Sin búsqueda: top 30 en orden DJ Mag (filtrado a los que tenemos en el catálogo)
-    djs=DJ_MAG_ORDER.filter(dj=>ALL_DJS.includes(dj));
-  }
-  const hint=!q?`<div style="color:var(--text-mute);font-size:12px;text-align:center;padding:12px 0;">Top 30 DJ Mag · type to search among ${ALL_DJS.length} DJs</div>`:'';
-  document.getElementById('dj-list').innerHTML=djs.map((dj,i)=>{
-    const evs=EVENTS.filter(e=>e.djs.includes(dj));
-    const countries=[...new Set(evs.map(e=>e.country))];
+  const djs=q ? ALL_DJS.filter(d=>d.toLowerCase().includes(q))
+              : [...new Set(DJ_MAG_ORDER.map(n=>ALL_DJS.find(d=>djKey(d)===djKey(n))).filter(Boolean))];
+  const hint=!q?`<div style="color:var(--text-mute);font-size:12px;text-align:center;padding:12px 0;">DJ Mag ranking · type to search among ${ALL_DJS.length} DJs</div>`:'';
+  el.innerHTML=djs.map(dj=>{
+    const k=djKey(dj);
+    const evs=UPCOMING.filter(e=>e.djs.some(d=>djKey(d)===k));
+    const countries=[...new Set(evs.map(e=>e.country).filter(Boolean))];
     const tourFlags=countries.slice(0,4).map(c=>FLAGS[c]||'').join('');
     const extra=countries.length>4?` +${countries.length-4}`:' ';
-    const natFlag=DJ_NATIONALITY[dj]||'🎛';
-    const rank=!q?(DJ_MAG_ORDER.indexOf(dj)+1):null;
+    const mi=!q?magIndex(dj):-1;
+    const rank=mi>=0?mi+1:null;
     return`<button class="city-btn" onclick='openDJ(${esc(JSON.stringify(dj))})'>
       ${djAvatarHTML(dj,'djl-av')}
       <div style="flex:1;text-align:left">
@@ -1846,56 +1805,40 @@ function renderDJs(){
       <span class="city-arrow">›</span>
     </button>`;
   }).join('')+hint;
-  hydrateAvatars(document.getElementById('dj-list'));
 }
 
 function renderFestList(){
-  const todayStr=new Date().toISOString().split('T')[0];
+  const el=document.getElementById('fest-list'); if(!el) return;
   const q=(document.getElementById('fest-search')||{value:''}).value.toLowerCase();
-  // Build unique festival list from events with festival tag
   const festMap=new Map();
-  for(const ev of EVENTS){
-    if(!ev.tags.includes('festival')||ev.date<todayStr) continue;
-    const key=ev.name;
-    if(!festMap.has(key)){
-      festMap.set(key,{name:ev.name,city:ev.city,country:ev.country,date:ev.date,id:ev.id,djs:ev.djs});
-    }
-  }
-  let fests=[...festMap.values()].filter(f=>f.name.toLowerCase().includes(q)).sort((a,b)=>new Date(a.date)-new Date(b.date));
+  for(const ev of UPCOMING){ if(!isFest(ev)||festMap.has(ev.name)) continue; festMap.set(ev.name,ev); }
+  const fests=[...festMap.values()].filter(f=>f.name.toLowerCase().includes(q)).sort(byDate);
   const hint=!q?`<div style="color:var(--text-mute);font-size:12px;text-align:center;padding:12px 0;">Upcoming festivals sorted by date</div>`:'';
-  document.getElementById('fest-list').innerHTML=fests.slice(0,50).map(f=>{
-    const{day,mon}=fmtDate(f.date);
-    return`<button class="city-btn" onclick='openDetail(${JSON.stringify(f.id)})'>
+  el.innerHTML=fests.slice(0,50).map(f=>`<button class="city-btn" onclick='openDetail(${JSON.stringify(f.id)})'>
       <span style="font-size:20px">${FLAGS[f.country]||'🎪'}</span>
       <div style="flex:1;text-align:left">
         <div class="city-name">${esc(f.name)}</div>
-        <div class="city-country">${esc(f.city)}, ${esc(f.country)}</div>
+        <div class="city-country">${esc(f.city)}${f.city?', ':''}${esc(f.country)}</div>
       </div>
-      <span class="city-count">${day} ${mon}</span>
+      <span class="city-count">${dateShort(f.date)}</span>
       <span class="city-arrow">›</span>
-    </button>`;
-  }).join('')+hint;
+    </button>`).join('')+hint;
 }
 
 function renderVenues(){
-  const todayStr=new Date().toISOString().split('T')[0];
+  const el=document.getElementById('venue-list'); if(!el) return;
   const q=(document.getElementById('venue-search')||{value:''}).value.toLowerCase();
   // Only club events from RA or SK-venue sources (not DJ residency/tour events)
-  const isClubEvent=ev=>ev.venue&&ev.date>=todayStr&&(ev.source==='ra'||(ev.source==='songkick'&&ev.tags.includes('club')&&!ev.tags.includes('dj')&&!ev.tags.includes('festival')));
   const venueMap=new Map();
-  for(const ev of EVENTS){
-    if(!isClubEvent(ev)) continue;
-    const key=ev.venue;
-    if(!venueMap.has(key)){
-      venueMap.set(key,{name:ev.venue,city:ev.city,country:ev.country,count:0});
-    }
-    venueMap.get(key).count++;
+  for(const ev of UPCOMING){
+    if(!ev.venue||!isClubNight(ev)) continue;
+    const v=venueMap.get(ev.venue)||{name:ev.venue,city:ev.city,country:ev.country,count:0};
+    v.count++; venueMap.set(ev.venue,v);
   }
-  let venues=[...venueMap.values()].filter(v=>v.name.toLowerCase().includes(q));
-  // Sort: most events first, then alphabetically
-  venues.sort((a,b)=>b.count-a.count||a.name.localeCompare(b.name));
+  const venues=[...venueMap.values()].filter(v=>v.name.toLowerCase().includes(q))
+    .sort((a,b)=>b.count-a.count||a.name.localeCompare(b.name));
   const hint=!q?`<div style="color:var(--text-mute);font-size:12px;text-align:center;padding:12px 0;">Top clubs by event count · type to search</div>`:'';
-  document.getElementById('venue-list').innerHTML=venues.map(v=>`
+  el.innerHTML=venues.map(v=>`
     <button class="city-btn" onclick='selectVenue(${esc(JSON.stringify(v.name))})'>
       <span style="font-size:20px">${FLAGS[v.country]||'🏛'}</span>
       <div style="flex:1;text-align:left">
@@ -1907,88 +1850,62 @@ function renderVenues(){
     </button>`).join('')+hint;
 }
 
-function selectVenue(venueName){
-  const results=EVENTS.filter(e=>e.venue===venueName).sort((a,b)=>new Date(a.date)-new Date(b.date));
-  const grouped=groupEvents(results);
-  document.getElementById('events-label').textContent=`${grouped.length} events · ${venueName}`;
-  document.getElementById('events-month-label').textContent='';
-  document.getElementById('events-list').innerHTML=grouped.map(ev=>eventRowHTML(ev)).join('');
-  hydrateAvatars(document.getElementById('events-list'));
-  currentStep=2;
-  document.getElementById('step-city').style.display='none';
-  document.getElementById('step-month').style.display='none';
-  document.getElementById('step-events').style.display='block';
-  document.getElementById('bc-month').textContent=venueName;
-  document.getElementById('bc-month').className='bc-btn active';
-  document.getElementById('bc-events').className='bc-btn active';
+// Events for the current selection (upcoming + last 7 days), date-sorted
+function planEvents(){
+  const win=windowEvents();
+  if(searchMode==='dj') return selDJ===null?[]:win.filter(e=>e.djs.some(d=>djKey(d)===djKey(selDJ)));
+  if(searchMode==='venue') return selVenue===null?[]:win.filter(e=>e.venue===selVenue);
+  if(selCountry===null||selCity===null) return [];
+  return win.filter(e=>e.country===selCountry && (selCity===''?!e.city:e.city===selCity));
 }
-
+// Event list with a month separator ALWAYS carrying the year ("October 2026")
+function renderEventList(el,evs){
+  let html='', lastKey='';
+  for(const ev of evs){
+    const key=ev.date.slice(0,7);
+    if(key!==lastKey){ const d=parseYMD(ev.date); html+=`<div class="ev-month-sep">${MONTHS_LONG[d.getMonth()]} ${d.getFullYear()}</div>`; lastKey=key; }
+    html+=eventRowHTML(ev);
+  }
+  el.innerHTML=html||'<div style="color:var(--text-mute);font-size:13px;padding:24px 0;text-align:center;">No events here yet.</div>';
+}
+function renderEventsView(){
+  const evs=groupEvents(planEvents()).sort(byDate);
+  const up=evs.filter(e=>!isPastEv(e)).length;   // counts never include past events
+  document.getElementById('events-label').textContent = searchMode==='dj' ? `${up} events with ${selDJ}`
+    : searchMode==='venue' ? `${up} events · ${selVenue}`
+    : `${up} events in ${selCity||'other locations'}`;
+  renderEventList(document.getElementById('events-list'), evs);
+  currentStep=1;
+  document.getElementById('step-city').style.display='none';
+  document.getElementById('step-events').style.display='block';
+  updatePlanBC();
+}
 function selectCity(city){
-  selCity=city; selMonth=null;
-  document.getElementById('month-label').textContent=`When are you going to ${city}?`;
-  renderMonths();
-  goStep(1);
+  selCity=city; renderEventsView();
   try{ history.pushState({smPlan:1},''); }catch(e){}   // Back → city list
 }
-
-function renderMonths(){
-  document.getElementById('month-grid').innerHTML=MONTHS.map((m,i)=>{
-    const cnt=monthCount(i), active=selMonth===i;
-    return`<button class="month-btn${active?' active':''}" ${cnt===0?'disabled':''} onclick="selectMonth(${i})">
-      <div class="month-name">${m}</div>
-      ${cnt>0?`<div class="month-count">${cnt} ev.</div>`:''}
-    </button>`;
-  }).join('');
-}
-
-function selectMonth(m,skipPush){
-  selMonth=m;
-  const results=EVENTS.filter(e=>e.city===selCity&&parseInt(e.date.split("-")[1])-1===m).sort((a,b)=>new Date(a.date)-new Date(b.date));
-  const grouped=groupEvents(results);
-  document.getElementById('events-label').textContent=`${grouped.length} events in ${selCity}`;
-  document.getElementById('events-month-label').textContent=MONTHS[m];
-  document.getElementById('events-list').innerHTML=grouped.map(ev=>eventRowHTML(ev)).join('');
-  hydrateAvatars(document.getElementById('events-list'));
-  goStep(2);
-  if(!skipPush) try{ history.pushState({smPlan:1},''); }catch(e){}   // Back → month
-}
-
-function selectDJ(dj,skipPush){
-  selDJ=dj;
-  const results=EVENTS.filter(e=>e.djs.some(d=>d.toLowerCase()===dj.toLowerCase())).sort((a,b)=>new Date(a.date)-new Date(b.date));
-  const grouped=groupEvents(results);
-  document.getElementById('events-label').textContent=`${grouped.length} events with ${dj}`;
-  document.getElementById('events-month-label').textContent='';
-  document.getElementById('events-list').innerHTML=grouped.map(ev=>eventRowHTML(ev)).join('');
-  hydrateAvatars(document.getElementById('events-list'));
-  currentStep=2;
-  document.getElementById('step-city').style.display='none';
-  document.getElementById('step-month').style.display='none';
-  document.getElementById('step-events').style.display='block';
-  document.getElementById('bc-month').textContent=dj;
-  document.getElementById('bc-month').className='bc-btn active';
-  document.getElementById('bc-events').className='bc-btn active';
-  if(!skipPush) try{ history.pushState({smPlan:1},''); }catch(e){}   // Back → DJ list
+function selectVenue(name){
+  selVenue=name; renderEventsView();
+  try{ history.pushState({smPlan:1},''); }catch(e){}   // Back → club list
 }
 
 // ── EVENT ROW ─────────────────────────────────────────────────────────────────
 function eventRowHTML(ev){
   const{day,mon}=fmtDate(ev.date);
   const isSaved=saved.includes(ev.id);
-  const thumb=bestImg(ev);
-  const todayStr=new Date().toISOString().split('T')[0];
-  const isPast=ev.date<todayStr;
-  const click=isPast?'':'role="button" tabindex="0" onclick=\'openDetail('+JSON.stringify(ev.id)+')\'';
+  const isPast=isPastEv(ev);
+  const click=isPast?'':`role="button" tabindex="0" onclick='openDetail(${JSON.stringify(ev.id)})'`;
+  const who=ev.djs[0]||(ev.venue&&ev.venue!==ev.name?ev.venue:'TBA');
   return`<div class="event-row${isPast?' past':''}" ${click}>
-    <img class="ev-thumb" src="${thumb}" ${!realImg(ev)&&ev.djs&&ev.djs.length?`data-evphoto="${escAttr(featDJ(ev))}"`:''} alt="" onerror="this.src='${COUNTRY_IMG_FALLBACK}'"/>
+    <img class="ev-thumb" src="${bestImg(ev)}" alt="" onerror="this.onerror=null;this.src='${COUNTRY_IMG_FALLBACK}'"/>
     <div class="ev-date"><div class="ev-day">${day}</div><div class="ev-mon">${mon}</div></div>
     <div class="ev-divider"></div>
     <div class="ev-info">
       <div class="ev-name">${esc(ev.name)}${isPast?'<span class="past-badge">Past</span>':''}</div>
-      <div class="ev-sub">${FLAGS[ev.country]||''} ${esc(ev.city)} · ${esc(ev.djs[0]||(ev.venue&&ev.venue!==ev.name?ev.venue:'TBA'))}${ev.djs.length>1?` +${ev.djs.length-1}`:''}</div>
+      <div class="ev-sub">${FLAGS[ev.country]||''} ${esc(ev.city||ev.country)} · ${esc(who)}${ev.djs.length>1?` +${ev.djs.length-1}`:''}</div>
     </div>
     <div class="ev-right">
-      <div><div class="ev-genre">${esc(ev.genre)}</div></div>
+      <div class="ev-genre">${esc(eventGenre(ev))}</div>
       <button aria-label="Save event" class="ev-save${isSaved?' saved':''}" onclick='event.stopPropagation();${isPast?'':'toggleSave('+JSON.stringify(ev.id)+')'}'>${isSaved?'♥':'♡'}</button>
     </div>
   </div>`;
@@ -2008,7 +1925,7 @@ async function toggleSave(id){
   }
   [renderSaved,renderFeatured,renderPersonalHome].forEach(fn=>{ try{ fn(); }catch(e){ console.warn('toggleSave render',e); } });
   try{ const stab=document.getElementById('tab-search'); if(stab&&stab.classList.contains('active')) renderGlobalSearch(); }catch(e){}
-  try{ if(currentStep===2){ if(selDJ) selectDJ(selDJ,true); else if(selMonth!=null) selectMonth(selMonth,true); } }catch(e){}
+  try{ if(currentStep===1) renderEventsView(); }catch(e){}
   try{ if(djDetailName && document.getElementById('dj-detail').className==='open') renderDJ(djDetailName); }catch(e){}   // refresh hearts inside the open DJ profile
   // Persist to the account last (guarded so a hung/failed call never affects the UI).
   if(currentUser){
@@ -2028,16 +1945,12 @@ function openDetail(id){
   const{day,mon}=fmtDate(ev.date);
   const days=daysUntil(ev.date);
   document.getElementById('det-img').src=bestImgHero(ev);
-  // DJ shows: upgrade the hero to the head-liner's name-based photo (reliable, never the
-  // stored wrong-artist img). Festivals keep their poster.
-  if(!(ev.tags||[]).includes('festival')){ const f=featDJ(ev); if(f) fetchDJPhoto(f).then(u=>{ if(u && detailEv===ev){ const im=new Image(); im.onload=()=>{ document.getElementById('det-img').src=u; }; im.src=u; } }).catch(()=>{}); }
   document.getElementById('det-day').textContent=day;
   document.getElementById('det-mon').textContent=mon;
-  document.getElementById('det-genre').textContent=`${ev.genre||'Electronic'} · ${ev.venue||ev.city||''}`;
+  document.getElementById('det-genre').textContent=eventGenre(ev);
   document.getElementById('det-name').textContent=ev.name;
-  const wd=new Date(ev.date).toLocaleDateString('en-GB',{weekday:'short'});
   const dleft=days>0?`In ${days} day${days===1?'':'s'}`:days===0?'Today':'Past';
-  document.getElementById('det-when').innerHTML=`${wd} ${day} ${mon}<small>${dleft}</small>`;
+  document.getElementById('det-when').innerHTML=`${esc(dateLong(ev.date))}<small>${dleft}</small>`;
   const flag=FLAGS[ev.country]||'🌍';
   document.getElementById('det-where').innerHTML=ev.venue
     ? `<a href="https://maps.google.com/?q=${encodeURIComponent(ev.venue+', '+ev.city)}" target="_blank" rel="noopener" style="color:var(--text);text-decoration:none;cursor:pointer;border-bottom:1px solid var(--accent-line);">📍 ${esc(ev.venue)}</a><small>${esc(ev.city||'')}${ev.country?', '+esc(ev.country):''} ${flag}</small>`
@@ -2046,8 +1959,9 @@ function openDetail(id){
   lu.innerHTML=ev.djs.length
     ? ev.djs.map(dj=>`<div class="det-dj" role="button" tabindex="0" onclick='openDJ(${esc(JSON.stringify(dj))})'>${djAvatarHTML(dj,'det-dj-av')}<div class="det-dj-nm">${esc(dj)}</div></div>`).join('')
     : `<div style="color:var(--text-mute);font-size:13px;">Line-up TBA</div>`;
-  hydrateAvatars(lu);
-  document.getElementById('det-tags').innerHTML=ev.tags.map(t=>`<span class="tag">${esc(t)}</span>`).join('');
+  // Tags: type chip + up to 3 vibes only (genre is shown in the hero eyebrow)
+  const chips=[isFest(ev)?'Festival':'Club night', ...(ev.vibes||[]).map(v=>v.charAt(0).toUpperCase()+v.slice(1))];
+  document.getElementById('det-tags').innerHTML=chips.map((t,i)=>`<span class="tag${i===0?' tag-type':''}">${esc(t)}</span>`).join('');
   // Source badge
   const srcLabel={'bandsintown':'Bandsintown','songkick':'Songkick','ra':'Resident Advisor','direct':'Official Site','website':'Website'};
   const srcName=srcLabel[ev.source]||ev.source||'';
@@ -2077,10 +1991,9 @@ function openDetail(id){
   saveBtn.textContent=isSaved?'♥':'♡';
   saveBtn.style.flex=hasTicket?'':'1';
   const detEl=document.getElementById('detail');
-  detEl.className='open'; detEl.style.zIndex=(++overlayZ);   // last-opened overlay on top (so a detail opened from inside a DJ profile shows ABOVE it, not behind)
+  detEl.className='open'; detEl.style.zIndex=(++overlayZ);   // last-opened overlay on top
   document.body.style.overflow='hidden';
   // push a history entry so the browser Back / edge-swipe CLOSES the detail
-  // (returns to the list) instead of leaving the site.
   try{ history.pushState({smDetail:1},''); }catch(e){}
 }
 function closeDetail(){
@@ -2090,7 +2003,7 @@ function closeDetail(){
 }
 function shareEvent(){
   if(!detailEv) return;
-  const url=detailEv.ticket_url||'https://soundmyth.vercel.app';
+  const url=(detailEv.ticket&&detailEv.ticket!=='#')?detailEv.ticket:'https://soundmyth.vercel.app';
   const text=`${detailEv.name} — ${detailEv.city}, ${detailEv.date}`;
   if(navigator.share){
     navigator.share({title:detailEv.name,text:text,url:url}).catch(()=>{});
@@ -2118,21 +2031,22 @@ window.addEventListener('popstate', function(){
 let djDetailName=null, overlayZ=210;
 function renderDJ(name){
   djDetailName=name;
-  const key=djNorm(name), today=new Date().toISOString().split('T')[0];
-  const evs=EVENTS.filter(e=>e.date>=today && (e.djs||[]).some(d=>djNorm(d)===key)).sort((a,b)=>new Date(a.date)-new Date(b.date));
-  const genre=djStyle(name)||(evs[0]?eventGenre(evs[0]):'Electronic');
+  const key=djKey(name);
+  const evs=UPCOMING.filter(e=>e.djs.some(d=>djKey(d)===key));
+  const genre=artistGenre(name)||(evs[0]&&evs[0].genre!==FALLBACK_STYLE?evs[0].genre:'');
   const countries=[...new Set(evs.map(e=>e.country).filter(Boolean))];
-  document.getElementById('djd-eyebrow').textContent=`${djFlag(name)} ${genre}`;
+  document.getElementById('djd-eyebrow').textContent=[djFlag(name),genre].filter(Boolean).join(' ');
   document.getElementById('djd-name').textContent=name;
   document.getElementById('djd-stats').innerHTML=`<div class="djd-stat"><div class="n">${evs.length}</div><div class="l">UPCOMING</div></div><div class="djd-stat"><div class="n">${countries.length}</div><div class="l">COUNTR${countries.length===1?'Y':'IES'}</div></div>`;
-  const fb=document.getElementById('djd-follow'), isFav=prefs.djs.map(djNorm).includes(key);
+  const fb=document.getElementById('djd-follow'), isFav=prefs.djs.map(djKey).includes(key);
   fb.className='djd-follow'+(isFav?' on':''); fb.textContent=isFav?'★ Following':'☆ Follow this DJ'; fb.onclick=()=>toggleFollowDJ(name);
   document.getElementById('djd-events').innerHTML=evs.length?evs.map(eventRowHTML).join(''):'<div style="color:var(--text-mute);font-size:13px;padding:14px 0;">No upcoming events listed.</div>';
-  hydrateAvatars(document.getElementById('djd-events'));
-  const img=document.getElementById('djd-img'), sync=djPhotoSync(name);
-  img.src=sync||COUNTRY_IMG_HERO_FALLBACK; img.style.display='';
-  img.onerror=()=>{ img.src=COUNTRY_IMG_HERO_FALLBACK; img.onerror=null; };
-  fetchDJPhoto(name).then(u=>{ if(u && djDetailName===name){ img.src=u; img.style.display=''; } }).catch(()=>{});   // upgrade to the TheAudioDB headshot if found
+  // Photo from the artifact, otherwise big initials (no live lookup)
+  const img=document.getElementById('djd-img'), ini=document.getElementById('djd-init'), url=djPhoto(name);
+  ini.textContent=djInitials(name);
+  ini.style.display=url?'none':'';
+  img.onerror=()=>{ img.style.display='none'; ini.style.display=''; };
+  if(url){ img.src=url; img.style.display=''; } else { img.removeAttribute('src'); img.style.display='none'; }
 }
 function openDJ(name){
   if(!name) return;
@@ -2148,7 +2062,7 @@ function closeDJ(){
   djDetailName=null;
 }
 function toggleFollowDJ(name){
-  const key=djNorm(name), i=prefs.djs.findIndex(d=>djNorm(d)===key);
+  const key=djKey(name), i=prefs.djs.findIndex(d=>djKey(d)===key);
   if(i>=0) prefs.djs.splice(i,1); else prefs.djs.push(name);
   savePrefs(); renderDJ(name); renderPersonalHome();
 }
@@ -2157,24 +2071,15 @@ function toggleFollowDJ(name){
 // No custom swipe handler — the OS edge-swipe / browser Back already fire popstate.
 // We just step back ONE plan level (events → month → city list → country list) so the
 // gesture returns to the immediately previous step instead of jumping out to the menu.
-function goToCityList(){
-  currentStep=0;
-  document.getElementById('step-city').style.display='block';
-  document.getElementById('step-month').style.display='none';
-  document.getElementById('step-events').style.display='none';
-  if(selCountry){ document.getElementById('country-view').style.display='none'; document.getElementById('city-view').style.display='block'; renderCities(); }
-  else { document.getElementById('country-view').style.display='block'; document.getElementById('city-view').style.display='none'; renderCountries(); }
-  document.getElementById('bc-city').className='bc-btn active'; document.getElementById('bc-city').textContent='Country';
-  document.getElementById('bc-month').className='bc-btn'; document.getElementById('bc-month').textContent='Month';
-  document.getElementById('bc-events').className='bc-btn';
-}
+// ── PLAN BACK NAVIGATION ─────────────────────────────────────────────────────
+// No custom swipe handler — the OS edge-swipe / browser Back already fire popstate.
+// Each Back steps back ONE plan level: events → city list → country list.
 function planBack(){
   const planTab=document.getElementById('tab-plan');
   if(!planTab||!planTab.classList.contains('active')) return false;
-  if(currentStep===2){ if(searchMode==='city'){ goStep(1); } else { goStep(0); } return true; }  // events → month (city flow) / picker (dj·venue·fest)
-  if(currentStep===1){ goToCityList(); return true; }                  // month → city list (keeps the chosen country)
-  if(currentStep===0 && selCountry){ clearCountry(); return true; }    // city list → country list
-  return false;                                                        // at country list → let it leave the tab
+  if(currentStep===1){ if(searchMode==='city') goToCityList(); else goStep(0); return true; }
+  if(searchMode==='city'&&selCountry){ clearCountry(); return true; }   // city list → country list
+  return false;                                                         // country list → let it leave the tab
 }
 
 // ── SAVED ─────────────────────────────────────────────────────────────────────
@@ -2184,17 +2089,15 @@ function renderSaved(){
   const bar=document.getElementById('route-bar');
   const list=document.getElementById('saved-list');
   if(!countEl||!emptyEl||!bar||!list) return;
-  const todayStr=new Date().toISOString().split('T')[0];
-  const evs=EVENTS.filter(e=>saved.includes(e.id)&&e.date>=todayStr).sort((a,b)=>new Date(a.date)-new Date(b.date));
-  countEl.textContent=`${evs.length} saved`;
+  const evs=groupEvents(windowEvents().filter(e=>saved.includes(e.id))).sort(byDate);
+  countEl.textContent=`${evs.filter(e=>!isPastEv(e)).length} saved`;
   emptyEl.style.display=evs.length===0?'block':'none';
-  const cities=[...new Set(evs.map(e=>e.city))];
+  const cities=[...new Set(evs.filter(e=>!isPastEv(e)&&e.city).map(e=>e.city))];
   if(cities.length>1){
     bar.style.display='flex';
-    bar.innerHTML=cities.map((c,i)=>`<span class="route-city">${FLAGS[EVENTS.find(e=>e.city===c)?.country]||''} ${esc(c)}</span>${i<cities.length-1?'<span class="route-arr">→</span>':''}`).join('');
+    bar.innerHTML=cities.map((c,i)=>`<span class="route-city">${FLAGS[(EVENTS.find(e=>e.city===c)||{}).country]||''} ${esc(c)}</span>${i<cities.length-1?'<span class="route-arr">→</span>':''}`).join('');
   } else bar.style.display='none';
-  list.innerHTML=groupEvents(evs).map(ev=>eventRowHTML(ev)).join('');
-  hydrateAvatars(list);
+  list.innerHTML=evs.map(eventRowHTML).join('');
 }
 
 // ── AUTH ───────────────────────────────────────────────────────────────────────
@@ -2420,11 +2323,11 @@ function renderGlobalSearch(){
   const q=(inp?inp.value:'').trim().toLowerCase();
   if(!q){ list.innerHTML=''; if(empty) empty.style.display='block'; if(countEl) countEl.textContent=''; return; }
   if(empty) empty.style.display='none';
-  const today=new Date().toISOString().split('T')[0];
+  const today=todayYMD();
   const fut=EVENTS.filter(e=>e.date>=today);
   // DJs — by name, ranked by # of upcoming shows
   const djc={};
-  for(const e of fut) for(const d of (e.djs||[])) if((d||'').toLowerCase().includes(q)){ const k=djNorm(d); (djc[k]=djc[k]||{name:d,n:0}).n++; }
+  for(const e of fut) for(const d of (e.djs||[])) if((d||'').toLowerCase().includes(q)){ const k=djKey(d); (djc[k]=djc[k]||{name:d,n:0}).n++; }
   const djs=Object.values(djc).sort((a,b)=>b.n-a.n);
   // Festivals — festival-tagged events by name, by date
   const fm={};
@@ -2452,13 +2355,12 @@ function renderGlobalSearch(){
   sec('Events','event',events,ev=>eventRowHTML(ev));
   if(countEl) countEl.textContent=total?`${total} result${total!==1?'s':''}`:'';
   list.innerHTML=html||`<div style="color:var(--text-mute);font-size:13px;text-align:center;padding:48px 0;">No matches for “${esc((inp?inp.value:'').trim())}”.</div>`;
-  hydrateAvatars(list);   // load DJ photos in the DJ rows
 }
 // Club tap → its upcoming events, with a way back to the grouped results.
 function searchClub(venue){
   const list=document.getElementById('search-list'), countEl=document.getElementById('search-count');
   if(!list) return;
-  const today=new Date().toISOString().split('T')[0];
+  const today=todayYMD();
   const evs=groupEvents(EVENTS.filter(e=>e.date>=today && (e.venue||'')===venue)).sort((a,b)=>new Date(a.date)-new Date(b.date));
   if(countEl) countEl.textContent=`${evs.length} at ${venue}`;
   list.innerHTML=`<button class="srch-back" onclick="renderGlobalSearch()">← Back to results</button><div class="srch-sec">${esc(venue)} <span>${evs.length}</span></div>`+evs.map(ev=>eventRowHTML(ev)).join('');
@@ -2514,20 +2416,14 @@ function markOnboarded(){ try{ localStorage.setItem('sm_onboarded','1'); }catch(
 function hasPrefs(){ return !!(prefs.cities.length||prefs.djs.length||prefs.genres.length); }
 function escAttr(s){ return String(s).replace(/&/g,'&amp;').replace(/"/g,'&quot;'); }
 
-// effective genre: prefer a specific scraped genre, else derive from the line-up
-function eventGenre(ev){
-  if(ev.genre && ev.genre.toLowerCase()!=='electronic') return ev.genre;
-  for(const d of (ev.djs||[])){ const g=djStyle(d); if(g) return g; }
-  return ev.genre||'Electronic';
-}
-function djHitP(ev){ const pn=prefs.djs.map(djNorm); return (ev.djs||[]).some(d=>pn.includes(djNorm(d))); }
+function djHitP(ev){ const pn=prefs.djs.map(djKey); return (ev.djs||[]).some(d=>pn.includes(djKey(d))); }
 function cityHitP(ev){ return prefs.cities.includes(ev.city); }
 function genreHitP(ev){ return prefs.genres.includes(eventGenre(ev)); }
-function scoreEventP(ev){ let s=0; if(djHitP(ev))s+=60; if(cityHitP(ev))s+=50; if(genreHitP(ev))s+=25; if((ev.djs||[]).some(d=>TOP100_DJS.has(d.toLowerCase())))s+=6; s+=Math.max(0,30-daysUntil(ev.date))/4; return s; }
-function matchReasonP(ev){ if(djHitP(ev))return (ev.djs||[]).find(d=>prefs.djs.includes(d)); if(cityHitP(ev))return ev.city; if(genreHitP(ev))return eventGenre(ev); return null; }
+function scoreEventP(ev){ let s=0; if(djHitP(ev))s+=60; if(cityHitP(ev))s+=50; if(genreHitP(ev))s+=25; if((ev.djs||[]).some(d=>isTop100(d)))s+=6; s+=Math.max(0,30-daysUntil(ev.date))/4; return s; }
+function matchReasonP(ev){ if(djHitP(ev))return (ev.djs||[]).find(d=>prefs.djs.map(djKey).includes(djKey(d))); if(cityHitP(ev))return ev.city; if(genreHitP(ev))return eventGenre(ev); return null; }
 // onboarding proposals: cities / styles ranked by how many upcoming events they have
-function citiesByCount(){ const t=new Date().toISOString().split('T')[0],c={}; for(const e of EVENTS){ if(e.date<t||!e.city) continue; c[e.city]=(c[e.city]||0)+1; } return Object.keys(c).sort((a,b)=>c[b]-c[a]); }
-function genresByCount(){ const t=new Date().toISOString().split('T')[0],c={}; for(const e of EVENTS){ if(e.date<t) continue; const g=eventGenre(e); if(!g||g==='Electronic') continue; c[g]=(c[g]||0)+1; } return Object.keys(c).sort((a,b)=>c[b]-c[a]); }
+function citiesByCount(){ const c={}; for(const e of UPCOMING){ if(!e.city) continue; c[e.city]=(c[e.city]||0)+1; } return Object.keys(c).sort((a,b)=>c[b]-c[a]); }
+function genresByCount(){ const c={}; for(const e of UPCOMING){ const g=e.genre; if(!g||g===FALLBACK_STYLE) continue; c[g]=(c[g]||0)+1; } return Object.keys(c).sort((a,b)=>c[b]-c[a]); }
 
 // ── sync with public.profiles (mirror of the marketing-opt-in pattern) ──────────
 async function savePrefsRemote(onboardedAt){
@@ -2542,7 +2438,7 @@ async function syncPrefs(){
   let data=null;
   try{ const r=await sb.from('profiles').select('home_cities,fav_djs,fav_genres,onboarded_at').eq('id',currentUser.id).maybeSingle(); if(r.error){ console.warn('prefs read skipped:',r.error.message); } else data=r.data; }catch(e){ return; }
   if(data && data.onboarded_at){              // remote is the source of truth across devices
-    prefs.cities=data.home_cities||[]; prefs.djs=data.fav_djs||[]; prefs.genres=data.fav_genres||[];
+    prefs.cities=data.home_cities||[]; prefs.djs=data.fav_djs||[]; prefs.genres=normGenres(data.fav_genres);
     persistPrefsLocal(); markOnboarded();
   } else if(isOnboarded() && hasPrefs()){     // local prefs set before first login → push up
     await savePrefsRemote(new Date().toISOString());
@@ -2554,21 +2450,21 @@ async function syncPrefs(){
 
 // ── personalized home ───────────────────────────────────────────────────────
 function secP(title,sub){ return `<div class="home-sec" style="padding-bottom:6px"><span class="home-sec-title">${esc(title)}</span>${sub?`<span class="home-sec-link" style="cursor:default;color:var(--text-mute);font-weight:600">${esc(sub)}</span>`:''}</div>`; }
-// Real multi-day festivals (consecutive-ish, ≤10-day span across its event rows) show a
-// range like "9–11 Jul"; residencies spread over months keep their single next date.
+// Multi-day festivals (≤10-day span across their upcoming rows) show a range like "9–11 Jul '27"
 function festDateRange(ev){
   const key=(ev.name||'').toLowerCase();
-  const ds=[...new Set(EVENTS.filter(e=>(e.name||'').toLowerCase()===key && e.city===ev.city && e.tags&&e.tags.includes('festival')).map(e=>e.date))].sort();
+  const ds=[...new Set(UPCOMING.filter(e=>(e.name||'').toLowerCase()===key && e.city===ev.city && isFest(e)).map(e=>e.date))].sort();
   if(ds.length<2) return null;
-  const span=(new Date(ds[ds.length-1])-new Date(ds[0]))/864e5;
+  const span=(parseYMD(ds[ds.length-1])-parseYMD(ds[0]))/864e5;
   if(span<1||span>10) return null;
-  const a=fmtDate(ds[0]), b=fmtDate(ds[ds.length-1]);
-  return a.mon===b.mon?`${a.day}–${b.day} ${a.mon}`:`${a.day} ${a.mon} – ${b.day} ${b.mon}`;
+  const a=parseYMD(ds[0]), b=parseYMD(ds[ds.length-1]);
+  if(a.getMonth()===b.getMonth()&&a.getFullYear()===b.getFullYear()) return `${pad2(a.getDate())}–${pad2(b.getDate())} ${MONTHS[b.getMonth()]}${yrSfx(b)}`;
+  return `${pad2(a.getDate())} ${MONTHS[a.getMonth()]}${yrSfx(a)} – ${pad2(b.getDate())} ${MONTHS[b.getMonth()]}${yrSfx(b)}`;
 }
 function pCard(ev){
-  const{day,mon}=fmtDate(ev.date), isSaved=saved.includes(ev.id), img=bestImg(ev), r=matchReasonP(ev), fest=ev.tags&&ev.tags.includes('festival'), dr=fest?festDateRange(ev):null, feat=realImg(ev)?'':featDJ(ev);
+  const isSaved=saved.includes(ev.id), r=matchReasonP(ev), fest=isFest(ev), dr=fest?festDateRange(ev):null;
   return `<div class="ev-card-h" role="button" tabindex="0" onclick='openDetail(${JSON.stringify(ev.id)})'>
-    <img src="${img}" ${feat?`data-evphoto="${escAttr(feat)}"`:''} alt="" onerror="this.src='${COUNTRY_IMG_FALLBACK}'"/>
+    <img src="${bestImg(ev)}" alt="" onerror="this.onerror=null;this.src='${COUNTRY_IMG_FALLBACK}'"/>
     <div class="ev-card-h-grad"></div>
     ${r?`<div class="match-chip">★ ${esc(r)}</div>`:''}
     <button aria-label="Save event" class="ev-card-h-save${isSaved?' saved':''}" onclick='event.stopPropagation();toggleSave(${JSON.stringify(ev.id)})'>${isSaved?'♥':'♡'}</button>
@@ -2576,7 +2472,7 @@ function pCard(ev){
       <div class="ev-card-h-genre">${esc(eventGenre(ev))}</div>
       <div class="ev-card-h-name">${esc(ev.name)}</div>
       ${fest&&ev.djs.length?`<div class="fest-line">${esc(ev.djs.slice(0,2).join(', '))}${ev.djs.length>2?' +'+(ev.djs.length-2):''}</div>`:''}
-      <div class="ev-card-h-meta">${FLAGS[ev.country]||''} ${esc(ev.city)} · ${dr||`${day} ${mon}`}</div>
+      <div class="ev-card-h-meta">${FLAGS[ev.country]||''} ${esc(ev.city)} · ${dr||dateShort(ev.date)}</div>
     </div></div>`;
 }
 function renderPersonalHome(){
@@ -2585,21 +2481,20 @@ function renderPersonalHome(){
   const personalize=isOnboarded() && hasPrefs();
   if(!personalize){ el.innerHTML=''; if(hero) hero.style.display=''; return; }
   if(hero) hero.style.display='none';
-  const todayStr=new Date().toISOString().split('T')[0];
-  const fut=EVENTS.filter(e=>e.date>=todayStr);
+  const fut=UPCOMING;                                  // date-sorted, upcoming only
   const scored=fut.map(e=>({e,s:scoreEventP(e)})).sort((a,b)=>b.s-a.s);
   const hour=new Date().getHours(), part=hour<6?'Good night':hour<13?'Good morning':hour<20?'Good afternoon':'Good evening';
   let h=`<div class="greet"><div class="greet-hi">${part}, <span>${esc(getDisplayName())}</span></div></div>`;
-  const savedSoon=fut.filter(e=>saved.includes(e.id)).sort((a,b)=>new Date(a.date)-new Date(b.date))[0];
+  const savedSoon=fut.find(e=>saved.includes(e.id));
   const top=scored[0];
   const heroEv=savedSoon?{e:savedSoon,eyebrow:'Your next saved plan'}:(top&&top.s>30?{e:top.e,eyebrow:'Your top match'}:null);
   const shownIds=new Set();
-  if(heroEv){ shownIds.add(heroEv.e.id); const{day,mon}=fmtDate(heroEv.e.date), du=daysUntil(heroEv.e.date);
+  if(heroEv){ shownIds.add(heroEv.e.id); const du=daysUntil(heroEv.e.date);
     h+=`<div class="ctx-hero" role="button" tabindex="0" onclick='openDetail(${JSON.stringify(heroEv.e.id)})'>
-      <img src="${bestImg(heroEv.e)}" alt="" onerror="this.src=COUNTRY_IMG_HERO_FALLBACK;this.onerror=null"/><div class="ctx-grad"></div>
+      <img src="${bestImg(heroEv.e)}" alt="" onerror="this.onerror=null;this.src=COUNTRY_IMG_HERO_FALLBACK"/><div class="ctx-grad"></div>
       <div class="ctx-count">${du<=0?'Today':du===1?'Tomorrow':'In '+du+'d'}</div>
       <div class="ctx-body"><div class="ctx-eyebrow">${heroEv.eyebrow}</div><div class="ctx-title">${esc(heroEv.e.name)}</div>
-      <div class="ctx-meta">${esc(heroEv.e.venue||heroEv.e.city)} · ${esc(heroEv.e.city)} · ${day} ${mon}</div></div></div>`;
+      <div class="ctx-meta">${esc(heroEv.e.venue||heroEv.e.city)} · ${esc(heroEv.e.city)} · ${dateShort(heroEv.e.date)}</div></div></div>`;
   }
   try{
     // 1. For you — top non-festival events by score; DJ+city intersection floats to the top naturally
@@ -2608,7 +2503,7 @@ function renderPersonalHome(){
       h+=secP('Recommended events for you','');
       h+=`<div style="padding:0 16px 4px">${forYou.map(e=>{shownIds.add(e.id);return eventRowHTML(e);}).join('')}</div>`;
     }
-    // 2. Festivals for you — sorted by score; DJs you follow in lineup as subtitle
+    // 2. Festivals for you — sorted by score
     const seenF=new Set();
     const festFor=fut.filter(e=>!shownIds.has(e.id)&&isFest(e)&&scoreEventP(e)>15).sort((a,b)=>scoreEventP(b)-scoreEventP(a)).filter(e=>{if(seenF.has(e.name))return false;seenF.add(e.name);return true;}).slice(0,10);
     if(festFor.length){
@@ -2617,7 +2512,7 @@ function renderPersonalHome(){
     }
     // 3. In [City] — vertical rows, score-sorted, what's left after top picks
     for(const c of prefs.cities){
-      const inC=fut.filter(e=>!shownIds.has(e.id)&&e.city===c).map(e=>({e,s:scoreEventP(e)})).sort((a,b)=>b.s-a.s||new Date(a.e.date)-new Date(b.e.date)).slice(0,6).map(x=>x.e);
+      const inC=fut.filter(e=>!shownIds.has(e.id)&&e.city===c).map(e=>({e,s:scoreEventP(e)})).sort((a,b)=>b.s-a.s||a.e.date.localeCompare(b.e.date)).slice(0,6).map(x=>x.e);
       if(inC.length){
         h+=secP('Top events in '+c,inC.length+' upcoming');
         h+=`<div style="padding:0 16px 4px">${inC.map(e=>{shownIds.add(e.id);return eventRowHTML(e);}).join('')}</div>`;
@@ -2628,7 +2523,6 @@ function renderPersonalHome(){
     }
   }catch(e){ console.warn('personal home section failed',e); }
   el.innerHTML=h;
-  hydrateAvatars(el);
 }
 
 // ── onboarding sheet (cities → styles → DJs, skippable) ─────────────────────────
@@ -2785,6 +2679,8 @@ window.addEventListener('appinstalled',()=>{
   document.getElementById('install-banner')?.remove();
 });
 
+// Start: every helper above is initialized by now
+loadEvents();
 </script>
 </body>
 </html>

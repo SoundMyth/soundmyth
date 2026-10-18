@@ -4,7 +4,7 @@
  * Deletes events whose date is older than PURGE_DAYS_AGO days from today.
  * Events from the last PURGE_DAYS_AGO days are kept (shown greyed out on web).
  *
- * Usage: node purge.js
+ * Usage: node steps/16-purge.js
  * Schedule: weekly (Sundays) via task scheduler
  */
 

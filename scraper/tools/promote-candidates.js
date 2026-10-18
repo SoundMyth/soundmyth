@@ -1,18 +1,18 @@
 /**
  * SoundMyth – promote discovered EDM DJs into the curated list.
  *
- * discover-djs.js surfaces electronic DJs we don't track yet into
+ * steps/10-discover-djs.js surfaces electronic DJs we don't track yet into
  * data/artists_candidates.json (onRA:true = verified on Resident Advisor). This
  * tool appends the active ones (≥ MIN_EVENTS distinct shows) to artists_all.json
- * so scrape-extended.js searches their tours directly — i.e. it grows coverage by
+ * so steps/02-scrape-extended.js searches their tours directly — i.e. it grows coverage by
  * editing the ONE list, exactly the SoundMyth model.
  *
  * Safe to re-run: idempotent (skips names already in the list), honours the manual
  * block-list, strips Resident-Advisor region suffixes (" (UK)", " (DE)", " (2)")
  * and dedupes so "James Hype (UK)" doesn't double "James Hype".
  *
- * Usage: node promote-candidates.js            (default MIN_EVENTS=4)
- *        MIN_EVENTS=6 node promote-candidates.js
+ * Usage: node tools/promote-candidates.js            (default MIN_EVENTS=4)
+ *        MIN_EVENTS=6 node tools/promote-candidates.js
  */
 import { readFileSync, writeFileSync } from 'fs';
 import { fileURLToPath }               from 'url';
@@ -40,7 +40,7 @@ for (const c of cand.filter(c => c.onRA && c.events >= MIN).sort((a, b) => b.eve
   if (!k || seen.has(k)) continue;        // empty, dup vs list, or suffix-merge dup
   seen.add(k);
   // genre is deliberately '' (not 'Electronic'): the style is unknown until someone verifies it.
-  // Run infer-styles.js (co-billing) and/or set it by hand; until then the DJ contributes
+  // Run tools/infer-styles.js (co-billing) and/or set it by hand; until then the DJ contributes
   // nothing to event genres. tags stays '' ('discovered' is no longer a tag).
   added.push({ ranking: ++next, name, genre: '', subgenre: '',
                tags: '', tour_web: '', songkick_url: '', bit_url: '', ra_url: '' });

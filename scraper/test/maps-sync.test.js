@@ -15,9 +15,9 @@ function extractObject(name) {
   return Function('return (' + m[1] + ')')();
 }
 
-// The city-alias map is hand-kept in BOTH index.html (frontend) and scraper/normalize.js.
+// The city-alias map is hand-kept in BOTH index.html (frontend) and scraper/lib/normalize.js.
 // This guards against the two drifting apart.
-test('CITY_ALIAS_RAW is identical in index.html and scraper/normalize.js', () => {
+test('CITY_ALIAS_RAW is identical in index.html and scraper/lib/normalize.js', () => {
   const frontend = extractObject('CITY_ALIAS_RAW');
   assert.deepEqual(frontend, CITY_ALIAS_RAW);
 });

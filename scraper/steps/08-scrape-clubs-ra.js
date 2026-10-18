@@ -7,7 +7,7 @@
  * RA GraphQL: https://ra.co/graphql (no auth required)
  * Club IDs extracted from ra_url: ra.co/clubs/{id} or ra.co/promoters/{id}
  *
- * Usage: node scrape-clubs-ra.js
+ * Usage: node steps/08-scrape-clubs-ra.js
  */
 
 import { readFileSync, existsSync } from 'fs';

@@ -12,9 +12,9 @@
  *   4. Accept the best match if score ≥ 0.8
  *
  * Usage:
- *   node enrich-songkick-urls.js
- *   node enrich-songkick-urls.js data/artists_all.json          (in-place)
- *   node enrich-songkick-urls.js data/artists_all.json out.json  (separate output)
+ *   node steps/01-enrich-songkick-urls.js
+ *   node steps/01-enrich-songkick-urls.js data/artists_all.json          (in-place)
+ *   node steps/01-enrich-songkick-urls.js data/artists_all.json out.json  (separate output)
  */
 
 import { readFileSync, writeFileSync } from 'fs';
@@ -31,7 +31,7 @@ const DELAY_OK   = 1300;  // ms after a successful fetch
 const DELAY_MISS = 800;   // ms after "not found"
 const DELAY_ERR  = 2500;  // ms after a rate-limit / error
 
-// Songkick requires the curl-style UA in http.js — a browser UA gets 406.
+// Songkick requires the curl-style UA in lib/http.js — a browser UA gets 406.
 const HEADERS = SK_HEADERS;
 
 const sleep = ms => new Promise(r => setTimeout(r, ms));

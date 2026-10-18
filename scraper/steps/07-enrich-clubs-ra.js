@@ -5,7 +5,7 @@
  * searches Resident Advisor's GraphQL API by club name + city
  * and fills in the ra_url field.
  *
- * Usage: node enrich-clubs-ra.js
+ * Usage: node steps/07-enrich-clubs-ra.js
  * Output: writes back to data/clubs_all.json
  */
 
@@ -27,7 +27,7 @@ const sleep = ms => new Promise(r => setTimeout(r, ms));
 // RA retired the old /api/search endpoint (now 404) and changed the GraphQL
 // search field. Current working schema: search(searchTerm, indices, limit)
 // returns flat results with { searchType, id, value, areaName }. The `id` is
-// the venue/club id used by scrape-clubs-ra.js (ra.co/clubs/{id}).
+// the venue/club id used by steps/08-scrape-clubs-ra.js (ra.co/clubs/{id}).
 const SEARCH_QUERY = `
 query Search($searchTerm: String!) {
   search(searchTerm: $searchTerm, indices: [CLUB], limit: 8) {

@@ -4,7 +4,7 @@
  * Reads data/festivals_all.json, searches SK (type=festival) for each festival
  * WITHOUT a sk_url, fills it in, and saves back to the same file.
  *
- * Usage: node enrich-festivals-sk.js
+ * Usage: node tools/enrich-festivals-sk.js
  */
 
 import { readFileSync, writeFileSync } from 'fs';

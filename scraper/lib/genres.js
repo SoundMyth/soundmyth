@@ -1,7 +1,7 @@
 /**
  * SoundMyth – canonical music-style taxonomy + event genre/tag rules.
  *
- * Pure functions, no I/O. Shared by classify.js (pipeline step), infer-styles.js and
+ * Pure functions, no I/O. Shared by steps/13-classify.js (pipeline step), tools/infer-styles.js and
  * the artists artifact. Spec: pre-launch overhaul contract §1–§4.
  *
  *  - STYLES: the 16 canonical styles. Every DJ `genre` and every event `genre` is one of

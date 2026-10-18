@@ -11,7 +11,7 @@
  *      An EXACT artist match on RA means it's a real electronic act (Shiba San,
  *      Vicetone…). No match → likely off-genre (Gorillaz, MGMT…) → not kept.
  *
- * Output: data/artists_candidates.json — a reviewable list. cleanup-junk.js keeps
+ * Output: data/artists_candidates.json — a reviewable list. steps/11-cleanup-junk.js keeps
  * events whose bill has a DJ from artists_all.json OR an onRA candidate from here,
  * so EDM-but-unlisted DJs are NOT lost; you promote the good ones into
  * artists_all.json by hand whenever you like.
@@ -19,7 +19,7 @@
  * Read-only on the DB (anon key from ../../index.html). Incremental: previously
  * verified DJs are cached, only new ones hit RA. Set LIMIT_NEW=N to cap RA calls.
  *
- * Usage: node discover-djs.js
+ * Usage: node steps/10-discover-djs.js
  */
 import { readFileSync, writeFileSync } from 'fs';
 import { fileURLToPath }           from 'url';

@@ -11,7 +11,7 @@
  *   1. Delete orphaned bit_fest_* rows where a bit_* row with same (date+venue+city) exists
  *   2. Group events by (date, venue_norm, city_norm) — keep the richest, merge djs[], tags[]
  *
- * Usage: node dedupe.js
+ * Usage: node steps/09-dedupe.js
  */
 
 import { readFileSync, existsSync } from 'fs';
@@ -436,7 +436,7 @@ async function main() {
   //   tier 2  festival per-artist fragment or festival listing
   // then the richest. The DJ is removed from every other event (the event is deleted when its
   // lineup empties). Every conflict, with both events and the action taken, goes to
-  // data/conflicts.json for manual review (report.js emails it).
+  // data/conflicts.json for manual review (steps/17-report.js emails it).
   console.log('\n  Pass 6: DJ double-booking check...');
   const evById = new Map();
   for (const evs of groups.values()) for (const ev of evs) if (!evById.has(ev.id)) evById.set(ev.id, ev);

@@ -14,7 +14,7 @@
  * Chromium browser (Playwright) for JS-rendered festival sites (Tomorrowland,
  * EDC, etc.). The browser is launched lazily and shared across all retries.
  *
- * Usage: node scrape-festivals-direct.js
+ * Usage: node steps/05-scrape-festivals-direct.js
  */
 
 import { readFileSync }  from 'fs';

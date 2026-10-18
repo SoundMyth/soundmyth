@@ -2,7 +2,7 @@
  * SoundMyth – build the DJ artifact the frontend reads (web/data/artists.json).
  *
  * Offline and fast: no image lookups happen here. It only combines data that is already
- * on disk (enrich-images.js fills the photo cache; this step publishes it).
+ * on disk (steps/14-enrich-images.js fills the photo cache; this step publishes it).
  *
  *   artists_all.json        → name, canonical genre, vibes (from tags), ranking
  *   artists_top100.json     → top100 flag
@@ -15,7 +15,7 @@
  * Output schema (CONTRACT §4):
  *   { "generated": ISO, "artists": { "<djKey>": { name, genre, img, top100, vibes } } }
  *
- * Usage: node build-artists.js
+ * Usage: node steps/15-build-artists.js
  */
 
 import { writeFileSync, readFileSync, existsSync, mkdirSync } from 'fs';
@@ -33,7 +33,7 @@ const readJ = (p, fallback) => {
 };
 const OUT = resolve(__dirname, '../../data/artists.json');
 
-// ── Genre + vibes: the shared taxonomy in genres.js (contract §1/§3) ──────────
+// ── Genre + vibes: the shared taxonomy in lib/genres.js (contract §1/§3) ──────────
 // A DJ with no usable genre gets FALLBACK_GENRE ("Multi-genre" = not classified yet);
 // the frontend ignores those DJs when computing an event's genre.
 export const canonicalGenre = (genre, subgenre) => djStyle(genre, subgenre) || FALLBACK_GENRE;

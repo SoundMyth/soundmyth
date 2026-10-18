@@ -22,7 +22,7 @@
  *      updated), EVENTS_JSON (optional path to an events snapshot used as the DJ list
  *      when no DB access is available), DJ_TIME_BUDGET_MIN (default 25).
  *
- * Usage: node enrich-images.js
+ * Usage: node steps/14-enrich-images.js
  */
 
 import { readFileSync, writeFileSync, existsSync } from 'fs';

@@ -12,7 +12,7 @@
  * the RA area agrees with the curated city/country. Without the location check,
  * every "Time Warp" row would collect Time Warp Mexico and Time Warp NYC.
  *
- * Usage: node scrape-festivals-ra.js
+ * Usage: node steps/06-scrape-festivals-ra.js
  */
 
 import { readFileSync }  from 'fs';

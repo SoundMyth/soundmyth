@@ -1,9 +1,9 @@
 /**
- * SoundMyth – per-run stats handed from pipeline steps to report.js.
+ * SoundMyth – per-run stats handed from pipeline steps to steps/17-report.js.
  *
  * Each step (dedupe, validate, purge) writes ONE section of data/run-stats.json:
  *   { "dedupe": {...}, "validate": {...}, "purge": {...} }
- * Every section carries `generated` (ISO timestamp). report.js only trusts a section
+ * Every section carries `generated` (ISO timestamp). steps/17-report.js only trusts a section
  * generated at/after RUN_STARTED, so a step that died this week cannot leak last week's
  * numbers into the email. Committed with the other scraper/data/*.json files.
  */

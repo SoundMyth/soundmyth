@@ -5,7 +5,7 @@
  *   1) Bandsintown API  — by festival name
  *   2) Songkick         — search + scrape /calendar  (fallback when BIT has nothing)
  *
- * Usage: node scrape-festivals-bit.js
+ * Usage: node steps/04-scrape-festivals-bit.js
  */
 
 import { readFileSync }  from 'fs';
@@ -390,7 +390,7 @@ async function main() {
   if (httpFails.size) {
     console.log('\n⚠  Songkick HTTP failures (excluding 404):');
     for (const [status, n] of httpFails) console.log(`     ${status}: ${n}`);
-    console.log('   A large count here means Songkick is blocking us — check SK_HEADERS in http.js.');
+    console.log('   A large count here means Songkick is blocking us — check SK_HEADERS in lib/http.js.');
   }
 }
 

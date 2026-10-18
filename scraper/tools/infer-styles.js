@@ -2,15 +2,15 @@
  * SoundMyth – infer a canonical style for DJs that have none yet, from who they share bills with.
  *
  * DJs without a valid style (genre '' or not one of the 16 canonical styles, e.g. freshly
- * promoted by promote-candidates.js) get the most common style among the already-classified
- * DJs on the same upcoming events. Output is ALWAYS a canonical style from genres.js — never
+ * promoted by tools/promote-candidates.js) get the most common style among the already-classified
+ * DJs on the same upcoming events. Output is ALWAYS a canonical style from lib/genres.js — never
  * 'Electronic' or a legacy label. This is a suggestion: review docs/genre-audit-*.md and
  * correct by hand when it matters.
  *
  * Read-only on the DB (anon key from ../../index.html); writes data/artists_all.json.
  * Safe to re-run. Set DRY=1 to preview.
  *
- * Usage: node infer-styles.js   (DRY=1 node infer-styles.js to preview)
+ * Usage: node tools/infer-styles.js   (DRY=1 node tools/infer-styles.js to preview)
  */
 import { readFileSync, writeFileSync } from 'fs';
 import { makeClient } from '../lib/db.js';

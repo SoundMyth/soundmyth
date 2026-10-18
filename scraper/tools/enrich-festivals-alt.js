@@ -10,7 +10,7 @@
  *   3. Name + city as a single query
  *   4. Name without city suffix
  *
- * Usage: node enrich-festivals-alt.js
+ * Usage: node tools/enrich-festivals-alt.js
  */
 
 import { readFileSync, writeFileSync } from 'fs';

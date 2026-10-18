@@ -3,7 +3,7 @@
  *  1) DJ names duplicated by case/diacritics
  *  2) near-duplicate events on the same city+date
  *  3) events with no image
- * Usage: node analyze-quality.mjs
+ * Usage: node tools/analyze-quality.mjs
  */
 import { makeClient } from '../lib/db.js';
 import { readFileSync } from 'fs';

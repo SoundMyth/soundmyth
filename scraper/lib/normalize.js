@@ -72,7 +72,7 @@ export function canonCity(c) {
 // Country full-name variants → canonical name. The scrapers already map ISO codes
 // (US→United States) via their own COUNTRY_ISO; this folds the long-form variants
 // Songkick/RA return (United States of America, Czech Republic, Korea, Republic Of…)
-// so the raw DB is clean at source — not only after the weekly validate.js runs.
+// so the raw DB is clean at source — not only after the weekly steps/12-validate.js runs.
 export const COUNTRY_NORM = {
   'UK': 'United Kingdom', 'US': 'United States', 'USA': 'United States', 'Usa': 'United States',
   'UAE': 'United Arab Emirates', 'EAU': 'United Arab Emirates',
@@ -85,7 +85,7 @@ export const COUNTRY_NORM = {
   'Taiwan, Province of China': 'Taiwan', 'Viet Nam': 'Vietnam', 'Russian Federation': 'Russia',
   '日本': 'Japan', 'Bosnia And Herzegovina': 'Bosnia and Herzegovina', 'Netherlands Antilles': 'Netherlands',
 };
-// Canonical country names we accept (moved here from validate.js so there is one list).
+// Canonical country names we accept (moved here from steps/12-validate.js so there is one list).
 export const VALID_COUNTRIES = new Set([
   'United Kingdom', 'United States', 'Spain', 'Germany', 'France', 'Italy',
   'Netherlands', 'Belgium', 'Portugal', 'Greece', 'Croatia', 'Serbia',

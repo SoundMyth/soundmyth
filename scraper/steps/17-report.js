@@ -15,7 +15,7 @@
  * Degrades on purpose: with no BREVO_API_KEY it prints the report and exits 0,
  * so a missing secret never fails the run.
  *
- * Usage: node report.js
+ * Usage: node steps/17-report.js
  */
 
 import { fileURLToPath } from 'url';

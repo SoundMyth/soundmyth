@@ -31,7 +31,7 @@
  * Reads Supabase with the anon key (SUPABASE_URL + SUPABASE_ANON_KEY, or the
  * SB_URL/SB_KEY literals in ../../index.html for local runs). Never writes the DB.
  *
- * Usage: node discover-festivals.js [--dry-run]
+ * Usage: node steps/03-discover-festivals.js [--dry-run]
  */
 import { readFileSync, writeFileSync, existsSync } from 'fs';
 import { fileURLToPath }                      from 'url';
@@ -47,7 +47,7 @@ const DRY_RUN = process.argv.includes('--dry-run') || process.env.DRY_RUN === '1
 const TODAY   = new Date().toISOString().split('T')[0];
 const sleep   = ms => new Promise(r => setTimeout(r, ms));
 
-const DELAY        = 950;   // ms between RA calls (same politeness as scrape-festivals-ra.js)
+const DELAY        = 950;   // ms between RA calls (same politeness as steps/06-scrape-festivals-ra.js)
 const MAX_DETAIL   = 80;    // cap RA event-detail calls per run
 const MIN_ARTISTS  = 3;     // generic auto-add: lineup size
 const MIN_KNOWN    = 3;     // generic auto-add: lineup members in artists_all.json

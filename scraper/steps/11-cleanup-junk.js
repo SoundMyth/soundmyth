@@ -9,7 +9,7 @@
  * The scrapers now skip creating (a) at the source; this also clears rows that were
  * ingested before that fix. Runs in CI after dedupe. Set DRY=1 to preview only.
  *
- * Usage: node cleanup-junk.js   (DRY=1 node cleanup-junk.js to preview)
+ * Usage: node steps/11-cleanup-junk.js   (DRY=1 node steps/11-cleanup-junk.js to preview)
  */
 import { readFileSync }  from 'fs';
 import { fileURLToPath } from 'url';
@@ -33,7 +33,7 @@ const TODAY = new Date().toISOString().split('T')[0];
 //
 // "EDM DJ we recognise" = curated list (data/artists_all.json) ∪ discovered DJs that
 // verified as electronic on Resident Advisor (data/artists_candidates.json, onRA:true,
-// produced by discover-djs.js). That way EDM DJs we don't track yet are kept (and stay
+// produced by steps/10-discover-djs.js). That way EDM DJs we don't track yet are kept (and stay
 // reviewable in the candidates file) while genuine off-genre acts (rock/jazz) are dropped.
 const readJ = p => { try { return JSON.parse(readFileSync(resolve(__dirname, p), 'utf8')); } catch { return []; } };
 const djKey  = s => (s || '').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/&/g, ' and ').replace(/[^a-z0-9]+/g, '');
@@ -109,8 +109,8 @@ const live = rows.filter(e => !removedIds.has(e.id));
 const djCanon = buildDjCanon(live);
 const djImg = {};
 for (const e of live) { if (!e.img_url) continue; for (const d of (e.djs || [])) { const k = djNorm(d); if (k && !djImg[k]) djImg[k] = e.img_url; } }
-// Genre/tags are NOT written here any more: classify.js (next pipeline step) recomputes them
-// from the lineup with genres.js, so a stamp here could only ever be overwritten.
+// Genre/tags are NOT written here any more: steps/13-classify.js (next pipeline step) recomputes them
+// from the lineup with lib/genres.js, so a stamp here could only ever be overwritten.
 let cityFixed = 0, countryFixed = 0, djFixed = 0, trimmed = 0, imgFixed = 0;
 const patches = [];
 for (const e of live) {

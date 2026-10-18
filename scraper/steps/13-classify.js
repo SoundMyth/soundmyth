@@ -1,7 +1,7 @@
 /**
  * SoundMyth – recompute genre + tags for every upcoming event.
  *
- * Pipeline step (after dedupe/cleanup-junk, before enrich-images). Rules: genres.js.
+ * Pipeline step (after dedupe/cleanup-junk, before enrich-images). Rules: lib/genres.js.
  *   genre = most frequent canonical genre among the lineup DJs (artists_all / candidates);
  *           no known DJ → the festival's curated style (festivals_all.json `style`, if any);
  *           otherwise 'Multi-genre'.
@@ -11,9 +11,9 @@
  * Only rows whose genre or tags actually change are written (batched, parallel-limited).
  *
  * Usage:
- *   node classify.js                          # write (needs SUPABASE_URL + SUPABASE_SERVICE_KEY)
- *   node classify.js --dry-run                # diff summary, no writes
- *   node classify.js --snapshot <events.json> # read events from a JSON file instead of Supabase
+ *   node steps/13-classify.js                          # write (needs SUPABASE_URL + SUPABASE_SERVICE_KEY)
+ *   node steps/13-classify.js --dry-run                # diff summary, no writes
+ *   node steps/13-classify.js --snapshot <events.json> # read events from a JSON file instead of Supabase
  *                                             # (combine with --dry-run for offline review)
  */
 import { readFileSync } from 'fs';

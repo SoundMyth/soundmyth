@@ -9,7 +9,7 @@
  *
  * Festivals → own website → JSON-LD Event blocks
  *
- * Usage: node scrape-extended.js
+ * Usage: node steps/02-scrape-extended.js
  */
 
 import { readFileSync } from 'fs';
@@ -40,7 +40,7 @@ const sleep = ms => new Promise(r => setTimeout(r, ms));
 // ── HTTP ─────────────────────────────────────────────────────────────────────
 const UA = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36';
 
-// SK_HEADERS comes from http.js — Songkick needs a curl UA, see the note there.
+// SK_HEADERS comes from lib/http.js — Songkick needs a curl UA, see the note there.
 // WEB_HEADERS stays browser-like: it hits arbitrary artist/festival sites.
 const WEB_HEADERS = {
   'User-Agent': UA,
@@ -110,7 +110,7 @@ function normaliseBIT(e, djName, genre, tags) {
     date:       dateStr,
     djs:        lineup,
     genre:      genre || '',
-    tags:       [],   // classify.js sets type + vibe tags
+    tags:       [],   // steps/13-classify.js sets type + vibe tags
     price:      e.free ? 'Free' : '',
     ticket_url: ticketUrl,
     img_url:    e.artist?.image_url || '',
@@ -251,7 +251,7 @@ function normaliseJSONLD(item, fallbackName, genre, tags, source, fallbackCity =
  *  could shift a day (UTC timestamp), and city/country were often empty. Now: name = "<DJ> @ <venue>",
  *  date via resolveLDDate (UTC-only stamps are skipped unless the title carries a date), and
  *  city/country only from the JSON-LD address (no region-as-city). Missing city/country is
- *  dropped later by validate.js. source_id keeps the old formula so legacy rows are overwritten. */
+ *  dropped later by steps/12-validate.js. source_id keeps the old formula so legacy rows are overwritten. */
 function normaliseWebsiteLD(item, djName, genre, tags) {
   const { date } = resolveLDDate(item, TODAY);
   if (!date || date < TODAY) return null;
@@ -380,7 +380,7 @@ async function main() {
   console.log('║        tour_web → SK embed → LD          ║');
   console.log('╚══════════════════════════════════════════╝\n');
 
-  // NOTE: purge moved to dedicated purge.js (keeps 15-day retention window)
+  // NOTE: purge moved to dedicated steps/16-purge.js (keeps 15-day retention window)
 
   const artists  = JSON.parse(readFileSync(resolve(__dirname, '../data/artists_all.json'), 'utf8'));
 

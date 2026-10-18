@@ -9,9 +9,9 @@
  *    (pre-fix "Friday November 20th 2026 - …" names) are dropped so they are re-scraped clean.
  *  - lineups: junk names removed, b2b split (normalize.cleanLineup).
  *  - events still lacking city or country after every fallback are DROPPED and counted.
- * Stats go to data/run-stats.json (section "validate") for report.js.
+ * Stats go to data/run-stats.json (section "validate") for steps/17-report.js.
  *
- * Usage: node validate.js
+ * Usage: node steps/12-validate.js
  */
 
 import { STYLES, FALLBACK_GENRE } from '../lib/genres.js';
@@ -163,7 +163,7 @@ async function main() {
 
   let fixedGenre = 0;
 
-  // Fix 1: missing or non-canonical genre → 'Multi-genre' (classify.js normally fixes these first)
+  // Fix 1: missing or non-canonical genre → 'Multi-genre' (steps/13-classify.js normally fixes these first)
   const missingGenre = allEvents.filter(ev => isEmpty(ev.genre) || !CANON_GENRE.has(ev.genre));
   console.log('Fix 1: Default genre to "Multi-genre" where missing/non-canonical...');
   for (const ev of missingGenre) {

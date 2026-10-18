@@ -10,16 +10,6 @@
     "sample": "MPH at Cermak Hall · Chicago"
   },
   {
-    "name": "Neek",
-    "key": "neek",
-    "events": 2,
-    "sources": [
-      "ra"
-    ],
-    "onRA": true,
-    "sample": "FCKNYE Festival 2026 · Brussels"
-  },
-  {
     "name": "2 Bad Mice",
     "key": "2badmice",
     "events": 1,
@@ -140,6 +130,16 @@
     "sample": "Time Warp NYC 2026 · Nueva York"
   },
   {
+    "name": "Bushbaby",
+    "key": "bushbaby",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "Riordan · Austin"
+  },
+  {
     "name": "cablu",
     "key": "cablu",
     "events": 1,
@@ -148,16 +148,6 @@
     ],
     "onRA": true,
     "sample": "Weiberfastnacht im Bootshaus with Trash Island, Mickie Krause · Cologn"
-  },
-  {
-    "name": "Callush",
-    "key": "callush",
-    "events": 1,
-    "sources": [
-      "bandsintown"
-    ],
-    "onRA": true,
-    "sample": "Novah at Palexpo · Le Grand-Saconnex"
   },
   {
     "name": "CARAVEL",
@@ -210,6 +200,16 @@
     "sample": "Chris Watson @ Ministry of Sound · London"
   },
   {
+    "name": "Colyn",
+    "key": "colyn",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "AKUMANDRA: Colyn b2b Sainte Vie, Mateo, Eli · New York City"
+  },
+  {
     "name": "Daft Funk Live",
     "key": "daftfunklive",
     "events": 1,
@@ -248,16 +248,6 @@
     ],
     "onRA": true,
     "sample": "FUSE 18th Birthday w/ Enzo Siragusa b2b Rossi., Luciano, Marlie b2b Na"
-  },
-  {
-    "name": "DESIREE (RSA)",
-    "key": "desireersa",
-    "events": 1,
-    "sources": [
-      "ra"
-    ],
-    "onRA": true,
-    "sample": "Jackies Lisboa House Music Festival 2026 - Chris Stussy & Desiree · Li"
   },
   {
     "name": "DLOU",
@@ -310,6 +300,16 @@
     "sample": "Elder Island @ KOKO · London"
   },
   {
+    "name": "Eli (US)",
+    "key": "elius",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "AKUMANDRA: Colyn b2b Sainte Vie, Mateo, Eli · New York City"
+  },
+  {
     "name": "Eli Escobar",
     "key": "eliescobar",
     "events": 1,
@@ -348,6 +348,16 @@
     ],
     "onRA": true,
     "sample": "LOOP NYD FESTIVAL 2027 · Madrid"
+  },
+  {
+    "name": "Gene On Earth",
+    "key": "geneonearth",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "FUSE - Hivernacle Barcelona · Barcelona"
   },
   {
     "name": "George Smeddles",
@@ -450,16 +460,6 @@
     "sample": "Kamelot @ Razzmatazz · Barcelona"
   },
   {
-    "name": "Kelela",
-    "key": "kelela",
-    "events": 1,
-    "sources": [
-      "ra"
-    ],
-    "onRA": true,
-    "sample": "III Points 2026 · Miami"
-  },
-  {
     "name": "Kelsey Lu",
     "key": "kelseylu",
     "events": 1,
@@ -528,6 +528,16 @@
     ],
     "onRA": true,
     "sample": "FCKNYE Festival 2026 · Brussels"
+  },
+  {
+    "name": "Levi (AU)",
+    "key": "leviau",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "Marquee Singapore presents LEVI · All"
   },
   {
     "name": "Lewis Doherty",
@@ -600,6 +610,16 @@
     "sample": "WEST COAST RIOT · Los Angeles"
   },
   {
+    "name": "Mateo (US)",
+    "key": "mateous",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "AKUMANDRA: Colyn b2b Sainte Vie, Mateo, Eli · New York City"
+  },
+  {
     "name": "Miss Bashful",
     "key": "missbashful",
     "events": 1,
@@ -638,6 +658,16 @@
     ],
     "onRA": true,
     "sample": "CLUB DE JOUR with Myd, Mayou Picchu & Akalex · Nantes"
+  },
+  {
+    "name": "Neek",
+    "key": "neek",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "FCKNYE Festival 2026 · Brussels"
   },
   {
     "name": "Nicolas Masseyeff",
@@ -730,16 +760,6 @@
     "sample": "CLUB DE JOUR with Worakls présente OVERTURE feat. Ekaterina Shelehova "
   },
   {
-    "name": "Revelation",
-    "key": "revelation",
-    "events": 1,
-    "sources": [
-      "ra"
-    ],
-    "onRA": true,
-    "sample": "Dual Damage: Built2Break · Liverpool"
-  },
-  {
     "name": "Riley",
     "key": "riley",
     "events": 1,
@@ -778,6 +798,16 @@
     ],
     "onRA": true,
     "sample": "KOKO Electronic: East End Dubs · London"
+  },
+  {
+    "name": "Sainte Vie",
+    "key": "saintevie",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "AKUMANDRA: Colyn b2b Sainte Vie, Mateo, Eli · New York City"
   },
   {
     "name": "Samuel Moriero (2)",
@@ -838,26 +868,6 @@
     ],
     "onRA": true,
     "sample": "FCKNYE Festival 2026 · Brussels"
-  },
-  {
-    "name": "Tokischa",
-    "key": "tokischa",
-    "events": 1,
-    "sources": [
-      "ra"
-    ],
-    "onRA": true,
-    "sample": "III Points 2026 · Miami"
-  },
-  {
-    "name": "Tricky",
-    "key": "tricky",
-    "events": 1,
-    "sources": [
-      "ra"
-    ],
-    "onRA": true,
-    "sample": "III Points 2026 · Miami"
   },
   {
     "name": "uphoria",

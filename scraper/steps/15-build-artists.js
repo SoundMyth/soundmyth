@@ -51,7 +51,7 @@ async function upcomingDJNames() {
   if (SB_URL && SB_KEY) {
     const sb = makeClient(SB_URL, SB_KEY);
     for (let from = 0; ; from += 1000) {
-      const { data, error } = await sb.from('events').select('djs,date').gte('date', today).range(from, from + 999);
+      const { data, error } = await sb.from('events').select('djs,date').gte('date', today).order('id').range(from, from + 999);
       if (error) { console.warn(`  ⚠ events read failed (${error.message || error}); using lists only`); rows = []; break; }
       rows = rows.concat(data);
       if (data.length < 1000) break;

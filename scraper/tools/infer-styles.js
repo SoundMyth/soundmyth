@@ -38,7 +38,7 @@ const sb = makeClient((html.match(/SB_URL\s*=\s*['"]([^'"]+)['"]/) || [])[1],
 const TODAY = new Date().toISOString().split('T')[0];
 let rows = [], from = 0;
 while (true) {
-  const { data, error } = await sb.from('events').select('djs').gte('date', TODAY).range(from, from + 999);
+  const { data, error } = await sb.from('events').select('djs').gte('date', TODAY).order('id').range(from, from + 999);
   if (error) { console.error(error.message); process.exit(1); }
   rows = rows.concat(data); if (data.length < 1000) break; from += 1000;
 }

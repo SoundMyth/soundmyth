@@ -93,7 +93,7 @@ async function main() {
     let from = 0;
     while (true) {
       const { data, error } = await withRetry(
-        () => sb.from('events').select('id').range(from, from + 999),
+        () => sb.from('events').select('id').order('id').range(from, from + 999),
         'Fetch events page'
       );
       if (error) { console.error('  ❌  Error fetching events:', error.message || error); break; }
@@ -108,7 +108,7 @@ async function main() {
     from = 0;
     while (true) {
       const { data, error } = await withRetry(
-        () => sb.from('saved_events').select('id, event_id').range(from, from + 999),
+        () => sb.from('saved_events').select('id, event_id').order('id').range(from, from + 999),
         'Fetch saved_events page'
       );
       if (error) { console.error('  ❌  Error fetching saved_events:', error.message || error); break; }

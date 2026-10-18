@@ -52,3 +52,11 @@ test('custom page size is honoured', async () => {
   assert.equal(res.data.length, 25);
   assert.deepEqual(calls, [[0, 9], [10, 19], [20, 29]]);
 });
+
+test('uniqueById keeps the first occurrence of each id, in order', async () => {
+  const { uniqueById } = await import('../lib/db.js');
+  const rows = [{ id: 3, n: 'a' }, { id: 1 }, { id: 3, n: 'dup' }, { id: 2 }, { id: 1 }];
+  assert.deepEqual(uniqueById(rows), [{ id: 3, n: 'a' }, { id: 1 }, { id: 2 }]);
+  assert.deepEqual(uniqueById([]), []);
+  assert.deepEqual(uniqueById(undefined), []);
+});

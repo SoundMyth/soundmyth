@@ -21,7 +21,7 @@ const normName = s => norm(s).replace(/[^a-z0-9]+/g,' ').trim();
 
 let rows=[], from=0;
 while(true){
-  const{data,error}=await sb.from('events').select('id,name,city,country,date,djs,img_url,source,tags').gte('date',today).order('date').range(from,from+999);
+  const{data,error}=await sb.from('events').select('id,name,city,country,date,djs,img_url,source,tags').gte('date',today).order('id').range(from,from+999);
   if(error){ console.error(error.message); process.exit(1); }
   rows=rows.concat(data); if(data.length<1000) break; from+=1000;
 }

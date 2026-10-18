@@ -43,3 +43,19 @@ export async function fetchAllRows(makeQuery, { pageSize = 1000, retries = 5, de
     if (data.length < pageSize) return { data: rows, error: null, failedAt: null };
   }
 }
+
+/**
+ * Drop rows whose `id` was already seen, keeping the first occurrence. Offset paging without a
+ * unique ORDER BY can return one row on two pages (and skip another); a delete must never see
+ * the same row twice, so every step that acts on the rows dedupes them here first.
+ */
+export function uniqueById(rows) {
+  const seen = new Set();
+  const out = [];
+  for (const r of rows || []) {
+    if (seen.has(r.id)) continue;
+    seen.add(r.id);
+    out.push(r);
+  }
+  return out;
+}

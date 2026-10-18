@@ -224,7 +224,7 @@ async function main() {
     try {
       const sb = makeClient(SB_URL, SB_KEY);
       const { data: loaded, error } = await fetchAllRows(
-        (from, to) => sb.from('events').select('name,djs,city,country,date').gte('date', TODAY).range(from, to),
+        (from, to) => sb.from('events').select('name,djs,city,country,date').gte('date', TODAY).order('id').range(from, to),
         { retries: 3, delayMs: 3000 });
       const rows = (error || !loaded) ? null : loaded;
       if (error || !loaded) console.warn('  ⚠  DB read failed — skipping DB pass');

@@ -76,8 +76,8 @@ async function main() {
       .from('events')
       .select('id, name, venue, city, country, date, djs, tags, source, source_id, genre, ticket_url, img_url, price')
       .gte('date', today)
-      .range(from, to)
-      .order('date', { ascending: true }));
+      .order('id', { ascending: true })
+      .range(from, to));
   if (fetchErr) console.error('  Fetch error:', fetchErr.message || fetchErr);
 
   console.log(`Total future events: ${allEvents.length}\n`);

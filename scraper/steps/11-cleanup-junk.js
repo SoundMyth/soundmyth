@@ -73,7 +73,7 @@ function isJunk(e) {
 // reach the isJunk() pass.
 const { data: rows, error: loadErr, failedAt } = await fetchAllRows(
   (from, to) => sb.from('events')
-    .select('id,name,venue,djs,tags,city,date,img_url,source').gte('date', TODAY).order('date').range(from, to));
+    .select('id,name,venue,djs,tags,city,date,img_url,source').gte('date', TODAY).order('id').range(from, to));
 if (loadErr) { console.error(`❌  Event load failed at offset ${failedAt}: ${loadErr.message || loadErr}`); process.exit(1); }
 
 const junkCount = rows.filter(isJunk).length, ogCount = rows.filter(offGenre).length;

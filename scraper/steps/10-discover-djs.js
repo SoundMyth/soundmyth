@@ -62,7 +62,7 @@ const cache     = new Map(prev.map(c => [c.key || djKey(c.name), c]));   // djKe
 
 // ── pull every future event (paged) ────────────────────────────────────────────
 const { data: rows, error: loadErr, failedAt } = await fetchAllRows(
-  (from, to) => sb.from('events').select('name,djs,source,city,date').gte('date', TODAY).range(from, to));
+  (from, to) => sb.from('events').select('name,djs,source,city,date').gte('date', TODAY).order('id').range(from, to));
 if (loadErr) { console.error(`❌  Event load failed at offset ${failedAt}: ${loadErr.message || loadErr}`); process.exit(1); }
 
 // ── collect DJs that are NOT in our list ─────────────────────────────────────────

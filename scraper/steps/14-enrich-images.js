@@ -325,7 +325,7 @@ async function main() {
   if (sb) {
     const { data, error } = await fetchAllRows(
       (from, to) => sb.from('events').select('id, name, djs, tags, img_url').gte('date', today)
-        .range(from, to).order('date', { ascending: true }));
+        .order('id', { ascending: true }).range(from, to));
     if (error) { console.error('Fetch error:', error.message || error); process.exit(1); }
     allEvents = data;
   } else if (process.env.EVENTS_JSON && existsSync(process.env.EVENTS_JSON)) {

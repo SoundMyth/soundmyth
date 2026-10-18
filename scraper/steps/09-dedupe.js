@@ -131,8 +131,8 @@ async function main() {
       .from('events')
       .select('id, name, venue, city, country, date, djs, tags, source, source_id, ticket_url, img_url, price, genre')
       .gte('date', today)
-      .range(from, to)
-      .order('date', { ascending: true }));
+      .order('id', { ascending: true })
+      .range(from, to));
   if (loadErr) {
     console.error(`  ❌  Event load failed at offset ${failedAt} — aborting dedup to avoid wrong deletions:`, loadErr.message);
     loadFailed = true;

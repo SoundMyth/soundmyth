@@ -17,7 +17,7 @@ import { readFileSync } from 'fs';
 import { config } from 'dotenv';
 import { fileURLToPath } from 'url';
 import { dirname, resolve } from 'path';
-import { cleanEvent } from './normalize.js';
+import { cleanEvent, todayISO, localDate, resolveLDDate, cleanEventTitle } from './normalize.js';
 import { SK_HEADERS, withRetry } from './http.js';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
@@ -31,7 +31,7 @@ if (!SB_URL || !SB_KEY) {
   process.exit(1);
 }
 
-const TODAY   = new Date().toISOString().split('T')[0];
+const TODAY   = todayISO();
 const BATCH   = 50;
 const DELAY_DJ   = 800;   // ms between DJ Songkick requests
 
@@ -95,7 +95,7 @@ async function fetchBIT(artistName) {
 }
 
 function normaliseBIT(e, djName, genre, tags) {
-  const dateStr = (e.datetime || e.starts_at || '').split('T')[0];
+  const dateStr = localDate(e.datetime || e.starts_at);   // BIT times are local wall-clock
   if (!dateStr || dateStr < TODAY) return null;
   const v = e.venue || {};
   const lineup = Array.isArray(e.lineup) && e.lineup.length ? e.lineup : [djName];
@@ -111,7 +111,7 @@ function normaliseBIT(e, djName, genre, tags) {
     date:       dateStr,
     djs:        lineup,
     genre:      genre || '',
-    tags:       tagArr(tags, 'bandsintown', 'dj'),
+    tags:       [],   // classify.js sets type + vibe tags
     price:      e.free ? 'Free' : '',
     ticket_url: ticketUrl,
     img_url:    e.artist?.image_url || '',
@@ -187,14 +187,10 @@ function extractJSONLDEvents(html) {
 
 // ── Normalisers ───────────────────────────────────────────────────────────────
 
-function tagArr(tags, ...extra) {
-  const base = tags ? tags.split(',').map(t => t.trim()).filter(Boolean) : [];
-  return [...new Set([...base, ...extra])];
-}
 
 /** Normalise a Songkick concert object from js-initial-data */
 function normaliseSKConcert(c, name, genre, tags) {
-  const dateStr = (c.start?.date || '').split('T')[0];
+  const dateStr = localDate(c.start?.date);
   if (!dateStr || dateStr < TODAY) return null;
   const venue   = c.venue?.displayName || '';
   const city    = c.venue?.metroArea?.displayName || '';
@@ -207,7 +203,7 @@ function normaliseSKConcert(c, name, genre, tags) {
     date:       dateStr,
     djs:        lineup,
     genre:      genre || '',
-    tags:       tagArr(tags, 'songkick', 'dj'),
+    tags:       [],
     price:      '',
     ticket_url: c.uri || '',
     img_url:    '',
@@ -219,7 +215,7 @@ function normaliseSKConcert(c, name, genre, tags) {
 /** Normalise a JSON-LD Event/MusicEvent.
  *  fallback{City,Country} used when JSON-LD location is missing (festival case). */
 function normaliseJSONLD(item, fallbackName, genre, tags, source, fallbackCity = '', fallbackCountry = '') {
-  const dateStr = (item.startDate || '').split('T')[0];
+  const dateStr = resolveLDDate(item, TODAY).date;
   if (!dateStr || dateStr < TODAY) return null;
 
   const loc     = item.location || item.place || {};
@@ -242,12 +238,45 @@ function normaliseJSONLD(item, fallbackName, genre, tags, source, fallbackCity =
     date:       dateStr,
     djs:        [fallbackName],
     genre:      genre || '',
-    tags:       tagArr(tags, source || 'website'),
+    tags:       [],
     price:      item.offers?.price ? `${item.offers.price} ${item.offers.priceCurrency || ''}`.trim() : '',
     ticket_url: item.url || item.offers?.url || '',
     img_url:    item.image || '',
     source:     source || 'website',
     source_id,
+  };
+}
+
+/** Tour-website JSON-LD (DJ cascade step ④). Rebuilt because the old rows were unreliable:
+ *  the name was the page title ("Friday November 20th 2026 - Dreamstate SoCal 2026"), the date
+ *  could shift a day (UTC timestamp), and city/country were often empty. Now: name = "<DJ> @ <venue>",
+ *  date via resolveLDDate (UTC-only stamps are skipped unless the title carries a date), and
+ *  city/country only from the JSON-LD address (no region-as-city). Missing city/country is
+ *  dropped later by validate.js. source_id keeps the old formula so legacy rows are overwritten. */
+function normaliseWebsiteLD(item, djName, genre, tags) {
+  const { date } = resolveLDDate(item, TODAY);
+  if (!date || date < TODAY) return null;
+  const loc     = item.location || item.place || {};
+  const addr    = loc.address   || {};
+  const venue   = (loc.name || '').trim();
+  const title   = cleanEventTitle(item.name || '');
+  const city    = addr.addressLocality || '';
+  const country = normCountry(addr.addressCountry || '');
+  const where   = venue || title;
+  return {
+    name:       where ? `${djName} @ ${where}` : djName,
+    venue,
+    city,
+    country,
+    date,
+    djs:        [djName],
+    genre:      genre || '',
+    tags:       [],
+    price:      item.offers?.price ? `${item.offers.price} ${item.offers.priceCurrency || ''}`.trim() : '',
+    ticket_url: item.url || item.offers?.url || '',
+    img_url:    item.image || '',
+    source:     'website',
+    source_id:  `${djName}_${date}_${venue || city}`.replace(/\W+/g, '_').toLowerCase(),
   };
 }
 
@@ -277,32 +306,6 @@ async function scrapeSKArtist(skUrl, djName, genre, tags) {
   return extractJSONLDEvents(html)
     .map(e => normaliseJSONLD(e, djName, genre, tags, 'songkick'))
     .filter(Boolean);
-}
-
-// ── Festival website scraper ──────────────────────────────────────────────────
-
-/** Scrape a festival's own website for JSON-LD Event blocks */
-async function scrapeFestivalWebsite(websiteUrl, name, city, country) {
-  const urlsToTry = [websiteUrl];
-
-  // Also try the domain root in case the lineup URL is a SPA route
-  try {
-    const u = new URL(websiteUrl);
-    if (u.pathname !== '/' && u.pathname !== '') {
-      urlsToTry.push(u.origin + '/');
-    }
-  } catch { /* invalid URL */ }
-
-  for (const url of urlsToTry) {
-    const html = await fetchHTML(url);
-    if (!html) continue;
-    const evs = extractJSONLDEvents(html)
-      .map(e => normaliseJSONLD(e, name, 'Electronic', 'festival', 'website', city, country))
-      .filter(Boolean)
-      .map(ev => ({ ...ev, djs: [], tags: [...new Set([...ev.tags, 'festival'])] }));
-    if (evs.length) return evs;
-  }
-  return [];
 }
 
 // ── Supabase buffer ───────────────────────────────────────────────────────────
@@ -402,7 +405,7 @@ async function main() {
     const prefix = `[${String(idx + 1).padStart(3)}/${artists.length}] ${pct}% │ ${dj.name.padEnd(28)} `;
     try {
       // ① Bandsintown
-      const bitEvs = await scrapeBIT(dj.name, dj.genre, dj.tags);
+      const bitEvs = await scrapeBIT(dj.name, dj.genre, '');
       if (bitEvs.length) {
         addEvents(bitEvs); stats.dj.bit++;
         console.log(prefix + `[BIT]        → ${bitEvs.length} events`);
@@ -410,7 +413,7 @@ async function main() {
       }
       // ② Songkick direct URL
       if (dj.songkick_url?.includes('songkick.com')) {
-        const evs = await scrapeSKArtist(dj.songkick_url, dj.name, dj.genre, dj.tags);
+        const evs = await scrapeSKArtist(dj.songkick_url, dj.name, dj.genre, '');
         if (evs.length) {
           addEvents(evs); stats.dj.sk++;
           console.log(prefix + `[SK direct]  → ${evs.length} events`);
@@ -424,7 +427,7 @@ async function main() {
           const skUrl = findSKArtistUrl(html);
           if (skUrl) {
             await sleep(400);
-            const evs = await scrapeSKArtist(skUrl, dj.name, dj.genre, dj.tags);
+            const evs = await scrapeSKArtist(skUrl, dj.name, dj.genre, '');
             if (evs.length) {
               addEvents(evs); stats.dj.webSK++;
               console.log(prefix + `[web→SK]     → ${evs.length} events`);
@@ -433,7 +436,7 @@ async function main() {
           }
           // ④ JSON-LD directly on page
           const ldEvs = extractJSONLDEvents(html)
-            .map(e => normaliseJSONLD(e, dj.name, dj.genre, dj.tags, 'website'))
+            .map(e => normaliseWebsiteLD(e, dj.name, dj.genre, ''))
             .filter(Boolean);
           if (ldEvs.length) {
             addEvents(ldEvs); stats.dj.webLD++;

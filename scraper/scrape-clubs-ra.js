@@ -15,14 +15,14 @@ import { readFileSync, existsSync } from 'fs';
 import { config }        from 'dotenv';
 import { fileURLToPath } from 'url';
 import { dirname, resolve } from 'path';
-import { cleanEvent } from './normalize.js';
+import { cleanEvent, canonCity, localDate, todayISO } from './normalize.js';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 config({ path: resolve(__dirname, '.env') });
 
 const SB_URL  = process.env.SUPABASE_URL;
 const SB_KEY  = process.env.SUPABASE_SERVICE_KEY;
-const TODAY   = new Date().toISOString().split('T')[0];
+const TODAY   = todayISO();
 const BATCH   = 50;
 const DELAY   = 900;   // ms between club requests – be polite
 
@@ -139,7 +139,7 @@ async function gqlFetch(query, variables, retries = 2) {
 async function fetchRAClubEvents(raId, isPromoter) {
   const query = isPromoter ? PROMOTER_EVENTS_QUERY : VENUE_EVENTS_QUERY;
   const key   = isPromoter ? 'promoter' : 'venue';
-  const today = new Date().toISOString().split('T')[0];
+  const today = todayISO();
 
   // ── Strategy 1: year-based events query ────────────────────────────────────
   const d1    = await gqlFetch(query, { id: raId, year: THIS_YEAR });
@@ -237,7 +237,7 @@ function ticketUrl(links) {
  *  For promoter events, venue/city/country may come from the event's nested
  *  venue object rather than the parent entity. */
 function normaliseRAEvent(e, clubName, city, country) {
-  const dateStr = (e.startTime || '').split('T')[0];
+  const dateStr = localDate(e.startTime);   // RA startTime is the venue's local wall-clock
   if (!dateStr || dateStr < TODAY) return null;
 
   // Accept events even without a lineup — many clubs list events before announcing DJs
@@ -248,7 +248,7 @@ function normaliseRAEvent(e, clubName, city, country) {
 
   // For promoter events, the venue info is on each event — prefer it over parent
   const evVenue   = e.venue?.name || '';
-  const evCity    = e.venue?.area?.name || '';
+  const evCity    = canonCity(e.venue?.area?.name) || '';   // RA "All" is an area, not a city
   const evCountry = e.venue?.area?.country?.name || '';
 
   return {
@@ -258,8 +258,8 @@ function normaliseRAEvent(e, clubName, city, country) {
     country:    normCountry(evCountry || country),
     date:       dateStr,
     djs:        artists,
-    genre:      'Electronic',
-    tags:       ['ra', 'club', 'underground'],
+    genre:      'Multi-genre',
+    tags:       ['club'],
     price:      '',
     ticket_url: ticketUrl(e.promotionalLinks),
     img_url:    e.flyerFront || '',
@@ -335,7 +335,8 @@ async function main() {
       continue;
     }
 
-    const city    = venue.area?.name    || club.city    || '';
+    // RA area "All" (e.g. Cafe del Mar → "All / Thailand") is not a city: fall back to clubs_all.json
+    const city    = canonCity(venue.area?.name) || club.city || '';
     const country = venue.area?.country?.name || club.country || '';
     const evs = (venue.events || [])
       .map(e => normaliseRAEvent(e, club.name, city, country))

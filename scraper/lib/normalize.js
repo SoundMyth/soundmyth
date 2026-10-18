@@ -556,6 +556,10 @@ const venueKeyText = s => (s || '').normalize('NFD').replace(/[̀-ͯ]/g, '').toL
 
 /** Normalized city names: the event's own city and every hub city. A venue named only after a
  *  city is a different place from "<Name> <City>" ("Pacific Amsterdam" is not "Amsterdam"). */
+// Venue words too generic to identify a venue on their own ("Arena" must not swallow "O2 Arena").
+const GENERIC_VENUE_WORDS = new Set(['arena', 'plaza', 'stage', 'beach', 'hall', 'club', 'park', 'theatre', 'theater',
+  'stadium', 'center', 'centre', 'room', 'garden', 'gardens', 'house', 'festival', 'venue', 'terrace', 'rooftop', 'warehouse']);
+
 function cityNameKeys(city) {
   const keys = new Set(Object.keys(HUB_COUNTRY).map(venueKeyText));
   if (city) keys.add(venueKeyText(canonCity(city)));
@@ -576,7 +580,11 @@ export function venueMatch(a, b, city = '') {
   if (!na || !nb) return na === nb;
   if (na === nb) return true;
   const cities = cityNameKeys(city);
-  if (Math.min(na.length, nb.length) >= 6 && !cities.has(na) && !cities.has(nb)
+  // Containment ("Pacha" ⊂ "Pacha Ibiza", "Amnesia" ⊂ "Amnesia Ibiza") is the common case for
+  // one venue written two ways — but never when the shorter name is a city ("Amsterdam" ⊂
+  // "Pacific Amsterdam"), a generic venue word ("Arena" ⊂ "O2 Arena") or under 5 chars.
+  const short = na.length <= nb.length ? na : nb;
+  if (short.length >= 5 && !cities.has(na) && !cities.has(nb) && !GENERIC_VENUE_WORDS.has(short)
       && (na.includes(nb) || nb.includes(na))) return true;
   const shorter = Math.min(na.length, nb.length);
   let prefix = 0;

@@ -24,9 +24,15 @@ test('a venue named only after the city is not merged with another venue of that
   assert.equal(venueMatch('Berlin', 'Berlin Club Xyz', 'Berlin'), false);
 });
 
-test('names shorter than 6 characters are not merged by containment', () => {
-  assert.equal(venueMatch('Pacha', 'Pacha Ibiza', 'Ibiza'), false);
-  assert.equal(venueMatch('Ibiza Bar', 'Ibiza', 'Ibiza'), false);
+test('short but distinctive names still merge (Pacha / Pacha Ibiza)', () => {
+  assert.equal(venueMatch('Pacha', 'Pacha Ibiza', 'Ibiza'), true);
+  assert.equal(venueMatch('Ibiza Bar', 'Ibiza', 'Ibiza'), false);   // city-named side
+});
+
+test('generic venue words and very short names never merge by containment', () => {
+  assert.equal(venueMatch('Arena', 'O2 Arena', 'London'), false);
+  assert.equal(venueMatch('Club', 'Club Space', 'Miami'), false);
+  assert.equal(venueMatch('DC10', 'DC10 Bar', 'Ibiza'), false);
 });
 
 test('a shared city-named prefix does not merge two different venues', () => {

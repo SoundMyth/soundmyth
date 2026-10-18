@@ -22,7 +22,7 @@ pick it up later.
       caps/lowercase/diacritics.
   - [x] **Frontend (done)** — DJ names canonicalized at load (`buildDjCanon`/`canonDJ` in
         `mapRows`); 104 duplicate spellings collapsed. Matching is case/diacritic-insensitive.
-  - [x] **Pipeline (done)** — `scraper/normalize.js` exposes `buildDjCanon`/`djNorm`; `cleanup-junk.js`
+  - [x] **Pipeline (done)** — `scraper/lib/normalize.js` exposes `buildDjCanon`/`djNorm`; `steps/11-cleanup-junk.js`
         rebuilds canonical DJ spellings from the DB and updates rows (validated: ~94 DJs, ~345 rows).
 - [x] **Duplicate events same day** — **Frontend (done)**: `dedupeEvents` in `loadEvents`
       collapses same city+date+normalized-name (+ a "bare artist" pass), validated removing 39
@@ -39,17 +39,17 @@ pick it up later.
 - [x] **City names** — **Frontend (done)**: `canonCity` (CITY_ALIAS) folds aliases &
       local-script names into one recognizable name (Eivissa + Ibiza municipalities → Ibiza,
       София→Sofia, İstanbul→Istanbul, 福岡市→Fukuoka, airport/district → city…). Applied in mapRows.
-  - [x] Durability (done): city normalized in every scraper via shared `scraper/normalize.js`
+  - [x] Durability (done): city normalized in every scraper via shared `scraper/lib/normalize.js`
         (`cleanEvent`). `canonCity` now also auto-transliterates Latin-Extended / non-Latin scripts
         via the `transliteration` package (София→Sofiya, Wrocław→Wroclaw, new Чебоксары→Cheboksary),
-        keeping Latin-1 accents (Zürich, Málaga). `cleanup-junk.js` re-canonicalizes existing rows.
+        keeping Latin-1 accents (Zürich, Málaga). `steps/11-cleanup-junk.js` re-canonicalizes existing rows.
 - [x] **Garbage venue (venue == name)** — **Frontend + pipeline (done)**: blanked in `mapRows`
       and in all scrapers (`cleanEvent`); event detail falls back to city.
 - [x] **Mistagged "festivals"** — **Frontend (done)**: `isFest()` excludes artist club-nights
       that BIT tags as festival (venue==name + ≤1 act, e.g. the weekly "Tomorrowland and Dimitri
       Vegas & Like Mike" in Ibiza) from the Festivals sections.
   - [x] Durability (done): `scrape-festivals-bit.js` SKIPS bare artist listings (venue==name + ≤1
-        act) at the source; `scraper/cleanup-junk.js` (wired into the workflow after dedupe) deletes
+        act) at the source; `scraper/steps/11-cleanup-junk.js` (wired into the workflow after dedupe) deletes
         pre-existing junk rows (festival-tagged with venue==name+≤1 act, or "Store" listings).
         Takes effect on the next scrape run.
 
@@ -64,7 +64,7 @@ pick it up later.
       `saved_events`/`profiles` per-user; writes only via service key. Verified live.
 - [x] **Perf** — `loadEvents` selects only mapped columns (no `select('*')`).
 - [x] **Tests** — `scraper/test/*` (`npm test` → `node --test`), incl. a test that fails if the
-      `CITY_ALIAS_RAW` map drifts between `index.html` and `scraper/normalize.js` (covers the
+      `CITY_ALIAS_RAW` map drifts between `index.html` and `scraper/lib/normalize.js` (covers the
       duplication risk without a shared-module refactor).
 - [x] **SEO/social** — meta description, Open Graph + Twitter cards, canonical, theme-color,
       `favicon.svg`, `robots.txt`, `sitemap.xml`.
@@ -74,7 +74,7 @@ pick it up later.
       keyboard-focusable buttons (`role`/`tabindex`/Enter). Not done — needs a broader markup pass.
 - [ ] Optional: real PNG app icons (192/512) for best iOS/Android install fidelity (SVG used now).
 
-> Diagnostic tool: `scraper/analyze-quality.mjs` (read-only) quantifies these issues and
+> Diagnostic tool: `scraper/tools/analyze-quality.mjs` (read-only) quantifies these issues and
 > simulates the fixes against live data. Re-run any time to re-measure.
 
 ## Reported bugs — fixed

@@ -4,7 +4,7 @@ Source of truth for DJ `genre` in `scraper/data/artists_all.json`. Every DJ is o
 
 ## Method
 
-1. **Mechanical (legacy labels):** the old genre label mapped to a canonical style; where a subgenre refines it (e.g. `House` + `Tech House`, `Techno` + `Hard Techno`, `Big Room / Festival EDM` + `Big Room House`), the subgenre wins (see `SUBGENRE` in `scraper/genres.js`).
+1. **Mechanical (legacy labels):** the old genre label mapped to a canonical style; where a subgenre refines it (e.g. `House` + `Tech House`, `Techno` + `Hard Techno`, `Big Room / Festival EDM` + `Big Room House`), the subgenre wins (see `SUBGENRE` in `scraper/lib/genres.js`).
 2. **Individual (generic labels):** every DJ labelled `Electronic` (136), `Pop Electronic / Crossover` (33), `Pop` (1) or `UNKNOWN` (4) was classified by web research (Resident Advisor bios, Beatport, Discogs, Wikipedia, DJ Mag, Insomniac, Frontstage, Refuge Worldwide, etc.), with a confidence level. Founder rules applied directly: Diplo→Bass, Marshmello→Bass, Galantis→Big Room, Joel Corry→House, Gabry Ponte→Big Room, Purple Disco Machine→House, Fred again..→House, Anyma→Melodic Techno.
 3. **Sanity pass:** the top 200 DJs by ranking were reviewed by hand; Solomun, Deadmau5 and Black Coffee were corrected.
 4. **Tags:** normalised to the vibe whitelist (`melodic, dark, hard, underground, mainstream, vocal, atmospheric, experimental, classic, disco, emotional, psychedelic, latin, afro`). `commercial` → `mainstream`; `club`, `festival`, `dj`, `discovered`, `progressive` (a genre, not a vibe) and `UNKNOWN` are dropped. A DJ with both `underground` and `mainstream` loses both.

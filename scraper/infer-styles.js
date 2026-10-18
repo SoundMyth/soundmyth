@@ -1,12 +1,11 @@
 /**
- * SoundMyth – infer a style for discovered DJs from who they share bills with.
+ * SoundMyth – infer a canonical style for DJs that have none yet, from who they share bills with.
  *
- * Promoted/discovered DJs (tags:'discovered') land with a generic genre 'Electronic'
- * because we don't know their sound yet. Rather than hit RA (rate-limited), this infers
- * it from co-billing: a DJ that repeatedly plays alongside Tech House / Techno acts we
- * DO know is almost certainly that sound. We take the most common style among the
- * known-style DJs on the same events and write it into the discovered DJ's `genre`
- * (which canonStyle round-trips: canonStyle('Tech House','') === 'Tech House').
+ * DJs without a valid style (genre '' or not one of the 16 canonical styles, e.g. freshly
+ * promoted by promote-candidates.js) get the most common style among the already-classified
+ * DJs on the same upcoming events. Output is ALWAYS a canonical style from genres.js — never
+ * 'Electronic' or a legacy label. This is a suggestion: review data/genre-audit-*.md and
+ * correct by hand when it matters.
  *
  * Read-only on the DB (anon key from ../index.html); writes data/artists_all.json.
  * Safe to re-run. Set DRY=1 to preview.
@@ -17,28 +16,23 @@ import { readFileSync, writeFileSync } from 'fs';
 import { createClient }               from '@supabase/supabase-js';
 import { fileURLToPath }              from 'url';
 import { dirname, resolve }           from 'path';
-import { canonStyle }                 from './normalize.js';
+import { djKey, djStyle }             from './genres.js';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
-const djKey = s => (s || '').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '')
-                            .replace(/&/g, ' and ').replace(/[^a-z0-9]+/g, '');
-
 const ALL_PATH = resolve(__dirname, 'data/artists_all.json');
 const all = JSON.parse(readFileSync(ALL_PATH, 'utf8'));
 
-// Known-style DJs = anything that already resolves to a real (non-Electronic) style.
+// Known = already has a valid canonical style. Unknown = needs one.
 const known = {};
+const unknown = new Set();
 for (const a of all) {
-  const st = canonStyle(a.genre, a.subgenre);
-  if (st && st !== 'Electronic') known[djKey(a.name)] = st;
+  const st = djStyle(a.genre, a.subgenre);
+  if (st) known[djKey(a.name)] = st; else unknown.add(djKey(a.name));
 }
-// Discovered DJs still lacking a real style.
-const discSet = new Set();
-for (const a of all) if (canonStyle(a.genre, a.subgenre) === 'Electronic') discSet.add(djKey(a.name));
-console.log(`artists_all: ${all.length} · known-style: ${Object.keys(known).length} · still generic: ${discSet.size}`);
+console.log(`artists_all: ${all.length} · known style: ${Object.keys(known).length} · unknown: ${unknown.size}`);
 
-// Anon read of future events (no secrets).
-const html   = readFileSync(resolve(__dirname, '../index.html'), 'utf8');
+// Anon read of upcoming events (no secrets).
+const html = readFileSync(resolve(__dirname, '../index.html'), 'utf8');
 const sb = createClient((html.match(/SB_URL\s*=\s*['"]([^'"]+)['"]/) || [])[1],
                         (html.match(/SB_KEY\s*=\s*['"]([^'"]+)['"]/) || [])[1], { auth: { persistSession: false } });
 const TODAY = new Date().toISOString().split('T')[0];
@@ -49,14 +43,15 @@ while (true) {
   rows = rows.concat(data); if (data.length < 1000) break; from += 1000;
 }
 
-// Tally co-bill styles per discovered DJ.
+// Tally co-bill styles per unknown DJ.
 const tally = {};
 for (const e of rows) {
-  const billStyles = (e.djs || []).map(d => known[djKey(d)]).filter(Boolean);
+  const djs = e.djs || [];
+  const billStyles = djs.map(d => known[djKey(d)]).filter(Boolean);
   if (!billStyles.length) continue;
-  for (const d of (e.djs || [])) {
+  for (const d of djs) {
     const k = djKey(d);
-    if (!discSet.has(k)) continue;
+    if (!unknown.has(k)) continue;
     const t = (tally[k] = tally[k] || {});
     for (const s of billStyles) t[s] = (t[s] || 0) + 1;
   }
@@ -65,12 +60,12 @@ for (const e of rows) {
 let inferred = 0;
 for (const a of all) {
   const k = djKey(a.name);
-  if (!discSet.has(k) || !tally[k]) continue;
+  if (!unknown.has(k) || !tally[k]) continue;
   const [best, n] = Object.entries(tally[k]).sort((x, y) => y[1] - x[1])[0];
   if (process.env.DRY === '1') { if (inferred < 30) console.log(`  ${a.name} → ${best} (${n} co-bills)`); }
   else a.genre = best;
   inferred++;
 }
 
-if (process.env.DRY === '1') console.log(`DRY · would infer a style for ${inferred} discovered DJs. No file written.`);
-else { writeFileSync(ALL_PATH, JSON.stringify(all, null, 2) + '\n'); console.log(`✓ Inferred style for ${inferred} discovered DJs (still generic: ${discSet.size - inferred}). artists_all written.`); }
+if (process.env.DRY === '1') console.log(`DRY · would infer a style for ${inferred} unknown DJs. No file written.`);
+else { writeFileSync(ALL_PATH, JSON.stringify(all, null, 2) + '\n'); console.log(`✓ Inferred style for ${inferred} unknown DJs (still unknown: ${unknown.size - inferred}). artists_all written.`); }

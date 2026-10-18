@@ -39,8 +39,11 @@ for (const c of cand.filter(c => c.onRA && c.events >= MIN).sort((a, b) => b.eve
   const k = djKey(name);
   if (!k || seen.has(k)) continue;        // empty, dup vs list, or suffix-merge dup
   seen.add(k);
-  added.push({ ranking: ++next, name, genre: 'Electronic', subgenre: '',
-               tags: 'discovered', tour_web: '', songkick_url: '', bit_url: '', ra_url: '' });
+  // genre is deliberately '' (not 'Electronic'): the style is unknown until someone verifies it.
+  // Run infer-styles.js (co-billing) and/or set it by hand; until then the DJ contributes
+  // nothing to event genres. tags stays '' ('discovered' is no longer a tag).
+  added.push({ ranking: ++next, name, genre: '', subgenre: '',
+               tags: '', tour_web: '', songkick_url: '', bit_url: '', ra_url: '' });
 }
 
 if (process.env.DRY === '1') {

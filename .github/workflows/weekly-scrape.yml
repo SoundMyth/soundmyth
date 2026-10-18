@@ -147,6 +147,15 @@ jobs:
           SUPABASE_SERVICE_KEY: ${{ secrets.SUPABASE_SERVICE_KEY }}
         run: node cleanup-junk.js
 
+      - name: Classify genre & tags (canonical styles)
+        id: classify
+        continue-on-error: true
+        timeout-minutes: 10
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_SERVICE_KEY: ${{ secrets.SUPABASE_SERVICE_KEY }}
+        run: node classify.js
+
       - name: Enrich event images (festivals + DJs)
         id: images
         continue-on-error: true

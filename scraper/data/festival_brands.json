@@ -1,0 +1,20 @@
+[
+  { "brand": "EDC",             "aliases": ["EDC", "Electric Daisy Carnival", "EDC Colombia", "EDC Mexico", "EDC Thailand", "EDC Korea", "EDC China", "EDC Japan", "EDC Orlando", "EDC Las Vegas", "EDC Brazil", "EDC Sea"], "style": "Big Room" },
+  { "brand": "Ultra",           "aliases": ["Ultra Music Festival", "Ultra Europe", "Ultra Miami", "Ultra Japan", "Ultra Korea", "Ultra Brasil", "Ultra Chile", "Ultra Taiwan", "Ultra Hong Kong", "Ultra South Africa", "Ultra Peru", "Ultra Buenos Aires", "Ultra Australia", "Ultra Beach", "Ultra Bali", "Ultra Abu Dhabi", "Ultra Singapore"], "style": "Big Room" },
+  { "brand": "Road To Ultra",   "aliases": ["Road To Ultra"],                                        "style": "Big Room" },
+  { "brand": "Tomorrowland",    "aliases": ["Tomorrowland", "Tomorrowland Winter", "Tomorrowland Brasil"], "exclude": "after ?party|sunrise|presents|warm ?up|winter after", "style": "Big Room" },
+  { "brand": "Creamfields",     "aliases": ["Creamfields"],                                          "style": "Big Room" },
+  { "brand": "Time Warp",       "aliases": ["Time Warp"],                                            "style": "Techno" },
+  { "brand": "Awakenings",      "aliases": ["Awakenings"],                                           "style": "Techno" },
+  { "brand": "Dreamstate",      "aliases": ["Dreamstate"],                                           "style": "Trance" },
+  { "brand": "Defected",        "aliases": ["Defected Croatia", "Defected Malta", "Defected Festival", "Defected Ibiza"], "style": "House" },
+  { "brand": "Beyond Wonderland", "aliases": ["Beyond Wonderland", "Nocturnal Wonderland"],          "style": "Bass" },
+  { "brand": "Monegros",        "aliases": ["Monegros Desert Festival", "Monegros"],                 "style": "Techno" },
+  { "brand": "Medusa",          "aliases": ["Medusa Festival"],                                      "style": "Big Room" },
+  { "brand": "Mysteryland",     "aliases": ["Mysteryland"],                                          "style": "Multi-genre" },
+  { "brand": "Parookaville",    "aliases": ["Parookaville"],                                         "style": "Big Room" },
+  { "brand": "Defqon.1",        "aliases": ["Defqon.1", "Defqon 1"],                                 "style": "Hardstyle" },
+  { "brand": "Untold",          "aliases": ["Untold Festival", "Untold"],                            "style": "Big Room" },
+  { "brand": "DGTL",            "aliases": ["DGTL"],                                                 "style": "Techno" },
+  { "brand": "Sziget",          "aliases": ["Sziget"],                                               "style": "Multi-genre" }
+]

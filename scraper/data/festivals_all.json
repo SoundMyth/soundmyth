@@ -6,7 +6,8 @@
     "country": "Belgium",
     "website": "https://www.tomorrowland.com/en/festival/line-up",
     "date_raw": "July 18-20, 25-27, 2025",
-    "sk_url": "https://www.songkick.com/festivals/1538764-tomorrowland-belgium/id/43002526-tomorrowland-belgium-2026"
+    "sk_url": "https://www.songkick.com/festivals/1538764-tomorrowland-belgium/id/43002526-tomorrowland-belgium-2026",
+    "style": "Big Room"
   },
   {
     "ranking": 2,
@@ -15,7 +16,8 @@
     "country": "France",
     "website": "https://winter.tomorrowland.com/en/line-up/",
     "date_raw": "March 15-22, 2025",
-    "sk_url": "https://www.songkick.com/festivals/2767424-tomorrowland-winter/id/42881295-tomorrowland-winter-2026"
+    "sk_url": "https://www.songkick.com/festivals/2767424-tomorrowland-winter/id/42881295-tomorrowland-winter-2026",
+    "style": "Big Room"
   },
   {
     "ranking": 3,
@@ -23,15 +25,17 @@
     "city": "São Paulo",
     "country": "Brazil",
     "website": "https://brasil.tomorrowland.com/es/",
-    "date_raw": "October 11-13, 2024"
+    "date_raw": "October 11-13, 2024",
+    "style": "Big Room"
   },
   {
     "ranking": 4,
     "name": "EDC Las Vegas",
     "city": "Las Vegas",
-    "country": "USA",
+    "country": "United States",
     "website": "https://lasvegas.electricdaisycarnival.com/lineup/",
-    "date_raw": "May 16-18, 2025"
+    "date_raw": "May 16-18, 2025",
+    "style": "Big Room"
   },
   {
     "ranking": 5,
@@ -39,24 +43,27 @@
     "city": "Phuket",
     "country": "Thailand",
     "website": "https://thailand.electricdaisycarnival.com/en/lineup/",
-    "date_raw": "January 17-19, 2025"
+    "date_raw": "January 17-19, 2025",
+    "style": "Big Room"
   },
   {
     "ranking": 6,
     "name": "EDC Mexico",
-    "city": "Ciudad de Mexico",
+    "city": "Mexico City",
     "country": "Mexico",
     "website": "https://mexico.electricdaisycarnival.com/lineup/",
-    "date_raw": "2024"
+    "date_raw": "2024",
+    "style": "Big Room"
   },
   {
     "ranking": 7,
     "name": "EDC Orlando",
     "city": "Orlando",
-    "country": "USA",
+    "country": "United States",
     "website": "https://orlando.electricdaisycarnival.com/lineup/",
     "date_raw": "2024",
-    "sk_url": "https://www.songkick.com/festivals/3761301-electric-daisy-carnival-edc-orlando-18/id/42930406-electric-daisy-carnival--edc-orlando-18-2026"
+    "sk_url": "https://www.songkick.com/festivals/3761301-electric-daisy-carnival-edc-orlando-18/id/42930406-electric-daisy-carnival--edc-orlando-18-2026",
+    "style": "Big Room"
   },
   {
     "ranking": 8,
@@ -64,7 +71,8 @@
     "city": "Suzhou",
     "country": "China",
     "website": "https://china.electricdaisycarnival.com/lineup/",
-    "date_raw": "March 22-23, 2025"
+    "date_raw": "March 22-23, 2025",
+    "style": "Big Room"
   },
   {
     "ranking": 9,
@@ -72,23 +80,17 @@
     "city": "Seoul",
     "country": "South Korea",
     "website": "https://korea.electricdaisycarnival.com/lineup/",
-    "date_raw": "Coming Soon"
+    "date_raw": "Coming Soon",
+    "style": "Big Room"
   },
   {
     "ranking": 10,
     "name": "EDC Sea",
     "city": "Miami",
-    "country": "USA",
+    "country": "United States",
     "website": "https://www.edsea.com/lineup/",
-    "date_raw": "November 1-5, 2025"
-  },
-  {
-    "ranking": 11,
-    "name": "EDC Japan",
-    "city": "Tokio",
-    "country": "Japan",
-    "website": "https://japan.electricdaisycarnival.com/lineup/",
-    "date_raw": "2019"
+    "date_raw": "November 1-5, 2025",
+    "style": "Big Room"
   },
   {
     "ranking": 12,
@@ -97,25 +99,28 @@
     "country": "Romania",
     "website": "https://untold.com/",
     "date_raw": "August 7-10, 2025",
-    "sk_url": "https://www.songkick.com/festivals/1237223-untold/id/43025387-untold-festival-2026"
+    "sk_url": "https://www.songkick.com/festivals/1237223-untold/id/43025387-untold-festival-2026",
+    "style": "Multi-genre"
   },
   {
     "ranking": 13,
     "name": "Untold",
     "city": "Dubai",
-    "country": "EAU",
+    "country": "United Arab Emirates",
     "website": "https://untold.ae/",
     "date_raw": "November 6-9, 2025",
-    "sk_url": "https://www.songkick.com/festivals/1237223-untold/id/43025387-untold-festival-2026"
+    "sk_url": "https://www.songkick.com/festivals/1237223-untold/id/43025387-untold-festival-2026",
+    "style": "Multi-genre"
   },
   {
     "ranking": 14,
     "name": "Ultra Music Festival",
     "city": "Miami",
-    "country": "USA",
+    "country": "United States",
     "website": "https://ultramusicfestival.com/lineup/",
     "date_raw": "March 29-30, 2025",
-    "sk_url": "https://www.songkick.com/festivals/1232643-ultra-miami/id/42830672-ultra-miami-2026"
+    "sk_url": "https://www.songkick.com/festivals/1232643-ultra-miami/id/42830672-ultra-miami-2026",
+    "style": "Big Room"
   },
   {
     "ranking": 15,
@@ -124,7 +129,8 @@
     "country": "Croatia",
     "website": "https://ultraeurope.com/lineup/",
     "date_raw": "July 11-13, 2025",
-    "sk_url": "https://www.songkick.com/festivals/616254-ultra-europe/id/43101524-ultra-europe-festival-2026"
+    "sk_url": "https://www.songkick.com/festivals/616254-ultra-europe/id/43101524-ultra-europe-festival-2026",
+    "style": "Big Room"
   },
   {
     "ranking": 16,
@@ -132,7 +138,8 @@
     "city": "Lima",
     "country": "Peru",
     "website": "https://ultraperu.com/",
-    "date_raw": "April 18-19, 2025"
+    "date_raw": "April 18-19, 2025",
+    "style": "Big Room"
   },
   {
     "ranking": 17,
@@ -140,7 +147,8 @@
     "city": "Buenos Aires",
     "country": "Argentina",
     "website": "https://ultrabuenosaires.com/?&_ga=2.124222154.1392036654.1731969523-1342762475.1715959055#_gl=1*17iwssi*_gcl_au*NjYxOTQxNzEuMTczMTk2OTUyMw..",
-    "date_raw": "April 18-19, 2025"
+    "date_raw": "April 18-19, 2025",
+    "style": "Big Room"
   },
   {
     "ranking": 18,
@@ -149,39 +157,44 @@
     "country": "Australia",
     "website": "https://ultraaustralia.com/lineup/",
     "date_raw": "April 11-12, 2025",
-    "sk_url": "https://www.songkick.com/festivals/2805624-ultra-australia/id/43098183-ultra-australia-2026"
+    "sk_url": "https://www.songkick.com/festivals/2805624-ultra-australia/id/43098183-ultra-australia-2026",
+    "style": "Big Room"
   },
   {
     "ranking": 19,
     "name": "Ultra South Africa",
-    "city": "Ciudad del Cabo",
+    "city": "Cape Town",
     "country": "South Africa",
     "website": "https://ultrasouthafrica.com/?&_ga=2.266744526.1392036654.1731969523-1342762475.1715959055#_gl=1*1cydl0a*_gcl_au*NjYxOTQxNzEuMTczMTk2OTUyMw..",
-    "date_raw": "May 9, 2025"
+    "date_raw": "May 9, 2025",
+    "style": "Big Room"
   },
   {
     "ranking": 20,
     "name": "Ultra South Africa",
-    "city": "Johannesburgo",
+    "city": "Johannesburg",
     "country": "South Africa",
     "website": "https://ultrasouthafrica.com/?&_ga=2.266744526.1392036654.1731969523-1342762475.1715959055#_gl=1*1cydl0a*_gcl_au*NjYxOTQxNzEuMTczMTk2OTUyMw..",
-    "date_raw": "May 10, 2025"
+    "date_raw": "May 10, 2025",
+    "style": "Big Room"
   },
   {
     "ranking": 21,
     "name": "Ultra Japan",
-    "city": "Tokio",
+    "city": "Tokyo",
     "country": "Japan",
     "website": "https://ultrajapan.com/previous-lineups",
-    "date_raw": "September 13-14, 2025"
+    "date_raw": "September 13-14, 2025",
+    "style": "Big Room"
   },
   {
     "ranking": 22,
     "name": "Ultra Beach Australia",
-    "city": "Golden Coast",
+    "city": "Gold Coast",
     "country": "Australia",
     "website": "https://ultraaustralia.com/lineup/ultra-beach-gold-coast-lineup/",
-    "date_raw": "April 11-12, 2025"
+    "date_raw": "April 11-12, 2025",
+    "style": "House"
   },
   {
     "ranking": 23,
@@ -189,15 +202,17 @@
     "city": "Medellín",
     "country": "Colombia",
     "website": "https://medellin.resistancemusic.com/es/lineup/",
-    "date_raw": "December 24, 2024"
+    "date_raw": "December 24, 2024",
+    "style": "Big Room"
   },
   {
     "ranking": 24,
     "name": "Resistance Chile",
-    "city": "Santiago de Chile",
+    "city": "Santiago",
     "country": "Chile",
     "website": "https://ultrachile.com/previous-lineups/",
-    "date_raw": "December 13, 2024"
+    "date_raw": "December 13, 2024",
+    "style": "Big Room"
   },
   {
     "ranking": 25,
@@ -205,7 +220,8 @@
     "city": "Santa Cruz de la Sierra",
     "country": "Bolivia",
     "website": "https://bolivia.roadtoultra.com/previous-lineups/",
-    "date_raw": "Coming Soon"
+    "date_raw": "Coming Soon",
+    "style": "Big Room"
   },
   {
     "ranking": 26,
@@ -213,23 +229,17 @@
     "city": "Asunción",
     "country": "Paraguay",
     "website": "https://paraguay.roadtoultra.com/previous-lineups/",
-    "date_raw": "Coming Soon"
+    "date_raw": "Coming Soon",
+    "style": "Big Room"
   },
   {
     "ranking": 27,
     "name": "Ultra Chile",
-    "city": "Santiago de Chile",
+    "city": "Santiago",
     "country": "Chile",
     "website": "https://ultrachile.com/?&_ga=2.224378459.1392036654.1731969523-1342762475.1715959055#_gl=1*pqen2f*_gcl_au*NjYxOTQxNzEuMTczMTk2OTUyMw..",
-    "date_raw": "April 19-20, 2024"
-  },
-  {
-    "ranking": 28,
-    "name": "Ultra Brasil",
-    "city": "São Paulo",
-    "country": "Brazil",
-    "website": "https://ultrabrasil.com/lineup/resistance-sao-paulo/",
-    "date_raw": "April 21-22, 2023"
+    "date_raw": "April 19-20, 2024",
+    "style": "Big Room"
   },
   {
     "ranking": 29,
@@ -237,15 +247,17 @@
     "city": "Hong Kong",
     "country": "Hong Kong",
     "website": "https://ultrahongkong.com/",
-    "date_raw": "September 2024"
+    "date_raw": "September 2024",
+    "style": "Big Room"
   },
   {
     "ranking": 30,
     "name": "Ultra Korea",
     "city": "Incheon",
-    "country": "Korea",
+    "country": "South Korea",
     "website": "https://ultrakorea.com/lineup/",
-    "date_raw": "June 2024"
+    "date_raw": "June 2024",
+    "style": "Big Room"
   },
   {
     "ranking": 31,
@@ -253,128 +265,26 @@
     "city": "Taipei",
     "country": "Taiwan",
     "website": "https://ultrataiwan.com/lineup/",
-    "date_raw": "November 2024"
-  },
-  {
-    "ranking": 32,
-    "name": "Ultra Abu Dhabi",
-    "city": "Abu Dabi",
-    "country": "EAU",
-    "website": "https://ultraabudhabi.com/lineup/",
-    "date_raw": "March 2023"
-  },
-  {
-    "ranking": 33,
-    "name": "Ultra Singapore",
-    "city": "Singapur",
-    "country": "Singapore",
-    "website": "https://ultrasingapore.com/previous-lineups/",
-    "date_raw": "June 2019"
-  },
-  {
-    "ranking": 34,
-    "name": "Ultra Beijing China",
-    "city": "Beijing",
-    "country": "China",
-    "website": "https://ultrabeijing.com/previous-lineup/",
-    "date_raw": "September 2018"
-  },
-  {
-    "ranking": 35,
-    "name": "Ultra Shanghai China",
-    "city": "Shanghai",
-    "country": "China",
-    "website": "https://ultrashanghai.com/previous-lineup/",
-    "date_raw": "September 2018"
-  },
-  {
-    "ranking": 36,
-    "name": "Ultra Beach Spain",
-    "city": "Fuengirola",
-    "country": "Spain",
-    "website": "https://costadelsol.ultrabeach.com/lineup/",
-    "date_raw": "June 2023"
-  },
-  {
-    "ranking": 37,
-    "name": "Ultra Beach Hvar",
-    "city": "Hvar",
-    "country": "Croatia",
-    "website": "https://ultraeurope.com/lineup/",
-    "date_raw": "July 2023",
-    "sk_url": "https://www.songkick.com/festivals/616254-ultra-europe/id/43101524-ultra-europe-festival-2026"
+    "date_raw": "November 2024",
+    "style": "Big Room"
   },
   {
     "ranking": 38,
     "name": "Ultra Beach Bali",
-    "city": "Provincia de Bali",
+    "city": "Bali",
     "country": "Indonesia",
     "website": "https://ultrabali.com/lineup/",
-    "date_raw": "June 2024"
-  },
-  {
-    "ranking": 39,
-    "name": "Road To Ultra Colombia",
-    "city": "Medellín",
-    "country": "Colombia",
-    "website": "https://colombia.roadtoultra.com/lineup/",
-    "date_raw": "October 2022"
-  },
-  {
-    "ranking": 40,
-    "name": "Road To Ultra Thailand",
-    "city": "Bangkok",
-    "country": "Thailand",
-    "website": "https://thailand.roadtoultra.com/lineup/",
-    "date_raw": "September 2023"
-  },
-  {
-    "ranking": 41,
-    "name": "Road To Ultra Philippines",
-    "city": "Manila",
-    "country": "Philippines",
-    "website": "https://philippines.roadtoultra.com/previous-lineups/",
-    "date_raw": "September 2017"
-  },
-  {
-    "ranking": 42,
-    "name": "Road To Ultra India",
-    "city": "Bombay",
-    "country": "India",
-    "website": "https://india.roadtoultra.com/lineup/",
-    "date_raw": "April 2023 (3)"
-  },
-  {
-    "ranking": 43,
-    "name": "Resistance Mexico City",
-    "city": "Ciudad de Mexico",
-    "country": "Mexico",
-    "website": "https://mexico.resistancemusic.com/previous-lineups/",
-    "date_raw": "December 2019"
-  },
-  {
-    "ranking": 44,
-    "name": "Resistance Peru",
-    "city": "Lima",
-    "country": "Peru",
-    "website": "https://ultraperu.com/",
-    "date_raw": "December 2022"
-  },
-  {
-    "ranking": 45,
-    "name": "Resistance Buenos Aires",
-    "city": "Buenos Aires",
-    "country": "Argentina",
-    "website": "https://buenosaires.resistancemusic.com/es/lineup/",
-    "date_raw": "December 2022"
+    "date_raw": "June 2024",
+    "style": "House"
   },
   {
     "ranking": 46,
     "name": "Resistance Bali",
-    "city": "Provincia de Bali",
+    "city": "Bali",
     "country": "Indonesia",
     "website": "https://resistancemusic.com/bali/?&_ga=2.199195119.1392036654.1731969523-1342762475.1715959055#_gl=1*r6eewu*_gcl_au*NjYxOTQxNzEuMTczMTk2OTUyMw..",
-    "date_raw": "June 2024"
+    "date_raw": "June 2024",
+    "style": "Big Room"
   },
   {
     "ranking": 47,
@@ -382,24 +292,27 @@
     "city": "Hvar",
     "country": "Croatia",
     "website": "https://ultraeurope.com/lineup/resistance-hvar/?&_ga=2.199195119.1392036654.1731969523-1342762475.1715959055#_gl=1*r6eewu*_gcl_au*NjYxOTQxNzEuMTczMTk2OTUyMw..",
-    "date_raw": "July 2024"
+    "date_raw": "July 2024",
+    "style": "Big Room"
   },
   {
     "ranking": 48,
     "name": "Creamfields UK",
     "city": "Daresbury",
-    "country": "UK",
+    "country": "United Kingdom",
     "website": "https://creamfields.com/lineup/",
     "date_raw": "August 21-24, 2025",
-    "sk_url": "https://www.songkick.com/festivals/3746876-rockstar-energy-presents-creamfields-2026/id/42763255-rockstar-energy-presents-creamfields-2026-2026"
+    "sk_url": "https://www.songkick.com/festivals/3746876-rockstar-energy-presents-creamfields-2026/id/42763255-rockstar-energy-presents-creamfields-2026-2026",
+    "style": "Big Room"
   },
   {
     "ranking": 49,
     "name": "Creamfields Hong Kong",
     "city": "Hong Kong",
-    "country": "China",
+    "country": "Hong Kong",
     "website": "https://www.livenation.hk/show/1520095/creamfields-hong-kong-2025/hong%20kong/2025-03-08/en",
-    "date_raw": "March 8-9, 2025"
+    "date_raw": "March 8-9, 2025",
+    "style": "Big Room"
   },
   {
     "ranking": 50,
@@ -407,23 +320,26 @@
     "city": "Buenos Aires",
     "country": "Argentina",
     "website": "https://www.creamfields.ar/lineup",
-    "date_raw": "November 2024"
+    "date_raw": "November 2024",
+    "style": "Big Room"
   },
   {
     "ranking": 51,
     "name": "Creamfields Chile",
-    "city": "Santiago de Chile",
+    "city": "Santiago",
     "country": "Chile",
     "website": "https://www.creamfields.cl/?fbclid=PAZXh0bgNhZW0CMTEAAaY_wiXxjcitfc6HR0GzPPbAaln93W4nepDWnJpOvDSapufUvd0JvzHwOH4_aem_hojomTuqzAX4lj_2pU8sIw",
-    "date_raw": "November 2024"
+    "date_raw": "November 2024",
+    "style": "Big Room"
   },
   {
     "ranking": 52,
     "name": "Glastonbury Festival",
     "city": "Pilton",
-    "country": "UK",
+    "country": "United Kingdom",
     "website": "https://glastonburyfestivals.co.uk/line-up/line-up-2025/",
-    "date_raw": "June 25-29, 2025"
+    "date_raw": "June 25-29, 2025",
+    "style": "Multi-genre"
   },
   {
     "ranking": 53,
@@ -432,7 +348,8 @@
     "country": "Italy",
     "website": "https://www.kappafuturfestival.it/program",
     "date_raw": "July 4-6, 2025",
-    "sk_url": "https://www.songkick.com/festivals/781469-kappa-futurfestival/id/42984829-kappa-futurfestival-2026"
+    "sk_url": "https://www.songkick.com/festivals/781469-kappa-futurfestival/id/42984829-kappa-futurfestival-2026",
+    "style": "Multi-genre"
   },
   {
     "ranking": 54,
@@ -441,7 +358,8 @@
     "country": "Serbia",
     "website": "https://www.exitfest.org/es/cartel",
     "date_raw": "July 10-13, 2025",
-    "sk_url": "https://www.songkick.com/festivals/3771128-2026-spring-exit-zero-jazz/id/43052362-the-2026-spring-exit-zero-jazz-festival-2026"
+    "sk_url": "https://www.songkick.com/festivals/3771128-2026-spring-exit-zero-jazz/id/43052362-the-2026-spring-exit-zero-jazz-festival-2026",
+    "style": "Multi-genre"
   },
   {
     "ranking": 55,
@@ -449,16 +367,18 @@
     "city": "Frankfurt",
     "country": "Germany",
     "website": "https://www.worldclubdome.com/lineup",
-    "date_raw": "June 6-8, 2025"
+    "date_raw": "June 6-8, 2025",
+    "style": "Multi-genre"
   },
   {
     "ranking": 56,
     "name": "Coachella",
     "city": "Indio",
-    "country": "USA",
+    "country": "United States",
     "website": "https://www.coachella.com/past-festivals",
     "date_raw": "April 10-12, 17-19, 2026",
-    "sk_url": "https://www.songkick.com/festivals/3411958-coachella-valley-music-and-arts/id/40835804-coachella-valley-music-and-arts-festival-2023"
+    "sk_url": "https://www.songkick.com/festivals/3411958-coachella-valley-music-and-arts/id/40835804-coachella-valley-music-and-arts-festival-2023",
+    "style": "Multi-genre"
   },
   {
     "ranking": 57,
@@ -466,7 +386,8 @@
     "city": "Goa",
     "country": "India",
     "website": "https://sunburn.in/",
-    "date_raw": "2024"
+    "date_raw": "2024",
+    "style": "Multi-genre"
   },
   {
     "ranking": 58,
@@ -474,7 +395,8 @@
     "city": "Amsterdam",
     "country": "Netherlands",
     "website": "https://amf-festival.com/line-up/",
-    "date_raw": "2025"
+    "date_raw": "2025",
+    "style": "Multi-genre"
   },
   {
     "ranking": 59,
@@ -483,7 +405,8 @@
     "country": "Germany",
     "website": "https://www.parookaville.com/",
     "date_raw": "July 18-20, 2025",
-    "sk_url": "https://www.songkick.com/festivals/1319268-parookaville/id/42984581-parookaville-festival-2026"
+    "sk_url": "https://www.songkick.com/festivals/1319268-parookaville/id/42984581-parookaville-festival-2026",
+    "style": "Big Room"
   },
   {
     "ranking": 60,
@@ -491,15 +414,17 @@
     "city": "Biddinghuizen",
     "country": "Netherlands",
     "website": "https://www.q-dance.com/l/defqon1-2024",
-    "date_raw": "June 26-29, 2025"
+    "date_raw": "June 26-29, 2025",
+    "style": "Hardstyle"
   },
   {
     "ranking": 61,
     "name": "Parklife Festival",
     "city": "Manchester",
-    "country": "UK",
+    "country": "United Kingdom",
     "website": "https://parklife.uk.com/",
-    "date_raw": "June 14-15, 2025"
+    "date_raw": "June 14-15, 2025",
+    "style": "Indie Dance"
   },
   {
     "ranking": 62,
@@ -507,7 +432,8 @@
     "city": "Mannheim",
     "country": "Germany",
     "website": "https://www.time-warp.de/germany/mannheim/",
-    "date_raw": "April 5, 2025"
+    "date_raw": "April 5, 2025",
+    "style": "Techno"
   },
   {
     "ranking": 63,
@@ -515,7 +441,8 @@
     "city": "São Paulo",
     "country": "Brazil",
     "website": "https://www.time-warp.de/brasil/",
-    "date_raw": "May 2-3, 2025"
+    "date_raw": "May 2-3, 2025",
+    "style": "Techno"
   },
   {
     "ranking": 64,
@@ -523,15 +450,17 @@
     "city": "Madrid",
     "country": "Spain",
     "website": "https://www.time-warp.de/spain/",
-    "date_raw": "October 10-11, 2025"
+    "date_raw": "October 10-11, 2025",
+    "style": "Techno"
   },
   {
     "ranking": 65,
     "name": "Time Warp",
-    "city": "Nueva York",
-    "country": "USA",
+    "city": "New York",
+    "country": "United States",
     "website": "https://www.time-warp.de/usa/",
-    "date_raw": "2024"
+    "date_raw": "2024",
+    "style": "Techno"
   },
   {
     "ranking": 66,
@@ -539,7 +468,8 @@
     "city": "Barcelona",
     "country": "Spain",
     "website": "https://sonar.es/en/programme/line-up",
-    "date_raw": "June 12-14, 2025"
+    "date_raw": "June 12-14, 2025",
+    "style": "Multi-genre"
   },
   {
     "ranking": 67,
@@ -547,7 +477,8 @@
     "city": "Lisbon",
     "country": "Portugal",
     "website": "https://sonarlisboa.pt/en/programme/line-up",
-    "date_raw": "April 11-13, 2025"
+    "date_raw": "April 11-13, 2025",
+    "style": "Multi-genre"
   },
   {
     "ranking": 68,
@@ -556,7 +487,8 @@
     "country": "Hungary",
     "website": "https://szigetfestival.com/en/programs",
     "date_raw": "August 6-11, 2025",
-    "sk_url": "https://www.songkick.com/festivals/608-sziget/id/42937863-sziget-festival-2026"
+    "sk_url": "https://www.songkick.com/festivals/608-sziget/id/42937863-sziget-festival-2026",
+    "style": "Multi-genre"
   },
   {
     "ranking": 69,
@@ -565,7 +497,8 @@
     "country": "Netherlands",
     "website": "https://www.awakenings.com/en/events/2024/07/awakenings-summer-festival-2024/279278/",
     "date_raw": "",
-    "sk_url": "https://www.songkick.com/festivals/49341-awakenings/id/42900510-awakenings-festival-2026"
+    "sk_url": "https://www.songkick.com/festivals/49341-awakenings/id/42900510-awakenings-festival-2026",
+    "style": "Techno"
   },
   {
     "ranking": 70,
@@ -573,7 +506,8 @@
     "city": "Barcelona",
     "country": "Spain",
     "website": "https://www.primaverasound.com/es/barcelona/lineup",
-    "date_raw": "June 4-8, 2025"
+    "date_raw": "June 4-8, 2025",
+    "style": "Indie Dance"
   },
   {
     "ranking": 71,
@@ -581,7 +515,8 @@
     "city": "Zamárdi",
     "country": "Hungary",
     "website": "https://balatonsound.hu/",
-    "date_raw": "2024"
+    "date_raw": "2024",
+    "style": "Multi-genre"
   },
   {
     "ranking": 72,
@@ -590,7 +525,8 @@
     "country": "Spain",
     "website": "https://monegrosfestival.com/es/artists",
     "date_raw": "July 26, 2025",
-    "sk_url": "https://www.songkick.com/festivals/49451-monegros-desert/id/43031050-monegros-desert-festival-2026"
+    "sk_url": "https://www.songkick.com/festivals/49451-monegros-desert/id/43031050-monegros-desert-festival-2026",
+    "style": "Techno"
   },
   {
     "ranking": 73,
@@ -598,15 +534,17 @@
     "city": "Constanța",
     "country": "Romania",
     "website": "https://neversea.com/artists",
-    "date_raw": "2025"
+    "date_raw": "2025",
+    "style": "Multi-genre"
   },
   {
     "ranking": 74,
     "name": "Boom Town",
     "city": "Hampshire",
-    "country": "UK",
+    "country": "United Kingdom",
     "website": "https://www.boomtownfair.co.uk/",
-    "date_raw": "August 6-10, 2025"
+    "date_raw": "August 6-10, 2025",
+    "style": "Multi-genre"
   },
   {
     "ranking": 75,
@@ -615,7 +553,8 @@
     "country": "Netherlands",
     "website": "https://www.dekmantelfestival.com/program",
     "date_raw": "July 30- August 3, 2025",
-    "sk_url": "https://www.songkick.com/festivals/689434-dekmantel/id/42957067-dekmantel-festival-2026"
+    "sk_url": "https://www.songkick.com/festivals/689434-dekmantel/id/42957067-dekmantel-festival-2026",
+    "style": "Techno"
   },
   {
     "ranking": 76,
@@ -623,24 +562,27 @@
     "city": "Gräfenhainichen",
     "country": "Germany",
     "website": "https://www.meltfestival.de/en/lineup",
-    "date_raw": "July 11-13, 2025"
+    "date_raw": "July 11-13, 2025",
+    "style": "Indie Dance"
   },
   {
     "ranking": 77,
     "name": "Lollapalooza",
     "city": "Chicago",
-    "country": "USA",
+    "country": "United States",
     "website": "https://www.lollapalooza.com/lineup",
     "date_raw": "July 31- August 3, 2025",
-    "sk_url": "https://www.songkick.com/festivals/1235-lollapalooza/id/43106762-lollapalooza-2026"
+    "sk_url": "https://www.songkick.com/festivals/1235-lollapalooza/id/43106762-lollapalooza-2026",
+    "style": "Multi-genre"
   },
   {
     "ranking": 78,
     "name": "CRSSD Fest",
     "city": "San Diego",
-    "country": "USA",
+    "country": "United States",
     "website": "https://www.crssdfest.com/",
-    "date_raw": "March 1-2, 2025"
+    "date_raw": "March 1-2, 2025",
+    "style": "Multi-genre"
   },
   {
     "ranking": 79,
@@ -648,7 +590,8 @@
     "city": "Haarlemmermeer",
     "country": "Netherlands",
     "website": "https://www.mysteryland.nl/",
-    "date_raw": "August 22-24, 2025"
+    "date_raw": "August 22-24, 2025",
+    "style": "Big Room"
   },
   {
     "ranking": 80,
@@ -657,23 +600,26 @@
     "country": "Netherlands",
     "website": "https://dgtl.nl/amsterdam/",
     "date_raw": "April 18-20, 2025",
-    "sk_url": "https://www.songkick.com/festivals/941594-dgtl/id/42977208-dgtl-2026"
+    "sk_url": "https://www.songkick.com/festivals/941594-dgtl/id/42977208-dgtl-2026",
+    "style": "Techno"
   },
   {
     "ranking": 81,
     "name": "Movement Music Festival",
     "city": "Detroit",
-    "country": "USA",
+    "country": "United States",
     "website": "https://movementfestival.com/pages/lineup",
-    "date_raw": "May 24-26, 2025"
+    "date_raw": "May 24-26, 2025",
+    "style": "Techno"
   },
   {
     "ranking": 82,
     "name": "Electric Love",
-    "city": "Salzburgo",
+    "city": "Salzburg",
     "country": "Austria",
     "website": "https://www.electriclove.at/en/line-up/",
-    "date_raw": "July 3-5, 2025"
+    "date_raw": "July 3-5, 2025",
+    "style": "Big Room"
   },
   {
     "ranking": 83,
@@ -682,7 +628,8 @@
     "country": "Portugal",
     "website": "https://neopopfestival.com/pt/",
     "date_raw": "August 7-9, 2025",
-    "sk_url": "https://www.songkick.com/festivals/109031-neopop/id/43098122-neopop-festival-2026"
+    "sk_url": "https://www.songkick.com/festivals/109031-neopop/id/43098122-neopop-festival-2026",
+    "style": "House"
   },
   {
     "ranking": 84,
@@ -690,15 +637,17 @@
     "city": "Pag Island",
     "country": "Croatia",
     "website": "https://www.sonuscroatia.com/lineup/",
-    "date_raw": "August 17-21, 2025"
+    "date_raw": "August 17-21, 2025",
+    "style": "Techno"
   },
   {
     "ranking": 85,
-    "name": "808 Fesitval",
+    "name": "808 Festival",
     "city": "Bangkok",
     "country": "Thailand",
     "website": "https://808festival.net/line-up/",
-    "date_raw": "December 6, 2025"
+    "date_raw": "December 6, 2025",
+    "style": "Multi-genre"
   },
   {
     "ranking": 86,
@@ -706,7 +655,8 @@
     "city": "Bangkok",
     "country": "Thailand",
     "website": "https://www.s2ofestival.com/lineup",
-    "date_raw": "April 12-14, 2025"
+    "date_raw": "April 12-14, 2025",
+    "style": "Multi-genre"
   },
   {
     "ranking": 87,
@@ -714,7 +664,8 @@
     "city": "Taipei",
     "country": "Taiwan",
     "website": "https://www.s2otaiwan.com/%E5%89%AF%E6%9C%AC-%E6%BC%94%E5%87%BA%E9%99%A3%E5%AE%B9",
-    "date_raw": "2025"
+    "date_raw": "2025",
+    "style": "Multi-genre"
   },
   {
     "ranking": 88,
@@ -722,7 +673,8 @@
     "city": "Hong Kong",
     "country": "Hong Kong",
     "website": "https://s2ohongkong.com/line-up/",
-    "date_raw": "June 8-9, 2024"
+    "date_raw": "June 8-9, 2024",
+    "style": "Multi-genre"
   },
   {
     "ranking": 89,
@@ -731,15 +683,17 @@
     "country": "Canada",
     "website": "https://veldmusicfestival.com/",
     "date_raw": "August 1-3, 2025",
-    "sk_url": "https://www.songkick.com/festivals/423538-veld-music/id/42900995-veld-music-festival-2026"
+    "sk_url": "https://www.songkick.com/festivals/423538-veld-music/id/42900995-veld-music-festival-2026",
+    "style": "Multi-genre"
   },
   {
     "ranking": 90,
     "name": "Bonnaroo Music And Arts Festival",
     "city": "Manchester",
-    "country": "USA",
+    "country": "United States",
     "website": "https://www.bonnaroo.com/lineup",
-    "date_raw": "June 12-15, 2025"
+    "date_raw": "June 12-15, 2025",
+    "style": "Multi-genre"
   },
   {
     "ranking": 91,
@@ -748,24 +702,27 @@
     "country": "Croatia",
     "website": "https://hideoutfestival.com/lineup/",
     "date_raw": "June 22-26, 2025",
-    "sk_url": "https://www.songkick.com/festivals/180461-hideout/id/42940574-hideout-festival-2026"
+    "sk_url": "https://www.songkick.com/festivals/180461-hideout/id/42940574-hideout-festival-2026",
+    "style": "Trance"
   },
   {
     "ranking": 92,
     "name": "World DJ Festival",
-    "city": "Soeul",
+    "city": "Seoul",
     "country": "South Korea",
     "website": "https://wdjfest.com/68",
-    "date_raw": "June 14-15, 2025"
+    "date_raw": "June 14-15, 2025",
+    "style": "Multi-genre"
   },
   {
     "ranking": 93,
     "name": "Terminal V",
     "city": "Edinburgh",
-    "country": "UK",
+    "country": "United Kingdom",
     "website": "https://terminalv.co.uk/festival/lineup/",
     "date_raw": "April 19-20, 2025",
-    "sk_url": "https://www.songkick.com/festivals/1764974-terminal-v/id/42895926-terminal-v-2026"
+    "sk_url": "https://www.songkick.com/festivals/1764974-terminal-v/id/42895926-terminal-v-2026",
+    "style": "Techno"
   },
   {
     "ranking": 94,
@@ -773,15 +730,17 @@
     "city": "Tisno",
     "country": "Croatia",
     "website": "https://terminalvcroatia.com/line-up/",
-    "date_raw": "July 17-21, 2025"
+    "date_raw": "July 17-21, 2025",
+    "style": "Techno"
   },
   {
     "ranking": 95,
     "name": "Arc Festival",
     "city": "Chicago",
-    "country": "USA",
+    "country": "United States",
     "website": "https://arcmusicfestival.com/lineup/",
-    "date_raw": "August 29-31, 2025"
+    "date_raw": "August 29-31, 2025",
+    "style": "Multi-genre"
   },
   {
     "ranking": 96,
@@ -790,7 +749,8 @@
     "country": "Netherlands",
     "website": "https://loveland.nl/burst/lineup/",
     "date_raw": "April 26, 2025",
-    "sk_url": "https://www.songkick.com/festivals/85546-loveland/id/43030525-loveland-festival-2026"
+    "sk_url": "https://www.songkick.com/festivals/85546-loveland/id/43030525-loveland-festival-2026",
+    "style": "Multi-genre"
   },
   {
     "ranking": 97,
@@ -798,7 +758,8 @@
     "city": "Mayrhofen",
     "country": "Austria",
     "website": "https://snowbombing.com/theevent/lineup-and-venues/",
-    "date_raw": "April 7-12, 2025"
+    "date_raw": "April 7-12, 2025",
+    "style": "Multi-genre"
   },
   {
     "ranking": 98,
@@ -806,7 +767,8 @@
     "city": "Tisno",
     "country": "Croatia",
     "website": "https://dimensionsfestival.com/lineup/",
-    "date_raw": "August 28- September 1, 2025"
+    "date_raw": "August 28- September 1, 2025",
+    "style": "Techno"
   },
   {
     "ranking": 99,
@@ -814,7 +776,8 @@
     "city": "Puglia",
     "country": "Italy",
     "website": "https://www.panorama-festival.it/en/line-up/",
-    "date_raw": "August 14-16, 2025"
+    "date_raw": "August 14-16, 2025",
+    "style": "Multi-genre"
   },
   {
     "ranking": 100,
@@ -822,7 +785,8 @@
     "city": "Cannes",
     "country": "France",
     "website": "https://www.plages-electroniques.com/lineup-2025/",
-    "date_raw": "August 8-10, 2025"
+    "date_raw": "August 8-10, 2025",
+    "style": "Multi-genre"
   },
   {
     "ranking": 101,
@@ -830,7 +794,8 @@
     "city": "Bangkok",
     "country": "Thailand",
     "website": "https://neoncountdown.asia/",
-    "date_raw": "December 30-31, 2024"
+    "date_raw": "December 30-31, 2024",
+    "style": "Multi-genre"
   },
   {
     "ranking": 102,
@@ -839,15 +804,17 @@
     "country": "Germany",
     "website": "https://airbeat-one.de/line-up/",
     "date_raw": "July 9-13, 2025",
-    "sk_url": "https://www.songkick.com/festivals/254313-airbeat-one/id/42912627-airbeat-one-festival-2026"
+    "sk_url": "https://www.songkick.com/festivals/254313-airbeat-one/id/42912627-airbeat-one-festival-2026",
+    "style": "Trance"
   },
   {
     "ranking": 103,
     "name": "Ravolution Music Festival",
-    "city": "Ho Chi Minh",
+    "city": "Ho Chi Minh City",
     "country": "Vietnam",
     "website": "https://www.ravolution.asia/ravolution?fbclid=PAZXh0bgNhZW0CMTEAAaYOohl5QBxvgZVcGvCbuX6qddrMduZ73S-8gtNOaOZiSEOXhqxiHSBtKKg_aem_hu_Hl_ZHMTpfT-94ki2ZSw",
-    "date_raw": "2024"
+    "date_raw": "2024",
+    "style": "Multi-genre"
   },
   {
     "ranking": 104,
@@ -856,15 +823,17 @@
     "country": "Italy",
     "website": "https://namelessfestival.it/?fbclid=PAZXh0bgNhZW0CMTEAAaZaEuUaU9gT3SjkrF-tdR25YdlvaHkLGTbTzNgdXMkh1dSl446VqDtu6ew_aem_nHZ8HvF_wYoqm5NSNwbNrw",
     "date_raw": "May 31 - June 2, 2025",
-    "sk_url": "https://www.songkick.com/festivals/1270868-nameless/id/43022496-nameless-festival-2026"
+    "sk_url": "https://www.songkick.com/festivals/1270868-nameless/id/43022496-nameless-festival-2026",
+    "style": "Multi-genre"
   },
   {
     "ranking": 105,
     "name": "AVA Festival",
     "city": "Belfast",
-    "country": "Northern Ireland",
+    "country": "United Kingdom",
     "website": "https://avafestival.com/ava-2025-first-line-up-announcement/",
-    "date_raw": "May 30-31, 2025"
+    "date_raw": "May 30-31, 2025",
+    "style": "Indie Dance"
   },
   {
     "ranking": 106,
@@ -873,7 +842,8 @@
     "country": "Germany",
     "website": "https://nibirii.com/",
     "date_raw": "August 22-24, 2025",
-    "sk_url": "https://www.songkick.com/festivals/2793164-nibirii/id/43079138-nibirii-festival-2026"
+    "sk_url": "https://www.songkick.com/festivals/2793164-nibirii/id/43079138-nibirii-festival-2026",
+    "style": "Trance"
   },
   {
     "ranking": 107,
@@ -881,16 +851,18 @@
     "city": "Zagreb",
     "country": "Croatia",
     "website": "",
-    "date_raw": "June 7-8, 2024"
+    "date_raw": "June 7-8, 2024",
+    "style": "Multi-genre"
   },
   {
     "ranking": 108,
     "name": "Lost Village",
     "city": "Lincolnshire",
-    "country": "UK",
+    "country": "United Kingdom",
     "website": "https://lostvillagefestival.com/music/",
     "date_raw": "August 21-24, 2025",
-    "sk_url": "https://www.songkick.com/festivals/1195543-lost-village/id/43024889-lost-village-festival-2026"
+    "sk_url": "https://www.songkick.com/festivals/1195543-lost-village/id/43024889-lost-village-festival-2026",
+    "style": "Bass"
   },
   {
     "ranking": 109,
@@ -899,7 +871,8 @@
     "country": "Thailand",
     "website": "https://siamsongkran.info/#lineup",
     "date_raw": "April 11-14, 2025",
-    "sk_url": "https://www.songkick.com/festivals/2946829-siam-songkran/id/42973784-siam-songkran-2026"
+    "sk_url": "https://www.songkick.com/festivals/2946829-siam-songkran/id/42973784-siam-songkran-2026",
+    "style": "Multi-genre"
   },
   {
     "ranking": 110,
@@ -907,7 +880,8 @@
     "city": "Umag",
     "country": "Croatia",
     "website": "https://www.seastarfestival.com/en/lineup",
-    "date_raw": "May 22-25, 2025"
+    "date_raw": "May 22-25, 2025",
+    "style": "Techno"
   },
   {
     "ranking": 111,
@@ -915,7 +889,8 @@
     "city": "Bucharest",
     "country": "Romania",
     "website": "https://es.ra.co/events/1650803",
-    "date_raw": "2025"
+    "date_raw": "2025",
+    "style": "Multi-genre"
   },
   {
     "ranking": 112,
@@ -923,15 +898,17 @@
     "city": "Oberhausen",
     "country": "Germany",
     "website": "https://blacklist-festival.com/lineup/",
-    "date_raw": "October 11, 2025"
+    "date_raw": "October 11, 2025",
+    "style": "Hardstyle"
   },
   {
     "ranking": 113,
     "name": "Djakarta Warehouse Project",
-    "city": "Djakarta",
+    "city": "Jakarta",
     "country": "Indonesia",
     "website": "https://dwpfest.com/",
-    "date_raw": "December 12-14, 2025"
+    "date_raw": "December 12-14, 2025",
+    "style": "Multi-genre"
   },
   {
     "ranking": 114,
@@ -939,16 +916,18 @@
     "city": "Utrecht",
     "country": "Netherlands",
     "website": "https://festival.astateoftrance.com/line-up/",
-    "date_raw": "February 21-22, 2025"
+    "date_raw": "February 21-22, 2025",
+    "style": "Trance"
   },
   {
     "ranking": 115,
     "name": "Hard Summer",
     "city": "Los Angeles",
-    "country": "USA",
+    "country": "United States",
     "website": "https://www.hardsummer.com/lineup/#",
     "date_raw": "August 2-3, 2025",
-    "sk_url": "https://www.songkick.com/festivals/3775849-hard-summer-music-sunday-with-knock2-zedd-sammy-virji-and-more/id/43005988-hard-summer-music-festival--sunday--with-knock2-zedd-sammy-virji-and-more-2026"
+    "sk_url": "https://www.songkick.com/festivals/3775849-hard-summer-music-sunday-with-knock2-zedd-sammy-virji-and-more/id/43005988-hard-summer-music-festival--sunday--with-knock2-zedd-sammy-virji-and-more-2026",
+    "style": "Bass"
   },
   {
     "ranking": 116,
@@ -956,7 +935,8 @@
     "city": "Jeddah",
     "country": "Saudi Arabia",
     "website": "https://mdlbeast.com/events/balad-beast-2025/lineup/artists",
-    "date_raw": "January 30-31, 2025"
+    "date_raw": "January 30-31, 2025",
+    "style": "Multi-genre"
   },
   {
     "ranking": 117,
@@ -965,7 +945,8 @@
     "country": "Croatia",
     "website": "https://www.outlookorigins.com/",
     "date_raw": "July 24-28, 2025",
-    "sk_url": "https://www.songkick.com/festivals/3318818-outlook-origins/id/42881571-outlook-origins-2026"
+    "sk_url": "https://www.songkick.com/festivals/3318818-outlook-origins/id/42881571-outlook-origins-2026",
+    "style": "Bass"
   },
   {
     "ranking": 118,
@@ -974,7 +955,8 @@
     "country": "Romania",
     "website": "https://electriccastle.ro/",
     "date_raw": "July 16-20, 2025",
-    "sk_url": "https://www.songkick.com/festivals/956644-electric-castle/id/42830018-electric-castle-festival-2026"
+    "sk_url": "https://www.songkick.com/festivals/956644-electric-castle/id/42830018-electric-castle-festival-2026",
+    "style": "Multi-genre"
   },
   {
     "ranking": 119,
@@ -982,7 +964,8 @@
     "city": "Limassol",
     "country": "Cyprus",
     "website": "https://beonix.art/lineup",
-    "date_raw": "September 19-21, 2025"
+    "date_raw": "September 19-21, 2025",
+    "style": "Multi-genre"
   },
   {
     "ranking": 120,
@@ -990,7 +973,8 @@
     "city": "Genting Highlands",
     "country": "Malaysia",
     "website": "https://www.ticketmelon.com/sunsetbyneon/sbn2025/",
-    "date_raw": "September 20-21, 2025"
+    "date_raw": "September 20-21, 2025",
+    "style": "House"
   },
   {
     "ranking": 121,
@@ -998,40 +982,45 @@
     "city": "Bangkok",
     "country": "Thailand",
     "website": "https://togetherfestival.net/line-up/",
-    "date_raw": "September 5-6, 2025"
+    "date_raw": "September 5-6, 2025",
+    "style": "Multi-genre"
   },
   {
     "ranking": 122,
     "name": "Groove Cruise",
     "city": "Miami",
-    "country": "USA",
+    "country": "United States",
     "website": "https://www.groovecruise.com/lineup2025",
-    "date_raw": "January 23-27, 2025"
+    "date_raw": "January 23-27, 2025",
+    "style": "Multi-genre"
   },
   {
     "ranking": 123,
     "name": "Beats for Love",
     "city": "Ostrava",
-    "country": "Czech Republic",
+    "country": "Czechia",
     "website": "https://www.b4l.cz/en/lineup/",
-    "date_raw": "July 1-4, 2026"
+    "date_raw": "July 1-4, 2026",
+    "style": "Techno"
   },
   {
     "ranking": 124,
     "name": "Open Air Fly",
     "city": "Edinburgh",
-    "country": "UK",
+    "country": "United Kingdom",
     "website": "https://www.flyflyfly.co.uk/open-air",
-    "date_raw": "September 13-14, 2025"
+    "date_raw": "September 13-14, 2025",
+    "style": "Indie Dance"
   },
   {
     "ranking": 125,
     "name": "Houghton Festival",
     "city": "Norfolk",
-    "country": "UK",
+    "country": "United Kingdom",
     "website": "https://www.houghtonfestival.co.uk/stages/",
     "date_raw": "August 7-10, 2025",
-    "sk_url": "https://www.songkick.com/festivals/1720124-houghton/id/43036885-houghton-festival-2026"
+    "sk_url": "https://www.songkick.com/festivals/1720124-houghton/id/43036885-houghton-festival-2026",
+    "style": "Multi-genre"
   },
   {
     "ranking": 126,
@@ -1039,7 +1028,8 @@
     "city": "Malta",
     "country": "Malta",
     "website": "https://www.glitchfestival.com/lineup/?utm_medium=social&utm_source=linktree&utm_campaign=2025+lineup",
-    "date_raw": "August 13-16, 2025"
+    "date_raw": "August 13-16, 2025",
+    "style": "Drum & Bass"
   },
   {
     "ranking": 127,
@@ -1047,7 +1037,8 @@
     "city": "Pune",
     "country": "India",
     "website": "https://www.jambase.com/festival/vh1-supersonic-2024",
-    "date_raw": "February 16-18, 2024"
+    "date_raw": "February 16-18, 2024",
+    "style": "Multi-genre"
   },
   {
     "ranking": 128,
@@ -1056,7 +1047,8 @@
     "country": "Australia",
     "website": "https://www.beyondthevalley.com.au/",
     "date_raw": "December 28-January 1, 2026",
-    "sk_url": "https://www.songkick.com/festivals/3772745-kangaroo-valley-blues-roots-beyond/id/43071902-kangaroo-valley-blues-roots--beyond-2026"
+    "sk_url": "https://www.songkick.com/festivals/3772745-kangaroo-valley-blues-roots-beyond/id/43071902-kangaroo-valley-blues-roots--beyond-2026",
+    "style": "Multi-genre"
   },
   {
     "ranking": 129,
@@ -1065,7 +1057,8 @@
     "country": "Croatia",
     "website": "https://www.loveinternationalfestival.com/",
     "date_raw": "July 9-15, 2025",
-    "sk_url": "https://www.songkick.com/festivals/1472059-love-international/id/43038370-love-international-2026"
+    "sk_url": "https://www.songkick.com/festivals/1472059-love-international/id/43038370-love-international-2026",
+    "style": "House"
   },
   {
     "ranking": 130,
@@ -1074,7 +1067,8 @@
     "country": "Spain",
     "website": "https://www.medusasunbeach.com/line-up",
     "date_raw": "August 7-11, 2025",
-    "sk_url": "https://www.songkick.com/festivals/1596164-medusa/id/43091377-medusa-festival-2026"
+    "sk_url": "https://www.songkick.com/festivals/1596164-medusa/id/43091377-medusa-festival-2026",
+    "style": "Big Room"
   },
   {
     "ranking": 131,
@@ -1082,7 +1076,8 @@
     "city": "Bogotá",
     "country": "Colombia",
     "website": "https://www.baumfestival.com/",
-    "date_raw": "May 31 - June 1, 2025"
+    "date_raw": "May 31 - June 1, 2025",
+    "style": "House"
   },
   {
     "ranking": 132,
@@ -1091,7 +1086,8 @@
     "country": "Croatia",
     "website": "https://croatia.defected.com/programme",
     "date_raw": "July 30- August 3, 2025",
-    "sk_url": "https://www.songkick.com/festivals/1526864-defected-croatia/id/43101037-defected-croatia-2026"
+    "sk_url": "https://www.songkick.com/festivals/1526864-defected-croatia/id/43101037-defected-croatia-2026",
+    "style": "House"
   },
   {
     "ranking": 133,
@@ -1099,7 +1095,8 @@
     "city": "Malta",
     "country": "Malta",
     "website": "https://malta.defected.com/programme",
-    "date_raw": "October 3-5, 2025"
+    "date_raw": "October 3-5, 2025",
+    "style": "House"
   },
   {
     "ranking": 134,
@@ -1108,7 +1105,8 @@
     "country": "Morocco",
     "website": "https://www.oasis.ma/lineup",
     "date_raw": "September 6-8, 2024",
-    "sk_url": "https://www.songkick.com/festivals/3749324-tribute-killers-v-fender-v-monkeys-v-oasis-v-kasabian-v-kaiser/id/42760708-tribute-festival--killers-v-fender-v-monkeys-v-oasis-v-kasabian-v-kaiser-2026"
+    "sk_url": "https://www.songkick.com/festivals/3749324-tribute-killers-v-fender-v-monkeys-v-oasis-v-kasabian-v-kaiser/id/42760708-tribute-festival--killers-v-fender-v-monkeys-v-oasis-v-kasabian-v-kaiser-2026",
+    "style": "Multi-genre"
   },
   {
     "ranking": 135,
@@ -1117,67 +1115,75 @@
     "country": "Canada",
     "website": "https://www.shambhalamusicfestival.com/lineup",
     "date_raw": "July 25-28, 2025",
-    "sk_url": "https://www.songkick.com/festivals/82351-shambhala-music/id/43073189-shambhala-music-festival-2026"
+    "sk_url": "https://www.songkick.com/festivals/82351-shambhala-music/id/43073189-shambhala-music-festival-2026",
+    "style": "Bass"
   },
   {
     "ranking": 136,
     "name": "Electric Forest",
     "city": "Rothbury",
-    "country": "USA",
+    "country": "United States",
     "website": "https://electricforestfestival.com/",
     "date_raw": "June 19 - 22, 2025",
-    "sk_url": "https://www.songkick.com/festivals/183146-electric-forest/id/42934708-electric-forest-festival-2026"
+    "sk_url": "https://www.songkick.com/festivals/183146-electric-forest/id/42934708-electric-forest-festival-2026",
+    "style": "Multi-genre"
   },
   {
     "ranking": 137,
     "name": "Nocturnal Wonderland",
     "city": "San Bernardino",
-    "country": "USA",
+    "country": "United States",
     "website": "https://www.nocturnalwonderland.com/lineup/",
-    "date_raw": "2024"
+    "date_raw": "2024",
+    "style": "Big Room"
   },
   {
     "ranking": 138,
     "name": "Beyond Wonderland",
     "city": "San Bernardino",
-    "country": "USA",
+    "country": "United States",
     "website": "https://socal.beyondwonderland.com/lineup/",
     "date_raw": "March 28-29, 2025",
-    "sk_url": "https://www.songkick.com/festivals/3620292-beyond-wonderland-chicago/id/42941959-beyond-wonderland-chicago-2026"
+    "sk_url": "https://www.songkick.com/festivals/3620292-beyond-wonderland-chicago/id/42941959-beyond-wonderland-chicago-2026",
+    "style": "Big Room"
   },
   {
     "ranking": 139,
     "name": "Beyond Wonderland",
     "city": "Chicago",
-    "country": "USA",
+    "country": "United States",
     "website": "https://chicago.beyondwonderland.com/lineup/",
     "date_raw": "2024",
-    "sk_url": "https://www.songkick.com/festivals/3620292-beyond-wonderland-chicago/id/42941959-beyond-wonderland-chicago-2026"
+    "sk_url": "https://www.songkick.com/festivals/3620292-beyond-wonderland-chicago/id/42941959-beyond-wonderland-chicago-2026",
+    "style": "Big Room"
   },
   {
     "ranking": 140,
     "name": "Beyond Wonderland",
     "city": "George",
-    "country": "USA",
+    "country": "United States",
     "website": "https://pnw.beyondwonderland.com/lineup/",
     "date_raw": "2024",
-    "sk_url": "https://www.songkick.com/festivals/3620292-beyond-wonderland-chicago/id/42941959-beyond-wonderland-chicago-2026"
+    "sk_url": "https://www.songkick.com/festivals/3620292-beyond-wonderland-chicago/id/42941959-beyond-wonderland-chicago-2026",
+    "style": "Big Room"
   },
   {
     "ranking": 141,
     "name": "Dreamstate US",
-    "city": "California",
-    "country": "USA",
+    "city": "Los Angeles",
+    "country": "United States",
     "website": "https://socal.dreamstateusa.com/lineup/",
-    "date_raw": "April 4-5, 2025"
+    "date_raw": "April 4-5, 2025",
+    "style": "Trance"
   },
   {
     "ranking": 142,
     "name": "Dreamstate",
-    "city": "Sidney",
+    "city": "Sydney",
     "country": "Australia",
     "website": "https://events.ticketbooth.com.au/tickets/dreamstate-syd25?fbclid=PAZXh0bgNhZW0CMTEAAaZO6CjFCME483xSQ9NFaEXLwtmnMRJE-mC5SoAM3XMyWkZrFUFcLgHKnSs_aem_gsVnRVijWjAHJ0fNHCpR6g",
-    "date_raw": "February 8, 2025"
+    "date_raw": "February 8, 2025",
+    "style": "Trance"
   },
   {
     "ranking": 143,
@@ -1185,15 +1191,17 @@
     "city": "Melbourne",
     "country": "Australia",
     "website": "https://events.ticketbooth.com.au/tickets/dreamstate-melb25?fbclid=PAZXh0bgNhZW0CMTEAAabZN5-HXcH4DtLF9EfNlw9SgqC0WsvcYiOjvUoc6WNSBFMg30c90YY3z-8_aem_ulcYi82tQi5Y_RNFn9wauA",
-    "date_raw": "February 9, 2025"
+    "date_raw": "February 9, 2025",
+    "style": "Trance"
   },
   {
     "ranking": 144,
     "name": "Sunwaves",
-    "city": "Constanza",
+    "city": "Constanța",
     "country": "Romania",
     "website": "https://sunwaves-fest.ro/romania/",
-    "date_raw": "May 1-5, 2025"
+    "date_raw": "May 1-5, 2025",
+    "style": "Big Room"
   },
   {
     "ranking": 145,
@@ -1201,7 +1209,8 @@
     "city": "Roquetas de Mar",
     "country": "Spain",
     "website": "https://sunwaves-fest.ro/romania/",
-    "date_raw": "September 4-8, 2025"
+    "date_raw": "September 4-8, 2025",
+    "style": "Big Room"
   },
   {
     "ranking": 146,
@@ -1209,7 +1218,8 @@
     "city": "Tamarindo",
     "country": "Costa Rica",
     "website": "https://thebpmfestival.com/",
-    "date_raw": "January 8-12, 2025"
+    "date_raw": "January 8-12, 2025",
+    "style": "Multi-genre"
   },
   {
     "ranking": 147,
@@ -1218,7 +1228,8 @@
     "country": "Netherlands",
     "website": "https://www.b2s.nl/en/events/decibel/decibel-outdoor-2025/",
     "date_raw": "August 15-17, 2025",
-    "sk_url": "https://www.songkick.com/festivals/99281-decibel-outdoor/id/43090488-decibel-outdoor-festival-2026"
+    "sk_url": "https://www.songkick.com/festivals/99281-decibel-outdoor/id/43090488-decibel-outdoor-festival-2026",
+    "style": "Hardstyle"
   },
   {
     "ranking": 148,
@@ -1226,40 +1237,36 @@
     "city": "Amsterdam",
     "country": "Netherlands",
     "website": "https://www.amsterdam-dance-event.nl/",
-    "date_raw": "October 22-25, 2025"
+    "date_raw": "October 22-25, 2025",
+    "style": "Big Room"
   },
   {
     "ranking": 149,
     "name": "We Are FSTVL",
     "city": "Upminster",
-    "country": "UK",
+    "country": "United Kingdom",
     "website": "https://www.wearefstvl.com/",
-    "date_raw": "2025"
+    "date_raw": "2025",
+    "style": "Indie Dance"
   },
   {
     "ranking": 150,
     "name": "Rampage",
-    "city": "Anterwerpen",
+    "city": "Antwerp",
     "country": "Belgium",
     "website": "https://www.rampageopenair.eu/line-up",
-    "date_raw": "July 3-6, 2025"
-  },
-  {
-    "ranking": 151,
-    "name": "Rampage",
-    "city": "Anterwerpen",
-    "country": "Belgium",
-    "website": "https://www.rampage-weekend.eu/line-up",
-    "date_raw": "February 21-22, 2025"
+    "date_raw": "July 3-6, 2025",
+    "style": "Hardstyle"
   },
   {
     "ranking": 152,
     "name": "Forbidden Kingdom",
     "city": "Orlando",
-    "country": "USA",
+    "country": "United States",
     "website": "https://www.forbiddenkingdomfestival.com/lineup/?_gl=1*1hn5cxk*_gcl_au*MjQ5NjkyMTgwLjE3MzQ1NDc0NjA.",
     "date_raw": "May 30-31, 2025",
-    "sk_url": "https://www.songkick.com/festivals/2742639-forbidden-kingdom/id/42860237-forbidden-kingdom-2026"
+    "sk_url": "https://www.songkick.com/festivals/2742639-forbidden-kingdom/id/42860237-forbidden-kingdom-2026",
+    "style": "Bass"
   },
   {
     "ranking": 153,
@@ -1267,16 +1274,18 @@
     "city": "Retamar",
     "country": "Spain",
     "website": "https://www.dreambeach.es/cartel/",
-    "date_raw": "August 7-10, 2025"
+    "date_raw": "August 7-10, 2025",
+    "style": "Techno"
   },
   {
     "ranking": 154,
     "name": "Lost Lands",
     "city": "Thornville",
-    "country": "USA",
+    "country": "United States",
     "website": "https://www.lostlandsfestival.com/lineup/",
     "date_raw": "2025",
-    "sk_url": "https://www.songkick.com/festivals/1632659-lost-lands/id/42993938-lost-lands-2026"
+    "sk_url": "https://www.songkick.com/festivals/1632659-lost-lands/id/42993938-lost-lands-2026",
+    "style": "Bass"
   },
   {
     "ranking": 155,
@@ -1284,7 +1293,8 @@
     "city": "Uvita",
     "country": "Costa Rica",
     "website": "https://www.envisionfestival.com/",
-    "date_raw": "2026"
+    "date_raw": "2026",
+    "style": "Multi-genre"
   },
   {
     "ranking": 156,
@@ -1292,7 +1302,8 @@
     "city": "Montreal",
     "country": "Canada",
     "website": "https://igloofest.ca/fr/artistes?_gl=1*g3lhm4*_up*MQ..*_ga*MTM0MjIxNjQ3Mi4xNzM0NTUwODY1*_ga_H0PLLFKG60*MTczNDU1MDg2NS4xLjAuMTczNDU1MDg2NS4wLjAuMA..",
-    "date_raw": "January 16 - February 8, 2025"
+    "date_raw": "January 16 - February 8, 2025",
+    "style": "Multi-genre"
   },
   {
     "ranking": 157,
@@ -1300,7 +1311,8 @@
     "city": "Arnhem",
     "country": "Netherlands",
     "website": "https://transmissionfestival.com/",
-    "date_raw": "April 12, 2025"
+    "date_raw": "April 12, 2025",
+    "style": "Techno"
   },
   {
     "ranking": 158,
@@ -1309,7 +1321,8 @@
     "country": "Hungary",
     "website": "https://2025.ozorafestival.eu/music-and-dance/ozora-stage/",
     "date_raw": "July 25 - August 5, 2025",
-    "sk_url": "https://www.songkick.com/festivals/90811-ozora/id/42945103-ozora-festival-2026"
+    "sk_url": "https://www.songkick.com/festivals/90811-ozora/id/42945103-ozora-festival-2026",
+    "style": "Psytrance"
   },
   {
     "ranking": 159,
@@ -1318,7 +1331,8 @@
     "country": "Belgium",
     "website": "https://www.dourfestival.eu/line-up-2025-all/",
     "date_raw": "July 16-20, 2025",
-    "sk_url": "https://www.songkick.com/festivals/1228-dour/id/42889858-dour-festival-2026"
+    "sk_url": "https://www.songkick.com/festivals/1228-dour/id/42889858-dour-festival-2026",
+    "style": "Multi-genre"
   },
   {
     "ranking": 160,
@@ -1326,15 +1340,17 @@
     "city": "Crans-Montana",
     "country": "Switzerland",
     "website": "https://capricesfestival.com/",
-    "date_raw": "April 4-6, 11-3, 2025"
+    "date_raw": "April 4-6, 11-3, 2025",
+    "style": "Multi-genre"
   },
   {
     "ranking": 161,
     "name": "Field Day",
     "city": "London",
-    "country": "UK",
+    "country": "United Kingdom",
     "website": "https://www.fielddayfestivals.com/lineup",
-    "date_raw": "May 24, 2025"
+    "date_raw": "May 24, 2025",
+    "style": "Indie Dance"
   },
   {
     "ranking": 162,
@@ -1342,16 +1358,18 @@
     "city": "Breda",
     "country": "Netherlands",
     "website": "https://dreamvillage.nl/tickets/",
-    "date_raw": "September 13, 2025"
+    "date_raw": "September 13, 2025",
+    "style": "House"
   },
   {
     "ranking": 163,
     "name": "Ostend Beach",
-    "city": "Ostende",
+    "city": "Ostend",
     "country": "Belgium",
     "website": "https://www.ostendbeach.be/?fbclid=PAZXh0bgNhZW0CMTEAAaZ43KRLN6-JW-KjcxBVRW8i-tUQTT09RIXGKHwdz_4-9KnkpgR5l9lzreg_aem_OggBvgdskD-f4o0VBR7kQg",
     "date_raw": "July 12-13, 2025",
-    "sk_url": "https://www.songkick.com/festivals/746964-ostend-beach/id/42921564-ostend-beach-2026"
+    "sk_url": "https://www.songkick.com/festivals/746964-ostend-beach/id/42921564-ostend-beach-2026",
+    "style": "House"
   },
   {
     "ranking": 164,
@@ -1359,7 +1377,8 @@
     "city": "Beek en Donk",
     "country": "Netherlands",
     "website": "https://www.wishoutdoor.com/nl/line-up/lijst",
-    "date_raw": "July 4-5-6, 2025"
+    "date_raw": "July 4-5-6, 2025",
+    "style": "Multi-genre"
   },
   {
     "ranking": 165,
@@ -1368,15 +1387,8 @@
     "country": "Albania",
     "website": "https://anjunadeep.com/eu/artists",
     "date_raw": "June 12-17, 2025",
-    "sk_url": "https://www.songkick.com/festivals/3757985-explorations-anjunadeep/id/42888401-explorations-anjunadeep-2026"
-  },
-  {
-    "ranking": 166,
-    "name": "O.Z.O.R.A Festival",
-    "city": "Dádpuszta",
-    "country": "Hungary",
-    "website": "https://2025.ozorafestival.eu/",
-    "date_raw": "July 25- August 5, 2025"
+    "sk_url": "https://www.songkick.com/festivals/3757985-explorations-anjunadeep/id/42888401-explorations-anjunadeep-2026",
+    "style": "Trance"
   },
   {
     "ranking": 167,
@@ -1384,23 +1396,17 @@
     "city": "Amsterdam",
     "country": "Netherlands",
     "website": "https://909.nl/lineup/",
-    "date_raw": "June 7-8, 2025"
-  },
-  {
-    "ranking": 168,
-    "name": "Summerburst",
-    "city": "Gotemburgo",
-    "country": "Sweden",
-    "website": "https://www.instagram.com/summerburst_festival/?hl=es",
-    "date_raw": "2023"
+    "date_raw": "June 7-8, 2025",
+    "style": "Techno"
   },
   {
     "ranking": 169,
     "name": "Decadence Arizona",
     "city": "Phoenix",
-    "country": "USA",
+    "country": "United States",
     "website": "https://decadencearizona.com/",
-    "date_raw": "December 30-31, 2026"
+    "date_raw": "December 30-31, 2026",
+    "style": "House"
   },
   {
     "ranking": 170,
@@ -1408,7 +1414,8 @@
     "city": "Tisno",
     "country": "Croatia",
     "website": "https://www.hospitalityonthebeach.com/",
-    "date_raw": "July 1-8, 2025"
+    "date_raw": "July 1-8, 2025",
+    "style": "Techno"
   },
   {
     "ranking": 171,
@@ -1416,23 +1423,26 @@
     "city": "Toronto",
     "country": "Canada",
     "website": "https://www.electricisland.to/?fbclid=PAZXh0bgNhZW0CMTEAAabL74Ru-OmKFQWU6XOn-L3XHfdYWfolDbFb6EyYnDq26G229T1A4kPJZeA_aem_2K_APfeeuBWqhmAPBX9LlA",
-    "date_raw": "May 17-18, June 28-29, Aug 8-9, Aug 30-31, 2025"
+    "date_raw": "May 17-18, June 28-29, Aug 8-9, Aug 30-31, 2025",
+    "style": "Big Room"
   },
   {
     "ranking": 172,
     "name": "Elements Music & Arts",
     "city": "Lakewood",
-    "country": "USA",
+    "country": "United States",
     "website": "https://www.elementsfest.us/artists/",
-    "date_raw": "August 8-10, 2025"
+    "date_raw": "August 8-10, 2025",
+    "style": "Multi-genre"
   },
   {
     "ranking": 173,
     "name": "Hide & Seek Festival",
     "city": "Cheshire",
-    "country": "UK",
+    "country": "United Kingdom",
     "website": "https://www.hideandseekfestival.co.uk/",
-    "date_raw": "July 5, 2025"
+    "date_raw": "July 5, 2025",
+    "style": "Bass"
   },
   {
     "ranking": 174,
@@ -1441,15 +1451,17 @@
     "country": "Mexico",
     "website": "https://register.dayzerofestival.com/?fbclid=PAZXh0bgNhZW0CMTEAAaarBar_c7h4AEIQyAlT0geRp30-FogyY-vcxz-UwXtYODdcWoThPV4SQcw_aem_QMlaHmbeaEu4zU-RNYwzEw",
     "date_raw": "January 11, 2025",
-    "sk_url": "https://www.songkick.com/festivals/569109-day-zero/id/43005749-day-zero-festival-2026"
+    "sk_url": "https://www.songkick.com/festivals/569109-day-zero/id/43005749-day-zero-festival-2026",
+    "style": "Multi-genre"
   },
   {
     "ranking": 175,
     "name": "Lightning in a Bottle",
     "city": "Buena Vista Lake",
-    "country": "USA",
+    "country": "United States",
     "website": "https://www.libfestival.org/lineup",
-    "date_raw": "May 21-25, 2025"
+    "date_raw": "May 21-25, 2025",
+    "style": "Multi-genre"
   },
   {
     "ranking": 176,
@@ -1458,7 +1470,8 @@
     "country": "Netherlands",
     "website": "https://www.dreamfields.nl/line-up/",
     "date_raw": "July 6, 2025",
-    "sk_url": "https://www.songkick.com/festivals/352608-dreamfields/id/43044618-dreamfields-festival-2026"
+    "sk_url": "https://www.songkick.com/festivals/352608-dreamfields/id/43044618-dreamfields-festival-2026",
+    "style": "Multi-genre"
   },
   {
     "ranking": 177,
@@ -1467,7 +1480,8 @@
     "country": "Canada",
     "website": "https://montreal.mutek.org/",
     "date_raw": "2024",
-    "sk_url": "https://www.songkick.com/festivals/1835064-mutek-montreal/id/43093463-mutek-montreal-2026"
+    "sk_url": "https://www.songkick.com/festivals/1835064-mutek-montreal/id/43093463-mutek-montreal-2026",
+    "style": "Techno"
   },
   {
     "ranking": 178,
@@ -1475,15 +1489,17 @@
     "city": "Oberhausen",
     "country": "Germany",
     "website": "https://www.verknipt.org/germany-oberhausen-2025/",
-    "date_raw": "March 15, 2025"
+    "date_raw": "March 15, 2025",
+    "style": "Big Room"
   },
   {
     "ranking": 179,
     "name": "Vernikpt Belgium",
-    "city": "Anterwerpen",
+    "city": "Antwerp",
     "country": "Belgium",
     "website": "https://www.verknipt.org/belgium/",
-    "date_raw": "March 21, 2025"
+    "date_raw": "March 21, 2025",
+    "style": "Hardstyle"
   },
   {
     "ranking": 180,
@@ -1491,7 +1507,8 @@
     "city": "Augsburg",
     "country": "Germany",
     "website": "https://www.verknipt.org/augsburg/",
-    "date_raw": "March 29, 2025"
+    "date_raw": "March 29, 2025",
+    "style": "Big Room"
   },
   {
     "ranking": 181,
@@ -1499,7 +1516,8 @@
     "city": "Bern",
     "country": "Switzerland",
     "website": "https://www.verknipt.org/switzerland/",
-    "date_raw": "March 29, 2025"
+    "date_raw": "March 29, 2025",
+    "style": "Big Room"
   },
   {
     "ranking": 182,
@@ -1507,7 +1525,8 @@
     "city": "Budapest",
     "country": "Hungary",
     "website": "https://www.verknipt.org/hungary/",
-    "date_raw": "April 5, 2025"
+    "date_raw": "April 5, 2025",
+    "style": "Big Room"
   },
   {
     "ranking": 183,
@@ -1515,7 +1534,8 @@
     "city": "Sydney",
     "country": "Australia",
     "website": "https://www.verknipt.org/australia-sydney/",
-    "date_raw": "May 23, 2025"
+    "date_raw": "May 23, 2025",
+    "style": "Big Room"
   },
   {
     "ranking": 184,
@@ -1523,7 +1543,8 @@
     "city": "Melbourne",
     "country": "Australia",
     "website": "https://www.verknipt.org/australia-melbourne/",
-    "date_raw": "May 24, 2025"
+    "date_raw": "May 24, 2025",
+    "style": "Big Room"
   },
   {
     "ranking": 185,
@@ -1531,7 +1552,8 @@
     "city": "Novalja",
     "country": "Croatia",
     "website": "https://verkniptcroatia.org/",
-    "date_raw": "June 29- July 3, 2025"
+    "date_raw": "June 29- July 3, 2025",
+    "style": "Big Room"
   },
   {
     "ranking": 186,
@@ -1539,24 +1561,18 @@
     "city": "Spaarnwoude",
     "country": "Netherlands",
     "website": "https://www.dancevalley.com/",
-    "date_raw": "August 5, 2025"
+    "date_raw": "August 5, 2025",
+    "style": "Big Room"
   },
   {
     "ranking": 187,
     "name": "Bass Coast",
-    "city": "Merritt, California",
+    "city": "Merritt",
     "country": "Canada",
     "website": "https://basscoast.ca/pages/past-lineups",
     "date_raw": "July 11-14, 2025",
-    "sk_url": "https://www.songkick.com/festivals/426463-bass-coast/id/42907946-bass-coast-2026"
-  },
-  {
-    "ranking": 188,
-    "name": "Welcome to the Future",
-    "city": "Amsterdam",
-    "country": "Netherlands",
-    "website": "https://welcometothefuture.nl/line-up-2022/",
-    "date_raw": "2022"
+    "sk_url": "https://www.songkick.com/festivals/426463-bass-coast/id/42907946-bass-coast-2026",
+    "style": "Bass"
   },
   {
     "ranking": 189,
@@ -1565,7 +1581,8 @@
     "country": "France",
     "website": "https://www.delta-festival.com/",
     "date_raw": "August 27-30, 2025",
-    "sk_url": "https://www.songkick.com/festivals/176596-delta/id/42953391-delta-festival-2026"
+    "sk_url": "https://www.songkick.com/festivals/176596-delta/id/42953391-delta-festival-2026",
+    "style": "Multi-genre"
   },
   {
     "ranking": 190,
@@ -1574,7 +1591,8 @@
     "country": "France",
     "website": "https://insanefestival.com/accueil/#dica_divi_carouselitem_4",
     "date_raw": "May 29-31, 2025",
-    "sk_url": "https://www.songkick.com/festivals/195141-insane/id/42931289-insane-festival-2026"
+    "sk_url": "https://www.songkick.com/festivals/195141-insane/id/42931289-insane-festival-2026",
+    "style": "Multi-genre"
   },
   {
     "ranking": 191,
@@ -1582,7 +1600,8 @@
     "city": "Brussels",
     "country": "Belgium",
     "website": "https://www.fcknyefestival.com/lineup",
-    "date_raw": "December 30-31, 2024"
+    "date_raw": "December 30-31, 2024",
+    "style": "Multi-genre"
   },
   {
     "ranking": 192,
@@ -1591,7 +1610,8 @@
     "country": "France",
     "website": "https://dice.fm/partner/sasu-episode/event/oe3qm5-madame-loyal-paris-xxl-14-15-mars-2025-14th-mar-paris-nord-villepinte-villepinte-tickets?dice_id=4551688&dice_channel=web&dice_tags=organic&dice_campaign=SASU+EPISODE+&dice_feature=mio_marketing&_branch_match_id=1306001859892740643&utm_source=web&utm_campaign=SASU+EPISODE&utm_medium=mio_marketing&_branch_referrer=H4sIAAAAAAAAA8soKSkottLXz8nMy9ZLyUxO1UvL1a80S01NMTaztEwzT7GvK0pNSy0qysxLj08qyi8vTi2ydc4oys9NBQATYu60OwAAAA%3D%3D",
     "date_raw": "March 14-15, 2025",
-    "sk_url": "https://www.songkick.com/festivals/3765599-madam-loyal/id/42984523-madam-loyal-festival-2026"
+    "sk_url": "https://www.songkick.com/festivals/3765599-madam-loyal/id/42984523-madam-loyal-festival-2026",
+    "style": "Multi-genre"
   },
   {
     "ranking": 193,
@@ -1600,7 +1620,8 @@
     "country": "Spain",
     "website": "https://brunchelectronikfestival.com/?l=es",
     "date_raw": "January 3, 2025 / March 2, 2025 / August 7-10, 2025",
-    "sk_url": "https://www.songkick.com/festivals/1600904-brunch-electronik/id/42954817-brunch-electronik-2026"
+    "sk_url": "https://www.songkick.com/festivals/1600904-brunch-electronik/id/42954817-brunch-electronik-2026",
+    "style": "House"
   },
   {
     "ranking": 194,
@@ -1608,7 +1629,8 @@
     "city": "Madrid",
     "country": "Spain",
     "website": "https://madrid.brunchelectronik.com/line-up",
-    "date_raw": "2025"
+    "date_raw": "2025",
+    "style": "House"
   },
   {
     "ranking": 195,
@@ -1617,7 +1639,8 @@
     "country": "France",
     "website": "https://france.brunchelectronik.com/en/line-up",
     "date_raw": "September 15, 2025, October 5, 2025",
-    "sk_url": "https://www.songkick.com/festivals/1600904-brunch-electronik/id/43034019-brunch-electronik-2026"
+    "sk_url": "https://www.songkick.com/festivals/1600904-brunch-electronik/id/43034019-brunch-electronik-2026",
+    "style": "House"
   },
   {
     "ranking": 196,
@@ -1625,15 +1648,8 @@
     "city": "Malaga",
     "country": "Spain",
     "website": "https://malaga.brunchelectronik.com/line-up",
-    "date_raw": "2024"
-  },
-  {
-    "ranking": 197,
-    "name": "Brunch Electronik India",
-    "city": "",
-    "country": "India",
-    "website": "https://india.brunchelectronik.com/?soon=1",
-    "date_raw": "Coming Soon"
+    "date_raw": "2024",
+    "style": "House"
   },
   {
     "ranking": 198,
@@ -1641,7 +1657,8 @@
     "city": "Lisbon",
     "country": "Portugal",
     "website": "https://lisboa.brunchelectronik.com/en/line-up",
-    "date_raw": "2024"
+    "date_raw": "2024",
+    "style": "House"
   },
   {
     "ranking": 199,
@@ -1649,7 +1666,8 @@
     "city": "Malaga",
     "country": "Spain",
     "website": "https://ibiza.brunchelectronik.com/line-up",
-    "date_raw": "2024"
+    "date_raw": "2024",
+    "style": "House"
   },
   {
     "ranking": 200,
@@ -1657,7 +1675,8 @@
     "city": "Grimbergen",
     "country": "Belgium",
     "website": "https://www.voodoovillage.be/full-lineup",
-    "date_raw": "September 13-14, 2025"
+    "date_raw": "September 13-14, 2025",
+    "style": "Multi-genre"
   },
   {
     "ranking": 201,
@@ -1665,7 +1684,8 @@
     "city": "Saint Martin",
     "country": "Saint Martin",
     "website": "https://www.sxmfestival.com/line-up",
-    "date_raw": "March 12-16, 2025"
+    "date_raw": "March 12-16, 2025",
+    "style": "Multi-genre"
   },
   {
     "ranking": 202,
@@ -1674,7 +1694,8 @@
     "country": "Serbia",
     "website": "https://en.lovefest.rs/",
     "date_raw": "August 7-9, 2025",
-    "sk_url": "https://www.songkick.com/festivals/3768933-lovefest-2026-with-juliana-kanyomozi-elijah-kitaka-john-blaq/id/43026265-lovefest-2026-with-juliana-kanyomozi-elijah-kitaka--john-blaq-2026"
+    "sk_url": "https://www.songkick.com/festivals/3768933-lovefest-2026-with-juliana-kanyomozi-elijah-kitaka-john-blaq/id/43026265-lovefest-2026-with-juliana-kanyomozi-elijah-kitaka--john-blaq-2026",
+    "style": "House"
   },
   {
     "ranking": 203,
@@ -1683,7 +1704,8 @@
     "country": "Germany",
     "website": "https://www.echelon-festival.de/line-up/",
     "date_raw": "August 15-16, 2025",
-    "sk_url": "https://www.songkick.com/festivals/1623139-echelon/id/43018923-echelon-festival-2026"
+    "sk_url": "https://www.songkick.com/festivals/1623139-echelon/id/43018923-echelon-festival-2026",
+    "style": "Techno"
   },
   {
     "ranking": 204,
@@ -1692,7 +1714,8 @@
     "country": "Switzerland",
     "website": "https://www.soelden.com/en/events-leisure-tips/events/electric-mountain-festival/line-up",
     "date_raw": "March 31-April 4, 2025",
-    "sk_url": "https://www.songkick.com/festivals/390543-electric-mountain/id/42873550-electric-mountain-festival-2026"
+    "sk_url": "https://www.songkick.com/festivals/390543-electric-mountain/id/42873550-electric-mountain-festival-2026",
+    "style": "Techno"
   },
   {
     "ranking": 205,
@@ -1700,7 +1723,8 @@
     "city": "Amsterdam",
     "country": "Netherlands",
     "website": "https://www.kingslandfestival.nl/?fbclid=PAZXh0bgNhZW0CMTEAAaailMjpkfP1-JnxGtkL4fQWkMKgHnWWm3PlVWOA4rVcjiWvYnW9J_wu4MU_aem_IfexJLNdMI9zZVPksHxF9g",
-    "date_raw": "April 26, 2025"
+    "date_raw": "April 26, 2025",
+    "style": "House"
   },
   {
     "ranking": 206,
@@ -1709,15 +1733,17 @@
     "country": "Germany",
     "website": "https://www.mayday.de/lineup",
     "date_raw": "April 30, 2025",
-    "sk_url": "https://www.songkick.com/festivals/24781-mayday/id/43107540-mayday-festival-2026"
+    "sk_url": "https://www.songkick.com/festivals/24781-mayday/id/43107540-mayday-festival-2026",
+    "style": "Techno"
   },
   {
     "ranking": 207,
     "name": "Mint Festival",
     "city": "Leeds",
-    "country": "UK",
+    "country": "United Kingdom",
     "website": "https://www.mintfestival.co.uk/line-up",
-    "date_raw": "May 3-4, 2025"
+    "date_raw": "May 3-4, 2025",
+    "style": "Indie Dance"
   },
   {
     "ranking": 208,
@@ -1725,7 +1751,8 @@
     "city": "Amsterdam",
     "country": "Netherlands",
     "website": "https://www.musiconfestival.nl/lineup/",
-    "date_raw": "May 10-11, 2025"
+    "date_raw": "May 10-11, 2025",
+    "style": "House"
   },
   {
     "ranking": 209,
@@ -1734,7 +1761,8 @@
     "country": "Switzerland",
     "website": "https://www.sunicefestival.ch/winter/lineup",
     "date_raw": "April 17-20, 2025",
-    "sk_url": "https://www.songkick.com/festivals/3752757-sunice-st-moritz/id/42622770-sunice-festival-st-moritz-2026"
+    "sk_url": "https://www.songkick.com/festivals/3752757-sunice-st-moritz/id/42622770-sunice-festival-st-moritz-2026",
+    "style": "Trance"
   },
   {
     "ranking": 210,
@@ -1743,16 +1771,18 @@
     "country": "Switzerland",
     "website": "https://www.sunicefestival.ch/summer/lineup",
     "date_raw": "September 18-20, 2025",
-    "sk_url": "https://www.songkick.com/festivals/3752757-sunice-st-moritz/id/42622770-sunice-festival-st-moritz-2026"
+    "sk_url": "https://www.songkick.com/festivals/3752757-sunice-st-moritz/id/42622770-sunice-festival-st-moritz-2026",
+    "style": "Trance"
   },
   {
     "ranking": 211,
     "name": "Forbidden Forest",
     "city": "Leicestershire",
-    "country": "UK",
+    "country": "United Kingdom",
     "website": "https://www.forbidden-forest.co.uk/line-up/",
     "date_raw": "May 29 - June 1, 2025",
-    "sk_url": "https://www.songkick.com/festivals/1807819-forbidden-forest/id/42903173-forbidden-forest-2026"
+    "sk_url": "https://www.songkick.com/festivals/1807819-forbidden-forest/id/42903173-forbidden-forest-2026",
+    "style": "Bass"
   },
   {
     "ranking": 212,
@@ -1761,7 +1791,8 @@
     "country": "Netherlands",
     "website": "https://www.intentsfestival.nl/linktree/?fbclid=PAZXh0bgNhZW0CMTEAAaYf3EK8B-xxv9zfs1Ne4aefeQDosu0wyGfH72Sgy29XVOJRwcW_SdrFcP8_aem_f60g3nJXhXmYGt2WhhA_rg#",
     "date_raw": "May 30 - June 1, 2025",
-    "sk_url": "https://www.songkick.com/festivals/279883-intents/id/43086647-intents-festival-2026"
+    "sk_url": "https://www.songkick.com/festivals/279883-intents/id/43086647-intents-festival-2026",
+    "style": "Techno"
   },
   {
     "ranking": 213,
@@ -1769,7 +1800,8 @@
     "city": "Malta",
     "country": "Malta",
     "website": "https://www.enjoythetriip.com/lineup",
-    "date_raw": "May 30 - June 1, 2025"
+    "date_raw": "May 30 - June 1, 2025",
+    "style": "Multi-genre"
   },
   {
     "ranking": 214,
@@ -1778,7 +1810,8 @@
     "country": "Albania",
     "website": "https://unumfestival.com/program/",
     "date_raw": "June 2025",
-    "sk_url": "https://www.songkick.com/festivals/3766874-14-years-of-discotech-x-unum/id/42999918-14-years-of-discotech-x-unum-festival-2026"
+    "sk_url": "https://www.songkick.com/festivals/3766874-14-years-of-discotech-x-unum/id/42999918-14-years-of-discotech-x-unum-festival-2026",
+    "style": "Multi-genre"
   },
   {
     "ranking": 215,
@@ -1787,7 +1820,8 @@
     "country": "Germany",
     "website": "https://www.ikarus-festival.de/line-up/",
     "date_raw": "June 6-9, 2025",
-    "sk_url": "https://www.songkick.com/festivals/1319688-ikarus/id/42874368-ikarus-festival-2026"
+    "sk_url": "https://www.songkick.com/festivals/1319688-ikarus/id/42874368-ikarus-festival-2026",
+    "style": "Techno"
   },
   {
     "ranking": 216,
@@ -1796,7 +1830,8 @@
     "country": "Belgium",
     "website": "https://www.extrema.be/en/line-up/overview",
     "date_raw": "June 6-8, 2025",
-    "sk_url": "https://www.songkick.com/festivals/110041-extrema-outdoor/id/42994883-extrema-outdoor-2026"
+    "sk_url": "https://www.songkick.com/festivals/110041-extrema-outdoor/id/42994883-extrema-outdoor-2026",
+    "style": "Hardstyle"
   },
   {
     "ranking": 217,
@@ -1805,7 +1840,8 @@
     "country": "France",
     "website": "https://marvellous-island.fr/",
     "date_raw": "June 7-8, 2025",
-    "sk_url": "https://www.songkick.com/festivals/642394-marvellous-island/id/43012136-marvellous-island-2026"
+    "sk_url": "https://www.songkick.com/festivals/642394-marvellous-island/id/43012136-marvellous-island-2026",
+    "style": "Multi-genre"
   },
   {
     "ranking": 218,
@@ -1813,7 +1849,8 @@
     "city": "The Hague",
     "country": "Netherlands",
     "website": "https://thecrave.nl/#lineup",
-    "date_raw": "June 7, 2025"
+    "date_raw": "June 7, 2025",
+    "style": "Techno"
   },
   {
     "ranking": 219,
@@ -1822,7 +1859,8 @@
     "country": "Netherlands",
     "website": "https://luminosity-events.nl/cevent/luminosity-beach-festival-2025/",
     "date_raw": "June 26-29, 2025",
-    "sk_url": "https://www.songkick.com/festivals/318713-luminosity-beach/id/42851433-luminosity-beach-festival-2026"
+    "sk_url": "https://www.songkick.com/festivals/318713-luminosity-beach/id/42851433-luminosity-beach-festival-2026",
+    "style": "Multi-genre"
   },
   {
     "ranking": 220,
@@ -1830,7 +1868,8 @@
     "city": "Pag Island",
     "country": "Croatia",
     "website": "https://dayandnightfestival.com/line-up/",
-    "date_raw": "July 14-17, 2025"
+    "date_raw": "July 14-17, 2025",
+    "style": "Techno"
   },
   {
     "ranking": 221,
@@ -1838,15 +1877,17 @@
     "city": "Freiburg",
     "country": "Germany",
     "website": "https://www.seayou-festival.de/line-up/index_ger.html",
-    "date_raw": "July 18-20, 2025"
+    "date_raw": "July 18-20, 2025",
+    "style": "Psytrance"
   },
   {
     "ranking": 222,
     "name": "Junction",
     "city": "London",
-    "country": "UK",
+    "country": "United Kingdom",
     "website": "https://www.junction2.london/?fbclid=PAZXh0bgNhZW0CMTEAAaYjEG-il5X9KK91TIUzu6NhzFynsYrLzpyPbNVKhHCVZ0NIUS1p-XG_lB8_aem_u1ExqgsgzNlKToKjIBvY3A",
-    "date_raw": "July 25-27, 2025"
+    "date_raw": "July 25-27, 2025",
+    "style": "Drum & Bass"
   },
   {
     "ranking": 223,
@@ -1854,7 +1895,8 @@
     "city": "Espoo",
     "country": "Finland",
     "website": "https://www.wknd.fi/en/program/",
-    "date_raw": "August 1-2, 2025"
+    "date_raw": "August 1-2, 2025",
+    "style": "Multi-genre"
   },
   {
     "ranking": 224,
@@ -1863,7 +1905,8 @@
     "country": "Germany",
     "website": "https://electrisize.de/line-up/",
     "date_raw": "August 8-10, 2025",
-    "sk_url": "https://www.songkick.com/festivals/1354479-electrisize/id/43049288-electrisize-2026"
+    "sk_url": "https://www.songkick.com/festivals/1354479-electrisize/id/43049288-electrisize-2026",
+    "style": "Techno"
   },
   {
     "ranking": 225,
@@ -1871,7 +1914,8 @@
     "city": "Munich",
     "country": "Germany",
     "website": "https://www.greenfields-openair.de/line-up/",
-    "date_raw": "July 5, 2025"
+    "date_raw": "July 5, 2025",
+    "style": "Indie Dance"
   },
   {
     "ranking": 226,
@@ -1879,111 +1923,125 @@
     "city": "Zurich",
     "country": "Switzerland",
     "website": "https://zurichopenair.ch/en/mainstage/#:~:text=International%20artists%20such%20as%20Sam,the%20night%20away%20with%20us.",
-    "date_raw": "August 22-23, August 29-30, 2025"
+    "date_raw": "August 22-23, August 29-30, 2025",
+    "style": "Multi-genre"
   },
   {
     "ranking": 227,
     "name": "Tanzinsel",
-    "city": "Bayern",
+    "city": "Munich",
     "country": "Germany",
     "website": "https://tanzinsel.de/",
-    "date_raw": "August 23, 2025"
+    "date_raw": "August 23, 2025",
+    "style": "Techno"
   },
   {
     "ranking": 228,
-    "name": "Breakaway Fesival",
+    "name": "Breakaway Festival",
     "city": "Dallas",
-    "country": "USA",
+    "country": "United States",
     "website": "https://www.breakawayfestival.com/",
-    "date_raw": "April 4-5, 2025"
+    "date_raw": "April 4-5, 2025",
+    "style": "Multi-genre"
   },
   {
     "ranking": 229,
-    "name": "Breakaway Fesival",
+    "name": "Breakaway Festival",
     "city": "Arizona",
-    "country": "USA",
+    "country": "United States",
     "website": "https://www.breakawayfestival.com/",
-    "date_raw": "April 18-19, 2025"
+    "date_raw": "April 18-19, 2025",
+    "style": "Multi-genre"
   },
   {
     "ranking": 230,
-    "name": "Breakaway Fesival",
+    "name": "Breakaway Festival",
     "city": "Tampa",
-    "country": "USA",
+    "country": "United States",
     "website": "https://www.breakawayfestival.com/",
-    "date_raw": "April 25-26, 2025"
+    "date_raw": "April 25-26, 2025",
+    "style": "Multi-genre"
   },
   {
     "ranking": 231,
-    "name": "Breakaway Fesival",
+    "name": "Breakaway Festival",
     "city": "Atlanta",
-    "country": "USA",
+    "country": "United States",
     "website": "https://www.breakawayfestival.com/",
-    "date_raw": "May 16-17, 2025"
+    "date_raw": "May 16-17, 2025",
+    "style": "Multi-genre"
   },
   {
     "ranking": 232,
-    "name": "Breakaway Fesival",
+    "name": "Breakaway Festival",
     "city": "Ohio",
-    "country": "USA",
+    "country": "United States",
     "website": "https://www.breakawayfestival.com/",
-    "date_raw": "May 30-31, 2025"
+    "date_raw": "May 30-31, 2025",
+    "style": "Multi-genre"
   },
   {
     "ranking": 233,
-    "name": "Breakaway Fesival",
+    "name": "Breakaway Festival",
     "city": "Minnesota",
-    "country": "USA",
+    "country": "United States",
     "website": "https://www.breakawayfestival.com/",
-    "date_raw": "June 6-7, 2025"
+    "date_raw": "June 6-7, 2025",
+    "style": "Multi-genre"
   },
   {
     "ranking": 234,
-    "name": "Breakaway Fesival",
+    "name": "Breakaway Festival",
     "city": "Michigan",
-    "country": "USA",
+    "country": "United States",
     "website": "https://www.breakawayfestival.com/",
-    "date_raw": "August 15-16, 2025"
+    "date_raw": "August 15-16, 2025",
+    "style": "Multi-genre"
   },
   {
     "ranking": 235,
-    "name": "Breakaway Fesival",
+    "name": "Breakaway Festival",
     "city": "Mass",
-    "country": "USA",
+    "country": "United States",
     "website": "https://www.breakawayfestival.com/",
-    "date_raw": "September 5-6, 2025"
+    "date_raw": "September 5-6, 2025",
+    "style": "Multi-genre"
   },
   {
     "ranking": 236,
-    "name": "Breakaway Fesival",
+    "name": "Breakaway Festival",
     "city": "Philadelphia",
-    "country": "USA",
+    "country": "United States",
     "website": "https://www.breakawayfestival.com/",
-    "date_raw": "September 12-13, 2025"
+    "date_raw": "September 12-13, 2025",
+    "style": "Multi-genre"
   },
   {
     "ranking": 237,
-    "name": "Breakaway Fesival",
+    "name": "Breakaway Festival",
     "city": "Carolina",
-    "country": "USA",
+    "country": "United States",
     "website": "https://www.breakawayfestival.com/",
-    "date_raw": "September 26-27, 2025"
+    "date_raw": "September 26-27, 2025",
+    "style": "Multi-genre"
   },
   {
     "ranking": 238,
-    "name": "Breakaway Fesival",
+    "name": "Breakaway Festival",
     "city": "Alabama",
-    "country": "USA",
+    "country": "United States",
     "website": "https://www.breakawayfestival.com/",
-    "date_raw": "October 3-4, 2025"
+    "date_raw": "October 3-4, 2025",
+    "style": "Multi-genre"
   },
   {
     "ranking": 239,
-    "name": "Breakaway Fesival",
+    "name": "Breakaway Festival",
     "city": "Norcal",
-    "country": "USA",
+    "country": "United States",
     "website": "https://www.breakawayfestival.com/",
-    "date_raw": "October 24-25, 2025"
+    "date_raw": "October 24-25, 2025",
+    "style": "Multi-genre"
   },
   {
     "ranking": 240,
@@ -1991,7 +2049,8 @@
     "city": "Madrid",
     "country": "Spain",
     "website": "https://dldk.com/events/dont-let-daddy-know-spain-3/#2",
-    "date_raw": "February 8, 2025"
+    "date_raw": "February 8, 2025",
+    "style": "Multi-genre"
   },
   {
     "ranking": 241,
@@ -1999,7 +2058,8 @@
     "city": "Gdansk",
     "country": "Poland",
     "website": "https://dldk.com/events/dont-let-daddy-know-poland-2/#2",
-    "date_raw": "February 15, 2025"
+    "date_raw": "February 15, 2025",
+    "style": "Multi-genre"
   },
   {
     "ranking": 242,
@@ -2007,7 +2067,8 @@
     "city": "Amsterdam",
     "country": "Netherlands",
     "website": "https://dldk.com/events/dldk-amsterdam-2025/",
-    "date_raw": "March 1, 2025"
+    "date_raw": "March 1, 2025",
+    "style": "Multi-genre"
   },
   {
     "ranking": 243,
@@ -2015,15 +2076,17 @@
     "city": "Bucharest",
     "country": "Romania",
     "website": "https://dldk.com/events/dont-let-daddy-know-romania-2/",
-    "date_raw": "March 21, 2025"
+    "date_raw": "March 21, 2025",
+    "style": "Multi-genre"
   },
   {
     "ranking": 244,
     "name": "Don't let Daddy Know",
-    "city": "Santiago de Chile",
+    "city": "Santiago",
     "country": "Chile",
     "website": "https://dldk.com/events/dont-let-daddy-know-chile-2025/",
-    "date_raw": "May 3, 2025"
+    "date_raw": "May 3, 2025",
+    "style": "Multi-genre"
   },
   {
     "ranking": 245,
@@ -2031,7 +2094,8 @@
     "city": "Queretaro",
     "country": "Mexico",
     "website": "https://dldk.com/events/dont-let-daddy-know-mexico-2025/",
-    "date_raw": "Coming Soon"
+    "date_raw": "Coming Soon",
+    "style": "Multi-genre"
   },
   {
     "ranking": 246,
@@ -2039,15 +2103,17 @@
     "city": "Arganda del Rey",
     "country": "Spain",
     "website": "https://asummerstory.com/artistas/?utm_source=google&utm_medium=sc&utm_campaign=250716_mad&utm_content=716151595918&utm_term=festival%20musica%20en%20madrid_b&gad_source=1&gclid=cjwkcaiazpy8bhboeiwabnm9ozr8gka0fbi-el8db3q7bjprm9uwq5p-sp8awraobjqlp9yggq-iqrocipeqavd_bwe",
-    "date_raw": "June 20-21, 2025"
+    "date_raw": "June 20-21, 2025",
+    "style": "Multi-genre"
   },
   {
     "ranking": 247,
     "name": "Global Dance Festival",
     "city": "Denver",
-    "country": "USA",
+    "country": "United States",
     "website": "https://globaldancefestival.com/?fbclid=PAZXh0bgNhZW0CMTEAAaZTT4yKWJ1KzdTqjjRhGDw8v-Ps28TOUsxj4jnxo-eOvavVIQBReqndBMY_aem_MEA925dfrY2WAR88RA8s9Q",
-    "date_raw": "July 26-27, 2025"
+    "date_raw": "July 26-27, 2025",
+    "style": "Big Room"
   },
   {
     "ranking": 248,
@@ -2055,7 +2121,8 @@
     "city": "Shanghai",
     "country": "China",
     "website": "",
-    "date_raw": "2024"
+    "date_raw": "2024",
+    "style": "Multi-genre"
   },
   {
     "ranking": 249,
@@ -2063,32 +2130,36 @@
     "city": "Vancouver",
     "country": "Canada",
     "website": "https://www.contact-festival.com/?fbclid=PAZXh0bgNhZW0CMTEAAaZ2eTjgNLL2gNbgXRFbZz4v62teq_N8Hb1W3rphLoCcWK3ROQ35j_D1oVI_aem_GJ5zJfNWrEVrhG21Oyk43g",
-    "date_raw": "2024"
+    "date_raw": "2024",
+    "style": "Multi-genre"
   },
   {
     "ranking": 250,
     "name": "Boo Seattle",
     "city": "Seattle",
-    "country": "USA",
+    "country": "United States",
     "website": "https://seattle.boo-halloween.com/lineup/",
     "date_raw": "October 25-26, 2024",
-    "sk_url": "https://www.songkick.com/festivals/3766035-boo-seattle-saturday-18/id/42990670-boo-seattle--saturday-18-2026"
+    "sk_url": "https://www.songkick.com/festivals/3766035-boo-seattle-saturday-18/id/42990670-boo-seattle--saturday-18-2026",
+    "style": "Multi-genre"
   },
   {
     "ranking": 251,
     "name": "Day Trip Festival",
     "city": "Long Beach",
-    "country": "USA",
+    "country": "United States",
     "website": "https://www.daytripfest.com/lineup/",
-    "date_raw": "2024"
+    "date_raw": "2024",
+    "style": "Multi-genre"
   },
   {
     "ranking": 252,
     "name": "Elements Festival",
     "city": "Long Pond",
-    "country": "USA",
+    "country": "United States",
     "website": "https://www.elementsfest.us/artists/",
-    "date_raw": "August 8-10, 2025"
+    "date_raw": "August 8-10, 2025",
+    "style": "Multi-genre"
   },
   {
     "ranking": 253,
@@ -2096,7 +2167,8 @@
     "city": "Arnhem",
     "country": "Netherlands",
     "website": "https://freeyourmindfestival.nl/artists/",
-    "date_raw": "July 26, 2025"
+    "date_raw": "July 26, 2025",
+    "style": "Multi-genre"
   },
   {
     "ranking": 254,
@@ -2105,7 +2177,8 @@
     "country": "Canada",
     "website": "https://www.shambhalamusicfestival.com/lineup",
     "date_raw": "July 25-28, 2025",
-    "sk_url": "https://www.songkick.com/festivals/82351-shambhala-music/id/43073189-shambhala-music-festival-2026"
+    "sk_url": "https://www.songkick.com/festivals/82351-shambhala-music/id/43073189-shambhala-music-festival-2026",
+    "style": "Bass"
   },
   {
     "ranking": 255,
@@ -2114,7 +2187,8 @@
     "country": "France",
     "website": "https://www.familypiknikfestival.com/programmation",
     "date_raw": "August 1-3, 2025",
-    "sk_url": "https://www.songkick.com/festivals/435068-family-piknik/id/43082551-family-piknik-2026"
+    "sk_url": "https://www.songkick.com/festivals/435068-family-piknik/id/43082551-family-piknik-2026",
+    "style": "House"
   },
   {
     "ranking": 256,
@@ -2122,7 +2196,8 @@
     "city": "Bangkok",
     "country": "Thailand",
     "website": "",
-    "date_raw": "2024"
+    "date_raw": "2024",
+    "style": "Multi-genre"
   },
   {
     "ranking": 257,
@@ -2131,7 +2206,8 @@
     "country": "Germany",
     "website": "https://www.nature-one.de/en/2024/lineup/headfloors",
     "date_raw": "2024",
-    "sk_url": "https://www.songkick.com/festivals/111126-nature-one/id/43048799-nature-one-festival-2026"
+    "sk_url": "https://www.songkick.com/festivals/111126-nature-one/id/43048799-nature-one-festival-2026",
+    "style": "Big Room"
   },
   {
     "ranking": 258,
@@ -2140,7 +2216,8 @@
     "country": "Croatia",
     "website": "https://www.austriagoeszrce.at/line-up",
     "date_raw": "July 19 - 26, 2025",
-    "sk_url": "https://www.songkick.com/festivals/3758510-la-philharmonica-barbara-rett-figaro-goes-broadway-festspiele-taggenbrunn/id/42894976-la-philharmonica--barbara-rett--figaro-goes-broadway--festspiele-taggenbrunn-2026"
+    "sk_url": "https://www.songkick.com/festivals/3758510-la-philharmonica-barbara-rett-figaro-goes-broadway-festspiele-taggenbrunn/id/42894976-la-philharmonica--barbara-rett--figaro-goes-broadway--festspiele-taggenbrunn-2026",
+    "style": "Multi-genre"
   },
   {
     "ranking": 259,
@@ -2149,7 +2226,8 @@
     "country": "Italy",
     "website": "https://adriaticsoundfestival.com/line-up/",
     "date_raw": "June 13-14, 2025",
-    "sk_url": "https://www.songkick.com/festivals/3723357-adriatic-sound/id/42821564-adriatic-sound-festival-2026"
+    "sk_url": "https://www.songkick.com/festivals/3723357-adriatic-sound/id/42821564-adriatic-sound-festival-2026",
+    "style": "Multi-genre"
   },
   {
     "ranking": 260,
@@ -2157,23 +2235,16 @@
     "city": "Barcelona",
     "country": "Spain",
     "website": "https://jackiesmusic.com/artists/",
-    "date_raw": "April 19, 2025 & May 17, 2025"
+    "date_raw": "April 19, 2025 & May 17, 2025",
+    "style": "House"
   },
   {
-    "ranking": 261,
-    "name": "Keinemusik",
-    "city": "",
-    "country": "",
-    "website": "https://keinemusik.com/dates/",
-    "date_raw": "Multiple"
-  },
-  {
-    "ranking": 262,
-    "name": "Sophie Festival",
-    "city": "",
-    "country": "",
-    "website": "https://sophie.es/",
-    "date_raw": "",
-    "sk_url": "https://www.songkick.com/festivals/3757042-hampton-court-palace-sophie-ellisbextors-palace-disco/id/42875643-hampton-court-palace-festival-sophie-ellisbextors-palace-disco-2026"
+    "ranking": 263,
+    "name": "EDC Colombia",
+    "city": "Medellín",
+    "country": "Colombia",
+    "website": "https://edccolombia.com",
+    "date_raw": "October 10-11, 2026",
+    "style": "Big Room"
   }
 ]

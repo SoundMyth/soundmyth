@@ -13,7 +13,7 @@ permissions:
 jobs:
   scrape:
     runs-on: ubuntu-latest
-    timeout-minutes: 120   # step budgets: DJ 45 + others ~65; headroom as DJ list grows
+    timeout-minutes: 180   # real runs take ~90m; step budgets sum to well over 120m, so a slow Sunday must not cut purge/commit
 
     defaults:
       run:
@@ -161,6 +161,15 @@ jobs:
           SUPABASE_SERVICE_KEY: ${{ secrets.SUPABASE_SERVICE_KEY }}
         run: node cleanup-junk.js
 
+      - name: Validate & fix data quality
+        id: validate
+        continue-on-error: true
+        timeout-minutes: 5
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_SERVICE_KEY: ${{ secrets.SUPABASE_SERVICE_KEY }}
+        run: node validate.js
+
       - name: Classify genre & tags (canonical styles)
         id: classify
         continue-on-error: true
@@ -189,16 +198,7 @@ jobs:
           SUPABASE_SERVICE_KEY: ${{ secrets.SUPABASE_SERVICE_KEY }}
         run: node build-artists.js
 
-      - name: Validate & fix data quality
-        id: validate
-        continue-on-error: true
-        timeout-minutes: 5
-        env:
-          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
-          SUPABASE_SERVICE_KEY: ${{ secrets.SUPABASE_SERVICE_KEY }}
-        run: node validate.js
-
-      - name: Purge old events (>15 days)
+      - name: Purge old events (>8 days)
         id: purge
         continue-on-error: true
         timeout-minutes: 10
@@ -265,9 +265,10 @@ jobs:
             "Deduplicate": "${{ steps.dedupe.outcome }}",
             "Discover DJs": "${{ steps.discover.outcome }}",
             "Clean junk": "${{ steps.cleanup.outcome }}",
+            "Validate": "${{ steps.validate.outcome }}",
+            "Classify": "${{ steps.classify.outcome }}",
             "Enrich images": "${{ steps.images.outcome }}",
             "Build artists": "${{ steps.artists.outcome }}",
-            "Validate": "${{ steps.validate.outcome }}",
             "Purge": "${{ steps.purge.outcome }}",
             "Commit data files": "${{ steps.commit.outcome }}",
             "Verify wrote data": "${{ steps.verify.outcome }}"

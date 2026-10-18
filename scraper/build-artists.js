@@ -22,7 +22,8 @@ import { writeFileSync, readFileSync, existsSync, mkdirSync } from 'fs';
 import { fileURLToPath, pathToFileURL } from 'url';
 import { dirname, resolve } from 'path';
 import { createClient } from '@supabase/supabase-js';
-import { djKey, loadDJCache, loadOverrides } from './enrich-images.js';
+import { loadDJCache, loadOverrides } from './enrich-images.js';
+import { djKey, djStyle, normVibes, FALLBACK_GENRE } from './genres.js';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const readJ = (p, fallback) => {
@@ -32,48 +33,11 @@ const readJ = (p, fallback) => {
 };
 const OUT = resolve(__dirname, '../data/artists.json');
 
-// ── Canonical genre (CONTRACT §1) ─────────────────────────────────────────
-// LOCAL FALLBACK: integrate with scraper/genres.js when B1 lands it (it should own this map).
-export const CANONICAL_GENRES = ['House', 'Tech House', 'Deep House', 'Afro House', 'Melodic Techno', 'Techno', 'Hard Techno',
-  'Trance', 'Psytrance', 'Progressive', 'Big Room', 'Bass', 'Drum & Bass', 'Hardstyle', 'Indie Dance', 'Electro'];
-export const FALLBACK_GENRE = 'Multi-genre';
-const LEGACY = {
-  'Big Room / Festival EDM': 'Big Room', 'Bass Music': 'Bass', 'Indie Dance / Leftfield': 'Indie Dance',
-  'Drum & Bass / Breaks': 'Drum & Bass', 'Progressive House': 'Progressive', 'Hard Dance': 'Hardstyle',
-  'Hardcore': 'Hardstyle', 'Acid House': 'House', 'Melodic House': 'Melodic Techno',
-  'Melodic House & Techno': 'Melodic Techno', 'Electronic': FALLBACK_GENRE, 'Pop': FALLBACK_GENRE,
-  'Pop Electronic / Crossover': FALLBACK_GENRE,
-};
-// Used only when the genre field is unusable (UNKNOWN, Electronic, Pop…): subgenre hints.
-const SUBGENRE_HINT = [
-  [/^tech house$/i, 'Tech House'], [/^(deep house|organic house)$/i, 'Deep House'], [/^afro house$/i, 'Afro House'],
-  [/melodic techno|melodic house/i, 'Melodic Techno'], [/hard techno|industrial techno/i, 'Hard Techno'],
-  [/techno|minimal/i, 'Techno'], [/big room/i, 'Big Room'], [/progressive trance|uplifting trance|tech trance|trance/i, 'Trance'],
-  [/psy/i, 'Psytrance'], [/progressive/i, 'Progressive'], [/drum|dnb|jungle|liquid|breakbeat/i, 'Drum & Bass'],
-  [/hardstyle|rawstyle|hardcore/i, 'Hardstyle'], [/dubstep|trap|bass|future bass|brazilian/i, 'Bass'],
-  [/electro/i, 'Electro'], [/indie dance|leftfield/i, 'Indie Dance'], [/house|garage|tropical|slap|future house|piano/i, 'House'],
-];
-
-export function canonicalGenre(genre, subgenre) {
-  const g = (genre || '').trim();
-  if (CANONICAL_GENRES.includes(g)) return g;
-  if (LEGACY[g]) return LEGACY[g];
-  for (const [re, out] of SUBGENRE_HINT) if (out && re.test(subgenre || '')) return out;
-  return FALLBACK_GENRE;   // unknown genre: DJ-level "not classified yet" (flagged in the report)
-}
-
-// ── Vibes (CONTRACT §3 whitelist; never both underground and mainstream) ─────
-const VIBE_WHITELIST = new Set(['melodic', 'dark', 'hard', 'underground', 'mainstream', 'vocal', 'atmospheric',
-  'experimental', 'classic', 'disco', 'emotional', 'psychedelic', 'latin', 'afro']);
-export function vibesFromTags(tags) {
-  const list = (Array.isArray(tags) ? tags : String(tags || '').split(','))
-    .map(t => String(t).trim().toLowerCase()).filter(t => VIBE_WHITELIST.has(t));
-  const uniq = [...new Set(list)];
-  if (uniq.includes('underground') && uniq.includes('mainstream')) {
-    uniq.splice(0, uniq.length, ...uniq.filter(t => t !== 'underground' && t !== 'mainstream'));
-  }
-  return uniq.slice(0, 3);
-}
+// ── Genre + vibes: the shared taxonomy in genres.js (contract §1/§3) ──────────
+// A DJ with no usable genre gets FALLBACK_GENRE ("Multi-genre" = not classified yet);
+// the frontend ignores those DJs when computing an event's genre.
+export const canonicalGenre = (genre, subgenre) => djStyle(genre, subgenre) || FALLBACK_GENRE;
+export const vibesFromTags = tags => normVibes(tags).slice(0, 3);
 
 // ── Photo (verified only; "" otherwise) ─────────────────────────────────────
 const isHttp = u => typeof u === 'string' && /^https?:\/\//.test(u);
@@ -125,6 +89,7 @@ async function main() {
       genre: canonicalGenre(meta.genre, meta.subgenre),
       img,
       top100: top100.has(k),
+      ...(meta.ranking ? { rank: meta.ranking } : {}),
       vibes: vibesFromTags(meta.tags),
     };
   };

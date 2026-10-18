@@ -732,7 +732,7 @@ let EVENTS=[];
 const TOP100_DJS=new Set(["david guetta","martin garrix","alok","dimitri vegas & like mike","armin van buuren","timmy trumpet","fisher","afrojack","charlotte de witte","anyma","vintage culture","peggy gou","don diablo","steve aoki","hardwell","calvin harris","black coffee","w&w","lost frequencies","keinemusik","tiësto","reinier zonneveld","kshmr","alan walker","carl cox","oliver heldens","jamie jones","r3hab","nicky romero","claptone","skrillex","vini vici","fred again..","swedish house mafia","joel corry","indira paganotto","eric prydz","amelie lens","paul van dyk","dj snake","dom dolla","marshmello","the martinez brothers","zedd","bassjackers","john summit","quintino","michael bibi","boris brejcha","korolova","alesso","james hype","maddix","hugel","solomun","mochakk","lilly palmer","nora en pure","atb","deborah de luca","above & beyond","sara landry","nervo","sub zero project","kölsch","lucas & steve","nico moreno","gordo","pawsa","the chainsmokers","liu","mike williams","artbat","kaaze","miss monique","burak yeter","mau p","le twins","i hate models","marnik","chris stussy","deadmau5","wukong","fedde le grand","ferry corsten","plastik funk","dubvision","b jones","giuseppe ottaviani","cuebrick","mariana bo","meduza","fantasm","vinai","chris lake","faustix","honey dijon","nils van zandt","topic","marlon hoffstadt"]);
 
 // Flags: soporta códigos 2 letras (eventos manuales) y nombres completos (Bandsintown)
-const FLAGS={
+const FLAGS={'Anguilla':'🇦🇮','Saint Martin':'🇲🇫','Guyana':'🇬🇾','Saint Barthélemy':'🇧🇱',
   // ISO codes
   'US':'🇺🇸','GB':'🇬🇧','DE':'🇩🇪','ES':'🇪🇸','NL':'🇳🇱','HU':'🇭🇺','JP':'🇯🇵',
   'FR':'🇫🇷','CA':'🇨🇦','BE':'🇧🇪','IT':'🇮🇹','MX':'🇲🇽','PL':'🇵🇱','PT':'🇵🇹',
@@ -833,6 +833,7 @@ try{ localStorage.removeItem('sm_djphoto'); }catch(e){} // retired TheAudioDB ph
 
 // Escape scraped text before it goes into innerHTML (prevents stored XSS).
 const ESC_MAP={'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'};
+function nEvents(n){ return n+' event'+(n===1?'':'s'); }
 function esc(s){ return String(s==null?'':s).replace(/[&<>"']/g, c=>ESC_MAP[c]); }
 
 // Canonical DJ display spelling (built from live data in loadEvents).
@@ -932,7 +933,13 @@ const CITY_ALIAS_RAW={
   'Dubai International Financial Centre':'Dubai',
   'Aeropuerto Internacional De La Ciudad De México':'Mexico City',
   'Masākin Maḩaţţat Kahrabā’ Sharq Al Qāhirah':'Cairo',
-  'BELVOIR CASTLE Leicestershire':'Leicestershire'
+  'BELVOIR CASTLE Leicestershire':'Leicestershire',
+  // boroughs / local spellings folded into the English city
+  'Brooklyn':'New York','Manhattan':'New York','Queens':'New York','The Bronx':'New York','Bronx':'New York',
+  'Staten Island':'New York','New York City':'New York','NYC':'New York',
+  'Tokio':'Tokyo',
+  'Ciudad De Mexico':'Mexico City','Ciudad de Mexico':'Mexico City','Ciudad de México':'Mexico City','CDMX':'Mexico City',
+  'St Polten':'St. Polten','St. Pölten':'St. Polten','Sankt Pölten':'St. Polten','Sankt Polten':'St. Polten',
 };
 const CITY_ALIAS={}; for(const k in CITY_ALIAS_RAW){ CITY_ALIAS[k.replace(/\s+/g,' ').trim().toLowerCase()]=CITY_ALIAS_RAW[k]; }
 function titleCaseCity(s){ return s.toLowerCase().replace(/(^|[\s\-\/])([a-z])/g,(m,p,c)=>p+c.toUpperCase()); }
@@ -1099,13 +1106,14 @@ function renderSpotlight(){
     const k=djKey(dj), c=counts.get(k)||{name:dj,count:0,ev};
     c.count++; counts.set(k,c);
   }
-  const best=[...counts.values()].sort((a,b)=>b.count-a.count)[0];
+  // the spotlight is a big photo card: prefer the busiest top-100 DJ that HAS a verified photo
+  const best=[...counts.values()].sort((a,b)=>(!!djPhoto(b.name)-!!djPhoto(a.name))||(b.count-a.count))[0];
   if(!best){ card.innerHTML=''; return; }
   const img=djPhoto(best.name);
   const genre=artistGenre(best.name)||best.ev.genre||'';
   card.innerHTML=`
     <div class="dj-spot-init"${img?' style="display:none"':''}>${esc(djInitials(best.name))}</div>
-    ${img?`<img src="${escAttr(img)}" alt=""/>`:''}
+    ${img?`<img src="${escAttr(img)}" alt="" onerror="this.previousElementSibling.style.display='';this.remove()"/>`:''}
     <div class="dj-spotlight-grad"></div>
     <div class="dj-spotlight-body">
       <div class="dj-badge">DJ SPOTLIGHT</div>
@@ -1749,7 +1757,7 @@ function renderCountries(){
     return`<button class="city-btn" onclick='selectCountry(${esc(JSON.stringify(country))})'>
       <span style="font-size:20px">${FLAGS[country]||'🌍'}</span>
       <div style="flex:1;text-align:left"><div class="city-name">${esc(country)}</div><div class="city-country">${cities} cit${cities!==1?'ies':'y'}</div></div>
-      <span class="city-count">${evs.length} events</span>
+      <span class="city-count">${nEvents(evs.length)}</span>
       <span class="city-arrow">›</span>
     </button>`;
   }).join('');
@@ -1772,7 +1780,7 @@ function renderCities(){
   const row=(city,n,label)=>`<button class="city-btn" onclick='selectCity(${esc(JSON.stringify(city))})'>
       <span style="font-size:20px">${FLAGS[selCountry]||'🌍'}</span>
       <div style="flex:1;text-align:left"><div class="city-name">${esc(label)}</div><div class="city-country">${esc(selCountry)}</div></div>
-      <span class="city-count">${n} events</span>
+      <span class="city-count">${nEvents(n)}</span>
       <span class="city-arrow">›</span>
     </button>`;
   let html=names.map(c=>row(c,counts.get(c),c)).join('');
@@ -1845,7 +1853,7 @@ function renderVenues(){
         <div class="city-name">${esc(v.name)}</div>
         <div class="city-country">${FLAGS[v.country]||''} ${esc(v.city)}, ${esc(v.country)}</div>
       </div>
-      <span class="city-count">${v.count} events</span>
+      <span class="city-count">${nEvents(v.count)}</span>
       <span class="city-arrow">›</span>
     </button>`).join('')+hint;
 }
@@ -1871,9 +1879,9 @@ function renderEventList(el,evs){
 function renderEventsView(){
   const evs=groupEvents(planEvents()).sort(byDate);
   const up=evs.filter(e=>!isPastEv(e)).length;   // counts never include past events
-  document.getElementById('events-label').textContent = searchMode==='dj' ? `${up} events with ${selDJ}`
-    : searchMode==='venue' ? `${up} events · ${selVenue}`
-    : `${up} events in ${selCity||'other locations'}`;
+  document.getElementById('events-label').textContent = searchMode==='dj' ? `${nEvents(up)} with ${selDJ}`
+    : searchMode==='venue' ? `${nEvents(up)} · ${selVenue}`
+    : `${nEvents(up)} in ${selCity||'other locations'}`;
   renderEventList(document.getElementById('events-list'), evs);
   currentStep=1;
   document.getElementById('step-city').style.display='none';

@@ -1654,5 +1654,14 @@
     "website": "",
     "ra_url": "https://ra.co/clubs/98009",
     "sk_venue_url": ""
+  },
+  {
+    "ranking": 185,
+    "name": "Prime Club",
+    "city": "Amsterdam",
+    "country": "Netherlands",
+    "website": "",
+    "ra_url": "",
+    "sk_venue_url": ""
   }
 ]

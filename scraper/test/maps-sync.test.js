@@ -22,12 +22,19 @@ test('CITY_ALIAS_RAW is identical in index.html and scraper/normalize.js', () =>
   assert.deepEqual(frontend, CITY_ALIAS_RAW);
 });
 
-// Sanity: the frontend DJ_GENRE map is non-empty and well-formed (drives "styles").
-test('frontend DJ_GENRE map is present and non-trivial', () => {
-  const djGenre = extractObject('DJ_GENRE');
-  assert.ok(Object.keys(djGenre).length > 50, 'DJ_GENRE should cover many DJs');
-  for (const [dj, g] of Object.entries(djGenre)) {
-    assert.equal(dj, dj.toLowerCase(), `DJ_GENRE key "${dj}" must be lowercased`);
-    assert.equal(typeof g, 'string');
+// /data/artists.json is the single source of DJ genre/photo for the frontend:
+// keys must be djKey(name), genres canonical, vibes whitelisted, photos https or "".
+test('data/artists.json is well-formed and canonical', async () => {
+  const { djKey, STYLES, FALLBACK_GENRE, VIBES } = await import('../genres.js');
+  const art = JSON.parse(readFileSync(resolve(__dirname, '../../data/artists.json'), 'utf8'));
+  const entries = Object.entries(art.artists || {});
+  assert.ok(entries.length > 500, 'artists.json should cover the DJ list');
+  const genres = new Set([...STYLES, FALLBACK_GENRE]);
+  const vibes = new Set(VIBES);
+  for (const [k, a] of entries) {
+    assert.equal(k, djKey(a.name), `key "${k}" must equal djKey(name)`);
+    assert.ok(genres.has(a.genre), `${a.name}: non-canonical genre "${a.genre}"`);
+    assert.ok(a.img === '' || a.img.startsWith('https://'), `${a.name}: bad img`);
+    for (const v of a.vibes || []) assert.ok(vibes.has(v), `${a.name}: vibe "${v}" not whitelisted`);
   }
 });

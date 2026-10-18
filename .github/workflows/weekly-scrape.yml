@@ -61,6 +61,20 @@ jobs:
           BIT_APP_ID: ${{ secrets.BIT_APP_ID }}
         run: node scrape-extended.js
 
+      - name: Discover festivals (RA brand editions + candidates)
+        id: fest_discover
+        continue-on-error: true
+        timeout-minutes: 15
+        # Adds new editions of touring brands (data/festival_brands.json) and
+        # RA-verified festivals to data/festivals_all.json BEFORE the festival
+        # scrapes below, so they are scraped this same run. Everything uncertain
+        # goes to data/festivals_candidates.json for review. Read-only on the DB
+        # (anon key); writes only scraper/data/*.json, committed by the step below.
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_ANON_KEY: ${{ secrets.SUPABASE_ANON_KEY }}
+        run: node discover-festivals.js
+
       - name: Scrape Festivals (BIT + Songkick)
         id: fest_bit
         continue-on-error: true
@@ -223,6 +237,7 @@ jobs:
             {
             "Enrich Songkick URLs": "${{ steps.enrich_sk.outcome }}",
             "Scrape DJs": "${{ steps.djs.outcome }}",
+            "Discover festivals": "${{ steps.fest_discover.outcome }}",
             "Festivals (BIT + Songkick)": "${{ steps.fest_bit.outcome }}",
             "Festivals (websites)": "${{ steps.fest_web.outcome }}",
             "Festivals (RA)": "${{ steps.fest_ra.outcome }}",

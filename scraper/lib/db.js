@@ -59,3 +59,42 @@ export function uniqueById(rows) {
   }
   return out;
 }
+
+/**
+ * saved_events ids whose event is gone (purge's orphan cleanup). `validEventIds` must be the
+ * COMPLETE set of event ids. An empty set is never evidence: it means the events read returned
+ * nothing, so no bookmark is treated as orphaned.
+ */
+export function orphanSavedIds(savedRows, validEventIds) {
+  if (!validEventIds || validEventIds.size === 0) return [];
+  return (savedRows || []).filter(s => !validEventIds.has(s.event_id)).map(s => s.id);
+}
+
+/**
+ * Delete bookmarks (saved_events) whose event no longer exists. Any read error aborts the whole
+ * step: a partial id set would make bookmarks of existing events look orphaned, and they are the
+ * users' data. saved_events is read first, so a bookmark added during this run always has its
+ * event in the later events read.
+ */
+export async function cleanOrphanSaved(sb, readOpts = {}) {
+  const saved = await fetchAllRows(
+    (from, to) => sb.from('saved_events').select('id, event_id').order('id').range(from, to), readOpts);
+  if (saved.error) return { status: 'aborted', reason: `saved_events read failed at offset ${saved.failedAt}: ${saved.error.message || saved.error}`, found: 0, deleted: 0 };
+  const events = await fetchAllRows(
+    (from, to) => sb.from('events').select('id').order('id').range(from, to), readOpts);
+  if (events.error) return { status: 'aborted', reason: `events read failed at offset ${events.failedAt}: ${events.error.message || events.error}`, found: 0, deleted: 0 };
+  if (!events.data.length) return { status: 'skipped', reason: 'events read returned 0 rows', found: 0, deleted: 0 };
+
+  const orphanIds = orphanSavedIds(saved.data, new Set(events.data.map(e => e.id)));
+  let deleted = 0, failed = 0;
+  for (let i = 0; i < orphanIds.length; i += 100) {
+    const { error, count } = await withRetry(
+      () => sb.from('saved_events').delete({ count: 'exact' }).in('id', orphanIds.slice(i, i + 100)),
+      'Orphan delete batch'
+    );
+    if (error) { failed++; console.error('  ❌  Orphan delete error:', error.message || error); }
+    else deleted += count || 0;
+  }
+  if (failed) return { status: 'partial', reason: `${failed} delete batch(es) failed`, found: orphanIds.length, deleted };
+  return { status: 'ok', found: orphanIds.length, deleted };
+}

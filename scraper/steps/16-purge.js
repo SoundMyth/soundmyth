@@ -9,7 +9,7 @@
  */
 
 import { withRetry } from '../lib/http.js';
-import { makeClient, loadEnv } from '../lib/db.js';
+import { makeClient, loadEnv, cleanOrphanSaved } from '../lib/db.js';
 import { todayISO, addDaysISO } from '../lib/normalize.js';
 import { writeRunStat } from '../lib/run-stats.js';
 
@@ -84,65 +84,13 @@ async function main() {
     if (!batchCount || batchCount < 1000) break;
   }
 
-  // Also purge orphan saved_events (user bookmarks pointing to deleted events)
-  console.log(`\n🧹  Checking orphan saved_events…`);
+  // Also purge orphan saved_events (user bookmarks pointing to deleted events).
+  console.log('\n🧹  Checking orphan saved_events…');
+  const orphans = await cleanOrphanSaved(sb);
+  if (orphans.status === 'ok') console.log(`  ✓ Deleted ${orphans.deleted} of ${orphans.found} orphaned saved_events rows`);
+  else console.log(`  ⚠  Orphan cleanup ${orphans.status}: ${orphans.reason}`);
 
-  try {
-    // Step 1: get all valid event ids (paginated if large, but events table is small)
-    let validEvents = [];
-    let from = 0;
-    while (true) {
-      const { data, error } = await withRetry(
-        () => sb.from('events').select('id').order('id').range(from, from + 999),
-        'Fetch events page'
-      );
-      if (error) { console.error('  ❌  Error fetching events:', error.message || error); break; }
-      validEvents = validEvents.concat(data || []);
-      if (!data || data.length < 1000) break;
-      from += 1000;
-    }
-    const validIds = new Set((validEvents || []).map(e => e.id));
-
-    // Step 2: get all saved_events
-    let allSavedEvents = [];
-    from = 0;
-    while (true) {
-      const { data, error } = await withRetry(
-        () => sb.from('saved_events').select('id, event_id').order('id').range(from, from + 999),
-        'Fetch saved_events page'
-      );
-      if (error) { console.error('  ❌  Error fetching saved_events:', error.message || error); break; }
-      allSavedEvents = allSavedEvents.concat(data || []);
-      if (!data || data.length < 1000) break;
-      from += 1000;
-    }
-
-    // Step 3: find orphans
-    const orphanIds = (allSavedEvents || []).filter(s => !validIds.has(s.event_id)).map(s => s.id);
-
-    // Step 4: delete orphans in batches
-    if (orphanIds.length > 0) {
-      let orphanDeleted = 0;
-      for (let i = 0; i < orphanIds.length; i += 100) {
-        const { error: delErr, count: batchCount } = await withRetry(
-          () => sb.from('saved_events').delete({ count: 'exact' }).in('id', orphanIds.slice(i, i + 100)),
-          'Orphan delete batch'
-        );
-        if (delErr) {
-          console.error('  ❌  Orphan delete error:', delErr.message || delErr);
-        } else {
-          orphanDeleted += batchCount || 0;
-        }
-      }
-      console.log(`  ✓ Deleted ${orphanDeleted} orphaned saved_events rows`);
-    } else {
-      console.log(`  ✓ No orphaned saved_events found`);
-    }
-  } catch (err) {
-    console.error('  ❌  Orphan cleanup error:', err.message);
-  }
-
-  writeRunStat('purge', { cutoff: cutoffStr, retentionDays: PURGE_DAYS_AGO, deleted });
+  writeRunStat('purge', { cutoff: cutoffStr, retentionDays: PURGE_DAYS_AGO, deleted, orphanSavedEvents: orphans });
 
   console.log('\n╔══════════════════════════════════════════╗');
   console.log(`║  Purge complete  →  ${String(deleted).padEnd(18)} deleted ║`);

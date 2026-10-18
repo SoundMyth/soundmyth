@@ -7,7 +7,27 @@
       "ra"
     ],
     "onRA": true,
-    "sample": "MPH at Cermak Hall · Chicago"
+    "sample": "Groove Cruise Miami 2027 - Ambassador Code: GrooveCruiseChris · Miami"
+  },
+  {
+    "name": "DESIREE",
+    "key": "desiree",
+    "events": 2,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "Time Warp Mexico 2026 · Mexico City"
+  },
+  {
+    "name": "southstar",
+    "key": "southstar",
+    "events": 2,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "Time Warp Los Angeles 2026 · Los Angeles"
   },
   {
     "name": "2 Bad Mice",
@@ -28,6 +48,26 @@
     ],
     "onRA": true,
     "sample": "FCKNYE Festival 2026 · Brussels"
+  },
+  {
+    "name": "Abstract Division",
+    "key": "abstractdivision",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "Awakenings EXO - Colombia · Bogota"
+  },
+  {
+    "name": "Adriana Lopez",
+    "key": "adrianalopez",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "Awakenings EXO - Colombia · Bogota"
   },
   {
     "name": "Aiobahn",
@@ -58,6 +98,26 @@
     ],
     "onRA": true,
     "sample": "LOCUS x Modern Funktion Halloween · London"
+  },
+  {
+    "name": "AMORAL",
+    "key": "amoral",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "Awakenings ADE - Friday Sessions · Amsterdam"
+  },
+  {
+    "name": "Andy Martin",
+    "key": "andymartin",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "Time Warp Mexico 2026 · Mexico City"
   },
   {
     "name": "ascendant vierge",
@@ -100,16 +160,6 @@
     "sample": "FCKNYE Festival 2026 · Brussels"
   },
   {
-    "name": "Bou (UK)",
-    "key": "bouuk",
-    "events": 1,
-    "sources": [
-      "ra"
-    ],
-    "onRA": true,
-    "sample": "FCKNYE Festival 2026 · Brussels"
-  },
-  {
     "name": "Brawther",
     "key": "brawther",
     "events": 1,
@@ -127,7 +177,7 @@
       "ra"
     ],
     "onRA": true,
-    "sample": "Time Warp NYC 2026 · Nueva York"
+    "sample": "Time Warp NYC 2026 · New York"
   },
   {
     "name": "Bushbaby",
@@ -170,6 +220,16 @@
     "sample": "Bassrush presents: Crankdat, AHEE, Casey Club [NYW] · Washington Dc"
   },
   {
+    "name": "CHANCEKNOT",
+    "key": "chanceknot",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "Grimix & Friends - ADE · Amsterdam"
+  },
+  {
     "name": "Chicane",
     "key": "chicane",
     "events": 1,
@@ -200,6 +260,16 @@
     "sample": "Chris Watson @ Ministry of Sound · London"
   },
   {
+    "name": "Colored Craig",
+    "key": "coloredcraig",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "Time Warp Los Angeles 2026 · Los Angeles"
+  },
+  {
     "name": "Colyn",
     "key": "colyn",
     "events": 1,
@@ -207,7 +277,27 @@
       "ra"
     ],
     "onRA": true,
-    "sample": "AKUMANDRA: Colyn b2b Sainte Vie, Mateo, Eli · New York City"
+    "sample": "AKUMANDRA: Colyn b2b Sainte Vie, Mateo, Eli · New York"
+  },
+  {
+    "name": "Confidential Recipe",
+    "key": "confidentialrecipe",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "Awakenings EXO - Colombia · Bogota"
+  },
+  {
+    "name": "D.Dan",
+    "key": "ddan",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "Time Warp Los Angeles 2026 · Los Angeles"
   },
   {
     "name": "Daft Funk Live",
@@ -250,6 +340,26 @@
     "sample": "FUSE 18th Birthday w/ Enzo Siragusa b2b Rossi., Luciano, Marlie b2b Na"
   },
   {
+    "name": "Diossa",
+    "key": "diossa",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "Awakenings EXO - Colombia · Bogota"
+  },
+  {
+    "name": "DJ Stingray 313",
+    "key": "djstingray313",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "Time Warp Mexico 2026 · Mexico City"
+  },
+  {
     "name": "DLOU",
     "key": "dlou",
     "events": 1,
@@ -290,6 +400,16 @@
     "sample": "FCKNYE Festival 2026 · Brussels"
   },
   {
+    "name": "Ede",
+    "key": "ede",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "Time Warp Mexico 2026 · Mexico City"
+  },
+  {
     "name": "Elder Island",
     "key": "elderisland",
     "events": 1,
@@ -300,16 +420,6 @@
     "sample": "Elder Island @ KOKO · London"
   },
   {
-    "name": "Eli (US)",
-    "key": "elius",
-    "events": 1,
-    "sources": [
-      "ra"
-    ],
-    "onRA": true,
-    "sample": "AKUMANDRA: Colyn b2b Sainte Vie, Mateo, Eli · New York City"
-  },
-  {
     "name": "Eli Escobar",
     "key": "eliescobar",
     "events": 1,
@@ -317,7 +427,7 @@
       "ra"
     ],
     "onRA": true,
-    "sample": "Eli Escobar (Open to Close) · New York City"
+    "sample": "Eli Escobar (Open to Close) · New York"
   },
   {
     "name": "Evie",
@@ -340,14 +450,34 @@
     "sample": "MIX TOKYO DJ PARTY 'NEO' · Tokyo"
   },
   {
-    "name": "fumi (DE)",
-    "key": "fumide",
+    "name": "Frederic.",
+    "key": "frederic",
     "events": 1,
     "sources": [
       "ra"
     ],
     "onRA": true,
-    "sample": "LOOP NYD FESTIVAL 2027 · Madrid"
+    "sample": "Awakenings EXO - Colombia · Bogota"
+  },
+  {
+    "name": "fun2bjane",
+    "key": "fun2bjane",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "Time Warp Los Angeles 2026 · Los Angeles"
+  },
+  {
+    "name": "Funk Assault",
+    "key": "funkassault",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "Awakenings ADE - Friday Sessions · Amsterdam"
   },
   {
     "name": "Gene On Earth",
@@ -370,6 +500,16 @@
     "sample": "Max Dean b2b Luke Dean · Austin"
   },
   {
+    "name": "Gerd Janson",
+    "key": "gerdjanson",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "Time Warp Los Angeles 2026 · Los Angeles"
+  },
+  {
     "name": "GHEIST",
     "key": "gheist",
     "events": 1,
@@ -390,6 +530,26 @@
     "sample": "Ministry of Rave Prague · Prague"
   },
   {
+    "name": "HAAi",
+    "key": "haai",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "Time Warp Los Angeles 2026 · Los Angeles"
+  },
+  {
+    "name": "HUJUS",
+    "key": "hujus",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "Awakenings ADE - Opening Night · Amsterdam"
+  },
+  {
     "name": "Ignez",
     "key": "ignez",
     "events": 1,
@@ -398,6 +558,16 @@
     ],
     "onRA": true,
     "sample": "Mad Katz mit Ignez & MARRØN · Zurich"
+  },
+  {
+    "name": "INVT",
+    "key": "invt",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "Time Warp Los Angeles 2026 · Los Angeles"
   },
   {
     "name": "Isla Den",
@@ -420,6 +590,16 @@
     "sample": "LOCUS x Modern Funktion Halloween · London"
   },
   {
+    "name": "JakoJako",
+    "key": "jakojako",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "Awakenings ADE - Friday Sessions · Amsterdam"
+  },
+  {
     "name": "Jhobei",
     "key": "jhobei",
     "events": 1,
@@ -430,14 +610,24 @@
     "sample": "FUSE 18th Birthday w/ Enzo Siragusa b2b Rossi., Luciano, Marlie b2b Na"
   },
   {
-    "name": "Joshwa (IT)",
-    "key": "joshwait",
+    "name": "John Bryars",
+    "key": "johnbryars",
     "events": 1,
     "sources": [
       "ra"
     ],
     "onRA": true,
-    "sample": "Groove Cruise Miami 2027 - Ambassador Code: GrooveCruiseChris · Miami"
+    "sample": "Time Warp Los Angeles 2026 · Los Angeles"
+  },
+  {
+    "name": "Juliana Huxtable",
+    "key": "julianahuxtable",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "Time Warp Los Angeles 2026 · Los Angeles"
   },
   {
     "name": "Kaitlyn Aurelia Smith",
@@ -458,6 +648,16 @@
     ],
     "onRA": true,
     "sample": "Kamelot @ Razzmatazz · Barcelona"
+  },
+  {
+    "name": "Kaufmann",
+    "key": "kaufmann",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "Awakenings ADE - Drumcode · Amsterdam"
   },
   {
     "name": "Kelsey Lu",
@@ -510,6 +710,16 @@
     "sample": "FCKNYE Festival 2026 · Brussels"
   },
   {
+    "name": "La Bad Curly",
+    "key": "labadcurly",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "Time Warp Mexico 2026 · Mexico City"
+  },
+  {
     "name": "Lagos",
     "key": "lagos",
     "events": 1,
@@ -530,16 +740,6 @@
     "sample": "FCKNYE Festival 2026 · Brussels"
   },
   {
-    "name": "Levi (AU)",
-    "key": "leviau",
-    "events": 1,
-    "sources": [
-      "ra"
-    ],
-    "onRA": true,
-    "sample": "Marquee Singapore presents LEVI · All"
-  },
-  {
     "name": "Lewis Doherty",
     "key": "lewisdoherty",
     "events": 1,
@@ -558,6 +758,16 @@
     ],
     "onRA": true,
     "sample": "FCKNYE Festival 2026 · Brussels"
+  },
+  {
+    "name": "Lobster",
+    "key": "lobster",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "Awakenings ADE - Friday Sessions · Amsterdam"
   },
   {
     "name": "Luccio",
@@ -610,14 +820,24 @@
     "sample": "WEST COAST RIOT · Los Angeles"
   },
   {
-    "name": "Mateo (US)",
-    "key": "mateous",
+    "name": "Masha Mar",
+    "key": "mashamar",
     "events": 1,
     "sources": [
       "ra"
     ],
     "onRA": true,
-    "sample": "AKUMANDRA: Colyn b2b Sainte Vie, Mateo, Eli · New York City"
+    "sample": "Time Warp Los Angeles 2026 · Los Angeles"
+  },
+  {
+    "name": "Mateo",
+    "key": "mateo",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "AKUMANDRA: Colyn b2b Sainte Vie, Mateo, Eli · New York"
   },
   {
     "name": "Miss Bashful",
@@ -627,7 +847,7 @@
       "ra"
     ],
     "onRA": true,
-    "sample": "Miss Bashful (Live) Full Venue Takeover · New York City"
+    "sample": "Miss Bashful (Live) Full Venue Takeover · New York"
   },
   {
     "name": "Morgan",
@@ -677,7 +897,7 @@
       "ra"
     ],
     "onRA": true,
-    "sample": "Marco Carola · All"
+    "sample": "Marco Carola · Phuket"
   },
   {
     "name": "NoName",
@@ -730,6 +950,26 @@
     "sample": "LOCUS x Modern Funktion Halloween · London"
   },
   {
+    "name": "ONYVAA",
+    "key": "onyvaa",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "Time Warp Los Angeles 2026 · Los Angeles"
+  },
+  {
+    "name": "Ønyx",
+    "key": "nyx",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "Time Warp Los Angeles 2026 · Los Angeles"
+  },
+  {
     "name": "Paco Osuna",
     "key": "pacoosuna",
     "events": 1,
@@ -748,6 +988,16 @@
     ],
     "onRA": true,
     "sample": "FCKNYE Festival 2026 · Brussels"
+  },
+  {
+    "name": "Planetary Assault Systems",
+    "key": "planetaryassaultsystems",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "Awakenings EXO - Colombia · Bogota"
   },
   {
     "name": "Quentin Schneider",
@@ -807,7 +1057,17 @@
       "ra"
     ],
     "onRA": true,
-    "sample": "AKUMANDRA: Colyn b2b Sainte Vie, Mateo, Eli · New York City"
+    "sample": "AKUMANDRA: Colyn b2b Sainte Vie, Mateo, Eli · New York"
+  },
+  {
+    "name": "Samm",
+    "key": "samm",
+    "events": 1,
+    "sources": [
+      "songkick"
+    ],
+    "onRA": true,
+    "sample": "Samm (BE) @ Outernet Live · London"
   },
   {
     "name": "Samuel Moriero (2)",
@@ -860,6 +1120,16 @@
     "sample": "FCKNYE Festival 2026 · Brussels"
   },
   {
+    "name": "TOCCORORO",
+    "key": "toccororo",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "Time Warp Los Angeles 2026 · Los Angeles"
+  },
+  {
     "name": "Todiefor",
     "key": "todiefor",
     "events": 1,
@@ -888,6 +1158,36 @@
     ],
     "onRA": true,
     "sample": "FCKNYE Festival 2026 · Brussels"
+  },
+  {
+    "name": "ValaV",
+    "key": "valav",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "Awakenings EXO - Colombia · Bogota"
+  },
+  {
+    "name": "Varuna Agosti",
+    "key": "varunaagosti",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "Awakenings ADE - Friday Sessions · Amsterdam"
+  },
+  {
+    "name": "Victor Ruiz",
+    "key": "victorruiz",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "Awakenings ADE - Drumcode · Amsterdam"
   },
   {
     "name": "Violin Girl",
@@ -960,6 +1260,26 @@
     "sample": "FCKNYE Festival 2026 · Brussels"
   },
   {
+    "name": "Zombies In Miami",
+    "key": "zombiesinmiami",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "Time Warp Mexico 2026 · Mexico City"
+  },
+  {
+    "name": "zwilling.",
+    "key": "zwilling",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "LOOP NYD FESTIVAL 2027 · Madrid"
+  },
+  {
     "name": "Beyond Wonderland",
     "key": "beyondwonderland",
     "events": 1,
@@ -970,6 +1290,16 @@
     "sample": "Beyond Wonderland · San Bernardino"
   },
   {
+    "name": "Bou",
+    "key": "bou",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": false,
+    "sample": "FCKNYE Festival 2026 · Brussels"
+  },
+  {
     "name": "EDC México",
     "key": "edcmexico",
     "events": 1,
@@ -978,6 +1308,36 @@
     ],
     "onRA": false,
     "sample": "EDC Mexico · Mexico"
+  },
+  {
+    "name": "Eli",
+    "key": "eli",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": false,
+    "sample": "AKUMANDRA: Colyn b2b Sainte Vie, Mateo, Eli · New York"
+  },
+  {
+    "name": "Levi",
+    "key": "levi",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": false,
+    "sample": "Marquee Singapore presents LEVI · Singapore"
+  },
+  {
+    "name": "Maz",
+    "key": "maz",
+    "events": 1,
+    "sources": [
+      "songkick"
+    ],
+    "onRA": false,
+    "sample": "Maz (BR) @ Sambódromo da Marquês de Sapucaí · Rio De Janeiro"
   },
   {
     "name": "Neelix",

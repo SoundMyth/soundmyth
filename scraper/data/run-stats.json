@@ -1,0 +1,102 @@
+{
+  "festivals": {
+    "added": [
+      "Time Warp Mexico",
+      "Time Warp Los Angeles",
+      "Awakenings ADE",
+      "Awakenings EXO",
+      "Beyond Wonderland Southern California"
+    ],
+    "candidates": 21
+  },
+  "dedupe": {
+    "generated": "2026-10-18T23:05:32.854Z",
+    "conflicts": 142,
+    "djsRemoved": 1,
+    "eventsDeleted": 140,
+    "fragmentsMerged": 62,
+    "keepersMerged": 164,
+    "rowsDeleted": 930
+  },
+  "validate": {
+    "generated": "2026-10-18T23:05:40.956Z",
+    "future": 2633,
+    "cityCanonicalized": 1,
+    "cityFromVenue": 0,
+    "countryFilled": 0,
+    "hubCountryFixed": 0,
+    "djListsCleaned": 0,
+    "droppedNoGeo": 0,
+    "droppedDate": 2,
+    "droppedLegacyWebsite": 2,
+    "dropped": 4,
+    "geoFlags": {
+      "hubMismatch": [],
+      "hubMismatchCount": 0,
+      "multiCountryCities": [
+        {
+          "city": "Birmingham",
+          "countries": [
+            "United Kingdom (20)",
+            "United States (1)"
+          ]
+        },
+        {
+          "city": "Oxford",
+          "countries": [
+            "United Kingdom (4)",
+            "United States (1)"
+          ]
+        },
+        {
+          "city": "San Jose",
+          "countries": [
+            "United States (1)",
+            "Costa Rica (2)"
+          ]
+        },
+        {
+          "city": "Northampton",
+          "countries": [
+            "United Kingdom (1)",
+            "United States (1)"
+          ]
+        },
+        {
+          "city": "Saint Martin",
+          "countries": [
+            "Anguilla (1)",
+            "Saint Martin (1)"
+          ]
+        },
+        {
+          "city": "Hamilton",
+          "countries": [
+            "Australia (2)",
+            "Canada (3)"
+          ]
+        },
+        {
+          "city": "Lincoln",
+          "countries": [
+            "United States (2)",
+            "United Kingdom (1)"
+          ]
+        }
+      ],
+      "multiCountryCount": 7
+    },
+    "droppedSamples": []
+  },
+  "purge": {
+    "generated": "2026-10-18T23:06:41.089Z",
+    "cutoff": "2026-10-10",
+    "retentionDays": 8,
+    "deleted": 329,
+    "orphanSavedEvents": {
+      "status": "ok",
+      "found": 18,
+      "deleted": 18
+    }
+  }
+}

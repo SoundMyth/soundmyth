@@ -1218,6 +1218,12 @@
   "source": "ra",
   "checked": "2026-10-18"
  },
+ "chanceknot": {
+  "name": "CHANCEKNOT",
+  "img": "https://static.ra.co/images/profiles/square/chanceknot.jpg?dateUpdated=1790033658510",
+  "source": "ra",
+  "checked": "2026-10-18"
+ },
  "chapterandverse": {
   "name": "Chapter & Verse",
   "img": "https://cdn-images.dzcdn.net/images/artist/f7113472f91a97764fb6132b1e80485d/1000x1000-000000-80-0-0.jpg",
@@ -4177,6 +4183,12 @@
   "source": "ra",
   "checked": "2026-10-18"
  },
+ "mateo": {
+  "name": "Mateo",
+  "img": "https://static.ra.co/images/profiles/mateo.jpg?dateUpdated=1281301544000",
+  "source": "ra",
+  "checked": "2026-10-18"
+ },
  "mateous": {
   "name": "Mateo (US)",
   "img": null,
@@ -4599,6 +4611,12 @@
   "source": "ra",
   "checked": "2026-10-18",
   "matched": "Nathassia"
+ },
+ "neelix": {
+  "name": "Neelix",
+  "img": "https://images.sk-static.com/images/media/profile_images/artists/162423/huge_avatar",
+  "source": "songkick-event",
+  "checked": "2026-10-18"
  },
  "negitiv": {
   "name": "NEGITIV",
@@ -5709,6 +5727,12 @@
  "samfeldt": {
   "name": "Sam Feldt",
   "img": "https://static.ra.co/images/profiles/samfeldt.jpg?dateUpdated=1456249362333",
+  "source": "ra",
+  "checked": "2026-10-18"
+ },
+ "samm": {
+  "name": "Samm",
+  "img": "https://static.ra.co/images/profiles/samm.jpg?dateUpdated=1333251159000",
   "source": "ra",
   "checked": "2026-10-18"
  },

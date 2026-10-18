@@ -5,7 +5,7 @@
  *  3) events with no image
  * Usage: node analyze-quality.mjs
  */
-import { createClient } from '@supabase/supabase-js';
+import { makeClient } from '../lib/db.js';
 import { readFileSync } from 'fs';
 import { fileURLToPath } from 'url';
 import { dirname, resolve } from 'path';
@@ -14,7 +14,7 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 const html = readFileSync(resolve(__dirname, '../../index.html'), 'utf8');
 const SB_URL = html.match(/SB_URL='([^']+)'/)[1];
 const SB_KEY = html.match(/SB_KEY='([^']+)'/)[1];
-const sb = createClient(SB_URL, SB_KEY, { auth:{persistSession:false} });
+const sb = makeClient(SB_URL, SB_KEY);
 const today = new Date().toISOString().split('T')[0];
 const norm = s => (s||'').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'').trim();
 const normName = s => norm(s).replace(/[^a-z0-9]+/g,' ').trim();

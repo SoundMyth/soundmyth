@@ -18,15 +18,15 @@
  * Usage: node report.js
  */
 
-import { config } from 'dotenv';
 import { fileURLToPath } from 'url';
 import { dirname, resolve } from 'path';
 import { readFileSync, existsSync } from 'fs';
 import { todayISO, addDaysISO } from '../lib/normalize.js';
+import { loadEnv } from '../lib/db.js';
 import { readRunStats } from '../lib/run-stats.js';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
-config({ path: resolve(__dirname, '../.env') });
+loadEnv();
 
 const SB_URL  = process.env.SUPABASE_URL;
 const SB_KEY  = process.env.SUPABASE_SERVICE_KEY;

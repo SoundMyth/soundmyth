@@ -21,12 +21,12 @@
  *
  * Usage: node discover-djs.js
  */
-import { createClient }            from '@supabase/supabase-js';
 import { readFileSync, writeFileSync } from 'fs';
 import { fileURLToPath }           from 'url';
 import { dirname, resolve }        from 'path';
 import { pickCanon }               from '../lib/normalize.js';
-import { withRetry }               from '../lib/http.js';
+import { makeClient, fetchAllRows } from '../lib/db.js';
+import { raPost } from '../lib/ra.js';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const readJ = p => { try { return JSON.parse(readFileSync(resolve(__dirname, p), 'utf8')); } catch { return []; } };
@@ -43,7 +43,7 @@ if (!SB_URL || !SB_KEY) {
   SB_KEY = SB_KEY || (html.match(/SB_KEY\s*=\s*['"]([^'"]+)['"]/) || [])[1];
 }
 if (!SB_URL || !SB_KEY) { console.error('❌  Could not resolve SUPABASE_URL / SUPABASE_ANON_KEY (set env vars or check index.html)'); process.exit(1); }
-const sb    = createClient(SB_URL, SB_KEY, { auth: { persistSession: false } });
+const sb    = makeClient(SB_URL, SB_KEY);
 const TODAY = new Date().toISOString().split('T')[0];
 
 const djKey = s => (s || '').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '')
@@ -61,15 +61,9 @@ const prev      = readJ('../data/artists_candidates.json');
 const cache     = new Map(prev.map(c => [c.key || djKey(c.name), c]));   // djKey → previous entry
 
 // ── pull every future event (paged) ────────────────────────────────────────────
-let rows = [], from = 0;
-while (true) {
-  const { data, error } = await withRetry(
-    () => sb.from('events').select('name,djs,source,city,date').gte('date', TODAY).range(from, from + 999),
-    `Load events page (from=${from})`, 5, 5000
-  );
-  if (error) { console.error(`❌  Event load failed at offset ${from}: ${error.message || error}`); process.exit(1); }
-  rows = rows.concat(data); if (data.length < 1000) break; from += 1000;
-}
+const { data: rows, error: loadErr, failedAt } = await fetchAllRows(
+  (from, to) => sb.from('events').select('name,djs,source,city,date').gte('date', TODAY).range(from, to));
+if (loadErr) { console.error(`❌  Event load failed at offset ${failedAt}: ${loadErr.message || loadErr}`); process.exit(1); }
 
 // ── collect DJs that are NOT in our list ─────────────────────────────────────────
 const disc = new Map();   // key → { variants:{disp:count}, events, sources:Set, sample }
@@ -84,7 +78,7 @@ for (const e of rows) for (const d of (e.djs || [])) {
 console.log(`Scanned ${rows.length} future events · ${disc.size} DJs not in our list`);
 
 // ── verify EDM via Resident Advisor (exact artist match), with cache ─────────────
-const RA = 'https://ra.co/graphql';
+// Own header set (not lib/ra.js RA_HEADERS): this check has always sent this shorter UA.
 const HRA = { 'Content-Type': 'application/json', 'User-Agent': 'Mozilla/5.0 AppleWebKit/537.36 Chrome/122 Safari/537.36',
               Referer: 'https://ra.co/', Origin: 'https://ra.co', 'ra-content-language': 'en' };
 const AQ = 'query A($s:String!){search(searchTerm:$s,indices:[ARTIST],limit:5){searchType value}}';
@@ -101,8 +95,7 @@ let lastCanaryOk = 0;
 
 async function raArtistHits(name) {
   try {
-    const r = await fetch(RA, { method: 'POST', headers: HRA,
-      body: JSON.stringify({ query: AQ, variables: { s: name } }), signal: AbortSignal.timeout(12000) });
+    const r = await raPost(AQ, { s: name }, { timeoutMs: 12000, headers: HRA });
     if (!r.ok) return null;                               // transport / HTTP error
     const j = await r.json();
     if (!j || !j.data) return null;

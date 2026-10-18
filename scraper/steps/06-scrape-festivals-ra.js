@@ -15,16 +15,16 @@
  * Usage: node scrape-festivals-ra.js
  */
 
-import { createClient }  from '@supabase/supabase-js';
 import { readFileSync }  from 'fs';
-import { config }        from 'dotenv';
 import { fileURLToPath } from 'url';
 import { dirname, resolve } from 'path';
 import { cleanEvent, canonCity, canonCountry } from '../lib/normalize.js';
 import { withRetry } from '../lib/http.js';
+import { loadEnv, makeClient } from '../lib/db.js';
+import { raQuery } from '../lib/ra.js';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
-config({ path: resolve(__dirname, '../.env') });
+loadEnv();
 
 const SB_URL = process.env.SUPABASE_URL;
 const SB_KEY = process.env.SUPABASE_SERVICE_KEY;
@@ -34,22 +34,12 @@ const BATCH  = 50;
 
 if (!SB_URL || !SB_KEY) { console.error('❌  Missing Supabase env vars'); process.exit(1); }
 
-const sb    = createClient(SB_URL, SB_KEY, { auth: { persistSession: false } });
+const sb    = makeClient(SB_URL, SB_KEY);
 const sleep = ms => new Promise(r => setTimeout(r, ms));
 
 const FESTIVALS_PATH = resolve(__dirname, '../data/festivals_all.json');
 
-// ── RA GraphQL ────────────────────────────────────────────────────────────────
-const RA_GQL = 'https://ra.co/graphql';
-const RA_HEADERS = {
-  'Content-Type':    'application/json',
-  'User-Agent':      'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36',
-  'Referer':         'https://ra.co/',
-  'Origin':          'https://ra.co',
-  'Accept':          'application/json',
-  'Accept-Language': 'en-US,en;q=0.9',
-};
-
+// ── RA GraphQL (transport + error policy in lib/ra.js) ───────────────────────
 const SEARCH_QUERY = `
 query Search($term: String!) {
   search(searchTerm: $term, indices: [EVENT], limit: 10) {
@@ -65,20 +55,6 @@ query Event($id: ID!) {
     artists { name }
   }
 }`;
-
-async function gql(query, variables) {
-  try {
-    const res = await fetch(RA_GQL, {
-      method:  'POST',
-      headers: RA_HEADERS,
-      body:    JSON.stringify({ query, variables }),
-      signal:  AbortSignal.timeout(15000),
-    });
-    if (!res.ok) return null;
-    const json = await res.json();
-    return json?.errors ? null : json?.data;
-  } catch { return null; }
-}
 
 // ── Matching ─────────────────────────────────────────────────────────────────
 const norm = s => (s || '').normalize('NFD').replace(/[̀-ͯ]/g, '')
@@ -134,7 +110,7 @@ async function main() {
     const pct  = String(Math.round(((i + 1) / todo.length) * 100)).padStart(3);
     process.stdout.write(`[${String(i+1).padStart(3)}/${todo.length}] ${pct}% │ ${fest.name.slice(0,32).padEnd(32)} `);
 
-    const data = await gql(SEARCH_QUERY, { term: fest.name });
+    const data = await raQuery(SEARCH_QUERY, { term: fest.name });
     const hits = (data?.search || []).filter(r => r.date && String(r.date).split('T')[0] >= TODAY);
 
     if (!hits.length) { process.stdout.write('–  no RA results\n'); none++; await sleep(DELAY); continue; }
@@ -152,7 +128,7 @@ async function main() {
     const names = [];
     for (const hit of matched) {
       await sleep(DELAY);
-      const det = await gql(EVENT_QUERY, { id: hit.id });
+      const det = await raQuery(EVENT_QUERY, { id: hit.id });
       const ev  = det?.event;
       if (!ev) continue;
       const date = String(ev.date || hit.date).split('T')[0];

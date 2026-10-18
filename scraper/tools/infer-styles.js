@@ -13,7 +13,7 @@
  * Usage: node infer-styles.js   (DRY=1 node infer-styles.js to preview)
  */
 import { readFileSync, writeFileSync } from 'fs';
-import { createClient }               from '@supabase/supabase-js';
+import { makeClient } from '../lib/db.js';
 import { fileURLToPath }              from 'url';
 import { dirname, resolve }           from 'path';
 import { djKey, djStyle }             from '../lib/genres.js';
@@ -33,8 +33,8 @@ console.log(`artists_all: ${all.length} · known style: ${Object.keys(known).len
 
 // Anon read of upcoming events (no secrets).
 const html = readFileSync(resolve(__dirname, '../../index.html'), 'utf8');
-const sb = createClient((html.match(/SB_URL\s*=\s*['"]([^'"]+)['"]/) || [])[1],
-                        (html.match(/SB_KEY\s*=\s*['"]([^'"]+)['"]/) || [])[1], { auth: { persistSession: false } });
+const sb = makeClient((html.match(/SB_URL\s*=\s*['"]([^'"]+)['"]/) || [])[1],
+                        (html.match(/SB_KEY\s*=\s*['"]([^'"]+)['"]/) || [])[1]);
 const TODAY = new Date().toISOString().split('T')[0];
 let rows = [], from = 0;
 while (true) {

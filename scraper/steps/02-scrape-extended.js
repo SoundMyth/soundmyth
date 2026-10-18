@@ -12,16 +12,15 @@
  * Usage: node scrape-extended.js
  */
 
-import { createClient } from '@supabase/supabase-js';
 import { readFileSync } from 'fs';
-import { config } from 'dotenv';
 import { fileURLToPath } from 'url';
 import { dirname, resolve } from 'path';
 import { cleanEvent, todayISO, localDate, resolveLDDate, cleanEventTitle } from '../lib/normalize.js';
+import { makeClient, loadEnv } from '../lib/db.js';
 import { SK_HEADERS, withRetry } from '../lib/http.js';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
-config({ path: resolve(__dirname, '../.env') });
+loadEnv();
 
 const SB_URL  = process.env.SUPABASE_URL;
 const SB_KEY  = process.env.SUPABASE_SERVICE_KEY;
@@ -35,7 +34,7 @@ const TODAY   = todayISO();
 const BATCH   = 50;
 const DELAY_DJ   = 800;   // ms between DJ Songkick requests
 
-const sb    = createClient(SB_URL, SB_KEY, { auth: { persistSession: false } });
+const sb    = makeClient(SB_URL, SB_KEY);
 const sleep = ms => new Promise(r => setTimeout(r, ms));
 
 // ── HTTP ─────────────────────────────────────────────────────────────────────

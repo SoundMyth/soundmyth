@@ -12,14 +12,14 @@
 import { readFileSync, writeFileSync } from 'fs';
 import { fileURLToPath } from 'url';
 import { dirname, resolve }  from 'path';
-import { config }            from 'dotenv';
+import { loadEnv } from '../lib/db.js';
+import { raPost } from '../lib/ra.js';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
-config({ path: resolve(__dirname, '../.env') });
+loadEnv();
 
 const CLUBS_PATH = resolve(__dirname, '../data/clubs_all.json');
 const DELAY      = 1200;   // ms between RA requests
-const RA_GQL     = 'https://ra.co/graphql';
 
 const sleep = ms => new Promise(r => setTimeout(r, ms));
 
@@ -37,15 +37,6 @@ query Search($searchTerm: String!) {
     areaName
   }
 }`;
-
-const RA_HEADERS = {
-  'Content-Type':    'application/json',
-  'User-Agent':      'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36',
-  'Referer':         'https://ra.co/',
-  'Origin':          'https://ra.co',
-  'Accept':          'application/json',
-  'Accept-Language': 'en-US,en;q=0.9',
-};
 
 const normName = s => (s || '').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '').trim();
 
@@ -75,12 +66,7 @@ function identityWords(name, city) {
 
 async function searchRAClub(name, city) {
   try {
-    const res = await fetch(RA_GQL, {
-      method:  'POST',
-      headers: RA_HEADERS,
-      body:    JSON.stringify({ query: SEARCH_QUERY, variables: { searchTerm: name } }),
-      signal:  AbortSignal.timeout(12000),
-    });
+    const res = await raPost(SEARCH_QUERY, { searchTerm: name }, { timeoutMs: 12000 });
     if (!res.ok) return null;
     const json    = await res.json();
     const results = (json?.data?.search || []).filter(r => r && r.id && r.value);

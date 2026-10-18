@@ -33,12 +33,12 @@
  *
  * Usage: node discover-festivals.js [--dry-run]
  */
-import { createClient }                       from '@supabase/supabase-js';
 import { readFileSync, writeFileSync, existsSync } from 'fs';
 import { fileURLToPath }                      from 'url';
 import { dirname, resolve }                   from 'path';
 import { canonCity, canonCountry }            from '../lib/normalize.js';
-import { withRetry }                          from '../lib/http.js';
+import { makeClient, fetchAllRows }           from '../lib/db.js';
+import { raQuery }                            from '../lib/ra.js';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const DATA = p => resolve(__dirname, '..', 'data', p);
@@ -62,26 +62,9 @@ if (!SB_URL || !SB_KEY) {
   } catch { /* no index.html: DB pass is skipped below */ }
 }
 
-// ── RA GraphQL (same request shape as scrape-festivals-ra.js / discover-djs.js) ──
-const RA_GQL = 'https://ra.co/graphql';
-const RA_HEADERS = {
-  'Content-Type': 'application/json',
-  'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36',
-  'Referer': 'https://ra.co/', 'Origin': 'https://ra.co',
-  'Accept': 'application/json', 'Accept-Language': 'en-US,en;q=0.9',
-};
+// ── RA GraphQL (transport + error policy in lib/ra.js) ──
 const SEARCH_Q = `query Search($term: String!) { search(searchTerm: $term, indices: [EVENT], limit: 10) { id value areaName date } }`;
 const EVENT_Q  = `query Event($id: ID!) { event(id: $id) { id title date contentUrl venue { name area { name country { name } } } artists { name } } }`;
-
-async function gql(query, variables) {
-  try {
-    const res = await fetch(RA_GQL, { method: 'POST', headers: RA_HEADERS,
-      body: JSON.stringify({ query, variables }), signal: AbortSignal.timeout(15000) });
-    if (!res.ok) return null;
-    const json = await res.json();
-    return json?.errors ? null : (json?.data ?? null);
-  } catch { return null; }
-}
 
 // ── helpers ───────────────────────────────────────────────────────────────────
 const norm = s => (s || '').normalize('NFD').replace(/[̀-ͯ]/g, '')
@@ -136,7 +119,7 @@ async function fetchDetail(id) {
   if (detailCalls >= MAX_DETAIL) return null;
   detailCalls++;
   await sleep(DELAY);
-  const d = await gql(EVENT_Q, { id });
+  const d = await raQuery(EVENT_Q, { id });
   return d?.event || null;
 }
 
@@ -206,7 +189,7 @@ async function main() {
   const hitsA = [];
   for (const b of brands) {
     for (const alias of b.aliases) {
-      const data = await gql(SEARCH_Q, { term: alias });
+      const data = await raQuery(SEARCH_Q, { term: alias });
       if (data?.search) searchesOk++;
       await sleep(DELAY);
       for (const h of (data?.search || [])) {
@@ -223,7 +206,7 @@ async function main() {
   const GENERIC = ['Festival 2026', 'Festival 2027', 'Open Air 2027', 'Weekender 2027', 'Music Festival 2027'];
   const hitsB = [];
   for (const term of GENERIC) {
-    const data = await gql(SEARCH_Q, { term });
+    const data = await raQuery(SEARCH_Q, { term });
     if (data?.search) searchesOk++;
     await sleep(DELAY);
     for (const h of (data?.search || [])) {
@@ -239,15 +222,12 @@ async function main() {
   // ── C. DB festival-like events (candidates only) ─────────────────────────
   if (SB_URL && SB_KEY) {
     try {
-      const sb = createClient(SB_URL, SB_KEY, { auth: { persistSession: false } });
-      let rows = [], from = 0;
-      while (true) {
-        const { data, error } = await withRetry(
-          () => sb.from('events').select('name,djs,city,country,date').gte('date', TODAY).range(from, from + 999),
-          `Load events page (from=${from})`, 3, 3000);
-        if (error || !data) { console.warn('  ⚠  DB read failed — skipping DB pass'); rows = null; break; }
-        rows = rows.concat(data); if (data.length < 1000) break; from += 1000;
-      }
+      const sb = makeClient(SB_URL, SB_KEY);
+      const { data: loaded, error } = await fetchAllRows(
+        (from, to) => sb.from('events').select('name,djs,city,country,date').gte('date', TODAY).range(from, to),
+        { retries: 3, delayMs: 3000 });
+      const rows = (error || !loaded) ? null : loaded;
+      if (error || !loaded) console.warn('  ⚠  DB read failed — skipping DB pass');
       if (rows) {
         const groups = new Map();
         for (const e of rows) {

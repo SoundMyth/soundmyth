@@ -8,16 +8,12 @@
  * Schedule: weekly (Sundays) via task scheduler
  */
 
-import { createClient } from '@supabase/supabase-js';
-import { config }       from 'dotenv';
-import { fileURLToPath } from 'url';
-import { dirname, resolve } from 'path';
 import { withRetry } from '../lib/http.js';
+import { makeClient, loadEnv } from '../lib/db.js';
 import { todayISO, addDaysISO } from '../lib/normalize.js';
 import { writeRunStat } from '../lib/run-stats.js';
 
-const __dirname = dirname(fileURLToPath(import.meta.url));
-config({ path: resolve(__dirname, '../.env') });
+loadEnv();
 
 const SB_URL  = process.env.SUPABASE_URL;
 const SB_KEY  = process.env.SUPABASE_SERVICE_KEY;
@@ -27,7 +23,7 @@ if (!SB_URL || !SB_KEY) {
   process.exit(1);
 }
 
-const sb = createClient(SB_URL, SB_KEY, { auth: { persistSession: false } });
+const sb = makeClient(SB_URL, SB_KEY);
 
 // ── CONFIG ────────────────────────────────────────────────────────────────────
 const PURGE_DAYS_AGO = 8;    // contract §5: keep 8 days of past events (frontend shows last 7)

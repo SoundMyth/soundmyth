@@ -14,12 +14,11 @@
  * Usage: node dedupe.js
  */
 
-import { createClient } from '@supabase/supabase-js';
 import { readFileSync, existsSync } from 'fs';
-import { config }        from 'dotenv';
 import { fileURLToPath } from 'url';
 import { dirname, resolve } from 'path';
 import { withRetry } from '../lib/http.js';
+import { makeClient, loadEnv, fetchAllRows } from '../lib/db.js';
 import { canonCity, todayISO, planFestivalFragments, findDoubleBookings, makeFestivalTest, djMatchKey } from '../lib/normalize.js';
 import { writeRunStat } from '../lib/run-stats.js';
 import { writeFileSync } from 'fs';
@@ -29,14 +28,14 @@ const CONFLICTS_PATH = resolve(__dirname, '../data/conflicts.json');
 // A festival runs up to ~4 days (Fri–Mon). Per-artist fragments further than this from the
 // festival row are not merged into it.
 const FEST_SPAN_DAYS = 4;
-config({ path: resolve(__dirname, '../.env') });
+loadEnv();
 
 const SB_URL = process.env.SUPABASE_URL;
 const SB_KEY = process.env.SUPABASE_SERVICE_KEY;
 
 if (!SB_URL || !SB_KEY) { console.error('❌  Missing Supabase env vars'); process.exit(1); }
 
-const sb = createClient(SB_URL, SB_KEY, { auth: { persistSession: false } });
+const sb = makeClient(SB_URL, SB_KEY);
 
 // Normalise: lowercase, strip diacritics (NFD), strip punctuation, collapse spaces
 function norm(s) {
@@ -123,30 +122,20 @@ async function main() {
   // ── Step 2: Merge duplicate events at same venue+date (or same name+date) ──
   console.log('Step 2: Find duplicate events...');
 
-  const PAGE = 1000;
-  let allEvents = [];
-  let from = 0;
   let loadFailed = false;
   const today = todayISO();
 
-  while (true) {
-    const { data, error } = await withRetry(
-      () => sb
-        .from('events')
-        .select('id, name, venue, city, country, date, djs, tags, source, source_id, ticket_url, img_url, price, genre')
-        .gte('date', today)
-        .range(from, from + PAGE - 1)
-        .order('date', { ascending: true }),
-      `Load events page (from=${from})`, 5, 5000
-    );
-    if (error) {
-      console.error(`  ❌  Event load failed at offset ${from} — aborting dedup to avoid wrong deletions:`, error.message);
-      loadFailed = true;
-      break;
-    }
-    allEvents = allEvents.concat(data);
-    if (data.length < PAGE) break;
-    from += PAGE;
+  // A partial load skips the merge/delete passes below: they must never act on half the data.
+  const { data: allEvents, error: loadErr, failedAt } = await fetchAllRows(
+    (from, to) => sb
+      .from('events')
+      .select('id, name, venue, city, country, date, djs, tags, source, source_id, ticket_url, img_url, price, genre')
+      .gte('date', today)
+      .range(from, to)
+      .order('date', { ascending: true }));
+  if (loadErr) {
+    console.error(`  ❌  Event load failed at offset ${failedAt} — aborting dedup to avoid wrong deletions:`, loadErr.message);
+    loadFailed = true;
   }
 
   console.log(`  Loaded ${allEvents.length} total events${loadFailed ? ' (INCOMPLETE — skipping merge/delete passes)' : ''}`);

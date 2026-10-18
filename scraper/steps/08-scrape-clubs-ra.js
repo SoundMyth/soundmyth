@@ -10,15 +10,15 @@
  * Usage: node scrape-clubs-ra.js
  */
 
-import { createClient } from '@supabase/supabase-js';
 import { readFileSync, existsSync } from 'fs';
-import { config }        from 'dotenv';
 import { fileURLToPath } from 'url';
 import { dirname, resolve } from 'path';
 import { cleanEvent, canonCity, localDate, todayISO } from '../lib/normalize.js';
+import { loadEnv, makeClient } from '../lib/db.js';
+import { raPost } from '../lib/ra.js';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
-config({ path: resolve(__dirname, '../.env') });
+loadEnv();
 
 const SB_URL  = process.env.SUPABASE_URL;
 const SB_KEY  = process.env.SUPABASE_SERVICE_KEY;
@@ -31,20 +31,10 @@ if (!SB_URL || !SB_KEY) {
   process.exit(1);
 }
 
-const sb    = createClient(SB_URL, SB_KEY, { auth: { persistSession: false } });
+const sb    = makeClient(SB_URL, SB_KEY);
 const sleep = ms => new Promise(r => setTimeout(r, ms));
 
-// ── RA GraphQL ────────────────────────────────────────────────────────────────
-
-const RA_GQL = 'https://ra.co/graphql';
-const RA_HEADERS = {
-  'Content-Type':  'application/json',
-  'User-Agent':    'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36',
-  'Referer':       'https://ra.co/',
-  'Origin':        'https://ra.co',
-  'Accept':        'application/json',
-  'Accept-Language': 'en-US,en;q=0.9',
-};
+// ── RA GraphQL (transport in lib/ra.js; retry policy below) ──────────────────
 
 // Use year filter to get only upcoming events — also include next year in Q4
 const THIS_YEAR  = new Date().getFullYear();
@@ -111,12 +101,7 @@ query GetPromoterListings($id: ID!, $pageSize: Int) {
 async function gqlFetch(query, variables, retries = 2) {
   for (let attempt = 0; attempt <= retries; attempt++) {
     try {
-      const res = await fetch(RA_GQL, {
-        method:  'POST',
-        headers: RA_HEADERS,
-        body:    JSON.stringify({ query, variables }),
-        signal:  AbortSignal.timeout(14000),
-      });
+      const res = await raPost(query, variables, { timeoutMs: 14000 });
       if (!res.ok) {
         if (attempt < retries) { await sleep(2000 * (attempt + 1)); continue; }
         return null;

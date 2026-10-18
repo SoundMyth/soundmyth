@@ -11,21 +11,20 @@
  *
  * Usage: node cleanup-junk.js   (DRY=1 node cleanup-junk.js to preview)
  */
-import { createClient }  from '@supabase/supabase-js';
 import { readFileSync }  from 'fs';
-import { config }        from 'dotenv';
 import { fileURLToPath } from 'url';
 import { dirname, resolve } from 'path';
 import { canonCity, canonCountry, djNorm, buildDjCanon } from '../lib/normalize.js';
+import { makeClient, loadEnv, fetchAllRows } from '../lib/db.js';
 import { withRetry } from '../lib/http.js';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
-config({ path: resolve(__dirname, '../.env') });
+loadEnv();
 
 const SB_URL = process.env.SUPABASE_URL;
 const SB_KEY = process.env.SUPABASE_SERVICE_KEY;
 if (!SB_URL || !SB_KEY) { console.error('❌  Missing SUPABASE_URL / SUPABASE_SERVICE_KEY'); process.exit(1); }
-const sb    = createClient(SB_URL, SB_KEY, { auth: { persistSession: false } });
+const sb    = makeClient(SB_URL, SB_KEY);
 const TODAY = new Date().toISOString().split('T')[0];
 
 // Our DJ list is THE gate. An event belongs in SoundMyth only if an EDM DJ we
@@ -68,20 +67,14 @@ function isJunk(e) {
   return false;
 }
 
-let rows = [], from = 0;
-while (true) {
-  // Generous retry budget: this runs right after the heavy scrape steps, when
-  // Supabase connections are transiently exhausted. Aborting on a partial load
-  // is deliberate — this script deletes events, so incomplete data must never
-  // reach the isJunk() pass.
-  const { data, error } = await withRetry(
-    () => sb.from('events')
-      .select('id,name,venue,djs,tags,city,date,img_url,source').gte('date', TODAY).order('date').range(from, from + 999),
-    `Load events page (from=${from})`, 5, 5000
-  );
-  if (error) { console.error(`❌  Event load failed at offset ${from}: ${error.message || error}`); process.exit(1); }
-  rows = rows.concat(data); if (data.length < 1000) break; from += 1000;
-}
+// Generous retry budget: this runs right after the heavy scrape steps, when
+// Supabase connections are transiently exhausted. Aborting on a partial load
+// is deliberate — this script deletes events, so incomplete data must never
+// reach the isJunk() pass.
+const { data: rows, error: loadErr, failedAt } = await fetchAllRows(
+  (from, to) => sb.from('events')
+    .select('id,name,venue,djs,tags,city,date,img_url,source').gte('date', TODAY).order('date').range(from, to));
+if (loadErr) { console.error(`❌  Event load failed at offset ${failedAt}: ${loadErr.message || loadErr}`); process.exit(1); }
 
 const junkCount = rows.filter(isJunk).length, ogCount = rows.filter(offGenre).length;
 const toRemove = rows.filter(e => isJunk(e) || offGenre(e));

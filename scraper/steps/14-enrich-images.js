@@ -25,15 +25,15 @@
  * Usage: node enrich-images.js
  */
 
-import { createClient } from '@supabase/supabase-js';
 import { readFileSync, writeFileSync, existsSync } from 'fs';
-import { config } from 'dotenv';
 import { fileURLToPath, pathToFileURL } from 'url';
 import { dirname, resolve } from 'path';
-import { withRetry, SK_HEADERS } from '../lib/http.js';
+import { SK_HEADERS } from '../lib/http.js';
+import { makeClient, loadEnv, fetchAllRows } from '../lib/db.js';
+import { raPost } from '../lib/ra.js';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
-config({ path: resolve(__dirname, '../.env') });
+loadEnv();
 
 const sleep = ms => new Promise(r => setTimeout(r, ms));
 const UA = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36';
@@ -75,7 +75,7 @@ async function getJSON(url, host, gapMs, headers = {}, timeoutMs = 10000) {
 }
 
 // ── Source 1: Resident Advisor ─────────────────────────────────────────────
-const RA_GQL = 'https://ra.co/graphql';
+// Own header set (not lib/ra.js RA_HEADERS): this lookup has always sent the image UA and ra-content-language.
 const RA_HEADERS = { 'Content-Type': 'application/json', 'User-Agent': UA, Referer: 'https://ra.co/', Origin: 'https://ra.co', 'ra-content-language': 'en' };
 const RA_ARTIST_Q = 'query G($s:String!){ artist(slug:$s){ id name aliases image } }';
 
@@ -88,8 +88,7 @@ export async function sourceRA(name, raUrl) {
   const slug = raSlugFromUrl(raUrl) || slugGuess(name);
   if (!slug) return null;
   await gate('ra', 450);
-  const res = await fetch(RA_GQL, { method: 'POST', headers: RA_HEADERS,
-    body: JSON.stringify({ query: RA_ARTIST_Q, variables: { s: slug } }), signal: AbortSignal.timeout(12000) });
+  const res = await raPost(RA_ARTIST_Q, { s: slug }, { timeoutMs: 12000, headers: RA_HEADERS });
   if (!res.ok) throw new Error(`RA HTTP ${res.status}`);
   const j = await res.json();
   if (!j || (j.errors && !j.data)) throw new Error('RA error');
@@ -313,7 +312,7 @@ async function main() {
 
   const SB_URL = process.env.SUPABASE_URL;
   const SB_KEY = process.env.SUPABASE_SERVICE_KEY;
-  const sb = SB_URL && SB_KEY ? createClient(SB_URL, SB_KEY, { auth: { persistSession: false } }) : null;
+  const sb = SB_URL && SB_KEY ? makeClient(SB_URL, SB_KEY) : null;
   if (!sb) console.log('No Supabase service key: caches only, event rows will not be updated.\n');
 
   const readData = p => readJSON(resolve(__dirname, p), []);
@@ -324,17 +323,11 @@ async function main() {
   const today = new Date().toISOString().split('T')[0];
   let allEvents = [];
   if (sb) {
-    let from = 0;
-    while (true) {
-      const { data, error } = await withRetry(
-        () => sb.from('events').select('id, name, djs, tags, img_url').gte('date', today)
-          .range(from, from + 999).order('date', { ascending: true }),
-        `Load events page (from=${from})`, 5, 5000);
-      if (error) { console.error('Fetch error:', error.message || error); process.exit(1); }
-      allEvents = allEvents.concat(data);
-      if (data.length < 1000) break;
-      from += 1000;
-    }
+    const { data, error } = await fetchAllRows(
+      (from, to) => sb.from('events').select('id, name, djs, tags, img_url').gte('date', today)
+        .range(from, to).order('date', { ascending: true }));
+    if (error) { console.error('Fetch error:', error.message || error); process.exit(1); }
+    allEvents = data;
   } else if (process.env.EVENTS_JSON && existsSync(process.env.EVENTS_JSON)) {
     allEvents = readJSON(process.env.EVENTS_JSON, []).filter(e => (e.date || '') >= today);
   }

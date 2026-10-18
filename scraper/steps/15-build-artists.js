@@ -21,9 +21,9 @@
 import { writeFileSync, readFileSync, existsSync, mkdirSync } from 'fs';
 import { fileURLToPath, pathToFileURL } from 'url';
 import { dirname, resolve } from 'path';
-import { createClient } from '@supabase/supabase-js';
 import { loadDJCache, loadOverrides } from './14-enrich-images.js';
 import { djKey, djStyle, normVibes, FALLBACK_GENRE } from '../lib/genres.js';
+import { makeClient } from '../lib/db.js';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const readJ = (p, fallback) => {
@@ -49,7 +49,7 @@ async function upcomingDJNames() {
   const SB_KEY = process.env.SUPABASE_SERVICE_KEY || process.env.SUPABASE_ANON_KEY;
   let rows = [];
   if (SB_URL && SB_KEY) {
-    const sb = createClient(SB_URL, SB_KEY, { auth: { persistSession: false } });
+    const sb = makeClient(SB_URL, SB_KEY);
     for (let from = 0; ; from += 1000) {
       const { data, error } = await sb.from('events').select('djs,date').gte('date', today).range(from, from + 999);
       if (error) { console.warn(`  ⚠ events read failed (${error.message || error}); using lists only`); rows = []; break; }

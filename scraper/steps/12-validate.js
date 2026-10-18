@@ -14,9 +14,8 @@
  * Usage: node validate.js
  */
 
-import { createClient } from '@supabase/supabase-js';
 import { STYLES, FALLBACK_GENRE } from '../lib/genres.js';
-import { config }       from 'dotenv';
+import { makeClient, loadEnv, fetchAllRows } from '../lib/db.js';
 import { fileURLToPath } from 'url';
 import { dirname, resolve } from 'path';
 import { readFileSync, existsSync } from 'fs';
@@ -28,7 +27,7 @@ import {
 import { writeRunStat } from '../lib/run-stats.js';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
-config({ path: resolve(__dirname, '../.env') });
+loadEnv();
 
 const SB_URL = process.env.SUPABASE_URL;
 const SB_KEY = process.env.SUPABASE_SERVICE_KEY;
@@ -38,7 +37,7 @@ if (!SB_URL || !SB_KEY) {
   process.exit(1);
 }
 
-const sb = createClient(SB_URL, SB_KEY, { auth: { persistSession: false } });
+const sb = makeClient(SB_URL, SB_KEY);
 
 // Valid event genres: the 16 canonical styles + the festival/event fallback.
 const CANON_GENRE = new Set([...STYLES, FALLBACK_GENRE]);
@@ -71,26 +70,15 @@ async function main() {
   console.log(`Fetching future events (date >= ${today})...\n`);
 
   // ── Fetch all future events (paginated) ──────────────────────────────────
-  const PAGE = 1000;
-  let allEvents = [];
-  let from = 0;
-
-  while (true) {
-    const { data, error } = await withRetry(
-      () => sb
-        .from('events')
-        .select('id, name, venue, city, country, date, djs, tags, source, source_id, genre, ticket_url, img_url, price')
-        .gte('date', today)
-        .range(from, from + PAGE - 1)
-        .order('date', { ascending: true }),
-      `Load events page (from=${from})`, 5, 5000
-    );
-
-    if (error) { console.error('  Fetch error:', error.message || error); break; }
-    allEvents = allEvents.concat(data);
-    if (data.length < PAGE) break;
-    from += PAGE;
-  }
+  // On a failed page, carry on with the rows loaded so far (the original policy, kept on purpose).
+  const { data: allEvents, error: fetchErr } = await fetchAllRows(
+    (from, to) => sb
+      .from('events')
+      .select('id, name, venue, city, country, date, djs, tags, source, source_id, genre, ticket_url, img_url, price')
+      .gte('date', today)
+      .range(from, to)
+      .order('date', { ascending: true }));
+  if (fetchErr) console.error('  Fetch error:', fetchErr.message || fetchErr);
 
   console.log(`Total future events: ${allEvents.length}\n`);
 

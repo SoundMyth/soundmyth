@@ -16,16 +16,15 @@
  *   node classify.js --snapshot <events.json> # read events from a JSON file instead of Supabase
  *                                             # (combine with --dry-run for offline review)
  */
-import { createClient } from '@supabase/supabase-js';
 import { readFileSync } from 'fs';
-import { config } from 'dotenv';
 import { fileURLToPath } from 'url';
 import { dirname, resolve } from 'path';
 import { withRetry } from '../lib/http.js';
-import { STYLES, FALLBACK_GENRE, djKey, djStyle, buildArtistsIndex, eventGenre, eventTags } from '../lib/genres.js';
+import { makeClient, loadEnv, fetchAllRows } from '../lib/db.js';
+import { STYLES, FALLBACK_GENRE, djKey, buildArtistsIndex, eventGenre, eventTags } from '../lib/genres.js';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
-config({ path: resolve(__dirname, '../.env') });
+loadEnv();
 
 const args = process.argv.slice(2);
 const DRY = args.includes('--dry-run');
@@ -45,18 +44,13 @@ if (SNAPSHOT) {
   const SB_URL = process.env.SUPABASE_URL;
   const SB_KEY = process.env.SUPABASE_SERVICE_KEY;
   if (!SB_URL || !SB_KEY) { console.error('❌  Missing SUPABASE_URL / SUPABASE_SERVICE_KEY'); process.exit(1); }
-  const sb = createClient(SB_URL, SB_KEY, { auth: { persistSession: false } });
-  rows = [];
-  for (let from = 0; ; from += 1000) {
-    // Abort on a partial load: a truncated read would compute wrong genres for the missing rows.
-    const { data, error } = await withRetry(
-      () => sb.from('events').select('id,name,venue,city,date,djs,genre,tags,source')
-        .gte('date', TODAY).order('id').range(from, from + 999),
-      `Load events page (from=${from})`, 5, 5000);
-    if (error) { console.error(`❌  Event load failed at offset ${from}: ${error.message || error}`); process.exit(1); }
-    rows = rows.concat(data);
-    if (data.length < 1000) break;
-  }
+  const sb = makeClient(SB_URL, SB_KEY);
+  // Abort on a partial load: a truncated read would compute wrong genres for the missing rows.
+  const { data, error, failedAt } = await fetchAllRows(
+    (from, to) => sb.from('events').select('id,name,venue,city,date,djs,genre,tags,source')
+      .gte('date', TODAY).order('id').range(from, to));
+  if (error) { console.error(`❌  Event load failed at offset ${failedAt}: ${error.message || error}`); process.exit(1); }
+  rows = data;
   rows.sort((a, b) => a.id - b.id);
   sbClient = sb;
 }

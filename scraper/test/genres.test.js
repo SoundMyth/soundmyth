@@ -174,3 +174,33 @@ test('artists_all.json: every DJ tags value is within the vibe whitelist', () =>
     for (const t of raw) assert.ok(VIBES.includes(t), `${a.name}: tag "${t}" not in whitelist`);
   }
 });
+
+// ── festival detection (classify) ────────────────────────────────────────────────
+import { makeFestivalNameTest } from '../lib/genres.js';
+const isFest = makeFestivalNameTest(['EDC Thailand', 'SXM Festival', 'Oasis', 'Junction', 'Exit', 'Tomorrowland Belgium', 'Electric Daisy Carnival - EDC Orlando']);
+const ev = (name, venue = '') => ({ name, venue });
+
+test('festival detection: true positives (word, or multi-word curated name)', () => {
+  assert.equal(isFest(ev('Max Styler @ SXM Festival', 'SXM Festival')), true);       // FEST_WORD
+  assert.equal(isFest(ev('DJ Snake @ EDC Thailand', 'EDC Thailand')), true);         // 2-word name
+  assert.equal(isFest(ev('Tomorrowland Belgium 2026', 'Boom')), true);
+  assert.equal(isFest(ev('Anyma @ Electric Daisy Carnival - EDC Orlando (18+) 2026', 'Tinker Field')), true);
+  assert.equal(isFest(ev('Weekender Brighton', 'Ocean')), true);                      // FEST_WORD
+  assert.equal(isFest(ev('Open Air Sessions', 'Park')), true);
+});
+
+test('festival detection: one-word curated names inside a longer title are not festivals', () => {
+  assert.equal(isFest(ev('A.M.C @ Cambridge Junction', 'Cambridge Junction')), false);
+  assert.equal(isFest(ev('Paul van Dyk @ Oasis Punta Carrasco', 'Oasis Punta Carrasco')), false);
+});
+
+test('festival detection: a one-word curated name counts when it is the whole name or venue', () => {
+  assert.equal(isFest(ev('Oasis', 'Somewhere')), true);   // whole name
+  assert.equal(isFest(ev('Some DJ @ Oasis', 'Oasis')), true);   // venue field is exactly "Oasis"
+});
+
+test('festival detection: short names and no curated names', () => {
+  const none = makeFestivalNameTest([]);
+  assert.equal(none(ev('Anyma @ Marquee Singapore', 'Marquee Singapore')), false);
+  assert.equal(makeFestivalNameTest(['Exit'])(ev('Exit', 'Exit')), false);   // 4-char name ignored
+});

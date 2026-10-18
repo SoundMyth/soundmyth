@@ -21,7 +21,7 @@ import { fileURLToPath } from 'url';
 import { dirname, resolve } from 'path';
 import { withRetry } from '../lib/http.js';
 import { makeClient, loadEnv, fetchAllRows } from '../lib/db.js';
-import { STYLES, FALLBACK_GENRE, djKey, buildArtistsIndex, eventGenre, eventTags } from '../lib/genres.js';
+import { STYLES, FALLBACK_GENRE, djKey, buildArtistsIndex, eventGenre, eventTags, makeFestivalNameTest } from '../lib/genres.js';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 loadEnv();
@@ -71,7 +71,6 @@ for (const f of readJ('../data/festivals_all.json')) {
   const k = djKey(f.name);
   if (k && f.style && !festStyle.has(k)) festStyle.set(k, f.style);
 }
-const festKeys = new Set(readJ('../data/festivals_all.json').map(f => djKey(f.name)).filter(Boolean));
 
 // ── Event type (festival | club | none) ─────────────────────────────────────────
 // Legacy 'festival'/'club' tags were polluted by DJ tags (a DJ's own 'festival'/'club' vibe
@@ -79,13 +78,7 @@ const festKeys = new Set(readJ('../data/festivals_all.json').map(f => djKey(f.na
 // act; independently, an event whose name or venue says "Festival" or contains a curated
 // festival name ("Max Styler @ SXM Festival", "DJ Snake @ EDC Thailand") is a festival.
 // 'club' only counts on RA-sourced rows.
-const FEST_WORD = /\b(festival|fest|open ?air|weekender)\b/i;
-const festNameKeys = [...festKeys].filter(k => k.length >= 5);   // short keys ("exit") match too much
-function looksFestival(e) {
-  if (FEST_WORD.test(e.name || '') || FEST_WORD.test(e.venue || '')) return true;
-  const nk = djKey(e.name), vk = djKey(e.venue);
-  return festNameKeys.some(f => nk.includes(f) || vk.includes(f));
-}
+const looksFestival = makeFestivalNameTest(readJ('../data/festivals_all.json').map(f => f.name));
 function eventType(e) {
   const tags = e.tags || [];
   const djs = e.djs || [];

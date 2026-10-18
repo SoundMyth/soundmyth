@@ -15,6 +15,8 @@
  *  - eventTags(djs, artists, type): [type?] + at most 3 vibe tags from VIBES.
  */
 
+import { normText } from './normalize.js';
+
 export const STYLES = Object.freeze([
   'House', 'Tech House', 'Deep House', 'Afro House', 'Melodic Techno', 'Techno',
   'Hard Techno', 'Trance', 'Psytrance', 'Progressive', 'Big Room', 'Bass',
@@ -212,3 +214,29 @@ export function eventTags(djs, artists, type) {
 
 /** Legacy label → canonical, for old saved preferences / old data (exported for the app contract). */
 export const LEGACY_MAP = Object.freeze({ ...LEGACY });
+
+// ── Festival detection for classify (steps/13-classify.js) ─────────────────────────
+// FEST_WORD: "festival", "fest", "open air", "weekender" as whole words in the name or venue.
+const FEST_WORD = /\b(festival|fest|open ?air|weekender)\b/i;
+/**
+ * Predicate: is this event a festival? True on FEST_WORD, or when a curated festival name is
+ * matched as whole words. A curated name only counts when it is two or more words ("EDC Thailand",
+ * "Tomorrowland Belgium") or when the whole name or venue field IS the one-word name ("Exit").
+ * A one-word name inside a longer title is not evidence: "Cambridge Junction" is a venue and
+ * "Oasis Punta Carrasco" is a club. Names shorter than 5 characters are ignored.
+ */
+export function makeFestivalNameTest(festNames = []) {
+  const phrases = [], singles = new Set();
+  for (const n of festNames || []) {
+    const k = normText(n);
+    if (k.length < 5) continue;
+    if (k.includes(" ")) phrases.push(" " + k + " "); else singles.add(k);
+  }
+  return ev => {
+    if (FEST_WORD.test(ev?.name || "") || FEST_WORD.test(ev?.venue || "")) return true;
+    const nf = normText(ev?.name), vf = normText(ev?.venue);
+    if (singles.has(nf) || singles.has(vf)) return true;
+    const nt = " " + nf + " ", vt = " " + vf + " ";
+    return phrases.some(p => nt.includes(p) || vt.includes(p));
+  };
+}

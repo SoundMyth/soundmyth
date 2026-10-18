@@ -18,8 +18,8 @@ import { readFileSync, existsSync } from 'fs';
 import { fileURLToPath } from 'url';
 import { dirname, resolve } from 'path';
 import { withRetry } from '../lib/http.js';
-import { makeClient, loadEnv, fetchAllRows } from '../lib/db.js';
-import { canonCity, todayISO, planFestivalFragments, findDoubleBookings, makeFestivalTest, djMatchKey } from '../lib/normalize.js';
+import { makeClient, loadEnv, fetchAllRows, uniqueById } from '../lib/db.js';
+import { canonCity, todayISO, planFestivalFragments, findDoubleBookings, makeFestivalTest, djMatchKey, splitKeeper, mergedDate } from '../lib/normalize.js';
 import { writeRunStat } from '../lib/run-stats.js';
 import { writeFileSync } from 'fs';
 
@@ -126,7 +126,7 @@ async function main() {
   const today = todayISO();
 
   // A partial load skips the merge/delete passes below: they must never act on half the data.
-  const { data: allEvents, error: loadErr, failedAt } = await fetchAllRows(
+  const { data: loadedEvents, error: loadErr, failedAt } = await fetchAllRows(
     (from, to) => sb
       .from('events')
       .select('id, name, venue, city, country, date, djs, tags, source, source_id, ticket_url, img_url, price, genre')
@@ -137,6 +137,8 @@ async function main() {
     console.error(`  ❌  Event load failed at offset ${failedAt} — aborting dedup to avoid wrong deletions:`, loadErr.message);
     loadFailed = true;
   }
+  // Offset paging can repeat a row across pages: every later pass sees each event once.
+  const allEvents = uniqueById(loadedEvents);
 
   console.log(`  Loaded ${allEvents.length} total events${loadFailed ? ' (INCOMPLETE — skipping merge/delete passes)' : ''}`);
 
@@ -144,7 +146,7 @@ async function main() {
     console.log('\n╔══════════════════════════════════════════════╗');
     console.log('║  Dedup skipped — incomplete event load       ║');
     console.log('╚══════════════════════════════════════════════╝');
-    return;
+    process.exit(1);   // partial data must not look like a clean run to the workflow
   }
 
   // Normalise name for comparison
@@ -288,6 +290,8 @@ async function main() {
   const isFestivalNamed = makeFestivalTest(festNamesAll);
   const flat = [];
   for (const [key, evs] of groups) for (const ev of evs) flat.push({ key, ev });
+  // Festival masters: festival-named rows with no lineup (the same test planFestivalFragments uses).
+  const masterIds = new Set(flat.map(x => x.ev).filter(ev => isFestivalNamed(ev) && !(ev.djs || []).length).map(ev => ev.id));
   const whereKey = new Map(flat.map(x => [x.ev.id, x.key]));
   const byId     = new Map(flat.map(x => [x.ev.id, x.ev]));
   const fragPlan = planFestivalFragments(flat.map(x => x.ev), festNamesAll, { spanDays: FEST_SPAN_DAYS });
@@ -521,8 +525,7 @@ async function main() {
       return richness(b) - richness(a);
     });
 
-    const keeper = group[0];
-    const rest   = group.slice(1);
+    const { keeper, rest } = splitKeeper(group);
 
     // Merge djs (union, deduplicated, case-insensitive)
     const djSet = new Set((keeper.djs || []).map(d => d.trim()));
@@ -556,13 +559,8 @@ async function main() {
       if (dup.name.length > bestName.length) bestName = dup.name;
     }
 
-    // For multi-day festival merges, use the earliest date across the group
-    let bestDate = keeper.date;
-    if (tagSet.has('festival')) {
-      for (const ev of rest) {
-        if (ev.date && ev.date < bestDate) bestDate = ev.date;
-      }
-    }
+    // A festival master keeps its date; fragments never move it (see mergedDate).
+    const bestDate = mergedDate({ keeper, rest, masterIds, isFestival: tagSet.has('festival') });
 
     const djs  = [...djSet];
     const tags = [...tagSet];

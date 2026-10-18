@@ -519,3 +519,22 @@ export function findDoubleBookings(events, { isFestival = () => false, richness 
   }
   return out;
 }
+
+// ── Dedupe merge rules (steps/09-dedupe.js) ───────────────────────────────────────
+/** Split a duplicate group (keeper first) into the keeper and the rows to delete. A row with the
+ *  keeper's own id is never in `rest`: deleting it would delete the event that is kept. */
+export function splitKeeper(group) {
+  const [keeper, ...others] = group;
+  return { keeper, rest: others.filter(r => r.id !== keeper.id) };
+}
+
+/** Date of a merged event. A festival master (festival-named row with no lineup, `masterIds`)
+ *  keeps its own date: fragments never move it. Without a master, a merged festival takes the
+ *  earliest date of the group (multi-day festival rows that are equal, not a master). */
+export function mergedDate({ keeper, rest, masterIds = new Set(), isFestival = false }) {
+  const master = [keeper, ...rest].find(e => masterIds.has(e.id));
+  if (master) return master.date;
+  let best = keeper.date;
+  if (isFestival) for (const ev of rest) if (ev.date && ev.date < best) best = ev.date;
+  return best;
+}

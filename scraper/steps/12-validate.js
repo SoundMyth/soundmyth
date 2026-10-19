@@ -28,6 +28,9 @@ import {
 } from '../lib/normalize.js';
 import { writeRunStat } from '../lib/run-stats.js';
 import { readBlockList, blockedEvents } from '../lib/conflicts.js';
+import {
+  buildNamesakeContext, findNamesakes, readAllowList, AUTO_DROP_RULES, REVIEW_CAP,
+} from '../lib/namesake.js';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 loadEnv();
@@ -43,14 +46,23 @@ if (!SB_URL || !SB_KEY) {
 const sb = makeClient(SB_URL, SB_KEY);
 
 const clubsPath = resolve(__dirname, '../data/clubs_all.json');
-const clubLookup = makeClubLookup(existsSync(clubsPath) ? JSON.parse(readFileSync(clubsPath, 'utf8')) : []);
+const clubsRaw = existsSync(clubsPath) ? JSON.parse(readFileSync(clubsPath, 'utf8')) : [];
+const clubLookup = makeClubLookup(clubsRaw);
 const blockPath = resolve(__dirname, '../data/events_block.json');
+const allowPath = resolve(__dirname, '../data/events_allow.json');
+const artistsPath = resolve(__dirname, '../data/artists_all.json');
+const candidatesPath = resolve(__dirname, '../data/artists_candidates.json');
 
 // ── Helpers ──────────────────────────────────────────────────────────────────
 
 function isDJatVenuePattern(name) {
   if (!name) return false;
   return /^.+\s+(at|@)\s+.+$/i.test(name.trim());
+}
+
+/** A reference list that may be absent (candidates before its first write). */
+function readJsonOr(path, fallback) {
+  return existsSync(path) ? JSON.parse(readFileSync(path, 'utf8')) : fallback;
 }
 
 // ── Main ─────────────────────────────────────────────────────────────────────
@@ -95,6 +107,22 @@ async function main() {
     return;
   }
 
+  // Songkick namesakes: review-only until a rule is measured >= 95% (AUTO_DROP_RULES, docs/OPERATIONS.md).
+  // The allow list is a rescue list; a malformed one stops the run like a malformed block list.
+  let allowList;
+  try { allowList = readAllowList(allowPath); }
+  catch (err) { console.error(`❌  ${allowPath}: ${err.message}`); process.exit(1); }
+  const namesakeCtx = buildNamesakeContext({
+    events: allEvents,
+    artists: readJsonOr(artistsPath, []),
+    candidates: readJsonOr(candidatesPath, []),
+    clubs: clubsRaw,
+  });
+  const namesakes = findNamesakes(allEvents.filter(e => !blockedIds.has(e.id)), namesakeCtx, {
+    allowIds: new Set(allowList.map(e => e.source_id)),
+  });
+  const namesakeDropIds = new Set(namesakes.drop.map(d => d.ev.id));
+
   // ── Geo / date / lineup pass (pure decisions, DB writes below) ───────────
   const stats = {
     future: allEvents.length,
@@ -102,6 +130,8 @@ async function main() {
     hubCountryFixed: 0, djListsCleaned: 0,
     droppedNoGeo: 0, droppedDate: 0, droppedLegacyWebsite: 0,
     blocked: blocked.length,
+    namesakeDropped: namesakes.drop.length,
+    namesakeReview: namesakes.review.length,
   };
   const dropNoGeo = [], dropDate = [], dropLegacy = [];
   const updates = [];          // {id, patch}
@@ -110,6 +140,7 @@ async function main() {
 
   for (const ev of allEvents) {
     if (blockedIds.has(ev.id)) continue;   // deleted below with the block list
+    if (namesakeDropIds.has(ev.id)) continue;   // auto-dropped namesake, deleted below
     if (isLegacyWebsiteRow(ev)) { dropLegacy.push(ev); continue; }
 
     const dateStatus = checkEventDate(ev.date, today);
@@ -187,7 +218,7 @@ async function main() {
   console.log(`  Patched: ${patched}\n`);
 
   // Fix 2: drops (by id, in chunks)
-  const toDrop = [...new Set([...blocked, ...dropNoGeo, ...dropDate, ...dropLegacy].map(e => e.id))];
+  const toDrop = [...new Set([...blocked, ...namesakes.drop.map(d => d.ev), ...dropNoGeo, ...dropDate, ...dropLegacy].map(e => e.id))];
   console.log(`Fix 2: Dropping ${toDrop.length} events...`);
   let dropped = 0;
   for (let i = 0; i < toDrop.length; i += 100) {
@@ -215,6 +246,8 @@ async function main() {
   console.log(`  Dropped (no geo)           : ${dropNoGeo.length}`);
   console.log(`  Dropped (date range)       : ${dropDate.length}`);
   console.log(`  Dropped (legacy website)   : ${dropLegacy.length}`);
+  console.log(`  Dropped (namesake, auto)   : ${namesakes.drop.length}`);
+  console.log(`  Suspected namesakes (review): ${namesakes.review.length}`);
   console.log(`  Geo flags (hub / multi)    : ${hubFlags.length} / ${multiCountry.length}`);
   console.log('==================================================\n');
 
@@ -228,6 +261,18 @@ async function main() {
       multiCountryCount: multiCountry.length,
     },
     droppedSamples: dropNoGeo.slice(0, 20).map(e => ({ name: e.name, date: e.date, source: e.source, source_id: e.source_id })),
+  });
+
+  // Namesakes get their own section so the email can list them without reading validate's counts.
+  const nameOf = e => ({ source_id: e.source_id, name: e.name, dj: (e.djs || [])[0] || '', venue: e.venue || '',
+    city: e.city || '', country: e.country || '', date: e.date, ticket_url: e.ticket_url || '' });
+  writeRunStat('namesake', {
+    rules: [...AUTO_DROP_RULES],
+    allowListed: allowList.length,
+    droppedCount: namesakes.drop.length,
+    dropped: namesakes.drop.slice(0, 50).map(d => ({ ...nameOf(d.ev), rule: d.rule })),
+    reviewCount: namesakes.review.length,
+    review: namesakes.review.slice(0, REVIEW_CAP).map(r => ({ ...nameOf(r.ev), reasons: r.reasons })),
   });
 }
 

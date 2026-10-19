@@ -26,6 +26,7 @@ import { readFileSync, existsSync } from 'fs';
 import { todayISO, addDaysISO } from '../lib/normalize.js';
 import { loadEnv } from '../lib/db.js';
 import { readRunStats } from '../lib/run-stats.js';
+import { REVIEW_CAP } from '../lib/namesake.js';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 loadEnv();
@@ -95,6 +96,7 @@ async function main() {
   const purge     = fresh(stats.purge);
   const festivals = stats.festivals || null;    // written by discover-festivals (merge, not overwrite)
   const conflicts = readConflicts();
+  const namesake  = fresh(stats.namesake);     // Songkick namesakes (step 12): null unless written this run
 
   // No "updated" figure: there is no trigger on the table, so updated_at always
   // equals created_at and it would just restate `created`. Past events are the
@@ -155,6 +157,17 @@ async function main() {
     );
   }
   if (purge) runRows.push(['Purgados (retención 8 días)', purge.deleted]);
+  if (namesake) runRows.push(
+    ['Namesakes descartados (auto)', namesake.droppedCount ?? 0],
+    ['Namesakes sospechosos (revisar)', namesake.reviewCount ?? 0],
+  );
+
+  // ── Songkick namesakes (data/run-stats.json "namesake", written by step 12) ──
+  // Dropped only by rules measured >= 95% (none yet, so this is normally empty). Suspected ones are
+  // review-only and capped; the full list is in run-stats.json.
+  const NS_DROPPED = namesake?.dropped || [];
+  const NS_REVIEW  = namesake?.review  || [];
+  const NS_HINT    = 'to keep one, add its source_id to scraper/data/events_allow.json; to remove one, add it to scraper/data/events_block.json';
 
   // ── Double bookings (data/conflicts.json, written by dedupe Pass 6, detection only) ──
   // Likely errors: one event per block of each pair, with its source_id for events_block.json.
@@ -207,6 +220,21 @@ async function main() {
         ? ['  Ninguno']
         : DOUBLE.slice(0, DOUBLE_LIMIT).map(p => `  · ${p.dj} · ${p.date} · ${p.a.city} / ${p.b.city}${p.a.country ? ' · ' + p.a.country : ''}`)
             .concat(DOUBLE.length > DOUBLE_LIMIT ? [`  … and ${DOUBLE.length - DOUBLE_LIMIT} more in data/conflicts.json`] : [])),
+    '',
+    `Dropped as namesakes${namesake ? ` (${namesake.droppedCount ?? 0})` : ''}`,
+    ...(namesake === null
+      ? ['  (no generado en este run)']
+      : (namesake.droppedCount ?? 0) === 0
+        ? ['  Ninguno (ninguna regla de borrado activa)']
+        : [`  ${NS_HINT}`, ...NS_DROPPED.map(e => `  · ${e.dj} @ ${e.venue} · ${e.city} · ${e.date} · rule ${e.rule}\n    source_id: \`${e.source_id}\``)]),
+    '',
+    `Suspected namesakes (review)${namesake ? ` (${namesake.reviewCount ?? 0})` : ''}`,
+    ...(namesake === null
+      ? []
+      : (namesake.reviewCount ?? 0) === 0
+        ? ['  Ninguno']
+        : [`  ${NS_HINT}`, ...NS_REVIEW.map(e => `  · ${e.dj} @ ${e.venue} · ${[e.city, e.country].filter(Boolean).join(', ')} · ${e.date}\n    ${(e.reasons || []).join('; ')}\n    ${e.ticket_url || 'sin link'} · source_id: \`${e.source_id}\``)]
+            .concat((namesake.reviewCount ?? 0) > NS_REVIEW.length ? [`  … and ${namesake.reviewCount - NS_REVIEW.length} more in data/run-stats.json`] : [])),
     ...(conflicts ? ['', `Festival appearances ignored: ${conflicts.ignoredFestival ?? 0}`] : []),
     '',
     failed.length
@@ -271,6 +299,27 @@ async function main() {
           ? `<div style="${block}">Ninguno</div>`
           : `<ul style="margin:4px 0;padding-left:18px;font-size:14px;line-height:1.6">${DOUBLE.slice(0, DOUBLE_LIMIT).map(p => `<li>${esc(p.dj)} · ${esc(p.date)} · ${esc(p.a.city)} / ${esc(p.b.city)}${p.a.country ? ' · ' + esc(p.a.country) : ''}</li>`).join('')}</ul>`
             + (DOUBLE.length > DOUBLE_LIMIT ? `<p style="font-size:13px;color:#555">… and ${DOUBLE.length - DOUBLE_LIMIT} more in data/conflicts.json</p>` : '')}
+      <h3 style="margin:20px 0 4px;font-size:14px">Dropped as namesakes${namesake ? ` (${namesake.droppedCount ?? 0})` : ''}</h3>
+      ${namesake === null
+        ? ''
+        : (namesake.droppedCount ?? 0) === 0
+          ? `<div style="${block}">Ninguno (ninguna regla de borrado activa)</div>`
+          : `<p style="font-size:13px;color:#555;margin:4px 0">${esc(NS_HINT)}</p>` + NS_DROPPED.map(e => `
+              <div style="${block}"><b>${esc(e.dj)} @ ${esc(e.venue)}</b><br>
+                <span style="color:#555">${esc(e.city)} · ${esc(e.date)} · rule ${esc(e.rule)}</span><br>
+                <code style="${mono}">${esc(e.source_id)}</code></div>`).join('')}
+      <h3 style="margin:20px 0 4px;font-size:14px">Suspected namesakes (review)${namesake ? ` (${namesake.reviewCount ?? 0})` : ''}</h3>
+      ${namesake === null
+        ? ''
+        : (namesake.reviewCount ?? 0) === 0
+          ? `<div style="${block}">Ninguno</div>`
+          : `<p style="font-size:13px;color:#555;margin:4px 0">${esc(NS_HINT)}</p>` + NS_REVIEW.map(e => `
+              <div style="${block}"><b>${esc(e.dj)} @ ${esc(e.venue)}</b><br>
+                <span style="color:#555">${esc([e.city, e.country].filter(Boolean).join(', '))} · ${esc(e.date)}</span><br>
+                <span style="font-size:13px">${esc((e.reasons || []).join('; '))}</span><br>
+                ${link(e.ticket_url)} · <code style="${mono}">${esc(e.source_id)}</code></div>`).join('')}
+            ${namesake && (namesake.reviewCount ?? 0) > NS_REVIEW.length ? `<p style="font-size:13px;color:#555">… and ${namesake.reviewCount - NS_REVIEW.length} more in data/run-stats.json</p>` : ''}
+
       ${conflicts ? `<p style="font-size:13px;color:#555;margin:8px 0 0">Festival appearances ignored: <b>${esc(conflicts.ignoredFestival ?? 0)}</b></p>` : ''}
       <p style="font-size:14px;margin:20px 0 0">${
         failed.length

@@ -1,1 +1,32 @@
-[]
+[
+  {
+    "source_id": "sk_43244613",
+    "reason": "Talla 2XLC @ \"Amsterdam\" 2026-10-24: no listing; Stuttgart (Perkins Park) confirmed same day",
+    "added": "2026-10-19"
+  },
+  {
+    "source_id": "sk_43413590",
+    "reason": "Patrick Topping @ \"Milan\" 2026-10-31: no listing; elrow Halloween Drumsheds London confirmed same day",
+    "added": "2026-10-19"
+  },
+  {
+    "source_id": "sk_43420934",
+    "reason": "Kanine @ L'Empreinte Savigny 2026-11-07: namesake at a rock venue; Drumsheds London confirmed same day",
+    "added": "2026-10-19"
+  },
+  {
+    "source_id": "sk_43201764",
+    "reason": "Whipped Cream @ Klüngelpütz Kabarett Cologne 2026-11-20: namesake (cabaret); DJ plays Mosaic Kansas City",
+    "added": "2026-10-19"
+  },
+  {
+    "source_id": "sk_43460576",
+    "reason": "Afrojack @ Werribee Plaza Tavern AU 2026-11-28: not the DJ; Seattle Cannonball Arts confirmed same day",
+    "added": "2026-10-19"
+  },
+  {
+    "source_id": "sk_43060452",
+    "reason": "Rossi @ Kulturzentrum Pavillon Hannover 2026-12-11: namesake; Rossi. (DJ) plays Concourse Project Austin",
+    "added": "2026-10-19"
+  }
+]

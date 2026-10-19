@@ -29,7 +29,7 @@
  *
  * Flags: --dry-run (or DRY_RUN=1) writes nothing; prints what would change.
  * Reads Supabase with the anon key (SUPABASE_URL + SUPABASE_ANON_KEY, or the
- * SB_URL/SB_KEY literals in ../../index.html for local runs). Never writes the DB.
+ * SB_URL/SB_KEY literals in ../../public/index.html for local runs). Never writes the DB.
  *
  * Usage: node steps/03-discover-festivals.js [--dry-run]
  */
@@ -56,7 +56,7 @@ const MIN_KNOWN    = 3;     // generic auto-add: lineup members in artists_all.j
 let SB_URL = process.env.SUPABASE_URL, SB_KEY = process.env.SUPABASE_ANON_KEY;
 if (!SB_URL || !SB_KEY) {
   try {
-    const html = readFileSync(resolve(__dirname, '../../index.html'), 'utf8');
+    const html = readFileSync(resolve(__dirname, '../../public/index.html'), 'utf8');
     SB_URL = SB_URL || (html.match(/SB_URL\s*=\s*['"]([^'"]+)['"]/) || [])[1];
     SB_KEY = SB_KEY || (html.match(/SB_KEY\s*=\s*['"]([^'"]+)['"]/) || [])[1];
   } catch { /* no index.html: DB pass is skipped below */ }

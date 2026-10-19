@@ -13,10 +13,10 @@ nights, by country and city. Live at <https://soundmyth.vercel.app>.
                          │
           ┌──────────────┴───────────────┐
           ▼                              ▼
-   Supabase `events` table       data/artists.json + scraper/data/*.json
+   Supabase `events` table   public/data/artists.json + scraper/data/*.json
           │                              │   (committed back to this repo)
           ▼                              ▼
-   index.html  ◀── reads events ──  index.html  ◀── DJ genre and photo ──
+   public/index.html  ◀── events ──┴── DJ genre and photo ──
    (static, Vercel, no build step)
 ```
 
@@ -27,9 +27,9 @@ never imports scraper code.
 
 | Path | What |
 |---|---|
-| `index.html` | The whole frontend: inline CSS and one script, no framework, no build |
-| `sw.js`, `manifest.webmanifest`, `favicon.svg`, `icon-*.png`, `robots.txt`, `sitemap.xml` | PWA and SEO files. They stay at the root because Vercel serves the root |
-| `data/artists.json` | DJ artifact built by `scraper/steps/15-build-artists.js`. Served to the frontend |
+| `public/` | The website, exactly as Vercel serves it: `index.html` (the whole frontend: inline CSS and one script, no framework, no build), `sw.js`, `manifest.webmanifest`, icons, `robots.txt`, `sitemap.xml` |
+| `public/data/artists.json` | DJ artifact built by `scraper/steps/15-build-artists.js`, served at `/data/artists.json` |
+| `vercel.json` | Tells Vercel to serve `public/` |
 | `scraper/` | The pipeline: `steps/` (run in order), `lib/` (shared), `tools/` (manual), `data/` (curated lists and caches), `sql/`, `test/` |
 | `.github/workflows/` | `weekly-scrape.yml` (pipeline), `cleanup-db.yml`, `keepalive.yml`, `ci.yml` |
 | `docs/` | Operations runbook, rules and incident log, personalization backlog, genre audit, Supabase email template |
@@ -39,7 +39,7 @@ never imports scraper code.
 
 Frontend (no build):
 ```bash
-npx serve . --listen 3000     # or: python -m http.server 3000
+npx serve public --listen 3000     # or: cd public && python -m http.server 3000
 ```
 Open <http://localhost:3000>. The app reads Supabase directly, so it shows live data.
 
@@ -75,7 +75,6 @@ Details, data-file kinds and manual tasks are in [docs/OPERATIONS.md](docs/OPERA
 
 ## Deploy
 
-Vercel serves the repository root as a static site, so the frontend files must stay at
-the root. Vercel settings are managed in the Vercel dashboard. Auth and Supabase settings (site URL,
+Vercel serves `public/` as a static site (set in `vercel.json`); every push to `main` deploys. Auth and Supabase settings (site URL,
 redirect allowlist, custom SMTP for magic-link emails) are configured in the Supabase
 dashboard. The email template is tracked as [docs/email-magic-link.html](docs/email-magic-link.html).

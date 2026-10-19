@@ -5,9 +5,9 @@ Guidance for AI sessions in this repository. Keep this file short and true. Deta
 ## What this is
 
 SoundMyth: a mobile-first webapp of upcoming EDM events, live at soundmyth.vercel.app.
-Two halves that meet only at the Supabase `events` table and at `data/artists.json`:
+Two halves that meet only at the Supabase `events` table and at `public/data/artists.json`:
 
-1. **Frontend**: `index.html`, one self-contained file (inline CSS and one script, vanilla JS, no build). Served as static files from the repo root by Vercel.
+1. **Frontend**: `index.html`, one self-contained file (inline CSS and one script, vanilla JS, no build). Served as static files from `public/` by Vercel (`vercel.json` sets `outputDirectory`).
 2. **Pipeline**: `scraper/`, Node ESM. Runs weekly on GitHub Actions, writes `events` with the Supabase service key, and commits refreshed JSON back to the repo.
 
 The frontend never imports scraper code. The row shape of `events` is the contract.
@@ -17,8 +17,8 @@ Root `../CLAUDE.md` (outside git) only says this folder is the project. Ignore `
 ## Commands
 
 ```bash
-# Frontend: no build. Serve the root statically.
-npx serve . --listen 3000        # or: python -m http.server 3000
+# Frontend: no build. Serve public/ statically.
+npx serve public --listen 3000   # or: cd public && python -m http.server 3000
 
 # Scraper (run from scraper/)
 npm ci
@@ -51,7 +51,7 @@ Steps read `scraper/.env` locally, or GitHub secrets in CI:
 
 Never commit `.env` or any key.
 
-## Frontend invariants (`index.html`)
+## Frontend invariants (`public/index.html`)
 
 - **Two Supabase clients.** `sb` (auth, implicit flow, persists session) is for auth and per-user rows only. `sbPublic` (no session) reads events. Event loading must never depend on auth state.
 - **Magic-link login** uses `signInWithOtp` with `emailRedirectTo` hard-coded to `https://soundmyth.vercel.app`, never `location.href`. `flowType` stays `'implicit'`. Both rules come from real outages (BUG-003, BUG-004).
@@ -89,9 +89,11 @@ Full rules with their incidents: [docs/BUGS.md](docs/BUGS.md).
 
 | Path | Role |
 |---|---|
-| `index.html` | Frontend (production) |
-| `sw.js`, `manifest.webmanifest`, `favicon.svg`, `icon-*.png`, `apple-touch-icon.png`, `robots.txt`, `sitemap.xml` | PWA and SEO. Must stay at the root |
-| `data/artists.json` | DJ artifact served to the frontend (built by step 15) |
+| `public/` | Everything Vercel serves (see `vercel.json`): the site's URLs map 1:1 to this folder |
+| `public/index.html` | Frontend (production) |
+| `public/sw.js`, `manifest.webmanifest`, `favicon.svg`, `icon-*.png`, `apple-touch-icon.png`, `robots.txt`, `sitemap.xml` | PWA and SEO |
+| `public/data/artists.json` | DJ artifact served to the frontend at `/data/artists.json` (built by step 15) |
+| `vercel.json` | Deploy config: serve `public/` |
 | `scraper/steps/` | The 17 pipeline steps, in run order |
 | `scraper/lib/` | Shared modules: `db.js`, `ra.js`, `http.js`, `normalize.js`, `genres.js`, `run-stats.js` |
 | `scraper/tools/` | Manual scripts, never run by CI: `check.js`, `static-scan.js`, `promote-candidates.js`, `infer-styles.js`, `analyze-quality.mjs`, `enrich-festivals-*.js` |

@@ -1,5 +1,5 @@
 /**
- * SoundMyth – build the DJ artifact the frontend reads (web/data/artists.json).
+ * SoundMyth – build the DJ artifact the frontend reads (web/public/data/artists.json).
  *
  * Offline and fast: no image lookups happen here. It only combines data that is already
  * on disk (steps/14-enrich-images.js fills the photo cache; this step publishes it).
@@ -31,7 +31,7 @@ const readJ = (p, fallback) => {
   if (!existsSync(abs)) return fallback;
   try { return JSON.parse(readFileSync(abs, 'utf8')); } catch { return fallback; }
 };
-const OUT = resolve(__dirname, '../../data/artists.json');
+const OUT = resolve(__dirname, '../../public/data/artists.json');
 
 // ── Genre + vibes: the shared taxonomy in lib/genres.js (contract §1/§3) ──────────
 // A DJ with no usable genre gets FALLBACK_GENRE ("Multi-genre" = not classified yet);
@@ -90,10 +90,10 @@ async function main() {
   const overrides = loadOverrides();
 
   // Read before anything is written: a failed read must not publish a lists-only artifact,
-  // because the commit step would ship it. Exit leaves the previous data/artists.json in place.
+  // because the commit step would ship it. Exit leaves the previous public/data/artists.json in place.
   const upcoming = await upcomingDJNames();
   if (!upcoming.ok) {
-    console.error('  Not writing data/artists.json: the previous artifact is kept.');
+    console.error('  Not writing public/data/artists.json: the previous artifact is kept.');
     process.exit(1);
   }
 

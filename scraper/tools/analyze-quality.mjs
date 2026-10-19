@@ -11,7 +11,7 @@ import { fileURLToPath } from 'url';
 import { dirname, resolve } from 'path';
 const __dirname = dirname(fileURLToPath(import.meta.url));
 // read the public anon URL+key straight from the frontend (read-only)
-const html = readFileSync(resolve(__dirname, '../../index.html'), 'utf8');
+const html = readFileSync(resolve(__dirname, '../../public/index.html'), 'utf8');
 const SB_URL = html.match(/SB_URL='([^']+)'/)[1];
 const SB_KEY = html.match(/SB_KEY='([^']+)'/)[1];
 const sb = makeClient(SB_URL, SB_KEY);

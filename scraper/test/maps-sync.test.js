@@ -6,7 +6,7 @@ import { dirname, resolve } from 'path';
 import { CITY_ALIAS_RAW } from '../lib/normalize.js';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
-const html = readFileSync(resolve(__dirname, '../../index.html'), 'utf8');
+const html = readFileSync(resolve(__dirname, '../../public/index.html'), 'utf8');
 
 // Extract an object literal `const NAME={...};` from index.html and evaluate it.
 function extractObject(name) {
@@ -26,7 +26,7 @@ test('CITY_ALIAS_RAW is identical in index.html and scraper/lib/normalize.js', (
 // keys must be djKey(name), genres canonical, vibes whitelisted, photos https or "".
 test('data/artists.json is well-formed and canonical', async () => {
   const { djKey, STYLES, FALLBACK_GENRE, VIBES } = await import('../lib/genres.js');
-  const art = JSON.parse(readFileSync(resolve(__dirname, '../../data/artists.json'), 'utf8'));
+  const art = JSON.parse(readFileSync(resolve(__dirname, '../../public/data/artists.json'), 'utf8'));
   const entries = Object.entries(art.artists || {});
   assert.ok(entries.length > 500, 'artists.json should cover the DJ list');
   const genres = new Set([...STYLES, FALLBACK_GENRE]);

@@ -189,7 +189,7 @@ jobs:
           DJ_TIME_BUDGET_MIN: 18
         run: node steps/14-enrich-images.js
 
-      - name: Build DJ artifact (web/data/artists.json)
+      - name: Build DJ artifact (public/data/artists.json)
         id: artists
         continue-on-error: true
         timeout-minutes: 5
@@ -213,7 +213,7 @@ jobs:
           cd ..
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add scraper/data/*.json data/artists.json
+          git add scraper/data/*.json public/data/artists.json
           git diff --staged --quiet || { git commit -m "data: weekly scrape update $(date +%Y-%m-%d)" && git pull --rebase && git push; }
 
       - name: Verify the run actually wrote data

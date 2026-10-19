@@ -8,7 +8,7 @@ prevent repeat bugs see [BUGS.md](BUGS.md).
 
 | Workflow | Trigger | What it does |
 |---|---|---|
-| `weekly-scrape.yml` "Weekly Scrape & Purge" | Sundays 02:00 UTC, or manual | Runs the 17 pipeline steps, commits `scraper/data/*.json` and `data/artists.json`, emails a run report |
+| `weekly-scrape.yml` "Weekly Scrape & Purge" | Sundays 02:00 UTC, or manual | Runs the 17 pipeline steps, commits `scraper/data/*.json` and `public/data/artists.json`, emails a run report |
 | `cleanup-db.yml` "Clean DB" | Manual | Refreshes candidates, then `steps/11-cleanup-junk.js` (junk removal, city/DJ canonicalisation). About 1 minute |
 | `keepalive.yml` "Keep Supabase awake" | Every second day 06:00 UTC, or manual | One cheap read so the free-tier project is never paused for inactivity |
 | `ci.yml` "CI" | Every push and pull request | Offline only: `npm run check` and `npm test`. No secrets |
@@ -38,9 +38,9 @@ Each step is `scraper/steps/NN-name.js`. Run one locally with `npm run step:<nam
 | 12 | `12-validate.js` | Fixes countries and lineups (genre is left to step 13); drops events with no location, invalid dates, or dates more than 15 months ahead; **deletes** events listed in `events_block.json` (every run, after the scrape); flags Songkick namesakes for review (deletes one only if a rule is enabled, see "Namesakes") |
 | 13 | `13-classify.js` | Recomputes `genre` and `tags` for all upcoming events (canonical styles) |
 | 14 | `14-enrich-images.js` | Festival og:images and DJ photos, within `DJ_TIME_BUDGET_MIN` (resumable) |
-| 15 | `15-build-artists.js` | Writes `data/artists.json`, the DJ artifact the frontend reads |
+| 15 | `15-build-artists.js` | Writes `public/data/artists.json`, the DJ artifact the frontend reads |
 | 16 | `16-purge.js` | **Deletes** events older than 8 days, plus orphaned `saved_events`. The only step that deletes by date |
-| – | commit step | Commits `scraper/data/*.json` and `data/artists.json` (`git pull --rebase` before push) |
+| – | commit step | Commits `scraper/data/*.json` and `public/data/artists.json` (`git pull --rebase` before push) |
 | – | verify step | Fails the run if fewer than 100 future events exist |
 | 17 | `17-report.js` | Emails the Brevo run report (outcomes, conflicts to review, namesakes dropped and suspected, validation counts, new festivals) |
 
@@ -111,10 +111,10 @@ Offline dry runs that need no Supabase access:
 ```bash
 node steps/13-classify.js --dry-run --snapshot path/to/events.json
 node steps/03-discover-festivals.js --dry-run
-EVENTS_JSON=path/to/events.json node steps/15-build-artists.js   # overwrites data/artists.json
+EVENTS_JSON=path/to/events.json node steps/15-build-artists.js   # overwrites public/data/artists.json
 ```
-`build-artists` rewrites `web/data/artists.json`. If the only change is `generated`, run
-`git checkout -- ../data/artists.json`.
+`build-artists` rewrites `web/public/data/artists.json`. If the only change is `generated`, run
+`git checkout -- ../public/data/artists.json`.
 
 ### Reviewing double bookings
 Reviewing conflicts: open the email, decide which event is wrong, add its source_id to events_block.json (GitHub web editor is fine), it disappears next run.

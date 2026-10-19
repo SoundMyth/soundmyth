@@ -16,7 +16,7 @@
  * so EDM-but-unlisted DJs are NOT lost; you promote the good ones into
  * artists_all.json by hand whenever you like.
  *
- * Read-only on the DB (anon key from ../../index.html). Incremental: previously
+ * Read-only on the DB (anon key from ../../public/index.html). Incremental: previously
  * verified DJs are cached, only new ones hit RA. Set LIMIT_NEW=N to cap RA calls.
  *
  * Usage: node steps/10-discover-djs.js
@@ -38,7 +38,7 @@ const readJ = p => { try { return JSON.parse(readFileSync(resolve(__dirname, p),
 let SB_URL = process.env.SUPABASE_URL;
 let SB_KEY = process.env.SUPABASE_ANON_KEY;
 if (!SB_URL || !SB_KEY) {
-  const html = readFileSync(resolve(__dirname, '../../index.html'), 'utf8');
+  const html = readFileSync(resolve(__dirname, '../../public/index.html'), 'utf8');
   SB_URL = SB_URL || (html.match(/SB_URL\s*=\s*['"]([^'"]+)['"]/) || [])[1];
   SB_KEY = SB_KEY || (html.match(/SB_KEY\s*=\s*['"]([^'"]+)['"]/) || [])[1];
 }

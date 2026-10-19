@@ -119,8 +119,9 @@ async function main() {
   const broken = total === null;
   const ok     = !broken && !failed.length && !failedQueries && total > 100;
   const status = broken ? '🔴 sin conexión a Supabase' : ok ? '✅ correcto' : '⚠️ con incidencias';
-  const nConflicts = conflicts ? conflicts.count : null;
-  const conflictTag = nConflicts ? ` · ⚠️ ${nConflicts} conflicto${nConflicts === 1 ? '' : 's'}` : '';
+  // The subject counts likely errors only. Possible double-headers are in the body.
+  const nLikely = conflicts ? conflicts.likelyErrors : null;
+  const conflictTag = nLikely ? ` · ⚠️ ${nLikely} likely error${nLikely === 1 ? '' : 's'}` : '';
 
   const rows = [
     ['Eventos futuros en BD', total ?? 'inaccesible'],
@@ -135,6 +136,7 @@ async function main() {
   const runRows = [];
   if (validate) {
     runRows.push(
+      ['Blocked by you', validate.blocked ?? 0],
       ['Descartados: sin ciudad/país', validate.droppedNoGeo],
       ['Descartados: fecha fuera de rango', validate.droppedDate],
       ['Descartados: web legacy', validate.droppedLegacyWebsite],
@@ -147,17 +149,23 @@ async function main() {
   }
   if (dedupe) {
     runRows.push(
-      ['Fragmentos de festival unidos', dedupe.fragmentsMerged ?? dedupe.festivalFragments?.fragmentsMerged ?? '?'],
-      ['Dobles reservas detectadas', dedupe.conflicts],
-      ['DJs retirados por conflicto', dedupe.djsRemoved],
+      ['Fragmentos de festival unidos', dedupe.fragmentsMerged ?? '?'],
+      ['Dobles reservas: posibles errores', dedupe.likelyErrors ?? '?'],
+      ['Dobles reservas: posibles doble sesión', dedupe.possibleDoubleHeaders ?? '?'],
     );
   }
   if (purge) runRows.push(['Purgados (retención 8 días)', purge.deleted]);
 
-  // ── Conflicts: "⚠️ Conflicts to review" (both events + action taken) ──────
-  const CONFLICT_LIMIT = 25;
-  const conflictList = conflicts?.conflicts || [];
-  const evLine = e => `${e.name} · ${e.city}${e.country ? ', ' + e.country : ''} · ${e.date} · ${e.source}`;
+  // ── Double bookings (data/conflicts.json, written by dedupe Pass 6, detection only) ──
+  // Likely errors: one event per block of each pair, with its source_id for events_block.json.
+  // Possible double-headers: one compact line per pair, capped.
+  const pairs = conflicts?.conflicts || [];
+  const LIKELY = pairs.filter(p => p.category === 'likely-error');
+  const DOUBLE = pairs.filter(p => p.category === 'possible-double-header');
+  const DOUBLE_LIMIT = 15;
+  const BLOCK_HINT = 'to block one, add its source_id to scraper/data/events_block.json';
+  const where = e => [e.city, e.country].filter(Boolean).join(', ');
+  const linkOf = e => e.ticket_url || 'sin link';
 
   const festLines = festivals
     ? [
@@ -177,16 +185,29 @@ async function main() {
     ...(runRows.length ? ['', '  Limpieza de este run:', ...runRows.map(([k, v]) => `    ${String(k).padEnd(34)}${v ?? '?'}`)] : []),
     ...(festLines.length ? ['', ...festLines] : []),
     '',
-    '⚠️ Conflicts to review',
+    `⚠️ Likely errors to review${conflicts ? ` (${LIKELY.length})` : ''}`,
     ...(conflicts === null
       ? ['  (no generado en este run — dedupe no terminó)']
-      : conflictList.length === 0
+      : LIKELY.length === 0
         ? ['  ✅ Ninguno']
-        : conflictList.slice(0, CONFLICT_LIMIT).flatMap((c, i) => [
-            `  ${i + 1}. ${c.dj} · ${c.date}`,
-            `     KEPT    ${evLine(c.kept)} · ${c.kept.ticket_url || 'sin link'}`,
-            ...c.removed.map(r => `     ${r.action.toUpperCase().padEnd(8)}${evLine(r)} · ${r.ticket_url || 'sin link'}`),
-          ]).concat(conflictList.length > CONFLICT_LIMIT ? [`  … y ${conflictList.length - CONFLICT_LIMIT} más en data/conflicts.json`] : [])),
+        : [`  ${BLOCK_HINT}`, ...LIKELY.flatMap((p, i) => [
+            '',
+            `  ${i + 1}. ${p.dj} · ${p.date}`,
+            ...[p.a, p.b].flatMap(e => [
+              `     · ${e.name} · ${where(e)} · ${e.date}`,
+              `       ${linkOf(e)}`,
+              `       source_id: \`${e.source_id}\``,
+            ]),
+          ])]),
+    '',
+    `Possible double-headers${conflicts ? ` (${DOUBLE.length})` : ''}`,
+    ...(conflicts === null
+      ? []
+      : DOUBLE.length === 0
+        ? ['  Ninguno']
+        : DOUBLE.slice(0, DOUBLE_LIMIT).map(p => `  · ${p.dj} · ${p.date} · ${p.a.city} / ${p.b.city}${p.a.country ? ' · ' + p.a.country : ''}`)
+            .concat(DOUBLE.length > DOUBLE_LIMIT ? [`  … and ${DOUBLE.length - DOUBLE_LIMIT} more in data/conflicts.json`] : [])),
+    ...(conflicts ? ['', `Festival appearances ignored: ${conflicts.ignoredFestival ?? 0}`] : []),
     '',
     failed.length
       ? `  Steps con fallo (${failed.length}): ${failed.map(([k, v]) => `${k} → ${v}`).join(', ')}`
@@ -205,8 +226,8 @@ async function main() {
 
   const td = 'padding:4px 10px;border-bottom:1px solid #eee;';
   const block = 'border:1px solid #eee;border-radius:8px;padding:10px 12px;margin:8px 0;font-size:14px;word-break:break-word;';
+  const mono  = 'font-family:Menlo,Consolas,monospace;font-size:12px;background:#f4f4f4;padding:1px 4px;border-radius:4px;word-break:break-all;';
   const link = u => u ? `<a href="${esc(u)}">entradas</a>` : '<span style="color:#999">sin link</span>';
-  const evHtml = e => `<div style="margin:2px 0">${esc(e.name)}<br><span style="color:#555">${esc(e.city)}${e.country ? ', ' + esc(e.country) : ''} · ${esc(e.date)} · ${esc(e.source)} · ${link(e.ticket_url)}</span></div>`;
 
   const html = `
     <div style="font-family:-apple-system,Segoe UI,sans-serif;max-width:560px">
@@ -228,17 +249,29 @@ async function main() {
       <h3 style="margin:20px 0 4px;font-size:14px">New festivals added this week</h3>
       <div style="${block}">${(festivals.added || []).length ? (festivals.added || []).slice(0, 20).map(n => esc(n)).join('<br>') : 'Ninguno'}
         <div style="margin-top:6px;color:#555">Pending festival candidates: <b>${esc(festivals.candidates ?? 0)}</b></div></div>` : ''}
-      <h3 style="margin:20px 0 4px;font-size:14px">⚠️ Conflicts to review</h3>
+      <h3 style="margin:20px 0 4px;font-size:14px">⚠️ Likely errors to review${conflicts ? ` (${LIKELY.length})` : ''}</h3>
       ${conflicts === null
         ? `<div style="${block}">No generado en este run (dedupe no terminó).</div>`
-        : conflictList.length === 0
+        : LIKELY.length === 0
           ? `<div style="${block}">✅ Ninguno</div>`
-          : conflictList.slice(0, CONFLICT_LIMIT).map((c, i) => `
+          : `<p style="font-size:13px;color:#555;margin:4px 0">To block one, add its <code style="${mono}">source_id</code> to <code style="${mono}">scraper/data/events_block.json</code>.</p>` +
+            LIKELY.map((p, i) => `
               <div style="${block}">
-                <b>${i + 1}. ${esc(c.dj)} · ${esc(c.date)}</b>
-                <div style="margin-top:6px"><span style="color:#0a7d33"><b>KEPT</b></span> ${evHtml(c.kept)}</div>
-                ${c.removed.map(r => `<div style="margin-top:6px"><span style="color:#b00020"><b>${esc(r.action.toUpperCase())}</b></span> ${evHtml(r)}</div>`).join('')}
-              </div>`).join('') + (conflictList.length > CONFLICT_LIMIT ? `<p style="font-size:13px;color:#555">… y ${conflictList.length - CONFLICT_LIMIT} más en data/conflicts.json</p>` : '')}
+                <b>${i + 1}. ${esc(p.dj)} · ${esc(p.date)}</b>
+                ${[p.a, p.b].map(e => `
+                  <div style="margin-top:8px">${esc(e.name)}<br>
+                    <span style="color:#555">${esc(where(e))} · ${esc(e.date)} · ${esc(e.source)} · ${link(e.ticket_url)}</span><br>
+                    <code style="${mono}">${esc(e.source_id)}</code>
+                  </div>`).join('')}
+              </div>`).join('')}
+      <h3 style="margin:20px 0 4px;font-size:14px">Possible double-headers${conflicts ? ` (${DOUBLE.length})` : ''}</h3>
+      ${conflicts === null
+        ? ''
+        : DOUBLE.length === 0
+          ? `<div style="${block}">Ninguno</div>`
+          : `<ul style="margin:4px 0;padding-left:18px;font-size:14px;line-height:1.6">${DOUBLE.slice(0, DOUBLE_LIMIT).map(p => `<li>${esc(p.dj)} · ${esc(p.date)} · ${esc(p.a.city)} / ${esc(p.b.city)}${p.a.country ? ' · ' + esc(p.a.country) : ''}</li>`).join('')}</ul>`
+            + (DOUBLE.length > DOUBLE_LIMIT ? `<p style="font-size:13px;color:#555">… and ${DOUBLE.length - DOUBLE_LIMIT} more in data/conflicts.json</p>` : '')}
+      ${conflicts ? `<p style="font-size:13px;color:#555;margin:8px 0 0">Festival appearances ignored: <b>${esc(conflicts.ignoredFestival ?? 0)}</b></p>` : ''}
       <p style="font-size:14px;margin:20px 0 0">${
         failed.length
           ? `<b>Steps con fallo (${failed.length}):</b><br>` + failed.map(([k, v]) => `${esc(k)} → ${esc(v)}`).join('<br>')

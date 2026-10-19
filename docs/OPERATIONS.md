@@ -32,10 +32,10 @@ Each step is `scraper/steps/NN-name.js`. Run one locally with `npm run step:<nam
 | 06 | `06-scrape-festivals-ra.js` | Festivals via Resident Advisor (matches on name prefix and area) |
 | 07 | `07-enrich-clubs-ra.js` | Fills `ra_url` for clubs that lack one (ra.co only) |
 | 08 | `08-scrape-clubs-ra.js` | Clubs × RA GraphQL |
-| 09 | `09-dedupe.js` | Merges duplicates and festival fragments; resolves double bookings into `conflicts.json`. Skips merge/delete passes if the event load was partial |
+| 09 | `09-dedupe.js` | Merges duplicates and festival fragments, and names merged festival keepers by edition. Detects double bookings into `conflicts.json` and **never deletes** them. Skips merge/delete passes if the event load was partial |
 | 10 | `10-discover-djs.js` | Finds DJs in events that are not in our list and verifies them on RA → `artists_candidates.json` |
 | 11 | `11-cleanup-junk.js` | **Deletes** events whose lineup has no EDM presence; canonicalises DJ and city spellings. Respects `artists_allow.json` and `artists_block.json` |
-| 12 | `12-validate.js` | Fixes countries and lineups (genre is left to step 13); drops events with no location, invalid dates, or dates more than 15 months ahead |
+| 12 | `12-validate.js` | Fixes countries and lineups (genre is left to step 13); drops events with no location, invalid dates, or dates more than 15 months ahead; **deletes** events listed in `events_block.json` (every run, after the scrape) |
 | 13 | `13-classify.js` | Recomputes `genre` and `tags` for all upcoming events (canonical styles) |
 | 14 | `14-enrich-images.js` | Festival og:images and DJ photos, within `DJ_TIME_BUDGET_MIN` (resumable) |
 | 15 | `15-build-artists.js` | Writes `data/artists.json`, the DJ artifact the frontend reads |
@@ -57,6 +57,7 @@ Kind: **input** = curated by hand, **cache** = safe to delete (rebuilt on demand
 | `artists_all.json` | input | steps 01, 02, 10, 11, 13, 14, 15 | DJ list that drives the scrapers. `genre` is always a canonical style |
 | `artists_allow.json` | input | steps 10, 11 | Manual rescue list: never cleaned up as junk |
 | `artists_block.json` | input | steps 10, 11, tools | Manual block list: off-genre DJs (RA false positives) |
+| `events_block.json` | input | step 12 | Manual block list of events (`source_id`), deleted every run. Starts as `[]`. See "Reviewing double bookings" |
 | `artists_top100.json` | reference | step 15 | Sets the `top100` flag in `artists.json`. The frontend keeps its own mirror; edit both |
 | `artists_candidates.json` | output | step 10 | RA verification cache. Only new DJs are checked; `err: true` means uncertain and is kept |
 | `clubs_all.json` | input | steps 07, 08, 12 | Club registry; also gives venue evidence for geo fixes |
@@ -68,7 +69,7 @@ Kind: **input** = curated by hand, **cache** = safe to delete (rebuilt on demand
 | `dj_images_overrides.json` | input | step 14, 15 | Manual photo decisions: `{djKey: url}` or `""` to force initials. Wins over the cache |
 | `dj_images_cache.json` | cache | step 14 | Keyed by djKey. Bump `DJ_CACHE_VERSION` in `steps/14-enrich-images.js` to retry failures |
 | `festival_images_cache.json` | cache | step 14 | Festival og:image lookups |
-| `conflicts.json` | output | step 09, read by step 17 | Overwritten each run; double bookings to review |
+| `conflicts.json` | output | step 09, read by step 17 | Overwritten each run. `likelyErrors` (different countries), `possibleDoubleHeaders` (same country), `ignoredFestival` (festival-like appearances, not conflicts). Detection only |
 | `run-stats.json` | output | steps 09, 12, 16, 03; read by step 17 | One section per step; report only trusts sections written during this run |
 
 The genre audit behind the 2026-10 reclassification is in
@@ -113,6 +114,25 @@ EVENTS_JSON=path/to/events.json node steps/15-build-artists.js   # overwrites da
 ```
 `build-artists` rewrites `web/data/artists.json`. If the only change is `generated`, run
 `git checkout -- ../data/artists.json`.
+
+### Reviewing double bookings
+Reviewing conflicts: open the email, decide which event is wrong, add its source_id to events_block.json (GitHub web editor is fine), it disappears next run.
+
+The weekly email lists two groups, from `scraper/data/conflicts.json`:
+- **Likely errors to review**: the same DJ on the same day in two different countries. Usually one listing is wrong. Each event's `source_id` is shown in monospace.
+- **Possible double-headers**: the same DJ in two cities of one country on one day. Often two real shows (a double-header), so these are informational.
+
+Festival appearances are not conflicts. Songkick dates every artist's festival slot with the festival's first day, so a DJ at a multi-day festival on day 1 and a club elsewhere that day is expected. The email counts them as "Festival appearances ignored". A festival that no signal catches (for example a festival name without "festival" or "fest") can still show as a likely error. Block it the same way, or add the festival to `festivals_all.json`.
+
+To block an event, add an entry to `scraper/data/events_block.json`:
+
+```json
+[
+  { "source_id": "sk_43343846", "reason": "Wrong listing: the DJ is booked elsewhere that day", "added": "2026-10-20" }
+]
+```
+
+`source_id` must match exactly. Step 12 deletes each listed event on every run, after the scrape, so a scraper that re-adds it is undone the same week. Once the bad listing is gone at the source, remove its entry, so the file stays short. A malformed file fails step 12 on purpose, so a typo cannot silently bring the event back.
 
 ### Trigger a manual scrape
 GitHub → Actions → "Weekly Scrape & Purge" → Run workflow. About 90 minutes.

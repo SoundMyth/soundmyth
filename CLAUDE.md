@@ -36,7 +36,7 @@ There is no frontend test suite. `test/maps-sync.test.js` checks the frontend lo
 `01 enrich-songkick-urls → 02 scrape-extended → 03 discover-festivals → 04 scrape-festivals-bit → 05 scrape-festivals-direct → 06 scrape-festivals-ra → 07 enrich-clubs-ra → 08 scrape-clubs-ra → 09 dedupe → 10 discover-djs → 11 cleanup-junk → 12 validate → 13 classify → 14 enrich-images → 15 build-artists → 16 purge → commit → verify → 17 report`
 
 - `09-dedupe` must run after every scrape (see invariants).
-- `11-cleanup-junk` and `16-purge` **delete** events. `16-purge` is the only step that deletes by date.
+- `11-cleanup-junk` and `16-purge` **delete** events. `12-validate` deletes only the `events_block.json` list. `16-purge` is the only step that deletes by date.
 - `cleanup-db.yml` runs `10` and `11` on demand. `keepalive.yml` pings Supabase every second day.
 
 Full runbook, data-file kinds and manual tasks: [docs/OPERATIONS.md](docs/OPERATIONS.md).
@@ -64,7 +64,7 @@ Never commit `.env` or any key.
 ## Data invariants (`events`)
 
 - `source_id` is the idempotency key. It **includes the city** when the same event can occur in several cities. A scraper touches only its own `source_id` rows and never deletes by date.
-- Festival events from Bandsintown arrive fragmented per DJ. Dedupe consolidates them. Dedupe merges lineups and never removes a DJ, except in the double-booking pass, which writes `scraper/data/conflicts.json`.
+- Festival events from Bandsintown arrive fragmented per DJ. Dedupe consolidates them. Dedupe merges lineups and never removes a DJ. Double-booking detection (Pass 6) only writes `scraper/data/conflicts.json`; an event leaves the database for a double booking only when a person lists its `source_id` in `scraper/data/events_block.json` (step 12).
 - Partial loads never drive deletes: `fetchAllRows` returns an error, and cleanup, dedupe and classify abort on it.
 - Dates are calendar dates. Never derive a date with `toISOString()` from an offset timestamp.
 - Events are kept 8 days in the past (`16-purge.js`). The frontend greys out the last 7.
@@ -79,7 +79,7 @@ Full rules with their incidents: [docs/BUGS.md](docs/BUGS.md).
 - **Nulls:** every API string used with a method has a `|| ''` fallback, and `FLAGS[c] || '🌍'`.
 - **Inputs:** `font-size: 16px` or more, and `touch-action: manipulation` on `*`, to stop iOS zoom.
 - **Normalisation for matching:** NFD-fold diacritics before any ASCII regex.
-- **Scraper modules:** shared code goes in `scraper/lib/` (`db.js` for Supabase, env and paging; `ra.js` for the Resident Advisor transport; `http.js`; `normalize.js`; `genres.js`; `run-stats.js`). Steps and tools import from `lib/`, and read data with `resolve(__dirname, '../data/…')`.
+- **Scraper modules:** shared code goes in `scraper/lib/` (`db.js` for Supabase, env and paging; `ra.js` for the Resident Advisor transport; `http.js`; `normalize.js`; `genres.js`; `conflicts.js` for double-booking detection and the block list; `run-stats.js`). Steps and tools import from `lib/`, and read data with `resolve(__dirname, '../data/…')`.
 - **Layout rules** (enforced by `test/imports.test.js`): every `steps/NN-*.js` is run by `weekly-scrape.yml`, no `tools/*` file is run by CI, and every `lib/*.js` is imported somewhere.
 - **Bumping caches:** `DJ_CACHE_VERSION` or `FEST_CACHE_VERSION` in `steps/14-enrich-images.js` when lookup logic changes. `CACHE` in `sw.js` when the app shell changes.
 - **Commits:** small and logically separate. The workflow file must stay valid YAML.

@@ -1300,16 +1300,6 @@
     "sample": "FCKNYE Festival 2026 · Brussels"
   },
   {
-    "name": "EDC México",
-    "key": "edcmexico",
-    "events": 1,
-    "sources": [
-      "ra"
-    ],
-    "onRA": false,
-    "sample": "EDC Mexico · Mexico City"
-  },
-  {
     "name": "Eli",
     "key": "eli",
     "events": 1,
@@ -1338,15 +1328,5 @@
     ],
     "onRA": false,
     "sample": "Maz (BR) @ Sambódromo da Marquês de Sapucaí · Rio De Janeiro"
-  },
-  {
-    "name": "Neelix",
-    "key": "neelix",
-    "events": 1,
-    "sources": [
-      "songkick"
-    ],
-    "onRA": false,
-    "sample": "Neelix @ Stromwerk · Dresden"
   }
 ]

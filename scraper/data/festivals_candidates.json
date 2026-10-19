@@ -367,5 +367,61 @@
     "first_seen": "2026-10-18",
     "status": "pending",
     "reason": "only 0 listed artists"
+  },
+  {
+    "key": "bazique festival",
+    "name": "Bazique Festival",
+    "city": "Cape Town",
+    "country": "South Africa",
+    "date": "2027-03-06",
+    "ra_id": "2266419",
+    "via": "generic",
+    "artists": 0,
+    "known_artists": 0,
+    "first_seen": "2026-10-19",
+    "status": "pending",
+    "reason": "only 0 listed artists"
+  },
+  {
+    "key": "soma festival",
+    "name": "Soma Festival",
+    "city": "New South Wales",
+    "country": "Australia",
+    "date": "2026-11-06",
+    "ra_id": "2296914",
+    "via": "generic",
+    "artists": 23,
+    "known_artists": 0,
+    "first_seen": "2026-10-19",
+    "status": "pending",
+    "reason": "only 0 lineup artists in artists_all"
+  },
+  {
+    "key": "modulair festival",
+    "name": "MODUL'AIR Festival",
+    "city": "Ghent",
+    "country": "Belgium",
+    "date": "2027-03-28",
+    "ra_id": "2413847",
+    "via": "generic",
+    "artists": 0,
+    "known_artists": 0,
+    "first_seen": "2026-10-19",
+    "status": "pending",
+    "reason": "only 0 listed artists"
+  },
+  {
+    "key": "trotamundo festival",
+    "name": "Trotamundo Festival",
+    "city": "",
+    "country": "Ecuador",
+    "date": "2027-01-06",
+    "ra_id": "2449520",
+    "via": "generic",
+    "artists": 0,
+    "known_artists": 0,
+    "first_seen": "2026-10-19",
+    "status": "pending",
+    "reason": "only 0 listed artists"
   }
 ]

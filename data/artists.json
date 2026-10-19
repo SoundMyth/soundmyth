@@ -1,5 +1,5 @@
 {
- "generated": "2026-10-18T23:54:38Z",
+ "generated": "2026-10-19T10:31:58Z",
  "artists": {
   "1926": {
    "name": "19:26",
@@ -3141,13 +3141,6 @@
   },
   "eczodia": {
    "name": "ECZODIA",
-   "genre": "Multi-genre",
-   "img": "",
-   "top100": false,
-   "vibes": []
-  },
-  "edcmexico": {
-   "name": "EDC México",
    "genre": "Multi-genre",
    "img": "",
    "top100": false,

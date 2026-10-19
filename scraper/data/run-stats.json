@@ -1,20 +1,20 @@
 {
   "festivals": {
     "added": [],
-    "candidates": 22
+    "candidates": 26
   },
   "dedupe": {
-    "generated": "2026-10-18T23:53:44.736Z",
-    "conflicts": 142,
-    "djsRemoved": 1,
-    "eventsDeleted": 140,
+    "generated": "2026-10-19T10:31:18.087Z",
+    "likelyErrors": 8,
+    "possibleDoubleHeaders": 27,
+    "ignoredFestival": 133,
     "fragmentsMerged": 62,
-    "keepersMerged": 164,
-    "rowsDeleted": 933
+    "keepersMerged": 173,
+    "rowsDeleted": 991
   },
   "validate": {
-    "generated": "2026-10-18T23:53:51.778Z",
-    "future": 2626,
+    "generated": "2026-10-19T10:31:23.399Z",
+    "future": 2678,
     "cityCanonicalized": 0,
     "cityFromVenue": 0,
     "countryFilled": 0,
@@ -23,6 +23,7 @@
     "droppedNoGeo": 0,
     "droppedDate": 1,
     "droppedLegacyWebsite": 0,
+    "blocked": 0,
     "dropped": 1,
     "geoFlags": {
       "hubMismatch": [],
@@ -31,7 +32,7 @@
         {
           "city": "Birmingham",
           "countries": [
-            "United Kingdom (20)",
+            "United Kingdom (21)",
             "United States (1)"
           ]
         },
@@ -83,9 +84,14 @@
     "droppedSamples": []
   },
   "purge": {
-    "generated": "2026-10-18T23:54:38.817Z",
-    "cutoff": "2026-10-10",
+    "generated": "2026-10-19T10:31:59.839Z",
+    "cutoff": "2026-10-11",
     "retentionDays": 8,
-    "deleted": 0
+    "deleted": 108,
+    "orphanSavedEvents": {
+      "status": "ok",
+      "found": 0,
+      "deleted": 0
+    }
   }
 }

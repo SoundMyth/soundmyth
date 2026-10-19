@@ -36,7 +36,7 @@ There is no frontend test suite. `test/maps-sync.test.js` checks the frontend lo
 `01 enrich-songkick-urls → 02 scrape-extended → 03 discover-festivals → 04 scrape-festivals-bit → 05 scrape-festivals-direct → 06 scrape-festivals-ra → 07 enrich-clubs-ra → 08 scrape-clubs-ra → 09 dedupe → 10 discover-djs → 11 cleanup-junk → 12 validate → 13 classify → 14 enrich-images → 15 build-artists → 16 purge → commit → verify → 17 report`
 
 - `09-dedupe` must run after every scrape (see invariants).
-- `11-cleanup-junk` and `16-purge` **delete** events. `12-validate` deletes only the `events_block.json` list. `16-purge` is the only step that deletes by date.
+- `11-cleanup-junk` and `16-purge` **delete** events. `12-validate` deletes only the `events_block.json` list (plus any namesake rule enabled in `lib/namesake.js`; none today). `16-purge` is the only step that deletes by date.
 - `cleanup-db.yml` runs `10` and `11` on demand. `keepalive.yml` pings Supabase every second day.
 
 Full runbook, data-file kinds and manual tasks: [docs/OPERATIONS.md](docs/OPERATIONS.md).
@@ -69,6 +69,7 @@ Never commit `.env` or any key.
 - Dates are calendar dates. Never derive a date with `toISOString()` from an offset timestamp.
 - Events are kept 8 days in the past (`16-purge.js`). The frontend greys out the last 7.
 - Genre and tags come from the canonical 16-style taxonomy in `scraper/lib/genres.js`. An event with no known DJ or festival style is `Multi-genre`.
+- **Songkick namesakes are review-only.** Songkick merges same-name acts into one artist page. Step 12 deletes a namesake only through `AUTO_DROP_RULES` in `scraper/lib/namesake.js`, which is empty: no rule reached 95% on the 2026-10 audit. Suspected ones go to the weekly email; `scraper/data/events_allow.json` rescues one. See [docs/OPERATIONS.md](docs/OPERATIONS.md) "Namesakes".
 
 Full rules with their incidents: [docs/BUGS.md](docs/BUGS.md).
 

@@ -35,14 +35,14 @@ Each step is `scraper/steps/NN-name.js`. Run one locally with `npm run step:<nam
 | 09 | `09-dedupe.js` | Merges duplicates and festival fragments, and names merged festival keepers by edition. Detects double bookings into `conflicts.json` and **never deletes** them. Skips merge/delete passes if the event load was partial |
 | 10 | `10-discover-djs.js` | Finds DJs in events that are not in our list and verifies them on RA → `artists_candidates.json` |
 | 11 | `11-cleanup-junk.js` | **Deletes** events whose lineup has no EDM presence; canonicalises DJ and city spellings. Respects `artists_allow.json` and `artists_block.json` |
-| 12 | `12-validate.js` | Fixes countries and lineups (genre is left to step 13); drops events with no location, invalid dates, or dates more than 15 months ahead; **deletes** events listed in `events_block.json` (every run, after the scrape) |
+| 12 | `12-validate.js` | Fixes countries and lineups (genre is left to step 13); drops events with no location, invalid dates, or dates more than 15 months ahead; **deletes** events listed in `events_block.json` (every run, after the scrape); flags Songkick namesakes for review (deletes one only if a rule is enabled, see "Namesakes") |
 | 13 | `13-classify.js` | Recomputes `genre` and `tags` for all upcoming events (canonical styles) |
 | 14 | `14-enrich-images.js` | Festival og:images and DJ photos, within `DJ_TIME_BUDGET_MIN` (resumable) |
 | 15 | `15-build-artists.js` | Writes `data/artists.json`, the DJ artifact the frontend reads |
 | 16 | `16-purge.js` | **Deletes** events older than 8 days, plus orphaned `saved_events`. The only step that deletes by date |
 | – | commit step | Commits `scraper/data/*.json` and `data/artists.json` (`git pull --rebase` before push) |
 | – | verify step | Fails the run if fewer than 100 future events exist |
-| 17 | `17-report.js` | Emails the Brevo run report (outcomes, conflicts to review, validation counts, new festivals) |
+| 17 | `17-report.js` | Emails the Brevo run report (outcomes, conflicts to review, namesakes dropped and suspected, validation counts, new festivals) |
 
 Step 11 can permanently delete events. Add a DJ to `artists_allow.json` to rescue a
 false positive, and to `artists_block.json` to force-remove one.
@@ -58,6 +58,7 @@ Kind: **input** = curated by hand, **cache** = safe to delete (rebuilt on demand
 | `artists_allow.json` | input | steps 10, 11 | Manual rescue list: never cleaned up as junk |
 | `artists_block.json` | input | steps 10, 11, tools | Manual block list: off-genre DJs (RA false positives) |
 | `events_block.json` | input | step 12 | Manual block list of events (`source_id`), deleted every run. Starts as `[]`. See "Reviewing double bookings" |
+| `events_allow.json` | input | step 12 | Rescue list of events (`source_id`) that are never flagged or dropped as Songkick namesakes. Starts as `[]`. See "Namesakes" |
 | `artists_top100.json` | reference | step 15 | Sets the `top100` flag in `artists.json`. The frontend keeps its own mirror; edit both |
 | `artists_candidates.json` | output | step 10 | RA verification cache. Only new DJs are checked; `err: true` means uncertain and is kept |
 | `clubs_all.json` | input | steps 07, 08, 12 | Club registry; also gives venue evidence for geo fixes |
@@ -133,6 +134,72 @@ To block an event, add an entry to `scraper/data/events_block.json`:
 ```
 
 `source_id` must match exactly. Step 12 deletes each listed event on every run, after the scrape, so a scraper that re-adds it is undone the same week. Once the bad listing is gone at the source, remove its entry, so the file stays short. A malformed file fails step 12 on purpose, so a typo cannot silently bring the event back.
+
+### Namesakes: what is dropped automatically, how to rescue one, how to block one
+
+Songkick merges every act with the same name into one artist page. A DJ's calendar can
+therefore hold another act's gigs: "Luciano" the German rapper playing a Pavarotti tribute
+in a hotel, "Kanine" at a rock venue in France, "Afrojack" at a tavern in Melbourne.
+
+**What is dropped automatically: nothing yet.** `AUTO_DROP_RULES` in `scraper/lib/namesake.js`
+is empty. A rule may delete only when it reaches 95% precision on the hand-verified audit
+(`scraper/test/fixtures/namesake-audit-2026-10.json`). None did (table below), so step 12
+drops no namesake. The `namesakeDropped` count and the email section "Dropped as namesakes"
+are wired and will show any event a future rule drops.
+
+**What is flagged:** the email section "Suspected namesakes (review)" lists up to 15 events,
+most suspicious first. The rule (`review` in `lib/namesake.js`) is: a single-DJ Songkick event
+where no other known DJ plays the venue, the venue is not in `clubs_all.json`, and either the venue
+name is non-electronic (church, cabaret, tavern, hotel, museum, kulturzentrum...) or the DJ name is
+one word of at most seven letters. Flagged events stay in the database. The full list is in
+`data/run-stats.json` under `namesake`. The total is in the email's heading.
+
+**How to rescue a flagged event (keep it):** add its `source_id` to `scraper/data/events_allow.json`.
+Allow-listed events are never flagged and never dropped:
+
+```json
+[
+  { "source_id": "sk_43xxxxxx", "reason": "Luciano at Die Glocke is the Swiss DJ, not the rapper", "added": "2026-10-27" }
+]
+```
+
+**How to block one (remove it):** add its `source_id` to `scraper/data/events_block.json`, as for a
+double booking. Step 12 deletes it every run.
+
+A malformed `events_allow.json` fails step 12 on purpose, so a typo cannot silently bring a
+rescued event back into the email.
+
+**Measured precision (2026-10-19 audit).** Population: 2,341 Songkick single-DJ events of known DJs
+(live snapshot). Sample: 110, stratified by signal and verified on the web (strata C 16 of 24,
+B 22 of 52, A 22 of 838, D 10 of 106, E 10 of 392, none 30 of 929). "Precision" is the share of
+namesakes among decided events that a rule flags. "Unknown" (no evidence either way) is excluded
+from precision and is large: 55 of 110. Recall is over the 7 namesakes found in the sample.
+
+| Signal or rule | Flagged | Namesake | Correct | Unknown | Precision (decided) | Recall (of 7) |
+|---|---|---|---|---|---|---|
+| venue orphan (no other known DJ at venue, not a club) | 45 | 6 | 19 | 20 | 24% | 6/7 |
+| non-electronic venue word | 24 | 5 | 9 | 10 | 36% | 5/7 |
+| one-word name (≤ 7 letters) | 34 | 5 | 11 | 18 | 31% | 5/7 |
+| same DJ, same day, other country | 16 | 3 | 8 | 5 | 27% | 3/7 |
+| same DJ, next day, other country | 26 | 3 | 14 | 9 | 18% | 3/7 |
+| venue in clubs_all.json | 7 | 0 | 3 | 4 | 0% | 0/7 |
+| orphan AND non-electronic venue | 16 | 4 | 6 | 6 | 40% | 4/7 |
+| orphan AND one-word name | 13 | 4 | 2 | 7 | 67% | 4/7 |
+| **review rule**: orphan AND (non-electronic venue OR one-word name) | 24 | 6 | 7 | 11 | 46% | 6/7 |
+| any signal (strata C, B, A, D, E) | 80 | 7 | 35 | 38 | 17% | 7/7 |
+
+Read with care. Recall is in-sample and the strata are not population-weighted. The unknowns
+are the real limit: if they were all namesakes, the namesake share of the live population would
+be far higher than the 5% that the decided verdicts imply. The web search cannot confirm most small-club
+dates, so the audit cannot say how common namesakes are. That is why nothing auto-drops.
+
+**Live counts (2026-10-19 snapshot, 2,671 events after blocks):** auto-dropped 0; flagged for review
+308 (the email shows the 15 most suspicious). Orphan AND non-electronic venue alone: 37. The
+namesake-specific counts are by design the review list, not deletions.
+
+**Promoting a rule.** Add the rule to `RULES` and to `AUTO_DROP_RULES` only after re-measuring it
+on a larger, re-verified sample. `test/namesake.test.js` fails if an auto-drop rule measures below 95% on
+the fixture. Fixture rows are immutable evidence: add rows, do not edit verdicts to fit a rule.
 
 ### Trigger a manual scrape
 GitHub → Actions → "Weekly Scrape & Purge" → Run workflow. About 90 minutes.

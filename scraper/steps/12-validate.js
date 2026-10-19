@@ -9,6 +9,9 @@
  *    (pre-fix "Friday November 20th 2026 - …" names) are dropped so they are re-scraped clean.
  *  - lineups: junk names removed, b2b split (normalize.cleanLineup).
  *  - events still lacking city or country after every fallback are DROPPED and counted.
+ *  - events whose source_id is listed in data/events_block.json are DELETED on every run. This is
+ *    the manual decision for a double booking (see docs/OPERATIONS.md). It runs after the scrape,
+ *    so a re-scraped row is removed again.
  * Stats go to data/run-stats.json (section "validate") for steps/17-report.js.
  *
  * Usage: node steps/12-validate.js
@@ -24,6 +27,7 @@ import {
   isLegacyWebsiteRow, cityKey, HUB_COUNTRY,
 } from '../lib/normalize.js';
 import { writeRunStat } from '../lib/run-stats.js';
+import { readBlockList, blockedEvents } from '../lib/conflicts.js';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 loadEnv();
@@ -40,6 +44,7 @@ const sb = makeClient(SB_URL, SB_KEY);
 
 const clubsPath = resolve(__dirname, '../data/clubs_all.json');
 const clubLookup = makeClubLookup(existsSync(clubsPath) ? JSON.parse(readFileSync(clubsPath, 'utf8')) : []);
+const blockPath = resolve(__dirname, '../data/events_block.json');
 
 // ── Helpers ──────────────────────────────────────────────────────────────────
 
@@ -54,6 +59,12 @@ async function main() {
   console.log('==================================================');
   console.log('  SoundMyth - Event Data Validator');
   console.log('==================================================\n');
+
+  // A malformed block list must stop the run: silently ignoring it would bring back the events
+  // the reviewer meant to remove.
+  let blockList;
+  try { blockList = readBlockList(blockPath); }
+  catch (err) { console.error(`❌  ${blockPath}: ${err.message}`); process.exit(1); }
 
   const today = todayISO();
   console.log(`Date        : ${today}`);
@@ -75,6 +86,10 @@ async function main() {
 
   console.log(`Total future events: ${allEvents.length}\n`);
 
+  // Manual block list: deleted every run, whatever the scrapers re-added.
+  const blocked = blockedEvents(allEvents, blockList);
+  const blockedIds = new Set(blocked.map(e => e.id));
+
   if (allEvents.length === 0) {
     console.log('No future events found. Nothing to validate.');
     return;
@@ -86,6 +101,7 @@ async function main() {
     cityCanonicalized: 0, cityFromVenue: 0, countryFilled: 0,
     hubCountryFixed: 0, djListsCleaned: 0,
     droppedNoGeo: 0, droppedDate: 0, droppedLegacyWebsite: 0,
+    blocked: blocked.length,
   };
   const dropNoGeo = [], dropDate = [], dropLegacy = [];
   const updates = [];          // {id, patch}
@@ -93,6 +109,7 @@ async function main() {
   const hubFlags = [];         // hub city listed under a country we could not verify
 
   for (const ev of allEvents) {
+    if (blockedIds.has(ev.id)) continue;   // deleted below with the block list
     if (isLegacyWebsiteRow(ev)) { dropLegacy.push(ev); continue; }
 
     const dateStatus = checkEventDate(ev.date, today);
@@ -139,7 +156,9 @@ async function main() {
   console.log('--------------------------------------------------');
   console.log('  VALIDATION REPORT');
   console.log('--------------------------------------------------\n');
-  console.log(`[1] Dropped: no city or country after fallbacks : ${dropNoGeo.length}`);
+  console.log(`[0] Blocked by data/events_block.json              : ${blocked.length}`);
+  for (const ev of blocked.slice(0, 20)) console.log(`     - ${ev.date} | ${(ev.name || '').slice(0, 40)} | ${ev.source_id}`);
+  console.log(`\n[1] Dropped: no city or country after fallbacks : ${dropNoGeo.length}`);
   for (const ev of dropNoGeo.slice(0, 10)) console.log(`     - ${ev.date} | ${(ev.name || '').slice(0, 40)} | ${ev.source} | city "${ev.city || ''}" country "${ev.country || ''}"`);
   console.log(`\n[2] Dropped: date out of range (>15 months / invalid): ${dropDate.length}`);
   for (const ev of dropDate.slice(0, 10)) console.log(`     - ${ev.date} | ${(ev.name || '').slice(0, 40)}`);
@@ -168,7 +187,7 @@ async function main() {
   console.log(`  Patched: ${patched}\n`);
 
   // Fix 2: drops (by id, in chunks)
-  const toDrop = [...dropNoGeo, ...dropDate, ...dropLegacy].map(e => e.id);
+  const toDrop = [...new Set([...blocked, ...dropNoGeo, ...dropDate, ...dropLegacy].map(e => e.id))];
   console.log(`Fix 2: Dropping ${toDrop.length} events...`);
   let dropped = 0;
   for (let i = 0; i < toDrop.length; i += 100) {
@@ -192,6 +211,7 @@ async function main() {
   console.log(`  Countries filled           : ${stats.countryFilled}`);
   console.log(`  Hub countries fixed        : ${stats.hubCountryFixed}`);
   console.log(`  Lineups cleaned            : ${stats.djListsCleaned}`);
+  console.log(`  Blocked (events_block.json): ${blocked.length}`);
   console.log(`  Dropped (no geo)           : ${dropNoGeo.length}`);
   console.log(`  Dropped (date range)       : ${dropDate.length}`);
   console.log(`  Dropped (legacy website)   : ${dropLegacy.length}`);

@@ -479,9 +479,9 @@ export function planFestivalFragments(events, festNames, { spanDays = 4 } = {}) 
   return plan;
 }
 
-/** Source tier for double-booking priority (lower wins):
- *  0 = official / RA listing (ra, direct, website); 1 = Songkick/BIT single show;
- *  2 = festival per-artist fragment or festival listing. */
+/** Source tier (lower = more reliable): 0 = official / RA listing (ra, direct, website);
+ *  1 = Songkick/BIT single show; 2 = festival per-artist fragment or festival listing.
+ *  Used only to order the two sides of a conflict pair (lib/conflicts.js). */
 export function eventTier(ev, festival = false) {
   if (['ra', 'direct', 'website'].includes(ev?.source)) return 0;
   return festival ? 2 : 1;
@@ -490,44 +490,37 @@ export function eventTier(ev, festival = false) {
 /** DJ key for double-booking comparisons ("KI/KI" ≡ "ki ki" ≡ "Kiki"). */
 export function djMatchKey(s) { return normText(s).replace(/\s+/g, ''); }
 
-/**
- * Pass 6 detector (pure). The same DJ on the same date in events of DIFFERENT cities is a
- * conflict. Winner = lowest tier, then richest, then lowest id. Every event whose city differs
- * from the winner's is a loser (its DJ must be removed). Returns
- * [{ djKey, dj, date, winner, losers }].
- */
-export function findDoubleBookings(events, { isFestival = () => false, richness = () => 0 } = {}) {
-  const idx = new Map();
-  for (const ev of events) {
-    if (!cityKey(ev.city) || !ev.date) continue;
-    for (const dj of ev.djs || []) {
-      const dk = djMatchKey(dj);
-      if (!dk) continue;
-      const k = `${dk}|${ev.date}`;
-      if (!idx.has(k)) idx.set(k, { djKey: dk, entries: new Map() });
-      idx.get(k).entries.set(ev.id, { ev, dj });
-    }
+// ── Festival edition names (dedupe merge) ─────────────────────────────────────────
+// Songkick dates each artist's festival appearance and its festival row by the festival's
+// edition URL: songkick.com/festivals/<id>-<festival>/id/<id>-<edition-slug>. The edition slug
+// ("scream-2026") is the festival's own name, which a merged per-artist row lacks.
+const SK_FEST_EDITION = /songkick\.com\/festivals\/\d+-[^/?#]*\/id\/\d+-([^?#]*)/i;
+const EDITION_STOP = new Set(['utm', 'source', 'medium', 'campaign', 'ref', 'ticket', 'tickets', 'www', 'com']);
+
+/** Name the festival edition for a merged festival keeper, or null when it does not apply.
+ *  Applies only when the merged group has more than one DJ, the keeper is a Songkick festival
+ *  edition row, and its name is still the "<DJ> @ <venue>" fragment form. The venue field is
+ *  never changed. A curated festivals_all.json name wins when it matches the slug exactly.
+ *  Examples: "Sara Landry @ Edmonton EXPO Centre (EEC)" + ".../id/…-scream-2026" -> "Scream 2026". */
+export function festivalEditionName(ev, djCount, festNames = []) {
+  if (!(djCount > 1)) return null;
+  if (!/^.+\s+(?:@|at)\s+.+$/i.test(String(ev?.name || '').trim())) return null;
+  const m = String(ev?.ticket_url || '').match(SK_FEST_EDITION);
+  if (!m) return null;
+  let slug;
+  try { slug = decodeURIComponent(m[1]); } catch { return null; }
+  const tokens = [];
+  // Stop at the first token that is not a plain word: tracking params, Songkick ids, or junk.
+  for (const raw of slug.normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase().split('-')) {
+    if (!raw) continue;
+    if (!/^[a-z0-9]+$/.test(raw) || EDITION_STOP.has(raw) || /^\d{6,}$/.test(raw)) break;
+    tokens.push(raw);
   }
-  const out = [];
-  for (const { djKey, entries: map } of idx.values()) {
-    if (map.size < 2) continue;
-    const entries = [...map.values()];
-    if (new Set(entries.map(x => cityKey(x.ev.city))).size < 2) continue;
-    const rank = x => eventTier(x.ev, isFestival(x.ev));
-    entries.sort((a, b) => rank(a) - rank(b)
-      || richness(b.ev) - richness(a.ev)
-      || String(a.ev.id).localeCompare(String(b.ev.id)));
-    const winner = entries[0].ev;
-    const wc = cityKey(winner.city);
-    out.push({
-      djKey,
-      dj: entries[0].dj,
-      date: winner.date,
-      winner,
-      losers: entries.map(x => x.ev).filter(e => cityKey(e.city) !== wc),
-    });
-  }
-  return out;
+  if (!tokens.some(t => /[a-z]/.test(t))) return null;
+  const candidate = tokens.map(t => /^\d/.test(t) ? t : t[0].toUpperCase() + t.slice(1)).join(' ');
+  if (candidate.length > 60) return null;
+  const curated = (festNames || []).find(n => normText(n) === normText(candidate));
+  return curated || candidate;
 }
 
 // ── Dedupe merge rules (steps/09-dedupe.js) ───────────────────────────────────────

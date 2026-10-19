@@ -37,6 +37,7 @@ export function isFestivalLike(ev, isFestivalNamed = makeFestivalNameTest([])) {
   if ((ev.tags || []).includes('festival')) return true;
   if (ev._festival || /^(sk_fest_|bit_fest_)/.test(ev.source_id || '')) return true;
   if (isFestivalNamed(ev)) return true;                                       // FEST_WORD or curated name
+  if (/\bADE\b/.test(ev.name || '')) return true;                             // Amsterdam Dance Event = multi-day city festival
   if ((ev.djs || []).length > 1) return true;                                 // multi-act lineup
   return false;
 }

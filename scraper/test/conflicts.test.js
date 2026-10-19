@@ -165,7 +165,7 @@ test('venueKeyOf and makeFestivalTest', () => {
 
 // ── Regression: the 2026-10-18 production run (142 conflicts, 140 events deleted) ──────
 
-test('regression: the 2026-10-18 snapshot yields 0 actions, 114 festival pairs ignored, 9 likely errors, 28 double-headers', () => {
+test('regression: the 2026-10-18 snapshot yields 0 actions, 115 festival pairs ignored (DGTL ADE now caught), 8 likely errors, 28 double-headers', () => {
   const fx = JSON.parse(readFileSync(resolve(here, 'fixtures/conflicts-2026-10-18.json'), 'utf8'));
   const festNames = JSON.parse(readFileSync(resolve(here, 'fixtures/festival-names-2026-10-18.json'), 'utf8'));
   assert.equal(fx.conflicts.length, 142);
@@ -180,10 +180,10 @@ test('regression: the 2026-10-18 snapshot yields 0 actions, 114 festival pairs i
   const { pairs, ignoredFestival, ...rest } = detectConflicts(events, { festNames });
 
   assert.deepEqual(Object.keys(rest), [], 'no action fields in the result');
-  assert.equal(ignoredFestival, 114);
+  assert.equal(ignoredFestival, 115);
   const likely = pairs.filter(p => p.category === CATEGORY.LIKELY_ERROR);
   const double = pairs.filter(p => p.category === CATEGORY.DOUBLE_HEADER);
-  assert.equal(likely.length, 9);
+  assert.equal(likely.length, 8);
   assert.equal(double.length, 28);
   assert.equal(pairs.length, 37);
   assert.deepEqual(likely.map(p => `${p.date} ${p.dj}`), [

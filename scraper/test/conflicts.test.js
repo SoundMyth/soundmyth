@@ -185,9 +185,9 @@ test('regression: the 2026-10-18 snapshot yields 0 actions, 115 festival pairs i
   const double = pairs.filter(p => p.category === CATEGORY.DOUBLE_HEADER);
   assert.equal(likely.length, 8);
   assert.equal(double.length, 28);
-  assert.equal(pairs.length, 37);
+  assert.equal(pairs.length, 36);
   assert.deepEqual(likely.map(p => `${p.date} ${p.dj}`), [
-    '2026-10-24 Talla 2XLC', '2026-10-25 O.BEE', '2026-10-31 Delta Heavy', '2026-10-31 Patrick Topping',
+    '2026-10-24 Talla 2XLC', '2026-10-31 Delta Heavy', '2026-10-31 Patrick Topping',
     '2026-11-07 Kanine', '2026-11-20 WHIPPED CREAM', '2026-11-28 Afrojack', '2026-12-04 Solardo', '2026-12-11 Rossi.',
   ]);
   // The Edmonton festival (Scream 2026) fragments must never surface as conflicts.

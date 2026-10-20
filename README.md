@@ -32,7 +32,7 @@ never imports scraper code.
 | `vercel.json` | Tells Vercel to serve `public/` |
 | `scraper/` | The pipeline: `steps/` (run in order), `lib/` (shared), `tools/` (manual), `data/` (curated lists and caches), `sql/`, `test/` |
 | `.github/workflows/` | `weekly-scrape.yml` (pipeline), `cleanup-db.yml`, `keepalive.yml`, `ci.yml` |
-| `docs/` | Operations runbook, rules and incident log, personalization backlog, genre audit, Supabase email template |
+| `docs/` | Operations runbook, pre-launch backlog (ROADMAP), rules and incident log, personalization backlog, genre audit, Supabase email template |
 | `design/` | Event-detail prototype and the source artwork for the app icons |
 
 ## Run it locally
@@ -70,6 +70,7 @@ Details, data-file kinds and manual tasks are in [docs/OPERATIONS.md](docs/OPERA
   invariants and conventions. Read it first, then [docs/BUGS.md](docs/BUGS.md) before
   non-trivial changes.
 - **Running or fixing the weekly job:** [docs/OPERATIONS.md](docs/OPERATIONS.md).
+- **What is parked before launch (privacy, analytics, brand/domain, founder reviews):** [docs/ROADMAP.md](docs/ROADMAP.md).
 - **Backlog and history of personalization:** [docs/PERSONALIZATION_NOTES.md](docs/PERSONALIZATION_NOTES.md).
 - **Genre taxonomy audit (2026-10):** [docs/genre-audit-2026-10.md](docs/genre-audit-2026-10.md).
 

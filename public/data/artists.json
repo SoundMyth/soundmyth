@@ -1,5 +1,5 @@
 {
- "generated": "2026-10-19T10:31:58Z",
+ "generated": "2026-10-25T08:08:01Z",
  "artists": {
   "1926": {
    "name": "19:26",
@@ -591,10 +591,10 @@
     "hard"
    ]
   },
-  "amoral": {
-   "name": "AMORAL",
+  "amormusic": {
+   "name": "AMOR MUSIC",
    "genre": "Multi-genre",
-   "img": "",
+   "img": "https://static.ra.co/images/profiles/square/amormusic.jpg?dateUpdated=1771581620683",
    "top100": false,
    "vibes": []
   },
@@ -885,6 +885,13 @@
    "rank": 880,
    "vibes": []
   },
+  "anthonygodfather2": {
+   "name": "Anthony Godfather (2)",
+   "genre": "Multi-genre",
+   "img": "",
+   "top100": false,
+   "vibes": []
+  },
   "anyma": {
    "name": "Anyma",
    "genre": "Melodic Techno",
@@ -938,6 +945,13 @@
    "rank": 616,
    "vibes": []
   },
+  "armanakhan": {
+   "name": "ARMANA KHAN",
+   "genre": "Multi-genre",
+   "img": "https://static.ra.co/images/profiles/square/armanakhan.jpg?dateUpdated=1772164769603",
+   "top100": false,
+   "vibes": []
+  },
   "armandvanhelden": {
    "name": "Armand van Helden",
    "genre": "Deep House",
@@ -965,6 +979,13 @@
    "vibes": [
     "melodic"
    ]
+  },
+  "artnologia": {
+   "name": "ART NO LOGIA",
+   "genre": "Multi-genre",
+   "img": "",
+   "top100": false,
+   "vibes": []
   },
   "artoffighters": {
    "name": "Art Of Fighters",
@@ -1040,6 +1061,13 @@
    "img": "https://static.ra.co/images/profiles/square/atrak.jpg?dateUpdated=1693477029000",
    "top100": false,
    "rank": 576,
+   "vibes": []
+  },
+  "audioprophecy": {
+   "name": "Audioprophecy",
+   "genre": "Multi-genre",
+   "img": "https://static.ra.co/images/profiles/audioprophecy.jpg?dateUpdated=1445657861563",
+   "top100": false,
    "vibes": []
   },
   "avacrown": {
@@ -1177,6 +1205,13 @@
    "img": "https://static.ra.co/images/profiles/square/baugruppe90.jpg?dateUpdated=1779835773103",
    "top100": false,
    "rank": 767,
+   "vibes": []
+  },
+  "beamskii": {
+   "name": "Beamskii",
+   "genre": "Multi-genre",
+   "img": "",
+   "top100": false,
    "vibes": []
   },
   "beauz": {
@@ -1861,19 +1896,19 @@
    "rank": 899,
    "vibes": []
   },
+  "cerakhin": {
+   "name": "Cera Khin",
+   "genre": "Multi-genre",
+   "img": "",
+   "top100": false,
+   "vibes": []
+  },
   "cesaralmena": {
    "name": "CESAR ALMENA",
    "genre": "Techno",
    "img": "https://static.ra.co/images/profiles/square/cesaralmena.jpg?dateUpdated=1736472647000",
    "top100": false,
    "rank": 699,
-   "vibes": []
-  },
-  "chanceknot": {
-   "name": "CHANCEKNOT",
-   "genre": "Multi-genre",
-   "img": "https://static.ra.co/images/profiles/square/chanceknot.jpg?dateUpdated=1790033658510",
-   "top100": false,
    "vibes": []
   },
   "chapterandverse": {
@@ -2416,6 +2451,13 @@
     "hard"
    ]
   },
+  "dazee": {
+   "name": "Dazee",
+   "genre": "Multi-genre",
+   "img": "",
+   "top100": false,
+   "vibes": []
+  },
   "dblockandstefan": {
    "name": "D-Block & S-te-Fan",
    "genre": "Hardstyle",
@@ -2723,6 +2765,13 @@
    "rank": 705,
    "vibes": []
   },
+  "djdelish": {
+   "name": "DJ Delish",
+   "genre": "Multi-genre",
+   "img": "https://static.ra.co/images/profiles/djdelish.jpg?dateUpdated=1567615003000",
+   "top100": false,
+   "vibes": []
+  },
   "djdiesel": {
    "name": "DJ Diesel",
    "genre": "Bass",
@@ -2861,6 +2910,13 @@
    "img": "https://static.ra.co/images/profiles/square/djsplit.jpg?dateUpdated=1783951099080",
    "top100": false,
    "rank": 918,
+   "vibes": []
+  },
+  "djss": {
+   "name": "DJ SS",
+   "genre": "Multi-genre",
+   "img": "",
+   "top100": false,
    "vibes": []
   },
   "djstingray313": {
@@ -3816,13 +3872,6 @@
    "top100": false,
    "vibes": []
   },
-  "funkassault": {
-   "name": "Funk Assault",
-   "genre": "Multi-genre",
-   "img": "",
-   "top100": false,
-   "vibes": []
-  },
   "funktribu": {
    "name": "Funk Tribu",
    "genre": "Hard Techno",
@@ -3832,6 +3881,13 @@
    "vibes": [
     "hard"
    ]
+  },
+  "funsta": {
+   "name": "Funsta",
+   "genre": "Multi-genre",
+   "img": "",
+   "top100": false,
+   "vibes": []
   },
   "future666": {
    "name": "Future 666",
@@ -3912,12 +3968,26 @@
     "melodic"
    ]
   },
+  "gennaro": {
+   "name": "GENNARO",
+   "genre": "Multi-genre",
+   "img": "https://static.ra.co/images/profiles/square/gennaro.jpg?dateUpdated=1775822234000",
+   "top100": false,
+   "vibes": []
+  },
   "georgemensah": {
    "name": "George Mensah",
    "genre": "House",
    "img": "https://static.ra.co/images/profiles/georgemensah.jpg?dateUpdated=1490105683000",
    "top100": false,
    "rank": 946,
+   "vibes": []
+  },
+  "georgeprivatti": {
+   "name": "George Privatti",
+   "genre": "Multi-genre",
+   "img": "",
+   "top100": false,
    "vibes": []
   },
   "georgesmeddles": {
@@ -3974,6 +4044,13 @@
    "vibes": [
     "melodic"
    ]
+  },
+  "glxy": {
+   "name": "GLXY",
+   "genre": "Multi-genre",
+   "img": "https://static.ra.co/images/profiles/square/glxy.jpg?dateUpdated=1522062085000",
+   "top100": false,
+   "vibes": []
   },
   "golpe": {
    "name": "Golpe",
@@ -4104,6 +4181,13 @@
    "img": "https://images.sk-static.com/images/media/profile_images/artists/10074774/huge_avatar",
    "top100": false,
    "rank": 588,
+   "vibes": []
+  },
+  "guilleplacencia": {
+   "name": "Guille Placencia",
+   "genre": "Multi-genre",
+   "img": "",
+   "top100": false,
    "vibes": []
   },
   "guyj": {
@@ -4244,6 +4328,13 @@
    "rank": 802,
    "vibes": []
   },
+  "hhunter": {
+   "name": "hhunter",
+   "genre": "Multi-genre",
+   "img": "https://static.ra.co/images/profiles/square/hhunter.jpg?dateUpdated=1774367657000",
+   "top100": false,
+   "vibes": []
+  },
   "hiddevanwee": {
    "name": "Hidde van Wee",
    "genre": "House",
@@ -4344,13 +4435,6 @@
     "latin"
    ]
   },
-  "hujus": {
-   "name": "HUJUS",
-   "genre": "Multi-genre",
-   "img": "",
-   "top100": false,
-   "vibes": []
-  },
   "hvob": {
    "name": "Hvob",
    "genre": "Techno",
@@ -4365,6 +4449,13 @@
    "img": "https://static.ra.co/images/profiles/hybridminds.jpg?dateUpdated=1456324138973",
    "top100": false,
    "rank": 620,
+   "vibes": []
+  },
+  "ic3": {
+   "name": "IC3",
+   "genre": "Multi-genre",
+   "img": "",
+   "top100": false,
    "vibes": []
   },
   "idemi": {
@@ -4529,13 +4620,6 @@
    "rank": 963,
    "vibes": []
   },
-  "jakojako": {
-   "name": "JakoJako",
-   "genre": "Multi-genre",
-   "img": "",
-   "top100": false,
-   "vibes": []
-  },
   "jamback": {
    "name": "Jamback",
    "genre": "Tech House",
@@ -4561,6 +4645,13 @@
    "vibes": [
     "mainstream"
    ]
+  },
+  "jamesjamesjames": {
+   "name": "jamesjamesjames",
+   "genre": "Multi-genre",
+   "img": "",
+   "top100": false,
+   "vibes": []
   },
   "jameslavelle": {
    "name": "James Lavelle",
@@ -4703,6 +4794,13 @@
    "img": "https://static.ra.co/images/profiles/joachimpastor.jpg?dateUpdated=1444046387520",
    "top100": false,
    "rank": 966,
+   "vibes": []
+  },
+  "jobdejong": {
+   "name": "Job de Jong",
+   "genre": "Multi-genre",
+   "img": "",
+   "top100": false,
    "vibes": []
   },
   "jodywisternoff": {
@@ -5103,10 +5201,17 @@
    "rank": 978,
    "vibes": []
   },
-  "kaufmann": {
-   "name": "Kaufmann",
+  "kaytranada": {
+   "name": "Kaytranada",
    "genre": "Multi-genre",
    "img": "",
+   "top100": false,
+   "vibes": []
+  },
+  "kayzo": {
+   "name": "Kayzo",
+   "genre": "Multi-genre",
+   "img": "https://static.ra.co/images/profiles/square/kayzo.jpg?dateUpdated=1773836434000",
    "top100": false,
    "vibes": []
   },
@@ -5745,13 +5850,6 @@
    "rank": 245,
    "vibes": []
   },
-  "lobster": {
-   "name": "Lobster",
-   "genre": "Multi-genre",
-   "img": "",
-   "top100": false,
-   "vibes": []
-  },
   "localdub": {
    "name": "Local Dub",
    "genre": "Tech House",
@@ -6057,6 +6155,13 @@
     "afro"
    ]
   },
+  "makeadance": {
+   "name": "Make A Dance",
+   "genre": "Multi-genre",
+   "img": "",
+   "top100": false,
+   "vibes": []
+  },
   "makez": {
    "name": "Makèz",
    "genre": "House",
@@ -6082,6 +6187,13 @@
    "vibes": [
     "hard"
    ]
+  },
+  "mampiswift": {
+   "name": "Mampi Swift",
+   "genre": "Multi-genre",
+   "img": "https://static.ra.co/images/profiles/mampiswift.jpg?dateUpdated=1455808777543",
+   "top100": false,
+   "vibes": []
   },
   "mandamoor": {
    "name": "Manda Moor",
@@ -6454,6 +6566,20 @@
    "rank": 174,
    "vibes": []
   },
+  "matthiastanzmann": {
+   "name": "Matthias Tanzmann",
+   "genre": "Multi-genre",
+   "img": "",
+   "top100": false,
+   "vibes": []
+  },
+  "mattiatrani": {
+   "name": "Mattia Trani",
+   "genre": "Multi-genre",
+   "img": "https://static.ra.co/images/profiles/square/mattiatrani.jpg?dateUpdated=1603411200000",
+   "top100": false,
+   "vibes": []
+  },
   "mattn": {
    "name": "MATTN",
    "genre": "Big Room",
@@ -6658,6 +6784,13 @@
    "rank": 1011,
    "vibes": []
   },
+  "michenlo": {
+   "name": "Michenlo",
+   "genre": "Multi-genre",
+   "img": "",
+   "top100": false,
+   "vibes": []
+  },
   "midland": {
    "name": "Midland",
    "genre": "Deep House",
@@ -6853,6 +6986,13 @@
    "rank": 827,
    "vibes": []
   },
+  "moose": {
+   "name": "Moose",
+   "genre": "Multi-genre",
+   "img": "",
+   "top100": false,
+   "vibes": []
+  },
   "morgan": {
    "name": "Morgan",
    "genre": "Multi-genre",
@@ -6882,6 +7022,13 @@
    "img": "https://static.ra.co/images/profiles/square/mosimann.jpg?dateUpdated=1777024497293",
    "top100": false,
    "rank": 646,
+   "vibes": []
+  },
+  "mowie2": {
+   "name": "Mowie (2)",
+   "genre": "Multi-genre",
+   "img": "",
+   "top100": false,
    "vibes": []
   },
   "moxie": {
@@ -8006,12 +8153,26 @@
    "rank": 1042,
    "vibes": []
   },
+  "pria": {
+   "name": "Prïa",
+   "genre": "Multi-genre",
+   "img": "",
+   "top100": false,
+   "vibes": []
+  },
   "priku": {
    "name": "Priku",
    "genre": "Tech House",
    "img": "https://static.ra.co/images/profiles/priku.jpg?dateUpdated=1759137894140",
    "top100": false,
    "rank": 739,
+   "vibes": []
+  },
+  "promozo": {
+   "name": "Promo ZO",
+   "genre": "Multi-genre",
+   "img": "",
+   "top100": false,
    "vibes": []
   },
   "prospa": {
@@ -8214,6 +8375,13 @@
    "vibes": [
     "melodic"
    ]
+  },
+  "raykeith": {
+   "name": "Ray Keith",
+   "genre": "Multi-genre",
+   "img": "",
+   "top100": false,
+   "vibes": []
   },
   "rdhad": {
    "name": "Rødhåd",
@@ -8968,6 +9136,13 @@
    "rank": 310,
    "vibes": []
   },
+  "shabba": {
+   "name": "Shabba",
+   "genre": "Multi-genre",
+   "img": "",
+   "top100": false,
+   "vibes": []
+  },
   "shaked": {
    "name": "Shakèd",
    "genre": "House",
@@ -9103,6 +9278,13 @@
    "img": "https://static.ra.co/images/profiles/square/sikoti.jpg?dateUpdated=1698341128000",
    "top100": false,
    "rank": 839,
+   "vibes": []
+  },
+  "silktits": {
+   "name": "Silktits",
+   "genre": "Multi-genre",
+   "img": "",
+   "top100": false,
    "vibes": []
   },
   "silvabumpa": {
@@ -9675,6 +9857,13 @@
    "rank": 1087,
    "vibes": []
   },
+  "thebaldgirl": {
+   "name": "the bald girl",
+   "genre": "Multi-genre",
+   "img": "",
+   "top100": false,
+   "vibes": []
+  },
   "theblaze": {
    "name": "The Blaze",
    "genre": "Multi-genre",
@@ -9724,6 +9913,13 @@
    "img": "https://static.ra.co/images/profiles/square/theghost.jpg?dateUpdated=1772716115000",
    "top100": false,
    "rank": 1089,
+   "vibes": []
+  },
+  "theholy1": {
+   "name": "THE HOLY (1)",
+   "genre": "Multi-genre",
+   "img": "",
+   "top100": false,
    "vibes": []
   },
   "theladymachine": {
@@ -10110,6 +10306,13 @@
    "rank": 1095,
    "vibes": []
   },
+  "uncledugs": {
+   "name": "Uncle Dugs",
+   "genre": "Multi-genre",
+   "img": "https://static.ra.co/images/profiles/uncledugs.jpg?dateUpdated=1343658402440",
+   "top100": false,
+   "vibes": []
+  },
   "underworld": {
    "name": "Underworld",
    "genre": "Tech House",
@@ -10188,8 +10391,8 @@
     "underground"
    ]
   },
-  "varunaagosti": {
-   "name": "Varuna Agosti",
+  "varg": {
+   "name": "Varg²™",
    "genre": "Multi-genre",
    "img": "",
    "top100": false,
@@ -10239,13 +10442,6 @@
    "img": "https://static.ra.co/images/profiles/square/vessbroz.jpg?dateUpdated=1496074274000",
    "top100": false,
    "rank": 261,
-   "vibes": []
-  },
-  "victorruiz": {
-   "name": "Victor Ruiz",
-   "genre": "Multi-genre",
-   "img": "",
-   "top100": false,
    "vibes": []
   },
   "viezeasbak": {
@@ -10307,6 +10503,13 @@
     "underground"
    ]
   },
+  "voicemc": {
+   "name": "VoicemC",
+   "genre": "Multi-genre",
+   "img": "",
+   "top100": false,
+   "vibes": []
+  },
   "voigtmann": {
    "name": "Voigtmann",
    "genre": "Techno",
@@ -10362,6 +10565,13 @@
    "img": "https://images.sk-static.com/images/media/profile_images/artists/5851679/huge_avatar",
    "top100": false,
    "rank": 757,
+   "vibes": []
+  },
+  "wallylopez": {
+   "name": "Wally Lopez",
+   "genre": "Multi-genre",
+   "img": "",
+   "top100": false,
    "vibes": []
   },
   "wandw": {
@@ -10592,6 +10802,20 @@
    "img": "https://cdn-images.dzcdn.net/images/artist/3ad245e23c49cd373099fcc143910911/1000x1000-000000-80-0-0.jpg",
    "top100": false,
    "rank": 509,
+   "vibes": []
+  },
+  "zackfox": {
+   "name": "Zack Fox",
+   "genre": "Multi-genre",
+   "img": "https://static.ra.co/images/profiles/square/zackfox.jpg?dateUpdated=1720019103000",
+   "top100": false,
+   "vibes": []
+  },
+  "zacmartel": {
+   "name": "Zac Martel",
+   "genre": "Multi-genre",
+   "img": "",
+   "top100": false,
    "vibes": []
   },
   "zedd": {

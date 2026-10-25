@@ -2,12 +2,22 @@
   {
     "name": "MPH (1)",
     "key": "mph1",
-    "events": 3,
+    "events": 4,
     "sources": [
       "ra"
     ],
     "onRA": true,
     "sample": "Groove Cruise Miami 2027 - Ambassador Code: GrooveCruiseChris · Miami"
+  },
+  {
+    "name": "southstar",
+    "key": "southstar",
+    "events": 3,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "Time Warp Los Angeles 2026 · Los Angeles"
   },
   {
     "name": "DESIREE",
@@ -18,16 +28,6 @@
     ],
     "onRA": true,
     "sample": "Time Warp Mexico 2026 · Mexico City"
-  },
-  {
-    "name": "southstar",
-    "key": "southstar",
-    "events": 2,
-    "sources": [
-      "ra"
-    ],
-    "onRA": true,
-    "sample": "Time Warp Los Angeles 2026 · Los Angeles"
   },
   {
     "name": "2 Bad Mice",
@@ -100,14 +100,14 @@
     "sample": "LOCUS x Modern Funktion Halloween · London"
   },
   {
-    "name": "AMORAL",
-    "key": "amoral",
+    "name": "AMOR MUSIC",
+    "key": "amormusic",
     "events": 1,
     "sources": [
       "ra"
     ],
     "onRA": true,
-    "sample": "Awakenings ADE - Friday Sessions · Amsterdam"
+    "sample": "Amor, Piazza, Sowa by SOLEA · Nantes"
   },
   {
     "name": "Andy Martin",
@@ -118,6 +118,36 @@
     ],
     "onRA": true,
     "sample": "Time Warp Mexico 2026 · Mexico City"
+  },
+  {
+    "name": "Anthony Godfather (2)",
+    "key": "anthonygodfather2",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "LOOP NYD FESTIVAL 2027 · Madrid"
+  },
+  {
+    "name": "ARMANA KHAN",
+    "key": "armanakhan",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "ARMANA KHAN & Friends · New York"
+  },
+  {
+    "name": "ART NO LOGIA",
+    "key": "artnologia",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "LOOP NYD FESTIVAL 2027 · Madrid"
   },
   {
     "name": "ascendant vierge",
@@ -138,6 +168,26 @@
     ],
     "onRA": true,
     "sample": "Assassin @ Warehouse Nantes · Nantes"
+  },
+  {
+    "name": "Audioprophecy",
+    "key": "audioprophecy",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "25+ Only - Boston-Nov 19 · Boston"
+  },
+  {
+    "name": "Beamskii",
+    "key": "beamskii",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "Igloofest MTL #6: Ninajirachi & Frost Children (DJ set) · Montreal"
   },
   {
     "name": "Bego Martin",
@@ -220,14 +270,14 @@
     "sample": "Bassrush presents: Crankdat, AHEE, Casey Club [NYW] · Washington Dc"
   },
   {
-    "name": "CHANCEKNOT",
-    "key": "chanceknot",
+    "name": "Cera Khin",
+    "key": "cerakhin",
     "events": 1,
     "sources": [
       "ra"
     ],
     "onRA": true,
-    "sample": "Grimix & Friends - ADE · Amsterdam"
+    "sample": "Open Beatz Festival 2027 · Bavaria"
   },
   {
     "name": "Chicane",
@@ -340,6 +390,16 @@
     "sample": "FUSE 18th Birthday w/ Enzo Siragusa b2b Rossi., Luciano, Marlie b2b Na"
   },
   {
+    "name": "Dazee",
+    "key": "dazee",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "dnb brunch - KOKO · London"
+  },
+  {
     "name": "Diossa",
     "key": "diossa",
     "events": 1,
@@ -348,6 +408,26 @@
     ],
     "onRA": true,
     "sample": "Awakenings EXO - Colombia · Bogota"
+  },
+  {
+    "name": "DJ Delish",
+    "key": "djdelish",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "Zack Fox, DJ Delish, Venom Rei · New York"
+  },
+  {
+    "name": "DJ SS",
+    "key": "djss",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "dnb brunch - KOKO · London"
   },
   {
     "name": "DJ Stingray 313",
@@ -470,14 +550,14 @@
     "sample": "Time Warp Los Angeles 2026 · Los Angeles"
   },
   {
-    "name": "Funk Assault",
-    "key": "funkassault",
+    "name": "Funsta",
+    "key": "funsta",
     "events": 1,
     "sources": [
       "ra"
     ],
     "onRA": true,
-    "sample": "Awakenings ADE - Friday Sessions · Amsterdam"
+    "sample": "dnb brunch - KOKO · London"
   },
   {
     "name": "Gene On Earth",
@@ -488,6 +568,26 @@
     ],
     "onRA": true,
     "sample": "FUSE - Hivernacle Barcelona · Barcelona"
+  },
+  {
+    "name": "GENNARO",
+    "key": "gennaro",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "Tenax w/GENNARO,Mason Collective,Leo Dessi · Florence"
+  },
+  {
+    "name": "George Privatti",
+    "key": "georgeprivatti",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "LOOP NYD FESTIVAL 2027 · Madrid"
   },
   {
     "name": "George Smeddles",
@@ -520,6 +620,16 @@
     "sample": "Brunch Electronik Madrid x BSMT LIVE 07.11 - The Blaze (DJ Set) · Madr"
   },
   {
+    "name": "GLXY",
+    "key": "glxy",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "dnb brunch - KOKO · London"
+  },
+  {
     "name": "Golpe",
     "key": "golpe",
     "events": 1,
@@ -528,6 +638,16 @@
     ],
     "onRA": true,
     "sample": "Ministry of Rave Prague · Prague"
+  },
+  {
+    "name": "Guille Placencia",
+    "key": "guilleplacencia",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "LOOP NYD FESTIVAL 2027 · Madrid"
   },
   {
     "name": "HAAi",
@@ -540,14 +660,24 @@
     "sample": "Time Warp Los Angeles 2026 · Los Angeles"
   },
   {
-    "name": "HUJUS",
-    "key": "hujus",
+    "name": "hhunter",
+    "key": "hhunter",
     "events": 1,
     "sources": [
       "ra"
     ],
     "onRA": true,
-    "sample": "Awakenings ADE - Opening Night · Amsterdam"
+    "sample": "Kayzo x hhunter at Cermak Hall · Chicago"
+  },
+  {
+    "name": "IC3",
+    "key": "ic3",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "dnb brunch - KOKO · London"
   },
   {
     "name": "Ignez",
@@ -590,14 +720,14 @@
     "sample": "LOCUS x Modern Funktion Halloween · London"
   },
   {
-    "name": "JakoJako",
-    "key": "jakojako",
+    "name": "jamesjamesjames",
+    "key": "jamesjamesjames",
     "events": 1,
     "sources": [
       "ra"
     ],
     "onRA": true,
-    "sample": "Awakenings ADE - Friday Sessions · Amsterdam"
+    "sample": "Igloofest MTL #6: Ninajirachi & Frost Children (DJ set) · Montreal"
   },
   {
     "name": "Jhobei",
@@ -608,6 +738,16 @@
     ],
     "onRA": true,
     "sample": "FUSE 18th Birthday w/ Enzo Siragusa b2b Rossi., Luciano, Marlie b2b Na"
+  },
+  {
+    "name": "Job de Jong",
+    "key": "jobdejong",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "Awakenings ADE - Prophecy by Prospa · Amsterdam"
   },
   {
     "name": "John Bryars",
@@ -650,14 +790,24 @@
     "sample": "Kamelot @ Razzmatazz · Barcelona"
   },
   {
-    "name": "Kaufmann",
-    "key": "kaufmann",
+    "name": "Kaytranada",
+    "key": "kaytranada",
     "events": 1,
     "sources": [
       "ra"
     ],
     "onRA": true,
-    "sample": "Awakenings ADE - Drumcode · Amsterdam"
+    "sample": "Igloofest MTL #1: Kaytranada · Montreal"
+  },
+  {
+    "name": "Kayzo",
+    "key": "kayzo",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "Kayzo x hhunter at Cermak Hall · Chicago"
   },
   {
     "name": "Kelsey Lu",
@@ -760,16 +910,6 @@
     "sample": "FCKNYE Festival 2026 · Brussels"
   },
   {
-    "name": "Lobster",
-    "key": "lobster",
-    "events": 1,
-    "sources": [
-      "ra"
-    ],
-    "onRA": true,
-    "sample": "Awakenings ADE - Friday Sessions · Amsterdam"
-  },
-  {
     "name": "Luccio",
     "key": "luccio",
     "events": 1,
@@ -788,6 +928,26 @@
     ],
     "onRA": true,
     "sample": "Madman @ Duel Club · Pozzuoli"
+  },
+  {
+    "name": "Make A Dance",
+    "key": "makeadance",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "Igloofest MTL #1: Kaytranada · Montreal"
+  },
+  {
+    "name": "Mampi Swift",
+    "key": "mampiswift",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "dnb brunch - KOKO · London"
   },
   {
     "name": "Mandidextrous",
@@ -840,6 +1000,36 @@
     "sample": "AKUMANDRA: Colyn b2b Sainte Vie, Mateo, Eli · New York"
   },
   {
+    "name": "Matthias Tanzmann",
+    "key": "matthiastanzmann",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "LOOP NYD FESTIVAL 2027 · Madrid"
+  },
+  {
+    "name": "Mattia Trani",
+    "key": "mattiatrani",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "Tenax w/Enrico Sangiuliano, Mattia Trani · Florence"
+  },
+  {
+    "name": "Michenlo",
+    "key": "michenlo",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "LOOP NYD FESTIVAL 2027 · Madrid"
+  },
+  {
     "name": "Miss Bashful",
     "key": "missbashful",
     "events": 1,
@@ -850,6 +1040,16 @@
     "sample": "Miss Bashful (Live) Full Venue Takeover · New York"
   },
   {
+    "name": "Moose",
+    "key": "moose",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "dnb brunch - KOKO · London"
+  },
+  {
     "name": "Morgan",
     "key": "morgan",
     "events": 1,
@@ -858,6 +1058,16 @@
     ],
     "onRA": true,
     "sample": "DGTL ADE FUSE · Amsterdam"
+  },
+  {
+    "name": "Mowie (2)",
+    "key": "mowie2",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "Igloofest MTL #6: Ninajirachi & Frost Children (DJ set) · Montreal"
   },
   {
     "name": "Mya (1)",
@@ -1000,6 +1210,26 @@
     "sample": "Awakenings EXO - Colombia · Bogota"
   },
   {
+    "name": "Prïa",
+    "key": "pria",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "Igloofest MTL #2: James Hype · Montreal"
+  },
+  {
+    "name": "Promo ZO",
+    "key": "promozo",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "dnb brunch - KOKO · London"
+  },
+  {
     "name": "Quentin Schneider",
     "key": "quentinschneider",
     "events": 1,
@@ -1008,6 +1238,16 @@
     ],
     "onRA": true,
     "sample": "CLUB DE JOUR with Worakls présente OVERTURE feat. Ekaterina Shelehova "
+  },
+  {
+    "name": "Ray Keith",
+    "key": "raykeith",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "dnb brunch - KOKO · London"
   },
   {
     "name": "Riley",
@@ -1080,6 +1320,26 @@
     "sample": "FCKNYE Festival 2026 · Brussels"
   },
   {
+    "name": "Shabba",
+    "key": "shabba",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "dnb brunch - KOKO · London"
+  },
+  {
+    "name": "Silktits",
+    "key": "silktits",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "Igloofest MTL #1: Kaytranada · Montreal"
+  },
+  {
     "name": "Sköne",
     "key": "skone",
     "events": 1,
@@ -1088,6 +1348,16 @@
     ],
     "onRA": true,
     "sample": "FCKNYE Festival 2026 · Brussels"
+  },
+  {
+    "name": "the bald girl",
+    "key": "thebaldgirl",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "Igloofest MTL #6: Ninajirachi & Frost Children (DJ set) · Montreal"
   },
   {
     "name": "The Blaze",
@@ -1108,6 +1378,16 @@
     ],
     "onRA": true,
     "sample": "FCKNYE Festival 2026 · Brussels"
+  },
+  {
+    "name": "THE HOLY (1)",
+    "key": "theholy1",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "Igloofest MTL #2: James Hype · Montreal"
   },
   {
     "name": "TiTi",
@@ -1140,6 +1420,16 @@
     "sample": "FCKNYE Festival 2026 · Brussels"
   },
   {
+    "name": "Uncle Dugs",
+    "key": "uncledugs",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "dnb brunch - KOKO · London"
+  },
+  {
     "name": "uphoria",
     "key": "uphoria",
     "events": 1,
@@ -1170,24 +1460,14 @@
     "sample": "Awakenings EXO - Colombia · Bogota"
   },
   {
-    "name": "Varuna Agosti",
-    "key": "varunaagosti",
+    "name": "Varg²™",
+    "key": "varg",
     "events": 1,
     "sources": [
       "ra"
     ],
     "onRA": true,
-    "sample": "Awakenings ADE - Friday Sessions · Amsterdam"
-  },
-  {
-    "name": "Victor Ruiz",
-    "key": "victorruiz",
-    "events": 1,
-    "sources": [
-      "ra"
-    ],
-    "onRA": true,
-    "sample": "Awakenings ADE - Drumcode · Amsterdam"
+    "sample": "Igloofest MTL #6: Ninajirachi & Frost Children (DJ set) · Montreal"
   },
   {
     "name": "Violin Girl",
@@ -1200,6 +1480,16 @@
     "sample": "Sirocco Sessions: After Dark Boston · Boston"
   },
   {
+    "name": "VoicemC",
+    "key": "voicemc",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "dnb brunch - KOKO · London"
+  },
+  {
     "name": "Von Bikräv",
     "key": "vonbikrav",
     "events": 1,
@@ -1208,6 +1498,16 @@
     ],
     "onRA": true,
     "sample": "FCKNYE Festival 2026 · Brussels"
+  },
+  {
+    "name": "Wally Lopez",
+    "key": "wallylopez",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "LOOP NYD FESTIVAL 2027 · Madrid"
   },
   {
     "name": "Watchers",
@@ -1260,6 +1560,26 @@
     "sample": "FCKNYE Festival 2026 · Brussels"
   },
   {
+    "name": "Zac Martel",
+    "key": "zacmartel",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "Igloofest MTL #2: James Hype · Montreal"
+  },
+  {
+    "name": "Zack Fox",
+    "key": "zackfox",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "Zack Fox, DJ Delish, Venom Rei · New York"
+  },
+  {
     "name": "Zombies In Miami",
     "key": "zombiesinmiami",
     "events": 1,
@@ -1308,6 +1628,16 @@
     ],
     "onRA": false,
     "sample": "AKUMANDRA: Colyn b2b Sainte Vie, Mateo, Eli · New York"
+  },
+  {
+    "name": "Kenny Ken",
+    "key": "kennyken",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": false,
+    "sample": "dnb brunch - KOKO · London"
   },
   {
     "name": "Levi",

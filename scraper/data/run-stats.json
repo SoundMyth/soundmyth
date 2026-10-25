@@ -1,20 +1,22 @@
 {
   "festivals": {
-    "added": [],
-    "candidates": 26
+    "added": [
+      "Open Beatz Festival"
+    ],
+    "candidates": 32
   },
   "dedupe": {
-    "generated": "2026-10-19T10:31:18.087Z",
-    "likelyErrors": 8,
-    "possibleDoubleHeaders": 27,
-    "ignoredFestival": 133,
+    "generated": "2026-10-25T08:07:06.015Z",
+    "likelyErrors": 7,
+    "possibleDoubleHeaders": 28,
+    "ignoredFestival": 141,
     "fragmentsMerged": 62,
-    "keepersMerged": 173,
-    "rowsDeleted": 991
+    "keepersMerged": 171,
+    "rowsDeleted": 978
   },
   "validate": {
-    "generated": "2026-10-19T10:31:23.399Z",
-    "future": 2678,
+    "generated": "2026-10-25T08:07:15.738Z",
+    "future": 2653,
     "cityCanonicalized": 0,
     "cityFromVenue": 0,
     "countryFilled": 0,
@@ -23,8 +25,10 @@
     "droppedNoGeo": 0,
     "droppedDate": 1,
     "droppedLegacyWebsite": 0,
-    "blocked": 0,
-    "dropped": 1,
+    "blocked": 5,
+    "namesakeDropped": 0,
+    "namesakeReview": 304,
+    "dropped": 6,
     "geoFlags": {
       "hubMismatch": [],
       "hubMismatchCount": 0,
@@ -44,9 +48,16 @@
           ]
         },
         {
+          "city": "Cambridge",
+          "countries": [
+            "United Kingdom (3)",
+            "United States (1)"
+          ]
+        },
+        {
           "city": "San Jose",
           "countries": [
-            "United States (1)",
+            "United States (2)",
             "Costa Rica (2)"
           ]
         },
@@ -55,6 +66,13 @@
           "countries": [
             "United Kingdom (1)",
             "United States (1)"
+          ]
+        },
+        {
+          "city": "Dresden",
+          "countries": [
+            "Germany (2)",
+            "Latvia (1)"
           ]
         },
         {
@@ -68,7 +86,7 @@
           "city": "Hamilton",
           "countries": [
             "Australia (2)",
-            "Canada (3)"
+            "Canada (2)"
           ]
         },
         {
@@ -79,19 +97,255 @@
           ]
         }
       ],
-      "multiCountryCount": 7
+      "multiCountryCount": 9
     },
     "droppedSamples": []
   },
   "purge": {
-    "generated": "2026-10-19T10:31:59.839Z",
-    "cutoff": "2026-10-11",
+    "generated": "2026-10-25T08:08:04.247Z",
+    "cutoff": "2026-10-17",
     "retentionDays": 8,
-    "deleted": 108,
+    "deleted": 158,
     "orphanSavedEvents": {
       "status": "ok",
-      "found": 0,
-      "deleted": 0
+      "found": 17,
+      "deleted": 17
     }
+  },
+  "namesake": {
+    "generated": "2026-10-25T08:07:15.739Z",
+    "rules": [],
+    "allowListed": 0,
+    "droppedCount": 0,
+    "dropped": [],
+    "reviewCount": 304,
+    "review": [
+      {
+        "source_id": "sk_43409202",
+        "name": "Hamdi @ Teatro Magno",
+        "dj": "Hamdi",
+        "venue": "Teatro Magno",
+        "city": "Madrid",
+        "country": "Spain",
+        "date": "2026-11-12",
+        "ticket_url": "https://www.songkick.com/concerts/43409202-what-so-not-at-teatro-magno?utm_medium=organic&utm_source=microformat",
+        "reasons": [
+          "no other known DJ plays this venue",
+          "venue name suggests a non-club (church, cabaret, hotel, museum...)",
+          "one-word name (common-name collision risk)",
+          "same DJ listed in another country the next day"
+        ]
+      },
+      {
+        "source_id": "oklou_2026_10_29_lingotto",
+        "name": "Oklou @ Lingotto",
+        "dj": "Oklou",
+        "venue": "Lingotto",
+        "city": "Turin",
+        "country": "Italy",
+        "date": "2026-10-29",
+        "ticket_url": "https://www.songkick.com/festivals/1117783-c2c/id/43072752-c2c-2026?utm_medium=organic&utm_source=microformat",
+        "reasons": [
+          "no other known DJ plays this venue",
+          "one-word name (common-name collision risk)",
+          "same DJ listed in another country the same day"
+        ]
+      },
+      {
+        "source_id": "sk_43460136",
+        "name": "Nifra @ Sedona Hotel",
+        "dj": "Nifra",
+        "venue": "Sedona Hotel",
+        "city": "Yangon",
+        "country": "Myanmar",
+        "date": "2026-10-31",
+        "ticket_url": "https://www.songkick.com/concerts/43460136-nifra-at-sedona-hotel?utm_medium=organic&utm_source=microformat",
+        "reasons": [
+          "no other known DJ plays this venue",
+          "venue name suggests a non-club (church, cabaret, hotel, museum...)",
+          "one-word name (common-name collision risk)"
+        ]
+      },
+      {
+        "source_id": "sk_43227710",
+        "name": "Alok @ Schottenstein Center",
+        "dj": "Alok",
+        "venue": "Schottenstein Center",
+        "city": "Columbus",
+        "country": "United States",
+        "date": "2026-11-13",
+        "ticket_url": "https://www.songkick.com/concerts/43227710-john-summit-at-schottenstein-center?utm_medium=organic&utm_source=microformat",
+        "reasons": [
+          "no other known DJ plays this venue",
+          "one-word name (common-name collision risk)",
+          "same DJ listed in another country the same day"
+        ]
+      },
+      {
+        "source_id": "sk_42896249",
+        "name": "Luciano @ Martinikirche Buer",
+        "dj": "Luciano",
+        "venue": "Martinikirche Buer",
+        "city": "Melle",
+        "country": "Germany",
+        "date": "2026-11-14",
+        "ticket_url": "https://www.songkick.com/concerts/42896249-luciano-at-martinikirche-buer?utm_medium=organic&utm_source=microformat",
+        "reasons": [
+          "no other known DJ plays this venue",
+          "venue name suggests a non-club (church, cabaret, hotel, museum...)",
+          "one-word name (common-name collision risk)"
+        ]
+      },
+      {
+        "source_id": "sk_43454846",
+        "name": "Kepler @ Great Hall, Cardiff University Students' Union",
+        "dj": "Kepler",
+        "venue": "Great Hall, Cardiff University Students' Union",
+        "city": "Cardiff",
+        "country": "United Kingdom",
+        "date": "2026-11-28",
+        "ticket_url": "https://www.songkick.com/concerts/43454846-kepler-at-great-hall-cardiff-university-students-union?utm_medium=organic&utm_source=microformat",
+        "reasons": [
+          "no other known DJ plays this venue",
+          "venue name suggests a non-club (church, cabaret, hotel, museum...)",
+          "one-word name (common-name collision risk)"
+        ]
+      },
+      {
+        "source_id": "diplo_2026_12_04_universidad_sim_n_bol_var",
+        "name": "Diplo @ Universidad Simón Bolívar",
+        "dj": "Diplo",
+        "venue": "Universidad Simón Bolívar",
+        "city": "Caracas",
+        "country": "Venezuela",
+        "date": "2026-12-04",
+        "ticket_url": "https://www.songkick.com/festivals/3272088-cusica-fest/id/43297274-cusica-fest-2026?utm_medium=organic&utm_source=microformat",
+        "reasons": [
+          "no other known DJ plays this venue",
+          "venue name suggests a non-club (church, cabaret, hotel, museum...)",
+          "one-word name (common-name collision risk)"
+        ]
+      },
+      {
+        "source_id": "sk_43480829",
+        "name": "Paul van Dyk @ Teatro C",
+        "dj": "Paul van Dyk",
+        "venue": "Teatro C",
+        "city": "Santiago",
+        "country": "Chile",
+        "date": "2026-12-04",
+        "ticket_url": "https://www.songkick.com/concerts/43480829-paul-van-dyk-at-teatro-c?utm_medium=organic&utm_source=microformat",
+        "reasons": [
+          "no other known DJ plays this venue",
+          "venue name suggests a non-club (church, cabaret, hotel, museum...)",
+          "same DJ listed in another country the next day"
+        ]
+      },
+      {
+        "source_id": "sk_43405524",
+        "name": "Dusky @ The Huskisson Hotel",
+        "dj": "Dusky",
+        "venue": "The Huskisson Hotel",
+        "city": "Huskisson",
+        "country": "Australia",
+        "date": "2026-12-31",
+        "ticket_url": "https://www.songkick.com/concerts/43405524-dusky-at-huskisson-hotel?utm_medium=organic&utm_source=microformat",
+        "reasons": [
+          "no other known DJ plays this venue",
+          "venue name suggests a non-club (church, cabaret, hotel, museum...)",
+          "one-word name (common-name collision risk)"
+        ]
+      },
+      {
+        "source_id": "sk_43453819",
+        "name": "Dusky @ Waves - Towradgi Beach Hotel",
+        "dj": "Dusky",
+        "venue": "Waves - Towradgi Beach Hotel",
+        "city": "Towradgi",
+        "country": "Australia",
+        "date": "2026-12-31",
+        "ticket_url": "https://www.songkick.com/concerts/43453819-dusky-at-waves-towradgi-beach-hotel?utm_medium=organic&utm_source=microformat",
+        "reasons": [
+          "no other known DJ plays this venue",
+          "venue name suggests a non-club (church, cabaret, hotel, museum...)",
+          "one-word name (common-name collision risk)"
+        ]
+      },
+      {
+        "source_id": "sk_43453783",
+        "name": "Dusky @ The Court Hotel",
+        "dj": "Dusky",
+        "venue": "The Court Hotel",
+        "city": "Perth",
+        "country": "Australia",
+        "date": "2027-01-03",
+        "ticket_url": "https://www.songkick.com/concerts/43453783-dusky-at-court-hotel?utm_medium=organic&utm_source=microformat",
+        "reasons": [
+          "no other known DJ plays this venue",
+          "venue name suggests a non-club (church, cabaret, hotel, museum...)",
+          "one-word name (common-name collision risk)"
+        ]
+      },
+      {
+        "source_id": "sk_43256703",
+        "name": "Luciano @ Kultur- & Festspielhaus Wittenberge",
+        "dj": "Luciano",
+        "venue": "Kultur- & Festspielhaus Wittenberge",
+        "city": "Wittenberge",
+        "country": "Germany",
+        "date": "2027-02-14",
+        "ticket_url": "https://www.songkick.com/concerts/43256703-luciano-at-kultur-and-festspielhaus-wittenberge?utm_medium=organic&utm_source=microformat",
+        "reasons": [
+          "no other known DJ plays this venue",
+          "venue name suggests a non-club (church, cabaret, hotel, museum...)",
+          "one-word name (common-name collision risk)"
+        ]
+      },
+      {
+        "source_id": "sk_43478409",
+        "name": "ASCO @ Gran Teatro Geox",
+        "dj": "ASCO",
+        "venue": "Gran Teatro Geox",
+        "city": "Padua",
+        "country": "Italy",
+        "date": "2027-03-26",
+        "ticket_url": "https://www.songkick.com/concerts/43478409-asco-at-gran-teatro-geox?utm_medium=organic&utm_source=microformat",
+        "reasons": [
+          "no other known DJ plays this venue",
+          "venue name suggests a non-club (church, cabaret, hotel, museum...)",
+          "one-word name (common-name collision risk)"
+        ]
+      },
+      {
+        "source_id": "sk_43323016",
+        "name": "Luciano @ Kulturzentrum Kreuzkirche",
+        "dj": "Luciano",
+        "venue": "Kulturzentrum Kreuzkirche",
+        "city": "Nurtingen",
+        "country": "Germany",
+        "date": "2027-04-04",
+        "ticket_url": "https://www.songkick.com/concerts/43323016-luciano-at-kulturzentrum-kreuzkirche?utm_medium=organic&utm_source=microformat",
+        "reasons": [
+          "no other known DJ plays this venue",
+          "venue name suggests a non-club (church, cabaret, hotel, museum...)",
+          "one-word name (common-name collision risk)"
+        ]
+      },
+      {
+        "source_id": "sk_43478410",
+        "name": "ASCO @ Teatro Cartiere Carrara",
+        "dj": "ASCO",
+        "venue": "Teatro Cartiere Carrara",
+        "city": "Florence",
+        "country": "Italy",
+        "date": "2027-04-09",
+        "ticket_url": "https://www.songkick.com/concerts/43478410-asco-at-teatro-cartiere-carrara?utm_medium=organic&utm_source=microformat",
+        "reasons": [
+          "no other known DJ plays this venue",
+          "venue name suggests a non-club (church, cabaret, hotel, museum...)",
+          "one-word name (common-name collision risk)"
+        ]
+      }
+    ]
   }
 }

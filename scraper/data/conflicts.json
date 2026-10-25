@@ -1,36 +1,9 @@
 {
-  "generated": "2026-10-19T10:29:49.323Z",
-  "likelyErrors": 8,
-  "possibleDoubleHeaders": 27,
-  "ignoredFestival": 133,
+  "generated": "2026-10-25T08:06:00.902Z",
+  "likelyErrors": 7,
+  "possibleDoubleHeaders": 28,
+  "ignoredFestival": 141,
   "conflicts": [
-    {
-      "category": "likely-error",
-      "dj": "Talla 2XLC",
-      "date": "2026-10-24",
-      "a": {
-        "id": 224468,
-        "source_id": "sk_43244613",
-        "name": "Talla 2XLC @ Amsterdam",
-        "venue": "Amsterdam",
-        "city": "Amsterdam",
-        "country": "Netherlands",
-        "date": "2026-10-24",
-        "source": "songkick",
-        "ticket_url": "https://www.songkick.com/concerts/43244613-talla-2xlc-at-unknown-venue?utm_medium=organic&utm_source=microformat"
-      },
-      "b": {
-        "id": 94522,
-        "source_id": "sk_43145280",
-        "name": "Talla 2XLC @ Perkins Park",
-        "venue": "Perkins Park",
-        "city": "Stuttgart",
-        "country": "Germany",
-        "date": "2026-10-24",
-        "source": "songkick",
-        "ticket_url": "https://www.songkick.com/concerts/43145280-talla-2xlc-at-perkins-park?utm_medium=organic&utm_source=microformat"
-      }
-    },
     {
       "category": "likely-error",
       "dj": "Delta Heavy",
@@ -60,29 +33,29 @@
     },
     {
       "category": "likely-error",
-      "dj": "Patrick Topping",
+      "dj": "Horse Meat Disco",
       "date": "2026-10-31",
       "a": {
-        "id": 190929,
-        "source_id": "sk_43413587",
-        "name": "Patrick Topping @ Drumsheds",
-        "venue": "Drumsheds",
-        "city": "London",
+        "id": 207254,
+        "source_id": "sk_42930404",
+        "name": "Horse Meat Disco @ Catch One",
+        "venue": "Catch One",
+        "city": "Los Angeles",
+        "country": "United States",
+        "date": "2026-10-31",
+        "source": "songkick",
+        "ticket_url": "https://www.songkick.com/concerts/42930404-bears-in-space-at-catch-one?utm_medium=organic&utm_source=microformat"
+      },
+      "b": {
+        "id": 215032,
+        "source_id": "sk_43459956",
+        "name": "Horse Meat Disco @ Edinburgh Corn Exchange",
+        "venue": "Edinburgh Corn Exchange",
+        "city": "Edinburgh",
         "country": "United Kingdom",
         "date": "2026-10-31",
         "source": "songkick",
-        "ticket_url": "https://www.songkick.com/concerts/43413587-patrick-topping-at-drumsheds?utm_medium=organic&utm_source=microformat"
-      },
-      "b": {
-        "id": 223668,
-        "source_id": "sk_43413590",
-        "name": "Patrick Topping @ Milan",
-        "venue": "Milan",
-        "city": "Milan",
-        "country": "Italy",
-        "date": "2026-10-31",
-        "source": "songkick",
-        "ticket_url": "https://www.songkick.com/concerts/43413590-patrick-topping-at-unknown-venue?utm_medium=organic&utm_source=microformat"
+        "ticket_url": "https://www.songkick.com/concerts/43459956-mella-dee-at-edinburgh-corn-exchange?utm_medium=organic&utm_source=microformat"
       }
     },
     {
@@ -222,60 +195,6 @@
     },
     {
       "category": "possible-double-header",
-      "dj": "horsegiirL",
-      "date": "2026-10-21",
-      "a": {
-        "id": 132180,
-        "source_id": "sk_43203159",
-        "name": "horsegiirL @ ReelWorks Denver",
-        "venue": "ReelWorks Denver",
-        "city": "Denver",
-        "country": "United States",
-        "date": "2026-10-21",
-        "source": "songkick",
-        "ticket_url": "https://www.songkick.com/concerts/43203159-horsegiirl-at-reelworks-denver?utm_medium=organic&utm_source=microformat"
-      },
-      "b": {
-        "id": 224939,
-        "source_id": "sk_43202131",
-        "name": "horsegiirL @ The Eastern",
-        "venue": "The Eastern",
-        "city": "Atlanta",
-        "country": "United States",
-        "date": "2026-10-21",
-        "source": "songkick",
-        "ticket_url": "https://www.songkick.com/concerts/43202131-horsegiirl-at-eastern?utm_medium=organic&utm_source=microformat"
-      }
-    },
-    {
-      "category": "possible-double-header",
-      "dj": "Ultrabeat",
-      "date": "2026-10-24",
-      "a": {
-        "id": 203981,
-        "source_id": "sk_43420256",
-        "name": "Ultrabeat @ The Retro Lounge",
-        "venue": "The Retro Lounge",
-        "city": "Blackpool",
-        "country": "United Kingdom",
-        "date": "2026-10-24",
-        "source": "songkick",
-        "ticket_url": "https://www.songkick.com/concerts/43420256-ultrabeat-at-retro-lounge?utm_medium=organic&utm_source=microformat"
-      },
-      "b": {
-        "id": 225575,
-        "source_id": "sk_43411816",
-        "name": "Ultrabeat @ 147 Nightclub",
-        "venue": "147 Nightclub",
-        "city": "Coventry",
-        "country": "United Kingdom",
-        "date": "2026-10-24",
-        "source": "songkick",
-        "ticket_url": "https://www.songkick.com/concerts/43411816-ultrabeat-at-147-nightclub?utm_medium=organic&utm_source=microformat"
-      }
-    },
-    {
-      "category": "possible-double-header",
       "dj": "Lucas Alexander",
       "date": "2026-10-30",
       "a": {
@@ -346,13 +265,13 @@
       "b": {
         "id": 224235,
         "source_id": "sk_43382903",
-        "name": "Vendex @ Livehouse",
-        "venue": "Livehouse",
+        "name": "Vendex @ Livehouse Dundee (Do not use, use Livehouse only)",
+        "venue": "Livehouse Dundee (Do not use, use Livehouse only)",
         "city": "Dundee",
         "country": "United Kingdom",
         "date": "2026-10-30",
         "source": "songkick",
-        "ticket_url": "https://www.songkick.com/concerts/43382903-vendex-at-livehouse?utm_medium=organic&utm_source=microformat"
+        "ticket_url": "https://www.songkick.com/concerts/43382903-vendex-at-livehouse-dundee?utm_medium=organic&utm_source=microformat"
       }
     },
     {
@@ -380,33 +299,6 @@
         "date": "2026-10-31",
         "source": "songkick",
         "ticket_url": "https://www.songkick.com/concerts/43386211-east-end-dubs-at-lab11?utm_medium=organic&utm_source=microformat"
-      }
-    },
-    {
-      "category": "possible-double-header",
-      "dj": "Mella Dee",
-      "date": "2026-10-31",
-      "a": {
-        "id": 215032,
-        "source_id": "sk_43459956",
-        "name": "Mella Dee @ Secret Location",
-        "venue": "Secret Location",
-        "city": "Edinburgh",
-        "country": "United Kingdom",
-        "date": "2026-10-31",
-        "source": "songkick",
-        "ticket_url": "https://www.songkick.com/concerts/43459956-mella-dee-at-secret-location?utm_medium=organic&utm_source=microformat"
-      },
-      "b": {
-        "id": 225819,
-        "source_id": "sk_43397949",
-        "name": "Mella Dee @ Ouseburn Garden",
-        "venue": "Ouseburn Garden",
-        "city": "Newcastle Upon Tyne",
-        "country": "United Kingdom",
-        "date": "2026-10-31",
-        "source": "songkick",
-        "ticket_url": "https://www.songkick.com/concerts/43397949-mella-dee-at-ouseburn-garden?utm_medium=organic&utm_source=microformat"
       }
     },
     {
@@ -452,7 +344,7 @@
         "ticket_url": "https://www.songkick.com/concerts/43346765-obskur-at-ballin-maidstone?utm_medium=organic&utm_source=microformat"
       },
       "b": {
-        "id": 224984,
+        "id": 228506,
         "source_id": "sk_43350531",
         "name": "Obskür @ Concorde 2",
         "venue": "Concorde 2",
@@ -506,7 +398,7 @@
         "ticket_url": "https://www.songkick.com/concerts/43420056-beyond-chicago-at-leicester-st-andrews-fc?utm_medium=organic&utm_source=microformat"
       },
       "b": {
-        "id": 225555,
+        "id": 229096,
         "source_id": "sk_43392943",
         "name": "Todd Terry @ Freeze Project",
         "venue": "Freeze Project",
@@ -542,6 +434,33 @@
         "date": "2026-11-01",
         "source": "songkick",
         "ticket_url": "https://www.songkick.com/concerts/43228284-vintage-culture-at-terminal-maritimo-de-passageiros?utm_medium=organic&utm_source=microformat"
+      }
+    },
+    {
+      "category": "possible-double-header",
+      "dj": "Diplo",
+      "date": "2026-11-08",
+      "a": {
+        "id": 227213,
+        "source_id": "sk_43480609",
+        "name": "Diplo @ Tryst Nightclub, Wynn Las Vegas",
+        "venue": "Tryst Nightclub, Wynn Las Vegas",
+        "city": "Las Vegas",
+        "country": "United States",
+        "date": "2026-11-08",
+        "source": "songkick",
+        "ticket_url": "https://www.songkick.com/concerts/43480609-diplo-at-tryst-nightclub-wynn-las-vegas?utm_medium=organic&utm_source=microformat"
+      },
+      "b": {
+        "id": 93254,
+        "source_id": "sk_43122913",
+        "name": "Diplo @ Los Angeles State Historic Park",
+        "venue": "Los Angeles State Historic Park",
+        "city": "Los Angeles",
+        "country": "United States",
+        "date": "2026-11-08",
+        "source": "songkick",
+        "ticket_url": "https://www.songkick.com/concerts/43122913-diplo-at-los-angeles-state-historic-park?utm_medium=organic&utm_source=microformat"
       }
     },
     {
@@ -587,7 +506,7 @@
         "ticket_url": "https://www.songkick.com/concerts/43388642-brutalismus-3000-at-echostage?utm_medium=organic&utm_source=microformat"
       },
       "b": {
-        "id": 225332,
+        "id": 228872,
         "source_id": "sk_43232484",
         "name": "Brutalismus 3000 @ Radius",
         "venue": "Radius",
@@ -603,7 +522,7 @@
       "dj": "Brutalismus 3000",
       "date": "2026-11-13",
       "a": {
-        "id": 225332,
+        "id": 228872,
         "source_id": "sk_43232484",
         "name": "Brutalismus 3000 @ Radius",
         "venue": "Radius",
@@ -614,7 +533,7 @@
         "ticket_url": "https://www.songkick.com/concerts/43232484-brutalismus-3000-at-radius?utm_medium=organic&utm_source=microformat"
       },
       "b": {
-        "id": 225334,
+        "id": 228874,
         "source_id": "sk_43389878",
         "name": "Brutalismus 3000 @ Echostage",
         "venue": "Echostage",
@@ -650,6 +569,33 @@
         "date": "2026-11-20",
         "source": "songkick",
         "ticket_url": "https://www.songkick.com/concerts/43453261-delta-heavy-at-nextdoor?utm_medium=organic&utm_source=microformat"
+      }
+    },
+    {
+      "category": "possible-double-header",
+      "dj": "Space Laces",
+      "date": "2026-11-20",
+      "a": {
+        "id": 205896,
+        "source_id": "sk_43445730",
+        "name": "Space Laces @ Aura",
+        "venue": "Aura",
+        "city": "Raleigh",
+        "country": "United States",
+        "date": "2026-11-20",
+        "source": "songkick",
+        "ticket_url": "https://www.songkick.com/concerts/43445730-space-laces-at-aura?utm_medium=organic&utm_source=microformat"
+      },
+      "b": {
+        "id": 227338,
+        "source_id": "sk_43475494",
+        "name": "Space Laces @ Nova SD",
+        "venue": "Nova SD",
+        "city": "San Diego",
+        "country": "United States",
+        "date": "2026-11-20",
+        "source": "songkick",
+        "ticket_url": "https://www.songkick.com/concerts/43475494-space-laces-at-nova-sd?utm_medium=organic&utm_source=microformat"
       }
     },
     {
@@ -816,6 +762,33 @@
     },
     {
       "category": "possible-double-header",
+      "dj": "Marco Carola",
+      "date": "2026-12-28",
+      "a": {
+        "id": 226719,
+        "source_id": "sk_43435891",
+        "name": "Marco Carola @ KOKO",
+        "venue": "KOKO",
+        "city": "London",
+        "country": "United Kingdom",
+        "date": "2026-12-28",
+        "source": "songkick",
+        "ticket_url": "https://www.songkick.com/concerts/43435891-marco-carola-at-koko?utm_medium=organic&utm_source=microformat"
+      },
+      "b": {
+        "id": 226720,
+        "source_id": "sk_43473667",
+        "name": "Marco Carola @ Blackstone Street Warehouse",
+        "venue": "Blackstone Street Warehouse",
+        "city": "Liverpool",
+        "country": "United Kingdom",
+        "date": "2026-12-28",
+        "source": "songkick",
+        "ticket_url": "https://www.songkick.com/concerts/43473667-franky-rizardo-at-blackstone-street-warehouse?utm_medium=organic&utm_source=microformat"
+      }
+    },
+    {
+      "category": "possible-double-header",
       "dj": "Dusky",
       "date": "2026-12-31",
       "a": {
@@ -947,6 +920,33 @@
         "date": "2027-02-06",
         "source": "songkick",
         "ticket_url": "https://www.songkick.com/concerts/43209040-luca-testa-at-carnival-ivrea?utm_medium=organic&utm_source=microformat"
+      }
+    },
+    {
+      "category": "possible-double-header",
+      "dj": "KREAM",
+      "date": "2027-02-20",
+      "a": {
+        "id": 229574,
+        "source_id": "ra_2565924",
+        "name": "KREAM",
+        "venue": "Echostage",
+        "city": "Washington Dc",
+        "country": "United States",
+        "date": "2027-02-20",
+        "source": "ra",
+        "ticket_url": ""
+      },
+      "b": {
+        "id": 226940,
+        "source_id": "sk_43475231",
+        "name": "KREAM @ Echostage",
+        "venue": "Echostage",
+        "city": "Washington",
+        "country": "United States",
+        "date": "2027-02-20",
+        "source": "songkick",
+        "ticket_url": "https://www.songkick.com/concerts/43475231-kream-at-echostage?utm_medium=organic&utm_source=microformat"
       }
     }
   ]

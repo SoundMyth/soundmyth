@@ -383,6 +383,12 @@
   "source": "ra",
   "checked": "2026-10-18"
  },
+ "amormusic": {
+  "name": "AMOR MUSIC",
+  "img": "https://static.ra.co/images/profiles/square/amormusic.jpg?dateUpdated=1771581620683",
+  "source": "ra",
+  "checked": "2026-10-25"
+ },
  "amplify": {
   "name": "Amplify",
   "img": "https://images.sk-static.com/images/media/profile_images/artists/10201624/huge_avatar",
@@ -607,6 +613,12 @@
   "source": "ra",
   "checked": "2026-10-18"
  },
+ "armanakhan": {
+  "name": "ARMANA KHAN",
+  "img": "https://static.ra.co/images/profiles/square/armanakhan.jpg?dateUpdated=1772164769603",
+  "source": "ra",
+  "checked": "2026-10-25"
+ },
  "armandvanhelden": {
   "name": "Armand van Helden",
   "img": "https://static.ra.co/images/profiles/armandvanhelden.jpg?dateUpdated=1271432135000",
@@ -676,6 +688,12 @@
   "img": "https://static.ra.co/images/profiles/square/atrak.jpg?dateUpdated=1693477029000",
   "source": "ra",
   "checked": "2026-10-18"
+ },
+ "audioprophecy": {
+  "name": "Audioprophecy",
+  "img": "https://static.ra.co/images/profiles/audioprophecy.jpg?dateUpdated=1445657861563",
+  "source": "ra",
+  "checked": "2026-10-25"
  },
  "avacrown": {
   "name": "AVA CROWN",
@@ -1771,6 +1789,12 @@
   "source": "ra",
   "checked": "2026-10-18"
  },
+ "djdelish": {
+  "name": "DJ Delish",
+  "img": "https://static.ra.co/images/profiles/djdelish.jpg?dateUpdated=1567615003000",
+  "source": "ra",
+  "checked": "2026-10-25"
+ },
  "djdiesel": {
   "name": "DJ Diesel",
   "img": "https://cdn-images.dzcdn.net/images/artist/34fab4b6c0ee33d04d8ce7305a3d12a4/1000x1000-000000-80-0-0.jpg",
@@ -2353,7 +2377,7 @@
   "name": "FISHER",
   "img": "https://www.theaudiodb.com/images/media/artist/thumb/fisher-6191256ae5f21.jpg",
   "source": "override",
-  "checked": "2026-10-19"
+  "checked": "2026-10-25"
  },
  "fjaak": {
   "name": "FJAAK",
@@ -2551,6 +2575,12 @@
   "source": "ra",
   "checked": "2026-10-18"
  },
+ "gennaro": {
+  "name": "GENNARO",
+  "img": "https://static.ra.co/images/profiles/square/gennaro.jpg?dateUpdated=1775822234000",
+  "source": "ra",
+  "checked": "2026-10-25"
+ },
  "georgemensah": {
   "name": "George Mensah",
   "img": "https://static.ra.co/images/profiles/georgemensah.jpg?dateUpdated=1490105683000",
@@ -2586,6 +2616,12 @@
   "img": "https://static.ra.co/images/profiles/giuseppeottaviani.jpg?dateUpdated=1248279486000",
   "source": "ra",
   "checked": "2026-10-18"
+ },
+ "glxy": {
+  "name": "GLXY",
+  "img": "https://static.ra.co/images/profiles/square/glxy.jpg?dateUpdated=1522062085000",
+  "source": "ra",
+  "checked": "2026-10-25"
  },
  "golpe": {
   "name": "Golpe",
@@ -2770,6 +2806,12 @@
   "img": "https://static.ra.co/images/profiles/square/helenalauwaert.jpg?dateUpdated=1678360570000",
   "source": "ra",
   "checked": "2026-10-18"
+ },
+ "hhunter": {
+  "name": "hhunter",
+  "img": "https://static.ra.co/images/profiles/square/hhunter.jpg?dateUpdated=1774367657000",
+  "source": "ra",
+  "checked": "2026-10-25"
  },
  "hiddevanwee": {
   "name": "Hidde van Wee",
@@ -2977,7 +3019,7 @@
   "name": "Jamie Jones",
   "img": null,
   "source": "override-none",
-  "checked": "2026-10-19"
+  "checked": "2026-10-25"
  },
  "janefitz": {
   "name": "Jane Fitz",
@@ -3324,6 +3366,12 @@
   "img": "https://static.ra.co/images/profiles/square/katyrough.jpg?dateUpdated=1728041581000",
   "source": "ra",
   "checked": "2026-10-18"
+ },
+ "kayzo": {
+  "name": "Kayzo",
+  "img": "https://static.ra.co/images/profiles/square/kayzo.jpg?dateUpdated=1773836434000",
+  "source": "ra",
+  "checked": "2026-10-25"
  },
  "keinemusik": {
   "name": "Keinemusik",
@@ -3967,6 +4015,12 @@
   "checked": "2026-10-18",
   "matched": "MALUGI"
  },
+ "mampiswift": {
+  "name": "Mampi Swift",
+  "img": "https://static.ra.co/images/profiles/mampiswift.jpg?dateUpdated=1455808777543",
+  "source": "ra",
+  "checked": "2026-10-25"
+ },
  "mandamoor": {
   "name": "Manda Moor",
   "img": "https://static.ra.co/images/profiles/square/mandamoor.jpg?dateUpdated=1589748135000",
@@ -4218,6 +4272,12 @@
   "img": "https://static.ra.co/images/profiles/square/matroda.jpg?dateUpdated=1724080035000",
   "source": "ra",
   "checked": "2026-10-18"
+ },
+ "mattiatrani": {
+  "name": "Mattia Trani",
+  "img": "https://static.ra.co/images/profiles/square/mattiatrani.jpg?dateUpdated=1603411200000",
+  "source": "ra",
+  "checked": "2026-10-25"
  },
  "mattn": {
   "name": "MATTN",
@@ -6656,6 +6716,12 @@
   "source": "ra",
   "checked": "2026-10-18"
  },
+ "uncledugs": {
+  "name": "Uncle Dugs",
+  "img": "https://static.ra.co/images/profiles/uncledugs.jpg?dateUpdated=1343658402440",
+  "source": "ra",
+  "checked": "2026-10-25"
+ },
  "underworld": {
   "name": "Underworld",
   "img": "https://static.ra.co/images/profiles/underworld.jpg?dateUpdated=1734084788000",
@@ -6942,6 +7008,12 @@
   "img": "https://cdn-images.dzcdn.net/images/artist/3ad245e23c49cd373099fcc143910911/1000x1000-000000-80-0-0.jpg",
   "source": "deezer",
   "checked": "2026-10-18"
+ },
+ "zackfox": {
+  "name": "Zack Fox",
+  "img": "https://static.ra.co/images/profiles/square/zackfox.jpg?dateUpdated=1720019103000",
+  "source": "ra",
+  "checked": "2026-10-25"
  },
  "zedd": {
   "name": "Zedd",

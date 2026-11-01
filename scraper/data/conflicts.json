@@ -1,79 +1,14 @@
 {
-  "generated": "2026-10-25T08:06:00.902Z",
-  "likelyErrors": 7,
-  "possibleDoubleHeaders": 28,
-  "ignoredFestival": 141,
+  "generated": "2026-11-01T09:34:46.463Z",
+  "likelyErrors": 6,
+  "possibleDoubleHeaders": 21,
+  "ignoredFestival": 107,
   "conflicts": [
-    {
-      "category": "likely-error",
-      "dj": "Delta Heavy",
-      "date": "2026-10-31",
-      "a": {
-        "id": 171086,
-        "source_id": "sk_43319378",
-        "name": "Delta Heavy @ Bvv Brno - Pavilon G1",
-        "venue": "Bvv Brno - Pavilon G1",
-        "city": "Brno",
-        "country": "Czechia",
-        "date": "2026-10-31",
-        "source": "songkick",
-        "ticket_url": "https://www.songkick.com/concerts/43319378-delta-heavy-at-bvv-brno-pavilon-g1?utm_medium=organic&utm_source=microformat"
-      },
-      "b": {
-        "id": 224414,
-        "source_id": "sk_43368304",
-        "name": "Delta Heavy @ Portland Expo Center",
-        "venue": "Portland Expo Center",
-        "city": "Portland",
-        "country": "United States",
-        "date": "2026-10-31",
-        "source": "songkick",
-        "ticket_url": "https://www.songkick.com/concerts/43368304-delta-heavy-at-portland-expo-center?utm_medium=organic&utm_source=microformat"
-      }
-    },
-    {
-      "category": "likely-error",
-      "dj": "Horse Meat Disco",
-      "date": "2026-10-31",
-      "a": {
-        "id": 207254,
-        "source_id": "sk_42930404",
-        "name": "Horse Meat Disco @ Catch One",
-        "venue": "Catch One",
-        "city": "Los Angeles",
-        "country": "United States",
-        "date": "2026-10-31",
-        "source": "songkick",
-        "ticket_url": "https://www.songkick.com/concerts/42930404-bears-in-space-at-catch-one?utm_medium=organic&utm_source=microformat"
-      },
-      "b": {
-        "id": 215032,
-        "source_id": "sk_43459956",
-        "name": "Horse Meat Disco @ Edinburgh Corn Exchange",
-        "venue": "Edinburgh Corn Exchange",
-        "city": "Edinburgh",
-        "country": "United Kingdom",
-        "date": "2026-10-31",
-        "source": "songkick",
-        "ticket_url": "https://www.songkick.com/concerts/43459956-mella-dee-at-edinburgh-corn-exchange?utm_medium=organic&utm_source=microformat"
-      }
-    },
     {
       "category": "likely-error",
       "dj": "Kanine",
       "date": "2026-11-07",
       "a": {
-        "id": 202650,
-        "source_id": "sk_43420934",
-        "name": "Kanine @ L'Empreinte",
-        "venue": "L'Empreinte",
-        "city": "Savigny Le Temple",
-        "country": "France",
-        "date": "2026-11-07",
-        "source": "songkick",
-        "ticket_url": "https://www.songkick.com/concerts/43420934-kanine-at-lempreinte?utm_medium=organic&utm_source=microformat"
-      },
-      "b": {
         "id": 224245,
         "source_id": "sk_43332712",
         "name": "Kanine @ Drumsheds",
@@ -83,6 +18,17 @@
         "date": "2026-11-07",
         "source": "songkick",
         "ticket_url": "https://www.songkick.com/concerts/43332712-wilkinson-at-drumsheds?utm_medium=organic&utm_source=microformat"
+      },
+      "b": {
+        "id": 231223,
+        "source_id": "sk_43420934",
+        "name": "Kanine @ L'Empreinte",
+        "venue": "L'Empreinte",
+        "city": "Savigny Le Temple",
+        "country": "France",
+        "date": "2026-11-07",
+        "source": "songkick",
+        "ticket_url": "https://www.songkick.com/concerts/43420934-kanine-at-lempreinte?utm_medium=organic&utm_source=microformat"
       }
     },
     {
@@ -101,7 +47,7 @@
         "ticket_url": "https://www.songkick.com/concerts/43387991-whipped-cream-at-mosaic?utm_medium=organic&utm_source=microformat"
       },
       "b": {
-        "id": 94597,
+        "id": 231466,
         "source_id": "sk_43201764",
         "name": "Whipped Cream @ Klüngelpütz Kabarett &theater",
         "venue": "Klüngelpütz Kabarett &theater",
@@ -117,17 +63,6 @@
       "dj": "Afrojack",
       "date": "2026-11-28",
       "a": {
-        "id": 211807,
-        "source_id": "sk_43460576",
-        "name": "Afrojack @ Werribee Plaza Tavern, Level 1 Upstairs",
-        "venue": "Werribee Plaza Tavern, Level 1 Upstairs",
-        "city": "Hoppers Crossing",
-        "country": "Australia",
-        "date": "2026-11-28",
-        "source": "songkick",
-        "ticket_url": "https://www.songkick.com/concerts/43460576-afrojack-at-werribee-plaza-tavern-level-1-upstairs?utm_medium=organic&utm_source=microformat"
-      },
-      "b": {
         "id": 222606,
         "source_id": "sk_43281837",
         "name": "Afrojack @ Level 1, Cannonball Arts",
@@ -137,6 +72,17 @@
         "date": "2026-11-28",
         "source": "songkick",
         "ticket_url": "https://www.songkick.com/concerts/43281837-afrojack-at-level-1-cannonball-arts?utm_medium=organic&utm_source=microformat"
+      },
+      "b": {
+        "id": 229718,
+        "source_id": "sk_43460576",
+        "name": "Afrojack @ Werribee Plaza Tavern, Level 1 Upstairs",
+        "venue": "Werribee Plaza Tavern, Level 1 Upstairs",
+        "city": "Hoppers Crossing",
+        "country": "Australia",
+        "date": "2026-11-28",
+        "source": "songkick",
+        "ticket_url": "https://www.songkick.com/concerts/43460576-afrojack-at-werribee-plaza-tavern-level-1-upstairs?utm_medium=organic&utm_source=microformat"
       }
     },
     {
@@ -182,7 +128,7 @@
         "ticket_url": "https://www.songkick.com/concerts/43353780-rossi-at-concourse-project?utm_medium=organic&utm_source=microformat"
       },
       "b": {
-        "id": 94235,
+        "id": 231194,
         "source_id": "sk_43060452",
         "name": "Rossi @ Kulturzentrum Pavillon",
         "venue": "Kulturzentrum Pavillon",
@@ -194,219 +140,84 @@
       }
     },
     {
-      "category": "possible-double-header",
-      "dj": "Lucas Alexander",
-      "date": "2026-10-30",
+      "category": "likely-error",
+      "dj": "Rossi.",
+      "date": "2026-12-12",
       "a": {
-        "id": 196615,
-        "source_id": "sk_43327288",
-        "name": "Lucas Alexander @ The Vault Bournemouth",
-        "venue": "The Vault Bournemouth",
-        "city": "Bournemouth",
-        "country": "United Kingdom",
-        "date": "2026-10-30",
+        "id": 231196,
+        "source_id": "sk_43015877",
+        "name": "Rossi @ Kulturzentrum Pavillon",
+        "venue": "Kulturzentrum Pavillon",
+        "city": "Hannover",
+        "country": "Germany",
+        "date": "2026-12-12",
         "source": "songkick",
-        "ticket_url": "https://www.songkick.com/concerts/43327288-job-de-jong-at-vault-bournemouth?utm_medium=organic&utm_source=microformat"
+        "ticket_url": "https://www.songkick.com/concerts/43015877-krajenski-at-kulturzentrum-pavillon?utm_medium=organic&utm_source=microformat"
       },
       "b": {
-        "id": 225791,
-        "source_id": "sk_43419240",
-        "name": "Lucas Alexander @ Patterns, Brighton",
-        "venue": "Patterns, Brighton",
-        "city": "Brighton",
-        "country": "United Kingdom",
-        "date": "2026-10-30",
-        "source": "songkick",
-        "ticket_url": "https://www.songkick.com/concerts/43419240-lucas-alexander-at-patterns-brighton?utm_medium=organic&utm_source=microformat"
-      }
-    },
-    {
-      "category": "possible-double-header",
-      "dj": "Sam Divine",
-      "date": "2026-10-30",
-      "a": {
-        "id": 213149,
-        "source_id": "sk_43446268",
-        "name": "Sam Divine @ Halcyon",
-        "venue": "Halcyon",
-        "city": "Austin",
+        "id": 231197,
+        "source_id": "sk_43490108",
+        "name": "Rossi @ The Church",
+        "venue": "The Church",
+        "city": "Denver",
         "country": "United States",
-        "date": "2026-10-30",
+        "date": "2026-12-12",
         "source": "songkick",
-        "ticket_url": "https://www.songkick.com/concerts/43446268-sam-divine-at-halcyon?utm_medium=organic&utm_source=microformat"
-      },
-      "b": {
-        "id": 223940,
-        "source_id": "sk_43388845",
-        "name": "Sam Divine @ Halcyon",
-        "venue": "Halcyon",
-        "city": "San Francisco",
-        "country": "United States",
-        "date": "2026-10-30",
-        "source": "songkick",
-        "ticket_url": "https://www.songkick.com/concerts/43388845-sam-divine-at-halcyon?utm_medium=organic&utm_source=microformat"
+        "ticket_url": "https://www.songkick.com/concerts/43490108-rossi-at-church?utm_medium=organic&utm_source=microformat"
       }
     },
     {
       "category": "possible-double-header",
-      "dj": "Vendex",
-      "date": "2026-10-30",
+      "dj": "Vintage Culture",
+      "date": "2026-11-01",
       "a": {
-        "id": 191555,
-        "source_id": "sk_43408379",
-        "name": "Vendex @ Edinburgh Corn Exchange",
-        "venue": "Edinburgh Corn Exchange",
-        "city": "Edinburgh",
-        "country": "United Kingdom",
-        "date": "2026-10-30",
+        "id": 152778,
+        "source_id": "sk_43303240",
+        "name": "Vintage Culture @ Parque Villa Lobos",
+        "venue": "Parque Villa Lobos",
+        "city": "Sao Paulo",
+        "country": "Brazil",
+        "date": "2026-11-01",
         "source": "songkick",
-        "ticket_url": "https://www.songkick.com/concerts/43408379-natte-visstick-at-edinburgh-corn-exchange?utm_medium=organic&utm_source=microformat"
+        "ticket_url": "https://www.songkick.com/concerts/43303240-solomun-at-parque-villa-lobos?utm_medium=organic&utm_source=microformat"
       },
       "b": {
-        "id": 224235,
-        "source_id": "sk_43382903",
-        "name": "Vendex @ Livehouse Dundee (Do not use, use Livehouse only)",
-        "venue": "Livehouse Dundee (Do not use, use Livehouse only)",
-        "city": "Dundee",
-        "country": "United Kingdom",
-        "date": "2026-10-30",
+        "id": 91538,
+        "source_id": "sk_43228284",
+        "name": "Vintage Culture @ Terminal Marítimo de Passageiros",
+        "venue": "Terminal Marítimo de Passageiros",
+        "city": "Fortaleza",
+        "country": "Brazil",
+        "date": "2026-11-01",
         "source": "songkick",
-        "ticket_url": "https://www.songkick.com/concerts/43382903-vendex-at-livehouse-dundee?utm_medium=organic&utm_source=microformat"
+        "ticket_url": "https://www.songkick.com/concerts/43228284-vintage-culture-at-terminal-maritimo-de-passageiros?utm_medium=organic&utm_source=microformat"
       }
     },
     {
       "category": "possible-double-header",
-      "dj": "East End Dubs",
-      "date": "2026-10-31",
+      "dj": "Vintage Culture",
+      "date": "2026-11-01",
       "a": {
-        "id": 213532,
-        "source_id": "sk_43425986",
-        "name": "East End Dubs @ Blackstone Street Warehouse",
-        "venue": "Blackstone Street Warehouse",
-        "city": "Liverpool",
-        "country": "United Kingdom",
-        "date": "2026-10-31",
+        "id": 152778,
+        "source_id": "sk_43303240",
+        "name": "Vintage Culture @ Parque Villa Lobos",
+        "venue": "Parque Villa Lobos",
+        "city": "Sao Paulo",
+        "country": "Brazil",
+        "date": "2026-11-01",
         "source": "songkick",
-        "ticket_url": "https://www.songkick.com/concerts/43425986-east-end-dubs-at-blackstone-street-warehouse?utm_medium=organic&utm_source=microformat"
+        "ticket_url": "https://www.songkick.com/concerts/43303240-solomun-at-parque-villa-lobos?utm_medium=organic&utm_source=microformat"
       },
       "b": {
-        "id": 224325,
-        "source_id": "sk_43386211",
-        "name": "East End Dubs @ LAB11",
-        "venue": "LAB11",
-        "city": "Digbeth",
-        "country": "United Kingdom",
-        "date": "2026-10-31",
+        "id": 222624,
+        "source_id": "sk_43309164",
+        "name": "Vintage Culture @ Teresina",
+        "venue": "Teresina",
+        "city": "Teresina",
+        "country": "Brazil",
+        "date": "2026-11-01",
         "source": "songkick",
-        "ticket_url": "https://www.songkick.com/concerts/43386211-east-end-dubs-at-lab11?utm_medium=organic&utm_source=microformat"
-      }
-    },
-    {
-      "category": "possible-double-header",
-      "dj": "Notion",
-      "date": "2026-10-31",
-      "a": {
-        "id": 151669,
-        "source_id": "sk_43293018",
-        "name": "Notion @ District Cardiff",
-        "venue": "District Cardiff",
-        "city": "Cardiff",
-        "country": "United Kingdom",
-        "date": "2026-10-31",
-        "source": "songkick",
-        "ticket_url": "https://www.songkick.com/concerts/43293018-notion-at-district-cardiff?utm_medium=organic&utm_source=microformat"
-      },
-      "b": {
-        "id": 225482,
-        "source_id": "sk_43366266",
-        "name": "Notion @ GASWRX",
-        "venue": "GASWRX",
-        "city": "Birmingham",
-        "country": "United Kingdom",
-        "date": "2026-10-31",
-        "source": "songkick",
-        "ticket_url": "https://www.songkick.com/concerts/43366266-notion-at-gaswrx?utm_medium=organic&utm_source=microformat"
-      }
-    },
-    {
-      "category": "possible-double-header",
-      "dj": "Obskür",
-      "date": "2026-10-31",
-      "a": {
-        "id": 187703,
-        "source_id": "sk_43346765",
-        "name": "Obskür @ BALLIN' Maidstone",
-        "venue": "BALLIN' Maidstone",
-        "city": "Maidstone",
-        "country": "United Kingdom",
-        "date": "2026-10-31",
-        "source": "songkick",
-        "ticket_url": "https://www.songkick.com/concerts/43346765-obskur-at-ballin-maidstone?utm_medium=organic&utm_source=microformat"
-      },
-      "b": {
-        "id": 228506,
-        "source_id": "sk_43350531",
-        "name": "Obskür @ Concorde 2",
-        "venue": "Concorde 2",
-        "city": "Brighton",
-        "country": "United Kingdom",
-        "date": "2026-10-31",
-        "source": "songkick",
-        "ticket_url": "https://www.songkick.com/concerts/43350531-obskur-at-concorde-2?utm_medium=organic&utm_source=microformat"
-      }
-    },
-    {
-      "category": "possible-double-header",
-      "dj": "Sidney Charles",
-      "date": "2026-10-31",
-      "a": {
-        "id": 206902,
-        "source_id": "sk_43346312",
-        "name": "Sidney Charles @ Ironworks",
-        "venue": "Ironworks",
-        "city": "London",
-        "country": "United Kingdom",
-        "date": "2026-10-31",
-        "source": "songkick",
-        "ticket_url": "https://www.songkick.com/concerts/43346312-appetite-at-ironworks?utm_medium=organic&utm_source=microformat"
-      },
-      "b": {
-        "id": 224815,
-        "source_id": "sk_43372616",
-        "name": "Sidney Charles @ SWG3",
-        "venue": "SWG3",
-        "city": "Glasgow",
-        "country": "United Kingdom",
-        "date": "2026-10-31",
-        "source": "songkick",
-        "ticket_url": "https://www.songkick.com/concerts/43372616-sidney-charles-at-swg3?utm_medium=organic&utm_source=microformat"
-      }
-    },
-    {
-      "category": "possible-double-header",
-      "dj": "Todd Terry",
-      "date": "2026-10-31",
-      "a": {
-        "id": 214769,
-        "source_id": "sk_43420056",
-        "name": "Todd Terry @ Leicester St Andrews Fc",
-        "venue": "Leicester St Andrews Fc",
-        "city": "Leicester",
-        "country": "United Kingdom",
-        "date": "2026-10-31",
-        "source": "songkick",
-        "ticket_url": "https://www.songkick.com/concerts/43420056-beyond-chicago-at-leicester-st-andrews-fc?utm_medium=organic&utm_source=microformat"
-      },
-      "b": {
-        "id": 229096,
-        "source_id": "sk_43392943",
-        "name": "Todd Terry @ Freeze Project",
-        "venue": "Freeze Project",
-        "city": "Liverpool",
-        "country": "United Kingdom",
-        "date": "2026-10-31",
-        "source": "songkick",
-        "ticket_url": "https://www.songkick.com/concerts/43392943-todd-terry-at-freeze-project?utm_medium=organic&utm_source=microformat"
+        "ticket_url": "https://www.songkick.com/concerts/43309164-vintage-culture-at-unknown-venue?utm_medium=organic&utm_source=microformat"
       }
     },
     {
@@ -495,34 +306,7 @@
       "dj": "Brutalismus 3000",
       "date": "2026-11-13",
       "a": {
-        "id": 207434,
-        "source_id": "sk_43388642",
-        "name": "Brutalismus 3000 @ Echostage",
-        "venue": "Echostage",
-        "city": "Washington",
-        "country": "United States",
-        "date": "2026-11-13",
-        "source": "songkick",
-        "ticket_url": "https://www.songkick.com/concerts/43388642-brutalismus-3000-at-echostage?utm_medium=organic&utm_source=microformat"
-      },
-      "b": {
-        "id": 228872,
-        "source_id": "sk_43232484",
-        "name": "Brutalismus 3000 @ Radius",
-        "venue": "Radius",
-        "city": "Chicago",
-        "country": "United States",
-        "date": "2026-11-13",
-        "source": "songkick",
-        "ticket_url": "https://www.songkick.com/concerts/43232484-brutalismus-3000-at-radius?utm_medium=organic&utm_source=microformat"
-      }
-    },
-    {
-      "category": "possible-double-header",
-      "dj": "Brutalismus 3000",
-      "date": "2026-11-13",
-      "a": {
-        "id": 228872,
+        "id": 232253,
         "source_id": "sk_43232484",
         "name": "Brutalismus 3000 @ Radius",
         "venue": "Radius",
@@ -533,7 +317,7 @@
         "ticket_url": "https://www.songkick.com/concerts/43232484-brutalismus-3000-at-radius?utm_medium=organic&utm_source=microformat"
       },
       "b": {
-        "id": 228874,
+        "id": 232254,
         "source_id": "sk_43389878",
         "name": "Brutalismus 3000 @ Echostage",
         "venue": "Echostage",
@@ -765,17 +549,6 @@
       "dj": "Marco Carola",
       "date": "2026-12-28",
       "a": {
-        "id": 226719,
-        "source_id": "sk_43435891",
-        "name": "Marco Carola @ KOKO",
-        "venue": "KOKO",
-        "city": "London",
-        "country": "United Kingdom",
-        "date": "2026-12-28",
-        "source": "songkick",
-        "ticket_url": "https://www.songkick.com/concerts/43435891-marco-carola-at-koko?utm_medium=organic&utm_source=microformat"
-      },
-      "b": {
         "id": 226720,
         "source_id": "sk_43473667",
         "name": "Marco Carola @ Blackstone Street Warehouse",
@@ -785,6 +558,17 @@
         "date": "2026-12-28",
         "source": "songkick",
         "ticket_url": "https://www.songkick.com/concerts/43473667-franky-rizardo-at-blackstone-street-warehouse?utm_medium=organic&utm_source=microformat"
+      },
+      "b": {
+        "id": 230214,
+        "source_id": "sk_43435891",
+        "name": "Marco Carola @ KOKO",
+        "venue": "KOKO",
+        "city": "London",
+        "country": "United Kingdom",
+        "date": "2026-12-28",
+        "source": "songkick",
+        "ticket_url": "https://www.songkick.com/concerts/43435891-marco-carola-at-koko?utm_medium=organic&utm_source=microformat"
       }
     },
     {

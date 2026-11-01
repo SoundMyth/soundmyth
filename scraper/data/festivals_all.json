@@ -2306,5 +2306,15 @@
     "date_raw": "2027-07-23",
     "style": "Multi-genre",
     "discovered": "2026-10-25"
+  },
+  {
+    "ranking": 270,
+    "name": "Blak Festival",
+    "city": "Kuala Lumpur",
+    "country": "Malaysia",
+    "website": "",
+    "date_raw": "2027-01-30",
+    "style": "Multi-genre",
+    "discovered": "2026-11-01"
   }
 ]

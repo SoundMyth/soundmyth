@@ -42,6 +42,12 @@
   "source": "ra",
   "checked": "2026-10-18"
  },
+ "abelramos": {
+  "name": "Abel Ramos",
+  "img": "https://static.ra.co/images/profiles/abelramos.jpg?dateUpdated=1259773458000",
+  "source": "ra",
+  "checked": "2026-11-01"
+ },
  "aboveandbeyond": {
   "name": "Above & Beyond",
   "img": "https://images.sk-static.com/images/media/profile_images/artists/81224/huge_avatar",
@@ -145,6 +151,12 @@
   "img": "https://static.ra.co/images/profiles/square/agustingiri.jpg?dateUpdated=1774605082000",
   "source": "ra",
   "checked": "2026-10-18"
+ },
+ "ahadadream": {
+  "name": "Ahadadream",
+  "img": "https://static.ra.co/images/profiles/square/ahadadream.jpg?dateUpdated=1712142733947",
+  "source": "ra",
+  "checked": "2026-11-01"
  },
  "ahee": {
   "name": "AHEE",
@@ -1037,6 +1049,12 @@
   "source": "songkick",
   "checked": "2026-10-18"
  },
+ "brendaserna2": {
+  "name": "Brenda Serna (2)",
+  "img": null,
+  "source": "none",
+  "checked": "2026-11-01"
+ },
  "brennanheart": {
   "name": "Brennan Heart",
   "img": "https://static.ra.co/images/profiles/brennanheart.jpg?dateUpdated=1366652898000",
@@ -1352,6 +1370,12 @@
   "source": "songkick",
   "checked": "2026-10-18"
  },
+ "cinnapeyghamy": {
+  "name": "Cinna Peyghamy",
+  "img": "https://static.ra.co/images/profiles/square/cinnapeyghamy.jpg?dateUpdated=1693333081000",
+  "source": "ra",
+  "checked": "2026-11-01"
+ },
  "circadian": {
   "name": "Circadian",
   "img": "https://static.ra.co/images/profiles/square/circadian.jpg?dateUpdated=1701770557000",
@@ -1567,6 +1591,12 @@
   "img": "https://static.ra.co/images/profiles/square/davidlohlein.jpg?dateUpdated=1539760596000",
   "source": "ra",
   "checked": "2026-10-18"
+ },
+ "davidmallada": {
+  "name": "David Mallada",
+  "img": "https://cdn-images.dzcdn.net/images/artist/d346aed874db600b04bd8d942162b893/1000x1000-000000-80-0-0.jpg",
+  "source": "deezer",
+  "checked": "2026-11-01"
  },
  "davidmorales": {
   "name": "David Morales",
@@ -2252,6 +2282,12 @@
   "source": "ra",
   "checked": "2026-10-18"
  },
+ "evilgrimace": {
+  "name": "Evil Grimace",
+  "img": "https://static.ra.co/images/profiles/square/evilgrimace.jpg?dateUpdated=1750409658000",
+  "source": "ra",
+  "checked": "2026-11-01"
+ },
  "ewanmcvicar": {
   "name": "Ewan McVicar",
   "img": "https://static.ra.co/images/profiles/square/ewanmcvicar.jpg?dateUpdated=1624473712353",
@@ -2377,7 +2413,7 @@
   "name": "FISHER",
   "img": "https://www.theaudiodb.com/images/media/artist/thumb/fisher-6191256ae5f21.jpg",
   "source": "override",
-  "checked": "2026-10-25"
+  "checked": "2026-11-01"
  },
  "fjaak": {
   "name": "FJAAK",
@@ -2599,6 +2635,12 @@
   "source": "ra",
   "checked": "2026-10-18"
  },
+ "giannidibernardo": {
+  "name": "Gianni Di Bernardo",
+  "img": "https://static.ra.co/images/profiles/square/giannidibernardo.jpg?dateUpdated=1747091434707",
+  "source": "ra",
+  "checked": "2026-11-01"
+ },
  "gianvarela": {
   "name": "Gian Varela",
   "img": "https://static.ra.co/images/profiles/gianvarela.jpg?dateUpdated=1429051417620",
@@ -2721,6 +2763,12 @@
   "img": "https://static.ra.co/images/profiles/square/guyj.jpg?dateUpdated=1484505957120",
   "source": "ra",
   "checked": "2026-10-18"
+ },
+ "halinarice": {
+  "name": "Halina Rice",
+  "img": "https://static.ra.co/images/profiles/square/halinarice.jpg?dateUpdated=1637266686000",
+  "source": "ra",
+  "checked": "2026-11-01"
  },
  "halo": {
   "name": "HALO",
@@ -3019,7 +3067,7 @@
   "name": "Jamie Jones",
   "img": null,
   "source": "override-none",
-  "checked": "2026-10-25"
+  "checked": "2026-11-01"
  },
  "janefitz": {
   "name": "Jane Fitz",
@@ -3642,6 +3690,12 @@
   "source": "ra",
   "checked": "2026-10-18"
  },
+ "latenitetuffguy": {
+  "name": "Late Nite Tuff Guy",
+  "img": "https://static.ra.co/images/profiles/square/latenitetuffguy.jpg?dateUpdated=1503970908000",
+  "source": "ra",
+  "checked": "2026-11-01"
+ },
  "lauravandam": {
   "name": "Laura Van Dam",
   "img": "https://static.ra.co/images/profiles/square/lauravandam.jpg?dateUpdated=1791539975000",
@@ -3869,6 +3923,12 @@
   "checked": "2026-10-18",
   "matched": "L.P.Rhythm"
  },
+ "lucaagnelli": {
+  "name": "Luca Agnelli",
+  "img": "https://static.ra.co/images/profiles/square/lucaagnelli.jpg?dateUpdated=1778593204333",
+  "source": "ra",
+  "checked": "2026-11-01"
+ },
  "lucadonzelli": {
   "name": "Luca Donzelli",
   "img": "https://static.ra.co/images/profiles/square/lucadonzelli.jpg?dateUpdated=1551398400000",
@@ -3978,6 +4038,18 @@
   "source": "ra",
   "checked": "2026-10-18"
  },
+ "maherdaniel": {
+  "name": "Maher Daniel",
+  "img": "https://static.ra.co/images/profiles/maherdaniel.jpg?dateUpdated=1759499026393",
+  "source": "ra",
+  "checked": "2026-11-01"
+ },
+ "mainphase": {
+  "name": "Main Phase",
+  "img": "https://static.ra.co/images/profiles/square/mainphase.jpg?dateUpdated=1787161055703",
+  "source": "ra",
+  "checked": "2026-11-01"
+ },
  "mairee": {
   "name": "Mairee",
   "img": "https://images.sk-static.com/images/media/profile_images/artists/10314574/huge_avatar",
@@ -4038,6 +4110,12 @@
   "img": "https://static.ra.co/images/profiles/square/marcelfengler.jpg?dateUpdated=1746051559657",
   "source": "ra",
   "checked": "2026-10-18"
+ },
+ "marckinchen": {
+  "name": "Marc Kinchen",
+  "img": "https://static.ra.co/images/profiles/square/marckinchen.jpg?dateUpdated=1583926792000",
+  "source": "ra",
+  "checked": "2026-11-01"
  },
  "marcocarola": {
   "name": "Marco Carola",
@@ -4860,6 +4938,12 @@
   "img": "https://static.ra.co/images/profiles/nyra.jpg?dateUpdated=1781961624613",
   "source": "ra",
   "checked": "2026-10-18"
+ },
+ "nziria": {
+  "name": "NZIRIA",
+  "img": "https://static.ra.co/images/profiles/square/nziria.jpg?dateUpdated=1706111028000",
+  "source": "ra",
+  "checked": "2026-11-01"
  },
  "obee": {
   "name": "O.BEE",
@@ -6251,6 +6335,12 @@
   "source": "ra",
   "checked": "2026-10-18"
  },
+ "stateofff": {
+  "name": "State OFFF",
+  "img": "https://static.ra.co/images/profiles/square/stateofff.jpg?dateUpdated=1761079308203",
+  "source": "ra",
+  "checked": "2026-11-01"
+ },
  "stephanbodzin": {
   "name": "Stephan Bodzin",
   "img": "https://static.ra.co/images/profiles/stephanbodzin.jpg?dateUpdated=1510168107000",
@@ -6745,6 +6835,12 @@
   "img": null,
   "source": "none",
   "checked": "2026-10-18"
+ },
+ "v111": {
+  "name": "V111",
+  "img": "https://static.ra.co/images/profiles/square/v111.jpg?dateUpdated=1546571644000",
+  "source": "ra",
+  "checked": "2026-11-01"
  },
  "vakabular": {
   "name": "Vakabular",

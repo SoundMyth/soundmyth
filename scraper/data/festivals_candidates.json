@@ -519,5 +519,33 @@
     "status": "pending",
     "reason": "DB festival-like title; needs review",
     "first_seen": "2026-10-25"
+  },
+  {
+    "key": "blak festival",
+    "name": "Blak Festival",
+    "city": "Kuala Lumpur",
+    "country": "Malaysia",
+    "date": "2027-01-30",
+    "ra_id": "2573758",
+    "via": "generic",
+    "artists": 10,
+    "known_artists": 8,
+    "first_seen": "2026-11-01",
+    "status": "added",
+    "reason": "festival-like, strong lineup"
+  },
+  {
+    "key": "croilar music and arts festival",
+    "name": "Croílár Music & Arts Festival",
+    "city": "Dublin",
+    "country": "Ireland",
+    "date": "2027-04-16",
+    "ra_id": "2571645",
+    "via": "generic",
+    "artists": 0,
+    "known_artists": 0,
+    "first_seen": "2026-11-01",
+    "status": "pending",
+    "reason": "only 0 listed artists"
   }
 ]

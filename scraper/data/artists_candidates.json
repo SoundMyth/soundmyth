@@ -10,16 +10,6 @@
     "sample": "Groove Cruise Miami 2027 - Ambassador Code: GrooveCruiseChris · Miami"
   },
   {
-    "name": "southstar",
-    "key": "southstar",
-    "events": 3,
-    "sources": [
-      "ra"
-    ],
-    "onRA": true,
-    "sample": "Time Warp Los Angeles 2026 · Los Angeles"
-  },
-  {
     "name": "DESIREE",
     "key": "desiree",
     "events": 2,
@@ -28,6 +18,26 @@
     ],
     "onRA": true,
     "sample": "Time Warp Mexico 2026 · Mexico City"
+  },
+  {
+    "name": "Kaitlyn Aurelia Smith",
+    "key": "kaitlynaureliasmith",
+    "events": 2,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "Kaitlyn Aurelia Smith · London"
+  },
+  {
+    "name": "southstar",
+    "key": "southstar",
+    "events": 2,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "Time Warp Los Angeles 2026 · Los Angeles"
   },
   {
     "name": "2 Bad Mice",
@@ -50,6 +60,16 @@
     "sample": "FCKNYE Festival 2026 · Brussels"
   },
   {
+    "name": "Abel Ramos",
+    "key": "abelramos",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "REMEMBER PARADISE: EL LEGADO · Madrid"
+  },
+  {
     "name": "Abstract Division",
     "key": "abstractdivision",
     "events": 1,
@@ -68,6 +88,16 @@
     ],
     "onRA": true,
     "sample": "Awakenings EXO - Colombia · Bogota"
+  },
+  {
+    "name": "Ahadadream",
+    "key": "ahadadream",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "The Warehouse Project Copenhagen · Copenhagen"
   },
   {
     "name": "Aiobahn",
@@ -110,6 +140,16 @@
     "sample": "Amor, Piazza, Sowa by SOLEA · Nantes"
   },
   {
+    "name": "ANDREA SALVAGGIO",
+    "key": "andreasalvaggio",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "Galactica Florence with Luca Agnelli, Gianni Di Bernardo, V111 · Flore"
+  },
+  {
     "name": "Andy Martin",
     "key": "andymartin",
     "events": 1,
@@ -128,6 +168,16 @@
     ],
     "onRA": true,
     "sample": "LOOP NYD FESTIVAL 2027 · Madrid"
+  },
+  {
+    "name": "ANXHELA",
+    "key": "anxhela",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "FCKNYE Festival 2026 · Brussels"
   },
   {
     "name": "ARMANA KHAN",
@@ -177,7 +227,7 @@
       "ra"
     ],
     "onRA": true,
-    "sample": "25+ Only - Boston-Nov 19 · Boston"
+    "sample": "25+ ONLY - CAVEAU - THURSDAYS · Boston"
   },
   {
     "name": "Beamskii",
@@ -218,6 +268,16 @@
     ],
     "onRA": true,
     "sample": "FUSE 18th Birthday w/ Enzo Siragusa b2b Rossi., Luciano, Marlie b2b Na"
+  },
+  {
+    "name": "Brenda Serna (2)",
+    "key": "brendaserna2",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "REMEMBER PARADISE: EL LEGADO · Madrid"
   },
   {
     "name": "Brunello",
@@ -310,6 +370,16 @@
     "sample": "Chris Watson @ Ministry of Sound · London"
   },
   {
+    "name": "Cinna Peyghamy",
+    "key": "cinnapeyghamy",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "CTM 2027: Spatial Radiants · Berlin"
+  },
+  {
     "name": "Colored Craig",
     "key": "coloredcraig",
     "events": 1,
@@ -338,6 +408,16 @@
     ],
     "onRA": true,
     "sample": "Awakenings EXO - Colombia · Bogota"
+  },
+  {
+    "name": "Cosmic Gate",
+    "key": "cosmicgate",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "Blak Festival · Kuala Lumpur"
   },
   {
     "name": "D.Dan",
@@ -390,6 +470,26 @@
     "sample": "FUSE 18th Birthday w/ Enzo Siragusa b2b Rossi., Luciano, Marlie b2b Na"
   },
   {
+    "name": "Darren Styles",
+    "key": "darrenstyles",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "Blak Festival · Kuala Lumpur"
+  },
+  {
+    "name": "David Mallada",
+    "key": "davidmallada",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "REMEMBER PARADISE: EL LEGADO · Madrid"
+  },
+  {
     "name": "Dazee",
     "key": "dazee",
     "events": 1,
@@ -398,6 +498,16 @@
     ],
     "onRA": true,
     "sample": "dnb brunch - KOKO · London"
+  },
+  {
+    "name": "Debit",
+    "key": "debit",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "CTM 2027: Initialising · Berlin"
   },
   {
     "name": "Diossa",
@@ -420,6 +530,26 @@
     "sample": "Zack Fox, DJ Delish, Venom Rei · New York"
   },
   {
+    "name": "DJ Marta",
+    "key": "djmarta",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "REMEMBER PARADISE: EL LEGADO · Madrid"
+  },
+  {
+    "name": "Dj Schnake",
+    "key": "djschnake",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "FCKNYE Festival 2026 · Brussels"
+  },
+  {
     "name": "DJ SS",
     "key": "djss",
     "events": 1,
@@ -438,6 +568,16 @@
     ],
     "onRA": true,
     "sample": "Time Warp Mexico 2026 · Mexico City"
+  },
+  {
+    "name": "DJ Strawberry",
+    "key": "djstrawberry",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "CTM 2027: Spatial Radiants · Berlin"
   },
   {
     "name": "DLOU",
@@ -510,6 +650,16 @@
     "sample": "Eli Escobar (Open to Close) · New York"
   },
   {
+    "name": "ESE UVE",
+    "key": "eseuve",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "REMEMBER PARADISE: EL LEGADO · Madrid"
+  },
+  {
     "name": "Evie",
     "key": "evie",
     "events": 1,
@@ -520,6 +670,16 @@
     "sample": "Pre sale tickets for 2027 drop on Friday 8th May at 10am. Scroll down "
   },
   {
+    "name": "Evil Grimace",
+    "key": "evilgrimace",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "CTM 2027: Initialising · Berlin"
+  },
+  {
     "name": "Fra (24)",
     "key": "fra24",
     "events": 1,
@@ -528,6 +688,16 @@
     ],
     "onRA": true,
     "sample": "MIX TOKYO DJ PARTY 'NEO' · Tokyo"
+  },
+  {
+    "name": "Frank Trax",
+    "key": "franktrax",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "REMEMBER PARADISE: EL LEGADO · Madrid"
   },
   {
     "name": "Frederic.",
@@ -570,16 +740,6 @@
     "sample": "FUSE - Hivernacle Barcelona · Barcelona"
   },
   {
-    "name": "GENNARO",
-    "key": "gennaro",
-    "events": 1,
-    "sources": [
-      "ra"
-    ],
-    "onRA": true,
-    "sample": "Tenax w/GENNARO,Mason Collective,Leo Dessi · Florence"
-  },
-  {
     "name": "George Privatti",
     "key": "georgeprivatti",
     "events": 1,
@@ -620,6 +780,16 @@
     "sample": "Brunch Electronik Madrid x BSMT LIVE 07.11 - The Blaze (DJ Set) · Madr"
   },
   {
+    "name": "Gianni Di Bernardo",
+    "key": "giannidibernardo",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "Galactica Florence with Luca Agnelli, Gianni Di Bernardo, V111 · Flore"
+  },
+  {
     "name": "GLXY",
     "key": "glxy",
     "events": 1,
@@ -628,6 +798,16 @@
     ],
     "onRA": true,
     "sample": "dnb brunch - KOKO · London"
+  },
+  {
+    "name": "GNS (1)",
+    "key": "gns1",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "REMEMBER PARADISE: EL LEGADO · Madrid"
   },
   {
     "name": "Golpe",
@@ -650,6 +830,16 @@
     "sample": "LOOP NYD FESTIVAL 2027 · Madrid"
   },
   {
+    "name": "H1pnos1s",
+    "key": "h1pnos1s",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "REMEMBER PARADISE: EL LEGADO · Madrid"
+  },
+  {
     "name": "HAAi",
     "key": "haai",
     "events": 1,
@@ -658,6 +848,16 @@
     ],
     "onRA": true,
     "sample": "Time Warp Los Angeles 2026 · Los Angeles"
+  },
+  {
+    "name": "Halina Rice",
+    "key": "halinarice",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "Halina Rice (Immersive Liveset & AV) · London"
   },
   {
     "name": "hhunter",
@@ -740,16 +940,6 @@
     "sample": "FUSE 18th Birthday w/ Enzo Siragusa b2b Rossi., Luciano, Marlie b2b Na"
   },
   {
-    "name": "Job de Jong",
-    "key": "jobdejong",
-    "events": 1,
-    "sources": [
-      "ra"
-    ],
-    "onRA": true,
-    "sample": "Awakenings ADE - Prophecy by Prospa · Amsterdam"
-  },
-  {
     "name": "John Bryars",
     "key": "johnbryars",
     "events": 1,
@@ -770,14 +960,14 @@
     "sample": "Time Warp Los Angeles 2026 · Los Angeles"
   },
   {
-    "name": "Kaitlyn Aurelia Smith",
-    "key": "kaitlynaureliasmith",
+    "name": "K Motionz",
+    "key": "kmotionz",
     "events": 1,
     "sources": [
       "ra"
     ],
     "onRA": true,
-    "sample": "Kaitlyn Aurelia Smith · London"
+    "sample": "FCKNYE Festival 2026 · Brussels"
   },
   {
     "name": "Kamelot",
@@ -830,6 +1020,16 @@
     "sample": "Sirocco Sessions: After Dark Boston · Boston"
   },
   {
+    "name": "Kontronatura",
+    "key": "kontronatura",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "CTM 2027: Initialising · Berlin"
+  },
+  {
     "name": "Krowdexx",
     "key": "krowdexx",
     "events": 1,
@@ -880,6 +1080,16 @@
     "sample": "Lagos @ Razzmatazz · Barcelona"
   },
   {
+    "name": "Late Nite Tuff Guy",
+    "key": "latenitetuffguy",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "Glitterbox Sydney 2027 · Sydney"
+  },
+  {
     "name": "LB aka LABAT",
     "key": "lbakalabat",
     "events": 1,
@@ -910,6 +1120,16 @@
     "sample": "FCKNYE Festival 2026 · Brussels"
   },
   {
+    "name": "Luca Agnelli",
+    "key": "lucaagnelli",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "Galactica Florence with Luca Agnelli, Gianni Di Bernardo, V111 · Flore"
+  },
+  {
     "name": "Luccio",
     "key": "luccio",
     "events": 1,
@@ -920,6 +1140,16 @@
     "sample": "Groove Cruise Miami 2027 - Ambassador Code: GrooveCruiseChris · Miami"
   },
   {
+    "name": "Luis Bonias",
+    "key": "luisbonias",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "REMEMBER PARADISE: EL LEGADO · Madrid"
+  },
+  {
     "name": "Madman",
     "key": "madman",
     "events": 1,
@@ -928,6 +1158,26 @@
     ],
     "onRA": true,
     "sample": "Madman @ Duel Club · Pozzuoli"
+  },
+  {
+    "name": "Maher Daniel",
+    "key": "maherdaniel",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "Trip Closing: Ricardo Villalobos, Sonja Moonear, Maher Daniel · Ibiza"
+  },
+  {
+    "name": "Main Phase",
+    "key": "mainphase",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "The Warehouse Project Copenhagen · Copenhagen"
   },
   {
     "name": "Make A Dance",
@@ -968,6 +1218,16 @@
     ],
     "onRA": true,
     "sample": "FCKNYE Festival 2026 · Brussels"
+  },
+  {
+    "name": "Marc Kinchen",
+    "key": "marckinchen",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "MK · Phuket"
   },
   {
     "name": "Marius Tiberian",
@@ -1040,6 +1300,16 @@
     "sample": "Miss Bashful (Live) Full Venue Takeover · New York"
   },
   {
+    "name": "Monica X",
+    "key": "monicax",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "REMEMBER PARADISE: EL LEGADO · Madrid"
+  },
+  {
     "name": "Moose",
     "key": "moose",
     "events": 1,
@@ -1048,16 +1318,6 @@
     ],
     "onRA": true,
     "sample": "dnb brunch - KOKO · London"
-  },
-  {
-    "name": "Morgan",
-    "key": "morgan",
-    "events": 1,
-    "sources": [
-      "ra"
-    ],
-    "onRA": true,
-    "sample": "DGTL ADE FUSE · Amsterdam"
   },
   {
     "name": "Mowie (2)",
@@ -1090,6 +1350,16 @@
     "sample": "CLUB DE JOUR with Myd, Mayou Picchu & Akalex · Nantes"
   },
   {
+    "name": "Nadia Struiwigh",
+    "key": "nadiastruiwigh",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "CTM 2027: Spatial Radiants · Berlin"
+  },
+  {
     "name": "Neek",
     "key": "neek",
     "events": 1,
@@ -1108,6 +1378,16 @@
     ],
     "onRA": true,
     "sample": "Marco Carola · Phuket"
+  },
+  {
+    "name": "Nita Key",
+    "key": "nitakey",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "REMEMBER PARADISE: EL LEGADO · Madrid"
   },
   {
     "name": "NoName",
@@ -1150,6 +1430,16 @@
     "sample": "Bedroom Traxx Presents: Nyra · Glasgow"
   },
   {
+    "name": "NZIRIA",
+    "key": "nziria",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "CTM 2027: Initialising · Berlin"
+  },
+  {
     "name": "Oldboy",
     "key": "oldboy",
     "events": 1,
@@ -1158,6 +1448,16 @@
     ],
     "onRA": true,
     "sample": "LOCUS x Modern Funktion Halloween · London"
+  },
+  {
+    "name": "OMAKS",
+    "key": "omaks",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "FCKNYE Festival 2026 · Brussels"
   },
   {
     "name": "ONYVAA",
@@ -1180,6 +1480,16 @@
     "sample": "Time Warp Los Angeles 2026 · Los Angeles"
   },
   {
+    "name": "ORI (ozone)",
+    "key": "oriozone",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "Acid Ballroom: Paranoid London · Leeds"
+  },
+  {
     "name": "Paco Osuna",
     "key": "pacoosuna",
     "events": 1,
@@ -1198,6 +1508,16 @@
     ],
     "onRA": true,
     "sample": "FCKNYE Festival 2026 · Brussels"
+  },
+  {
+    "name": "Pergo",
+    "key": "pergo",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "REMEMBER PARADISE: EL LEGADO · Madrid"
   },
   {
     "name": "Planetary Assault Systems",
@@ -1240,6 +1560,16 @@
     "sample": "CLUB DE JOUR with Worakls présente OVERTURE feat. Ekaterina Shelehova "
   },
   {
+    "name": "Raul Ortiz",
+    "key": "raulortiz",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "REMEMBER PARADISE: EL LEGADO · Madrid"
+  },
+  {
     "name": "Ray Keith",
     "key": "raykeith",
     "events": 1,
@@ -1248,6 +1578,16 @@
     ],
     "onRA": true,
     "sample": "dnb brunch - KOKO · London"
+  },
+  {
+    "name": "Ricardo F",
+    "key": "ricardof",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "REMEMBER PARADISE: EL LEGADO · Madrid"
   },
   {
     "name": "Riley",
@@ -1330,6 +1670,16 @@
     "sample": "dnb brunch - KOKO · London"
   },
   {
+    "name": "Sickmode",
+    "key": "sickmode",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "FCKNYE Festival 2026 · Brussels"
+  },
+  {
     "name": "Silktits",
     "key": "silktits",
     "events": 1,
@@ -1348,6 +1698,36 @@
     ],
     "onRA": true,
     "sample": "FCKNYE Festival 2026 · Brussels"
+  },
+  {
+    "name": "Solo Viking",
+    "key": "soloviking",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "REMEMBER PARADISE: EL LEGADO · Madrid"
+  },
+  {
+    "name": "State OFFF",
+    "key": "stateofff",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "CTM 2027: Spatial Radiants · Berlin"
+  },
+  {
+    "name": "T.NO",
+    "key": "tno",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "CTM 2027: Spatial Radiants · Berlin"
   },
   {
     "name": "the bald girl",
@@ -1430,6 +1810,16 @@
     "sample": "dnb brunch - KOKO · London"
   },
   {
+    "name": "Unicorn on Ketamine",
+    "key": "unicornonketamine",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "FCKNYE Festival 2026 · Brussels"
+  },
+  {
     "name": "uphoria",
     "key": "uphoria",
     "events": 1,
@@ -1448,6 +1838,16 @@
     ],
     "onRA": true,
     "sample": "FCKNYE Festival 2026 · Brussels"
+  },
+  {
+    "name": "V111",
+    "key": "v111",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "Galactica Florence with Luca Agnelli, Gianni Di Bernardo, V111 · Flore"
   },
   {
     "name": "ValaV",

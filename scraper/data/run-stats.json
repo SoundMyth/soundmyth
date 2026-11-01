@@ -1,22 +1,22 @@
 {
   "festivals": {
     "added": [
-      "Open Beatz Festival"
+      "Blak Festival"
     ],
-    "candidates": 32
+    "candidates": 33
   },
   "dedupe": {
-    "generated": "2026-10-25T08:07:06.015Z",
-    "likelyErrors": 7,
-    "possibleDoubleHeaders": 28,
-    "ignoredFestival": 141,
-    "fragmentsMerged": 62,
-    "keepersMerged": 171,
-    "rowsDeleted": 978
+    "generated": "2026-11-01T09:35:54.371Z",
+    "likelyErrors": 6,
+    "possibleDoubleHeaders": 21,
+    "ignoredFestival": 107,
+    "fragmentsMerged": 57,
+    "keepersMerged": 166,
+    "rowsDeleted": 900
   },
   "validate": {
-    "generated": "2026-10-25T08:07:15.738Z",
-    "future": 2653,
+    "generated": "2026-11-01T09:36:02.544Z",
+    "future": 2526,
     "cityCanonicalized": 0,
     "cityFromVenue": 0,
     "countryFilled": 0,
@@ -25,10 +25,10 @@
     "droppedNoGeo": 0,
     "droppedDate": 1,
     "droppedLegacyWebsite": 0,
-    "blocked": 5,
+    "blocked": 4,
     "namesakeDropped": 0,
-    "namesakeReview": 304,
-    "dropped": 6,
+    "namesakeReview": 291,
+    "dropped": 5,
     "geoFlags": {
       "hubMismatch": [],
       "hubMismatchCount": 0,
@@ -43,7 +43,7 @@
         {
           "city": "Oxford",
           "countries": [
-            "United Kingdom (4)",
+            "United Kingdom (3)",
             "United States (1)"
           ]
         },
@@ -55,13 +55,6 @@
           ]
         },
         {
-          "city": "San Jose",
-          "countries": [
-            "United States (2)",
-            "Costa Rica (2)"
-          ]
-        },
-        {
           "city": "Northampton",
           "countries": [
             "United Kingdom (1)",
@@ -69,17 +62,17 @@
           ]
         },
         {
-          "city": "Dresden",
-          "countries": [
-            "Germany (2)",
-            "Latvia (1)"
-          ]
-        },
-        {
           "city": "Saint Martin",
           "countries": [
             "Anguilla (1)",
             "Saint Martin (1)"
+          ]
+        },
+        {
+          "city": "Newport",
+          "countries": [
+            "United States (2)",
+            "United Kingdom (1)"
           ]
         },
         {
@@ -97,28 +90,28 @@
           ]
         }
       ],
-      "multiCountryCount": 9
+      "multiCountryCount": 8
     },
     "droppedSamples": []
   },
   "purge": {
-    "generated": "2026-10-25T08:08:04.247Z",
-    "cutoff": "2026-10-17",
+    "generated": "2026-11-01T09:36:51.514Z",
+    "cutoff": "2026-10-24",
     "retentionDays": 8,
-    "deleted": 158,
+    "deleted": 292,
     "orphanSavedEvents": {
       "status": "ok",
-      "found": 17,
-      "deleted": 17
+      "found": 0,
+      "deleted": 0
     }
   },
   "namesake": {
-    "generated": "2026-10-25T08:07:15.739Z",
+    "generated": "2026-11-01T09:36:02.544Z",
     "rules": [],
     "allowListed": 0,
     "droppedCount": 0,
     "dropped": [],
-    "reviewCount": 304,
+    "reviewCount": 291,
     "review": [
       {
         "source_id": "sk_43409202",
@@ -137,29 +130,14 @@
         ]
       },
       {
-        "source_id": "oklou_2026_10_29_lingotto",
-        "name": "Oklou @ Lingotto",
-        "dj": "Oklou",
-        "venue": "Lingotto",
-        "city": "Turin",
-        "country": "Italy",
-        "date": "2026-10-29",
-        "ticket_url": "https://www.songkick.com/festivals/1117783-c2c/id/43072752-c2c-2026?utm_medium=organic&utm_source=microformat",
-        "reasons": [
-          "no other known DJ plays this venue",
-          "one-word name (common-name collision risk)",
-          "same DJ listed in another country the same day"
-        ]
-      },
-      {
-        "source_id": "sk_43460136",
-        "name": "Nifra @ Sedona Hotel",
-        "dj": "Nifra",
-        "venue": "Sedona Hotel",
-        "city": "Yangon",
-        "country": "Myanmar",
-        "date": "2026-10-31",
-        "ticket_url": "https://www.songkick.com/concerts/43460136-nifra-at-sedona-hotel?utm_medium=organic&utm_source=microformat",
+        "source_id": "sk_43430608",
+        "name": "KREAM @ Ocean Resort Casino - HQ2 Beachclub",
+        "dj": "KREAM",
+        "venue": "Ocean Resort Casino - HQ2 Beachclub",
+        "city": "Atlantic City",
+        "country": "United States",
+        "date": "2026-11-07",
+        "ticket_url": "https://www.songkick.com/concerts/43430608-kream-at-ocean-resort-casino-hq2-beachclub?utm_medium=organic&utm_source=microformat",
         "reasons": [
           "no other known DJ plays this venue",
           "venue name suggests a non-club (church, cabaret, hotel, museum...)",
@@ -190,6 +168,21 @@
         "country": "Germany",
         "date": "2026-11-14",
         "ticket_url": "https://www.songkick.com/concerts/42896249-luciano-at-martinikirche-buer?utm_medium=organic&utm_source=microformat",
+        "reasons": [
+          "no other known DJ plays this venue",
+          "venue name suggests a non-club (church, cabaret, hotel, museum...)",
+          "one-word name (common-name collision risk)"
+        ]
+      },
+      {
+        "source_id": "sk_43394804",
+        "name": "Azyr @ Y Plas, Cardiff University Students' Union",
+        "dj": "Azyr",
+        "venue": "Y Plas, Cardiff University Students' Union",
+        "city": "Cardiff",
+        "country": "United Kingdom",
+        "date": "2026-11-20",
+        "ticket_url": "https://www.songkick.com/concerts/43394804-azyr-at-y-plas-cardiff-university-students-union?utm_medium=organic&utm_source=microformat",
         "reasons": [
           "no other known DJ plays this venue",
           "venue name suggests a non-club (church, cabaret, hotel, museum...)",
@@ -287,6 +280,21 @@
         ]
       },
       {
+        "source_id": "sk_43466353",
+        "name": "Riordan @ Shrine Auditorium",
+        "dj": "Riordan",
+        "venue": "Shrine Auditorium",
+        "city": "Los Angeles",
+        "country": "United States",
+        "date": "2027-01-22",
+        "ticket_url": "https://www.songkick.com/concerts/43466353-riordan-at-shrine-auditorium?utm_medium=organic&utm_source=microformat",
+        "reasons": [
+          "no other known DJ plays this venue",
+          "venue name suggests a non-club (church, cabaret, hotel, museum...)",
+          "one-word name (common-name collision risk)"
+        ]
+      },
+      {
         "source_id": "sk_43256703",
         "name": "Luciano @ Kultur- & Festspielhaus Wittenberge",
         "dj": "Luciano",
@@ -325,21 +333,6 @@
         "country": "Germany",
         "date": "2027-04-04",
         "ticket_url": "https://www.songkick.com/concerts/43323016-luciano-at-kulturzentrum-kreuzkirche?utm_medium=organic&utm_source=microformat",
-        "reasons": [
-          "no other known DJ plays this venue",
-          "venue name suggests a non-club (church, cabaret, hotel, museum...)",
-          "one-word name (common-name collision risk)"
-        ]
-      },
-      {
-        "source_id": "sk_43478410",
-        "name": "ASCO @ Teatro Cartiere Carrara",
-        "dj": "ASCO",
-        "venue": "Teatro Cartiere Carrara",
-        "city": "Florence",
-        "country": "Italy",
-        "date": "2027-04-09",
-        "ticket_url": "https://www.songkick.com/concerts/43478410-asco-at-teatro-cartiere-carrara?utm_medium=organic&utm_source=microformat",
         "reasons": [
           "no other known DJ plays this venue",
           "venue name suggests a non-club (church, cabaret, hotel, museum...)",

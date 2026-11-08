@@ -1,22 +1,22 @@
 {
   "festivals": {
     "added": [
-      "Blak Festival"
+      "Listen Festival"
     ],
-    "candidates": 33
+    "candidates": 35
   },
   "dedupe": {
-    "generated": "2026-11-01T09:35:54.371Z",
-    "likelyErrors": 6,
-    "possibleDoubleHeaders": 21,
-    "ignoredFestival": 107,
-    "fragmentsMerged": 57,
-    "keepersMerged": 166,
-    "rowsDeleted": 900
+    "generated": "2026-11-08T09:30:43.869Z",
+    "likelyErrors": 5,
+    "possibleDoubleHeaders": 20,
+    "ignoredFestival": 106,
+    "fragmentsMerged": 3,
+    "keepersMerged": 173,
+    "rowsDeleted": 871
   },
   "validate": {
-    "generated": "2026-11-01T09:36:02.544Z",
-    "future": 2526,
+    "generated": "2026-11-08T09:30:59.382Z",
+    "future": 2519,
     "cityCanonicalized": 0,
     "cityFromVenue": 0,
     "countryFilled": 0,
@@ -25,10 +25,10 @@
     "droppedNoGeo": 0,
     "droppedDate": 1,
     "droppedLegacyWebsite": 0,
-    "blocked": 4,
+    "blocked": 3,
     "namesakeDropped": 0,
-    "namesakeReview": 291,
-    "dropped": 5,
+    "namesakeReview": 267,
+    "dropped": 4,
     "geoFlags": {
       "hubMismatch": [],
       "hubMismatchCount": 0,
@@ -36,19 +36,12 @@
         {
           "city": "Birmingham",
           "countries": [
-            "United Kingdom (21)",
+            "United Kingdom (19)",
             "United States (1)"
           ]
         },
         {
           "city": "Oxford",
-          "countries": [
-            "United Kingdom (3)",
-            "United States (1)"
-          ]
-        },
-        {
-          "city": "Cambridge",
           "countries": [
             "United Kingdom (3)",
             "United States (1)"
@@ -79,14 +72,21 @@
           "city": "Hamilton",
           "countries": [
             "Australia (2)",
-            "Canada (2)"
+            "Canada (1)"
           ]
         },
         {
           "city": "Lincoln",
           "countries": [
-            "United States (2)",
+            "United States (1)",
             "United Kingdom (1)"
+          ]
+        },
+        {
+          "city": "Santa Fe",
+          "countries": [
+            "United States (1)",
+            "Argentina (1)"
           ]
         }
       ],
@@ -95,10 +95,10 @@
     "droppedSamples": []
   },
   "purge": {
-    "generated": "2026-11-01T09:36:51.514Z",
-    "cutoff": "2026-10-24",
+    "generated": "2026-11-08T09:32:05.019Z",
+    "cutoff": "2026-10-31",
     "retentionDays": 8,
-    "deleted": 292,
+    "deleted": 304,
     "orphanSavedEvents": {
       "status": "ok",
       "found": 0,
@@ -106,12 +106,12 @@
     }
   },
   "namesake": {
-    "generated": "2026-11-01T09:36:02.544Z",
+    "generated": "2026-11-08T09:30:59.382Z",
     "rules": [],
     "allowListed": 0,
     "droppedCount": 0,
     "dropped": [],
-    "reviewCount": 291,
+    "reviewCount": 267,
     "review": [
       {
         "source_id": "sk_43409202",
@@ -127,21 +127,6 @@
           "venue name suggests a non-club (church, cabaret, hotel, museum...)",
           "one-word name (common-name collision risk)",
           "same DJ listed in another country the next day"
-        ]
-      },
-      {
-        "source_id": "sk_43430608",
-        "name": "KREAM @ Ocean Resort Casino - HQ2 Beachclub",
-        "dj": "KREAM",
-        "venue": "Ocean Resort Casino - HQ2 Beachclub",
-        "city": "Atlantic City",
-        "country": "United States",
-        "date": "2026-11-07",
-        "ticket_url": "https://www.songkick.com/concerts/43430608-kream-at-ocean-resort-casino-hq2-beachclub?utm_medium=organic&utm_source=microformat",
-        "reasons": [
-          "no other known DJ plays this venue",
-          "venue name suggests a non-club (church, cabaret, hotel, museum...)",
-          "one-word name (common-name collision risk)"
         ]
       },
       {
@@ -190,21 +175,6 @@
         ]
       },
       {
-        "source_id": "sk_43454846",
-        "name": "Kepler @ Great Hall, Cardiff University Students' Union",
-        "dj": "Kepler",
-        "venue": "Great Hall, Cardiff University Students' Union",
-        "city": "Cardiff",
-        "country": "United Kingdom",
-        "date": "2026-11-28",
-        "ticket_url": "https://www.songkick.com/concerts/43454846-kepler-at-great-hall-cardiff-university-students-union?utm_medium=organic&utm_source=microformat",
-        "reasons": [
-          "no other known DJ plays this venue",
-          "venue name suggests a non-club (church, cabaret, hotel, museum...)",
-          "one-word name (common-name collision risk)"
-        ]
-      },
-      {
         "source_id": "diplo_2026_12_04_universidad_sim_n_bol_var",
         "name": "Diplo @ Universidad Simón Bolívar",
         "dj": "Diplo",
@@ -232,6 +202,21 @@
           "no other known DJ plays this venue",
           "venue name suggests a non-club (church, cabaret, hotel, museum...)",
           "same DJ listed in another country the next day"
+        ]
+      },
+      {
+        "source_id": "sk_43463710",
+        "name": "Beltran @ Fillmore Auditorium",
+        "dj": "Beltran",
+        "venue": "Fillmore Auditorium",
+        "city": "Denver",
+        "country": "United States",
+        "date": "2026-12-11",
+        "ticket_url": "https://www.songkick.com/concerts/43463710-beltran-at-fillmore-auditorium?utm_medium=organic&utm_source=microformat",
+        "reasons": [
+          "no other known DJ plays this venue",
+          "venue name suggests a non-club (church, cabaret, hotel, museum...)",
+          "one-word name (common-name collision risk)"
         ]
       },
       {
@@ -333,6 +318,21 @@
         "country": "Germany",
         "date": "2027-04-04",
         "ticket_url": "https://www.songkick.com/concerts/43323016-luciano-at-kulturzentrum-kreuzkirche?utm_medium=organic&utm_source=microformat",
+        "reasons": [
+          "no other known DJ plays this venue",
+          "venue name suggests a non-club (church, cabaret, hotel, museum...)",
+          "one-word name (common-name collision risk)"
+        ]
+      },
+      {
+        "source_id": "sk_43478410",
+        "name": "ASCO @ Teatro Cartiere Carrara",
+        "dj": "ASCO",
+        "venue": "Teatro Cartiere Carrara",
+        "city": "Florence",
+        "country": "Italy",
+        "date": "2027-04-09",
+        "ticket_url": "https://www.songkick.com/concerts/43478410-asco-at-teatro-cartiere-carrara?utm_medium=organic&utm_source=microformat",
         "reasons": [
           "no other known DJ plays this venue",
           "venue name suggests a non-club (church, cabaret, hotel, museum...)",

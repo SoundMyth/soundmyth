@@ -2316,5 +2316,15 @@
     "date_raw": "2027-01-30",
     "style": "Multi-genre",
     "discovered": "2026-11-01"
+  },
+  {
+    "ranking": 271,
+    "name": "Listen Festival",
+    "city": "Brussels",
+    "country": "Belgium",
+    "website": "",
+    "date_raw": "2026-11-21",
+    "style": "Multi-genre",
+    "discovered": "2026-11-08"
   }
 ]

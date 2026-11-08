@@ -1,36 +1,9 @@
 {
-  "generated": "2026-11-01T09:34:46.463Z",
-  "likelyErrors": 6,
-  "possibleDoubleHeaders": 21,
-  "ignoredFestival": 107,
+  "generated": "2026-11-08T09:29:19.109Z",
+  "likelyErrors": 5,
+  "possibleDoubleHeaders": 20,
+  "ignoredFestival": 106,
   "conflicts": [
-    {
-      "category": "likely-error",
-      "dj": "Kanine",
-      "date": "2026-11-07",
-      "a": {
-        "id": 224245,
-        "source_id": "sk_43332712",
-        "name": "Kanine @ Drumsheds",
-        "venue": "Drumsheds",
-        "city": "London",
-        "country": "United Kingdom",
-        "date": "2026-11-07",
-        "source": "songkick",
-        "ticket_url": "https://www.songkick.com/concerts/43332712-wilkinson-at-drumsheds?utm_medium=organic&utm_source=microformat"
-      },
-      "b": {
-        "id": 231223,
-        "source_id": "sk_43420934",
-        "name": "Kanine @ L'Empreinte",
-        "venue": "L'Empreinte",
-        "city": "Savigny Le Temple",
-        "country": "France",
-        "date": "2026-11-07",
-        "source": "songkick",
-        "ticket_url": "https://www.songkick.com/concerts/43420934-kanine-at-lempreinte?utm_medium=organic&utm_source=microformat"
-      }
-    },
     {
       "category": "likely-error",
       "dj": "WHIPPED CREAM",
@@ -47,7 +20,7 @@
         "ticket_url": "https://www.songkick.com/concerts/43387991-whipped-cream-at-mosaic?utm_medium=organic&utm_source=microformat"
       },
       "b": {
-        "id": 231466,
+        "id": 234782,
         "source_id": "sk_43201764",
         "name": "Whipped Cream @ Klüngelpütz Kabarett &theater",
         "venue": "Klüngelpütz Kabarett &theater",
@@ -74,7 +47,7 @@
         "ticket_url": "https://www.songkick.com/concerts/43281837-afrojack-at-level-1-cannonball-arts?utm_medium=organic&utm_source=microformat"
       },
       "b": {
-        "id": 229718,
+        "id": 233048,
         "source_id": "sk_43460576",
         "name": "Afrojack @ Werribee Plaza Tavern, Level 1 Upstairs",
         "venue": "Werribee Plaza Tavern, Level 1 Upstairs",
@@ -128,7 +101,7 @@
         "ticket_url": "https://www.songkick.com/concerts/43353780-rossi-at-concourse-project?utm_medium=organic&utm_source=microformat"
       },
       "b": {
-        "id": 231194,
+        "id": 234498,
         "source_id": "sk_43060452",
         "name": "Rossi @ Kulturzentrum Pavillon",
         "venue": "Kulturzentrum Pavillon",
@@ -144,17 +117,6 @@
       "dj": "Rossi.",
       "date": "2026-12-12",
       "a": {
-        "id": 231196,
-        "source_id": "sk_43015877",
-        "name": "Rossi @ Kulturzentrum Pavillon",
-        "venue": "Kulturzentrum Pavillon",
-        "city": "Hannover",
-        "country": "Germany",
-        "date": "2026-12-12",
-        "source": "songkick",
-        "ticket_url": "https://www.songkick.com/concerts/43015877-krajenski-at-kulturzentrum-pavillon?utm_medium=organic&utm_source=microformat"
-      },
-      "b": {
         "id": 231197,
         "source_id": "sk_43490108",
         "name": "Rossi @ The Church",
@@ -164,87 +126,17 @@
         "date": "2026-12-12",
         "source": "songkick",
         "ticket_url": "https://www.songkick.com/concerts/43490108-rossi-at-church?utm_medium=organic&utm_source=microformat"
-      }
-    },
-    {
-      "category": "possible-double-header",
-      "dj": "Vintage Culture",
-      "date": "2026-11-01",
-      "a": {
-        "id": 152778,
-        "source_id": "sk_43303240",
-        "name": "Vintage Culture @ Parque Villa Lobos",
-        "venue": "Parque Villa Lobos",
-        "city": "Sao Paulo",
-        "country": "Brazil",
-        "date": "2026-11-01",
-        "source": "songkick",
-        "ticket_url": "https://www.songkick.com/concerts/43303240-solomun-at-parque-villa-lobos?utm_medium=organic&utm_source=microformat"
       },
       "b": {
-        "id": 91538,
-        "source_id": "sk_43228284",
-        "name": "Vintage Culture @ Terminal Marítimo de Passageiros",
-        "venue": "Terminal Marítimo de Passageiros",
-        "city": "Fortaleza",
-        "country": "Brazil",
-        "date": "2026-11-01",
+        "id": 234500,
+        "source_id": "sk_43015877",
+        "name": "Rossi @ Kulturzentrum Pavillon",
+        "venue": "Kulturzentrum Pavillon",
+        "city": "Hannover",
+        "country": "Germany",
+        "date": "2026-12-12",
         "source": "songkick",
-        "ticket_url": "https://www.songkick.com/concerts/43228284-vintage-culture-at-terminal-maritimo-de-passageiros?utm_medium=organic&utm_source=microformat"
-      }
-    },
-    {
-      "category": "possible-double-header",
-      "dj": "Vintage Culture",
-      "date": "2026-11-01",
-      "a": {
-        "id": 152778,
-        "source_id": "sk_43303240",
-        "name": "Vintage Culture @ Parque Villa Lobos",
-        "venue": "Parque Villa Lobos",
-        "city": "Sao Paulo",
-        "country": "Brazil",
-        "date": "2026-11-01",
-        "source": "songkick",
-        "ticket_url": "https://www.songkick.com/concerts/43303240-solomun-at-parque-villa-lobos?utm_medium=organic&utm_source=microformat"
-      },
-      "b": {
-        "id": 222624,
-        "source_id": "sk_43309164",
-        "name": "Vintage Culture @ Teresina",
-        "venue": "Teresina",
-        "city": "Teresina",
-        "country": "Brazil",
-        "date": "2026-11-01",
-        "source": "songkick",
-        "ticket_url": "https://www.songkick.com/concerts/43309164-vintage-culture-at-unknown-venue?utm_medium=organic&utm_source=microformat"
-      }
-    },
-    {
-      "category": "possible-double-header",
-      "dj": "Vintage Culture",
-      "date": "2026-11-01",
-      "a": {
-        "id": 222624,
-        "source_id": "sk_43309164",
-        "name": "Vintage Culture @ Teresina",
-        "venue": "Teresina",
-        "city": "Teresina",
-        "country": "Brazil",
-        "date": "2026-11-01",
-        "source": "songkick",
-        "ticket_url": "https://www.songkick.com/concerts/43309164-vintage-culture-at-unknown-venue?utm_medium=organic&utm_source=microformat"
-      },
-      "b": {
-        "id": 91538,
-        "source_id": "sk_43228284",
-        "name": "Vintage Culture @ Terminal Marítimo de Passageiros",
-        "venue": "Terminal Marítimo de Passageiros",
-        "city": "Fortaleza",
-        "country": "Brazil",
-        "date": "2026-11-01",
-        "source": "songkick",
-        "ticket_url": "https://www.songkick.com/concerts/43228284-vintage-culture-at-terminal-maritimo-de-passageiros?utm_medium=organic&utm_source=microformat"
+        "ticket_url": "https://www.songkick.com/concerts/43015877-krajenski-at-kulturzentrum-pavillon?utm_medium=organic&utm_source=microformat"
       }
     },
     {
@@ -306,17 +198,6 @@
       "dj": "Brutalismus 3000",
       "date": "2026-11-13",
       "a": {
-        "id": 232253,
-        "source_id": "sk_43232484",
-        "name": "Brutalismus 3000 @ Radius",
-        "venue": "Radius",
-        "city": "Chicago",
-        "country": "United States",
-        "date": "2026-11-13",
-        "source": "songkick",
-        "ticket_url": "https://www.songkick.com/concerts/43232484-brutalismus-3000-at-radius?utm_medium=organic&utm_source=microformat"
-      },
-      "b": {
         "id": 232254,
         "source_id": "sk_43389878",
         "name": "Brutalismus 3000 @ Echostage",
@@ -326,6 +207,17 @@
         "date": "2026-11-13",
         "source": "songkick",
         "ticket_url": "https://www.songkick.com/concerts/43389878-brutalismus-3000-at-echostage?utm_medium=organic&utm_source=microformat"
+      },
+      "b": {
+        "id": 235542,
+        "source_id": "sk_43232484",
+        "name": "Brutalismus 3000 @ Radius",
+        "venue": "Radius",
+        "city": "Chicago",
+        "country": "United States",
+        "date": "2026-11-13",
+        "source": "songkick",
+        "ticket_url": "https://www.songkick.com/concerts/43232484-brutalismus-3000-at-radius?utm_medium=organic&utm_source=microformat"
       }
     },
     {
@@ -380,6 +272,33 @@
         "date": "2026-11-20",
         "source": "songkick",
         "ticket_url": "https://www.songkick.com/concerts/43475494-space-laces-at-nova-sd?utm_medium=organic&utm_source=microformat"
+      }
+    },
+    {
+      "category": "possible-double-header",
+      "dj": "R3hab",
+      "date": "2026-11-21",
+      "a": {
+        "id": 233221,
+        "source_id": "sk_43503145",
+        "name": "R3HAB @ Circuit Dreams",
+        "venue": "Circuit Dreams",
+        "city": "Guanzhou",
+        "country": "China",
+        "date": "2026-11-21",
+        "source": "songkick",
+        "ticket_url": "https://www.songkick.com/concerts/43503145-r3hab-at-circuit-dreams?utm_medium=organic&utm_source=microformat"
+      },
+      "b": {
+        "id": 233222,
+        "source_id": "sk_43503148",
+        "name": "R3HAB @ Kaos",
+        "venue": "Kaos",
+        "city": "Nanjing",
+        "country": "China",
+        "date": "2026-11-21",
+        "source": "songkick",
+        "ticket_url": "https://www.songkick.com/concerts/43503148-r3hab-at-kaos?utm_medium=organic&utm_source=microformat"
       }
     },
     {
@@ -461,6 +380,33 @@
         "date": "2026-11-28",
         "source": "songkick",
         "ticket_url": "https://www.songkick.com/concerts/43145319-talla-2xlc-at-factory-magdeburg?utm_medium=organic&utm_source=microformat"
+      }
+    },
+    {
+      "category": "possible-double-header",
+      "dj": "Peach",
+      "date": "2026-12-03",
+      "a": {
+        "id": 203431,
+        "source_id": "sk_43420081",
+        "name": "Peach @ Sofar Sounds - Stretford",
+        "venue": "Sofar Sounds - Stretford",
+        "city": "Manchester",
+        "country": "United Kingdom",
+        "date": "2026-12-03",
+        "source": "songkick",
+        "ticket_url": "https://www.songkick.com/concerts/43420081-peach-at-sofar-sounds-stretford?utm_medium=organic&utm_source=microformat"
+      },
+      "b": {
+        "id": 235278,
+        "source_id": "sk_43459077",
+        "name": "Peach @ Soul Mama - Angel",
+        "venue": "Soul Mama - Angel",
+        "city": "London",
+        "country": "United Kingdom",
+        "date": "2026-12-03",
+        "source": "songkick",
+        "ticket_url": "https://www.songkick.com/concerts/43459077-vianne-at-soul-mama-angel?utm_medium=organic&utm_source=microformat"
       }
     },
     {
@@ -560,7 +506,7 @@
         "ticket_url": "https://www.songkick.com/concerts/43473667-franky-rizardo-at-blackstone-street-warehouse?utm_medium=organic&utm_source=microformat"
       },
       "b": {
-        "id": 230214,
+        "id": 233552,
         "source_id": "sk_43435891",
         "name": "Marco Carola @ KOKO",
         "venue": "KOKO",

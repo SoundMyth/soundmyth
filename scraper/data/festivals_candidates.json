@@ -547,5 +547,47 @@
     "first_seen": "2026-11-01",
     "status": "pending",
     "reason": "only 0 listed artists"
+  },
+  {
+    "key": "time warp germany",
+    "name": "Time Warp Germany",
+    "city": "Mannheim",
+    "country": "Germany",
+    "date": "2027-04-03",
+    "ra_id": "2578485",
+    "via": "brand",
+    "artists": 48,
+    "known_artists": 41,
+    "first_seen": "2026-11-08",
+    "status": "pending",
+    "reason": "same brand+city already listed"
+  },
+  {
+    "key": "dgtl amsterdam",
+    "name": "DGTL Amsterdam",
+    "city": "Amsterdam",
+    "country": "Netherlands",
+    "date": "2027-03-27",
+    "ra_id": "2578035",
+    "via": "brand",
+    "artists": 9,
+    "known_artists": 7,
+    "first_seen": "2026-11-08",
+    "status": "pending",
+    "reason": "same brand+city already listed"
+  },
+  {
+    "key": "listen festival",
+    "name": "Listen Festival",
+    "city": "Brussels",
+    "country": "Belgium",
+    "date": "2026-11-21",
+    "ra_id": "2305608",
+    "via": "generic",
+    "artists": 64,
+    "known_artists": 7,
+    "first_seen": "2026-11-08",
+    "status": "added",
+    "reason": "festival-like, strong lineup"
   }
 ]

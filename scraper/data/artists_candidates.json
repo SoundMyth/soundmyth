@@ -10,6 +10,46 @@
     "sample": "Groove Cruise Miami 2027 - Ambassador Code: GrooveCruiseChris · Miami"
   },
   {
+    "name": "Kaitlyn Aurelia Smith",
+    "key": "kaitlynaureliasmith",
+    "events": 3,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "Kaitlyn Aurelia Smith · London"
+  },
+  {
+    "name": "Adriana Lopez",
+    "key": "adrianalopez",
+    "events": 2,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "Awakenings EXO - Colombia · Bogota"
+  },
+  {
+    "name": "Batu",
+    "key": "batu",
+    "events": 2,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "Sónar 2027 · Barcelona"
+  },
+  {
+    "name": "Craig Richards",
+    "key": "craigrichards",
+    "events": 2,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "fabric: Craig Richards (All Night Long) · London"
+  },
+  {
     "name": "DESIREE",
     "key": "desiree",
     "events": 2,
@@ -20,14 +60,74 @@
     "sample": "Time Warp Mexico 2026 · Mexico City"
   },
   {
-    "name": "Kaitlyn Aurelia Smith",
-    "key": "kaitlynaureliasmith",
+    "name": "Donato Dozzy",
+    "key": "donatodozzy",
     "events": 2,
     "sources": [
       "ra"
     ],
     "onRA": true,
-    "sample": "Kaitlyn Aurelia Smith · London"
+    "sample": "Sónar 2027 · Barcelona"
+  },
+  {
+    "name": "Flava D",
+    "key": "flavad",
+    "events": 2,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "Snowbombing 2027 · Mayrhofen"
+  },
+  {
+    "name": "Gerd Janson",
+    "key": "gerdjanson",
+    "events": 2,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "Time Warp Los Angeles 2026 · Los Angeles"
+  },
+  {
+    "name": "Ignez",
+    "key": "ignez",
+    "events": 2,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "Mad Katz mit Ignez & MARRØN · Zurich"
+  },
+  {
+    "name": "Miss Bashful",
+    "key": "missbashful",
+    "events": 2,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "Miss Bashful (Live) Full Venue Takeover · New York"
+  },
+  {
+    "name": "NTO",
+    "key": "nto",
+    "events": 2,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "NTO · Barcelona"
+  },
+  {
+    "name": "Planetary Assault Systems",
+    "key": "planetaryassaultsystems",
+    "events": 2,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "Awakenings EXO - Colombia · Bogota"
   },
   {
     "name": "southstar",
@@ -38,6 +138,16 @@
     ],
     "onRA": true,
     "sample": "Time Warp Los Angeles 2026 · Los Angeles"
+  },
+  {
+    "name": "Uncle Dugs",
+    "key": "uncledugs",
+    "events": 2,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "dnb brunch - KOKO · London"
   },
   {
     "name": "2 Bad Mice",
@@ -60,6 +170,26 @@
     "sample": "FCKNYE Festival 2026 · Brussels"
   },
   {
+    "name": "2ManyDJs",
+    "key": "2manydjs",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "Snowbombing 2027 · Mayrhofen"
+  },
+  {
+    "name": "96 Back",
+    "key": "96back",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "CTM 2027: Surging · Berlin"
+  },
+  {
     "name": "Abel Ramos",
     "key": "abelramos",
     "events": 1,
@@ -80,14 +210,24 @@
     "sample": "Awakenings EXO - Colombia · Bogota"
   },
   {
-    "name": "Adriana Lopez",
-    "key": "adrianalopez",
+    "name": "acidheaven",
+    "key": "acidheaven",
     "events": 1,
     "sources": [
       "ra"
     ],
     "onRA": true,
-    "sample": "Awakenings EXO - Colombia · Bogota"
+    "sample": "Listen Festival 2026 · Brussels"
+  },
+  {
+    "name": "Adi",
+    "key": "adi",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "Listen Festival 2026 · Brussels"
   },
   {
     "name": "Ahadadream",
@@ -120,14 +260,54 @@
     "sample": "CLUB DE JOUR with Myd, Mayou Picchu & Akalex · Nantes"
   },
   {
-    "name": "Alexandria",
-    "key": "alexandria",
+    "name": "Alex Clap",
+    "key": "alexclap",
     "events": 1,
     "sources": [
       "ra"
     ],
     "onRA": true,
-    "sample": "LOCUS x Modern Funktion Halloween · London"
+    "sample": "LOOP NYD FESTIVAL 2027 · Madrid"
+  },
+  {
+    "name": "Alien Communications",
+    "key": "aliencommunications",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "Pleasure: Dr. Banana + Alien Communications · Glasgow"
+  },
+  {
+    "name": "Amaliah",
+    "key": "amaliah",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "fabric: Gabrielle Kwarteng, Daisy Moon, Amaliah + more · London"
+  },
+  {
+    "name": "Amelia Holt",
+    "key": "ameliaholt",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "Listen Festival 2026 · Brussels"
+  },
+  {
+    "name": "Ammo Avenue",
+    "key": "ammoavenue",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "Fatboy Slim, DJ Holographic, Ammo Avenue · New York"
   },
   {
     "name": "AMOR MUSIC",
@@ -138,6 +318,26 @@
     ],
     "onRA": true,
     "sample": "Amor, Piazza, Sowa by SOLEA · Nantes"
+  },
+  {
+    "name": "Amphia",
+    "key": "amphia",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "fabric Continuum: Planetary Assault Systems, Freddy K, DVS1, Polygonia"
+  },
+  {
+    "name": "anamē",
+    "key": "aname",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "anamē · Seattle"
   },
   {
     "name": "ANDREA SALVAGGIO",
@@ -158,6 +358,26 @@
     ],
     "onRA": true,
     "sample": "Time Warp Mexico 2026 · Mexico City"
+  },
+  {
+    "name": "Angel D'lite",
+    "key": "angeldlite",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "Listen Festival 2026 · Brussels"
+  },
+  {
+    "name": "Antal",
+    "key": "antal",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "Listen Festival 2026 · Brussels"
   },
   {
     "name": "Anthony Godfather (2)",
@@ -230,6 +450,66 @@
     "sample": "25+ ONLY - CAVEAU - THURSDAYS · Boston"
   },
   {
+    "name": "Aumnï",
+    "key": "aumni",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "Zack Fox, DJ Delish, Venom Rei · New York"
+  },
+  {
+    "name": "Aurora Halal",
+    "key": "aurorahalal",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "Sónar 2027 · Barcelona"
+  },
+  {
+    "name": "aya",
+    "key": "aya",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "CTM 2027: Surging · Berlin"
+  },
+  {
+    "name": "Bari",
+    "key": "bari",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "Lost Sundays Block Party — January 3 feat. Ewan McVicar, Faster Horses"
+  },
+  {
+    "name": "Basement Jaxx",
+    "key": "basementjaxx",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "Snowbombing 2027 · Mayrhofen"
+  },
+  {
+    "name": "BAVR",
+    "key": "bavr",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "Listen Festival 2026 · Brussels"
+  },
+  {
     "name": "Beamskii",
     "key": "beamskii",
     "events": 1,
@@ -240,14 +520,24 @@
     "sample": "Igloofest MTL #6: Ninajirachi & Frost Children (DJ set) · Montreal"
   },
   {
-    "name": "Bego Martin",
-    "key": "begomartin",
+    "name": "Bibi Seck",
+    "key": "bibiseck",
     "events": 1,
     "sources": [
       "ra"
     ],
     "onRA": true,
-    "sample": "Brunch Electronik Madrid x BSMT LIVE 07.11 - The Blaze (DJ Set) · Madr"
+    "sample": "Listen Festival 2026 · Brussels"
+  },
+  {
+    "name": "BIG REG",
+    "key": "bigreg",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "Snowbombing 2027 · Mayrhofen"
   },
   {
     "name": "billx",
@@ -258,6 +548,16 @@
     ],
     "onRA": true,
     "sample": "FCKNYE Festival 2026 · Brussels"
+  },
+  {
+    "name": "Border One",
+    "key": "borderone",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "Listen Festival 2026 · Brussels"
   },
   {
     "name": "Brawther",
@@ -290,6 +590,16 @@
     "sample": "Time Warp NYC 2026 · New York"
   },
   {
+    "name": "Burden",
+    "key": "burden",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "fabric Continuum: Planetary Assault Systems, Freddy K, DVS1, Polygonia"
+  },
+  {
     "name": "Bushbaby",
     "key": "bushbaby",
     "events": 1,
@@ -298,6 +608,16 @@
     ],
     "onRA": true,
     "sample": "Riordan · Austin"
+  },
+  {
+    "name": "Busy P",
+    "key": "busyp",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "Sónar 2027 · Barcelona"
   },
   {
     "name": "cablu",
@@ -330,6 +650,46 @@
     "sample": "Bassrush presents: Crankdat, AHEE, Casey Club [NYW] · Washington Dc"
   },
   {
+    "name": "Caspa",
+    "key": "caspa",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "Caspa B2B THE WIDDLER · Seattle"
+  },
+  {
+    "name": "Casper",
+    "key": "casper",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "Listen Festival 2026 · Brussels"
+  },
+  {
+    "name": "Casual P",
+    "key": "casualp",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "Lost Sundays Block Party — January 3 feat. Ewan McVicar, Faster Horses"
+  },
+  {
+    "name": "CC:DISCO!",
+    "key": "ccdisco",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "Snowbombing 2027 · Mayrhofen"
+  },
+  {
     "name": "Cera Khin",
     "key": "cerakhin",
     "events": 1,
@@ -348,6 +708,16 @@
     ],
     "onRA": true,
     "sample": "30 Years of Chicane, Australian National Tour - Sydney · Sydney"
+  },
+  {
+    "name": "Chloé Robinson",
+    "key": "chloerobinson",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "Snowbombing 2027 · Mayrhofen"
   },
   {
     "name": "CHRIS STASSY",
@@ -378,6 +748,36 @@
     ],
     "onRA": true,
     "sample": "CTM 2027: Spatial Radiants · Berlin"
+  },
+  {
+    "name": "Cinthie",
+    "key": "cinthie",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "Time Warp Germany 2027 · Mannheim"
+  },
+  {
+    "name": "Cirillo",
+    "key": "cirillo",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "Time Warp Germany 2027 · Mannheim"
+  },
+  {
+    "name": "Clara D",
+    "key": "clarad",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "Listen Festival 2026 · Brussels"
   },
   {
     "name": "Colored Craig",
@@ -420,6 +820,26 @@
     "sample": "Blak Festival · Kuala Lumpur"
   },
   {
+    "name": "cyvira",
+    "key": "cyvira",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "Listen Festival 2026 · Brussels"
+  },
+  {
+    "name": "D. Tiffany",
+    "key": "dtiffany",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "fabric NYD: Special Guest, PARAMIDA, Quest, D. Tiffany, Hamish & Toby,"
+  },
+  {
     "name": "D.Dan",
     "key": "ddan",
     "events": 1,
@@ -428,6 +848,16 @@
     ],
     "onRA": true,
     "sample": "Time Warp Los Angeles 2026 · Los Angeles"
+  },
+  {
+    "name": "Daddy Nature",
+    "key": "daddynature",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "Snowbombing 2027 · Mayrhofen"
   },
   {
     "name": "Daft Funk Live",
@@ -440,14 +870,14 @@
     "sample": "Club de Jour invite Daft Funk Live · Nantes"
   },
   {
-    "name": "DAISY",
-    "key": "daisy",
+    "name": "Daisy Moon",
+    "key": "daisymoon",
     "events": 1,
     "sources": [
       "ra"
     ],
     "onRA": true,
-    "sample": "LOCUS x Modern Funktion Halloween · London"
+    "sample": "fabric: Gabrielle Kwarteng, Daisy Moon, Amaliah + more · London"
   },
   {
     "name": "Dan Bono",
@@ -500,6 +930,16 @@
     "sample": "dnb brunch - KOKO · London"
   },
   {
+    "name": "DC Noises",
+    "key": "dcnoises",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "Listen Festival 2026 · Brussels"
+  },
+  {
     "name": "Debit",
     "key": "debit",
     "events": 1,
@@ -508,6 +948,16 @@
     ],
     "onRA": true,
     "sample": "CTM 2027: Initialising · Berlin"
+  },
+  {
+    "name": "Dillinja",
+    "key": "dillinja",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "Listen Festival 2026 · Brussels"
   },
   {
     "name": "Diossa",
@@ -520,6 +970,16 @@
     "sample": "Awakenings EXO - Colombia · Bogota"
   },
   {
+    "name": "DJ Ardi",
+    "key": "djardi",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "Snowbombing 2027 · Mayrhofen"
+  },
+  {
     "name": "DJ Delish",
     "key": "djdelish",
     "events": 1,
@@ -528,6 +988,16 @@
     ],
     "onRA": true,
     "sample": "Zack Fox, DJ Delish, Venom Rei · New York"
+  },
+  {
+    "name": "DJ Holographic",
+    "key": "djholographic",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "Fatboy Slim, DJ Holographic, Ammo Avenue · New York"
   },
   {
     "name": "DJ Marta",
@@ -540,6 +1010,16 @@
     "sample": "REMEMBER PARADISE: EL LEGADO · Madrid"
   },
   {
+    "name": "DJ Rino",
+    "key": "djrino",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "Listen Festival 2026 · Brussels"
+  },
+  {
     "name": "Dj Schnake",
     "key": "djschnake",
     "events": 1,
@@ -548,6 +1028,16 @@
     ],
     "onRA": true,
     "sample": "FCKNYE Festival 2026 · Brussels"
+  },
+  {
+    "name": "DJ Seinfeld",
+    "key": "djseinfeld",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "fabric: DJ Seinfeld, Luke Alessi, Gerd Janson + more TBA · London"
   },
   {
     "name": "DJ SS",
@@ -610,6 +1100,46 @@
     "sample": "Groove Cruise Miami 2027 - Ambassador Code: GrooveCruiseChris · Miami"
   },
   {
+    "name": "Drizzyclare",
+    "key": "drizzyclare",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "Sónar 2027 · Barcelona"
+  },
+  {
+    "name": "DTM Funk",
+    "key": "dtmfunk",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "Listen Festival 2026 · Brussels"
+  },
+  {
+    "name": "Dub Pistols",
+    "key": "dubpistols",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "Snowbombing 2027 · Mayrhofen"
+  },
+  {
+    "name": "Eclectic Elektra",
+    "key": "eclecticelektra",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "Listen Festival 2026 · Brussels"
+  },
+  {
     "name": "ECZODIA",
     "key": "eczodia",
     "events": 1,
@@ -630,14 +1160,34 @@
     "sample": "Time Warp Mexico 2026 · Mexico City"
   },
   {
-    "name": "Elder Island",
-    "key": "elderisland",
+    "name": "Efdemin",
+    "key": "efdemin",
     "events": 1,
     "sources": [
-      "songkick"
+      "ra"
     ],
     "onRA": true,
-    "sample": "Elder Island @ KOKO · London"
+    "sample": "fabric Continuum: Planetary Assault Systems, Freddy K, DVS1, Polygonia"
+  },
+  {
+    "name": "EG (1)",
+    "key": "eg1",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "Listen Festival 2026 · Brussels"
+  },
+  {
+    "name": "Ehua",
+    "key": "ehua",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "Sónar 2027 · Barcelona"
   },
   {
     "name": "Eli Escobar",
@@ -648,6 +1198,16 @@
     ],
     "onRA": true,
     "sample": "Eli Escobar (Open to Close) · New York"
+  },
+  {
+    "name": "Erol Alkan",
+    "key": "erolalkan",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "Snowbombing 2027 · Mayrhofen"
   },
   {
     "name": "ESE UVE",
@@ -678,6 +1238,36 @@
     ],
     "onRA": true,
     "sample": "CTM 2027: Initialising · Berlin"
+  },
+  {
+    "name": "Fais Le Beau",
+    "key": "faislebeau",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "Listen Festival 2026 · Brussels"
+  },
+  {
+    "name": "Faisal",
+    "key": "faisal",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "Listen Festival 2026 · Brussels"
+  },
+  {
+    "name": "Flore",
+    "key": "flore",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "Sónar 2027 · Barcelona"
   },
   {
     "name": "Fra (24)",
@@ -720,6 +1310,16 @@
     "sample": "Time Warp Los Angeles 2026 · Los Angeles"
   },
   {
+    "name": "Funk Assault",
+    "key": "funkassault",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "Sónar 2027 · Barcelona"
+  },
+  {
     "name": "Funsta",
     "key": "funsta",
     "events": 1,
@@ -728,6 +1328,26 @@
     ],
     "onRA": true,
     "sample": "dnb brunch - KOKO · London"
+  },
+  {
+    "name": "Gabber Eleganza",
+    "key": "gabbereleganza",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "Listen Festival 2026 · Brussels"
+  },
+  {
+    "name": "Gabrielle Kwarteng",
+    "key": "gabriellekwarteng",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "fabric: Gabrielle Kwarteng, Daisy Moon, Amaliah + more · London"
   },
   {
     "name": "Gene On Earth",
@@ -760,26 +1380,6 @@
     "sample": "Max Dean b2b Luke Dean · Austin"
   },
   {
-    "name": "Gerd Janson",
-    "key": "gerdjanson",
-    "events": 1,
-    "sources": [
-      "ra"
-    ],
-    "onRA": true,
-    "sample": "Time Warp Los Angeles 2026 · Los Angeles"
-  },
-  {
-    "name": "GHEIST",
-    "key": "gheist",
-    "events": 1,
-    "sources": [
-      "ra"
-    ],
-    "onRA": true,
-    "sample": "Brunch Electronik Madrid x BSMT LIVE 07.11 - The Blaze (DJ Set) · Madr"
-  },
-  {
     "name": "Gianni Di Bernardo",
     "key": "giannidibernardo",
     "events": 1,
@@ -808,6 +1408,16 @@
     ],
     "onRA": true,
     "sample": "REMEMBER PARADISE: EL LEGADO · Madrid"
+  },
+  {
+    "name": "Goldie",
+    "key": "goldie",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "Sónar 2027 · Barcelona"
   },
   {
     "name": "Golpe",
@@ -860,6 +1470,26 @@
     "sample": "Halina Rice (Immersive Liveset & AV) · London"
   },
   {
+    "name": "Harriet Jaxxon",
+    "key": "harrietjaxxon",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "Snowbombing 2027 · Mayrhofen"
+  },
+  {
+    "name": "Haumea",
+    "key": "haumea",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "Listen Festival 2026 · Brussels"
+  },
+  {
     "name": "hhunter",
     "key": "hhunter",
     "events": 1,
@@ -868,6 +1498,16 @@
     ],
     "onRA": true,
     "sample": "Kayzo x hhunter at Cermak Hall · Chicago"
+  },
+  {
+    "name": "Hysope",
+    "key": "hysope",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "Listen Festival 2026 · Brussels"
   },
   {
     "name": "IC3",
@@ -880,14 +1520,14 @@
     "sample": "dnb brunch - KOKO · London"
   },
   {
-    "name": "Ignez",
-    "key": "ignez",
+    "name": "Introspekt",
+    "key": "introspekt",
     "events": 1,
     "sources": [
       "ra"
     ],
     "onRA": true,
-    "sample": "Mad Katz mit Ignez & MARRØN · Zurich"
+    "sample": "Listen Festival 2026 · Brussels"
   },
   {
     "name": "INVT",
@@ -910,16 +1550,6 @@
     "sample": "Igloofest MTL #6: Ninajirachi & Frost Children (DJ set) · Montreal"
   },
   {
-    "name": "Izzy",
-    "key": "izzy",
-    "events": 1,
-    "sources": [
-      "ra"
-    ],
-    "onRA": true,
-    "sample": "LOCUS x Modern Funktion Halloween · London"
-  },
-  {
     "name": "jamesjamesjames",
     "key": "jamesjamesjames",
     "events": 1,
@@ -928,6 +1558,36 @@
     ],
     "onRA": true,
     "sample": "Igloofest MTL #6: Ninajirachi & Frost Children (DJ set) · Montreal"
+  },
+  {
+    "name": "Jay Newman",
+    "key": "jaynewman",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "Snowbombing 2027 · Mayrhofen"
+  },
+  {
+    "name": "Jean Pierre",
+    "key": "jeanpierre",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "LOOP NYD FESTIVAL 2027 · Madrid"
+  },
+  {
+    "name": "Jennifer Walton",
+    "key": "jenniferwalton",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "CTM 2027: Surging · Berlin"
   },
   {
     "name": "Jhobei",
@@ -940,6 +1600,26 @@
     "sample": "FUSE 18th Birthday w/ Enzo Siragusa b2b Rossi., Luciano, Marlie b2b Na"
   },
   {
+    "name": "Job Jobse",
+    "key": "jobjobse",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "Sónar 2027 · Barcelona"
+  },
+  {
+    "name": "Joe Delon",
+    "key": "joedelon",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "Listen Festival 2026 · Brussels"
+  },
+  {
     "name": "John Bryars",
     "key": "johnbryars",
     "events": 1,
@@ -948,6 +1628,16 @@
     ],
     "onRA": true,
     "sample": "Time Warp Los Angeles 2026 · Los Angeles"
+  },
+  {
+    "name": "Jorkes",
+    "key": "jorkes",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "Listen Festival 2026 · Brussels"
   },
   {
     "name": "Juliana Huxtable",
@@ -968,6 +1658,26 @@
     ],
     "onRA": true,
     "sample": "FCKNYE Festival 2026 · Brussels"
+  },
+  {
+    "name": "Kailyn Crabbe",
+    "key": "kailyncrabbe",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "Lost Sundays Block Party — January 3 feat. Ewan McVicar, Faster Horses"
+  },
+  {
+    "name": "Kalte Liebe",
+    "key": "kalteliebe",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "Time Warp Germany 2027 · Mannheim"
   },
   {
     "name": "Kamelot",
@@ -1018,6 +1728,36 @@
     ],
     "onRA": true,
     "sample": "Sirocco Sessions: After Dark Boston · Boston"
+  },
+  {
+    "name": "Kilig",
+    "key": "kilig",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "Snowbombing 2027 · Mayrhofen"
+  },
+  {
+    "name": "Kode9",
+    "key": "kode9",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "Listen Festival 2026 · Brussels"
+  },
+  {
+    "name": "KŌMA (3)",
+    "key": "koma3",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "Listen Festival 2026 · Brussels"
   },
   {
     "name": "Kontronatura",
@@ -1090,6 +1830,16 @@
     "sample": "Glitterbox Sydney 2027 · Sydney"
   },
   {
+    "name": "Lauravioli",
+    "key": "lauravioli",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "Listen Festival 2026 · Brussels"
+  },
+  {
     "name": "LB aka LABAT",
     "key": "lbakalabat",
     "events": 1,
@@ -1098,6 +1848,26 @@
     ],
     "onRA": true,
     "sample": "FCKNYE Festival 2026 · Brussels"
+  },
+  {
+    "name": "Lea Occhi",
+    "key": "leaocchi",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "Listen Festival 2026 · Brussels"
+  },
+  {
+    "name": "Lefto Early Bird",
+    "key": "leftoearlybird",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "Listen Festival 2026 · Brussels"
   },
   {
     "name": "Lewis Doherty",
@@ -1118,6 +1888,26 @@
     ],
     "onRA": true,
     "sample": "FCKNYE Festival 2026 · Brussels"
+  },
+  {
+    "name": "Liquid Stranger",
+    "key": "liquidstranger",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "Bassrush: Liquid Stranger, Sully, Twopercent, CHOZEN · Washington Dc"
+  },
+  {
+    "name": "Lolalita",
+    "key": "lolalita",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "Listen Festival 2026 · Brussels"
   },
   {
     "name": "Luca Agnelli",
@@ -1148,6 +1938,26 @@
     ],
     "onRA": true,
     "sample": "REMEMBER PARADISE: EL LEGADO · Madrid"
+  },
+  {
+    "name": "Luke Alessi",
+    "key": "lukealessi",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "fabric: DJ Seinfeld, Luke Alessi, Gerd Janson + more TBA · London"
+  },
+  {
+    "name": "Luke Una",
+    "key": "lukeuna",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "Snowbombing 2027 · Mayrhofen"
   },
   {
     "name": "Madman",
@@ -1190,6 +2000,26 @@
     "sample": "Igloofest MTL #1: Kaytranada · Montreal"
   },
   {
+    "name": "Mala",
+    "key": "mala",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "Listen Festival 2026 · Brussels"
+  },
+  {
+    "name": "Malo Z",
+    "key": "maloz",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "Listen Festival 2026 · Brussels"
+  },
+  {
     "name": "Mampi Swift",
     "key": "mampiswift",
     "events": 1,
@@ -1228,6 +2058,26 @@
     ],
     "onRA": true,
     "sample": "MK · Phuket"
+  },
+  {
+    "name": "Marco Shuttle",
+    "key": "marcoshuttle",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "fabric: Francesco Del Garda, Marco Shuttle + more TBA · London"
+  },
+  {
+    "name": "Mariiin",
+    "key": "mariiin",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "fabric NYD: Special Guest, PARAMIDA, Quest, D. Tiffany, Hamish & Toby,"
   },
   {
     "name": "Marius Tiberian",
@@ -1270,16 +2120,6 @@
     "sample": "LOOP NYD FESTIVAL 2027 · Madrid"
   },
   {
-    "name": "Mattia Trani",
-    "key": "mattiatrani",
-    "events": 1,
-    "sources": [
-      "ra"
-    ],
-    "onRA": true,
-    "sample": "Tenax w/Enrico Sangiuliano, Mattia Trani · Florence"
-  },
-  {
     "name": "Michenlo",
     "key": "michenlo",
     "events": 1,
@@ -1290,14 +2130,24 @@
     "sample": "LOOP NYD FESTIVAL 2027 · Madrid"
   },
   {
-    "name": "Miss Bashful",
-    "key": "missbashful",
+    "name": "Mikamayonnaise",
+    "key": "mikamayonnaise",
     "events": 1,
     "sources": [
       "ra"
     ],
     "onRA": true,
-    "sample": "Miss Bashful (Live) Full Venue Takeover · New York"
+    "sample": "Listen Festival 2026 · Brussels"
+  },
+  {
+    "name": "Mike Servito",
+    "key": "mikeservito",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "Listen Festival 2026 · Brussels"
   },
   {
     "name": "Monica X",
@@ -1320,6 +2170,16 @@
     "sample": "dnb brunch - KOKO · London"
   },
   {
+    "name": "Motives",
+    "key": "motives",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "Nora En Pure with Eli & Fur, Motives [360°] · Washington Dc"
+  },
+  {
     "name": "Mowie (2)",
     "key": "mowie2",
     "events": 1,
@@ -1330,16 +2190,6 @@
     "sample": "Igloofest MTL #6: Ninajirachi & Frost Children (DJ set) · Montreal"
   },
   {
-    "name": "Mya (1)",
-    "key": "mya1",
-    "events": 1,
-    "sources": [
-      "ra"
-    ],
-    "onRA": true,
-    "sample": "LOCUS x Modern Funktion Halloween · London"
-  },
-  {
     "name": "Myd",
     "key": "myd",
     "events": 1,
@@ -1348,6 +2198,16 @@
     ],
     "onRA": true,
     "sample": "CLUB DE JOUR with Myd, Mayou Picchu & Akalex · Nantes"
+  },
+  {
+    "name": "myu:sa",
+    "key": "myusa",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "Listen Festival 2026 · Brussels"
   },
   {
     "name": "Nadia Struiwigh",
@@ -1370,6 +2230,16 @@
     "sample": "FCKNYE Festival 2026 · Brussels"
   },
   {
+    "name": "Nicola Bear",
+    "key": "nicolabear",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "Snowbombing 2027 · Mayrhofen"
+  },
+  {
     "name": "Nicolas Masseyeff",
     "key": "nicolasmasseyeff",
     "events": 1,
@@ -1388,6 +2258,16 @@
     ],
     "onRA": true,
     "sample": "REMEMBER PARADISE: EL LEGADO · Madrid"
+  },
+  {
+    "name": "NMSS",
+    "key": "nmss",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "Listen Festival 2026 · Brussels"
   },
   {
     "name": "NoName",
@@ -1410,14 +2290,14 @@
     "sample": "MIX TOKYO DJ PARTY 'NEO' · Tokyo"
   },
   {
-    "name": "NTO",
-    "key": "nto",
+    "name": "Nosedrip",
+    "key": "nosedrip",
     "events": 1,
     "sources": [
       "ra"
     ],
     "onRA": true,
-    "sample": "NTO · Barcelona"
+    "sample": "Listen Festival 2026 · Brussels"
   },
   {
     "name": "Nyra",
@@ -1438,16 +2318,6 @@
     ],
     "onRA": true,
     "sample": "CTM 2027: Initialising · Berlin"
-  },
-  {
-    "name": "Oldboy",
-    "key": "oldboy",
-    "events": 1,
-    "sources": [
-      "ra"
-    ],
-    "onRA": true,
-    "sample": "LOCUS x Modern Funktion Halloween · London"
   },
   {
     "name": "OMAKS",
@@ -1480,14 +2350,34 @@
     "sample": "Time Warp Los Angeles 2026 · Los Angeles"
   },
   {
-    "name": "ORI (ozone)",
-    "key": "oriozone",
+    "name": "Opal Sunn",
+    "key": "opalsunn",
     "events": 1,
     "sources": [
       "ra"
     ],
     "onRA": true,
-    "sample": "Acid Ballroom: Paranoid London · Leeds"
+    "sample": "Sónar 2027 · Barcelona"
+  },
+  {
+    "name": "Osmosis Jones",
+    "key": "osmosisjones",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "Hamdi FC vs. Austin · Austin"
+  },
+  {
+    "name": "Otis",
+    "key": "otis",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "Listen Festival 2026 · Brussels"
   },
   {
     "name": "Paco Osuna",
@@ -1500,6 +2390,16 @@
     "sample": "LOOP NYD FESTIVAL 2027 · Madrid"
   },
   {
+    "name": "PALA10",
+    "key": "pala10",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "Listen Festival 2026 · Brussels"
+  },
+  {
     "name": "Part Time Killer",
     "key": "parttimekiller",
     "events": 1,
@@ -1510,6 +2410,16 @@
     "sample": "FCKNYE Festival 2026 · Brussels"
   },
   {
+    "name": "PARTIGIRL",
+    "key": "partigirl",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "Lost Sundays Block Party — January 3 feat. Ewan McVicar, Faster Horses"
+  },
+  {
     "name": "Pergo",
     "key": "pergo",
     "events": 1,
@@ -1518,16 +2428,6 @@
     ],
     "onRA": true,
     "sample": "REMEMBER PARADISE: EL LEGADO · Madrid"
-  },
-  {
-    "name": "Planetary Assault Systems",
-    "key": "planetaryassaultsystems",
-    "events": 1,
-    "sources": [
-      "ra"
-    ],
-    "onRA": true,
-    "sample": "Awakenings EXO - Colombia · Bogota"
   },
   {
     "name": "Prïa",
@@ -1580,6 +2480,16 @@
     "sample": "dnb brunch - KOKO · London"
   },
   {
+    "name": "Rhadoo",
+    "key": "rhadoo",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "Time Warp Germany 2027 · Mannheim"
+  },
+  {
     "name": "Ricardo F",
     "key": "ricardof",
     "events": 1,
@@ -1620,6 +2530,36 @@
     "sample": "Groove Cruise Miami 2027 - Ambassador Code: GrooveCruiseChris · Miami"
   },
   {
+    "name": "Romy",
+    "key": "romy",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "Sónar 2027 · Barcelona"
+  },
+  {
+    "name": "Ross From Friends",
+    "key": "rossfromfriends",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "Snowbombing 2027 · Mayrhofen"
+  },
+  {
+    "name": "Running Hot",
+    "key": "runninghot",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "Listen Festival 2026 · Brussels"
+  },
+  {
     "name": "Ryan Nicholls",
     "key": "ryannicholls",
     "events": 1,
@@ -1638,6 +2578,16 @@
     ],
     "onRA": true,
     "sample": "AKUMANDRA: Colyn b2b Sainte Vie, Mateo, Eli · New York"
+  },
+  {
+    "name": "Sam Sax",
+    "key": "samsax",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "Snowbombing 2027 · Mayrhofen"
   },
   {
     "name": "Samm",
@@ -1660,6 +2610,36 @@
     "sample": "FCKNYE Festival 2026 · Brussels"
   },
   {
+    "name": "Sasha GiGi",
+    "key": "sashagigi",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "Snowbombing 2027 · Mayrhofen"
+  },
+  {
+    "name": "Scruz",
+    "key": "scruz",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "Lost Sundays Block Party — January 3 feat. Ewan McVicar, Faster Horses"
+  },
+  {
+    "name": "Seebase",
+    "key": "seebase",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "Time Warp Germany 2027 · Mannheim"
+  },
+  {
     "name": "Shabba",
     "key": "shabba",
     "events": 1,
@@ -1668,6 +2648,16 @@
     ],
     "onRA": true,
     "sample": "dnb brunch - KOKO · London"
+  },
+  {
+    "name": "She The DJ",
+    "key": "shethedj",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "Listen Festival 2026 · Brussels"
   },
   {
     "name": "Sickmode",
@@ -1688,6 +2678,16 @@
     ],
     "onRA": true,
     "sample": "Igloofest MTL #1: Kaytranada · Montreal"
+  },
+  {
+    "name": "Sixsixsixties",
+    "key": "sixsixsixties",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "Listen Festival 2026 · Brussels"
   },
   {
     "name": "Sköne",
@@ -1720,6 +2720,36 @@
     "sample": "CTM 2027: Spatial Radiants · Berlin"
   },
   {
+    "name": "Stella K",
+    "key": "stellak",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "Listen Festival 2026 · Brussels"
+  },
+  {
+    "name": "Supergloss",
+    "key": "supergloss",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "Lost Sundays Block Party — January 3 feat. Ewan McVicar, Faster Horses"
+  },
+  {
+    "name": "Suze Ijó",
+    "key": "suzeijo",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "Listen Festival 2026 · Brussels"
+  },
+  {
     "name": "T.NO",
     "key": "tno",
     "events": 1,
@@ -1730,6 +2760,26 @@
     "sample": "CTM 2027: Spatial Radiants · Berlin"
   },
   {
+    "name": "Tapefeed",
+    "key": "tapefeed",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "fabric Continuum: Planetary Assault Systems, Freddy K, DVS1, Polygonia"
+  },
+  {
+    "name": "Tash LC",
+    "key": "tashlc",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "Sónar 2027 · Barcelona"
+  },
+  {
     "name": "the bald girl",
     "key": "thebaldgirl",
     "events": 1,
@@ -1738,16 +2788,6 @@
     ],
     "onRA": true,
     "sample": "Igloofest MTL #6: Ninajirachi & Frost Children (DJ set) · Montreal"
-  },
-  {
-    "name": "The Blaze",
-    "key": "theblaze",
-    "events": 1,
-    "sources": [
-      "ra"
-    ],
-    "onRA": true,
-    "sample": "Brunch Electronik Madrid x BSMT LIVE 07.11 - The Blaze (DJ Set) · Madr"
   },
   {
     "name": "The Dark Horror",
@@ -1768,6 +2808,26 @@
     ],
     "onRA": true,
     "sample": "Igloofest MTL #2: James Hype · Montreal"
+  },
+  {
+    "name": "TIISHA",
+    "key": "tiisha",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "Lost Sundays Block Party — January 3 feat. Ewan McVicar, Faster Horses"
+  },
+  {
+    "name": "Tim Reaper",
+    "key": "timreaper",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "Listen Festival 2026 · Brussels"
   },
   {
     "name": "TiTi",
@@ -1800,14 +2860,44 @@
     "sample": "FCKNYE Festival 2026 · Brussels"
   },
   {
-    "name": "Uncle Dugs",
-    "key": "uncledugs",
+    "name": "Tokischa",
+    "key": "tokischa",
     "events": 1,
     "sources": [
       "ra"
     ],
     "onRA": true,
-    "sample": "dnb brunch - KOKO · London"
+    "sample": "Sónar 2027 · Barcelona"
+  },
+  {
+    "name": "Tokyo Sexwale",
+    "key": "tokyosexwale",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "Lost Sundays Block Party — January 3 feat. Ewan McVicar, Faster Horses"
+  },
+  {
+    "name": "TORI ANN",
+    "key": "toriann",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "Listen Festival 2026 · Brussels"
+  },
+  {
+    "name": "Tshegue",
+    "key": "tshegue",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "CTM 2027: Surging · Berlin"
   },
   {
     "name": "Unicorn on Ketamine",
@@ -1818,6 +2908,16 @@
     ],
     "onRA": true,
     "sample": "FCKNYE Festival 2026 · Brussels"
+  },
+  {
+    "name": "UNOS",
+    "key": "unos",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "Listen Festival 2026 · Brussels"
   },
   {
     "name": "uphoria",
@@ -1860,6 +2960,16 @@
     "sample": "Awakenings EXO - Colombia · Bogota"
   },
   {
+    "name": "Vanee",
+    "key": "vanee",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "LOOP NYD FESTIVAL 2027 · Madrid"
+  },
+  {
     "name": "Varg²™",
     "key": "varg",
     "events": 1,
@@ -1868,6 +2978,16 @@
     ],
     "onRA": true,
     "sample": "Igloofest MTL #6: Ninajirachi & Frost Children (DJ set) · Montreal"
+  },
+  {
+    "name": "Vers",
+    "key": "vers",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "Listen Festival 2026 · Brussels"
   },
   {
     "name": "Violin Girl",
@@ -1880,6 +3000,16 @@
     "sample": "Sirocco Sessions: After Dark Boston · Boston"
   },
   {
+    "name": "Virginia",
+    "key": "virginia",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "Listen Festival 2026 · Brussels"
+  },
+  {
     "name": "VoicemC",
     "key": "voicemc",
     "events": 1,
@@ -1888,6 +3018,16 @@
     ],
     "onRA": true,
     "sample": "dnb brunch - KOKO · London"
+  },
+  {
+    "name": "Voltage",
+    "key": "voltage",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "Snowbombing 2027 · Mayrhofen"
   },
   {
     "name": "Von Bikräv",
@@ -1900,6 +3040,26 @@
     "sample": "FCKNYE Festival 2026 · Brussels"
   },
   {
+    "name": "Vuur",
+    "key": "vuur",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "Listen Festival 2026 · Brussels"
+  },
+  {
+    "name": "wAFF",
+    "key": "waff",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "ELEVATION · Phuket"
+  },
+  {
     "name": "Wally Lopez",
     "key": "wallylopez",
     "events": 1,
@@ -1910,14 +3070,14 @@
     "sample": "LOOP NYD FESTIVAL 2027 · Madrid"
   },
   {
-    "name": "Watchers",
-    "key": "watchers",
+    "name": "Wata Igarashi",
+    "key": "wataigarashi",
     "events": 1,
     "sources": [
       "ra"
     ],
     "onRA": true,
-    "sample": "LOCUS x Modern Funktion Halloween · London"
+    "sample": "fabric Continuum: Planetary Assault Systems, Freddy K, DVS1, Polygonia"
   },
   {
     "name": "Wheats",
@@ -1940,6 +3100,16 @@
     "sample": "FCKNYE Festival 2026 · Brussels"
   },
   {
+    "name": "Willo",
+    "key": "willo",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "Lost Sundays Block Party — January 3 feat. Ewan McVicar, Faster Horses"
+  },
+  {
     "name": "Worakls",
     "key": "worakls",
     "events": 1,
@@ -1950,6 +3120,16 @@
     "sample": "CLUB DE JOUR with Worakls présente OVERTURE feat. Ekaterina Shelehova "
   },
   {
+    "name": "Yemisul",
+    "key": "yemisul",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "Lost Sundays Block Party — January 3 feat. Ewan McVicar, Faster Horses"
+  },
+  {
     "name": "Yoshiko",
     "key": "yoshiko",
     "events": 1,
@@ -1958,6 +3138,16 @@
     ],
     "onRA": true,
     "sample": "FCKNYE Festival 2026 · Brussels"
+  },
+  {
+    "name": "Yu Su",
+    "key": "yusu",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "Sónar 2027 · Barcelona"
   },
   {
     "name": "Zac Martel",
@@ -1980,6 +3170,26 @@
     "sample": "Zack Fox, DJ Delish, Venom Rei · New York"
   },
   {
+    "name": "ZEUZ",
+    "key": "zeuz",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "ZEUZ - TEMPUS THE SKYFALL pres by NIBIRII · Cologne"
+  },
+  {
+    "name": "Zisko",
+    "key": "zisko",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "fabric Continuum: Planetary Assault Systems, Freddy K, DVS1, Polygonia"
+  },
+  {
     "name": "Zombies In Miami",
     "key": "zombiesinmiami",
     "events": 1,
@@ -1990,6 +3200,16 @@
     "sample": "Time Warp Mexico 2026 · Mexico City"
   },
   {
+    "name": "Zora Jones",
+    "key": "zorajones",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "Listen Festival 2026 · Brussels"
+  },
+  {
     "name": "zwilling.",
     "key": "zwilling",
     "events": 1,
@@ -1998,6 +3218,36 @@
     ],
     "onRA": true,
     "sample": "LOOP NYD FESTIVAL 2027 · Madrid"
+  },
+  {
+    "name": "Levi",
+    "key": "levi",
+    "events": 2,
+    "sources": [
+      "ra"
+    ],
+    "onRA": false,
+    "sample": "Marquee Singapore presents LEVI · Singapore"
+  },
+  {
+    "name": "Maz",
+    "key": "maz",
+    "events": 2,
+    "sources": [
+      "songkick"
+    ],
+    "onRA": false,
+    "sample": "Tomorrowland Brazil 2027 · Itu"
+  },
+  {
+    "name": "Badger",
+    "key": "badger",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": false,
+    "sample": "Snowbombing 2027 · Mayrhofen"
   },
   {
     "name": "Beyond Wonderland",
@@ -2020,6 +3270,16 @@
     "sample": "FCKNYE Festival 2026 · Brussels"
   },
   {
+    "name": "BRIDGE",
+    "key": "bridge",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": false,
+    "sample": "Zack Fox, DJ Delish, Venom Rei · New York"
+  },
+  {
     "name": "Eli",
     "key": "eli",
     "events": 1,
@@ -2028,6 +3288,16 @@
     ],
     "onRA": false,
     "sample": "AKUMANDRA: Colyn b2b Sainte Vie, Mateo, Eli · New York"
+  },
+  {
+    "name": "GAB",
+    "key": "gab",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": false,
+    "sample": "LOOP NYD FESTIVAL 2027 · Madrid"
   },
   {
     "name": "Kenny Ken",
@@ -2040,23 +3310,13 @@
     "sample": "dnb brunch - KOKO · London"
   },
   {
-    "name": "Levi",
-    "key": "levi",
+    "name": "séa",
+    "key": "sea",
     "events": 1,
     "sources": [
       "ra"
     ],
     "onRA": false,
-    "sample": "Marquee Singapore presents LEVI · Singapore"
-  },
-  {
-    "name": "Maz",
-    "key": "maz",
-    "events": 1,
-    "sources": [
-      "songkick"
-    ],
-    "onRA": false,
-    "sample": "Maz (BR) @ Sambódromo da Marquês de Sapucaí · Rio De Janeiro"
+    "sample": "Listen Festival 2026 · Brussels"
   }
 ]

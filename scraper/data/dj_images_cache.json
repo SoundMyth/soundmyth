@@ -36,6 +36,12 @@
   "source": "ra",
   "checked": "2026-10-18"
  },
+ "96back": {
+  "name": "96 Back",
+  "img": "https://static.ra.co/images/profiles/96back.jpg?dateUpdated=1507525011860",
+  "source": "ra",
+  "checked": "2026-11-08"
+ },
  "aaronhibell": {
   "name": "Aaron Hibell",
   "img": "https://static.ra.co/images/profiles/square/aaronhibell.jpg?dateUpdated=1708450360000",
@@ -279,6 +285,12 @@
   "source": "ra",
   "checked": "2026-10-18"
  },
+ "aliencommunications": {
+  "name": "Alien Communications",
+  "img": "https://static.ra.co/images/profiles/square/aliencommunications.jpg?dateUpdated=1741934953477",
+  "source": "ra",
+  "checked": "2026-11-08"
+ },
  "alignment": {
   "name": "Alignment",
   "img": "https://static.ra.co/images/profiles/square/alignment.jpg?dateUpdated=1753953303900",
@@ -395,11 +407,23 @@
   "source": "ra",
   "checked": "2026-10-18"
  },
+ "ammoavenue": {
+  "name": "Ammo Avenue",
+  "img": "https://static.ra.co/images/profiles/square/ammoavenue.jpg?dateUpdated=1761150591620",
+  "source": "ra",
+  "checked": "2026-11-08"
+ },
  "amormusic": {
   "name": "AMOR MUSIC",
   "img": "https://static.ra.co/images/profiles/square/amormusic.jpg?dateUpdated=1771581620683",
   "source": "ra",
   "checked": "2026-10-25"
+ },
+ "amphia": {
+  "name": "Amphia",
+  "img": "https://static.ra.co/images/profiles/square/amphia.jpg?dateUpdated=1766063283177",
+  "source": "ra",
+  "checked": "2026-11-08"
  },
  "amplify": {
   "name": "Amplify",
@@ -424,6 +448,12 @@
   "img": "https://static.ra.co/images/profiles/anabelenglund.jpg?dateUpdated=1417408301110",
   "source": "ra",
   "checked": "2026-10-18"
+ },
+ "aname": {
+  "name": "anamē",
+  "img": "https://static.ra.co/images/profiles/square/aname.jpg?dateUpdated=1735313330000",
+  "source": "ra",
+  "checked": "2026-11-08"
  },
  "anane": {
   "name": "Anane",
@@ -707,6 +737,13 @@
   "source": "ra",
   "checked": "2026-10-25"
  },
+ "aumni": {
+  "name": "Aumnï",
+  "img": "https://cdn-images.dzcdn.net/images/artist/f6f3bce2f234ed053022b390250e0907/1000x1000-000000-80-0-0.jpg",
+  "source": "deezer",
+  "checked": "2026-11-08",
+  "matched": "Aumni"
+ },
  "avacrown": {
   "name": "AVA CROWN",
   "img": "https://cdn-images.dzcdn.net/images/artist/fc45109d7922d20ca653e497b20a682c/1000x1000-000000-80-0-0.jpg",
@@ -724,6 +761,12 @@
   "img": "https://static.ra.co/images/profiles/square/axwell.jpg?dateUpdated=1680015178000",
   "source": "ra",
   "checked": "2026-10-18"
+ },
+ "aya": {
+  "name": "aya",
+  "img": "https://static.ra.co/images/profiles/square/aya.jpg?dateUpdated=1741344947000",
+  "source": "ra",
+  "checked": "2026-11-08"
  },
  "ayybo": {
   "name": "Ayybo",
@@ -792,6 +835,12 @@
   "img": "https://static.ra.co/images/profiles/basswell.jpg?dateUpdated=1583487605000",
   "source": "ra",
   "checked": "2026-10-18"
+ },
+ "batu": {
+  "name": "Batu",
+  "img": "https://cdn-images.dzcdn.net/images/artist/74c66e41385f05d46077c81c4c326a3c/1000x1000-000000-80-0-0.jpg",
+  "source": "deezer",
+  "checked": "2026-11-08"
  },
  "baugruppe90": {
   "name": "BAUGRUPPE90",
@@ -1097,6 +1146,12 @@
   "source": "ra",
   "checked": "2026-10-18"
  },
+ "burden": {
+  "name": "Burden",
+  "img": "https://cdn-images.dzcdn.net/images/artist/0b637d3085162b8a0444559a573207a5/1000x1000-000000-80-0-0.jpg",
+  "source": "deezer",
+  "checked": "2026-11-08"
+ },
  "burnski": {
   "name": "Burnski",
   "img": "https://static.ra.co/images/profiles/burnski.jpg?dateUpdated=1495441477000",
@@ -1217,6 +1272,12 @@
   "img": "https://static.ra.co/images/profiles/square/caseyclub.jpg?dateUpdated=1780480421000",
   "source": "ra",
   "checked": "2026-10-18"
+ },
+ "caspa": {
+  "name": "Caspa",
+  "img": "https://static.ra.co/images/profiles/caspa.jpg?dateUpdated=1225529915000",
+  "source": "ra",
+  "checked": "2026-11-08"
  },
  "cassian": {
   "name": "Cassian",
@@ -1436,6 +1497,12 @@
   "source": "ra",
   "checked": "2026-10-18"
  },
+ "craigrichards": {
+  "name": "Craig Richards",
+  "img": "https://static.ra.co/images/profiles/square/craigrichards.jpg?dateUpdated=1789664984000",
+  "source": "ra",
+  "checked": "2026-11-08"
+ },
  "cristobalpesce": {
   "name": "Cristobal Pesce",
   "img": "https://static.ra.co/images/profiles/square/cristobalpesce.jpg?dateUpdated=1758213267000",
@@ -1495,6 +1562,12 @@
   "img": "https://static.ra.co/images/profiles/square/daisybelle.jpg?dateUpdated=1782221123057",
   "source": "ra",
   "checked": "2026-10-18"
+ },
+ "daisymoon": {
+  "name": "Daisy Moon",
+  "img": "https://static.ra.co/images/profiles/square/daisymoon.jpg?dateUpdated=1774894375000",
+  "source": "ra",
+  "checked": "2026-11-08"
  },
  "damianlazarus": {
   "name": "Damian Lazarus",
@@ -1868,6 +1941,12 @@
   "source": "songkick",
   "checked": "2026-10-18"
  },
+ "djholographic": {
+  "name": "DJ Holographic",
+  "img": "https://static.ra.co/images/profiles/square/djholographic.jpg?dateUpdated=1741794572873",
+  "source": "ra",
+  "checked": "2026-11-08"
+ },
  "djkoze": {
   "name": "DJ Koze",
   "img": "https://static.ra.co/images/profiles/square/djkoze.jpg?dateUpdated=1743158673480",
@@ -1912,6 +1991,12 @@
   "source": "ra",
   "checked": "2026-10-18"
  },
+ "djseinfeld": {
+  "name": "DJ Seinfeld",
+  "img": "https://static.ra.co/images/profiles/square/djseinfeld.jpg?dateUpdated=1598395528000",
+  "source": "ra",
+  "checked": "2026-11-08"
+ },
  "djsnake": {
   "name": "DJ Snake",
   "img": "https://static.ra.co/images/profiles/djsnake.jpg?dateUpdated=1417911536667",
@@ -1947,6 +2032,12 @@
   "img": "https://static.ra.co/images/profiles/domdolla.jpg?dateUpdated=1680695259000",
   "source": "ra",
   "checked": "2026-10-18"
+ },
+ "donatodozzy": {
+  "name": "Donato Dozzy",
+  "img": "https://static.ra.co/images/profiles/square/donatodozzy.jpg?dateUpdated=1592385317000",
+  "source": "ra",
+  "checked": "2026-11-08"
  },
  "dondiablo": {
   "name": "Don Diablo",
@@ -2413,7 +2504,7 @@
   "name": "FISHER",
   "img": "https://www.theaudiodb.com/images/media/artist/thumb/fisher-6191256ae5f21.jpg",
   "source": "override",
-  "checked": "2026-11-01"
+  "checked": "2026-11-08"
  },
  "fjaak": {
   "name": "FJAAK",
@@ -2563,6 +2654,12 @@
   "source": "none",
   "checked": "2026-10-18"
  },
+ "gabriellekwarteng": {
+  "name": "Gabrielle Kwarteng",
+  "img": "https://static.ra.co/images/profiles/square/gabriellekwarteng.jpg?dateUpdated=1550828545000",
+  "source": "ra",
+  "checked": "2026-11-08"
+ },
  "gabryponte": {
   "name": "Gabry Ponte",
   "img": "https://images.sk-static.com/images/media/profile_images/artists/536411/huge_avatar",
@@ -2628,6 +2725,12 @@
   "img": "https://static.ra.co/images/profiles/georgesmeddles.jpg?dateUpdated=1773141996000",
   "source": "ra",
   "checked": "2026-10-18"
+ },
+ "gerdjanson": {
+  "name": "Gerd Janson",
+  "img": "https://static.ra.co/images/profiles/square/gerdjanson.jpg?dateUpdated=1756905941253",
+  "source": "ra",
+  "checked": "2026-11-08"
  },
  "germanoventura": {
   "name": "Germano Ventura",
@@ -3067,7 +3170,7 @@
   "name": "Jamie Jones",
   "img": null,
   "source": "override-none",
-  "checked": "2026-11-01"
+  "checked": "2026-11-08"
  },
  "janefitz": {
   "name": "Jane Fitz",
@@ -3838,6 +3941,12 @@
   "checked": "2026-10-18",
   "matched": "LINNEY"
  },
+ "liquidstranger": {
+  "name": "Liquid Stranger",
+  "img": "https://static.ra.co/images/profiles/square/liquidstranger.jpg?dateUpdated=1738630582000",
+  "source": "ra",
+  "checked": "2026-11-08"
+ },
  "liu": {
   "name": "Liu",
   "img": "https://cdn-images.dzcdn.net/images/artist/4705937ce9ec0dbebe688856b9619a2c/1000x1000-000000-80-0-0.jpg",
@@ -3970,6 +4079,12 @@
   "img": "https://static.ra.co/images/profiles/square/luigimadonna.jpg?dateUpdated=1758634770913",
   "source": "ra",
   "checked": "2026-10-18"
+ },
+ "lukealessi": {
+  "name": "Luke Alessi",
+  "img": "https://static.ra.co/images/profiles/square/lukealessi.jpg?dateUpdated=1775618723420",
+  "source": "ra",
+  "checked": "2026-11-08"
  },
  "lukealexander": {
   "name": "Luke Alexander",
@@ -4134,6 +4249,12 @@
   "img": "https://static.ra.co/images/profiles/square/marcolys.jpg?dateUpdated=1481583240317",
   "source": "ra",
   "checked": "2026-10-18"
+ },
+ "marcoshuttle": {
+  "name": "Marco Shuttle",
+  "img": "https://static.ra.co/images/profiles/marcoshuttle.jpg?dateUpdated=1698940549000",
+  "source": "ra",
+  "checked": "2026-11-08"
  },
  "marcostrous": {
   "name": "Marco Strous",
@@ -4646,6 +4767,12 @@
   "source": "ra",
   "checked": "2026-10-18"
  },
+ "motives": {
+  "name": "Motives",
+  "img": "https://static.ra.co/images/profiles/square/motives.jpg?dateUpdated=1619077647000",
+  "source": "ra",
+  "checked": "2026-11-08"
+ },
  "moxie": {
   "name": "Moxie",
   "img": "https://static.ra.co/images/profiles/square/moxie.jpg?dateUpdated=1710929757000",
@@ -5094,6 +5221,12 @@
   "source": "ra",
   "checked": "2026-10-18",
   "matched": "oskar med k"
+ },
+ "osmosisjones": {
+  "name": "Osmosis Jones",
+  "img": "https://static.ra.co/images/profiles/square/osmosisjones.jpg?dateUpdated=1720629306000",
+  "source": "ra",
+  "checked": "2026-11-08"
  },
  "overmono": {
   "name": "Overmono",
@@ -6408,6 +6541,12 @@
   "source": "ra",
   "checked": "2026-10-18"
  },
+ "supergloss": {
+  "name": "Supergloss",
+  "img": "https://static.ra.co/images/profiles/square/supergloss.jpg?dateUpdated=1635156619000",
+  "source": "ra",
+  "checked": "2026-11-08"
+ },
  "svddendeath": {
   "name": "SVDDEN DEATH",
   "img": "https://images.sk-static.com/images/media/profile_images/artists/9126474/huge_avatar",
@@ -6758,6 +6897,12 @@
   "source": "ra",
   "checked": "2026-10-18"
  },
+ "tshegue": {
+  "name": "Tshegue",
+  "img": "https://static.ra.co/images/profiles/square/tshegue.jpg?dateUpdated=1756371430000",
+  "source": "ra",
+  "checked": "2026-11-08"
+ },
  "tta": {
   "name": "ØTTA",
   "img": "https://images.sk-static.com/images/media/profile_images/artists/5033378/huge_avatar",
@@ -6959,6 +7104,12 @@
   "source": "songkick",
   "checked": "2026-10-18"
  },
+ "waff": {
+  "name": "wAFF",
+  "img": "https://static.ra.co/images/profiles/waff.jpg?dateUpdated=1575504000000",
+  "source": "ra",
+  "checked": "2026-11-08"
+ },
  "walkerandroyce": {
   "name": "Walker & Royce",
   "img": "https://images.sk-static.com/images/media/profile_images/artists/5851679/huge_avatar",
@@ -7122,6 +7273,12 @@
   "img": "https://images.sk-static.com/images/media/profile_images/artists/8626889/huge_avatar",
   "source": "songkick",
   "checked": "2026-10-18"
+ },
+ "zeuz": {
+  "name": "ZEUZ",
+  "img": "https://static.ra.co/images/profiles/square/zeuz.jpg?dateUpdated=1705488704210",
+  "source": "ra",
+  "checked": "2026-11-08"
  },
  "zhangye": {
   "name": "ZHANGYE",

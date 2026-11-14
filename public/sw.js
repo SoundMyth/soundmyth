@@ -1,4 +1,4 @@
-/* SoundMyth service worker — minimal & conservative.
+/* BPM Radar service worker — minimal & conservative.
  * - App shell (navigations): NETWORK-FIRST so a new deploy always lands; cache only as
  *   an offline fallback (never serves stale HTML while online).
  * - /data/artists.json (DJ genres/photos, refreshed by each weekly pipeline run):
@@ -6,7 +6,7 @@
  * - Other same-origin static assets + Google Fonts: cache-first (fast, offline).
  * - Everything else (Supabase API, Unsplash, image hosts…): untouched → normal network.
  */
-const CACHE = 'soundmyth-v6';
+const CACHE = 'bpmradar-v7';
 const SHELL = ['/', '/index.html', '/favicon.svg', '/manifest.webmanifest', '/icon-192.png', '/icon-512.png', '/apple-touch-icon.png'];
 
 self.addEventListener('install', e => {

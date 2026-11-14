@@ -1,4 +1,1 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="SoundMyth">
-  <rect width="64" height="64" rx="14" fill="#c7f23c"/>
-  <text x="32" y="45" font-family="'Plus Jakarta Sans','Segoe UI',Arial,sans-serif" font-size="42" font-weight="800" text-anchor="middle" fill="#0c0c0f">S</text>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="BPM Radar"><rect width="512" height="512" rx="112" fill="#0d0d11"/><circle cx="256" cy="256" r="190" fill="#0d0d11"/><path d="M380.1,190.0 A140.6,140.6 0 1 1 304.1,123.9" fill="none" stroke="#c7f23c" stroke-width="24.7" stroke-linecap="round"/><path d="M333.2,215.0 A87.4,87.4 0 1 1 285.9,173.9" fill="none" stroke="#c7f23c" stroke-width="24.7" stroke-linecap="round"/><circle cx="256" cy="256" r="32.300000000000004" fill="#c7f23c"/><path d="M256,256 L294.7,73.9 A186.2,186.2 0 0 1 428.6,186.2 Z" fill="#c7f23c"/></svg>

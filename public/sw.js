@@ -6,8 +6,8 @@
  * - Other same-origin static assets + Google Fonts: cache-first (fast, offline).
  * - Everything else (Supabase API, Unsplash, image hosts…): untouched → normal network.
  */
-const CACHE = 'bpmradar-v7';
-const SHELL = ['/', '/index.html', '/favicon.svg', '/manifest.webmanifest', '/icon-192.png', '/icon-512.png', '/apple-touch-icon.png'];
+const CACHE = 'bpmradar-v8';
+const SHELL = ['/', '/index.html', '/favicon.svg', '/logo-horizontal.svg', '/logo-apilado.svg', '/manifest.webmanifest', '/icon-192.png', '/icon-512.png', '/apple-touch-icon.png'];
 
 self.addEventListener('install', e => {
   e.waitUntil(caches.open(CACHE).then(c => c.addAll(SHELL)).then(() => self.skipWaiting()));

@@ -137,6 +137,48 @@ export function normVibes(input) {
 }
 
 /**
+ * Brand test: touring festival brands (data/festival_brands.json) match by whole-word phrase in the
+ * event name or venue, so "Tomorrowland Thailand" counts even though only Belgium/Winter/Brazil are
+ * in festivals_all. Only aliases of 7+ characters or with a space are used ("EDC" and "Ultra" are
+ * too ambiguous on their own). A brand's `exclude` regex (after parties, "presents", warm-ups) wins.
+ */
+export function makeBrandTest(brands = []) {
+  const rules = [];
+  for (const b of brands || []) {
+    const phrases = [...new Set([b.brand, ...(b.aliases || [])]
+      .map(a => normText(a)).filter(k => k && (k.length >= 7 || k.includes(' '))))];
+    if (!phrases.length) continue;
+    let exclude = null;
+    try { exclude = b.exclude ? new RegExp(b.exclude, 'i') : null; } catch { exclude = null; }
+    rules.push({ phrases: phrases.map(p => ' ' + p + ' '), exclude });
+  }
+  return ev => {
+    const fields = [ev?.name, ev?.venue].map(x => normText(x)).filter(Boolean);
+    for (const f of fields) {
+      const t = ' ' + f + ' ';
+      for (const r of rules) {
+        if (r.phrases.some(p => t.includes(p)) && !(r.exclude && r.exclude.test(f))) return true;
+      }
+    }
+    return false;
+  };
+}
+
+/**
+ * Structural festival signals, independent of names: a Songkick festival page (with 2+ acts) as ticket
+ * link, a festival-scraper source_id, or a long line-up that is not a Resident Advisor club night.
+ */
+export function festivalSignal(ev) {
+  const n = (ev?.djs || []).length;
+  // A Songkick festival page with a single act is usually a tour date at a stadium or arena
+  // ("Swedish House Mafia @ Ullevi"), so it only counts with a real line-up.
+  if (n >= 2 && /songkick\.com\/festivals\//i.test(ev?.ticket_url || '')) return true;
+  if (/^(sk_fest_|bit_fest_|direct_)/.test(ev?.source_id || '')) return true;
+  if (n >= 4 && ev?.source !== 'ra') return true;
+  return false;
+}
+
+/**
  * Build the lookup used by eventGenre/eventTags from artists_all.json rows.
  * key → { name, genre, ranking, vibes }. Rows without a usable name are skipped.
  */

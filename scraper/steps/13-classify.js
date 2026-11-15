@@ -21,7 +21,7 @@ import { fileURLToPath } from 'url';
 import { dirname, resolve } from 'path';
 import { withRetry } from '../lib/http.js';
 import { makeClient, loadEnv, fetchAllRows } from '../lib/db.js';
-import { STYLES, FALLBACK_GENRE, djKey, buildArtistsIndex, eventGenre, eventTags, makeFestivalNameTest } from '../lib/genres.js';
+import { STYLES, FALLBACK_GENRE, djKey, buildArtistsIndex, eventGenre, eventTags, makeFestivalNameTest, makeBrandTest, festivalSignal } from '../lib/genres.js';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 loadEnv();
@@ -78,7 +78,9 @@ for (const f of readJ('../data/festivals_all.json')) {
 // act; independently, an event whose name or venue says "Festival" or contains a curated
 // festival name ("Max Styler @ SXM Festival", "DJ Snake @ EDC Thailand") is a festival.
 // 'club' only counts on RA-sourced rows.
-const looksFestival = makeFestivalNameTest(readJ('../data/festivals_all.json').map(f => f.name));
+const looksNamed = makeFestivalNameTest(readJ('../data/festivals_all.json').map(f => f.name));
+const looksBrand = makeBrandTest(readJ('../data/festival_brands.json'));
+const looksFestival = e => looksNamed(e) || looksBrand(e) || festivalSignal(e);
 function eventType(e) {
   const tags = e.tags || [];
   const djs = e.djs || [];

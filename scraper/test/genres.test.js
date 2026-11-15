@@ -204,3 +204,50 @@ test('festival detection: short names and no curated names', () => {
   assert.equal(none(ev('Anyma @ Marquee Singapore', 'Marquee Singapore')), false);
   assert.equal(makeFestivalNameTest(['Exit'])(ev('Exit', 'Exit')), false);   // 4-char name ignored
 });
+
+// ── Festival vs club night: brand and structural signals ───────────────────────
+import { makeBrandTest, festivalSignal } from '../lib/genres.js';
+const brandTest = makeBrandTest([
+  { brand: 'Tomorrowland', aliases: ['Tomorrowland', 'Tomorrowland Winter'], exclude: 'after ?party|sunrise|presents|warm ?up' },
+  { brand: 'EDC', aliases: ['EDC', 'Electric Daisy Carnival'] },
+  { brand: 'Ultra', aliases: ['Ultra'] },
+]);
+const evt = (name, extra = {}) => ({ name, venue: name, djs: [], source: 'songkick', ...extra });
+
+test('brand test: any Tomorrowland edition is a festival, even if only some are in festivals_all', () => {
+  assert.equal(brandTest(evt('Tomorrowland Thailand')), true);
+  assert.equal(brandTest(evt('Marsh @ Tomorrowland Thailand 2026', { venue: 'Pattaya' })), true);
+});
+test('brand test: the brand exclude regex and ambiguous short aliases do not match', () => {
+  assert.equal(brandTest(evt('Tomorrowland Winter After Party')), false);
+  assert.equal(brandTest(evt('Ultra Violet Club Night')), false);
+  assert.equal(brandTest(evt('EDC Afterparty at Some Club')), false);   // 'EDC' alone is too short to be evidence
+});
+test('festivalSignal: Songkick festival page needs 2+ acts (a single act is a stadium tour date)', () => {
+  const url = 'https://www.songkick.com/festivals/123-foo/id/456-foo-2026';
+  assert.equal(festivalSignal(evt('X', { ticket_url: url, djs: ['A', 'B'] })), true);
+  assert.equal(festivalSignal(evt('Swedish House Mafia @ Ullevi', { ticket_url: url, djs: ['Swedish House Mafia'] })), false);
+});
+test('festivalSignal: festival-scraper source_id, and long line-ups except on Resident Advisor', () => {
+  assert.equal(festivalSignal(evt('Y', { source_id: 'sk_fest_ultra_2027_03_27', djs: ['A'] })), true);
+  assert.equal(festivalSignal(evt('Z', { djs: ['A', 'B', 'C', 'D'] })), true);
+  assert.equal(festivalSignal(evt('Ministry of Rave Prague', { source: 'ra', djs: ['A', 'B', 'C', 'D', 'E'] })), false);
+});
+
+// ── Photo freshness (steps/14-enrich-images.js) ────────────────────────────────
+import { isStalePhoto, photoAgeMonths, deezerQualifies } from '../steps/14-enrich-images.js';
+const NOW = Date.UTC(2026, 10, 15);
+test('photo freshness: RA dateUpdated older than 24 months is stale, newer is not, unknown is not', () => {
+  const ra = ms => `https://static.ra.co/images/profiles/square/x.jpg?dateUpdated=${ms}`;
+  assert.equal(isStalePhoto(ra(Date.UTC(2021, 9, 1)), NOW), true);
+  assert.equal(isStalePhoto(ra(Date.UTC(2025, 5, 1)), NOW), false);
+  assert.equal(photoAgeMonths('https://example.com/a.jpg', NOW), null);
+  assert.equal(isStalePhoto('', NOW), false);
+});
+test('photo freshness: Deezer replaces a stale photo only with a real audience, higher with namesakes', () => {
+  assert.equal(deezerQualifies({ img: 'u', fans: 11620, candidates: 1 }), true);
+  assert.equal(deezerQualifies({ img: 'u', fans: 900, candidates: 1 }), false);
+  assert.equal(deezerQualifies({ img: 'u', fans: 12000, candidates: 3 }), false);
+  assert.equal(deezerQualifies({ img: 'u', fans: 86038, candidates: 3 }), true);
+  assert.equal(deezerQualifies({ img: null, fans: 99999, candidates: 1 }), false);
+});

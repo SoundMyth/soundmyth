@@ -1017,7 +1017,9 @@ function dedupeEvents(list){
 // artist listings as 'festival' with venue==name and a single act → not a festival)
 // Festival = tagged 'festival' (the pipeline sets it from lineup size / festivals_all match). A festival without a lineup still shows.
 const FEST_WORD=/\b(festival|fest|open ?air|weekender)\b/i;
-function isFest(e){ return !!(e.tags&&e.tags.includes('festival')) || FEST_WORD.test(e.name||'') || FEST_WORD.test(e.venue||''); }
+// A Songkick festival page with 2+ acts is a festival even when the pipeline tag was lost (same rule as festivalSignal in scraper/lib/genres.js)
+const SK_FEST_URL=/songkick\.com\/festivals\//i;
+function isFest(e){ return !!(e.tags&&e.tags.includes('festival')) || FEST_WORD.test(e.name||'') || FEST_WORD.test(e.venue||'') || ((e.djs||[]).length>=2 && SK_FEST_URL.test(e.ticket||'')); }
 // Club night = RA-sourced or 'club'-tagged (old and new data), never a festival
 function isClubNight(e){ return !isFest(e) && (e.source==='ra'||(e.tags||[]).includes('club')); }
 

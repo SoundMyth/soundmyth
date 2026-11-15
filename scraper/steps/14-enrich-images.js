@@ -200,6 +200,29 @@ export function loadOverrides() {
   return out;
 }
 
+// ── Photo freshness ───────────────────────────────────────────────────────
+// RA keeps the upload time in the image URL (?dateUpdated=<ms>). Half of the RA photos date
+// from 2022 or earlier, so a stale RA photo is replaced by Deezer's artist picture when Deezer
+// is clearly the same act: an exact name match with a real audience (several namesakes need a
+// bigger one). Otherwise the RA photo stays: an old photo of the right person beats a guess.
+export const STALE_MONTHS = 24;
+export const DEEZER_MIN_FANS = 5000;
+export const DEEZER_MIN_FANS_NAMESAKES = 20000;
+
+export function photoAgeMonths(url, now = Date.now()) {
+  const m = /[?&]dateUpdated=(\d{9,})/.exec(url || '');
+  if (!m) return null;
+  return (now - Number(m[1])) / (30.44 * 24 * 3600 * 1000);
+}
+export function isStalePhoto(url, now = Date.now()) {
+  const age = photoAgeMonths(url, now);
+  return age !== null && age > STALE_MONTHS;
+}
+export function deezerQualifies(d) {
+  if (!d || !d.img) return false;
+  return (d.candidates || 1) <= 1 ? d.fans >= DEEZER_MIN_FANS : d.fans >= DEEZER_MIN_FANS_NAMESAKES;
+}
+
 // ── DJ resolution ──────────────────────────────────────────────────────────
 // Returns { img, source, artistName?, checked } and never a guess. `retry: true` when a
 // transient error means "don't cache this one yet".
@@ -222,8 +245,13 @@ export async function resolveDJ(name, { raUrl = '', skUrl = '', skEventImg = '',
   // the scraper stored on a single-act event (same artist id); Wikipedia needs an exact title
   // on a music article; Deezer is an exact name match among many namesakes (most-fans
   // heuristic); TheAudioDB is the weakest (free key, sparse electronic metadata) and goes last.
+  const raHit = await attempt('ra', () => sourceRA(name, raUrl));
+  if (raHit && isStalePhoto(raHit.img)) {
+    const fresh = await attempt('deezer', async () => { const d = await sourceDeezer(name); return deezerQualifies(d) ? d : null; });
+    return fresh || raHit;
+  }
   const hit =
-       await attempt('ra', () => sourceRA(name, raUrl))
+       raHit
     || (skUrl ? await attempt('songkick', () => sourceSongkick(skUrl, name)) : null)
     || (skEventImg ? await attempt('songkick-event', async () => ({ img: skEventImg, artistName: name })) : null)
     || await attempt('wikipedia', () => sourceWikipedia(name))
@@ -400,12 +428,25 @@ async function main() {
   const overrides = loadOverrides();
   const budgetMs = Number(process.env.DJ_TIME_BUDGET_MIN || 25) * 60000;
   const t0 = Date.now();
-  let looked = 0, hits = 0, errors = 0, skipped = 0;
+  let looked = 0, hits = 0, errors = 0, skipped = 0, refreshed = 0;
   const bySource = {};
   console.log(`── Pass 2: DJ photos (${queue.length} distinct names, ${Object.keys(cache).length} cached) ──`);
   for (const name of queue) {
     const k = djKey(name);
-    if (k in cache && !(k in overrides)) { skipped++; continue; }
+    if (k in cache && !(k in overrides)) {
+      // One-time freshness pass over RA photos cached before this rule existed.
+      const c = cache[k];
+      if (c && c.source === 'ra' && !c.freshChecked && isStalePhoto(c.img) && Date.now() - t0 <= budgetMs) {
+        try {
+          const d = await sourceDeezer(name);
+          const today = new Date().toISOString().slice(0, 10);
+          if (deezerQualifies(d)) { cache[k] = { ...c, img: d.img, source: 'deezer', replaced: c.img, freshChecked: today }; refreshed++; }
+          else cache[k] = { ...c, freshChecked: today };
+        } catch { /* transient: retried next run */ }
+        continue;
+      }
+      skipped++; continue;
+    }
     if (Date.now() - t0 > budgetMs) { console.log(`  Time budget reached; resume on next run.`); break; }
     const meta = skById.get(k) || {};
     const r = await resolveDJ(name, { raUrl: meta.ra_url || '', skUrl: meta.songkick_url || '', skEventImg: skEventImg.get(k) || '', overrides });
@@ -421,7 +462,7 @@ async function main() {
     cache[k] = { name: cache[k]?.name || k, img: v || null, source: v ? 'override' : 'override-none', checked: new Date().toISOString().slice(0, 10) };
   }
   saveDJCache(cache);
-  console.log(`  Looked up: ${looked} · photos: ${hits} · transient errors: ${errors} · from cache: ${skipped}`);
+  console.log(`  Looked up: ${looked} · photos: ${hits} · transient errors: ${errors} · from cache: ${skipped} · stale RA photos replaced: ${refreshed}`);
   console.log(`  By source: ${JSON.stringify(bySource)}\n`);
 
   // Event rows: DJ shows get the headliner's verified photo; "" when none.

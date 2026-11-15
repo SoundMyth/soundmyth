@@ -589,5 +589,73 @@
     "first_seen": "2026-11-08",
     "status": "added",
     "reason": "festival-like, strong lineup"
+  },
+  {
+    "key": "tomorrowland brasil",
+    "name": "Tomorrowland Brasil",
+    "city": "Sao Paulo",
+    "country": "Brazil",
+    "date": "2027-05-02",
+    "ra_id": "2581397",
+    "via": "brand",
+    "artists": 0,
+    "known_artists": 0,
+    "first_seen": "2026-11-15",
+    "status": "pending",
+    "reason": "same brand+city already listed"
+  },
+  {
+    "key": "time warp afterparty",
+    "name": "Time Warp Afterparty",
+    "city": "Mexico City",
+    "country": "Mexico",
+    "date": "2026-11-20",
+    "ra_id": "2576609",
+    "via": "brand",
+    "artists": 2,
+    "known_artists": 1,
+    "first_seen": "2026-11-15",
+    "status": "pending",
+    "reason": "same brand+city already listed"
+  },
+  {
+    "key": "beyond wonderland midwest",
+    "name": "Beyond Wonderland Midwest",
+    "city": "Chicago",
+    "country": "United States",
+    "date": "2027-06-10",
+    "ra_id": "2581993",
+    "via": "brand",
+    "artists": 0,
+    "known_artists": 0,
+    "first_seen": "2026-11-15",
+    "status": "pending",
+    "reason": "same brand+city already listed"
+  },
+  {
+    "key": "a3 festival",
+    "name": "A3 Festival",
+    "city": "Melbourne",
+    "country": "Australia",
+    "date": "2026-11-27",
+    "ra_id": "2434541",
+    "via": "generic",
+    "artists": 53,
+    "known_artists": 14,
+    "first_seen": "2026-11-15",
+    "status": "added",
+    "reason": "festival-like, strong lineup"
+  },
+  {
+    "key": "electric castle festival",
+    "name": "Electric Castle Festival",
+    "city": "Bontida",
+    "country": "Romania",
+    "via": "db",
+    "events_in_db": 1,
+    "known_artists": 0,
+    "status": "pending",
+    "reason": "DB festival-like title; needs review",
+    "first_seen": "2026-11-15"
   }
 ]

@@ -1,5 +1,5 @@
 /**
- * SoundMyth – Run Report
+ * BPM Radar – Run Report
  *
  * Summarises a pipeline run and emails it via Brevo's transactional API.
  *
@@ -189,7 +189,7 @@ async function main() {
     : [];
 
   const text = [
-    `SoundMyth · run #${RUN_NUMBER} · ${status}${conflictTag}`,
+    `BPM Radar · run #${RUN_NUMBER} · ${status}${conflictTag}`,
     '',
     ...rows.map(([k, v]) => `  ${String(k).padEnd(28)}${v}`),
     '',
@@ -259,7 +259,7 @@ async function main() {
 
   const html = `
     <div style="font-family:-apple-system,Segoe UI,sans-serif;max-width:560px">
-      <h2 style="margin:0 0 4px">SoundMyth · run #${RUN_NUMBER}</h2>
+      <h2 style="margin:0 0 4px">BPM Radar · run #${RUN_NUMBER}</h2>
       <p style="margin:0 0 16px;font-size:18px">${status}${conflictTag ? `<br><span style="font-size:15px">${esc(conflictTag.replace(' · ', ''))}</span>` : ''}</p>
       <table style="border-collapse:collapse;font-size:14px;width:100%">
         ${rows.map(([k, v]) => `<tr><td style="${td}">${esc(k)}</td><td style="${td}text-align:right"><b>${esc(v)}</b></td></tr>`).join('')}
@@ -333,9 +333,9 @@ async function main() {
     method: 'POST',
     headers: { 'api-key': API_KEY, 'Content-Type': 'application/json', Accept: 'application/json' },
     body: JSON.stringify({
-      sender: { name: 'SoundMyth', email: FROM },
+      sender: { name: 'BPM Radar', email: FROM },
       to: [{ email: TO }],
-      subject: `SoundMyth · run #${RUN_NUMBER} · ${status}${conflictTag}`,
+      subject: `BPM Radar · run #${RUN_NUMBER} · ${status}${conflictTag}`,
       htmlContent: html,
       textContent: text,
     }),

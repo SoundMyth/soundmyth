@@ -155,7 +155,7 @@ export async function sourceAudioDB(name) {
 export async function sourceWikipedia(name) {
   const title = name.trim().replace(/ /g, '_');
   const j = await getJSON(`https://en.wikipedia.org/api/rest_v1/page/summary/${encodeURIComponent(title)}`, 'wikipedia', 200,
-    { 'User-Agent': 'SoundMyth/1.0 (DJ event aggregator; contact@soundmyth.com)', Accept: 'application/json' });
+    { 'User-Agent': 'BPMRadar/1.0 (DJ event aggregator; +https://bpmradar.com)', Accept: 'application/json' });
   if (!j || j.type !== 'standard' || !j.title) return null;
   if (!sameName(name, j.title)) return null;
   const desc = `${j.description || ''} ${j.extract || ''}`;

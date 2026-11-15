@@ -401,7 +401,7 @@ button:focus{outline:none;}
 <div id="app">
   <!-- HEADER -->
   <div id="header">
-    <img src="/logo-horizontal.svg" alt="BPM Radar" height="26" style="height:26px;width:auto;display:block;flex-shrink:0"/>
+    <img src="/logo-horizontal.svg" alt="BPM Radar - home" height="26" role="link" tabindex="0" onclick="goHomeTop()" onkeydown="if(event.key==='Enter')goHomeTop()" style="height:26px;width:auto;display:block;flex-shrink:0;cursor:pointer"/>
     <div style="margin-left:auto;display:flex;align-items:center;gap:9px;">
       <div style="display:flex;align-items:center;gap:6px;">
         <div class="live-dot"></div>
@@ -1639,6 +1639,12 @@ function showLoadError(err){
 
 
 // ── TABS ──────────────────────────────────────────────────────────────────────
+function goHomeTop(){
+  const btn=document.querySelector('#navmain .nav-btn');
+  switchTab('home',btn);
+  window.scrollTo(0,0);
+  document.querySelectorAll('.tab').forEach(x=>{x.scrollTop=0;});
+}
 function switchTab(name, btn){
   // Close any open overlay first (DJ profile sits above event detail), so the lupa /
   // any nav button actually navigates instead of leaving the DJ screen stuck on top.

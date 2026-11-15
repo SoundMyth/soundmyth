@@ -28,6 +28,13 @@
   "checked": "2026-10-18",
   "freshChecked": "2026-11-15"
  },
+ "2hot2play": {
+  "name": "2HOT2PLAY",
+  "img": "https://static.ra.co/images/profiles/square/2hot2play.jpg?dateUpdated=1721386310000",
+  "source": "ra",
+  "checked": "2026-11-15",
+  "freshChecked": "2026-11-15"
+ },
  "4amkru": {
   "name": "4am Kru",
   "img": "https://static.ra.co/images/profiles/square/4amkru.jpg?dateUpdated=1674482096000",
@@ -414,6 +421,13 @@
   "source": "none",
   "checked": "2026-10-18"
  },
+ "amalnemer": {
+  "name": "Amal Nemer",
+  "img": "https://static.ra.co/images/profiles/square/amalnemer.jpg?dateUpdated=1666604301000",
+  "source": "ra",
+  "checked": "2026-11-15",
+  "freshChecked": "2026-11-15"
+ },
  "amayah": {
   "name": "AMAYAH",
   "img": "https://static.ra.co/images/profiles/square/amayah.jpg?dateUpdated=1734396911000",
@@ -508,6 +522,12 @@
   "source": "ra",
   "checked": "2026-10-18",
   "freshChecked": "2026-11-15"
+ },
+ "anasi": {
+  "name": "ANASI",
+  "img": "https://static.ra.co/images/profiles/square/anasi.jpg?dateUpdated=1792877221987",
+  "source": "ra",
+  "checked": "2026-11-15"
  },
  "ancientmethods": {
   "name": "Ancient Methods",
@@ -876,6 +896,12 @@
   "source": "ra",
   "checked": "2026-10-18"
  },
+ "babyj2": {
+  "name": "Baby J (2)",
+  "img": null,
+  "source": "none",
+  "checked": "2026-11-15"
+ },
  "badboombox": {
   "name": "Bad Boombox",
   "img": "https://static.ra.co/images/profiles/square/badboombox.jpg?dateUpdated=1754644866750",
@@ -1170,6 +1196,12 @@
   "checked": "2026-10-18",
   "matched": "BLOND:ISH"
  },
+ "bloodymary": {
+  "name": "Bloody Mary",
+  "img": "https://static.ra.co/images/profiles/square/bloodymary.jpg?dateUpdated=1756569204057",
+  "source": "ra",
+  "checked": "2026-11-15"
+ },
  "blove": {
   "name": "B.Love",
   "img": "https://images.sk-static.com/images/media/profile_images/artists/10314991/huge_avatar",
@@ -1251,6 +1283,12 @@
   "img": "https://static.ra.co/images/profiles/square/brinaknauss.jpg?dateUpdated=1741365960833",
   "source": "ra",
   "checked": "2026-10-18"
+ },
+ "brunello": {
+  "name": "Brunello",
+  "img": "https://static.ra.co/images/profiles/square/brunello.jpg?dateUpdated=1783678189000",
+  "source": "ra",
+  "checked": "2026-11-15"
  },
  "brunomartini": {
   "name": "Bruno Martini",
@@ -1380,6 +1418,12 @@
   "source": "ra",
   "checked": "2026-10-18",
   "freshChecked": "2026-11-15"
+ },
+ "carinalawrence": {
+  "name": "Carina Lawrence",
+  "img": "https://static.ra.co/images/profiles/square/carinalawrence.jpg?dateUpdated=1793639771907",
+  "source": "ra",
+  "checked": "2026-11-15"
  },
  "carista": {
   "name": "CARISTA",
@@ -1677,6 +1721,13 @@
   "img": "https://static.ra.co/images/profiles/square/coone.jpg?dateUpdated=1768379915677",
   "source": "ra",
   "checked": "2026-10-18"
+ },
+ "cosmo": {
+  "name": "Cosmo",
+  "img": "https://static.ra.co/images/profiles/cosmo.jpg?dateUpdated=1289750826000",
+  "source": "ra",
+  "checked": "2026-11-15",
+  "freshChecked": "2026-11-15"
  },
  "craigrichards": {
   "name": "Craig Richards",
@@ -2197,6 +2248,13 @@
   "source": "ra",
   "checked": "2026-10-18"
  },
+ "djladyd": {
+  "name": "DJ Lady D",
+  "img": "https://static.ra.co/images/profiles/djladyd.jpg?dateUpdated=1353393347140",
+  "source": "ra",
+  "checked": "2026-11-15",
+  "freshChecked": "2026-11-15"
+ },
  "djmellg": {
   "name": "DJ Mell G",
   "img": "https://static.ra.co/images/profiles/square/djmellg.jpg?dateUpdated=1601549348000",
@@ -2705,6 +2763,13 @@
   "source": "songkick",
   "checked": "2026-10-18"
  },
+ "fadimohem": {
+  "name": "Fadi Mohem",
+  "img": "https://static.ra.co/images/profiles/square/fadimohem.jpg?dateUpdated=1488986264000",
+  "source": "ra",
+  "checked": "2026-11-15",
+  "freshChecked": "2026-11-15"
+ },
  "fahlberg": {
   "name": "Fahlberg",
   "img": "https://images.sk-static.com/images/media/profile_images/artists/10386532/huge_avatar",
@@ -2745,6 +2810,13 @@
   "img": "https://static.ra.co/images/profiles/square/fatimahajji.jpg?dateUpdated=1739448008000",
   "source": "ra",
   "checked": "2026-10-18"
+ },
+ "fatzo": {
+  "name": "Fatzo",
+  "img": "https://static.ra.co/images/profiles/square/fatzo.jpg?dateUpdated=1539887425000",
+  "source": "ra",
+  "checked": "2026-11-15",
+  "freshChecked": "2026-11-15"
  },
  "faustix": {
   "name": "Faustix",
@@ -2830,7 +2902,7 @@
   "name": "FISHER",
   "img": "https://www.theaudiodb.com/images/media/artist/thumb/fisher-6191256ae5f21.jpg",
   "source": "override",
-  "checked": "2026-11-08"
+  "checked": "2026-11-15"
  },
  "fjaak": {
   "name": "FJAAK",
@@ -3590,7 +3662,7 @@
   "name": "Jamie Jones",
   "img": null,
   "source": "override-none",
-  "checked": "2026-11-08"
+  "checked": "2026-11-15"
  },
  "janefitz": {
   "name": "Jane Fitz",
@@ -3650,11 +3722,24 @@
   "source": "ra",
   "checked": "2026-10-18"
  },
+ "jennyfox": {
+  "name": "Jenny Fox",
+  "img": "https://static.ra.co/images/profiles/square/jennyfox.jpg?dateUpdated=1772594168880",
+  "source": "ra",
+  "checked": "2026-11-15"
+ },
  "jeremyolander": {
   "name": "Jeremy Olander",
   "img": "https://static.ra.co/images/profiles/square/jeremyolander.jpg?dateUpdated=1763043989200",
   "source": "ra",
   "checked": "2026-10-18"
+ },
+ "jerro": {
+  "name": "JERRO",
+  "img": "https://cdn-images.dzcdn.net/images/artist/923ec0072eea7fe4b0a469e5f8f99bf5/1000x1000-000000-80-0-0.jpg",
+  "source": "deezer",
+  "checked": "2026-11-15",
+  "matched": "Jerro"
  },
  "jessicaaudiffred": {
   "name": "Jessica Audiffred",
@@ -3751,11 +3836,25 @@
   "source": "ra",
   "checked": "2026-10-18"
  },
+ "jonasxenon": {
+  "name": "Jonas Xenon",
+  "img": "https://static.ra.co/images/profiles/square/jonasxenon.jpg?dateUpdated=1648569182000",
+  "source": "ra",
+  "checked": "2026-11-15",
+  "freshChecked": "2026-11-15"
+ },
  "jonrundell": {
   "name": "Jon Rundell",
   "img": "https://static.ra.co/images/profiles/jonrundell.jpg?dateUpdated=1487156976707",
   "source": "ra",
   "checked": "2026-10-18",
+  "freshChecked": "2026-11-15"
+ },
+ "joplyn": {
+  "name": "Joplyn",
+  "img": "https://static.ra.co/images/profiles/square/joplyn.jpg?dateUpdated=1634224020000",
+  "source": "ra",
+  "checked": "2026-11-15",
   "freshChecked": "2026-11-15"
  },
  "jordanbrando": {
@@ -3863,6 +3962,12 @@
   "img": "https://static.ra.co/images/profiles/square/julyakarma.jpg?dateUpdated=1772742530227",
   "source": "ra",
   "checked": "2026-10-18"
+ },
+ "justineperry": {
+  "name": "Justine Perry",
+  "img": "https://static.ra.co/images/profiles/square/JustinePerry.jpg?dateUpdated=1745056854873",
+  "source": "ra",
+  "checked": "2026-11-15"
  },
  "justjam": {
   "name": "Just Jam",
@@ -4361,6 +4466,12 @@
   "source": "ra",
   "checked": "2026-10-18"
  },
+ "lemarie": {
+  "name": "Lemarie",
+  "img": "https://static.ra.co/images/profiles/square/lemarie.jpg?dateUpdated=1791746134580",
+  "source": "ra",
+  "checked": "2026-11-15"
+ },
  "lenfaki": {
   "name": "Len Faki",
   "img": "https://cdn-images.dzcdn.net/images/artist/41d8282678383860293c4fe677371de6/1000x1000-000000-80-0-0.jpg",
@@ -4687,7 +4798,9 @@
   "name": "Mahmut Orhan",
   "img": "https://cdn-images.dzcdn.net/images/artist/b21ecf12834d3f0a67730eb4a10d98fc/1000x1000-000000-80-0-0.jpg",
   "source": "deezer",
-  "checked": "2026-11-15"
+  "checked": "2026-11-15",
+  "replaced": "https://static.ra.co/images/profiles/square/mahmutorhan.jpg?dateUpdated=1654258400000",
+  "freshChecked": "2026-11-15"
  },
  "mainphase": {
   "name": "Main Phase",
@@ -5082,6 +5195,12 @@
   "checked": "2026-10-18",
   "replaced": "https://static.ra.co/images/profiles/mauropicotto.jpg?dateUpdated=1357921559000",
   "freshChecked": "2026-11-15"
+ },
+ "mauzius": {
+  "name": "Mauzius",
+  "img": "https://static.ra.co/images/profiles/square/mauzius.jpg?dateUpdated=1757660520980",
+  "source": "ra",
+  "checked": "2026-11-15"
  },
  "maxdean": {
   "name": "Max Dean",
@@ -5748,6 +5867,13 @@
   "source": "songkick",
   "checked": "2026-10-18"
  },
+ "oden": {
+  "name": "Oden",
+  "img": "https://static.ra.co/images/profiles/square/oden.jpg?dateUpdated=1578430996050",
+  "source": "ra",
+  "checked": "2026-11-15",
+  "freshChecked": "2026-11-15"
+ },
  "odymel": {
   "name": "Odymel",
   "img": "https://cdn-images.dzcdn.net/images/artist/7c9152f6af5cf84ec02d61febe0fd49d/1000x1000-000000-80-0-0.jpg",
@@ -5912,10 +6038,18 @@
   "source": "ra",
   "checked": "2026-10-18"
  },
+ "pacoosuna": {
+  "name": "Paco Osuna",
+  "img": "https://cdn-images.dzcdn.net/images/artist/749a5f884c1d253f830ad777a7c173bf/1000x1000-000000-80-0-0.jpg",
+  "source": "deezer",
+  "checked": "2026-11-15",
+  "replaced": "https://static.ra.co/images/profiles/square/pacoosuna.jpg?dateUpdated=1490177743000",
+  "freshChecked": "2026-11-15"
+ },
  "padreguilherme": {
   "name": "Padre Guilherme",
-  "img": "https://cdn-images.dzcdn.net/images/artist/1bd75088f4a96a538d12aee8cec4d529/1000x1000-000000-80-0-0.jpg",
-  "source": "deezer",
+  "img": "https://images.sk-static.com/images/media/profile_images/artists/10352565/huge_avatar",
+  "source": "songkick",
   "checked": "2026-11-15"
  },
  "paigetomlinson": {
@@ -6007,6 +6141,12 @@
   "img": "https://static.ra.co/images/profiles/square/patricktopping.jpg?dateUpdated=1754320975420",
   "source": "ra",
   "checked": "2026-10-18"
+ },
+ "paulakoski": {
+  "name": "Paula Koski",
+  "img": "https://static.ra.co/images/profiles/square/paulakoski.jpg?dateUpdated=1793215013713",
+  "source": "ra",
+  "checked": "2026-11-15"
  },
  "paulkalkbrenner": {
   "name": "Paul Kalkbrenner",
@@ -6208,6 +6348,12 @@
   "source": "songkick-event",
   "checked": "2026-10-18"
  },
+ "poloandpan": {
+  "name": "Polo & Pan",
+  "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/db/Polo_Pan_Rockhal.png/330px-Polo_Pan_Rockhal.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+  "source": "wikipedia",
+  "checked": "2026-11-15"
+ },
  "polygonia": {
   "name": "Polygonia",
   "img": "https://static.ra.co/images/profiles/square/polygonia.jpg?dateUpdated=1559865600000",
@@ -6261,6 +6407,14 @@
   "img": "https://static.ra.co/images/profiles/prunk.jpg?dateUpdated=1494247010150",
   "source": "ra",
   "checked": "2026-10-18",
+  "freshChecked": "2026-11-15"
+ },
+ "purityring": {
+  "name": "Purity Ring",
+  "img": "https://cdn-images.dzcdn.net/images/artist/ffd45e722a8d2efa3e926a620a9820fc/1000x1000-000000-80-0-0.jpg",
+  "source": "deezer",
+  "checked": "2026-11-15",
+  "replaced": "https://static.ra.co/images/profiles/purityring.jpg?dateUpdated=1343238544640",
   "freshChecked": "2026-11-15"
  },
  "purplediscomachine": {
@@ -6621,6 +6775,14 @@
   "source": "ra",
   "checked": "2026-10-18",
   "matched": "ROÜGE"
+ },
+ "royrosenfeld": {
+  "name": "Roy Rosenfeld",
+  "img": "https://cdn-images.dzcdn.net/images/artist/f6ddd460ed3009b06cb6181bfc88733b/1000x1000-000000-80-0-0.jpg",
+  "source": "deezer",
+  "checked": "2026-11-15",
+  "replaced": "https://static.ra.co/images/profiles/square/royrosenfeld.jpg?dateUpdated=1456869037540",
+  "freshChecked": "2026-11-15"
  },
  "rsquared": {
   "name": "R Squared",
@@ -6998,6 +7160,13 @@
   "img": "https://static.ra.co/images/profiles/square/shermanology.jpg?dateUpdated=1789328200527",
   "source": "ra",
   "checked": "2026-10-18"
+ },
+ "shiba": {
+  "name": "Shiba",
+  "img": "https://static.ra.co/images/profiles/shiba.jpg?dateUpdated=1569849532000",
+  "source": "ra",
+  "checked": "2026-11-15",
+  "freshChecked": "2026-11-15"
  },
  "shimza": {
   "name": "Shimza",

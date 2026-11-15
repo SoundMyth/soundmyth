@@ -1,22 +1,22 @@
 {
   "festivals": {
     "added": [
-      "Listen Festival"
+      "A3 Festival"
     ],
-    "candidates": 35
+    "candidates": 39
   },
   "dedupe": {
-    "generated": "2026-11-08T09:30:43.869Z",
+    "generated": "2026-11-15T09:42:52.391Z",
     "likelyErrors": 5,
-    "possibleDoubleHeaders": 20,
-    "ignoredFestival": 106,
+    "possibleDoubleHeaders": 19,
+    "ignoredFestival": 104,
     "fragmentsMerged": 3,
-    "keepersMerged": 173,
-    "rowsDeleted": 871
+    "keepersMerged": 179,
+    "rowsDeleted": 1061
   },
   "validate": {
-    "generated": "2026-11-08T09:30:59.382Z",
-    "future": 2519,
+    "generated": "2026-11-15T09:43:03.350Z",
+    "future": 2476,
     "cityCanonicalized": 0,
     "cityFromVenue": 0,
     "countryFilled": 0,
@@ -27,7 +27,7 @@
     "droppedLegacyWebsite": 0,
     "blocked": 3,
     "namesakeDropped": 0,
-    "namesakeReview": 267,
+    "namesakeReview": 263,
     "dropped": 4,
     "geoFlags": {
       "hubMismatch": [],
@@ -36,7 +36,7 @@
         {
           "city": "Birmingham",
           "countries": [
-            "United Kingdom (19)",
+            "United Kingdom (17)",
             "United States (1)"
           ]
         },
@@ -44,13 +44,6 @@
           "city": "Oxford",
           "countries": [
             "United Kingdom (3)",
-            "United States (1)"
-          ]
-        },
-        {
-          "city": "Northampton",
-          "countries": [
-            "United Kingdom (1)",
             "United States (1)"
           ]
         },
@@ -90,73 +83,43 @@
           ]
         }
       ],
-      "multiCountryCount": 8
+      "multiCountryCount": 7
     },
     "droppedSamples": []
   },
   "purge": {
-    "generated": "2026-11-08T09:32:05.019Z",
-    "cutoff": "2026-10-31",
+    "generated": "2026-11-15T09:44:15.623Z",
+    "cutoff": "2026-11-07",
     "retentionDays": 8,
-    "deleted": 304,
+    "deleted": 321,
     "orphanSavedEvents": {
       "status": "ok",
-      "found": 0,
-      "deleted": 0
+      "found": 17,
+      "deleted": 17
     }
   },
   "namesake": {
-    "generated": "2026-11-08T09:30:59.382Z",
+    "generated": "2026-11-15T09:43:03.351Z",
     "rules": [],
     "allowListed": 0,
     "droppedCount": 0,
     "dropped": [],
-    "reviewCount": 267,
+    "reviewCount": 263,
     "review": [
       {
-        "source_id": "sk_43409202",
-        "name": "Hamdi @ Teatro Magno",
-        "dj": "Hamdi",
-        "venue": "Teatro Magno",
-        "city": "Madrid",
-        "country": "Spain",
-        "date": "2026-11-12",
-        "ticket_url": "https://www.songkick.com/concerts/43409202-what-so-not-at-teatro-magno?utm_medium=organic&utm_source=microformat",
+        "source_id": "diplo_2026_12_04_universidad_sim_n_bol_var",
+        "name": "Diplo @ Universidad Simón Bolívar",
+        "dj": "Diplo",
+        "venue": "Universidad Simón Bolívar",
+        "city": "Caracas",
+        "country": "Venezuela",
+        "date": "2026-12-04",
+        "ticket_url": "https://www.songkick.com/festivals/3272088-cusica-fest/id/43297274-cusica-fest-2026?utm_medium=organic&utm_source=microformat",
         "reasons": [
           "no other known DJ plays this venue",
           "venue name suggests a non-club (church, cabaret, hotel, museum...)",
           "one-word name (common-name collision risk)",
           "same DJ listed in another country the next day"
-        ]
-      },
-      {
-        "source_id": "sk_43227710",
-        "name": "Alok @ Schottenstein Center",
-        "dj": "Alok",
-        "venue": "Schottenstein Center",
-        "city": "Columbus",
-        "country": "United States",
-        "date": "2026-11-13",
-        "ticket_url": "https://www.songkick.com/concerts/43227710-john-summit-at-schottenstein-center?utm_medium=organic&utm_source=microformat",
-        "reasons": [
-          "no other known DJ plays this venue",
-          "one-word name (common-name collision risk)",
-          "same DJ listed in another country the same day"
-        ]
-      },
-      {
-        "source_id": "sk_42896249",
-        "name": "Luciano @ Martinikirche Buer",
-        "dj": "Luciano",
-        "venue": "Martinikirche Buer",
-        "city": "Melle",
-        "country": "Germany",
-        "date": "2026-11-14",
-        "ticket_url": "https://www.songkick.com/concerts/42896249-luciano-at-martinikirche-buer?utm_medium=organic&utm_source=microformat",
-        "reasons": [
-          "no other known DJ plays this venue",
-          "venue name suggests a non-club (church, cabaret, hotel, museum...)",
-          "one-word name (common-name collision risk)"
         ]
       },
       {
@@ -168,21 +131,6 @@
         "country": "United Kingdom",
         "date": "2026-11-20",
         "ticket_url": "https://www.songkick.com/concerts/43394804-azyr-at-y-plas-cardiff-university-students-union?utm_medium=organic&utm_source=microformat",
-        "reasons": [
-          "no other known DJ plays this venue",
-          "venue name suggests a non-club (church, cabaret, hotel, museum...)",
-          "one-word name (common-name collision risk)"
-        ]
-      },
-      {
-        "source_id": "diplo_2026_12_04_universidad_sim_n_bol_var",
-        "name": "Diplo @ Universidad Simón Bolívar",
-        "dj": "Diplo",
-        "venue": "Universidad Simón Bolívar",
-        "city": "Caracas",
-        "country": "Venezuela",
-        "date": "2026-12-04",
-        "ticket_url": "https://www.songkick.com/festivals/3272088-cusica-fest/id/43297274-cusica-fest-2026?utm_medium=organic&utm_source=microformat",
         "reasons": [
           "no other known DJ plays this venue",
           "venue name suggests a non-club (church, cabaret, hotel, museum...)",
@@ -202,6 +150,21 @@
           "no other known DJ plays this venue",
           "venue name suggests a non-club (church, cabaret, hotel, museum...)",
           "same DJ listed in another country the next day"
+        ]
+      },
+      {
+        "source_id": "sk_43513315",
+        "name": "DEVAULT @ Ocean Resort Casino - HQ2 Beachclub",
+        "dj": "DeVault",
+        "venue": "Ocean Resort Casino - HQ2 Beachclub",
+        "city": "Atlantic City",
+        "country": "United States",
+        "date": "2026-12-05",
+        "ticket_url": "https://www.songkick.com/concerts/43513315-devault-at-ocean-resort-casino-hq2-beachclub?utm_medium=organic&utm_source=microformat",
+        "reasons": [
+          "no other known DJ plays this venue",
+          "venue name suggests a non-club (church, cabaret, hotel, museum...)",
+          "one-word name (common-name collision risk)"
         ]
       },
       {
@@ -243,21 +206,6 @@
         "country": "Australia",
         "date": "2026-12-31",
         "ticket_url": "https://www.songkick.com/concerts/43453819-dusky-at-waves-towradgi-beach-hotel?utm_medium=organic&utm_source=microformat",
-        "reasons": [
-          "no other known DJ plays this venue",
-          "venue name suggests a non-club (church, cabaret, hotel, museum...)",
-          "one-word name (common-name collision risk)"
-        ]
-      },
-      {
-        "source_id": "sk_43453783",
-        "name": "Dusky @ The Court Hotel",
-        "dj": "Dusky",
-        "venue": "The Court Hotel",
-        "city": "Perth",
-        "country": "Australia",
-        "date": "2027-01-03",
-        "ticket_url": "https://www.songkick.com/concerts/43453783-dusky-at-court-hotel?utm_medium=organic&utm_source=microformat",
         "reasons": [
           "no other known DJ plays this venue",
           "venue name suggests a non-club (church, cabaret, hotel, museum...)",
@@ -337,6 +285,50 @@
           "no other known DJ plays this venue",
           "venue name suggests a non-club (church, cabaret, hotel, museum...)",
           "one-word name (common-name collision risk)"
+        ]
+      },
+      {
+        "source_id": "sk_43323020",
+        "name": "Luciano @ Maritim Hotel Bad Wildungen",
+        "dj": "Luciano",
+        "venue": "Maritim Hotel Bad Wildungen",
+        "city": "Bad Wildungen",
+        "country": "Germany",
+        "date": "2027-04-24",
+        "ticket_url": "https://www.songkick.com/concerts/43323020-luciano-at-maritim-hotel-bad-wildungen?utm_medium=organic&utm_source=microformat",
+        "reasons": [
+          "no other known DJ plays this venue",
+          "venue name suggests a non-club (church, cabaret, hotel, museum...)",
+          "one-word name (common-name collision risk)"
+        ]
+      },
+      {
+        "source_id": "sk_43261859",
+        "name": "Bonobo @ Roseland Theater",
+        "dj": "Bonobo",
+        "venue": "Roseland Theater",
+        "city": "Portland",
+        "country": "United States",
+        "date": "2026-11-15",
+        "ticket_url": "https://www.songkick.com/concerts/43261859-bonobo-at-roseland-theater?utm_medium=organic&utm_source=microformat",
+        "reasons": [
+          "no other known DJ plays this venue",
+          "one-word name (common-name collision risk)",
+          "same DJ listed in another country the next day"
+        ]
+      },
+      {
+        "source_id": "sk_43471441",
+        "name": "Ben Sims @ Auditorium",
+        "dj": "Ben Sims",
+        "venue": "Auditorium",
+        "city": "Medellin",
+        "country": "Colombia",
+        "date": "2026-11-20",
+        "ticket_url": "https://www.songkick.com/concerts/43471441-assailants-ben-sims-and-truncate-at-auditorium?utm_medium=organic&utm_source=microformat",
+        "reasons": [
+          "no other known DJ plays this venue",
+          "venue name suggests a non-club (church, cabaret, hotel, museum...)"
         ]
       }
     ]

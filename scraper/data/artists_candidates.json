@@ -7,7 +7,7 @@
       "ra"
     ],
     "onRA": true,
-    "sample": "Groove Cruise Miami 2027 - Ambassador Code: GrooveCruiseChris · Miami"
+    "sample": "MPH @ Cermak Hall (inside Radius) · Chicago"
   },
   {
     "name": "Kaitlyn Aurelia Smith",
@@ -18,6 +18,16 @@
     ],
     "onRA": true,
     "sample": "Kaitlyn Aurelia Smith · London"
+  },
+  {
+    "name": "2HOT2PLAY",
+    "key": "2hot2play",
+    "events": 2,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "FCKNYE Festival 2026 · Brussels"
   },
   {
     "name": "Adriana Lopez",
@@ -38,6 +48,36 @@
     ],
     "onRA": true,
     "sample": "Sónar 2027 · Barcelona"
+  },
+  {
+    "name": "Bibi Seck",
+    "key": "bibiseck",
+    "events": 2,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "Listen Festival 2026 · Brussels"
+  },
+  {
+    "name": "Brunello",
+    "key": "brunello",
+    "events": 2,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "Time Warp NYC 2026 · New York"
+  },
+  {
+    "name": "Bushbaby",
+    "key": "bushbaby",
+    "events": 2,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "Riordan · Austin"
   },
   {
     "name": "Craig Richards",
@@ -90,6 +130,16 @@
     "sample": "Time Warp Los Angeles 2026 · Los Angeles"
   },
   {
+    "name": "hhunter",
+    "key": "hhunter",
+    "events": 2,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "Kayzo x hhunter at Cermak Hall · Chicago"
+  },
+  {
     "name": "Ignez",
     "key": "ignez",
     "events": 2,
@@ -98,6 +148,36 @@
     ],
     "onRA": true,
     "sample": "Mad Katz mit Ignez & MARRØN · Zurich"
+  },
+  {
+    "name": "Kailyn Crabbe",
+    "key": "kailyncrabbe",
+    "events": 2,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "Lost Sundays Block Party — January 3 feat. Ewan McVicar, Faster Horses"
+  },
+  {
+    "name": "Kayzo",
+    "key": "kayzo",
+    "events": 2,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "Kayzo x hhunter at Cermak Hall · Chicago"
+  },
+  {
+    "name": "Luke Alessi",
+    "key": "lukealessi",
+    "events": 2,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "fabric: DJ Seinfeld, Luke Alessi, Gerd Janson + more TBA · London"
   },
   {
     "name": "Miss Bashful",
@@ -118,6 +198,26 @@
     ],
     "onRA": true,
     "sample": "NTO · Barcelona"
+  },
+  {
+    "name": "Osmosis Jones",
+    "key": "osmosisjones",
+    "events": 2,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "Hamdi FC vs. Austin · Austin"
+  },
+  {
+    "name": "Paco Osuna",
+    "key": "pacoosuna",
+    "events": 2,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "LOOP NYD FESTIVAL 2027 · Madrid"
   },
   {
     "name": "Planetary Assault Systems",
@@ -158,16 +258,6 @@
     ],
     "onRA": true,
     "sample": "Big Fish Little Fish Family Rave - fabric london · London"
-  },
-  {
-    "name": "2HOT2PLAY",
-    "key": "2hot2play",
-    "events": 1,
-    "sources": [
-      "ra"
-    ],
-    "onRA": true,
-    "sample": "FCKNYE Festival 2026 · Brussels"
   },
   {
     "name": "2ManyDJs",
@@ -260,6 +350,16 @@
     "sample": "CLUB DE JOUR with Myd, Mayou Picchu & Akalex · Nantes"
   },
   {
+    "name": "AKEYLAH",
+    "key": "akeylah",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "A3 Festival 2026 · Melbourne"
+  },
+  {
     "name": "Alex Clap",
     "key": "alexclap",
     "events": 1,
@@ -278,6 +378,16 @@
     ],
     "onRA": true,
     "sample": "Pleasure: Dr. Banana + Alien Communications · Glasgow"
+  },
+  {
+    "name": "Amal Nemer",
+    "key": "amalnemer",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "Odd Mob · Chicago"
   },
   {
     "name": "Amaliah",
@@ -340,14 +450,24 @@
     "sample": "anamē · Seattle"
   },
   {
-    "name": "ANDREA SALVAGGIO",
-    "key": "andreasalvaggio",
+    "name": "ANASI",
+    "key": "anasi",
     "events": 1,
     "sources": [
       "ra"
     ],
     "onRA": true,
-    "sample": "Galactica Florence with Luca Agnelli, Gianni Di Bernardo, V111 · Flore"
+    "sample": "A Night of Amapiano: MaWhoo, Njelic, Murumba Pitch, DJ Stokie, Peanuts"
+  },
+  {
+    "name": "Andre Zimmer",
+    "key": "andrezimmer",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "A3 Festival 2026 · Melbourne"
   },
   {
     "name": "Andy Martin",
@@ -457,7 +577,7 @@
       "ra"
     ],
     "onRA": true,
-    "sample": "Zack Fox, DJ Delish, Venom Rei · New York"
+    "sample": "Zack Fox, NIGELTHREETIMES, Cosmo · New York"
   },
   {
     "name": "Aurora Halal",
@@ -478,6 +598,26 @@
     ],
     "onRA": true,
     "sample": "CTM 2027: Surging · Berlin"
+  },
+  {
+    "name": "B2BLOVE",
+    "key": "b2blove",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "A3 Festival 2026 · Melbourne"
+  },
+  {
+    "name": "Baby J (2)",
+    "key": "babyj2",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "Baby J (Sunset Set) · Bali"
   },
   {
     "name": "Bari",
@@ -520,16 +660,6 @@
     "sample": "Igloofest MTL #6: Ninajirachi & Frost Children (DJ set) · Montreal"
   },
   {
-    "name": "Bibi Seck",
-    "key": "bibiseck",
-    "events": 1,
-    "sources": [
-      "ra"
-    ],
-    "onRA": true,
-    "sample": "Listen Festival 2026 · Brussels"
-  },
-  {
     "name": "BIG REG",
     "key": "bigreg",
     "events": 1,
@@ -548,6 +678,16 @@
     ],
     "onRA": true,
     "sample": "FCKNYE Festival 2026 · Brussels"
+  },
+  {
+    "name": "Bloody Mary",
+    "key": "bloodymary",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "Tresor: Still Awake · Berlin"
   },
   {
     "name": "Border One",
@@ -580,16 +720,6 @@
     "sample": "REMEMBER PARADISE: EL LEGADO · Madrid"
   },
   {
-    "name": "Brunello",
-    "key": "brunello",
-    "events": 1,
-    "sources": [
-      "ra"
-    ],
-    "onRA": true,
-    "sample": "Time Warp NYC 2026 · New York"
-  },
-  {
     "name": "Burden",
     "key": "burden",
     "events": 1,
@@ -598,16 +728,6 @@
     ],
     "onRA": true,
     "sample": "fabric Continuum: Planetary Assault Systems, Freddy K, DVS1, Polygonia"
-  },
-  {
-    "name": "Bushbaby",
-    "key": "bushbaby",
-    "events": 1,
-    "sources": [
-      "ra"
-    ],
-    "onRA": true,
-    "sample": "Riordan · Austin"
   },
   {
     "name": "Busy P",
@@ -638,6 +758,16 @@
     ],
     "onRA": true,
     "sample": "FCKNYE Festival 2026 · Brussels"
+  },
+  {
+    "name": "Carina Lawrence",
+    "key": "carinalawrence",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "Guy J, Roy Rosenfeld, Carina Lawrence - FFS Residency · London"
   },
   {
     "name": "Casey Club",
@@ -700,6 +830,16 @@
     "sample": "Open Beatz Festival 2027 · Bavaria"
   },
   {
+    "name": "charis",
+    "key": "charis",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "Clubnight - Agnes Stark, Markus Suckut, FJAAK, Ballett · North Rhine-W"
+  },
+  {
     "name": "Chicane",
     "key": "chicane",
     "events": 1,
@@ -720,16 +860,6 @@
     "sample": "Snowbombing 2027 · Mayrhofen"
   },
   {
-    "name": "CHRIS STASSY",
-    "key": "chrisstassy",
-    "events": 1,
-    "sources": [
-      "ra"
-    ],
-    "onRA": true,
-    "sample": "Brunch Electronik Madrid x BSMT LIVE 08.11 - CHRIS STASSY · Madrid"
-  },
-  {
     "name": "Chris Watson",
     "key": "chriswatson",
     "events": 1,
@@ -738,6 +868,16 @@
     ],
     "onRA": true,
     "sample": "Chris Watson @ Ministry of Sound · London"
+  },
+  {
+    "name": "Ciaran McAuley",
+    "key": "ciaranmcauley",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "Groove Cruise Miami 2027 - Ambassador Code: GrooveCruiseChris · Miami"
   },
   {
     "name": "Cinna Peyghamy",
@@ -818,6 +958,16 @@
     ],
     "onRA": true,
     "sample": "Blak Festival · Kuala Lumpur"
+  },
+  {
+    "name": "Cosmo",
+    "key": "cosmo",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "Zack Fox, NIGELTHREETIMES, Cosmo · New York"
   },
   {
     "name": "cyvira",
@@ -920,6 +1070,16 @@
     "sample": "REMEMBER PARADISE: EL LEGADO · Madrid"
   },
   {
+    "name": "Daxson",
+    "key": "daxson",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "Groove Cruise Miami 2027 - Ambassador Code: GrooveCruiseChris · Miami"
+  },
+  {
     "name": "Dazee",
     "key": "dazee",
     "events": 1,
@@ -950,6 +1110,16 @@
     "sample": "CTM 2027: Initialising · Berlin"
   },
   {
+    "name": "Dhuna",
+    "key": "dhuna",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "LOOP NYD FESTIVAL 2027 · Madrid"
+  },
+  {
     "name": "Dillinja",
     "key": "dillinja",
     "events": 1,
@@ -960,6 +1130,26 @@
     "sample": "Listen Festival 2026 · Brussels"
   },
   {
+    "name": "DINA",
+    "key": "dina",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "A3 Festival 2026 · Melbourne"
+  },
+  {
+    "name": "DIØN",
+    "key": "din",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "LOOP NYD FESTIVAL 2027 · Madrid"
+  },
+  {
     "name": "Diossa",
     "key": "diossa",
     "events": 1,
@@ -968,6 +1158,16 @@
     ],
     "onRA": true,
     "sample": "Awakenings EXO - Colombia · Bogota"
+  },
+  {
+    "name": "DJ ALI",
+    "key": "djali",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "A3 Festival 2026 · Melbourne"
   },
   {
     "name": "DJ Ardi",
@@ -987,7 +1187,7 @@
       "ra"
     ],
     "onRA": true,
-    "sample": "Zack Fox, DJ Delish, Venom Rei · New York"
+    "sample": "Zack Fox, NIGELTHREETIMES, Cosmo · New York"
   },
   {
     "name": "DJ Holographic",
@@ -998,6 +1198,26 @@
     ],
     "onRA": true,
     "sample": "Fatboy Slim, DJ Holographic, Ammo Avenue · New York"
+  },
+  {
+    "name": "DJ Lady D",
+    "key": "djladyd",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "Nico Moreno + NOVAH · Chicago"
+  },
+  {
+    "name": "DJ Luv You",
+    "key": "djluvyou",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "A3 Festival 2026 · Melbourne"
   },
   {
     "name": "DJ Marta",
@@ -1070,16 +1290,6 @@
     "sample": "CTM 2027: Spatial Radiants · Berlin"
   },
   {
-    "name": "DLOU",
-    "key": "dlou",
-    "events": 1,
-    "sources": [
-      "ra"
-    ],
-    "onRA": true,
-    "sample": "Brunch Electronik Madrid x BSMT LIVE 08.11 - CHRIS STASSY · Madrid"
-  },
-  {
     "name": "Doc Brown",
     "key": "docbrown",
     "events": 1,
@@ -1098,6 +1308,16 @@
     ],
     "onRA": true,
     "sample": "Groove Cruise Miami 2027 - Ambassador Code: GrooveCruiseChris · Miami"
+  },
+  {
+    "name": "dozie (uk)",
+    "key": "dozieuk",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "A3 Festival 2026 · Melbourne"
   },
   {
     "name": "Drizzyclare",
@@ -1148,6 +1368,16 @@
     ],
     "onRA": true,
     "sample": "FCKNYE Festival 2026 · Brussels"
+  },
+  {
+    "name": "Ed Kent",
+    "key": "edkent",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "A3 Festival 2026 · Melbourne"
   },
   {
     "name": "Ede",
@@ -1240,6 +1470,16 @@
     "sample": "CTM 2027: Initialising · Berlin"
   },
   {
+    "name": "Fadi Mohem",
+    "key": "fadimohem",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "Clubnight - Fadi Mohem, South of North · North Rhine-Westphalia"
+  },
+  {
     "name": "Fais Le Beau",
     "key": "faislebeau",
     "events": 1,
@@ -1258,6 +1498,16 @@
     ],
     "onRA": true,
     "sample": "Listen Festival 2026 · Brussels"
+  },
+  {
+    "name": "Fatzo",
+    "key": "fatzo",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "KOKO Electronic: Oden & Fatzo (live) · London"
   },
   {
     "name": "Flore",
@@ -1350,6 +1600,16 @@
     "sample": "fabric: Gabrielle Kwarteng, Daisy Moon, Amaliah + more · London"
   },
   {
+    "name": "Gene Farris",
+    "key": "genefarris",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "Groove Cruise Miami 2027 - Ambassador Code: GrooveCruiseChris · Miami"
+  },
+  {
     "name": "Gene On Earth",
     "key": "geneonearth",
     "events": 1,
@@ -1357,7 +1617,7 @@
       "ra"
     ],
     "onRA": true,
-    "sample": "FUSE - Hivernacle Barcelona · Barcelona"
+    "sample": "[SOLD OUT] FUSE - Hivernacle Barcelona · Barcelona"
   },
   {
     "name": "George Privatti",
@@ -1378,16 +1638,6 @@
     ],
     "onRA": true,
     "sample": "Max Dean b2b Luke Dean · Austin"
-  },
-  {
-    "name": "Gianni Di Bernardo",
-    "key": "giannidibernardo",
-    "events": 1,
-    "sources": [
-      "ra"
-    ],
-    "onRA": true,
-    "sample": "Galactica Florence with Luca Agnelli, Gianni Di Bernardo, V111 · Flore"
   },
   {
     "name": "GLXY",
@@ -1440,6 +1690,16 @@
     "sample": "LOOP NYD FESTIVAL 2027 · Madrid"
   },
   {
+    "name": "Gumm",
+    "key": "gumm",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "A3 Festival 2026 · Melbourne"
+  },
+  {
     "name": "H1pnos1s",
     "key": "h1pnos1s",
     "events": 1,
@@ -1470,6 +1730,16 @@
     "sample": "Halina Rice (Immersive Liveset & AV) · London"
   },
   {
+    "name": "Hannah D",
+    "key": "hannahd",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "A3 Festival 2026 · Melbourne"
+  },
+  {
     "name": "Harriet Jaxxon",
     "key": "harrietjaxxon",
     "events": 1,
@@ -1480,6 +1750,16 @@
     "sample": "Snowbombing 2027 · Mayrhofen"
   },
   {
+    "name": "Hasvat Informant",
+    "key": "hasvatinformant",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "A3 Festival 2026 · Melbourne"
+  },
+  {
     "name": "Haumea",
     "key": "haumea",
     "events": 1,
@@ -1488,16 +1768,6 @@
     ],
     "onRA": true,
     "sample": "Listen Festival 2026 · Brussels"
-  },
-  {
-    "name": "hhunter",
-    "key": "hhunter",
-    "events": 1,
-    "sources": [
-      "ra"
-    ],
-    "onRA": true,
-    "sample": "Kayzo x hhunter at Cermak Hall · Chicago"
   },
   {
     "name": "Hysope",
@@ -1520,6 +1790,26 @@
     "sample": "dnb brunch - KOKO · London"
   },
   {
+    "name": "IN2POL",
+    "key": "in2pol",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "A3 Festival 2026 · Melbourne"
+  },
+  {
+    "name": "Inafekt",
+    "key": "inafekt",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "A3 Festival 2026 · Melbourne"
+  },
+  {
     "name": "Introspekt",
     "key": "introspekt",
     "events": 1,
@@ -1540,6 +1830,16 @@
     "sample": "Time Warp Los Angeles 2026 · Los Angeles"
   },
   {
+    "name": "IsGwan",
+    "key": "isgwan",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "A3 Festival 2026 · Melbourne"
+  },
+  {
     "name": "Isla Den",
     "key": "isladen",
     "events": 1,
@@ -1548,6 +1848,26 @@
     ],
     "onRA": true,
     "sample": "Igloofest MTL #6: Ninajirachi & Frost Children (DJ set) · Montreal"
+  },
+  {
+    "name": "J-OK",
+    "key": "jok",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "A3 Festival 2026 · Melbourne"
+  },
+  {
+    "name": "JakoJako",
+    "key": "jakojako",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "A3 Festival 2026 · Melbourne"
   },
   {
     "name": "jamesjamesjames",
@@ -1590,6 +1910,26 @@
     "sample": "CTM 2027: Surging · Berlin"
   },
   {
+    "name": "Jenny Fox",
+    "key": "jennyfox",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "Nico Moreno + NOVAH · Chicago"
+  },
+  {
+    "name": "JERRO",
+    "key": "jerro",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "JERRO: Are You Listening? Tour · Houston"
+  },
+  {
     "name": "Jhobei",
     "key": "jhobei",
     "events": 1,
@@ -1630,6 +1970,26 @@
     "sample": "Time Warp Los Angeles 2026 · Los Angeles"
   },
   {
+    "name": "Jonas Xenon",
+    "key": "jonasxenon",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "Tresor: Still Awake · Berlin"
+  },
+  {
+    "name": "Joplyn",
+    "key": "joplyn",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "Nico Moreno + NOVAH · Chicago"
+  },
+  {
     "name": "Jorkes",
     "key": "jorkes",
     "events": 1,
@@ -1638,6 +1998,26 @@
     ],
     "onRA": true,
     "sample": "Listen Festival 2026 · Brussels"
+  },
+  {
+    "name": "Josh Caffé",
+    "key": "joshcaffe",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "Tresor: Still Awake · Berlin"
+  },
+  {
+    "name": "Josh Heywood",
+    "key": "joshheywood",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "A3 Festival 2026 · Melbourne"
   },
   {
     "name": "Juliana Huxtable",
@@ -1650,6 +2030,16 @@
     "sample": "Time Warp Los Angeles 2026 · Los Angeles"
   },
   {
+    "name": "Justine Perry",
+    "key": "justineperry",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "Tresor: New Year's Day 2027 · Berlin"
+  },
+  {
     "name": "K Motionz",
     "key": "kmotionz",
     "events": 1,
@@ -1658,16 +2048,6 @@
     ],
     "onRA": true,
     "sample": "FCKNYE Festival 2026 · Brussels"
-  },
-  {
-    "name": "Kailyn Crabbe",
-    "key": "kailyncrabbe",
-    "events": 1,
-    "sources": [
-      "ra"
-    ],
-    "onRA": true,
-    "sample": "Lost Sundays Block Party — January 3 feat. Ewan McVicar, Faster Horses"
   },
   {
     "name": "Kalte Liebe",
@@ -1698,26 +2078,6 @@
     ],
     "onRA": true,
     "sample": "Igloofest MTL #1: Kaytranada · Montreal"
-  },
-  {
-    "name": "Kayzo",
-    "key": "kayzo",
-    "events": 1,
-    "sources": [
-      "ra"
-    ],
-    "onRA": true,
-    "sample": "Kayzo x hhunter at Cermak Hall · Chicago"
-  },
-  {
-    "name": "Kelsey Lu",
-    "key": "kelseylu",
-    "events": 1,
-    "sources": [
-      "songkick"
-    ],
-    "onRA": true,
-    "sample": "Kelsey Lu @ KOKO · London"
   },
   {
     "name": "Kice",
@@ -1810,6 +2170,16 @@
     "sample": "Time Warp Mexico 2026 · Mexico City"
   },
   {
+    "name": "Lacchesi",
+    "key": "lacchesi",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "A3 Festival 2026 · Melbourne"
+  },
+  {
     "name": "Lagos",
     "key": "lagos",
     "events": 1,
@@ -1870,6 +2240,16 @@
     "sample": "Listen Festival 2026 · Brussels"
   },
   {
+    "name": "Lemarie",
+    "key": "lemarie",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "Tresor: New Year's Day 2027 · Berlin"
+  },
+  {
     "name": "Lewis Doherty",
     "key": "lewisdoherty",
     "events": 1,
@@ -1878,6 +2258,36 @@
     ],
     "onRA": true,
     "sample": "Bedroom Traxx Presents: Nyra · Glasgow"
+  },
+  {
+    "name": "Lewis Taylor",
+    "key": "lewistaylor",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "A3 Festival 2026 · Melbourne"
+  },
+  {
+    "name": "Lexï",
+    "key": "lexi",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "A3 Festival 2026 · Melbourne"
+  },
+  {
+    "name": "LF SYSTEM",
+    "key": "lfsystem",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "A3 Festival 2026 · Melbourne"
   },
   {
     "name": "Lil Texas",
@@ -1910,14 +2320,24 @@
     "sample": "Listen Festival 2026 · Brussels"
   },
   {
-    "name": "Luca Agnelli",
-    "key": "lucaagnelli",
+    "name": "Love, Jess",
+    "key": "lovejess",
     "events": 1,
     "sources": [
       "ra"
     ],
     "onRA": true,
-    "sample": "Galactica Florence with Luca Agnelli, Gianni Di Bernardo, V111 · Flore"
+    "sample": "A3 Festival 2026 · Melbourne"
+  },
+  {
+    "name": "Lucas Boston",
+    "key": "lucasboston",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "A3 Festival 2026 · Melbourne"
   },
   {
     "name": "Luccio",
@@ -1938,16 +2358,6 @@
     ],
     "onRA": true,
     "sample": "REMEMBER PARADISE: EL LEGADO · Madrid"
-  },
-  {
-    "name": "Luke Alessi",
-    "key": "lukealessi",
-    "events": 1,
-    "sources": [
-      "ra"
-    ],
-    "onRA": true,
-    "sample": "fabric: DJ Seinfeld, Luke Alessi, Gerd Janson + more TBA · London"
   },
   {
     "name": "Luke Una",
@@ -2050,16 +2460,6 @@
     "sample": "FCKNYE Festival 2026 · Brussels"
   },
   {
-    "name": "Marc Kinchen",
-    "key": "marckinchen",
-    "events": 1,
-    "sources": [
-      "ra"
-    ],
-    "onRA": true,
-    "sample": "MK · Phuket"
-  },
-  {
     "name": "Marco Shuttle",
     "key": "marcoshuttle",
     "events": 1,
@@ -2088,6 +2488,16 @@
     ],
     "onRA": true,
     "sample": "WEST COAST RIOT · Los Angeles"
+  },
+  {
+    "name": "MASCHA",
+    "key": "mascha",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "Tresor: Still Awake · Berlin"
   },
   {
     "name": "Masha Mar",
@@ -2120,6 +2530,16 @@
     "sample": "LOOP NYD FESTIVAL 2027 · Madrid"
   },
   {
+    "name": "Mauzius",
+    "key": "mauzius",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "Clubnight - Agnes Stark, Markus Suckut, FJAAK, Ballett · North Rhine-W"
+  },
+  {
     "name": "Michenlo",
     "key": "michenlo",
     "events": 1,
@@ -2128,6 +2548,16 @@
     ],
     "onRA": true,
     "sample": "LOOP NYD FESTIVAL 2027 · Madrid"
+  },
+  {
+    "name": "Mikalah Watego",
+    "key": "mikalahwatego",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "A3 Festival 2026 · Melbourne"
   },
   {
     "name": "Mikamayonnaise",
@@ -2148,6 +2578,26 @@
     ],
     "onRA": true,
     "sample": "Listen Festival 2026 · Brussels"
+  },
+  {
+    "name": "Milion",
+    "key": "milion",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "A3 Festival 2026 · Melbourne"
+  },
+  {
+    "name": "Mister Willis",
+    "key": "misterwillis",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "Tresor: Still Awake · Berlin"
   },
   {
     "name": "Monica X",
@@ -2230,6 +2680,16 @@
     "sample": "FCKNYE Festival 2026 · Brussels"
   },
   {
+    "name": "NewTone",
+    "key": "newtone",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "A3 Festival 2026 · Melbourne"
+  },
+  {
     "name": "Nicola Bear",
     "key": "nicolabear",
     "events": 1,
@@ -2248,6 +2708,16 @@
     ],
     "onRA": true,
     "sample": "Marco Carola · Phuket"
+  },
+  {
+    "name": "NIGELTHREETIMES",
+    "key": "nigelthreetimes",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "Zack Fox, NIGELTHREETIMES, Cosmo · New York"
   },
   {
     "name": "Nita Key",
@@ -2320,6 +2790,36 @@
     "sample": "CTM 2027: Initialising · Berlin"
   },
   {
+    "name": "Octave One",
+    "key": "octaveone",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "Jackies Open Air Daytime - Closing 2026 Season La Terrrazza · Barcelon"
+  },
+  {
+    "name": "Oden",
+    "key": "oden",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "KOKO Electronic: Oden & Fatzo (live) · London"
+  },
+  {
+    "name": "Olivia Mendez",
+    "key": "oliviamendez",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "A3 Festival 2026 · Melbourne"
+  },
+  {
     "name": "OMAKS",
     "key": "omaks",
     "events": 1,
@@ -2360,16 +2860,6 @@
     "sample": "Sónar 2027 · Barcelona"
   },
   {
-    "name": "Osmosis Jones",
-    "key": "osmosisjones",
-    "events": 1,
-    "sources": [
-      "ra"
-    ],
-    "onRA": true,
-    "sample": "Hamdi FC vs. Austin · Austin"
-  },
-  {
     "name": "Otis",
     "key": "otis",
     "events": 1,
@@ -2380,14 +2870,14 @@
     "sample": "Listen Festival 2026 · Brussels"
   },
   {
-    "name": "Paco Osuna",
-    "key": "pacoosuna",
+    "name": "paaradoxx",
+    "key": "paaradoxx",
     "events": 1,
     "sources": [
       "ra"
     ],
     "onRA": true,
-    "sample": "LOOP NYD FESTIVAL 2027 · Madrid"
+    "sample": "Clubnight - Agnes Stark, Markus Suckut, FJAAK, Ballett · North Rhine-W"
   },
   {
     "name": "PALA10",
@@ -2420,6 +2910,16 @@
     "sample": "Lost Sundays Block Party — January 3 feat. Ewan McVicar, Faster Horses"
   },
   {
+    "name": "Paula Koski",
+    "key": "paulakoski",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "Tresor: New Year's Day 2027 · Berlin"
+  },
+  {
     "name": "Pergo",
     "key": "pergo",
     "events": 1,
@@ -2428,6 +2928,16 @@
     ],
     "onRA": true,
     "sample": "REMEMBER PARADISE: EL LEGADO · Madrid"
+  },
+  {
+    "name": "Polo & Pan",
+    "key": "poloandpan",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "New Years' Day: Polo & Pan · New York"
   },
   {
     "name": "Prïa",
@@ -2448,6 +2958,16 @@
     ],
     "onRA": true,
     "sample": "dnb brunch - KOKO · London"
+  },
+  {
+    "name": "Purity Ring",
+    "key": "purityring",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "Purity Ring (DJ Set) · New York"
   },
   {
     "name": "Quentin Schneider",
@@ -2478,6 +2998,26 @@
     ],
     "onRA": true,
     "sample": "dnb brunch - KOKO · London"
+  },
+  {
+    "name": "Red Rooms",
+    "key": "redrooms",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "Tresor: New Year's Day 2027 · Berlin"
+  },
+  {
+    "name": "Regis",
+    "key": "regis",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "Tresor: Still Awake · Berlin"
   },
   {
     "name": "Rhadoo",
@@ -2540,6 +3080,16 @@
     "sample": "Sónar 2027 · Barcelona"
   },
   {
+    "name": "RONA.",
+    "key": "rona",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "A3 Festival 2026 · Melbourne"
+  },
+  {
     "name": "Ross From Friends",
     "key": "rossfromfriends",
     "events": 1,
@@ -2548,6 +3098,16 @@
     ],
     "onRA": true,
     "sample": "Snowbombing 2027 · Mayrhofen"
+  },
+  {
+    "name": "Roy Rosenfeld",
+    "key": "royrosenfeld",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "Guy J, Roy Rosenfeld, Carina Lawrence - FFS Residency · London"
   },
   {
     "name": "Running Hot",
@@ -2597,7 +3157,7 @@
       "songkick"
     ],
     "onRA": true,
-    "sample": "Samm (BE) @ Outernet Live · London"
+    "sample": "Samm (BE) @ Outernet Live (previously Here at Outernet) · London"
   },
   {
     "name": "Samuel Moriero (2)",
@@ -2640,6 +3200,16 @@
     "sample": "Time Warp Germany 2027 · Mannheim"
   },
   {
+    "name": "Sepehr",
+    "key": "sepehr",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "Tresor: Still Awake · Berlin"
+  },
+  {
     "name": "Shabba",
     "key": "shabba",
     "events": 1,
@@ -2650,6 +3220,16 @@
     "sample": "dnb brunch - KOKO · London"
   },
   {
+    "name": "Shanti",
+    "key": "shanti",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "A3 Festival 2026 · Melbourne"
+  },
+  {
     "name": "She The DJ",
     "key": "shethedj",
     "events": 1,
@@ -2658,6 +3238,16 @@
     ],
     "onRA": true,
     "sample": "Listen Festival 2026 · Brussels"
+  },
+  {
+    "name": "Shiba",
+    "key": "shiba",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "A Night of Amapiano: MaWhoo, Njelic, Murumba Pitch, DJ Stokie, Peanuts"
   },
   {
     "name": "Sickmode",
@@ -2690,6 +3280,16 @@
     "sample": "Listen Festival 2026 · Brussels"
   },
   {
+    "name": "Skin On Skin",
+    "key": "skinonskin",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "A3 Festival 2026 · Melbourne"
+  },
+  {
     "name": "Sköne",
     "key": "skone",
     "events": 1,
@@ -2700,6 +3300,16 @@
     "sample": "FCKNYE Festival 2026 · Brussels"
   },
   {
+    "name": "SNAXX",
+    "key": "snaxx",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "A3 Festival 2026 · Melbourne"
+  },
+  {
     "name": "Solo Viking",
     "key": "soloviking",
     "events": 1,
@@ -2708,6 +3318,26 @@
     ],
     "onRA": true,
     "sample": "REMEMBER PARADISE: EL LEGADO · Madrid"
+  },
+  {
+    "name": "Sparkling Water Dreams",
+    "key": "sparklingwaterdreams",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "Tresor: Still Awake · Berlin"
+  },
+  {
+    "name": "STAFFY",
+    "key": "staffy",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "A3 Festival 2026 · Melbourne"
   },
   {
     "name": "State OFFF",
@@ -2730,6 +3360,16 @@
     "sample": "Listen Festival 2026 · Brussels"
   },
   {
+    "name": "STÜM",
+    "key": "stum",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "A3 Festival 2026 · Melbourne"
+  },
+  {
     "name": "Supergloss",
     "key": "supergloss",
     "events": 1,
@@ -2748,6 +3388,16 @@
     ],
     "onRA": true,
     "sample": "Listen Festival 2026 · Brussels"
+  },
+  {
+    "name": "SXCL",
+    "key": "sxcl",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "Tresor: New Year's Day 2027 · Berlin"
   },
   {
     "name": "T.NO",
@@ -2808,6 +3458,16 @@
     ],
     "onRA": true,
     "sample": "Igloofest MTL #2: James Hype · Montreal"
+  },
+  {
+    "name": "THELMA",
+    "key": "thelma",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "A3 Festival 2026 · Melbourne"
   },
   {
     "name": "TIISHA",
@@ -2900,8 +3560,8 @@
     "sample": "CTM 2027: Surging · Berlin"
   },
   {
-    "name": "Unicorn on Ketamine",
-    "key": "unicornonketamine",
+    "name": "Unicorn on K",
+    "key": "unicornonk",
     "events": 1,
     "sources": [
       "ra"
@@ -2940,16 +3600,6 @@
     "sample": "FCKNYE Festival 2026 · Brussels"
   },
   {
-    "name": "V111",
-    "key": "v111",
-    "events": 1,
-    "sources": [
-      "ra"
-    ],
-    "onRA": true,
-    "sample": "Galactica Florence with Luca Agnelli, Gianni Di Bernardo, V111 · Flore"
-  },
-  {
     "name": "ValaV",
     "key": "valav",
     "events": 1,
@@ -2958,6 +3608,16 @@
     ],
     "onRA": true,
     "sample": "Awakenings EXO - Colombia · Bogota"
+  },
+  {
+    "name": "Valeria",
+    "key": "valeria",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "Tresor: New Year's Day 2027 · Berlin"
   },
   {
     "name": "Vanee",
@@ -3167,7 +3827,7 @@
       "ra"
     ],
     "onRA": true,
-    "sample": "Zack Fox, DJ Delish, Venom Rei · New York"
+    "sample": "Zack Fox, NIGELTHREETIMES, Cosmo · New York"
   },
   {
     "name": "ZEUZ",
@@ -3222,12 +3882,12 @@
   {
     "name": "Levi",
     "key": "levi",
-    "events": 2,
+    "events": 3,
     "sources": [
       "ra"
     ],
     "onRA": false,
-    "sample": "Marquee Singapore presents LEVI · Singapore"
+    "sample": "AMAZONIA with LEVI - FRI 04 DECEMBER · Phuket"
   },
   {
     "name": "Maz",
@@ -3277,7 +3937,7 @@
       "ra"
     ],
     "onRA": false,
-    "sample": "Zack Fox, DJ Delish, Venom Rei · New York"
+    "sample": "Zack Fox, NIGELTHREETIMES, Cosmo · New York"
   },
   {
     "name": "Eli",
@@ -3298,6 +3958,16 @@
     ],
     "onRA": false,
     "sample": "LOOP NYD FESTIVAL 2027 · Madrid"
+  },
+  {
+    "name": "Harris",
+    "key": "harris",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": false,
+    "sample": "Harris & FORD pres by LOONYLAND · Cologne"
   },
   {
     "name": "Kenny Ken",

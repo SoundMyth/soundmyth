@@ -1,5 +1,5 @@
 {
- "generated": "2026-11-15T19:09:16Z",
+ "generated": "2026-11-16T09:59:48Z",
  "artists": {
   "1926": {
    "name": "19:26",
@@ -4693,6 +4693,13 @@
     "melodic"
    ]
   },
+  "givio": {
+   "name": "GIVIO",
+   "genre": "Multi-genre",
+   "img": "",
+   "top100": false,
+   "vibes": []
+  },
   "glxy": {
    "name": "GLXY",
    "genre": "Multi-genre",
@@ -8915,7 +8922,7 @@
   "padreguilherme": {
    "name": "Padre Guilherme",
    "genre": "Melodic Techno",
-   "img": "https://images.sk-static.com/images/media/profile_images/artists/10352565/huge_avatar",
+   "img": "https://cdn-images.dzcdn.net/images/artist/1bd75088f4a96a538d12aee8cec4d529/1000x1000-000000-80-0-0.jpg",
    "top100": true,
    "rank": 79,
    "vibes": []

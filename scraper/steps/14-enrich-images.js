@@ -103,6 +103,14 @@ export async function sourceRA(name, raUrl) {
 // ── Source 2: Deezer (public, no key) ──────────────────────────────────────
 const DEEZER_PLACEHOLDER = 'd41d8cd98f00b204e9800998ecf8427e';   // md5('') — Deezer's "no picture" hash
 
+// Deezer images are addressed by md5: an artist picture whose md5 equals one of the artist's own album
+// covers is that cover, not a photo of the artist.
+export function isAlbumCover(pictureUrl, albums) {
+  const h = /\/artist\/([0-9a-f]{32})\//.exec(pictureUrl || '')?.[1];
+  if (!h) return false;
+  return (albums || []).some(a => new RegExp('/cover/' + h + '/').test(a.cover_xl || a.cover_big || a.cover || ''));
+}
+
 export async function sourceDeezer(name) {
   const j = await getJSON(`https://api.deezer.com/search/artist?q=${encodeURIComponent(name)}&limit=25`, 'deezer', 150);
   const exact = (j?.data || []).filter(a => sameName(name, a.name));
@@ -110,8 +118,15 @@ export async function sourceDeezer(name) {
   exact.sort((x, y) => (y.nb_fan || 0) - (x.nb_fan || 0));
   const best = exact[0];
   const pic = best.picture_xl || best.picture_big || '';
-  const placeholder = !pic || pic.includes(DEEZER_PLACEHOLDER);
-  return { img: placeholder ? null : pic, artistName: best.name, fans: best.nb_fan || 0, candidates: exact.length };
+  let placeholder = !pic || pic.includes(DEEZER_PLACEHOLDER);
+  // Artists with no photo of their own get one of their album covers as "picture": not a photo.
+  if (!placeholder) {
+    try {
+      const albums = await getJSON(`https://api.deezer.com/artist/${best.id}/albums?limit=50`, 'deezer', 150);
+      if (isAlbumCover(pic, albums?.data || [])) placeholder = true;
+    } catch { /* cannot tell: keep the picture */ }
+  }
+  return { img: placeholder ? null : pic, artistName: best.name, fans: best.nb_fan || 0, candidates: exact.length, id: best.id };
 }
 
 // ── Source 3: Songkick (artist id from songkick_url; page checked) ──────────

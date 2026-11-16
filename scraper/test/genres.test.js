@@ -274,3 +274,12 @@ test('name match: letters that do not decompose (ø, đ, ł, ß) still match the
   assert.equal(sameName('Strasse', 'Straße'), true);
   assert.equal(sameName('Fisher', 'Mike Fisher'), false);
 });
+
+import { isAlbumCover } from '../steps/14-enrich-images.js';
+test('Deezer: an artist picture that is one of their album covers is not a photo', () => {
+  const h = '1bd75088f4a96a538d12aee8cec4d529';
+  const pic = `https://cdn-images.dzcdn.net/images/artist/${h}/1000x1000-000000-80-0-0.jpg`;
+  assert.equal(isAlbumCover(pic, [{ cover_xl: `https://cdn-images.dzcdn.net/images/cover/${h}/1000x1000-000000-80-0-0.jpg` }]), true);
+  assert.equal(isAlbumCover(pic, [{ cover_xl: 'https://cdn-images.dzcdn.net/images/cover/ffffffffffffffffffffffffffffffff/1000x1000.jpg' }]), false);
+  assert.equal(isAlbumCover('', []), false);
+});

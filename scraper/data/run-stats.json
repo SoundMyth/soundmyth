@@ -1,22 +1,20 @@
 {
   "festivals": {
-    "added": [
-      "A3 Festival"
-    ],
-    "candidates": 39
+    "added": [],
+    "candidates": 42
   },
   "dedupe": {
-    "generated": "2026-11-15T09:42:52.391Z",
+    "generated": "2026-11-16T00:33:01.267Z",
     "likelyErrors": 5,
     "possibleDoubleHeaders": 19,
     "ignoredFestival": 104,
     "fragmentsMerged": 3,
-    "keepersMerged": 179,
-    "rowsDeleted": 1061
+    "keepersMerged": 175,
+    "rowsDeleted": 1055
   },
   "validate": {
-    "generated": "2026-11-15T09:43:03.350Z",
-    "future": 2476,
+    "generated": "2026-11-16T00:33:08.338Z",
+    "future": 2448,
     "cityCanonicalized": 0,
     "cityFromVenue": 0,
     "countryFilled": 0,
@@ -36,7 +34,7 @@
         {
           "city": "Birmingham",
           "countries": [
-            "United Kingdom (17)",
+            "United Kingdom (16)",
             "United States (1)"
           ]
         },
@@ -88,18 +86,18 @@
     "droppedSamples": []
   },
   "purge": {
-    "generated": "2026-11-15T09:44:15.623Z",
-    "cutoff": "2026-11-07",
+    "generated": "2026-11-16T00:33:54.671Z",
+    "cutoff": "2026-11-08",
     "retentionDays": 8,
-    "deleted": 321,
+    "deleted": 109,
     "orphanSavedEvents": {
       "status": "ok",
-      "found": 17,
-      "deleted": 17
+      "found": 0,
+      "deleted": 0
     }
   },
   "namesake": {
-    "generated": "2026-11-15T09:43:03.351Z",
+    "generated": "2026-11-16T00:33:08.338Z",
     "rules": [],
     "allowListed": 0,
     "droppedCount": 0,
@@ -303,21 +301,6 @@
         ]
       },
       {
-        "source_id": "sk_43261859",
-        "name": "Bonobo @ Roseland Theater",
-        "dj": "Bonobo",
-        "venue": "Roseland Theater",
-        "city": "Portland",
-        "country": "United States",
-        "date": "2026-11-15",
-        "ticket_url": "https://www.songkick.com/concerts/43261859-bonobo-at-roseland-theater?utm_medium=organic&utm_source=microformat",
-        "reasons": [
-          "no other known DJ plays this venue",
-          "one-word name (common-name collision risk)",
-          "same DJ listed in another country the next day"
-        ]
-      },
-      {
         "source_id": "sk_43471441",
         "name": "Ben Sims @ Auditorium",
         "dj": "Ben Sims",
@@ -329,6 +312,21 @@
         "reasons": [
           "no other known DJ plays this venue",
           "venue name suggests a non-club (church, cabaret, hotel, museum...)"
+        ]
+      },
+      {
+        "source_id": "sk_43203345",
+        "name": "Madeon @ The Majestic Café",
+        "dj": "Madeon",
+        "venue": "The Majestic Café",
+        "city": "Detroit",
+        "country": "United States",
+        "date": "2026-11-20",
+        "ticket_url": "https://www.songkick.com/concerts/43203345-madeon-at-majestic-cafe?utm_medium=organic&utm_source=microformat",
+        "reasons": [
+          "no other known DJ plays this venue",
+          "one-word name (common-name collision risk)",
+          "same DJ listed in another country the next day"
         ]
       }
     ]

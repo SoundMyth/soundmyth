@@ -1,5 +1,5 @@
 {
-  "generated": "2026-11-15T09:41:35.423Z",
+  "generated": "2026-11-16T00:31:56.271Z",
   "likelyErrors": 5,
   "possibleDoubleHeaders": 19,
   "ignoredFestival": 104,
@@ -20,7 +20,7 @@
         "ticket_url": "https://www.songkick.com/concerts/43387991-whipped-cream-at-mosaic?utm_medium=organic&utm_source=microformat"
       },
       "b": {
-        "id": 238247,
+        "id": 241737,
         "source_id": "sk_43201764",
         "name": "Whipped Cream @ Klüngelpütz Kabarett &theater",
         "venue": "Klüngelpütz Kabarett &theater",
@@ -47,7 +47,7 @@
         "ticket_url": "https://www.songkick.com/concerts/43281837-afrojack-at-level-1-cannonball-arts?utm_medium=organic&utm_source=microformat"
       },
       "b": {
-        "id": 236463,
+        "id": 239953,
         "source_id": "sk_43460576",
         "name": "Afrojack @ Werribee Plaza Tavern, Level 1 Upstairs",
         "venue": "Werribee Plaza Tavern, Level 1 Upstairs",
@@ -101,7 +101,7 @@
         "ticket_url": "https://www.songkick.com/concerts/43353780-rossi-at-concourse-project?utm_medium=organic&utm_source=microformat"
       },
       "b": {
-        "id": 237953,
+        "id": 241443,
         "source_id": "sk_43060452",
         "name": "Rossi @ Kulturzentrum Pavillon",
         "venue": "Kulturzentrum Pavillon",
@@ -128,7 +128,7 @@
         "ticket_url": "https://www.songkick.com/concerts/43490108-rossi-at-church?utm_medium=organic&utm_source=microformat"
       },
       "b": {
-        "id": 237955,
+        "id": 241445,
         "source_id": "sk_43015877",
         "name": "Rossi @ Kulturzentrum Pavillon",
         "venue": "Kulturzentrum Pavillon",

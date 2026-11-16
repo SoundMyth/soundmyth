@@ -657,5 +657,43 @@
     "status": "pending",
     "reason": "DB festival-like title; needs review",
     "first_seen": "2026-11-15"
+  },
+  {
+    "key": "surf festival",
+    "name": "Surf Festival",
+    "city": "",
+    "country": "Croatia",
+    "date": "2027-06-17",
+    "ra_id": "2559164",
+    "via": "generic",
+    "artists": 17,
+    "known_artists": 0,
+    "first_seen": "2026-11-16",
+    "status": "pending",
+    "reason": "only 0 lineup artists in artists_all"
+  },
+  {
+    "key": "together festival pre party with fanrasm",
+    "name": "Together Festival Pre-Party with Fanrasm",
+    "city": "Bangkok",
+    "country": "Thailand",
+    "via": "db",
+    "events_in_db": 1,
+    "known_artists": 1,
+    "status": "pending",
+    "reason": "DB festival-like title; needs review",
+    "first_seen": "2026-11-16"
+  },
+  {
+    "key": "summer punch festival",
+    "name": "Summer Punch Festival",
+    "city": "Warsaw",
+    "country": "Poland",
+    "via": "db",
+    "events_in_db": 1,
+    "known_artists": 0,
+    "status": "pending",
+    "reason": "DB festival-like title; needs review",
+    "first_seen": "2026-11-16"
   }
 ]

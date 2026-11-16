@@ -1640,6 +1640,16 @@
     "sample": "Max Dean b2b Luke Dean · Austin"
   },
   {
+    "name": "GIVIO",
+    "key": "givio",
+    "events": 1,
+    "sources": [
+      "ra"
+    ],
+    "onRA": true,
+    "sample": "Jackies Open Air Daytime - Closing 2026 Season La Terrrazza · Barcelon"
+  },
+  {
     "name": "GLXY",
     "key": "glxy",
     "events": 1,

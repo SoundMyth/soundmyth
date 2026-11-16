@@ -1,5 +1,5 @@
 {
- "generated": "2026-11-15T19:09:16Z",
+ "generated": "2026-11-16T00:33:53Z",
  "artists": {
   "1926": {
    "name": "19:26",
@@ -4692,6 +4692,13 @@
    "vibes": [
     "melodic"
    ]
+  },
+  "givio": {
+   "name": "GIVIO",
+   "genre": "Multi-genre",
+   "img": "",
+   "top100": false,
+   "vibes": []
   },
   "glxy": {
    "name": "GLXY",

@@ -1,5 +1,5 @@
 {
- "generated": "2026-11-16T11:25:44Z",
+ "generated": "2026-11-16T18:53:18Z",
  "artists": {
   "1926": {
    "name": "19:26",
@@ -12,7 +12,7 @@
   "999999999": {
    "name": "999999999",
    "genre": "Techno",
-   "img": "https://cdn-images.dzcdn.net/images/artist/3274a0a4834b06549fde814ebc54e533/1000x1000-000000-80-0-0.jpg",
+   "img": "https://static.ra.co/images/profiles/square/999999999.jpg?dateUpdated=1557751711000",
    "top100": false,
    "rank": 131,
    "vibes": [
@@ -883,7 +883,7 @@
   "angeldlite": {
    "name": "Angel D'lite",
    "genre": "Multi-genre",
-   "img": "https://cdn-images.dzcdn.net/images/artist/c4b853230cd734b0a089b72f473aa87b/1000x1000-000000-80-0-0.jpg",
+   "img": "",
    "top100": false,
    "vibes": []
   },
@@ -1123,7 +1123,7 @@
   "artoffighters": {
    "name": "Art Of Fighters",
    "genre": "Hardstyle",
-   "img": "https://cdn-images.dzcdn.net/images/artist/16bea285a6fba57881d88241ad555516/1000x1000-000000-80-0-0.jpg",
+   "img": "https://static.ra.co/images/profiles/square/artoffighters.jpg?dateUpdated=1678722315000",
    "top100": false,
    "rank": 884,
    "vibes": []
@@ -1206,7 +1206,7 @@
   "aumni": {
    "name": "Aumnï",
    "genre": "Multi-genre",
-   "img": "https://cdn-images.dzcdn.net/images/artist/f6f3bce2f234ed053022b390250e0907/1000x1000-000000-80-0-0.jpg",
+   "img": "",
    "top100": false,
    "vibes": []
   },
@@ -1324,7 +1324,7 @@
   "bartskils": {
    "name": "Bart Skils",
    "genre": "Techno",
-   "img": "https://cdn-images.dzcdn.net/images/artist/efd4a91e37a07f0ed2c730e34aa582da/1000x1000-000000-80-0-0.jpg",
+   "img": "https://static.ra.co/images/profiles/bartskils.jpg?dateUpdated=1464291423770",
    "top100": false,
    "rank": 530,
    "vibes": [
@@ -1366,7 +1366,7 @@
   "bassmodulators": {
    "name": "Bass Modulators",
    "genre": "Hardstyle",
-   "img": "https://cdn-images.dzcdn.net/images/artist/13a9936921d3afcd99a45de06fad2d59/1000x1000-000000-80-0-0.jpg",
+   "img": "https://static.ra.co/images/profiles/bassmodulators.jpg?dateUpdated=1521046321000",
    "top100": false,
    "rank": 887,
    "vibes": []
@@ -1957,7 +1957,7 @@
   "cablu": {
    "name": "cablu",
    "genre": "Multi-genre",
-   "img": "https://cdn-images.dzcdn.net/images/artist/7f9e55cc410e607f923e1e799361e138/1000x1000-000000-80-0-0.jpg",
+   "img": "",
    "top100": false,
    "vibes": []
   },
@@ -2195,7 +2195,7 @@
   "chapterandverse": {
    "name": "Chapter & Verse",
    "genre": "Tech House",
-   "img": "https://cdn-images.dzcdn.net/images/artist/f7113472f91a97764fb6132b1e80485d/1000x1000-000000-80-0-0.jpg",
+   "img": "",
    "top100": false,
    "rank": 225,
    "vibes": []
@@ -3416,7 +3416,7 @@
   "djstingray313": {
    "name": "DJ Stingray 313",
    "genre": "Multi-genre",
-   "img": "https://cdn-images.dzcdn.net/images/artist/a445205b673358dce351a606f02d0202/1000x1000-000000-80-0-0.jpg",
+   "img": "",
    "top100": false,
    "vibes": []
   },
@@ -4243,7 +4243,7 @@
   "finnebassen": {
    "name": "Finnebassen",
    "genre": "Deep House",
-   "img": "https://cdn-images.dzcdn.net/images/artist/9e8b3fcaf0dc38887108e3abeeb2573a/1000x1000-000000-80-0-0.jpg",
+   "img": "https://static.ra.co/images/profiles/finnebassen.jpg?dateUpdated=1529569393000",
    "top100": false,
    "rank": 941,
    "vibes": []
@@ -5940,7 +5940,7 @@
   "kaiserdisco": {
    "name": "Kaiserdisco",
    "genre": "Techno",
-   "img": "https://cdn-images.dzcdn.net/images/artist/6a6be089be07b6801bad06cf1893ee33/1000x1000-000000-80-0-0.jpg",
+   "img": "https://static.ra.co/images/profiles/square/kaiserdisco.jpg?dateUpdated=1495929600000",
    "top100": false,
    "rank": 535,
    "vibes": [
@@ -6473,7 +6473,7 @@
   "ladydammage": {
    "name": "Lady Dammage",
    "genre": "Hard Techno",
-   "img": "https://cdn-images.dzcdn.net/images/artist/714dc0bd0f304e43b4fdd0f8c2b01fda/1000x1000-000000-80-0-0.jpg",
+   "img": "https://static.ra.co/images/profiles/square/ladydammage.jpg?dateUpdated=1679585043000",
    "top100": false,
    "rank": 985,
    "vibes": []
@@ -6732,7 +6732,7 @@
   "lieks": {
    "name": "LIEKS",
    "genre": "Techno",
-   "img": "https://cdn-images.dzcdn.net/images/artist/484e8fe5c1f85d573856d8cfad241c9c/1000x1000-000000-80-0-0.jpg",
+   "img": "",
    "top100": false,
    "rank": 991,
    "vibes": []
@@ -7070,7 +7070,7 @@
   "lzwo": {
    "name": "L.zwo",
    "genre": "Multi-genre",
-   "img": "https://cdn-images.dzcdn.net/images/artist/dab49328cd568feb5919a30e403c49a2/1000x1000-000000-80-0-0.jpg",
+   "img": "",
    "top100": false,
    "vibes": []
   },
@@ -8818,7 +8818,7 @@
   "onyvaa": {
    "name": "ONYVAA",
    "genre": "Multi-genre",
-   "img": "https://cdn-images.dzcdn.net/images/artist/e3eb77a1c7bfc486407a3143985dae5f/1000x1000-000000-80-0-0.jpg",
+   "img": "",
    "top100": false,
    "vibes": []
   },
@@ -8922,7 +8922,7 @@
   "padreguilherme": {
    "name": "Padre Guilherme",
    "genre": "Melodic Techno",
-   "img": "https://cdn-images.dzcdn.net/images/artist/1bd75088f4a96a538d12aee8cec4d529/1000x1000-000000-80-0-0.jpg",
+   "img": "",
    "top100": true,
    "rank": 79,
    "vibes": []
@@ -9043,7 +9043,7 @@
   "pastisandbuenri": {
    "name": "Pastis & Buenri",
    "genre": "Hardstyle",
-   "img": "https://cdn-images.dzcdn.net/images/artist/c4e9de35f8291a0b0602efda92515d66/1000x1000-000000-80-0-0.jpg",
+   "img": "",
    "top100": false,
    "rank": 503,
    "vibes": [
@@ -9188,7 +9188,7 @@
   "perc": {
    "name": "Perc",
    "genre": "Techno",
-   "img": "https://cdn-images.dzcdn.net/images/artist/afd91276262084c0e0cca12b3365c4cc/1000x1000-000000-80-0-0.jpg",
+   "img": "https://static.ra.co/images/profiles/perc.jpg?dateUpdated=1599782400000",
    "top100": false,
    "rank": 389,
    "vibes": [
@@ -9299,7 +9299,7 @@
   "piganddan": {
    "name": "Pig&Dan",
    "genre": "Techno",
-   "img": "https://cdn-images.dzcdn.net/images/artist/be7cbadaea3e27a4a11805e88fd5be4e/1000x1000-000000-80-0-0.jpg",
+   "img": "",
    "top100": false,
    "rank": 534,
    "vibes": [
@@ -9431,7 +9431,7 @@
   "protokseed": {
    "name": "Protokseed",
    "genre": "Hard Techno",
-   "img": "https://cdn-images.dzcdn.net/images/artist/456dad5634f3c76907ef747e7abcc7ab/1000x1000-000000-80-0-0.jpg",
+   "img": "https://static.ra.co/images/profiles/square/protokseed.jpg?dateUpdated=1703017446710",
    "top100": false,
    "rank": 1044,
    "vibes": []
@@ -9768,7 +9768,7 @@
   "rhadoo": {
    "name": "Rhadoo",
    "genre": "Multi-genre",
-   "img": "https://cdn-images.dzcdn.net/images/artist/8dfdee701f03ed51d885852f45582c80/1000x1000-000000-80-0-0.jpg",
+   "img": "",
    "top100": false,
    "vibes": []
   },
@@ -9952,7 +9952,7 @@
   "rona": {
    "name": "RONA.",
    "genre": "Multi-genre",
-   "img": "https://cdn-images.dzcdn.net/images/artist/05cfdab631b583cf72ae3d4f7913ce19/1000x1000-000000-80-0-0.jpg",
+   "img": "",
    "top100": false,
    "vibes": []
   },
@@ -10010,7 +10010,7 @@
   "royrosenfeld": {
    "name": "Roy Rosenfeld",
    "genre": "Multi-genre",
-   "img": "https://cdn-images.dzcdn.net/images/artist/f6ddd460ed3009b06cb6181bfc88733b/1000x1000-000000-80-0-0.jpg",
+   "img": "https://static.ra.co/images/profiles/square/royrosenfeld.jpg?dateUpdated=1456869037540",
    "top100": false,
    "vibes": []
   },
@@ -10587,7 +10587,7 @@
   "shonky": {
    "name": "Shonky",
    "genre": "Hard Techno",
-   "img": "https://cdn-images.dzcdn.net/images/artist/5d32851a84631680661656599e8d12e3/1000x1000-000000-80-0-0.jpg",
+   "img": "https://static.ra.co/images/profiles/square/shonky.jpg?dateUpdated=1470754294000",
    "top100": false,
    "rank": 840,
    "vibes": []
@@ -11277,7 +11277,7 @@
   "tashlc": {
    "name": "Tash LC",
    "genre": "Multi-genre",
-   "img": "https://cdn-images.dzcdn.net/images/artist/8d957126f4dab4b5f8d5774bf0c36092/1000x1000-000000-80-0-0.jpg",
+   "img": "",
    "top100": false,
    "vibes": []
   },
@@ -11379,7 +11379,7 @@
   "thedarkhorror": {
    "name": "The Dark Horror",
    "genre": "Multi-genre",
-   "img": "https://cdn-images.dzcdn.net/images/artist/9084db4f647bf2301e7fd5d816c9ec2c/1000x1000-000000-80-0-0.jpg",
+   "img": "",
    "top100": false,
    "vibes": []
   },
@@ -11856,7 +11856,7 @@
   "unicornonk": {
    "name": "Unicorn on K",
    "genre": "Multi-genre",
-   "img": "https://cdn-images.dzcdn.net/images/artist/b790a25eb835d745f0bfbc11cde8f5df/1000x1000-000000-80-0-0.jpg",
+   "img": "",
    "top100": false,
    "vibes": []
   },
@@ -12094,7 +12094,7 @@
   "vonbikrav": {
    "name": "Von Bikräv",
    "genre": "Multi-genre",
-   "img": "https://cdn-images.dzcdn.net/images/artist/3f4274b6836112438bea37ce192ab565/1000x1000-000000-80-0-0.jpg",
+   "img": "",
    "top100": false,
    "vibes": []
   },
@@ -12458,7 +12458,7 @@
   "zhangye": {
    "name": "ZHANGYE",
    "genre": "Progressive",
-   "img": "https://cdn-images.dzcdn.net/images/artist/5f3c2acd36ee2479831337be2da4e6dd/1000x1000-000000-80-0-0.jpg",
+   "img": "",
    "top100": false,
    "rank": 104,
    "vibes": []
@@ -12531,7 +12531,7 @@
   "zwilling": {
    "name": "zwilling.",
    "genre": "Multi-genre",
-   "img": "https://cdn-images.dzcdn.net/images/artist/758d0aed05e536a4494496a1174c7692/1000x1000-000000-80-0-0.jpg",
+   "img": "",
    "top100": false,
    "vibes": []
   }

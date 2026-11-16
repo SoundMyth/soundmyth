@@ -46,7 +46,8 @@ export const djKey = s => (s || '').toLowerCase().normalize('NFD').replace(/[̀-
 // Comparison used to accept a candidate from a source. Stricter than djKey: punctuation
 // counts ("F!sher" ≠ "Fisher"), but a punctuated name from our data may match an
 // unpunctuated source name ("Rossi." ≈ "Rossi", "Blond:ish" ≈ "Blondish").
-const fold = s => (s || '').normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase()
+const FOLD_MAP = { 'ø': 'o', 'đ': 'd', 'ł': 'l', 'æ': 'ae', 'œ': 'oe', 'ß': 'ss', 'ð': 'd', 'þ': 'th' };
+const fold = s => (s || '').normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase().replace(/[øđłæœßðþ]/g, c => FOLD_MAP[c])
   .replace(/&/g, ' and ').replace(/\s+/g, ' ').trim();
 const loose = s => s.replace(/[^a-z0-9]/g, '');
 export function sameName(ours, theirs) {
@@ -77,7 +78,7 @@ async function getJSON(url, host, gapMs, headers = {}, timeoutMs = 10000) {
 // ── Source 1: Resident Advisor ─────────────────────────────────────────────
 // Own header set (not lib/ra.js RA_HEADERS): this lookup has always sent the image UA and ra-content-language.
 const RA_HEADERS = { 'Content-Type': 'application/json', 'User-Agent': UA, Referer: 'https://ra.co/', Origin: 'https://ra.co', 'ra-content-language': 'en' };
-const RA_ARTIST_Q = 'query G($s:String!){ artist(slug:$s){ id name aliases image } }';
+const RA_ARTIST_Q = 'query G($s:String!){ artist(slug:$s){ id name aliases image website } }';
 
 export const raSlugFromUrl = url => ((url || '').match(/ra\.co\/dj\/([^/?#\s]+)/i) || [])[1] || null;
 const slugGuess = name => fold(name).normalize('NFD').replace(/[^a-z0-9]+/g, '');
@@ -96,7 +97,7 @@ export async function sourceRA(name, raUrl) {
   if (!a) return null;
   const names = [a.name, ...(a.aliases || [])];
   if (!names.some(n => sameName(name, n))) return null;   // e.g. "fisher" → "Mike Fisher"
-  return { img: a.image || null, artistName: a.name };
+  return { img: a.image || null, artistName: a.name, website: a.website || '' };
 }
 
 // ── Source 2: Deezer (public, no key) ──────────────────────────────────────
@@ -200,6 +201,42 @@ export function loadOverrides() {
   return out;
 }
 
+// ── Source 6: the artist's own website (og:image) ─────────────────────────────
+// Last resort for small acts nobody else has a photo of. The site comes from the curated list
+// (tour_web) or from the artist's RA profile (website). The image is accepted only when the page
+// itself names the artist (title / og:title / og:site_name), so a generic or unrelated site never
+// supplies a photo. Social networks, ticketing and aggregator hosts are skipped.
+const SITE_SKIP = /(^|\.)(ra\.co|songkick\.com|bandsintown\.com|facebook\.com|instagram\.com|twitter\.com|x\.com|tiktok\.com|youtube\.com|soundcloud\.com|spotify\.com|beatport\.com|ticketmaster\.[a-z.]+|seated\.com|eventbrite\.[a-z.]+)$/i;
+export function pageMentionsArtist(html, name) {
+  const grab = re => (html.match(re) || [])[1] || '';
+  const text = [grab(/<title[^>]*>([^<]*)<\/title>/i), grab(/property=["']og:title["'][^>]*content=["']([^"']*)["']/i),
+    grab(/content=["']([^"']*)["'][^>]*property=["']og:title["']/i), grab(/property=["']og:site_name["'][^>]*content=["']([^"']*)["']/i),
+    grab(/content=["']([^"']*)["'][^>]*property=["']og:site_name["']/i)].join(' ');
+  return loose(fold(text)).includes(loose(fold(name)));
+}
+export function ogImageOf(html, base) {
+  const raw = html.match(/<meta[^>]+property=["']og:image(?::secure_url)?["'][^>]+content=["']([^"']+)["']/i)?.[1]
+    || html.match(/<meta[^>]+content=["']([^"']+)["'][^>]+property=["']og:image["']/i)?.[1]
+    || html.match(/<meta[^>]+name=["']twitter:image["'][^>]+content=["']([^"']+)["']/i)?.[1] || '';
+  if (!raw) return null;
+  let u; try { u = new URL(raw.replace(/&amp;/g, '&'), base); } catch { return null; }
+  if (!/^https?:$/.test(u.protocol)) return null;
+  const file = u.pathname.split('/').pop() || '';
+  if (/^(1x1|pixel|spacer|blank|transparent|default|placeholder|favicon)/i.test(file) || /\.(svg|gif|ico)$/i.test(file)) return null;
+  return u.toString();
+}
+export async function sourceOfficialSite(name, siteUrl) {
+  let u; try { u = new URL(siteUrl); } catch { return null; }
+  if (!/^https?:$/.test(u.protocol) || SITE_SKIP.test(u.hostname.replace(/^www\./, ''))) return null;
+  await gate('site:' + u.hostname, 800);
+  const res = await fetch(u, { headers: { 'User-Agent': UA, Accept: 'text/html' }, signal: AbortSignal.timeout(9000), redirect: 'follow' });
+  if (!res.ok) return null;
+  const html = (await res.text()).slice(0, 400000);
+  if (!pageMentionsArtist(html, name)) return null;
+  const img = ogImageOf(html, res.url || u);
+  return img ? { img, artistName: name } : null;
+}
+
 // ── Photo freshness ───────────────────────────────────────────────────────
 // RA keeps the upload time in the image URL (?dateUpdated=<ms>). Half of the RA photos date
 // from 2022 or earlier, so a stale RA photo is replaced by Deezer's artist picture when Deezer
@@ -226,7 +263,7 @@ export function deezerQualifies(d) {
 // ── DJ resolution ──────────────────────────────────────────────────────────
 // Returns { img, source, artistName?, checked } and never a guess. `retry: true` when a
 // transient error means "don't cache this one yet".
-export async function resolveDJ(name, { raUrl = '', skUrl = '', skEventImg = '', overrides = {} } = {}) {
+export async function resolveDJ(name, { raUrl = '', skUrl = '', skEventImg = '', siteUrl = '', overrides = {} } = {}) {
   const key = djKey(name);
   const checked = new Date().toISOString().slice(0, 10);
   if (key in overrides) return { img: overrides[key] || null, source: overrides[key] ? 'override' : 'override-none', checked };
@@ -245,7 +282,8 @@ export async function resolveDJ(name, { raUrl = '', skUrl = '', skEventImg = '',
   // the scraper stored on a single-act event (same artist id); Wikipedia needs an exact title
   // on a music article; Deezer is an exact name match among many namesakes (most-fans
   // heuristic); TheAudioDB is the weakest (free key, sparse electronic metadata) and goes last.
-  const raHit = await attempt('ra', () => sourceRA(name, raUrl));
+  let raWebsite = '';
+  const raHit = await attempt('ra', async () => { const r = await sourceRA(name, raUrl); if (r && r.website) raWebsite = r.website; return r; });
   if (raHit && isStalePhoto(raHit.img)) {
     const fresh = await attempt('deezer', async () => { const d = await sourceDeezer(name); return deezerQualifies(d) ? d : null; });
     return fresh || raHit;
@@ -256,9 +294,18 @@ export async function resolveDJ(name, { raUrl = '', skUrl = '', skEventImg = '',
     || (skEventImg ? await attempt('songkick-event', async () => ({ img: skEventImg, artistName: name })) : null)
     || await attempt('wikipedia', () => sourceWikipedia(name))
     || await attempt('deezer', () => sourceDeezer(name))
-    || await attempt('audiodb', () => sourceAudioDB(name));
+    || await attempt('audiodb', () => sourceAudioDB(name))
+    || await tryOfficial(name, [siteUrl, raWebsite], attempt);
   if (hit) return hit;
   return { img: null, source: retry ? 'error' : 'none', checked };
+}
+
+async function tryOfficial(name, urls, attempt) {
+  for (const u of [...new Set(urls.filter(Boolean))]) {
+    const r = await attempt('website', () => sourceOfficialSite(name, u));
+    if (r) return r;
+  }
+  return null;
 }
 
 const SK_ARTIST_PHOTO = /^https?:\/\/images\.sk-static\.com\/images\/media\/profile_images\/artists\/\d+\//;
@@ -445,11 +492,18 @@ async function main() {
         } catch { /* transient: retried next run */ }
         continue;
       }
+      // One-time retry for DJs cached as "no photo" before the official-website source existed.
+      if (c && c.source === 'none' && !c.websiteChecked && Date.now() - t0 <= budgetMs) {
+        const meta0 = skById.get(k) || {};
+        const r0 = await resolveDJ(name, { raUrl: meta0.ra_url || '', skUrl: meta0.songkick_url || '', siteUrl: meta0.tour_web || '', overrides });
+        if (r0.source !== 'error') cache[k] = r0.img ? { name, img: r0.img, source: r0.source, checked: r0.checked } : { ...c, websiteChecked: r0.checked };
+        continue;
+      }
       skipped++; continue;
     }
     if (Date.now() - t0 > budgetMs) { console.log(`  Time budget reached; resume on next run.`); break; }
     const meta = skById.get(k) || {};
-    const r = await resolveDJ(name, { raUrl: meta.ra_url || '', skUrl: meta.songkick_url || '', skEventImg: skEventImg.get(k) || '', overrides });
+    const r = await resolveDJ(name, { raUrl: meta.ra_url || '', skUrl: meta.songkick_url || '', skEventImg: skEventImg.get(k) || '', siteUrl: meta.tour_web || '', overrides });
     looked++;
     if (r.source === 'error') { errors++; continue; }     // transient: not cached, retried next run
     cache[k] = { name, img: r.img, source: r.source, checked: r.checked, ...(r.artistName && r.artistName !== name ? { matched: r.artistName } : {}) };

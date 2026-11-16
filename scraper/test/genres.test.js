@@ -251,3 +251,26 @@ test('photo freshness: Deezer replaces a stale photo only with a real audience, 
   assert.equal(deezerQualifies({ img: 'u', fans: 86038, candidates: 3 }), true);
   assert.equal(deezerQualifies({ img: null, fans: 99999, candidates: 1 }), false);
 });
+
+// ── Official-website photo source ──────────────────────────────────────────────
+import { pageMentionsArtist, ogImageOf } from '../steps/14-enrich-images.js';
+test('official site: the page must name the artist before its image is used', () => {
+  const html = '<html><head><title>Flava D | Official Website</title><meta property="og:image" content="/img/flava.jpg"></head></html>';
+  assert.equal(pageMentionsArtist(html, 'Flava D'), true);
+  assert.equal(pageMentionsArtist(html, 'Rødhåd'), false);
+  assert.equal(pageMentionsArtist('<title>Some Booking Agency</title>', 'Flava D'), false);
+});
+test('official site: og:image is resolved against the page, and logos/pixels are rejected', () => {
+  const page = h => `<meta property="og:image" content="${h}">`;
+  assert.equal(ogImageOf(page('/img/a.jpg'), 'https://flavad.com/'), 'https://flavad.com/img/a.jpg');
+  assert.equal(ogImageOf(page('https://x.com/logo.svg'), 'https://x.com/'), null);
+  assert.equal(ogImageOf(page('https://x.com/1x1.gif'), 'https://x.com/'), null);
+  assert.equal(ogImageOf('<html></html>', 'https://x.com/'), null);
+});
+
+import { sameName } from '../steps/14-enrich-images.js';
+test('name match: letters that do not decompose (ø, đ, ł, ß) still match their plain spelling', () => {
+  assert.equal(sameName('Rodhad', 'Rødhåd'), true);
+  assert.equal(sameName('Strasse', 'Straße'), true);
+  assert.equal(sameName('Fisher', 'Mike Fisher'), false);
+});
